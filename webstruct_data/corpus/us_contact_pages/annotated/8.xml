@@ -1,0 +1,75 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-type"/><title><ORG>Clyde&apos;s Restaurant Group</ORG> - Contact Us</title>
+
+</head><body><div id="header"><h1 class="hidden"><ORG>Clyde&apos;s Restaurant Group</ORG></h1>
+<div id="banner" class="slideshow"><div id="bannerSlideshow" class="slideshow"><div id="map_canvas" class="slide"><div class="bannerText"><h2>Find Your Clyde&apos;s</h2>
+
+<p>To get directions, view menus, see hours and more, select any of our 15 DC metro area locations.</p>
+</div></div></div></div><div id="nav" class="typeface-js"><div id="loc"><a id="findLocation"><span>Find a location</span></a></div>
+<div id="navWrap"><div id="navRight"><ul><li><a id="eventLink" class="typeface-js" href="events.cfm">Restaurant Events</a></li>
+<li><a id="newsLink" class="typeface-js" href="newsroom.cfm">Newsroom</a></li>
+<li><a id="contactLink" class="last typeface-js" href="contact_us.cfm">Contact</a></li>
+</ul><div id="eventSubmenu"><ul id="link" class="innerEvent" name="link"><li><a href="events.cfm#ourEvents">Our Events</a></li>
+<li class="middle"><a href="events.cfm#eventForm">Private Event Form</a></li>
+<li><a href="events.cfm#event">Host an Event</a></li>
+</ul></div><div id="newsSubmenu"><ul id="link" class="innerNews" name="link"><li><a href="newsroom.cfm#awardsN">Awards</a></li>
+<li class="middle"><a href="newsroom.cfm#reviews">Press &amp; Reviews</a></li>
+<li class="last"><a href="newsroom.cfm#newsroom">Our Newsroom</a></li>
+</ul></div></div><ul id="navCenter"><li><a href="http://www.clydesrestaurantgroup.com">Clyde&apos;s Restaurant Group</a></li>
+</ul><div id="navLeft"><ul><li><a id="homeLink" class="typeface-js" href="index.cfm">Home</a></li>
+<li><a id="aboutLink" class="typeface-js" href="about_us.cfm">About Us</a></li>
+<li><a id="joinLink" class="last typeface-js" href="join_us.cfm">Join Our Team</a></li>
+</ul><div id="aboutSubmenu"><ul id="link" class="inner" name="link"><li><a href="about_us.cfm#company">Our Company</a></li>
+<li><a href="about_us.cfm#history">Our History</a></li>
+<li><a href="about_us.cfm#bio">Biographies</a></li>
+</ul></div></div></div></div></div><div id="main"><div id="contacts"><h3 id="contactsHeader">Contact Us</h3>
+<div class="subwrapper"><div id="contactsLeft"><h5>Your Feedback is important</h5>
+<div id="contactsBorder">
+<p>Your experience is our most important priority. We welcome your comments and any details that will help us provide the best service to our customers. We will not share your name or any information with anyone outside our organization. For more, please read our <a href="privacy_policy.cfm" class="redLink">privacy policy.</a></p>
+
+<p>You can also email us here:
+<br/><a id="contactsEmail" class="noText" href="mailto:feedback@clydes.com"><EMAIL>feedback@clydes.com</EMAIL></a></p>
+<h5>Charitable Requests</h5>
+<div id="contactsBorder">
+<p>We are a neighborhood saloon devoted to the communities we inhabit and the metro area as a whole. <a href="contact_us_charities.cfm?height=580&amp;width=540" class="redLink thickbox">Click here</a> for information regarding any support we might offer your event or effort.</p>
+<h5>Alumni Benefits Effort</h5>
+<div id="contactsBorder">
+<p>If you are a Clyde&apos;s staff alumni, our corporate office would like to be advised of the correct mailing address for a number of current and former employees so that profit sharing and/or 401K plan correspondence may be delivered. Please <a href="contact_us_alumni.cfm?height=680&amp;width=680" class="redLink thickbox">click here.</a></p>
+</div><div id="contactsRight"><div id="contactRegarding"><ul><li><h4>THIS IS REGARDING</h4>
+</li>
+<li><label for="contactreg">&#160;</label> <span id="contactRegSelect" class="selectBtn">Select</span></li>
+</ul></div><div id="contactInfo"><h4>CONTACT INFO</h4>
+<div id="contactsBorder">
+<p></p><ul><li><h5>Name</h5>
+</li>
+<li></li><li><h5>Email Address</h5>
+</li>
+<li></li><li><h5>Phone</h5>
+</li>
+<li><div class="colPhone"></div></li><li><h5>Preferred method of contact</h5>
+</li>
+<li><label for="contactmethod">&#160;</label> <span id="contactMethodSelect" class="selectBtn">Select method</span></li>
+</ul></div><div id="contactRestInfo"><h4>RESTAURANT INFO</h4>
+<div id="contactsBorder">
+<p></p><ul><li><h5>Which Clyde&apos;s restaurant did you dine in?</h5>
+</li>
+<li><label for="contactrestaurant">&#160;</label> <span id="contactRestaurantSelect" class="selectBtn">Select restaurant</span></li>
+</ul></div><div id="contactMessage"><h4>MESSAGE</h4>
+<div id="contactsBorder">
+</div></div></div></div></div><br/><p><div id="contactButton"></div></p><div id="footer"><div class="wrapper"><div id="footerLeft"><h4>Our Restaurants</h4>
+<div id="ourRestaurants"><ul><li><a href="http://www.clydes.com"><img id="clydesFooterImg" title="Clyde&apos;s Restaurant" src="img/btn-clydes-2.png" alt="Clyde&apos;s Restaurant"/>&#160;</a></li>
+</ul></div><li><a href="http://www.1789restaurant.com"><img id="seventeen89FooterImg" title="1789 Restaurant" src="img/btn-1789-2.png" alt="1789 Restaurant"/><li><a href="http://www.ebbitt.com"><img id="ebbittFooterImg" title="Old Ebbitt Grill" src="img/btn-ebbitt-2.png" alt="Old Ebbitt Grill"/><li><a href="http://www.tombs.com"><img id="tombsFooterImg" title="The Tombs" src="img/btn-tombs-2.png" alt="The Tombs"/><li><a href="http://www.thehamiltonlive.com"><img id="hamiltonFooterImg" title="The Hamilton" src="img/btn-hamilton-2.png" alt="The Hamilton"/></a></li></a></li></a></li></a></li><h4>Make Reservations</h4>
+<div id="makeReservations"><div id="reservations"><ul><li class="first"><label for="restoName">Select restaurant</label></li>
+<li class="second"><label for="eventDate">Date</label></li>
+<li><label for="numGuests"># Guests</label></li>
+<li><label for="eventTime">Time</label></li>
+</ul></div><li><div id="giftsCoins"><a href="http://clydesgifts.com"><img title="Gifts &amp; Coins" alt="Gifts &amp; Coins" src="img/btn-gifts.png"/></a></div></li><div id="copyright">&#169; 2013 <ORG>Clyde&apos;s Restaurant Group</ORG></div>
+</div></div><div id="footerRight"><h4>Stay In Touch</h4>
+<div id="stayInTouch"><ul><li id="adTwitter"><a href="http://twitter.com/clydes"><img id="tweetImage" title="Clyde&apos;s on Twitter" src="img/icon-twitter.jpg" alt="Twitter"/></a><h5>Clyde&apos;s Restaurants on Twitter</h5>
+<a height="100" width="400" data-tweet-limit="1" data-chrome="noheader nofooter transparent" class="twitter-timeline" data-widget-id="350647780605321216" href="https://twitter.com/va_boardsports/clyde-s">Tweets from @va_boardsports/clyde-s</a></li>
+<li id="adFacebook"><img title="Clyde&apos;s Restaurant" alt="Facebook" src="img/icon-facebook.jpg"/><div><h5>Find us on Facebook</h5>
+</div><div data-width="204" data-href="http://www.facebook.com/pages/Clydes-Restaurant-Group/109434562409647" class="fb-like" data-show-faces="false" data-layout="button_count" data-send="false"><li id="adNewsletter"><img title="Clyde&apos;s Restaurant" alt="Newsletter" src="img/icon-newsletter.jpg"/><h5>Sign Up for our Newsletter</h5>
+<label for="subscriberEmail">Enter your email</label><h5>
+</h5><div id="result"></div>
+</li>
+</div></li>
+</ul></div></div></div></div></div></div></div></div></div></div></body></html>

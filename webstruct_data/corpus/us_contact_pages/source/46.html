@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+			<html>
+				<head>
+					
+					<title>REI Contact Us</title>
+					<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" ></meta>
+					
+					<link rel="stylesheet" href="/css/rei.css" type="text/css"/>
+					<link rel="stylesheet" href="/css/sections/helpStyle.css" type="text/css"/>
+			
+					<script src="/javascript/jquery-current.min.js" type="text/javascript"></script>					
+					<script src="/javascript/jquery-ui-1.8.min.js" type="text/javascript"></script>
+					<script src="/javascript/jquery.validate.js" type="text/javascript"></script>
+					
+					<!-- these are inculded because of rei.js dependancy on these files -->
+					<script src="/javascript/jquery.cookie.js" type="text/javascript"></script>
+					<script src="/javascript/dropDown.js" type="text/javascript"></script>		
+					<script src="/javascript/jquery.jcarousel.js" type="text/javascript"></script>	
+					<script src="/javascript/jquery.fancybox-1.3.1.pack.js" type="text/javascript"></script>
+					<script src="/javascript/minicart.class.js" type="text/javascript"></script>
+					<!-- included for analytics on live help connect button -->
+					<script src="/javascript/rei.js" type="text/javascript"></script>
+					
+					<script type="text/javascript">
+			            var storeId='8000', storeClass='rei';
+		            	function no_agents_available(){$('#agentAvailable').hide();$('#agentUnavailable').show();}
+   						function agents_available(){$('#agentAvailable').show();$('#agentUnavailable').hide();}
+   						
+   						function checkAvailability(accountID,deptID){
+								var url_base = "https://rs.instantservice.com/resources/smartbutton/"+accountID+"/"+deptID+"/";
+								var gif_name = "available.gif?" + Math.floor(Math.random()*10001);	
+								var req_img = new Image();
+								
+								req_img.onerror = function (evt) {
+								  //alert(this.src + " can't be loaded.");
+								  no_agents_available();
+								  };
+								req_img.onload = function (evt) {
+								  //alert(this.src + " is loaded.");
+								  agents_available();
+								  };
+								req_img.src=url_base + gif_name ;
+							}
+			            
+			            $(document).ready( function(){
+			            	// validate the livehelp form when it is submitted
+				            $("#genform").validate();
+				            $("#contact").validate(); 
+			            
+							//check queue availability when the contact us popup opens in case it opens on the LiveHelp tab
+							// this is the LIVE ACCOUNT service department
+							var test = checkAvailability("5514","7977");
+							
+							// this is the test account
+							// var test = checkAvailability("6247","26459");
+							
+							// check queue availability again everytime they click on the live help tab 
+							$('a[title$="Help"]').click(
+								function(){
+								
+									// this is the LIVE ACCOUNT service department
+									checkAvailability("5514","7977");
+									
+									// this is the test account
+									//checkAvailability("6247","26459");
+									
+								});
+							
+							var $mytabs = $('#tabContainer').tabs({ fxFade: false, fxSpeed: 'fast' });
+							
+							$('#openEmailTab').click(function() { // bind click event to link
+								$mytabs.tabs('select', 2); // switch to third tab
+								return false;
+							});
+						});
+					</script>
+					<script type="text/javascript" id="omniturePageTags">	
+					            var naf = new Object();
+					            naf['page_name'] = 'help:contact-us';
+					            naf['site_section'] = 'help';
+					            naf['template_type'] = 'help';
+					            naf['content_type'] = 'non-commerce';
+					            naf['site_id'] =  'rei';				
+					            
+					            $(function(){
+					            	// use event13 to provide omniture tracking for clicks on the connect button
+						            $('#submit_genform').click(function(){
+						          
+						            try{
+							            var s = s_gi(s_account);
+							            s.linkTrackEvents="event13";
+							            s.linkTrackVars="events";
+							            s.events="event13";
+							            s.tl(true,"o","Launch LiveHelp Session");
+						            }catch(err){ if(window.rei && rei.error) rei.error.push(err); }
+						            });
+					            });
+					</script>				
+				</head>
+				<body id="helpContactUs" class="rei help">
+					
+					<h1>Contact Us</h1>
+						<!-- Start tab container -->
+						<div id="tabContainer">
+							<ul>
+								<li><a href="#phone_tab" title="Phone"><span>Phone</span></a></li>
+								<li><a href="#liveHelp_tab" title="Live Help"><span>Live Help</span></a></li>
+								<li><a href="#email_tab" title="Email"><span>Email</span></a></li>
+								<li><a href="#other_tab" title="Other"><span>Other</span></a></li>
+							</ul>
+							
+							<!-- Tab 1 BEGIN -->
+							<div id="phone_tab" class="tabContent">
+								<h3>Phone</h3>
+								<p class="p0">From the U.S. and Canada call</p>
+								<h2 class="p0">1-800-426-4840</h2> 
+								<p class="">Monday through Sunday, 4 AM to 11 PM Pacific Time.</p>
+
+								<p class="p2">Our Contact Center is open Monday through Sunday, 4 AM to 11 PM Pacific Time.</p>
+								
+								<p>We are closed on the following holidays: New Year's Day, Easter, Thanksgiving and Christmas.</p>
+								
+								<p><span class="p1">International:</span> Call 1-253-891-2500 Monday through Sunday 4 AM to 11 PM Pacific Time</p>
+								
+								<p><span class="p1">Fax:</span> Dial 1-253-891-2523</p>
+								
+							</div>
+							<!-- Tab 1 END -->
+							
+							<!-- Tab 2 BEGIN -->				
+							<div id="liveHelp_tab" class="tabContent" style="">
+								
+								<h3>Online Live Help</h3>
+								<div id="agentUnavailable" style="">
+									<p style="color:red;">Live Help is currently unavailable.</p>
+									<p>You are welcome to <a href="#" id="openEmailTab">email us</a> instead.</p>
+									<p>If you prefer to chat with an REI representative, Live Help is available daily between 5 AM and 10:30 PM Pacific Time. </p>
+								</div>
+								<div id="agentAvailable" style="display:none;">
+									<p>To start a live chat session with an REI customer service representative, enter your information in the fields below and click <span class="p1">Connect</span></p>
+									<p>Live Help is available daily between 5 AM and 10:30 PM Pacific Time.</p>
+									<p>
+										*Required fields
+									</p>
+									<form id="genform" action="https://admin.instantservice.com/servlet/Customer"  method="post">
+										<p>
+											<label class="fieldLabel" for="fname">Name: *</label>
+											<input class="field required" type="text" name="fname" size="20" id="fname"  maxlength="100" tabindex="1"/>
+										</p>
+										<p>
+											<label class="fieldLabel" for="email">Email:</label>
+											<input class="field" type="text" name="email" size="20" id="email" maxlength="100" tabindex="2"/>
+										</p>
+										<p>
+											<label class="fieldLabel" for="optionaldata">Question: *</label>
+											<textarea class="field required" id="optionaldata" name="optionaldata" cols="31" rows="3" tabindex="4"></textarea>
+										</p>
+										<p>
+											<input id="submit_genform" type="submit" name="submit" value="connect" class="button medium primary"/>
+										</p>
+										
+										<div class="clearall"></div>
+										<div>
+											<!-- LIVE SETTINGS-->
+												<input type="hidden" name="ai" value="5514"/>
+												<input type="hidden" name="hc" value="1"/>   
+												<input type="hidden" name="di" value="7977"/>
+											
+											<!-- TEST SETTINGS							
+											<input type="hidden" name="ai" value="6247"/>
+											<input type="hidden" name="hc" value="1"/>   
+											<input type="hidden" name="di" value="26459"/>-->
+										</div>
+									</form>
+									
+									<div class="clearall"></div>
+								</div>
+							</div>
+							<!-- Tab 2 END -->
+							
+							<!-- Tab 3 BEGIN -->			
+							<div id="email_tab" class="tabContent">
+								<h3>Email</h3>
+								<p>
+									We love to hear from you! Questions, compliments and suggestions all are invaluable in helping us serve you better. We are able to reply to most emails by the next business day. For REI job opportunities please go to REI Jobs.
+								</p>
+								<p>
+									*Required Information
+								</p>
+								
+								<div>
+									<form action="/Emerge" method="post" id="contact" enctype="application/x-www-form-urlencoded">
+										<input type="hidden" name="storeId" value="8000"/>
+										<input type="hidden" name="template" value="/rei/emergeEmailTemplates/userSelectEmail.jsp"/>
+										<input type="hidden" name="display" value="thankyou.jsp"/>
+										<input type="hidden" name="token" value="" id="token"/>
+										<input type="hidden" name="token_map" value="email=email_emailForm;memberNumber=memnum_emailForm"/>
+										<p  style="color:red;">
+										
+											<br>
+											
+											</p>
+										<fieldset>
+											<p>
+												<label class="fieldLabel"  for="selectMenu_emailForm">Pick a topic: *</label> 
+												<select class="field required" size="1" name="selectMenu_emailForm" id="selectMenu_emailForm">
+													<option value="" selected="selected">Please select an item</option>
+													<option value="gearpro" id="gearQuest">Gear Questions</option>
+													<option value="onlineorder" id="orderQuest">Ordering Questions</option>
+													<option value="internationaldirectsales" id="intlQuest">International Ordering Questions</option>
+													<option value="member" id="memberQuest">Membership Questions</option>
+													<option value="privacy" id="privQuest">Privacy Questions</option>
+													<option value="customer-service" id="allQuest">All Other Questions</option>
+												</select>
+											</p>
+											<p>
+												<label class="fieldLabel"  for="name_emailForm">Name: *</label> 
+												<input type="text" size="29" maxlength="50" id="name_emailForm" name="name_emailForm" class="field required"/>
+											</p>
+											<p>
+												<label class="fieldLabel"  for="email_emailForm">Email: *</label> 
+												<input type="text" size="29" maxlength="50" id="email_emailForm" name="email_emailForm" class="field required email"/>
+											</p>
+											<p>
+												<label class="fieldLabel"  for="memnum_emailForm">REI Member Number:</label> 
+												<input type="text" size="29" maxlength="35" id="memnum_emailForm" name="memnum_emailForm" class="field"/>
+											</p>
+											<p>
+												<label class="fieldLabel"  for="comment_emailForm">Comment: *</label> 
+												<textarea class="field required" id="comment_emailForm" name="comment_emailForm" rows="3" cols="35"></textarea>
+											</p>
+											<p>
+												<input id="submit_contact" type="submit" name="submit" value="send" class="button medium primary"/>
+											</p>
+										</fieldset>
+									</form>
+								</div>
+								
+							</div>
+							<!-- Tab 3 END -->
+							
+							<!-- Tab 4 BEGIN -->			
+							<div id="other_tab" class="tabContent">
+								<p class="p1">Postal Mail</p>
+								<p class="p0">REI</p>
+								<p class="">Sumner, WA 98352-0001</p>
+								
+								<p class="p1">Retail Stores</p>
+								<p class="">Call or visit any of our retail locations. <a href="http://www.rei.com/map/store">Find your store here.</a></p>
+								
+								<p class="p1">Corporate &amp; Group Sales</p>
+								<p class="">Get volume discounts when you outfit your team 
+									or group from our full line of outdoor gear and clothing. 
+									Ordering is easy and you can showcase your logo with quality 
+									personalization on almost everything we sell. Learn more about 
+									our Corporate &amp; Group Sales.</p>
+								
+							</div>
+							<!-- Tab 4 END -->
+						</div>
+						<!-- End Tab container -->  
+					
+				</body>
+			</html>
