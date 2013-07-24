@@ -1,0 +1,290 @@
+<html>
+<head>
+<title>Alinea Restaurant</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script type="text/javascript">
+/*
+ * Simple javascript mobile OS / iphone/ android detector
+ *
+ * License: GPLv3+
+ * Author: justin.kelly.org.au
+ *
+ */
+
+function checkOS(){
+	//alert('checking');
+
+	var deviceIphone = "iphone";
+	var deviceIpod = "ipod";
+	var devicePalm = "palm";
+	var deviceS60 = "series60";
+	var deviceSymbian = "symbian";
+	var engineWebKit = "webkit";
+	var deviceAndroid = "android";
+	var deviceWinMob = "windows ce";
+	var deviceWinPhone = "windows phone";
+	var deviceBB = "blackberry";
+
+	//Initialize our user agent string to lower case.
+	var uagent = navigator.userAgent.toLowerCase();
+
+	//**************************
+	// Detects if the current device is an iPhone.
+	function DetectIphone()
+	{
+	   if (uagent.search(deviceIphone) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	//**************************
+	// Detects if the current device is an iPod Touch.
+	function DetectIpod()
+	{
+	   if (uagent.search(deviceIpod) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	//**************************
+	// Detects if the current device is an iPhone or iPod Touch.
+	function DetectIphoneOrIpod()
+	{
+		if (DetectIphone())
+		   return true;
+		else if (DetectIpod())
+		   return true;
+		else
+		   return false;
+	}	
+
+	//**************************
+	// Detects if the current browser is the S60 Open Source Browser.
+	// Screen out older devices and the old WML browser.
+	function DetectS60OssBrowser()
+	{
+	   if (uagent.search(engineWebKit) > -1)
+	   {
+		 if ((uagent.search(deviceS60) > -1 || 
+			  uagent.search(deviceSymbian) > -1))
+			return true;
+		 else
+			return false;
+	   }
+	   else
+		  return false;
+	}
+
+
+
+	//**************************
+	// Detects if the current device is an Android OS-based device.
+	function DetectAndroid()
+	{
+	   if (uagent.search(deviceAndroid) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+
+	//**************************
+	// Detects if the current device is an Android OS-based device and
+	//   the browser is based on WebKit.
+	function DetectAndroidWebKit()
+	{
+	   if (DetectAndroid())
+	   {
+		 if (DetectWebkit())
+			return true;
+		 else
+			return false;
+	   }
+	   else
+		  return false;
+	}
+
+
+	//**************************
+	// Detects if the current browser is a Windows Mobile device.
+	function DetectWindowsMobile()
+	{
+	   if (uagent.search(deviceWinMob) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	//**************************
+	// Detects if the current browser is a Windows Phone OS 7+ Mobile device.
+	function DetectWindowsPhone()
+	{
+	   if (uagent.search(deviceWinPhone) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	//**************************
+	// Detects if the current browser is a BlackBerry of some sort.
+	function DetectBlackBerry()
+	{
+	   if (uagent.search(deviceBB) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	//**************************
+	// Detects if the current browser is on a PalmOS device.
+	function DetectPalmOS()
+	{
+	   if (uagent.search(devicePalm) > -1)
+		  return true;
+	   else
+		  return false;
+	}
+
+	function DetectMobileOS()
+	{
+		if (DetectIphoneOrIpod() || DetectS60OssBrowser() || DetectAndroid() || DetectAndroidWebKit() || DetectWindowsMobile() || DetectBlackBerry() || DetectPalmOS())
+		{
+			return true
+		} else {
+			return false
+		}
+		
+	}
+
+
+	if (DetectMobileOS())
+	{
+		
+	//alert ('a mobile device, leaving titles');
+			
+	}
+	else {okaytohide();}
+}
+
+function okaytohide(){
+	//alert ('not a mobile device, hiding titles');
+	document.getElementById('btn-reso').style.backgroundImage="url(images/index/index-reso.gif)";
+	document.getElementById('btn-menu').style.backgroundImage="url(images/index/index-menu.gif)";
+	document.getElementById('btn-gall').style.backgroundImage="url(images/index/index-gall.gif)";
+	document.getElementById('btn-bios').style.backgroundImage="url(images/index/index-bios.gif)";
+	document.getElementById('btn-cont').style.backgroundImage="url(images/index/index-cont.gif)";
+	document.getElementById('btn-pres').style.backgroundImage="url(images/index/index-pres.gif)";
+	document.getElementById('btn-shop').style.backgroundImage="url(images/index/index-shop.gif)";
+	//write innerhtml to onclick="popup();"
+	//<a href="pages/menus/menu.html" target="_blank" id="btn-menu" class="index-btn" onMouseOver="swapBkg('btn-menu','clear')" onMouseOut="swapBkg('btn-menu','index-menu')"></a>
+	//var oldHTML = document.getElementById('btn-menu').innerHTML;
+	//alert('oldHTML');
+	//var newHTML = "<span style='color:#ffffff'>" + oldHTML + "</span>";
+	//document.getElementById('para').innerHTML = newHTML;
+	
+};
+
+function swapBkg(img,src){
+	document.getElementById(img).style.backgroundImage="url(images/index/"+src+".gif)";	
+	};
+	
+function popup(){
+	//alert('called popup');
+	window.open('pages/menus/menu.html','_blank','width=480,height=800','false')
+};
+
+</script>
+
+
+<style type="text/css">
+body{margin:0;
+	background-color:#333333;
+	color:#333333;
+	text-align:center;
+}
+a {border:0;border:none;text-decoration:none;cursor:pointer;color:#ccc;outline: 0;}
+a:link{color:#ccc;}
+a:visited{color:#ccc;}
+a:active{color:#ccc;}
+a:hover{color:#ccc;}
+#index-box{
+	margin:0 auto;
+	width:700px;
+	height: 550px;
+	margin-top:18px;
+	background-image:url(images/index.gif);
+}
+#header{
+	width:100%;
+	height:138px;
+}
+.index-btn{
+	margin-left:195px;
+	width:208px;
+	cursor:pointer;
+	display:inherit;}
+#btn-reso{
+	height:63px;
+}
+#btn-menu{
+	height:40px;
+}
+#btn-gall{
+	height:67px;
+}
+#btn-bios{
+	height:46px;
+}
+#btn-cont{
+	height:48px;
+}
+#btn-pres{
+	height:45px;
+}
+#btn-shop{
+	height:40px;
+}
+#footer{
+	width:100%;
+	text-align:center;
+	}
+#footer:link{
+color:#cccccc;
+}
+.sub{
+	font-size:11px;
+color:#cccccc;}
+</style>
+</head>
+
+<body onLoad="checkOS();">
+<div id="index-box">
+<div id="header"></div>
+
+<a href="https://www.alinearestaurant.com/website/welcome/" id="btn-reso" class="index-btn" onMouseOver="swapBkg('btn-reso','clear')" onMouseOut="swapBkg('btn-reso','index-reso')"></a>
+
+<a onClick="popup();" id="btn-menu" class="index-btn" onMouseOver="swapBkg('btn-menu','clear')" onMouseOut="swapBkg('btn-menu','index-menu')"></a>
+
+<a href="pages/gallery/gallery_top.html" id="btn-gall" class="index-btn" onMouseOver="swapBkg('btn-gall','clear')" onMouseOut="swapBkg('btn-gall','index-gall')"></a>
+
+<a href="pages/about.html" id="btn-bios" class="index-btn" onMouseOver="swapBkg('btn-bios','clear')" onMouseOut="swapBkg('btn-bios','index-bios')"></a>
+
+<a href="pages/contact/contact_top.html" id="btn-cont" class="index-btn" onMouseOver="swapBkg('btn-cont','clear')" onMouseOut="swapBkg('btn-cont','index-cont')"></a>
+
+<a href="pages/press/press_print_main.html" id="btn-pres" class="index-btn" onMouseOver="swapBkg('btn-pres','clear')" onMouseOut="swapBkg('btn-pres','index-pres')"></a>
+
+<a href="pages/shop/index.html" id="btn-shop" class="index-btn" onMouseOver="swapBkg('btn-shop','clear')" onMouseOut="swapBkg('btn-shop','index-shop')"></a>
+</div>
+		<div id="footer" class="sub"><a href="https://tickets.alinearestaurant.com">tickets</a>&nbsp;&nbsp;&#x25CA;&nbsp;&nbsp;312-867-0110&nbsp;&nbsp;&#x25CA;&nbsp;&nbsp;1723 North Halsted, Chicago Illinois 60614&nbsp;&nbsp;&#x25CA;&nbsp;&nbsp;alineaoffice@gmail.com</div>
+        
+	<script>
+</script>
+<script type="text/javascript"> 
+
+
+</script>
+</body>
+</html>
