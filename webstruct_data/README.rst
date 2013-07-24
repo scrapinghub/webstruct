@@ -45,3 +45,18 @@ For non-US addresses province, county, etc. should be marked as STATE.
 
 'O' label means 'token is not a part of named entity' (in other words,
 'token is outside entity').
+
+Ideas for extra labels:
+
+    * P.O. box / post address
+    * Facility/building
+    * Department/office/branch
+
+Annotation Guidelines
+---------------------
+
+Website vendors shouldn't be annotated as ORG.
+
+Office/department/branch names should be annotated as ORG.
+
+Facility/building and P.O. box / post address should be a part of STREET.
