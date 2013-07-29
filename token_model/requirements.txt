@@ -1,0 +1,4 @@
+pytest
+lxml
+scikit-learn
+nltk
