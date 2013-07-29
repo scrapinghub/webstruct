@@ -1,4 +1,4 @@
-pytest
+nose
 lxml
 scikit-learn
 nltk
