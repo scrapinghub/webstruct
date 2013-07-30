@@ -110,6 +110,11 @@ def prepare_wapiti_template(template, vocabulary):
         >>> prepare_wapiti_template('*:Pos-1 L=%x[-1, tag]\n*:Suf-2 X=%m[ 0,token,".?.?$"]', vocab)
         '*:Pos-1 L=%x[-1,1]\n*:Suf-2 X=%m[0,0,".?.?$"]'
 
+    It understands which lines are comments::
+
+        >>> prepare_wapiti_template('*:Pos-1 L=%x[-1, tag]\n# *:Suf-2 X=%m[ 0,token,".?.?$"]', vocab)
+        '*:Pos-1 L=%x[-1,1]\n# *:Suf-2 X=%m[ 0,token,".?.?$"]'
+
     Check these links for more info about template format:
 
     * http://wapiti.limsi.fr/manual.html
@@ -122,6 +127,13 @@ def prepare_wapiti_template(template, vocabulary):
             column = vocabulary[column]
         return "{0[macro]}[{0[offset]},{1}{0[rest]}".format(m.groupdict(), column)
 
-    return WAPITI_MACRO_PATTERN.sub(repl, template)
+    lines = [
+        (WAPITI_MACRO_PATTERN.sub(repl, line) if not _wapiti_line_is_comment(line) else line)
+        for line in template.splitlines()
+    ]
+
+    return "\n".join(lines)
 
 
+def _wapiti_line_is_comment(line):
+    return line.strip().startswith('#')
