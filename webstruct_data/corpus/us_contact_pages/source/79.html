@@ -1,0 +1,961 @@
+<html>
+
+<head><link type="text/css" href="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/public/css/mainstyle-en.css" rel="StyleSheet" lang="en"></link><title>Contact Us</title><script type="text/javascript">
+if (!document.getElementById('PTIncluder-js')) {
+document.write('<script id="PTIncluder-js" type="text/javascript" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/private/js/jsincluder/LATEST/PTIncluder.js"></scr'+'ipt>');
+}
+</script>
+<script type="text/javascript">
+PTIncluder.imageServerURL = 'http://mpsportal.milwaukee.k12.wi.us/imageserver/';
+PTIncluder.basePath = 'plumtree/common/private/js/';
+PTIncluder.lang = 'en';
+PTIncluder.country = 'US';
+PTIncluder.debug = false;
+PTIncluder.loadComponent('jsportlet');
+</script><script type="text/javascript">// Define PTPortalContext for CSAPI
+
+PTPortalContext = new Object();
+PTPortalContext.GET_SESSION_PREFS_URL = 'http://www.milwaukee.k12.wi.us/portal/server.pt?space=SessionPrefs&control=SessionPrefs&action=getprefs';
+PTPortalContext.SET_SESSION_PREFS_URL = 'http://www.milwaukee.k12.wi.us/portal/server.pt?space=SessionPrefs&control=SessionPrefs&action=setprefs';
+
+PTPortalContext.USER_LOCALE = 'en-us';
+PTPortalContext.USER_LOGIN_NAME = 'Guest';
+
+PTPortalContext.PAGE_TYPE = PTPortalPage.TYPE_COMMUNITY_PAGE;
+
+function OpenPortletPrefsWindow(strURL) { window.open(strURL,'PortletPrefsWindow','width=700,height=500,resizable=1,status=0,toolbar=0,menubar=0,scrollbars=1,location=0');   }
+
+var MSG_REMOVE_PAGE_CONF = "Are you sure you want to delete this page?";
+function DeletePage(url) {
+   if (confirm(MSG_REMOVE_PAGE_CONF)) {
+      window.location = url;
+   }
+}
+
+var MSG_REMOVE_PORTLET_CONF = "Are you sure you want to remove this portlet?";
+function RemovePortlet(url, id) {
+   if (confirm(MSG_REMOVE_PORTLET_CONF)) {
+      if (typeof handleRemovePortletResponse != 'function') {
+            window.location = url;
+      } else {
+            url = url + '&page=MyPortalPartialPortlets';
+            var request = new PTHTTPGETRequest(url, handleRemovePortletResponse);
+            request.invoke();
+            swapPortlet(id);      }
+   }
+}
+PTPortalContext.commId = 337; 
+PTPortalContext.pageId = 38477; 
+PTPortalContext.pageName = 'Contact+Us'; 
+</script><script type="text/javascript">var g_PTImgSvrImgsURL = "http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/private/img/";
+var g_SharedImgSvrImgsURL = "http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/public/img/";var g_HelpSvrBaseURL = "http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/";
+</script><script type="text/javascript">
+if (!document.getElementById('PTIncluder-js')) {
+document.write('<script id="PTIncluder-js" type="text/javascript" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/private/js/jsincluder/LATEST/PTIncluder.js"></scr'+'ipt>');
+}
+</script>
+<script type="text/javascript">
+PTIncluder.imageServerURL = 'http://mpsportal.milwaukee.k12.wi.us/imageserver/';
+PTIncluder.basePath = 'plumtree/common/private/js/';
+PTIncluder.lang = 'en';
+PTIncluder.country = 'US';
+PTIncluder.debug = false;
+PTIncluder.loadComponent('jsrobohelp');
+</script><script type="text/javascript">
+function OpenerAS_GetApplicationBaseURL()
+{
+	return "http://www.milwaukee.k12.wi.us/portal/server.pt?";
+}
+function OpenerAS_GetCurrentUserID()
+{
+	return "2";
+}
+function OpenerAS_GetParentSpaceName()
+{
+	return "Opener";
+}
+function OpenerAS_GetParentSpaceID()
+{
+	return "0";
+}
+</script><script type="text/javascript">function getJSUtilVersionObject() { return 'window';}</script><script type="text/javascript" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/private/js/ptcommonopener.js"></script><script type="text/javascript">/** The object that holds the safe variables. Store the vars as properties on the object, like a hashtable. **/
+var gSafeJSVarContainer = new Object();
+/** Define a new safe variable, pass the in the name and the value.Returns true if successful, method call will fail if the value is invalid. **/
+function addSafeVar(strName, oValue) {
+	gSafeJSVarContainer[strName] = oValue;
+	return true;
+}
+/** Retrieve a safe var. Returns false if the variable is undefined  or if the value is actually false, but safe vars shouldn't be usedto store simple boolean values anyway. **/
+function getSafeVar(strName) {
+	var temp = gSafeJSVarContainer[strName];
+	if (temp) { return temp; }
+	else { return false;}
+}
+/** Retrieve a safe var, if the variable is undefined an alert will showwith the name of the variable. Use this method to retrieve criticalvariables. **/
+function getSafeVarWarn(strName) {
+	var temp = gSafeJSVarContainer[strName];
+	if (temp) { return temp; }
+	else { alert('Safe Variable: '+strName+' is not defined!'); }
+}
+</script><script type="text/javascript">var windowOnloadFunction = (window.onload) ? window.onload : new Function;
+document.PCC.RegisterForWindowEvent("onload", windowOnloadFunction);
+var windowOnBlurFunction = (window.onblur) ? window.onblur : new Function;
+document.PCC.RegisterForWindowEvent("onblur", windowOnBlurFunction);
+var windowOnFocusFunction = (window.onfocus) ? window.onfocus : new Function;
+document.PCC.RegisterForWindowEvent("onfocus", windowOnFocusFunction);
+</script><script type="text/javascript">function getJSXMLVersionObject() { return 'window';}</script><script type="text/javascript" >
+pt_2787 = new PTPortlet('2787', '{709B5F36-D183-4166-9727-75FF7900057F}', 'No_Header', 'pt-portlet-content-2787', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_2787_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_2787_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_2787_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_3797 = new PTPortlet('3797', '{3081582D-38D3-40C8-8D51-482FE42B656F}', 'No_Footer', 'pt-portlet-content-3797', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_3797_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_3797_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_3797_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_1594 = new PTPortlet('1594', '{03302C53-36B1-4E42-85E6-5CB891218184}', 'Directory of Services', 'pt-portlet-content-1594', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1594_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1594_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_1594_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_1593 = new PTPortlet('1593', '{BA110A2C-9929-44A7-9C39-DB3BD190BEE8}', 'Milwaukee Recreation', 'pt-portlet-content-1593', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1593_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1593_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_1593_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_1596 = new PTPortlet('1596', '{23BDD963-453A-45D2-A353-5D3B5BEBA2C2}', 'Contact Us General Info', 'pt-portlet-content-1596', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1596_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1596_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_1596_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_1320 = new PTPortlet('1320', '{2D919AE9-0C55-4CC0-B156-653D6165D14A}', 'TTY Phone Look Up', 'pt-portlet-content-1320', 'http://studio.milwaukee.k12.wi.us:11935', 'http://studio.milwaukee.k12.wi.us:11935/studio', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1320_337_0_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1320_337_0_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_1320_337_38477_43/');</script>
+<script type="text/javascript" >
+pt_1597 = new PTPortlet('1597', '{317105A3-9BB3-422A-B8E0-A39926DB5390}', 'Reunions', 'pt-portlet-content-1597', 'http://publisher.milwaukee.k12.wi.us:7087', 'http://publisher.milwaukee.k12.wi.us:7087/ptcs/PublishedContentServlet', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1597_337_38477_43/', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1597_337_38477_43/', 'false', 'http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_6_2_1597_337_38477_43/');</script>
+<script type="text/javascript">
+if (!document.getElementById('PTIncluder-js')) {
+document.write('<script id="PTIncluder-js" type="text/javascript" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/private/js/jsincluder/LATEST/PTIncluder.js"></scr'+'ipt>');
+}
+</script>
+<script type="text/javascript">
+PTIncluder.imageServerURL = 'http://mpsportal.milwaukee.k12.wi.us/imageserver/';
+PTIncluder.basePath = 'plumtree/common/private/js/';
+PTIncluder.lang = 'en';
+PTIncluder.country = 'US';
+PTIncluder.debug = false;
+PTIncluder.loadComponent('jsportalmenus');
+</script><script type="text/javaScript">	function buildURLFromTemplate(strID)
+	{
+		var arArgs = strID.split(',');
+	if(!arArgs){
+	  alert('Invalid menu ID');
+	  return null; }
+	if(arArgs[0] == 'C'){
+	 var strCommURL = PTCommonOpener.getOpenerURLOpenObjID(512, arArgs[1], '&PageID='+arArgs[2]+'', 2)
+	 if ( arArgs.length > 3) { strCommURL += '&ProfileID='+arArgs[3]; }
+	  return strCommURL;
+	} else if (arArgs[0] == 'M') {
+	 return PTCommonOpener.getOpenerURLOpenObjID(518, 2, '&PageID='+arArgs[1]+'', 2)
+	} else if (arArgs[0] == 'SM') {
+	  return 'http://www.milwaukee.k12.wi.us/portal/server.pt?open=space&name=SiteMap&psname=CommunityPage&psid=1&cached=true&in_hi_userid=2&control=SetSiteMap&CommunityID='+arArgs[1]+'&Mode='+arArgs[2]+(eval(arArgs[3]) ? '&Preview=' : '');
+	} else if (arArgs[0] == 'S') {
+	  return null;
+	} else if (arArgs[0] == 'E') {
+	    var params = '';
+	    if ( arArgs.length > 1 ) {
+	      for ( var i = 2; i < arArgs.length; i++ ) {
+	        params += '&' + arArgs[i];
+	      } }
+	  return 'http://www.milwaukee.k12.wi.us/portal/server.pt?open=space&name='+arArgs[1]+'&psname=CommunityPage&psid=1&cached=true&in_hi_userid=2' + params;
+	} else if (arArgs[0] == 'D') {
+	 return PTCommonOpener.getOpenerURLOpenObjID(17, arArgs[2], '&DirMode='+arArgs[1]+'', 2)
+	} else if (arArgs[0] == 'G1') {
+	    var params = '';
+	    if ( arArgs.length > 1 ) {
+	      for ( var i = 2; i < arArgs.length; i++ ) {
+	        params += '&' + arArgs[i];
+	      } }
+	  return 'http://www.milwaukee.k12.wi.us/portal/server.pt?open=space&name='+arArgs[1]+'&psname=CommunityPage&psid=1&cached=true&in_hi_userid=2' + params;
+	} else if (arArgs[0] == 'IF') {
+	  return arArgs[1];
+	} else {
+	    alert('URL Type is not defined');
+	    return null; }
+	}
+	function templateURLRedirect(templateURL) {
+	  if (templateURL == null) { return null; }
+	  var arArgs = templateURL.split(',');
+	 if (arArgs[0] == 'UP') {
+	PTCommonOpener.openInSameWindow(PTCommonOpener.getOpenerURLOpenObjID(1, arArgs[1], '', 2));
+	} else if (arArgs[0] == 'DO') {
+	var currentWin = PTCommonOpener.openInNewWindow('', 'docLink', 600, 800, true);currentWin.location=PTCommonOpener.getOpenerURLOpenObjID(18, arArgs[1], '', 2);
+	} else if (arArgs[0] == 'F') {
+	var currentWin = PTCommonOpener.openInNewWindow('', 'extLink', 600, 800, true);currentWin.location=arArgs[1];
+	 } else {
+	   window.location = buildURLFromTemplate(templateURL);
+	 }
+	 
+	}
+</script>
+</head>
+
+
+
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" class="ptPageUser-guest ptCommunity-337" id="pt-page-38477"><div class="portalContent" id="pt-portal-content-38477"><div id="LiquidSkinAboveBannerView">
+<style type="text/css">
+
+ #CTRL_Portlet-Header {
+   height:120px;
+   overflow:hidden;
+   margin:4px 0px 8px 10px;
+}
+
+</style>
+
+
+<script type="text/javascript" >
+</script>
+
+<div class="CTRL_Portlet" id="CTRL_Portlet-Header"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+<title>Milwaukee Public Schools</title>
+<link rel="stylesheet" type="text/css"  href="http://portalhtml.milwaukee.k12.wi.us/portal-restyle.css">
+</head>
+
+<body><img src="http://portalhtml.milwaukee.k12.wi.us/PortalBandAid.jpg" style="border-bottom:1px #2d2e43;" alt="Milwaukee Public Schools" usemap="#mapheader">
+<map name="mapheader" id="mapheader">
+  <area shape="rect" coords="833,9,966,42" href="https://outlook.com/student.milwaukee.k12.wi.us" alt="student mail">
+  <area shape="rect" coords="834,44,964,76" href="https://email.milwaukee.k12.wi.us/exchange" target="_blank" alt="Staff Mail">
+  <area shape="rect" coords="833,78,965,113" href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt?open=space&name=Login&control=Login&login=&in_hi_userid=2&cached=true" alt="staff login">
+  <area shape="rect" coords="-3,-2,253,118" href="http://mpsportal.milwaukee.k12.wi.us" alt="Milwaukee Public Schools">
+</map>
+
+<script type="text/javascript">
+
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+</script>
+
+<script type="text/javascript">
+
+var pageTracker = _gat._getTracker("UA-6218060-1");
+
+pageTracker._trackPageview();
+
+</script>
+
+</body>
+</html>
+</div><div style="clear:both"></div></div><!--A HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF--->
+
+
+<div id="LiquidSkinBelowBannerView">
+<style type="text/css">
+
+ #LiquidSkinBelowBannerView {
+   margin:0px 0px 0px 10px;
+}
+
+ #VIEW_HorizontalContainer-BelowBanner {
+   height:10px;
+}
+
+ #CTRL_Search {
+   float:left;
+   margin:1px 20px 0px 3px;
+}
+
+ #CTRL_BreadCrumbs-Banner {
+   float:left;
+   margin:7px 0px 0px 10px;
+   font:bold 8pt arial;
+}
+
+ #CTRL_BreadCrumbs-Banner #BreadCrumbLink {
+   font:bold 8pt arial;
+}
+
+ #CTRL_BreadCrumbs-Banner #BreadCrumbLink:hover {
+   font:bold 8pt arial;
+   color:gray;
+}
+
+ #CTRL_BreadCrumbs-Banner #BreadCrumbLink_FINAL {
+   font:bold 8pt arial;
+   color:red;
+}
+
+</style>
+
+
+<script type="text/javascript" >
+ function clear_searchbox() {
+   if (document.ptbanner.in_tx_query.value == 'Search MPS:')
+     document.ptbanner.in_tx_query.value = '';
+}
+
+
+</script>
+
+<div class="VIEW_HorizontalContainer" id="VIEW_HorizontalContainer-BelowBanner"><div class="CTRL_Search" id="CTRL_Search"><form method="get" action="http://www.milwaukee.k12.wi.us/portal/server.pt?" onsubmit="return checkSearchptbanner();" style="margin-bottom:0" name="ptbanner" id="ptbanner"><input type="hidden" alt="" name="in_hi_space" id="in_hi_space" value="SearchResult"></input><input type="hidden" alt="" name="in_hi_control" id="in_hi_control" value="bannerstart"></input><input type="hidden" alt="" name="in_hi_userid" id="in_hi_userid" value="2"></input><script type="text/javaScript">function checkSearchptbanner()
+{
+  var searchForm = document.ptbanner;
+  for (var i = 0; i < searchForm.elements.length; i++) {
+    if (searchForm.elements[i].name == "in_tx_query") {
+     if (searchForm.elements[i].value == "") {
+      return false;
+     }
+    return true;
+    }
+  }
+  return false;
+}
+function submitSearchptbanner() {
+  if (checkSearchptbanner()) {
+    var searchForm = document.ptbanner;
+    searchForm.submit();
+  } else {
+    alert('Your search box was empty. Please enter some text in the search box.');
+  }
+}
+function handleKeyDownptbanner(evt) {
+ evt = (evt) ? evt : ((event) ? event : null);
+ if (evt.keyCode == 13){
+	  if (checkSearchptbanner()) {
+		   return true;
+	  } else {
+	       alert('Your search box was empty. Please enter some text in the search box.');
+	       return false;
+	  }
+ }
+ return true;
+}
+</script>&nbsp;<input type="text" alt="" size="27" maxlength="200" class="formTextboxText" name="in_tx_query" id="input132971" value="Search MPS:" onfocus="clear_searchbox()"></input>&nbsp;<a href="#" title="Search" onclick="submitSearchptbanner(); return false;"><img src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/custom/LiquidSkin/external/CTRL_Search/go.gif" alt="Search" border="0" align="absmiddle"/></a></form>
+</div><div class="CTRL_BreadCrumbs" id="CTRL_BreadCrumbs-Banner"><a href="#" id="BreadCrumbLink" onclick="templateURLRedirect('IF,http://www.milwaukee.k12.wi.us/portal/server.pt/comm/mps_home/335'); return false;">MPS Home</a>&nbsp; >> &nbsp<a href="#" id="BreadCrumbLink" onclick="templateURLRedirect('IF,http://www.milwaukee.k12.wi.us/portal/server.pt/comm/contact_us/337'); return false;">Contact Us</a>&nbsp; >> &nbsp<a href="#" title="Contact Us" id="BreadCrumbLink_FINAL">Contact Us</a></div></div><div style="clear:both"></div></div><table cellpadding="0" cellspacing="10" width="100%" border="0" class="layoutTwoColumnWideNarrow" id="outerTable"><tr><td align="left" valign="top" width="200" colspan="1"><div id="LiquidSkinLeftView">
+<style type="text/css">
+
+ #LiquidSkinLeftView {
+   float:left;
+   height:100%;
+   width:200px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav {
+   float:left;
+   padding:0px 0px 0px 0px;
+   width:200px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav * {
+   display:block;
+   z-index:999;
+   padding:0;
+   margin:0;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.slidingmenu {
+   display:inline;
+   list-style:none;
+   width:200px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav a {
+   width:200px;
+   text-align:center;
+   text-decoration:none;
+   font:10pt arial;
+   overflow:hidden;
+   border:1px solid #ffffff;
+   border-top:none;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav a:hover {
+   color:#ffffff;
+   text-decoration:none;
+   font:10pt arial;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav li.tab {
+   list-style:none;
+   position:relative;
+   float:left;
+   width:155px;
+   display:inline;
+   text-align:center;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav a.TabAnchor {
+   color:#ffffff;
+   background:#0079C2;
+   height:29px;
+   padding:0px 0px 0px 8px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav a.TabAnchor span {
+   float:left;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav li.activetab a.TabAnchor {
+   color:#ffffff;
+   background:#0079C2;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav a.TabAnchor:hover {
+   color:#ffffff;
+   background:#FAB613;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav li.activetab a.TabAnchor:hover {
+   background:#FAB613;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu {
+   position:absolute;
+   display:none;
+   width:185px;
+   top:0px;
+   left:200px;
+   border-top:1px solid #ffffff;
+   border-top:none;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu li {
+   position:relative;
+   float:left;
+   width:185px;
+   background:#FAB613;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu a {
+   width:185px;
+   text-align:left;
+   color:#ffffff;
+   background:#0079C2;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu a:hover {
+   background:#FAB613;
+   color:#ffffff;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu a.subheader {
+   font:10pt arial;
+   background:#0079C2;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu a.subheader:hover {
+   font:10pt arial;
+   color:#ffffff;
+   background:#FAB613;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.submenu span {
+   padding:2px 0px 2px 4px;
+   left:100%;
+   top:0px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.Level-1 ul.submenu {
+   position:absolute;
+   display:none;
+   width:185px;
+   left:100%;
+   top:0px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.Level-1 ul.submenu li {
+   position:relative;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.Level-2 ul.submenu {
+   position:absolute;
+   display:none;
+   width:185px;
+   left:100%;
+   top:0px;
+}
+
+ #CTRL_DropDownTabs-FlyoutNav ul.Level-2 ul.submenu li {
+   position:relative;
+}
+
+ #CTRL_Portlet-left {
+   padding:10px 0px 0px 0px;
+}
+
+</style>
+
+
+<script type="text/javascript" >
+ function addEvent(elm, evType, fn, useCapture) {												
+	if (elm.addEventListener) {																		
+		elm.addEventListener(evType, fn, useCapture);												
+		return true;																				
+	}																								
+	else if (elm.attachEvent) {																		
+		var r = elm.attachEvent('on' + evType, fn);													
+		return r;																					
+	}																								
+	else {																							
+		elm['on' + evType] = fn;																	
+	}																								
+ }																								
+																									
+	function init() {																				
+		var uls = document.getElementsByTagName('ul');												
+		var ClickToOpenTabs = false;											
+     var ClickToOpenSubMenus = false;									
+		for (var u = 0; u < uls.length; u++) {														
+			if (uls[u].className.search(/\bslidingmenu\b/) == -1)									
+				 continue;																			
+			var lis = uls[u].getElementsByTagName('li');											
+			for (var i = 0; i < lis.length; i++) {													
+				var node = lis[i];																	
+				if (node.nodeName.toLowerCase() == 'li' && node.getElementsByTagName('ul').length > 0) 
+				{																					
+					if(node.className != 'tab' && node.className.search('activetab') < 0)			
+						node.getElementsByTagName('a')[0].className += ' subheader';				
+					if(!ClickToOpenTabs && !ClickToOpenSubMenus)									
+					{																				
+						addEvent(node, 'mouseover', getMoverFor(node), false);						
+						addEvent(node, 'mouseout', getMoutFor(node), false);						
+					}																				
+					else if (ClickToOpenTabs && !ClickToOpenSubMenus)								
+					{																				
+						if(node.className == 'tab' || node.className.search('activetab') > 0)		
+						{																			
+							addEvent(node, 'click', getMoverFor(node), false);						
+							addEvent(node, 'mouseover', getStayOpenFor(node), false);				
+							addEvent(node, 'mouseout', getMoutFor(node), false);					
+							node.getElementsByTagName('a')[0].href = '#';							
+						}																			
+						else																		
+						{																			
+							addEvent(node, 'mouseover', getMoverFor(node), false);					
+							addEvent(node, 'mouseout', getMoutFor(node), false);					
+						}																			
+					}																				
+					else																			
+					{																				
+						addEvent(node, 'click', getMoverFor(node), false);							
+						addEvent(node, 'mouseover', getStayOpenFor(node), false);					
+						addEvent(node, 'mouseout', getMoutFor(node), false);						
+						node.getElementsByTagName('a')[0].href = '#';								
+					}																				
+				}																					
+			}																						
+		}																							
+	}																								
+																									
+	addEvent(window, 'load', init, false);															
+																									
+	function getMoverFor(node) { return function(e) {hideSelects(); mover(e, node); }; }							
+																									
+	function getMoutFor(node) { return function(e) {showSelects();  mout(e, node); }; }							
+																									
+	function getStayOpenFor(node) { return function(e) { stayopen(e, node); }; }					
+																									
+	function mover(e, targetElement) {																
+		var el = window.event ? targetElement : e ? e.currentTarget : null;							
+		if (!el) return;																			
+		clearTimeout(el.outTimeout);																
+		for (var i = 0; i < el.childNodes.length; i++) {											
+			var node = el.childNodes[i];															
+			if (node.nodeName.toLowerCase() == 'ul')												
+				node.style.display = 'block';														
+		}																							
+	}																								
+																									
+	function stayopen(e, targetElement) {															
+		var el = window.event ? targetElement : e ? e.currentTarget : null;							
+		if (!el) return;																			
+		clearTimeout(el.outTimeout);																
+	}																								
+																									
+	function mout(e, targetElement) {																
+		var el = window.event ? targetElement : e ? e.currentTarget : null;							
+		if (!el) return;																			
+		el.outTimeout = setTimeout(function() {mout2(el);},700);				
+	}																								
+																									
+	function mout2(el) {																			
+		for (var i = 0; i < el.childNodes.length; i++) {											
+			var node = el.childNodes[i];															
+			if (node.nodeName.toLowerCase() == 'ul')												
+				node.style.display = 'none';														
+		}																							
+	}																								
+	function hideSelects() {																					
+ var oSelects=document.getElementsByTagName('select');											
+		for(var i=0;i<oSelects.length;i++)															
+			oSelects[i].style.visibility='hidden';													
+		}																							
+	function showSelects() {																					
+ var oSelects=document.getElementsByTagName('select');											
+		for(var i=0;i<oSelects.length;i++)															
+			oSelects[i].style.visibility='visible';													
+		}																							
+
+</script>
+
+<div class="CTRL_DropDownTabs" id="CTRL_DropDownTabs-FlyoutNav"><ul  class="slidingmenu"><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/students/311" title="Students" class="TabAnchor"><span>Students</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/schools/315" title="Schools" class="TabAnchor"><span>Schools</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/parents/334" title="Parents" class="TabAnchor"><span>Parents</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/programs___resources/310" title="Programs / Resources" class="TabAnchor"><span>Programs / Resources</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/employment/332" title="Employment" class="TabAnchor"><span>Employment</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/benefits/400" title="Benefits" class="TabAnchor"><span>Benefits</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/vendors/312" title="Vendors" class="TabAnchor"><span>Vendors</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/departments/338" title="Departments" class="TabAnchor"><span>Departments</span><span class="rightshoulder"></span></a></li><li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/budget___finance/339" title="Budget & Finance" class="TabAnchor"><span>Budget & Finance</span><span class="rightshoulder"></span></a></li></ul></div><div class="CTRL_Portlet" id="CTRL_Portlet-left">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--a http-equiv="Content-Type" content="text/html; charset=UTF-8"-->
+
+
+<link rel="stylesheet" type="text/css" href="http://portalhtml.milwaukee.k12.wi.us/portal-restyle.css">
+<link rel="stylesheet" type="text/css" href="http://portalhtml.milwaukee.k12.wi.us/portalbandaidcentertop.css">
+<link rel="stylesheet" type="text/css" href="http://portalhtml.milwaukee.k12.wi.us/tabnav.css">
+
+	<title>Popular Links</title>
+</head>
+
+<body>
+<!--
+
+<div class="CTRL_DropDownTabs" id="CTRL_DropDownTabs-FlyoutNav" >
+
+<ul class="slidingmenu">
+
+<li  class="tab"><a href="http://mpsportaldev.milwaukee.k12.wi.us/portal/server.pt/comm/students/311" title="Students" class="TabAnchor"><span>Students</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/schools/315" title="Schools" class="TabAnchor"><span>Schools</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/departments/338" title="Departments" class="TabAnchor"><span>Departments</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt?open=512&objID=367&mode=2&in_hi_userid=2&cached=true" title="Students" class="TabAnchor"><span>District</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/parents/334" title="Parents" class="TabAnchor"><span>Parents</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/programs___resources/310" title="Programs and Resources" class="TabAnchor"><span>Programs/Resources</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/employment/332" title="Employment" class="TabAnchor"><span>Employment</span> </a></li>
+<li  class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/vendors/312" title="Vendors" class="TabAnchor"><span>Vendors</span> </a></li>
+
+</ul>
+
+</div>
+<br clear="all" />
+-->
+
+
+        <h2>Resources</h2>
+
+
+<div class="CTRL_DropDownTabs" id="CTRL_DropDownTabs-FlyoutNavLB">
+
+<ul class="slidingmenu">
+
+<li class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/dir/district_calendars/849?qid=70998600&rank=1">District Calendars</a></li>
+
+<li class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt?open=512&amp;objID=334&amp;&amp;PageID=38446&amp;mode=2&amp;in_hi_userid=2&amp;cached=true">Parent Assistant</a></li>
+<li class="tab"><a href="http://www5.milwaukee.k12.wi.us/dept/enews/">Sign Up for MPS eNewsletters</a></li>
+<li class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt?open=512&amp;objID=368&amp;&amp;PageID=41528&amp;mode=2&amp;in_hi_userid=2&amp;cached=true">Summer Academy</a></li>
+<li class="tab"><a href="http://www5.milwaukee.k12.wi.us/dept/superintendent/back-to-school/">MPS Summer Resource Guide</a></li>
+<li class="tab"><a href="http://www5.milwaukee.k12.wi.us/dept/superintendent/text-alerts/">Text Alerts</a></li>
+<li class="tab"><a href="http://www5.milwaukee.k12.wi.us/dept/superintendent/parent-resource-centers/">Parent Resource Centers</a></li>
+</ul>
+</div>
+<br clear="all" />
+<div id="greybox" style="width:190px; padding-top:5px">  
+  <h2> <a href="http://www4.milwaukee.k12.wi.us/calendar/">Events</a></h2>
+          
+ 
+<p><em>July 7-August 1</em><br>
+      <a href="http://www4.milwaukee.k12.wi.us/calendar/EventList.aspx?fromdate=8/1/2013&todate=8/31/2013&display=Month&type=public&eventidn=1928&view=EventDetails&information_id=5542">Design it Lab</a> art experience for Summer Academy students     </p>
+ <p><em>August 5</em><br>
+      <strong>First Day of Class</strong> - Year Round Calendar</p>
+      <p><em>August 12</em><br>
+      <strong>First Day of Class</strong> - Rufus King/Reagan Calendar</p>
+  <p><em>August 21, 10-11 a.m.</em><br>
+      <strong><a href="http://www4.milwaukee.k12.wi.us/calendar/EventList.aspx?fromdate=8/1/2013&todate=8/31/2013&display=Month&type=public&eventidn=1912&view=EventDetails&information_id=5510">Volunteer orientation</a> </strong><br>
+     Find out about the MPS volunteer program, expectations and guidelines  </p>
+     <p><em>September 3</em><br>
+      <strong>First Day of Class</strong> - Traditional Calendar</p>
+     
+<p><a href="http://www4.milwaukee.k12.wi.us/calendar/" title="calendar" target="_blank">District Events Calendar</a></p>
+  
+</div>
+ <br clear="all" />
+ <h2><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/nutrition_services/385/menus/42925">Lunch Menu <img src="http://portalhtml.milwaukee.k12.wi.us/apple.jpg" alt="School Lunches"></a></h2>
+ 
+ 
+     <br clear="all" />
+<h2>Employees</h2>
+       
+<div class="CTRL_DropDownTabs" id="CTRL_DropDownTabs-FlyoutNavLB">
+
+<ul class="slidingmenu">
+
+  <li class="tab">	<a href="https://www4.milwaukee.k12.wi.us/pslogin/" target="_blank">Self Service</a></li>
+<li class="tab"><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt/comm/benefits/400/welcome/43486">Benefit News</a></li>
+<li class="tab">  <a href="http://www5.milwaukee.k12.wi.us/dept/professionaldevelopment" target="_blank" >Professional Development</a></li>
+<li class="tab"><a href="https://mpsgoodhealth.online.staywell.com/includes/login/login.aspx" target="_blank">Complete your PHA</a></li>
+<li class="tab"><a href="https://mpsgoodhealth.online.staywell.com/includes/login/login.aspx" target="_blank">PHA results &amp; online programs</a></li>
+<li class="tab"><a href="http://mslweb.milwaukee.k12.wi.us/mediasite/Catalog/pages/catalog.aspx?catalogId=8b830d61-4033-4946-860d-af818e859721&folderId=10625ab7-e02a-465c-ad39-b486ce8b0506" target="_blank">MPS Good Health Mediasite</a></li></ul>
+     </div>
+     </body>
+
+</html>
+</div><div style="clear:both"></div></div></td>
+<td align="left" valign="top" colspan="1"><table cellpadding="0" cellspacing="0" width="100%" border="0"><tr><td align="left" valign="top" colspan="1"><div id="LiquidSkinAboveBodyView"></div></td>
+</tr>
+<tr><td align="left" valign="top" colspan="1"><table cellpadding="0" cellspacing="0" width="100%" border="0" summary="Portlet layout table."><tr><td align="center" valign="top" width="100%" colspan="1" class="columnOne" id="columnOne"><!--Begin Portlet Column 1--><table cellpadding="0" cellspacing="0" width="100%" class="portletBase" id="pt-portlet-1596"><tr><td colspan="2" class="portletBody"><div class="customappText" id="pt-portlet-content-1596"><!-- Display the icon -->
+
+
+<!-- Display the brief text -->
+<table bgColor="#58718d">
+	<tbody>
+		<tr><td>
+				<table bgColor="#c9dcf1" border="0" cellPadding="4" cellSpacing="1">
+					<tbody>
+						<tr><td><font face="Verdana" size="1"><strong>
+										<br/>Please note that telephone numbers listed in the Directory of Services or Recreation Directory begin with area code 414, unless otherwise noted. 
+										<br/>
+										<br/></strong></font></td>
+						</tr>
+						<tr><td><font face="Verdana" size="1"><strong>If you are unable to locate a telephone number, please call the Milwaukee Public Schools Switchboard at 414-475-8393. 
+										<br/>
+										<br/></strong></font></td>
+						</tr>
+						<tr><td><font face="Verdana" size="1"><strong>Please report any corrections to the Milwaukee Public Schools Switchboard at 414-475-8393. 
+										<br/>
+										<br/></strong></font></td>
+						</tr>
+						<tr><td><font face="Verdana" size="1"><strong>The address to Milwaukee Public Schools Administration Building (Central Services) 
+										<br/>
+										<br/></strong></font></td>
+						</tr>
+						<tr><td><font face="Verdana" size="1"><strong>5225 W. Vliet Street, Milwaukee, WI 53208</strong></font>&nbsp;<a href="http://goo.gl/maps/Ji7o" target="_blank"><font face="Verdana" size="1"><strong> 
+											<i>- Map 
+											</i></strong></font></a>
+								<br/>
+								<br/>
+								</b/></td>
+						</tr>
+						<tr><td><font face="Verdana" size="1"><strong>Central Services Office hours are from 8:00am to 5:00pm, Monday - Friday. 
+										<br/>
+										<br/></strong></font></td>
+						</tr>
+					</tbody>
+				</table></td>
+		</tr>
+	</tbody>
+</table></div></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" width="100%" class="portletBase" id="pt-portlet-1320"><tr><td colspan="2" class="portletBody"><div class="customappText" id="pt-portlet-content-1320"><script type="text/javascript" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/private/js/jsincluder/LATEST/PTIncluder.js"></script>
+<script type="text/javascript">
+PTIncluder.imageServerURL = 'http://mpsportal.milwaukee.k12.wi.us/imageserver/';
+PTIncluder.basePath = 'plumtree/common/private/js/';
+PTIncluder.lang = 'en';
+PTIncluder.country = 'US';
+PTIncluder.debug = false;
+PTIncluder.loadComponent('jsutil');
+</script><script type="text/javascript" language="JavaScript">
+var pts_popapp_37 = false;
+function doClick_pts_popapp_37(targetURL){
+var w = window;
+if (targetURL != null)
+pts_popapp_37= window.open(pt_1320.transformURL(URL=targetURL), 'pts_popapp_37', 'scrollbars=yes,resizable=yes,status=yes,height=' + Math.min((screen.availHeight ? screen.availHeight : window.screen.availHeight) - 100, 258) + ',width=634,');
+else
+pts_popapp_37= w.open('', 'pts_popapp_37', 'scrollbars=yes,resizable=yes,status=yes,height=' + Math.min((screen.availHeight ? screen.availHeight : window.screen.availHeight) - 100, 258) + ',width=634,');
+pts_popapp_37.focus();
+}
+</SCRIPT>
+<FORM METHOD="POST" ACTION="http://www.milwaukee.k12.wi.us/portal/server.pt/gateway/PTARGS_0_2_1320_337_0_43/http%3B/studio.milwaukee.k12.wi.us%3B11935/studio/gw" NAME="PTS_9367f36d" onSubmit="submitPTS_9367f36d.onclick(); return false;">
+<INPUT TYPE="hidden" NAME="m" VALUE="apprun.postSearchForm">
+<INPUT TYPE="hidden" NAME="PTS_PageId" VALUE="1">
+<INPUT TYPE="hidden" NAME="PTS_AppId" VALUE="37">
+<INPUT TYPE="hidden" NAME="PTS_TableId" VALUE="30">
+<INPUT TYPE="hidden" NAME="PTS_ButtonAction">
+<INPUT TYPE="hidden" NAME="PTS_NextPage">
+<INPUT TYPE="hidden" NAME="PTS_ParentAction">
+
+<table class="ptsformfieldset" cellpadding="10" border="0" cellspacing="0">
+<tr><td><table cellpadding="2" border="0" cellspacing="0">
+
+<tr>
+ <td class="objectText" width=20 height=20 > </td>
+
+ <td class="objectText" align="left" valign="top" width=216 height=20 >Enter a full or partial school name </td>
+
+ </tr>
+
+<tr>
+ <td class="objectText" style="font-weight:bold;font-size:8;" align="left" valign="top" width=20 height=21 ><B></B> </td>
+
+ <td class="objectText" style="text-align:center;" align="left" valign="top" width=216 height=21 ><INPUT TYPE="text" CLASS="formInputBoxText"  onBlur="if (this.value.length > 1000) {alert('Values may not exceed 1,000 characters. Only the first 1,000 characters will be used.'); this.value = this.value.substring(0,999); }" STYLE="width:210;height:19;" NAME="PTS_Department_School_Name" VALUE=""> </td>
+
+ </tr>
+
+<tr>
+ <td class="objectText" width=20 height=26 > </td>
+
+ <td class="objectText" style="text-align:center;" align="left" valign="top" width=216 height=26 ><BR><NOBR><INPUT TYPE="button" NAME="submitPTS_9367f36d" CLASS="formBtnText" onClick="doClick_pts_popapp_37();PTS_ButtonAction.value='Search';PTS_NextPage.value='2';PTS_ParentAction.value='null';document.PTS_9367f36d.target = 'pts_popapp_37';document.PTS_9367f36d.submit();window.setTimeout('document.PTS_9367f36d.reset()',2000);" VALUE="Search">&nbsp;</NOBR> </td>
+
+ </tr>
+</td></tr></table>
+ </table>
+</FORM>
+
+
+</div></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" width="100%" class="portletBase" id="pt-portlet-1597"><tr><td colspan="2" class="portletBody"><div class="customappText" id="pt-portlet-content-1597"><!-- Display the icon -->
+
+
+<!-- Display the brief text -->
+<FONT color=#330066>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><FONT face=verdana color=#000000></FONT></P>
+<P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt" align=center><A title=Reunions href="http://www2.milwaukee.k12.wi.us/reunions" target=_blank><IMG src="http://ptimages.milwaukee.k12.wi.us/imageserver/images/reunions.jpg" border=0></A> </P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt" align=center></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt" align=center><FONT size=2>For upcoming and past MPS reunions, </FONT><A href="http://www2.milwaukee.k12.wi.us/reunions" target=_blank><STRONG><FONT size=2>click here.</FONT></STRONG></A> </P></FONT></div></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" width="100%" border="0" summary="Portlet column formatter table."><tr><td colspan="1" id="portletColumnFormatter_1"><img src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/public/img/sp.gif" alt="" border="0" align="absmiddle" height="1" width="250" id="portletColumnSpacer_1"/></td>
+</tr>
+</table>
+<!--End Portlet Column 1--></td>
+<td colspan="1" id="horizontalPaddingCell0"><img src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/public/img/sp.gif" alt="" border="0" align="absmiddle" height="1" width="10"/></td>
+<td align="center" valign="top" colspan="1" class="columnTwo" id="columnTwo"><!--Begin Portlet Column 0--><table cellpadding="0" cellspacing="0" width="100%" class="portletBase" id="pt-portlet-1594"><tr><td colspan="2" class="portletBody"><div class="customappText" id="pt-portlet-content-1594"><!-- Display the icon -->
+
+
+<!-- Display the brief text -->
+<table align="center" bgColor="#ffffff">
+	<tbody>
+		<tr><td>
+				<table bgColor="#ffffff">
+					<tbody>
+						<tr><td><a href="http://mpsportal.milwaukee.k12.wi.us/portal/server.pt?open=512&objID=338&&PageID=38455&mode=2&in_hi_userid=2" target="_blank">
+									<img border="0" height="210" src="http://mpsportal.milwaukee.k12.wi.us/imageserver/images/Phone-2012.gif" width="198"/></a></td>
+						</tr>
+					</tbody>
+				</table></td>
+		</tr>
+	</tbody>
+</table></div></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" width="100%" class="portletBase" id="pt-portlet-1593"><tr><td colspan="2" class="portletBody"><div class="customappText" id="pt-portlet-content-1593"><!-- Display the icon -->
+
+
+<!-- Display the brief text -->
+<FONT class=MsoNormal style="MARGIN: 0in 0in 0pt" col<P><FONT face=verdana color=#000000>
+<P></FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><FONT color=#000000><FONT face=verdana></FONT><FONT face=verdana></FONT></FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt" align=center><A href="http://www.milwaukeerecreation.net/" target=_blank><IMG src="http://ptimages.milwaukee.k12.wi.us/imageserver/images/m_rec.gif" border=0></A> </P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"><A href="http://www.milwaukeerecreation.net/" target=_blank><STRONG>Milwaukee Recreation</STRONG></A> is a thriving entity that serves to strengthen and extend the bond between public education and the community. Its mission is to enrich the lives of Milwaukee's children, youth, adults, and families through many innovative programs. These programs are designed to improve the academic achievement of all students during non-school hours, strengthen families, reduce crime in the neighborhoods, and enhance the well-being of all residents. </P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt"></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt" align=center><A href="http://www.milwaukeerecreation.net/contact-us/phone-numbers.html" target=_blank><STRONG>Recreation Phone Directory</STRONG></A> </P></FONT></div></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" width="100%" border="0" summary="Portlet column formatter table."><tr><td colspan="1" id="portletColumnFormatter_0"><img src="http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/public/img/sp.gif" alt="" border="0" align="absmiddle" height="1" width="250" id="portletColumnSpacer_0"/></td>
+</tr>
+</table>
+<!--End Portlet Column 0--></td>
+</tr>
+</table>
+<script type="text/javascript">try { PTPMMenu.defaultCssFile = "http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/common/private/js/jsportalmenus/LATEST/styles/css/PTPMMenu.css"; } catch (err) { ; } 
+function createPrefsDropDownMenu(linksArray, strDivID)
+{ 
+	var menu;
+   try {  menu = new PTPMMenuContainer(); } catch (err) { return; }  
+	// Add each entry to the PTPMMenuContainer
+	for ( j = 0; j < linksArray.length; j++ )
+ 	{
+		var strImgSrc = linksArray[j][0];
+		var strImgWidth = linksArray[j][1];
+		var strTitle = linksArray[j][2];
+		var strURL   = linksArray[j][3];
+		var strSuppressPopup   = linksArray[j][4];
+		menu.menuItems[j] = new PTPMSimpleMenuItem();
+		// Set title
+		menu.menuItems[j].text = strTitle;
+		// Set Image
+		menu.menuItems[j].image	= new PTPMImage();
+		menu.menuItems[j].image.imgSrc = strImgSrc;
+		menu.menuItems[j].image.imgWidth = strImgWidth;
+		// Set action
+		menu.menuItems[j].action = new PTPMJavaScriptAction();
+       if ( strSuppressPopup ==  '0' ) {
+		  menu.menuItems[j].action.js = 'OpenPortletPrefsWindow( "'+strURL+'")';
+       } else {
+		  menu.menuItems[j].action.js = 'window.location = "'+strURL+'"'; } 
+	}
+	var buttonText	="<img src='http://mpsportal.milwaukee.k12.wi.us/imageserver/plumtree/portal/public/img/action_portlet_menu.gif' align='absmiddle' height='13' width='10' border='0' alt='Expand Menu' >" 
+	PTPMSelectMenu.init(menu, strDivID, buttonText);
+}	
+</script><script type="text/javascript"></script></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--A HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF--->
+
+
+<div id="LiquidSkinBelowFooterView">
+<style type="text/css">
+
+ #LiquidSkinBelowFooterView {
+   width:100%;
+   margin:0px 0px 0px 10px;
+}
+
+ #CTRL_Portlet-Nondicrimination {
+   margin:0px 0px 20px 0px;
+}
+
+</style>
+
+
+<script type="text/javascript" >
+</script>
+
+<div class="CTRL_Portlet" id="CTRL_Portlet-Nondicrimination"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--a http-equiv="Content-Type" content="text/html; charset=UTF-8"-->
+<title>Nondiscrimination Notice</title>
+<link rel="stylesheet" type="text/css"  href="http://portalhtml.milwaukee.k12.wi.us/portal-restyle.css">
+</head>
+
+<body>
+
+
+
+<!-- Component Container start -->
+
+<table id="pndc" cellpadding="2" cellspacing="0" width="960">
+
+
+
+<tr style="border-top:1px solid #fab613;"><td valign="top">
+<h2>About</h2>
+<p>Milwaukee Public Schools is Wisconsin's largest school district, serving more than 78,000 students in more than 160 schools across the city. MPS is home to the Milwaukee region’s two best high schools according to the Washington Post and three of state's 25 best high schools according to U.S. News and World Report. In the past year, Milwaukee Public Schools posted a growing graduation rate 14 points higher than the rate for 2000.<a href="http://www.mpsmke.com/news"> Visit mpsmke.com/news to learn more about MPS.</a></p>
+<br></td>
+<td valign="top" width="240">
+<h2>Connect</h2>
+
+<a href="http://www.facebook.com/milwaukeepublicschools" target="_blank"><img src="http://portalhtml.milwaukee.k12.wi.us/images/fb.jpg" alt="Facebook" hspace="1" vspace="10" border="0" align="left"></a><a target="_blank" href="http://www.twitter.com/milwaukeemps"><img src="http://portalhtml.milwaukee.k12.wi.us/images/twitter.jpg" alt="Twitter" hspace="0" vspace="10" border="0" align="left"></a><a href="http://instagram.com/milwaukeemps/"><img src="http://portalhtml.milwaukee.k12.wi.us/images/instagram.jpg" alt="Instagram" hspace="1" vspace="10" border="0" align="left"></a><a href="http://pinterest.com/milwaukeemps/" target="_blank"><img src="http://portalhtml.milwaukee.k12.wi.us/images/pinterest.jpg" alt="Pinterest" hspace="0" vspace="10" border="0" align="left"></a><a href="http://www5.milwaukee.k12.wi.us/dept/superintendent/feeds/" target="_blank"><img src="http://portalhtml.milwaukee.k12.wi.us/images/rss.jpg" alt="RSS" hspace="1" vspace="10" border="0" align="left"></a><a href="http://www.youtube.com/user/mpsmovies" target="_blank"><img src="http://portalhtml.milwaukee.k12.wi.us/images/youtube.jpg" alt="YouTube" hspace="0" vspace="10" border="0" align="left"></a><a target="_blank" href="http://www.linkedin.com/company/milwaukee-public-schools?trk=hb_tab_compy_id_212827"><img src="http://portalhtml.milwaukee.k12.wi.us/images/linkedin.jpg" alt="LinkedIn" hspace="1" vspace="10" border="0" align="left"></a></td>
+
+
+
+</tr>
+<tr><td	colspan="2" style="border-top:1px solid #fab613;">
+  <p align="center">&copy; Milwaukee Public Schools 2013 | 5225 W. Vliet Street | Milwaukee, WI 53208 | Switchboard: (414) 475-8393 | <a href="http://www5.milwaukee.k12.wi.us/dept/superintendent/nondiscrimination-notice/">Nondiscrimination Notice</a></p>
+
+
+
+
+
+
+</td>
+
+</tr>
+
+</table>
+
+<!-- Component Container end -->
+
+
+
+</body>
+</html>
+</div><div style="clear:both"></div></div></div><div class="externalContent" id="pt-external-content-38477"></div>
+</body>
+</html><!--Hostname: portal1--><!--Total Request Time: 47
+Control Time: 16
+Page Construction Time: 31
+Page Display Time: 0
+--><!--Portal Version: 6.5.0.323160, Changelist: 323160, Build Date: 03/21/2008 at 12:21 AM-->

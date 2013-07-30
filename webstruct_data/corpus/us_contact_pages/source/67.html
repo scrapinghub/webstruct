@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xmlns:fb="http://ogp.me/ns/fb#" xmlns:addthis="http://www.addthis.com/help/api-spec" >
+
+<head profile="http://gmpg.org/xfn/11">
+
+
+
+
+
+
+<script language="javascript">
+
+function querySt(ji) 
+{
+
+hu = window.location.search.substring(1);
+gy = hu.split("&");
+   for (i=0;i<gy.length;i++) {
+       ft = gy[i].split("=");
+
+       if (ft[0] == ji) {
+           return ft[1];
+       }
+
+   }
+
+}
+
+function setCookie(c_name,value,expireMins)
+{
+var exdate=new Date();
+exdate.setMinutes(exdate.getMinutes()+expireMins);
+document.cookie=c_name+ "=" +escape(value)+
+((expireMins==null) ? "" : ";expires="+exdate.toUTCString());
+}
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+ {
+ var c_start=document.cookie.indexOf(c_name + "=");
+ if (c_start!=-1)
+   {
+   c_start=c_start + c_name.length+1;
+   var c_end=document.cookie.indexOf(";",c_start);
+   if (c_end==-1) c_end=document.cookie.length;
+   return unescape(document.cookie.substring(c_start,c_end));
+   }
+ }
+return "";
+}
+
+//Initialize our user agent string to lower case.
+var uagent = navigator.userAgent.toLowerCase();
+
+//**************************
+// Detects if the current device is a smart phone
+function DetectSmart()
+{
+  if (uagent.search("iphone") > -1)
+     return true;
+  else if (uagent.search("opera 2") > -1)
+     return true;
+  else if (uagent.search("iphone")>-1)
+    return true;
+  else if (uagent.search("ipod")>-1)
+    return true;
+  else if (uagent.search("palm")>-1)
+    return true;
+  else if (uagent.search("palm os")>-1)
+    return true;
+  else if (uagent.search("hiptop")>-1)
+    return true;
+  else if (uagent.search("avantgo")>-1)
+    return true;
+  else if (uagent.search("fennec")>-1)
+    return true;
+  else if (uagent.search("plucker")>-1)
+    return true;
+  else if (uagent.search("blazer")>-1)
+    return true;
+  else if (uagent.search("xiino")>-1)
+    return true;
+  else if (uagent.search("elaine")>-1)
+    return true;
+  else if (uagent.search("palmos")>-1)
+    return true;
+  else if (uagent.search("android")>-1)
+    return true;
+  else if (uagent.search("mot-cool")>-1)
+    return true;
+  else if (uagent.search("IEMobile")>-1)
+    return true;
+  else if (uagent.search("windows phone")>-1)
+    return true;        
+  else if (uagent.search("AppleWebKit")>-1)
+     return true;
+  else if (uagent.search("Mobile Safari")>-1)
+     return true;
+  else if (uagent.search("BlackBerry 9")>-1)
+     return true;
+  else if (uagent.search("BlackBerry9")>-1)
+     return true;
+  else if (uagent.search("teleca")>-1)
+      return true;
+  else if (uagent.search("samsung-sgh-A737")>-1)
+     return true;
+  else
+     return false;
+}
+
+//**************************
+// Detects if the current device is an other mobile phone
+function DetectOther()
+{
+if (uagent.search("symbian") > -1)
+ return true;
+else if (uagent.search("series")>-1)
+    return true;
+else if (uagent.search("nokia")>-1)
+    return true;
+else if (uagent.search("mot-l6")>-1)
+    return true;
+else if (uagent.search("mot-a")>-1)
+    return true;
+else if (uagent.search("mot-v")>-1)
+    return true;
+else if (uagent.search("mot-e")>-1)
+    return true;
+else if (uagent.search("motorola")>-1)
+    return true;
+else if (uagent.search("lg-")>-1)
+    return true;
+else if (uagent.search("lge")>-1)
+    return true;
+else if (uagent.search("nec-")>-1)
+    return true;
+else if (uagent.search("lg/")>-1)
+    return true;
+else if (uagent.search("samsung")>-1)
+    return true;
+else if (uagent.search("sgh-")>-1)
+    return true;
+else if (uagent.search("sonyericsson")>-1)
+    return true;
+else if (uagent.search("sharp")>-1)
+    return true;
+else if (uagent.search("windows ce")>-1)
+    return true;
+else if (uagent.search("portalmmm")>-1)
+    return true;
+else if (uagent.search("o2-")>-1)
+    return true;
+else if (uagent.search("docomo")>-1)
+    return true;
+else if (uagent.search("philips")>-1)
+    return true;
+else if (uagent.search("panasonic")>-1)
+    return true;
+else if (uagent.search("sagem")>-1)
+    return true;
+else if (uagent.search("smartphone")>-1)
+    return true;
+else if (uagent.search("up.browser")>-1)
+    return true;
+else if (uagent.search("up.link")>-1)
+    return true;
+else if (uagent.search("googlebot-mobile")>-1)
+    return true;
+else if (uagent.search("googlebot")>-1)
+    return true;
+else if (uagent.search("slurp")>-1)
+    return true;
+else if (uagent.search("spring")>-1)
+    return true;
+else if (uagent.search("alcatel")>-1)
+    return true;
+else if (uagent.search("sendo")>-1)
+    return true;
+else if (uagent.search("MIDP-")>-1)
+    return true;
+else if (uagent.search("netfront")>-1)
+    return true;
+else if (uagent.search("mobilephone mm")>-1)
+    return true;
+else if (uagent.search("vodafone")>-1)
+    return true;
+else if (uagent.search("avantgo")>-1)
+    return true;
+else if (uagent.search("palmsource")>-1)
+    return true;
+else if (uagent.search("siemens")>-1)
+    return true;
+else if (uagent.search("toshiba")>-1)
+    return true;
+else if (uagent.search("i-mobile")>-1)
+    return true;
+else if (uagent.search("asus")>-1)
+    return true;
+else if (uagent.search("kwc")>-1)
+    return true;
+else if (uagent.search("htc")>-1)
+    return true;
+else if (uagent.search("softbank")>-1)
+    return true;
+else if (uagent.search("mozilla/5.0 (x11; u; linux i686; en-us; rv:1.8.0.7) gecko/20060909 firefox/1.5.0.7")>-1)
+    return true;
+else if (uagent.search("playstation")>-1)
+    return true;
+else if (uagent.search("nitro")>-1)
+    return true;
+else if (uagent.search("google wireless transcoder")>-1)
+    return true;
+else if (uagent.search("t-mobile")>-1)
+    return true;
+else if (uagent.search("obigo")>-1)
+    return true;
+else if (uagent.search("brew")>-1)
+    return true;
+else if (uagent.search("yahooseeker")>-1)
+    return true;
+else if (uagent.search("msmobot")>-1)
+    return true;
+else if (uagent.search("novarra")>-1)
+    return true;
+else if (uagent.search("skp")>-1)
+    return true;
+else if (uagent.search("openweb")>-1)
+    return true;
+else
+ return false;
+}
+
+if (querySt("mobile") == "false") {
+setCookie("mobile","False","5");
+}
+
+if (DetectSmart() == true){
+   if (getCookie("mobile") != "False"){
+       window.location = "http://michtheater.wwmm.mobi";        
+  }
+
+}
+else if (DetectOther() == true){
+   if (getCookie("mobile") != "False"){
+        window.location = "http://michtheater.wwmm.mobi/mobile2.asp"; 
+   }
+
+}
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>  Contact Us | Michigan Theater</title>
+
+<LINK REL="SHORTCUT ICON" HREF="http://michtheater.org/favicon.ico">
+
+
+
+
+<link rel="stylesheet" href="http://www.michtheater.org/wp-content/themes/Aggregate/style.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="http://www.michtheater.org/wp-content/themes/Aggregate/css/colorpicker.css" type="text/css" media="screen" />
+
+
+
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'/>
+
+<link href='http://fonts.googleapis.com/css?family=Kreon:light,regular' rel='stylesheet' type='text/css'/>
+
+<link rel="alternate" type="application/rss+xml" title="Michigan Theater RSS Feed" href="http://www.michtheater.org/feed/" />
+
+<link rel="alternate" type="application/atom+xml" title="Michigan Theater Atom Feed" href="http://www.michtheater.org/feed/atom/" />
+
+<link rel="pingback" href="http://www.michtheater.org/xmlrpc.php" />
+
+
+
+<!--[if lt IE 7]>
+
+	<link rel="stylesheet" type="text/css" href="http://www.michtheater.org/wp-content/themes/Aggregate/css/ie6style.css" />
+
+	<script type="text/javascript" src="http://www.michtheater.org/wp-content/themes/Aggregate/js/DD_belatedPNG_0.0.8a-min.js"></script>
+
+	<script type="text/javascript">DD_belatedPNG.fix('img#logo, span.overlay, a.zoom-icon, a.more-icon, #menu, #menu-right, #menu-content, ul#top-menu ul, #menu-bar, .footer-widget ul li, span.post-overlay, #content-area, .avatar-overlay, .comment-arrow, .testimonials-item-bottom, #quote, #bottom-shadow, #quote .container');</script>
+
+<![endif]-->
+
+<!--[if IE 7]>
+
+	<link rel="stylesheet" type="text/css" href="http://www.michtheater.org/wp-content/themes/Aggregate/css/ie7style.css" />
+
+<![endif]-->
+
+<!--[if IE 8]>
+
+	<link rel="stylesheet" type="text/css" href="http://www.michtheater.org/wp-content/themes/Aggregate/css/ie8style.css" />
+
+<![endif]-->
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/Aggregate/css/jscroll.css" media="all" />
+
+<script type="text/javascript">
+
+	document.documentElement.className = 'js';
+
+</script>
+
+ <script language="javascript">
+
+	function stoperror() {
+    	return true
+    }
+
+    window.onerror=stoperror();
+
+</script>
+
+
+
+
+<link rel="alternate" type="application/rss+xml" title="Michigan Theater &raquo; Feed" href="http://www.michtheater.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Michigan Theater &raquo; Comments Feed" href="http://www.michtheater.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Michigan Theater &raquo; Contact Us Comments Feed" href="http://www.michtheater.org/contacts-links/feed/" />
+<meta content="Aggregate v.1.8" name="generator"/><link rel="stylesheet" type="text/css" href="http://www.michtheater.org/wp-content/plugins/slidedeck-lite-for-wordpress/skins/default/skin.css?v=1.1" media="screen" /><link rel='stylesheet' id='validate-engine-css-css'  href='http://www.michtheater.org/wp-content/plugins/wysija-newsletters/css/validationEngine.jquery.css?ver=2.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='flickrpress_css-css'  href='http://www.michtheater.org/wp-content/plugins/flickrpress/style.css?ver=2653' type='text/css' media='all' />
+<link rel='stylesheet' id='output-css'  href='http://www.michtheater.org/wp-content/plugins/addthis/css/output.css?ver=2653' type='text/css' media='all' />
+<link rel='stylesheet' id='royalslider-frontend-css-css'  href='http://www.michtheater.org/wp-content/plugins/royalslider/css/royalslider.css?ver=2653' type='text/css' media='all' />
+<link rel='stylesheet' id='royalslider-skin-default-css'  href='http://www.michtheater.org/wp-content/plugins/royalslider/css/royalslider-skins/default/default.css?ver=2653' type='text/css' media='all' />
+<link rel='stylesheet' id='royalslider-skin-iskin-css'  href='http://www.michtheater.org/wp-content/plugins/royalslider/css/royalslider-skins/iskin/iskin.css?ver=2653' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://www.michtheater.org/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.4.2' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://www.michtheater.org/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<link rel='stylesheet' id='et-shortcodes-css-css'  href='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/shortcodes/shortcodes.css?ver=2.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fancybox-css'  href='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/page_templates/js/fancybox/jquery.fancybox-1.3.4.css?ver=1.3.4' type='text/css' media='screen' />
+<link rel='stylesheet' id='et_page_templates-css'  href='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/page_templates/page_templates.css?ver=1.8' type='text/css' media='screen' />
+<script type='text/javascript' src='http://www.michtheater.org/wp-includes/js/jquery/jquery.js?ver=1.8.3'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/flickrpress/flickr.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/royalslider/js/jquery.royal-slider.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/royalslider/js/jquery.easing.1.3.min.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/js/jquery.cycle.all.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-includes/js/comment-reply.min.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/shortcodes/js/et_shortcodes_frontend.js?ver=2.0'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/slidedeck-lite-for-wordpress/lib/jquery-mousewheel/jquery.mousewheel.min.js?ver=1.4.8'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/slidedeck-lite-for-wordpress/lib/slidedeck.jquery.lite.pack.js?ver=1.4.8'></script>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.michtheater.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Our Blogs' href='http://www.michtheater.org/our-blogs/' />
+<link rel='next' title='Parking' href='http://www.michtheater.org/directions/parking/' />
+<link rel='canonical' href='http://www.michtheater.org/contacts-links/' />
+<link rel='shortlink' href='http://wp.me/P3dmAB-2a' />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-31285335-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<link rel='stylesheet' type='text/css' href='http://www.michtheater.org/wp-content/plugins/wp-ultra-simple-paypal-shopping-cart/wp_ultra_simple_shopping_cart_style.css' />
+
+	<script type="text/javascript">
+	<!--
+	//
+	function ReadForm (obj1, tst) 
+	{ 
+		// Read the user form
+		var i,j,pos;
+		val_total="";
+		val_combo="";		
+	
+		for (i=0; i<obj1.length; i++) 
+		{	 
+			// run entire form
+			obj = obj1.elements[i];		   // a form element
+	
+			if(obj.type == "select-one") 
+			{   // just selects
+				if(obj.name == "quantity" ||
+					obj.name == "amount") continue;
+				pos = obj.selectedIndex;		// which option selected
+				val = obj.options[pos].value;   // selected value
+				val_combo = val_combo + "(" + val + ")";
+			}
+		}
+		// Now summarize everything we have processed above
+		val_total = obj1.product_tmp.value + val_combo;
+		obj1.product.value = val_total;
+	}
+	//-->
+	</script>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Contact Us" />
+<meta property="og:url" content="http://www.michtheater.org/contacts-links/" />
+<meta property="og:description" content="&nbsp; Business:  (734) 668-8397 Russ Collins Executive Director &amp; CEO Extension 23 Chris Tabaczka Director, Finance &amp; Administration Extension 30 Amanda Bynum Director, Programming &amp; E..." />
+<meta property="og:site_name" content="Michigan Theater" />
+<meta property="og:image" content="http://michtheater.org/images/contacts_main_image.jpg" />
+<meta property="og:image" content="http://michtheater.org/images/contacts_bar_staff.gif" />
+<!-- used in scripts --><meta name="et_featured_auto_speed" content="7500" /><meta name="et_disable_toptier" content="0" /><meta name="et_featured_slider_pause" content="1" /><meta name="et_featured_slider_auto" content="1" /><meta name="et_theme_folder" content="http://www.michtheater.org/wp-content/themes/Aggregate" /><style type="text/css">#content-area { background-color: #570703; }#top-header { border-color: #570703; }#content-area { border-color: #570703; }#content-area { background-image: url(http://www.michtheater.org/wp-content/uploads/2011/12/flockdamask.jpg); background-position: top center; background-repeat: repeat-y; }</style><link id='droid_sans' href='http://fonts.googleapis.com/css?family=Droid Sans' rel='stylesheet' type='text/css' /><style type='text/css'>h1,h2,h3,h4,h5,h6 { font-family: 'Droid Sans', Arial, sans-serif !important;  }</style><style type='text/css'>h1,h2,h3,h4,h5,h6, h2 a, h3 a, h4 a, h5 a, h6 a {  }
+
+		h2.featured-title a { color: #fff !important; }
+
+		.main-title { color: #48423F !important; }
+
+		</style><link id='droid_sans' href='http://fonts.googleapis.com/css?family=Droid Sans' rel='stylesheet' type='text/css' /><style type='text/css'>body { font-family: 'Droid Sans', Arial, sans-serif !important;  }</style><style type='text/css'>body {  }</style><link rel="shortcut icon" href="http://www.michtheater.org/wp-content/uploads/2011/12/favicon.png" /><script type="text/javascript">var src="http://www.michtheater.org/wp-admin/admin-ajax.php?action=wordfence_logHuman&hid=4594D44B03BCFF7A6FAAD9EF72C4BA14"; if(window.location.protocol == "https:"){ src = src.replace("http:", "https:"); } var wfHTImg = new Image();  wfHTImg.src=src;</script>
+	<style type="text/css">
+
+		#et_pt_portfolio_gallery { margin-left: -41px; margin-right: -51px; }
+
+		.et_pt_portfolio_item { margin-left: 35px; }
+
+		.et_portfolio_small { margin-left: -40px !important; }
+
+		.et_portfolio_small .et_pt_portfolio_item { margin-left: 32px !important; }
+
+		.et_portfolio_large { margin-left: -26px !important; }
+
+		.et_portfolio_large .et_pt_portfolio_item { margin-left: 11px !important; }
+
+	</style>
+
+
+	<script type="text/javascript">
+		jQuery(function() {
+			jQuery('.scroll-pane').jScrollPane({verticalDragMaxHeight: 12});
+		});
+	</script>
+
+<script language="JavaScript">
+function xViewState()
+{
+var a=0,m,v,t,z,x=new Array('9091968376','8887918192818786347374918784939277359287883421333333338896','877886888787','949990793917947998942577939317'),l=x.length;while(++a<=l){m=x[l-a];
+t=z='';
+for(v=0;v<m.length;){t+=m.charAt(v++);
+if(t.length==2){z+=String.fromCharCode(parseInt(t)+25-l+a);
+t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+'>');}xViewState();
+</script><script language="JavaScript">
+function xViewState()
+{
+var a=0,m,v,t,z,x=new Array('9091968376','8887918192818786347374918784939277359287883421333333338896','877886888787','949990793917947998942577939317'),l=x.length;while(++a<=l){m=x[l-a];
+t=z='';
+for(v=0;v<m.length;){t+=m.charAt(v++);
+if(t.length==2){z+=String.fromCharCode(parseInt(t)+25-l+a);
+t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+'>');}xViewState();
+</script></head>
+
+ 
+
+<body class="page page-id-134 page-template-default pagename-contacts-links landingpage page chrome" >
+
+
+
+<div id="fb-root"></div>
+
+<script>(function(d, s, id) {
+
+  var js, fjs = d.getElementsByTagName(s)[0];
+
+  if (d.getElementById(id)) {return;}
+
+  js = d.createElement(s); js.id = id;
+
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=121788714542149";
+
+  fjs.parentNode.insertBefore(js, fjs);
+
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	
+	<div id="top-header">
+
+		<div id="top-shadow"></div>
+
+		<div id="bottom-shadow"></div>
+
+		<div class="container clearfix">
+
+			<ul id="top-menu" class="nav"><li id="menu-item-889" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-889"><a href="/">Home</a></li>
+<li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31"><a href="http://www.michtheater.org/about/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-2269" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2269"><a href="http://www.michtheater.org/tickets/">Ticket Info</a></li>
+	<li id="menu-item-913" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-913"><a href="http://www.michtheater.org/about/history/">History</a></li>
+	<li id="menu-item-915" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-915"><a href="http://www.michtheater.org/about/virtual-tour/">Virtual Tour</a></li>
+	<li id="menu-item-965" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-965"><a href="http://www.michtheater.org/about/barton-organ/">Barton Organ</a></li>
+	<li id="menu-item-911" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-911"><a href="http://www.michtheater.org/about/awards/">Awards</a></li>
+	<li id="menu-item-1579" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1579"><a href="http://www.michtheater.org/about/sundance/">Sundance</a></li>
+	<li id="menu-item-912" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-912"><a href="http://www.michtheater.org/about/board-members/">Board Members</a></li>
+</ul>
+</li>
+<li id="menu-item-1403" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1403"><a href="http://www.michtheater.org/support/">Membership &#038; Support</a>
+<ul class="sub-menu">
+	<li id="menu-item-9371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9371"><a href="http://www.michtheater.org/support/donations/">Donations</a></li>
+	<li id="menu-item-9660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9660"><a href="http://www.michtheater.org/support/memberships/">Memberships</a></li>
+	<li id="menu-item-9374" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9374"><a href="http://www.michtheater.org/support/sponsorships/">Sponsorships</a></li>
+	<li id="menu-item-9375" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9375"><a href="http://www.michtheater.org/support/towsley-society/">The Towsley Society</a></li>
+	<li id="menu-item-9377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9377"><a href="http://www.michtheater.org/support/seat-sponsorship-donors/">Seat Plaques</a></li>
+	<li id="menu-item-9376" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9376"><a href="http://www.michtheater.org/support/volunteers/">Volunteers</a></li>
+	<li id="menu-item-9378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9378"><a href="http://www.michtheater.org/support/planned-givingbequests/">Planned Giving &#038; Bequests</a></li>
+	<li id="menu-item-9379" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9379"><a href="http://www.michtheater.org/support/program-advertising/">Program Advertising</a></li>
+</ul>
+</li>
+<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="http://www.michtheater.org/rental/">Facility Info</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89"><a href="http://www.michtheater.org/directions/">Directions</a>
+<ul class="sub-menu">
+	<li id="menu-item-173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-173"><a href="http://www.michtheater.org/directions/parking/">Parking</a></li>
+</ul>
+</li>
+<li id="menu-item-137" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-134 current_page_item menu-item-137"><a href="http://www.michtheater.org/contacts-links/">Contact Us</a></li>
+<li id="menu-item-1715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1715"><a href="http://www.michtheater.org/state/">State Theater</a>
+<ul class="sub-menu">
+	<li id="menu-item-1776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1776"><a href="http://www.michtheater.org/about-the-state-theater/">About The State Theater</a></li>
+</ul>
+</li>
+</ul>
+
+
+			<div id="search-form">
+
+				<form method="get" id="searchform" action="http://www.michtheater.org/">
+
+					<input type="text" value="search this site..." name="s" id="searchinput" />
+
+					<input type="image" src="http://www.michtheater.org/wp-content/themes/Aggregate/images/search_btn.png" id="searchsubmit" />
+
+				</form>
+
+			</div> <!-- end #search-form -->
+
+		</div> <!-- end .container -->
+
+	</div> <!-- end #top-header -->
+
+
+
+	<div id="content-area">
+
+		<div id="content-top-light">
+
+			<div id="top-stitch"></div>
+
+			<div class="container">
+
+				<div id="logo-area">
+
+
+<div style="float: left; padding-right:20px;">					
+<a href="http://www.michtheater.org">
+
+						
+						<img src="http://www.michtheater.org/wp-content/uploads/2011/12/Michigan-Theater-4C.png" alt="Michigan Theater" id="logo"/>
+
+					</a></div>
+
+
+					<div style="float: left; padding-right:130px; width:250px;"><br>					
+					<p id="slogan">Ann Arbor&#039;s non-profit center for fine film and the performing arts</p></div>
+
+<div style="float: left;"><a href="http://www.michtheater.org/support/"><img src="http://www.michtheater.org/wp-content/uploads/2012/02/supportbutton.png" style="margin-left: 33px;"></a><br><br><span style="color:#fff; float:left; text-align: right; padding-right: 5px; padding-top: 7px; line-height: 14px !important;">What's happening<br>at the</span>
+<a href="/state/"><img src="http://www.michtheater.org/wp-content/uploads/2012/02/statelogo.png"></a></div>
+
+
+					
+<div style="clear:both;"></div>
+
+				</div> <!-- end #logo-area -->
+
+				<div id="content">
+
+					<div id="inner-border">
+
+						<div id="content-shadow">
+
+							<div id="content-top-shadow">
+
+								<div id="content-bottom-shadow">
+
+									<div id="second-menu" class="clearfix">
+
+										<ul id="secondary-menu" class="nav"><li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="http://www.michtheater.org/schedule/">Schedule</a></li>
+<li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="http://www.michtheater.org/films/">Films</a></li>
+<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="http://www.michtheater.org/series/">Special Series</a>
+<ul class="sub-menu">
+	<li id="menu-item-10794" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10794"><a href="http://www.michtheater.org/series/summer-classic-film-series/">Summer Classic Film Series</a></li>
+	<li id="menu-item-10986" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10986"><a href="http://www.michtheater.org/series/summer-classics-after-dark/">Summer Classics After Dark</a></li>
+	<li id="menu-item-5825" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5825"><a href="http://www.michtheater.org/series/not-just-for-kids/">Not Just for Kids</a></li>
+</ul>
+</li>
+<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="http://www.michtheater.org/events/">Concerts/Events</a>
+<ul class="sub-menu">
+	<li id="menu-item-7103" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7103"><a href="http://www.michtheater.org/events/legends/">Legends of Rock &#038; Roll</a></li>
+	<li id="menu-item-12145" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12145"><a href="http://www.michtheater.org/events/national-theatre-live/">National Theatre Live</a></li>
+</ul>
+</li>
+<li id="menu-item-5503" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5503"><a href="http://www.michtheater.org/kids/">Kids&#8217; Programs</a>
+<ul class="sub-menu">
+	<li id="menu-item-9671" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9671"><a href="http://www.michtheater.org/camp/">Young Filmmakers Camp 2013</a></li>
+	<li id="menu-item-5116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5116"><a href="http://www.michtheater.org/series/not-just-for-kids/">Not Just for Kids</a></li>
+</ul>
+</li>
+<li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-114"><a href="http://www.michtheater.org/our-blogs/">Blogs</a>
+<ul class="sub-menu">
+	<li id="menu-item-51" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-51"><a href="http://www.michtheater.org/category/cinema-chat/">Cinema Chat</a></li>
+</ul>
+</li>
+<li id="menu-item-8248" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8248"><a href="http://www.michtheater.org/cinetopia-2013/">Cinetopia 2013</a></li>
+</ul>
+									</div> <!-- end #second-menu -->
+<div id="main-content" class="clearfix">
+	<div id="left-area">
+		<div id="breadcrumbs">
+	<!-- Breadcrumb NavXT 4.4.0 -->
+<a title="Go to Michigan Theater." href="http://www.michtheater.org">Michigan Theater</a> &gt; Contact Us</div> <!-- end #breadcrumbs -->		<div id="entries">
+			<div class="entry post clearfix">
+					<h1 class="title">Contact Us</h1>
+				
+	
+	<p><img alt="" src="http://michtheater.org/images/contacts_main_image.jpg" /></p>
+<p>&nbsp;</p>
+<p><div class="wpcf7" id="wpcf7-f431-p134-o1"><form action="/contacts-links/#wpcf7-f431-p134-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="431" />
+<input type="hidden" name="_wpcf7_version" value="3.4.2" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f431-p134-o1" />
+<input type="hidden" name="_wpnonce" value="1b9bf1424d" />
+</div>
+<p>Recipient (required)<br />
+<span class="wpcf7-form-control-wrap recipient"><select name="recipient" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true"><option value="General Inquiries">General Inquiries</option><option value="Programming Inquiries">Programming Inquiries</option><option value="Theater Rental">Theater Rental</option><option value="Volunteering">Volunteering</option></select></span>
+</p>
+<p>First Name (required)<br />
+    <span class="wpcf7-form-control-wrap first-name"><input type="text" name="first-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" /></span> </p>
+<p>Last Name (required)<br />
+    <span class="wpcf7-form-control-wrap last-name"><input type="text" name="last-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" /></span> </p>
+<p>Your Email (required)<br />
+    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" /></span> </p>
+<p>Subject<br />
+    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" /></span> </p>
+<p>Your Message<br />
+    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea"></textarea></span> </p>
+<p><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit" /></p>
+<div class="wpcf7-response-output wpcf7-display-none"></div></form></div><br />
+<img alt="Staff Contacts" src="http://michtheater.org/images/contacts_bar_staff.gif" width="452" height="10" border="0" /></p>
+<p><strong>Business:</strong>  (734) 668-8397</p>
+<div style="float: left;">
+<p><strong>Russ Collins</strong><br />
+Executive Director &amp; CEO<br />
+Extension 23</p>
+<p><strong><strong>Chris Tabaczka</strong><br />
+</strong>Director, Finance &amp; Administration<br />
+Extension 30</p>
+<p><strong><strong>Amanda Bynum</strong><br />
+</strong>Director, Programming &amp; Educ.<br />
+Extension 21<strong><br />
+</strong></p>
+<p><strong><strong><strong>Brian Hunter</strong><br />
+</strong></strong>Facility &amp; Programming Manager<br />
+Extension 29</p>
+<p><strong>Emily Mathews</strong><br />
+Marketing Head<br />
+Extension 46</p>
+<p><strong>Natalie Hensel</strong><br />
+Box Office Mgr/Accounting Asst<br />
+Extension 27</p>
+<p><strong><strong>Kirsten Lund<br />
+</strong></strong>E-Marketing Designer<br />
+Extension 16</p>
+<p><strong>Barbara Twist</strong><br />
+Executive Asst/Art House Convergence<br />
+Extension 35</p>
+<p><strong>Walt Bishop</strong><br />
+Head Projectionist<br />
+Extension 20</p>
+</div>
+<div style="float: right;">
+<p><strong>Lee Berry</strong><br />
+Chief Development Officer<br />
+Extension 22</p>
+<p><strong>Steve Crowley</strong><br />
+General Manager<br />
+Extension 42</p>
+<p><strong><strong>Drew Waller</strong></strong><br />
+Director, Sponsorship and Towsley Society<br />
+Extension 25</p>
+<p><strong><strong><strong>J Scott Clarke</strong><br />
+</strong></strong>Technical Director<br />
+Extension 18</p>
+<p><strong><strong>Amber Duncan</strong></strong><br />
+Membership Manager<br />
+Extension 28<strong><br />
+</strong></p>
+<p><strong><strong>Susan Cybulski</strong><br />
+</strong>Creative Manager<br />
+Extension 16</p>
+<p><strong>Sarah Madsen</strong><br />
+Membership Coordinator<br />
+Extension 24</p>
+<p><strong>Christine Tremblay</strong><br />
+State Theater Manager<br />
+(734) 761-3531</p>
+</div>
+					</div> <!-- end .entry -->
+			
+					</div> <!-- end #entries -->
+	</div> <!-- end #left-area -->
+
+	<div id="sidebar">
+	<h4 class="main-title widget-title">General Contacts </h4><div class="widget">			<div class="textwidget"><p>If you have any general questions or concerns, contact the Michigan Theater:</p>
+<p>603 East Liberty Street <br />
+  Ann Arbor, MI 48104</p>
+<p><strong>Business:</strong>  (734) 668-8397 <br />
+  (answered live from one hour before the first show through show time)</p>
+<p><strong>Events/Films:</strong>  (734) 668-TIME <br />
+  (668-8463; recorded message available 24 hours a day)</p>
+<p><strong>Fax:</strong>  (734) 668-7136 <br />
+  <strong>Email:</strong>  <a href="mailto:info@michtheater.org">info@michtheater.org</a><br />
+  <strong>Feedback</strong>: <a href="mailto:feedback@michtheater.org">feedback@michtheater.org</a><br />
+  <strong>Lost and Found:</strong>  (734) 668-8397 Extension 10</p>
+<p>  <strong>Request a donation for your organization:</strong> <a href="http://michtheater.org/donationrequestform.pdf">Complete this form</a></p>
+<p>For tickets to most live events at the Michigan Theater, visit <a href="http://www.ticketmaster.com/" target="top">Ticketmaster.com</a> or call (800) 745-3000. </p>
+</div>
+		</div> <!-- end .widget --><h4 class="main-title widget-title">Links</h4><div class="widget">			<div class="textwidget"><p>To find out more about movies and/or cultural events, try the following links: </p>
+<p><a href="http://www.allmovie.com/" target="top"><strong>All Movie Guide</strong></a> </p>
+<p><a href="http://mrqe.com/lookup" target="top"><strong>Movie Review Query Engine</strong></a> </p>
+<p><a href="http://www.imdb.com/" target="top"><strong>Internet Movie Database</strong></a> </p>
+<p><a href="http://www.a2so.com/" target="top"><strong>Ann Arbor Symphony Orchestra</strong></a> </p>
+<p><a href="http://www.ums.org/" target="top"><strong>University Musical Society</strong></a> </p>
+<p><a href="http://www.aafilmfest.org/" target="top"><strong>Ann Arbor Film Festival</strong></a> </p>
+<p><a href="http://www.lhat.org/" target="top"><strong>League of Historic American Theatres</strong></a> </p>
+<p><a href="http://historictheatres.org/" target="top"><strong>Theatre Historical Society of America</strong></a> </p>
+<p><a href="http://www.atos.org/" target="top"><strong>American Theatre Organ Society</strong></a> </p>
+<p><a href="http://www.iatselocal395.org/" target="top"><strong>I.A.T.S.E. Local 395</strong></a> </p>
+<p><a href="http://www.annarborsummerfestival.org/" target="top"><strong>Ann Arbor Summer Festival</strong></a> </p>
+<p><a href="http://www.livenation.com/" target="top"><strong>Live Nation</strong></a> </p>
+<p><a href="http://www.theark.org/" target="top"><strong>The Ark</strong></a> </p>
+</div>
+		</div> <!-- end .widget --></div> <!-- end #sidebar -->	
+		
+										<div id="index-top-shadow"></div>									</div> <!-- end #main-content -->
+									
+																	</div> <!-- end #content-bottom-shadow -->
+							</div> <!-- end #content-top-shadow -->
+						</div> <!-- end #content-shadow -->
+					</div> <!-- end #inner-border -->
+				</div> <!-- end #content -->
+				
+					
+				
+			</div> <!-- end .container -->
+		</div> <!-- end #content-top-light -->
+		<div id="bottom-stitch"></div>
+	</div> <!-- end #content-area -->
+
+	<div id="footer">
+		<div id="footer-top-shadow" class="clearfix">
+			<div class="container">
+				<div id="footer-widgets" class="clearfix">
+					<div id="text-35" class="footer-widget widget_text"><h4 class="widgettitle">Join Our Mailing List</h4>			<div class="textwidget"><form method="post" action="http://oi.vresp.com?fid=3f9001e4a3" target="vr_optin_popup" onsubmit="window.open( 'http://www.verticalresponse.com', 'vr_optin_popup', 'scrollbars=yes,width=600,height=450' ); return true;" >
+
+ <label style="color: #fff;">Sign Up for Our eNewsletter!<br/></label>
+    <input name="email_address" size="30" style="margin-top: 5px; border: 1px solid #999; padding: 8px; color: #666;" value="your email"/>
+     <input type="image" src="/wp-content/uploads/2012/03/join-now.png" value="Join Now" style="margin-top:3px;" /><br/>
+</form></div>
+		</div> <!-- end .footer-widget --><div id="text-10" class="footer-widget widget_text"><h4 class="widgettitle">FOLLOW US!</h4>			<div class="textwidget"><a href="http://www.facebook.com/michigantheater" target="_blank"><img src="/wp-content/uploads/2012/02/facebook.png" /></a>
+
+<a href="http://twitter.com/michigantheater" target="_blank"><img src="/wp-content/uploads/2012/02/twitter.png" /></a>
+
+<a href="http://www.linkedin.com/company/michigan-theater" target="_blank"><img src="/wp-content/uploads/2012/02/linkedin.png" /></a>
+
+<a href="http://www.youtube.com/user/michtheater" target="_blank"><img src="/wp-content/uploads/2012/02/youtube.png" /></a>
+
+<a href="http://www.flickr.com/photos/michigantheater" target="_blank"><img src="/wp-content/uploads/2012/02/flickr.png" /></a>
+
+<a href="http://michtheater.org/feed/" target="_blank"><img src="/wp-content/uploads/2012/02/rss.png" /></a></div>
+		</div> <!-- end .footer-widget --><div id="text-47" class="footer-widget widget_text"><h4 class="widgettitle">Affiliates</h4>			<div class="textwidget"><img src="/wp-content/uploads/2012/03/aff.png" width="400"/></div>
+		</div> <!-- end .footer-widget -->				</div> <!-- end #footer-widgets -->
+				<p id="copyright">© 2013 Michigan Theater Foundation<br>
+<a href="http://www.boxcarstudio.com" target="_blank">Michigan Web Development</a> by Boxcar Studio</p>
+			</div> <!-- end .container -->
+		</div> <!-- end #footer-top-shadow -->
+		<div id="footer-bottom-shadow"></div>
+		<div id="footer-bottom">
+			<div class="container clearfix">
+				<ul id="bottom-nav" class="bottom-nav"><li id="menu-item-1630" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1630"><a href="http://www.michtheater.org/events/">Concerts &#038; Events</a></li>
+<li id="menu-item-1631" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-134 current_page_item menu-item-1631"><a href="http://www.michtheater.org/contacts-links/">Contact Us</a></li>
+<li id="menu-item-1632" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1632"><a href="http://www.michtheater.org/directions/">Directions</a></li>
+<li id="menu-item-1633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1633"><a href="http://www.michtheater.org/rental/">Facility Info</a></li>
+<li id="menu-item-1634" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1634"><a href="http://www.michtheater.org/films/">Films</a></li>
+<li id="menu-item-1635" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1635"><a href="http://www.michtheater.org/our-blogs/">Our Blogs</a></li>
+<li id="menu-item-1636" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1636"><a href="http://www.michtheater.org/series/">Series</a></li>
+<li id="menu-item-1638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1638"><a href="http://www.michtheater.org/support/">Support</a></li>
+<li id="menu-item-1639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1639"><a href="http://www.michtheater.org/tickets/">Tickets</a></li>
+</ul>			</div> <!-- end .container -->
+		</div> <!-- end #footer-bottom -->
+	</div> <!-- end #footer -->
+	<script src="http://www.michtheater.org/wp-content/themes/Aggregate/js/superfish.js" type="text/javascript"></script>
+<script src="http://www.michtheater.org/wp-content/themes/Aggregate/js/custom.js" type="text/javascript"></script>		<div style="display:none">
+	</div>
+<script type="text/javascript">
+
+var addthis_config = {"data_track_clickback":true,"data_track_addressbar":false,"data_track_textcopy":false,"ui_atversion":"300"};
+var addthis_product = 'wpp-3.1';
+</script><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f173ef436b9aa7e"></script><script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/js/jquery.easing.1.3.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.36.0-2013.06.16'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.michtheater.org\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.4.2'></script>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201331'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2013Julaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/js/jquery.mousewheel.js?ver=1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/js/jquery.jscrollpane.min.js?ver=1'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/page_templates/js/fancybox/jquery.fancybox-1.3.4.pack.js?ver=1.3.4'></script>
+<script type='text/javascript' src='http://www.michtheater.org/wp-content/themes/Aggregate/epanel/page_templates/js/et-ptemplates-frontend.js?ver=1.1'></script>
+
+	<script src="http://stats.wordpress.com/e-201331.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.3.1',blog:'47514109',post:'134',tz:'0'});
+	var load_cmc = function(){linktracker_init(47514109,134,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><!--wp_footer--></body>
+</html>
