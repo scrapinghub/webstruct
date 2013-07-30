@@ -11,6 +11,6 @@ setup(
     version='0.1',
     author='Mikhail Korobov, Terry Peng',
     author_email='kmike84@gmail.com',
-    packages=['webstruct_token'],
+    packages=['webstruct_token', 'webstruct_token.features'],
     license = 'MIT license',
 )
