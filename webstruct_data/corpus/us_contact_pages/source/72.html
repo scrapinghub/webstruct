@@ -1,0 +1,516 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	Contact Us - Corner Bakery Cafe&reg;
+</title><link rel="shortcut icon" href="/favicon.ico" />
+	
+	<script type="text/javascript" src="/resources/js/bgrandom.js"></script>
+	<script type="text/javascript" src="/resources/js/swfobject.js"></script>
+	<script type="text/javascript">
+	swfobject.registerObject("homeFlashmovie", "9.0.0", "/resources/swf/expressInstall.swf");
+	swfobject.registerObject("homeFlashmovie2", "9.0.0", "/resources/swf/expressInstall.swf");
+	</script>
+	
+    <script language="javascript" type="text/javascript">
+	function eatCookieVal(name) {
+              endstr=document.cookie.indexOf(";",name);
+              if (endstr === -1) {endstr=document.cookie.length;}
+              return unescape(document.cookie.substring(name,endstr));
+            }
+			
+            function eatCookie(name) {
+              arg=name+"="; alen=arg.length;
+              clen=document.cookie.length; i=0;
+               while (i<clen) {
+                  j=i+alen;
+                  if (document.cookie.substring(i,j) === arg) {
+                      return eatCookieVal(j);
+                      }
+                  i=document.cookie.indexOf(" ",i) + 1;
+                  if (i === 0) {break;}
+               }
+            }
+			
+			var storeName = eatCookie("DefaultCbName");
+		    var storePhone = eatCookie("DefaultCbPhone");
+			
+			setLocationDrop = function()
+
+{
+				var a = eatCookie("DefaultCbPhone");
+				var b = eatCookie("DefaultCbName");
+                var t = '';
+
+                t += '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="225" height="341" id="homeFlashmovie2"> \n';
+
+                t += '<param name="movie" value="/resources/swf/locationDropdown.swf" /> \n';
+
+                t += '<param name="flashvars" value="sName=' + escape(b) + '&sPhone=' + escape(a) + '" /> \n';
+
+                t += '<param name="wmode" value="transparent" />\n';
+
+                t += '<!--[if !IE]>--> \n';
+
+                t += '<object type="application/x-shockwave-flash" data="/resources/swf/locationDropdown.swf" width="225" height="341"> \n';
+
+                t += '<param name="flashvars" value="sName=' + escape(b) + '&sPhone=' + escape(a) + '"  /> \n';
+
+                t += '<param name="wmode" value="transparent" /> \n';
+
+                t += '<!--<![endif]--> \n';
+
+                t += '<a href="http://www.adobe.com/go/getflashplayer"> \n';
+
+                t += '<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"> \n';
+
+                t += '</a> \n';
+
+                t += '<!--[if !IE]>--> \n';
+
+                t += '</object> \n';
+
+                t += '<!--<![endif]--> \n';
+
+                t += '</object> \n';
+
+               
+
+                targetdiv = document.getElementById("locationDrop");
+
+                targetdiv.innerHTML = t;
+
+}
+    </script>
+
+
+<link href="App_Themes/CBTheme/CBPanelBar/styles.css" type="text/css" rel="stylesheet" /><link href="App_Themes/CBTheme/Menu/styles.css" type="text/css" rel="stylesheet" /><link href="App_Themes/CBTheme/screen.css" type="text/css" rel="stylesheet" /><meta name="Description" content="We always like to hear about your experiences at Corner Bakery Cafe - please use this form to let us know about your compliments, concerns or questions." /><meta name="Keywords" content="contact us, Corner Bakery Cafe" /><meta name="Generator" content="Sitefinity 3.7.2136.220:1" /></head>
+<body>
+    <form name="aspnetForm" method="post" action="ContactUs.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUENTM4MQ9kFgJmD2QWAgIBEGRkFgICDQ9kFgICAQ9kFgoCEA8QDxYCHgtfIURhdGFCb3VuZGdkEBU0CC1TZWxlY3QtAkFMAkFLAkFaAkFSAkNBAkNPAkNUAkRFAkRDAkZMAkdBAkhJAklEAklMAklOAklBAktTAktZAkxBAk1FAk1EAk1BAk1JAk1OAk1TAk1PAk1UAk5FAk5WAk5IAk5KAk5NAk5ZAk5DAk5EAk9IAk9LAk9SAlBBAlJJAlNDAlNEAlROAlRYAlVUAlZUAlZBAldBAldWAldJAldZFTQILVNlbGVjdC0CQUwCQUsCQVoCQVICQ0ECQ08CQ1QCREUCREMCRkwCR0ECSEkCSUQCSUwCSU4CSUECS1MCS1kCTEECTUUCTUQCTUECTUkCTU4CTVMCTU8CTVQCTkUCTlYCTkgCTkoCTk0CTlkCTkMCTkQCT0gCT0sCT1ICUEECUkkCU0MCU0QCVE4CVFgCVVQCVlQCVkECV0ECV1YCV0kCV1kUKwM0Z2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkAiQPEA8WBh4NRGF0YVRleHRGaWVsZAUFU3RhdGUeDkRhdGFWYWx1ZUZpZWxkBQVTdGF0ZR8AZ2QPFg8CAQICAgMCBAIFAgYCBwIIAgkCCgILAgwCDQIOAg8WDxAFAkFaBQJBWmcQBQJDQQUCQ0FnEAUCQ08FAkNPZxAFAkRDBQJEQ2cQBQJGTAUCRkxnEAUCR0EFAkdBZxAFAklMBQJJTGcQBQJNRAUCTURnEAUCTVMFAk1TZxAFAk5KBQJOSmcQBQJOWQUCTllnEAUCUEEFAlBBZxAFAlRYBQJUWGcQBQJVVAUCVVRnEAUCVkEFAlZBZxYBZmQCJg8QZGQWAGQCKA8QZGQWAGQCMg8PZBYEHgtvbm1vdXNlb3ZlcgUrdGhpcy5zcmMgPSAnL3Jlc291cmNlcy9pbWcvYl9zZW5kX292ci5naWYnOx4Kb25tb3VzZW91dAUndGhpcy5zcmMgPSAnL3Jlc291cmNlcy9pbWcvYl9zZW5kLmdpZic7ZBgKBR1jdGwwMCRwaFRpdGxlJEdlbmVyaWNDb250ZW50MQ8UKwABZGQFH2N0bDAwJHBoU2lkZWJhciRHZW5lcmljQ29udGVudDUPFCsAAWRkBR9jdGwwMCRwaENvbnRlbnQkR2VuZXJpY0NvbnRlbnQyDxQrAAFkZAUiY3RsMDAkcGhTdXJ2ZXlMaW5rJEdlbmVyaWNDb250ZW50NA8UKwABZGQFIWN0bDAwJHBoRm9vdGVyJHRtX0dlbmVyaWNDb250ZW50Mw8UKwABZGQFIWN0bDAwJHBoQmFubmVyJHRtX0dlbmVyaWNDb250ZW50MQ8UKwABZGQFJGN0bDAwJHBoU2VwYXJhdG9yJHRtX0dlbmVyaWNDb250ZW50NA8UKwABZGQFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYCBSJjdGwwMCRwaENvbnRlbnQkY3RsMDAkY2J4RGFpbHlGZWVkBR1jdGwwMCRwaENvbnRlbnQkY3RsMDAkYnRuU2VuZAUfY3RsMDAkcGhDb250ZW50JEdlbmVyaWNDb250ZW50Ng8UKwABZGQFImN0bDAwJHBoSG9tZU9mZmljZSRHZW5lcmljQ29udGVudDMPFCsAAWRkV+RLna2szq5p2XBSTUMAL7UM96k=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=Gro7742Rx4EQJZHiXoomxKdkN5rwgJbcHWou32MBXCPlfTh_QTOyMn3zh8JB5zPKF_sbr8RIEM80yH47y0I51SFDOjM1&amp;t=635090248615971250" type="text/javascript"></script>
+
+
+<script src="/WebResource.axd?d=pcaV8Zk1ffyKOIjU7gUanPvn9e_qCoSvAeX114lmkCny0ITZ9nlUuhYaceicu9Tu5HIDV3Mff_tjuHnlLHPsTdo9ELw1&amp;t=635090248615971250" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+        <div id="topStrip"></div>
+        	<div id="midStrip">
+		<div id="navOuterWrap">
+               <div id="navWrap">
+               		<div id="logo"><a href="/home.aspx"><img src="/resources/img/logo.png" alt="CornerBakery Logo" /></a></div>
+					<div id="locationDrop"></div>
+				<ul id="homeNav">
+                   	  	<li id="nav1"><a href="/MenuNutrition.aspx">Menu &amp; Nutrition</a></li>
+                      		<li id="nav2"><a href="/Catering.aspx">Catering</a></li>
+                      		<li id="nav3"><a href="/DailyFeed.aspx">eCAFE Sign Up</a></li>
+                      		<li id="nav4"><a href="/DayGiftCard.aspx">Gift Cards</a></li>
+                      		<li id="nav5"><a href="http://cornerbakerycafejobs.hodes.com/">Carrers</a></li>
+                      		<li id="nav6"><a href="/Locations.aspx">Find Your Cafe</a></li>
+                  </ul>
+                
+              </div>
+	</div>
+              	
+	</div>
+	<div id="HeroImg">
+ <script type="text/javascript">
+		setBackground();
+	</script>
+   	  <div id="HeroWrap">
+	  	<div id ="subNavWrapper">
+       		<ul id="subNav">
+    			<li id="about"><a href="/AboutUs.aspx">About us</a></li>
+       	 		<li id="press"><a href="/Press.aspx">Press</a></li>
+       	 		<li id="neighbors"><a href="/GuestRelations.aspx">Good Neighbors</a></li>
+       			<li id="franchise"><a href="/Franchise.aspx">Franchise</a></li>
+            	<li id="contact"><a href="/ContactUs.aspx">Contact Us</a></li>
+		  </ul>
+		  
+		  </div>
+<div id="clear"></div>
+<div id="subFlash">
+<object id="homeFlashmovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="320">
+				<param name="movie" value="/resources/swf/dropdown/contact_dropdown.swf" />
+				<param name="wmode" value="transparent" />
+        		<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="/resources/swf/dropdown/contact_dropdown.swf" width="600" height="320">
+				<param name="wmode" value="transparent" />
+				
+				<!--<![endif]-->
+			
+				<div>
+					<h1>Alternative content</h1>
+					<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+				</div>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+</div>
+
+	    </div>
+	</div>
+            <div id="HeroBborder"></div>
+        <div id="wrapper">
+        <div id="wrapper-inner">
+            <div id="main">
+                <div id="main-inner">
+                    <div id="alpha">
+                        <div id="beta">
+                            <div class="clr" style="padding: 5px;">
+                            </div>
+                            <div id="office">
+                                <div id="office-inner">
+                                    <h3>Home Office</h3> <p>12700 Park Central Drive, Suite 1300<br />
+Dallas, TX 75251<br /> <br /> <a href="http://www.google.com/maps?daddr=12700%20Park%20Central%20Drive%20Suite%201300%20Dallas,%20Tx%2075251" target="_blank">Get Directions</a><br /> <br />
+Monday-Friday<br />
+8:30 a.m. - 5:30 p.m. CST</p> <br /> <p>Phone: 972.619.4100<br />
+Toll Free: 800.309.4642 </p>
+
+                                </div>
+                                <div class="clr">
+                                </div>
+                            </div>
+                            <div id="beta-inner">
+                                <a href="http://www.cbcfeedback.com/" target="_blank"><img alt="" style="width: 215px; height: 101px" src="/Images/IMG_call-us.gif" /></a> 
+
+                                <br />
+                                <br />
+                                <div style="margin-left: -10px"><img alt="ourStory Sign" src="Images/ourStory_sign.jpg" /></div>
+                            </div>
+                        </div>
+                        <div id="gamma">
+                            <img src="/Images/h_contact-main.gif" alt="Contact Us" />
+                            <div id="gamma-inner">
+                                         <img src="/Images/h_contact-overview.gif" alt="Contact Us" /> <div class="clr"></div>
+
+                            <div class="clr" style="margin:0;/margin:0 0 -10px 0;"></div>
+                            <img src="/Images/IMG_divider-long.gif" alt="Corner Bakery" />
+                                <h1></h1>
+We always like to hear about the Corner experience and welcome your compliments, concerns and questions. So grab a cup of coffee and a cookie or two, and tell us what you think.<br /> <br />
+<div id="ctl00_phContent_ctl00_ValidationSummary1" style="color:#CF4D51;display:none;">
+
+</div>
+<fieldset>
+    <ul>
+        <li style="padding-left:190px;"><span class="required">*</span> Indicates a required field</li>
+        <li>
+            <label class="label-txt" for="firstName"><span class="required">*</span> First Name</label>
+            <input name="ctl00$phContent$ctl00$txtFirstName" type="text" id="ctl00_phContent_ctl00_txtFirstName" class="contact-input" />
+            <span id="ctl00_phContent_ctl00_valFirstName" style="color:#CF4D51;color:#cf4d51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="lastName"><span class="required">*</span> Last Name</label>
+            <input name="ctl00$phContent$ctl00$txtLastName" type="text" id="ctl00_phContent_ctl00_txtLastName" class="contact-input" />
+            <span id="ctl00_phContent_ctl00_valLastName" style="color:#CF4D51;color:#cf4d51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="address">Address</label>
+            <input name="ctl00$phContent$ctl00$txtAddress1" type="text" id="ctl00_phContent_ctl00_txtAddress1" class="contact-input" />
+        </li>
+        <li>
+            <label class="label-txt" for="address2">Address 2</label>
+            <input name="ctl00$phContent$ctl00$txtAddress2" type="text" id="ctl00_phContent_ctl00_txtAddress2" class="contact-input" />
+        </li>
+        <li>
+            <label class="label-txt" for="city">City</label>
+            <input name="ctl00$phContent$ctl00$txtCity" type="text" id="ctl00_phContent_ctl00_txtCity" class="contact-input" />
+        </li>
+        <li>
+            <label class="label-txt" for="state">State</label>
+            <select name="ctl00$phContent$ctl00$ddlState" id="ctl00_phContent_ctl00_ddlState" class="contact-input">
+	<option value="-Select-">-Select-</option>
+	<option value="AL">AL</option>
+	<option value="AK">AK</option>
+	<option value="AZ">AZ</option>
+	<option value="AR">AR</option>
+	<option value="CA">CA</option>
+	<option value="CO">CO</option>
+	<option value="CT">CT</option>
+	<option value="DE">DE</option>
+	<option value="DC">DC</option>
+	<option value="FL">FL</option>
+	<option value="GA">GA</option>
+	<option value="HI">HI</option>
+	<option value="ID">ID</option>
+	<option value="IL">IL</option>
+	<option value="IN">IN</option>
+	<option value="IA">IA</option>
+	<option value="KS">KS</option>
+	<option value="KY">KY</option>
+	<option value="LA">LA</option>
+	<option value="ME">ME</option>
+	<option value="MD">MD</option>
+	<option value="MA">MA</option>
+	<option value="MI">MI</option>
+	<option value="MN">MN</option>
+	<option value="MS">MS</option>
+	<option value="MO">MO</option>
+	<option value="MT">MT</option>
+	<option value="NE">NE</option>
+	<option value="NV">NV</option>
+	<option value="NH">NH</option>
+	<option value="NJ">NJ</option>
+	<option value="NM">NM</option>
+	<option value="NY">NY</option>
+	<option value="NC">NC</option>
+	<option value="ND">ND</option>
+	<option value="OH">OH</option>
+	<option value="OK">OK</option>
+	<option value="OR">OR</option>
+	<option value="PA">PA</option>
+	<option value="RI">RI</option>
+	<option value="SC">SC</option>
+	<option value="SD">SD</option>
+	<option value="TN">TN</option>
+	<option value="TX">TX</option>
+	<option value="UT">UT</option>
+	<option value="VT">VT</option>
+	<option value="VA">VA</option>
+	<option value="WA">WA</option>
+	<option value="WV">WV</option>
+	<option value="WI">WI</option>
+	<option value="WY">WY</option>
+
+</select>
+        </li>
+        <li>
+            <label class="label-txt" for="zip"><span class="required">*</span> Zip</label>
+            <input name="ctl00$phContent$ctl00$txtZip" type="text" id="ctl00_phContent_ctl00_txtZip" class="contact-input" />
+            <span id="ctl00_phContent_ctl00_valAddress1" style="color:#CF4D51;color:#cf4d51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="phone">Phone Number</label>
+            <input name="ctl00$phContent$ctl00$txtPhone" type="text" id="ctl00_phContent_ctl00_txtPhone" class="contact-input" />
+        </li>
+        <li>
+            <label class="label-txt" for="email"><span class="required">*</span> E-Mail</label>
+            <input name="ctl00$phContent$ctl00$txtEmail" type="text" id="ctl00_phContent_ctl00_txtEmail" class="contact-input" />
+            <span id="ctl00_phContent_ctl00_RequiredFieldValidator1" style="color:#CF4D51;color:#cf4d51;display:none;">!</span><span id="ctl00_phContent_ctl00_RegularExpressionValidator1" style="color:#CF4D51;color:#cf4d51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="confirmEmail"><span class="required">*</span> Confirm E-Mail</label>
+            <input name="ctl00$phContent$ctl00$txtEmailConfirm" type="text" id="ctl00_phContent_ctl00_txtEmailConfirm" class="contact-input" />
+            <span id="ctl00_phContent_ctl00_RequiredFieldValidator3" style="color:#CF4D51;color:#cf4d51;display:none;">!</span><span id="ctl00_phContent_ctl00_cvEmail" style="color:#CF4D51;display:none;">!</span><br />
+        </li>
+        <li>
+            <label class="label-txt" for="confirmEmail">
+                Sign me up to receive eCafe e-mails</label>
+            <p style="float:left;"><span class="contact-input"><input id="ctl00_phContent_ctl00_cbxDailyFeed" type="checkbox" name="ctl00$phContent$ctl00$cbxDailyFeed" checked="checked" /></span></p>
+            <p style="float:left; padding-left:5px;"><a href="/PrivacyandTerms.aspx">privacy policy</a></p>
+        </li>
+        <li>
+            <label class="label-txt" for="visit"><span class="required">*</span> Where have you visited a Corner Bakery?</label>
+            <select name="ctl00$phContent$ctl00$ddlStoreState" onchange="javascript:setTimeout('__doPostBack(\'ctl00$phContent$ctl00$ddlStoreState\',\'\')', 0)" id="ctl00_phContent_ctl00_ddlStoreState" class="contact-input">
+	<option selected="selected" value="-Select-">-Select-</option>
+	<option value="AZ">AZ</option>
+	<option value="CA">CA</option>
+	<option value="CO">CO</option>
+	<option value="DC">DC</option>
+	<option value="FL">FL</option>
+	<option value="GA">GA</option>
+	<option value="IL">IL</option>
+	<option value="MD">MD</option>
+	<option value="MS">MS</option>
+	<option value="NJ">NJ</option>
+	<option value="NY">NY</option>
+	<option value="PA">PA</option>
+	<option value="TX">TX</option>
+	<option value="UT">UT</option>
+	<option value="VA">VA</option>
+
+</select>
+        </li>
+        <li>
+            <label class="label-txt" for="visit"></label>
+            <select name="ctl00$phContent$ctl00$ddlCity" onchange="javascript:setTimeout('__doPostBack(\'ctl00$phContent$ctl00$ddlCity\',\'\')', 0)" id="ctl00_phContent_ctl00_ddlCity" disabled="disabled" class="contact-input">
+
+</select>
+        </li>
+        <li>
+            <label class="label-txt" for="visit"></label>
+            <select name="ctl00$phContent$ctl00$ddlStore" id="ctl00_phContent_ctl00_ddlStore" disabled="disabled" class="contact-input">
+
+</select>
+            <span id="ctl00_phContent_ctl00_RequiredFieldValidator4" style="color:#CF4D51;color:#cf4d51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="subject"><span class="required">*</span> Choose a Subject</label>
+            <select name="ctl00$phContent$ctl00$ddlSubject" id="ctl00_phContent_ctl00_ddlSubject" class="contact-input">
+	<option value="-Select-">-Select-</option>
+	<option value="1">General Questions</option>
+	<option value="2">Comments about  a Recent Visit</option>
+	<option value="3">Gift Card Questions or Comments</option>
+
+</select>
+            <span id="ctl00_phContent_ctl00_RequiredFieldValidator2" style="color:#CF4D51;display:none;">!</span>
+        </li>
+        <li>
+            <label class="label-txt" for="comments">Comments or Suggestions</label>
+            <textarea name="ctl00$phContent$ctl00$txtCommentsSuggestions" rows="8" cols="30" id="ctl00_phContent_ctl00_txtCommentsSuggestions" class="contact-input" style="width:250px; overflow:hidden;"></textarea>
+        </li>
+        <li>
+            <input type="image" name="ctl00$phContent$ctl00$btnSend" id="ctl00_phContent_ctl00_btnSend" onmouseover="this.src = '/resources/img/b_send_ovr.gif';" onmouseout="this.src = '/resources/img/b_send.gif';" src="resources/img/b_send.gif" alt="Send" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$phContent$ctl00$btnSend&quot;, &quot;&quot;, true, &quot;vgContactUs&quot;, &quot;&quot;, false, false))" style="border-width:0px;margin:10px 0 0 190px; outline:none;" />
+        </li>
+    </ul>
+</fieldset><h2>Donation Requests</h2> <p>Corner Bakery Cafe is committed to giving back to our neighborhoods and communities. To request a donation for a community event or school night fundraiser, please submit your request following these guidelines:</p> <ul> <li>All requests must be submitted in writing by regular mail or e-mail. </li> <li>We do not accept requests or inquiries by phone or fax. </li> <li>Address: Corner Bakery Cafe Donations<br />
+                   12700 Park Central Drive, Suite 1300<br />
+                   Dallas, TX 75251 </li> <li>E-mail address: donations[at]cornerbakerycafe[dot]com </li> <li>Requests must be submitted on your organization’s official letterhead. </li> <li>Please include the following: information about your organization, proof of non-profit status, date of event, and location of event (city and state). </li> <li>Requests must be received at least 60 days in advance of your event to be considered. </li> <li>Donation requests are only accepted for eligible non-profits, schools, and community organizations. </li> </ul> <p>All requests for donations meeting these guidelines will be reviewed on an ongoing basis. If your request is approved, we will contact you no later than 30 days prior to your event. Thank you for giving us the opportunity to review your request!</p>
+
+                            </div>
+                        </div>
+                        <div class="clr">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <p>
+                    <script src="http://www.wtp101.com/pixel?id=8543"></script> <img alt="" width="1" height="1" src=" http://mpp.specificclick.net/?nwk=4&amp;y=2&amp;t=j&amp;tp=1&amp;clid=3923&amp;pixid=99027016&amp;rnd=&lt;timestamp_here&gt;" style="border-width: 0px; border-style: solid;" /> <table align="center"> <tbody> <tr> <td>© 2013 Corner Bakery Cafe. All Rights Reserved | <a href="http://www.cornerbakerycafe.com/Locations.aspx">Locations</a> | <a href="http://www.cornerbakerycafe.com/PrivacyandTerms.aspx#">Privacy &amp; Terms</a> | <a href="/sitemap.aspx">Sitemap</a><br />
+            Healthy Restaurant &amp; Catering, Free Cafe Wifi, Restaurant Gift Certificates <img alt="" width="1" height="1" src="http://switch.atdmt.com/action/DRV_CB_Homepage" /> </td> <td><img alt="" style="width: 31px; height: 24px; float: right;" src="/resources/img/IMG_cb-logo-mini.gif" /> </td> </tr> </tbody> </table>
+                </p>
+            </div>
+        </div>
+        </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("ctl00_phContent_ctl00_ValidationSummary1"));
+var Page_Validators =  new Array(document.getElementById("ctl00_phContent_ctl00_valFirstName"), document.getElementById("ctl00_phContent_ctl00_valLastName"), document.getElementById("ctl00_phContent_ctl00_valAddress1"), document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator1"), document.getElementById("ctl00_phContent_ctl00_RegularExpressionValidator1"), document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator3"), document.getElementById("ctl00_phContent_ctl00_cvEmail"), document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator4"), document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator2"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_phContent_ctl00_ValidationSummary1 = document.all ? document.all["ctl00_phContent_ctl00_ValidationSummary1"] : document.getElementById("ctl00_phContent_ctl00_ValidationSummary1");
+ctl00_phContent_ctl00_ValidationSummary1.validationGroup = "vgContactUs";
+var ctl00_phContent_ctl00_valFirstName = document.all ? document.all["ctl00_phContent_ctl00_valFirstName"] : document.getElementById("ctl00_phContent_ctl00_valFirstName");
+ctl00_phContent_ctl00_valFirstName.controltovalidate = "ctl00_phContent_ctl00_txtFirstName";
+ctl00_phContent_ctl00_valFirstName.errormessage = "First Name is required.";
+ctl00_phContent_ctl00_valFirstName.display = "Dynamic";
+ctl00_phContent_ctl00_valFirstName.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_valFirstName.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_valFirstName.initialvalue = "";
+var ctl00_phContent_ctl00_valLastName = document.all ? document.all["ctl00_phContent_ctl00_valLastName"] : document.getElementById("ctl00_phContent_ctl00_valLastName");
+ctl00_phContent_ctl00_valLastName.controltovalidate = "ctl00_phContent_ctl00_txtLastName";
+ctl00_phContent_ctl00_valLastName.errormessage = "Last Name is required.";
+ctl00_phContent_ctl00_valLastName.display = "Dynamic";
+ctl00_phContent_ctl00_valLastName.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_valLastName.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_valLastName.initialvalue = "";
+var ctl00_phContent_ctl00_valAddress1 = document.all ? document.all["ctl00_phContent_ctl00_valAddress1"] : document.getElementById("ctl00_phContent_ctl00_valAddress1");
+ctl00_phContent_ctl00_valAddress1.controltovalidate = "ctl00_phContent_ctl00_txtZip";
+ctl00_phContent_ctl00_valAddress1.errormessage = "Zip is required.";
+ctl00_phContent_ctl00_valAddress1.display = "Dynamic";
+ctl00_phContent_ctl00_valAddress1.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_valAddress1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_valAddress1.initialvalue = "";
+var ctl00_phContent_ctl00_RequiredFieldValidator1 = document.all ? document.all["ctl00_phContent_ctl00_RequiredFieldValidator1"] : document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator1");
+ctl00_phContent_ctl00_RequiredFieldValidator1.controltovalidate = "ctl00_phContent_ctl00_txtEmail";
+ctl00_phContent_ctl00_RequiredFieldValidator1.errormessage = "E-mail is required.";
+ctl00_phContent_ctl00_RequiredFieldValidator1.display = "Dynamic";
+ctl00_phContent_ctl00_RequiredFieldValidator1.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_RequiredFieldValidator1.initialvalue = "";
+var ctl00_phContent_ctl00_RegularExpressionValidator1 = document.all ? document.all["ctl00_phContent_ctl00_RegularExpressionValidator1"] : document.getElementById("ctl00_phContent_ctl00_RegularExpressionValidator1");
+ctl00_phContent_ctl00_RegularExpressionValidator1.controltovalidate = "ctl00_phContent_ctl00_txtEmail";
+ctl00_phContent_ctl00_RegularExpressionValidator1.errormessage = "Invalid e-mail address.";
+ctl00_phContent_ctl00_RegularExpressionValidator1.display = "Dynamic";
+ctl00_phContent_ctl00_RegularExpressionValidator1.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_RegularExpressionValidator1.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_RegularExpressionValidator1.validationexpression = "\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+var ctl00_phContent_ctl00_RequiredFieldValidator3 = document.all ? document.all["ctl00_phContent_ctl00_RequiredFieldValidator3"] : document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator3");
+ctl00_phContent_ctl00_RequiredFieldValidator3.controltovalidate = "ctl00_phContent_ctl00_txtEmailConfirm";
+ctl00_phContent_ctl00_RequiredFieldValidator3.errormessage = "You must confirm your e-mail address.";
+ctl00_phContent_ctl00_RequiredFieldValidator3.display = "Dynamic";
+ctl00_phContent_ctl00_RequiredFieldValidator3.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_RequiredFieldValidator3.initialvalue = "";
+var ctl00_phContent_ctl00_cvEmail = document.all ? document.all["ctl00_phContent_ctl00_cvEmail"] : document.getElementById("ctl00_phContent_ctl00_cvEmail");
+ctl00_phContent_ctl00_cvEmail.controltovalidate = "ctl00_phContent_ctl00_txtEmailConfirm";
+ctl00_phContent_ctl00_cvEmail.errormessage = "You must confirm your e-mail address.";
+ctl00_phContent_ctl00_cvEmail.display = "Dynamic";
+ctl00_phContent_ctl00_cvEmail.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_cvEmail.evaluationfunction = "CompareValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_cvEmail.controltocompare = "ctl00_phContent_ctl00_txtEmail";
+ctl00_phContent_ctl00_cvEmail.controlhookup = "ctl00_phContent_ctl00_txtEmail";
+var ctl00_phContent_ctl00_RequiredFieldValidator4 = document.all ? document.all["ctl00_phContent_ctl00_RequiredFieldValidator4"] : document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator4");
+ctl00_phContent_ctl00_RequiredFieldValidator4.controltovalidate = "ctl00_phContent_ctl00_ddlStore";
+ctl00_phContent_ctl00_RequiredFieldValidator4.errormessage = "You must select a store.";
+ctl00_phContent_ctl00_RequiredFieldValidator4.display = "Dynamic";
+ctl00_phContent_ctl00_RequiredFieldValidator4.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_RequiredFieldValidator4.initialvalue = "";
+var ctl00_phContent_ctl00_RequiredFieldValidator2 = document.all ? document.all["ctl00_phContent_ctl00_RequiredFieldValidator2"] : document.getElementById("ctl00_phContent_ctl00_RequiredFieldValidator2");
+ctl00_phContent_ctl00_RequiredFieldValidator2.controltovalidate = "ctl00_phContent_ctl00_ddlSubject";
+ctl00_phContent_ctl00_RequiredFieldValidator2.errormessage = "Pick a subject.";
+ctl00_phContent_ctl00_RequiredFieldValidator2.display = "Dynamic";
+ctl00_phContent_ctl00_RequiredFieldValidator2.validationGroup = "vgContactUs";
+ctl00_phContent_ctl00_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_phContent_ctl00_RequiredFieldValidator2.initialvalue = "-Select-";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        //]]>
+</script>
+</form>
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3685922-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+setLocationDrop();
+</script>
+</body>
+</html>
