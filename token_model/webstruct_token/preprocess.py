@@ -3,10 +3,10 @@ from __future__ import absolute_import
 import re
 
 DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
-                  'email', 'tel', 'fax'}
+                  'zipcode', 'email', 'tel', 'fax'}
 
 
-def to_features_and_labels(elem, tokenize_func, label_encoder, features_func):
+def to_features_and_labels(elem, tokenize_func, label_encoder, feature_func):
     """
     Convert HTML element or document (parsed by lxml) to a sequence of
     (features_dict, label) pairs.
@@ -52,18 +52,18 @@ def to_features_and_labels(elem, tokenize_func, label_encoder, features_func):
     # head
     head_tokens, head_labels = tokenize_and_split(elem.text)
     for index, (token, label) in enumerate(zip(head_tokens, head_labels)):
-        yield features_func(index, head_tokens, elem, False), label
+        yield feature_func(index, head_tokens, elem, False), label
 
     # children
     for child in elem:
         # where is my precious "yield from"?
-        for features, label in to_features_and_labels(child, tokenize_func, label_encoder, features_func):
+        for features, label in to_features_and_labels(child, tokenize_func, label_encoder, feature_func):
             yield features, label
 
     # tail
     tail_tokens, tail_labels = tokenize_and_split(elem.tail)
     for index, (token, label) in enumerate(zip(tail_tokens, tail_labels)):
-        yield features_func(index, tail_tokens, elem, True), label
+        yield feature_func(index, tail_tokens, elem, True), label
 
 
 class Tagset(object):
@@ -152,12 +152,16 @@ class IobSequence(object):
 
     def __init__(self, tagset):
         self.tagset = tagset
-        self.begin('O')
+        self.reset()
 
     def begin(self, tag):
         """ Begin new sequence """
         self.tag = tag
         self.start = True
+
+    def reset(self):
+        """ Resets sequence """
+        self.begin('O')
 
     def encode(self, tokens):
         """
@@ -231,7 +235,7 @@ class IobSequence(object):
         if end_tag:
             # XXX: nested tags are unsupported
             assert end_tag == self.tag, (end_tag, self.tag)
-            self.begin('O')
+            self.reset()
             return True
 
     def __iter__(self):
