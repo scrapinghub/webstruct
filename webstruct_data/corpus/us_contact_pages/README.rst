@@ -1,10 +1,11 @@
 Here are webpages collected by querying Google for
 'contact us <organization_type> usa' queries, where <business type>
-is 'restaurant', 'zoo', 'lawyer', 'car rental', etc.
+is 'restaurant', 'zoo', 'lawyer', 'car rental', 'church', 'clinic',
+'pet store', 'plumber', 'bank', etc.
 
 Cleaned data was produced by the following command::
 
-    ./clean_html.py --out data/us_contact_pages/cleaned data/us_contact_pages/source/*.html
+    ./clean_html.py --out corpus/us_contact_pages/cleaned corpus/us_contact_pages/source/*.html
 
 This cleaned data is annotated manually using GATE_ and then saved
 to xml files inside 'annotated' folder. 'Save preserving format'
