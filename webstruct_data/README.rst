@@ -60,3 +60,7 @@ Website vendors shouldn't be annotated as ORG.
 Office/department/branch names should be annotated as ORG.
 
 Facility/building and P.O. box / post address should be a part of STREET.
+
+"Fancy" phones should be annotated as a single entity, e.g. ::
+
+    <TEL>1-800 ROYAL 5-3 (1-800-769-2553)</TEL>
