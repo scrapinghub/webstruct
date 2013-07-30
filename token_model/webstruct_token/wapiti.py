@@ -72,14 +72,17 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
             >>> we.fit([{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}])
             WapitiFeatureEncoder(move_to_front=('token', 'tag'))
             >>> print(we.unigram_features_template())
+            <BLANKLINE>
             # Unigrams for all custom features
-            *:feat-token=%x[0,0]
-            *:feat-tag=%x[0,1]
+            *feat:token=%x[0,0]
+            *feat:tag=%x[0,1]
+            <BLANKLINE>
             >>> print(we.unigram_features_template('u'))
+            <BLANKLINE>
             # Unigrams for all custom features
-            u:feat-token=%x[0,0]
-            u:feat-tag=%x[0,1]
-
+            ufeat:token=%x[0,0]
+            ufeat:tag=%x[0,1]
+            <BLANKLINE>
         """
         lines = ['\n# Unigrams for all custom features']
         for col, name in enumerate(self.feature_names_):

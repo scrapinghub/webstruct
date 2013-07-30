@@ -26,4 +26,6 @@ def get_combined_keys(dicts):
 def tostr(val):
     if isinstance(val, basestring):
         return val
+    if isinstance(val, bool):
+        return str(int(val))
     return str(val)
