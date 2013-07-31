@@ -51,6 +51,9 @@ Ideas for extra labels:
     * P.O. box / post address
     * Facility/building
     * Department/office/branch
+    * Role (e.g. Director)
+    * Open Hours
+
 
 Annotation Guidelines
 ---------------------
