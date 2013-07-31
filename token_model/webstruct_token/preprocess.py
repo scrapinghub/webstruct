@@ -201,6 +201,62 @@ class IobSequence(object):
             return (), ()
         return zip(*res)
 
+    @staticmethod
+    def group(data, strict=False):
+        """
+        Group IOB-encoded entities::
+
+            >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
+            ...         ("Doe", "I-PER"), ("Mary", "B-PER"), ("said", "O")]
+            >>> for items, label in IobSequence.group(data):
+            ...     print("%s %s" % (items, label))
+            ['hello', ','] O
+            ['John', 'Doe'] PER
+            ['Mary'] PER
+            ['said'] O
+
+        By default, invalid sequences are fixed::
+
+            >>> data = [("hello", "O"), ("John", "I-PER"), ("Doe", "I-PER")]
+            >>> for items, label in IobSequence.group(data):
+            ...     print("%s %s" % (items, label))
+            ['hello'] O
+            ['John', 'Doe'] PER
+
+        Pass 'strict=True' argument to raise an exception for
+        invalid sequences::
+
+            >>> for items, label in IobSequence.group(data, strict=True):
+            ...     print("%s %s" % (items, label))
+            Traceback (most recent call last):
+            ...
+            ValueError: Invalid sequence: I-PER tag can't start sequence
+        """
+        buf, tag = [], 'O'
+
+        for info, iob_tag in data:
+            if iob_tag.startswith('I-') and tag != iob_tag[2:]:
+                if strict:
+                    raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
+                else:
+                    iob_tag = 'B-' + iob_tag[2:]  # fix bad tag
+
+            if iob_tag.startswith('B-'):
+                if buf:
+                    yield buf, tag
+                buf = []
+
+            elif iob_tag == 'O':
+                if buf and tag != 'O':
+                    yield buf, tag
+                    buf = []
+
+            tag = 'O' if iob_tag == 'O' else iob_tag[2:]
+            buf.append(info)
+
+        if buf:
+            yield buf, tag
+
 
     def _process_border_tokens(self, tokens):
         for token in tokens:
