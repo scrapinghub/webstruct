@@ -45,7 +45,7 @@ def prefixes_and_suffixes(index, tokens, elem, is_tail):
 
 # stolen from NLTK source (nltk.tag.sequential.ClassifierBasedPOSTagger)
 def _shape(token):
-    if re.match('[0-9]+(\.[0-9]*)?|[0-9]*\.[0-9]+$', token):
+    if re.match('[-+]?[0-9]+(\.[0-9]*)?|[0-9]*\.[0-9]+$', token):
         return 'number'
     elif re.match('\W+$', token):
         return 'punct'
