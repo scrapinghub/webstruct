@@ -49,11 +49,11 @@ def _shape(token):
         return 'number'
     elif re.match('\W+$', token):
         return 'punct'
-    elif re.match('[A-Z][a-z]+$', token):
+    elif re.match("[A-Z][a-z'`]+$", token):
         return 'upcase'
-    elif re.match('[A-Z]+$', token):
+    elif re.match("[A-Z][A-Z'`]+$", token):
         return 'caps'
-    elif re.match('[a-z]+$', token):
+    elif re.match("[a-z]+$", token):
         return 'downcase'
     elif re.match('\w+$', token):
         return 'mixedcase'
