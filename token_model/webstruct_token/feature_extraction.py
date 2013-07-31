@@ -1,10 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import lxml.html
+import lxml.html.clean
+import lxml.etree
 from sklearn.base import BaseEstimator
 from .preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
 from . import features
 from .tokenize import default_tokenizer
+
+_cleaner = lxml.html.clean.Cleaner(
+    style=True,
+    scripts=True,
+    embedded=True,
+    links=True,
+    page_structure=False,
+    remove_unknown_tags=False,
+    meta=False,
+    safe_attrs_only=False
+)
 
 
 class HtmlFeaturesExtractor(BaseEstimator):
@@ -54,10 +67,21 @@ class HtmlFeaturesExtractor(BaseEstimator):
         else:
             self.label_encoder = label_encoder
 
-    def _parse_html(self, html):
-        return lxml.html.fromstring(html)
 
-    def fit_transform(self, X, y=None):
+    @classmethod
+    def clean_html(cls, html, encoding=None):
+        parser = lxml.html.HTMLParser(encoding=encoding)
+
+        if isinstance(html, unicode) and encoding is not None:
+            html = html.encode(encoding)
+
+        html = lxml.html.document_fromstring(html, parser=parser)
+        return _cleaner.clean_html(html)
+
+    def _parse_html(self, html, encoding=None):
+        return self.clean_html(html, encoding)
+
+    def fit_transform(self, X, y=None, encoding=None):
         """
         Convert HTML data :param:X to lists of feature dicts and labels.
         :param:y is ignored.
@@ -65,7 +89,7 @@ class HtmlFeaturesExtractor(BaseEstimator):
         Return (features, labels) tuple.
         """
         html = self.tagset.encode_tags(X)
-        doc = self._parse_html(html)
+        doc = self._parse_html(html, encoding=encoding)
         res = to_features_and_labels(doc, self.tokenizer, self.label_encoder, self.feature_func)
         self.label_encoder.reset()
         if not res:
