@@ -8,12 +8,16 @@ from .utils import CombinedFeatures
 
 
 DEFAULT = CombinedFeatures(
-    token_shape,
     parent_tag,
     inside_a_tag,
     borders,
+    block_length,
+
+    token_shape,
     number_pattern,
     prefixes_and_suffixes,
-    block_length,
-    token_looks_like,
+
+    looks_like_date,
+    looks_like_email,
+    looks_like_street_part,
 )
