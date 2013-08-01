@@ -43,3 +43,26 @@ class CombinedFeatures(object):
         res.seen_keys = self.seen_keys.copy()
         return res
 
+
+def substrings(txt, min_length=2, max_length=10, pad=''):
+    """
+    >>> substrings("abc", 1)
+    ['a', 'ab', 'abc', 'b', 'bc', 'c']
+    >>> substrings("abc", 2)
+    ['ab', 'abc', 'bc']
+    >>> substrings("abc", 1, 2)
+    ['a', 'ab', 'b', 'bc', 'c']
+    >>> substrings("abc", 1, 3, '$')
+    ['$a', 'a', '$ab', 'ab', '$abc', 'abc', 'abc$', 'b', 'bc', 'bc$', 'c', 'c$']
+    """
+    res = []
+    for start in range(len(txt)):
+        remaining_length = len(txt) - start
+        for length in range(min_length, min(max_length+1, remaining_length+1)):
+            token = txt[start:start+length]
+            if start == 0 and pad:
+                res.append(pad+token)
+            res.append(token)
+            if length == remaining_length and pad:
+                res.append(token+pad)
+    return res
