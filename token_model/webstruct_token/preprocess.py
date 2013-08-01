@@ -6,66 +6,6 @@ DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
                   'zipcode', 'email', 'tel', 'fax'}
 
 
-def to_features_and_labels(elem, tokenize_func, label_encoder, feature_func):
-    """
-    Convert HTML element or document (parsed by lxml) to a sequence of
-    (features_dict, label) pairs.
-
-        >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
-
-    First, define a tagset and encode NER labels in the original HTML::
-
-        >>> tagset = Tagset({"ORG", "PER"})
-        >>> html = tagset.encode_tags(html)
-
-    Then parse the document using lxml::
-
-        >>> import lxml.html
-        >>> doc = lxml.html.fromstring(html)
-
-    Then define text tokenizer, label encoder and feature functions::
-
-        >>> tokenize_func = lambda text: text.split()
-        >>> label_encoder = IobSequence(tagset)
-        >>> def get_features(index, tokens, elem, is_tail):
-        ...     return {
-        ...         'tok': tokens[index],
-        ...         'is_tail': int(is_tail),
-        ...         'tag': elem.tag,
-        ...     }
-
-    Then use to_features_and_labels to extract features and labels::
-
-        >>> for features, label in to_features_and_labels(doc, tokenize_func, label_encoder, get_features):
-        ...     print("{1:5} {0[tok]:5} {0[is_tail]:2} {0[tag]}".format(features, label))
-        O     hello  0 p
-        B-PER John   0 p
-        I-PER Doe    0 b
-        B-PER Mary   1 br
-        O     said   1 br
-
-    """
-    def tokenize_and_split(text):
-        tokens = tokenize_func(text or '')
-        return label_encoder.encode_split(tokens)
-
-    # head
-    head_tokens, head_labels = tokenize_and_split(elem.text)
-    for index, (token, label) in enumerate(zip(head_tokens, head_labels)):
-        yield feature_func(index, head_tokens, elem, False), label
-
-    # children
-    for child in elem:
-        # where is my precious "yield from"?
-        for features, label in to_features_and_labels(child, tokenize_func, label_encoder, feature_func):
-            yield features, label
-
-    # tail
-    tail_tokens, tail_labels = tokenize_and_split(elem.tail)
-    for index, (token, label) in enumerate(zip(tail_tokens, tail_labels)):
-        yield feature_func(index, tail_tokens, elem, True), label
-
-
 class Tagset(object):
     """
     Utility class for working with tags and converting between
@@ -307,3 +247,67 @@ class IobSequence(object):
 
         return 'I-' + self.tag
     next = __next__  # Python 2.x support
+
+
+def to_features_and_labels(elem, tokenize_func, label_encoder, feature_func):
+    """
+    Convert HTML element or document (parsed by lxml) to a sequence of
+    (features_dict, label) pairs.
+
+    It most cases it is a better idea to use HtmlFeatureExtractor class
+    instead of using this function directly.
+
+        >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
+
+    First, define a tagset and encode NER labels in the original HTML::
+
+        >>> tagset = Tagset({"ORG", "PER"})
+        >>> html = tagset.encode_tags(html)
+
+    Then parse the document using lxml::
+
+        >>> import lxml.html
+        >>> doc = lxml.html.fromstring(html)
+
+    Then define text tokenizer, label encoder and feature functions::
+
+        >>> tokenize_func = lambda text: text.split()
+        >>> label_encoder = IobSequence(tagset)
+        >>> def get_features(index, tokens, elem, is_tail):
+        ...     return {
+        ...         'tok': tokens[index],
+        ...         'is_tail': int(is_tail),
+        ...         'tag': elem.tag,
+        ...     }
+
+    Then use to_features_and_labels to extract features and labels::
+
+        >>> for features, label in to_features_and_labels(doc, tokenize_func, label_encoder, get_features):
+        ...     print("{1:5} {0[tok]:5} {0[is_tail]:2} {0[tag]}".format(features, label))
+        O     hello  0 p
+        B-PER John   0 p
+        I-PER Doe    0 b
+        B-PER Mary   1 br
+        O     said   1 br
+
+    """
+    def tokenize_and_split(text):
+        tokens = tokenize_func(text or '')
+        return label_encoder.encode_split(tokens)
+
+    # head
+    head_tokens, head_labels = tokenize_and_split(elem.text)
+    for index, (token, label) in enumerate(zip(head_tokens, head_labels)):
+        yield feature_func(index, head_tokens, elem, False), label
+
+    # children
+    for child in elem:
+        # where is my precious "yield from"?
+        for features, label in to_features_and_labels(child, tokenize_func, label_encoder, feature_func):
+            yield features, label
+
+    # tail
+    tail_tokens, tail_labels = tokenize_and_split(elem.tail)
+    for index, (token, label) in enumerate(zip(tail_tokens, tail_labels)):
+        yield feature_func(index, tail_tokens, elem, True), label
+
