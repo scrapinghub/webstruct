@@ -4,12 +4,66 @@ This module provides some utils for easier creation of Wapiti_ templates
 and data files.
 
 .. _Wapiti: http://wapiti.limsi.fr/
+
+The idea is to train models with command-line wapiti utility
+using templates and training files prepared with WapitiFeatureEncoder,
+and then apply this model from Python using WapitiTagger class.
 """
 
 from __future__ import absolute_import
 import re
 from sklearn.base import BaseEstimator, TransformerMixin
 from .utils import get_combined_keys, tostr
+from webstruct_token.feature_extraction import HtmlFeaturesExtractor
+
+
+class WapitiTagger(BaseEstimator):
+    """
+    Class for tagging using pre-built Wapiti models.
+    """
+    def __init__(self, model, feature_encoder, feature_extractor=None):
+        """
+
+        Parameters
+        ----------
+        model: wapiti.Model
+            Loaded pre-built Wapiti model.
+
+        feature_encoder: WapitiFeatureEncoder
+            Encoder instance that was used for model building.
+
+        feature_extractor: HtmlFeaturesExtractor
+            Extractor instance that was used for converting HTML into features
+
+        """
+        self.model = model
+        self.feature_encoder = feature_encoder
+        self.feature_extractor = feature_extractor or HtmlFeaturesExtractor()
+
+    def transform(self, X, encoding=None):
+        """
+        Return a list of (text, ner_label) pairs for HTML document X.
+        """
+        feature_dicts, feature_lines = self._prepare_features(X, encoding)
+        labels = self._get_labels(feature_lines)
+        tokens = [f['token'] for f in feature_dicts]
+        assert len(tokens) == len(labels), (len(tokens), len(labels), tokens, labels)
+
+        le = self.feature_extractor.label_encoder
+        return [
+            (" ".join(ner_tokens), label)
+            for ner_tokens, label in le.group(zip(tokens, labels))
+        ]
+
+    def _prepare_features(self, X, encoding=None):
+        feature_dicts, _ = self.feature_extractor.fit_transform(X, encoding)
+        feature_lines = self.feature_encoder.transform(feature_dicts)
+        return feature_dicts, feature_lines
+
+    def _get_labels(self, feature_lines):
+        lines_joined = "\n".join(feature_lines)
+        out_lines = self.model.label_sequence(lines_joined).split('\n')
+        return [line.rsplit()[-1] for line in out_lines if line.strip()]
 
 
 class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
