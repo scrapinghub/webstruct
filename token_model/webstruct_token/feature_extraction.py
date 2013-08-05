@@ -19,7 +19,6 @@ _cleaner = lxml.html.clean.Cleaner(
     safe_attrs_only=False
 )
 
-
 class HtmlFeaturesExtractor(BaseEstimator):
     """
     Extracts features and labels from html.
@@ -44,12 +43,12 @@ class HtmlFeaturesExtractor(BaseEstimator):
         >>> fe = HtmlFeaturesExtractor(feature_func=feature_func)
         >>> features, labels = fe.fit_transform(html)
         >>> for feat, label in zip(features, labels):
-        ...     print("%s %s" % (label, sorted(feat.items())))
-        O [('parent_tag', 'p'), ('tok', 'hello')]
-        B-PER [('parent_tag', 'p'), ('tok', 'John')]
-        I-PER [('parent_tag', 'b'), ('tok', 'Doe')]
-        B-PER [('parent_tag', 'p'), ('tok', 'Mary')]
-        O [('parent_tag', 'p'), ('tok', 'said')]
+        ...     print("%s %s" % (sorted(feat.items()), label))
+        [('parent_tag', 'p'), ('tok', 'hello')] O
+        [('parent_tag', 'p'), ('tok', 'John')] B-PER
+        [('parent_tag', 'b'), ('tok', 'Doe')] I-PER
+        [('parent_tag', 'p'), ('tok', 'Mary')] B-PER
+        [('parent_tag', 'p'), ('tok', 'said')] O
 
     """
 
