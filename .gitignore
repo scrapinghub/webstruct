@@ -35,5 +35,6 @@ nosetests.xml
 .pydevproject
 
 # Other
+.idea
 webstruct_data/datastore
 
