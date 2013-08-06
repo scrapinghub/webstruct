@@ -50,6 +50,11 @@ class HtmlFeaturesExtractor(BaseEstimator):
         [('parent_tag', 'p'), ('tok', 'Mary')] B-PER
         [('parent_tag', 'p'), ('tok', 'said')] O
 
+    For HTML without text it returns two empty tuples::
+
+        >>> fe.fit_transform('<p></p>')
+        ((), ())
+
     """
 
     def __init__(self, tokenizer=default_tokenizer, tags=DEFAULT_TAGSET,
@@ -89,8 +94,8 @@ class HtmlFeaturesExtractor(BaseEstimator):
         """
         html = self.tagset.encode_tags(X)
         doc = self._parse_html(html, encoding=encoding)
-        res = to_features_and_labels(doc, self.tokenizer, self.label_encoder, self.feature_func)
+        res = list(to_features_and_labels(doc, self.tokenizer, self.label_encoder, self.feature_func))
         self.label_encoder.reset()
-        if not res:
+        if not res or not any(res):
             return (), ()
         return zip(*res)
