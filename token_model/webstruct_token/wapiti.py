@@ -7,7 +7,7 @@ and data files.
 
 The idea is to train models with command-line wapiti utility
 using templates and training files prepared with WapitiFeatureEncoder,
-and then apply this model from Python using WapitiTagger class.
+and then apply this model from Python using WapitiChunker class.
 """
 
 from __future__ import absolute_import
@@ -17,7 +17,7 @@ from .utils import get_combined_keys, tostr
 from webstruct_token.feature_extraction import HtmlFeaturesExtractor
 
 
-class WapitiTagger(BaseEstimator):
+class WapitiChunker(BaseEstimator):
     """
     Class for tagging using pre-built Wapiti models.
     """
