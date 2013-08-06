@@ -1,0 +1,543 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="author" content="Ondrej Tatliak" />
+
+<meta name="copyright" content="AVI Studio s.r.o." />
+
+<meta name="keywords" content="film, production, postproduction, digital, imaging, services, commercial, tv, commercials" />
+
+<meta name="description" content="Recent work of AVI Studio ltd. a company specialized in digital postproduction services and postproduction equipment sales." />
+
+<meta name="page-topic" content="Showreel" />
+
+<meta name="audience" content="All" />
+
+<meta name="robots" content="INDEX,FOLLOW" />
+
+<meta name="revisit-after" content="7 days" />
+
+<meta name="classification" content="Film Production and Postproduction" />
+
+<meta name="rating" content="Safe for Kids" />
+
+<meta http-equiv="expires" content="0" />
+
+<meta http-equiv="Content-Language" content="en" />
+
+
+<title>AVI Studio | Gallery</title>
+
+<link rel="stylesheet" type="text/css" href="css/layout.css" />
+
+<link rel="stylesheet" type="text/css" href="script/lightview/css/lightview.css" />
+
+<link rel="stylesheet" type="text/css" href="css/gallery.css" />
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js'></script>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/scriptaculous.js'></script>
+
+<script type='text/javascript' src='script/lightview/js/lightview.js'></script>
+
+<script type='text/javascript'>
+<!--
+document.observe('lightview:loaded', function() {
+
+
+  Lightview.show({
+
+  href: '/files/showreel_CLIPS/lucka_640x360.mov',
+
+  rel: 'quicktime', // not required
+
+  caption: 'Vodax, a.s. - Lucka<br />Agency:Good Ad Director:Vladislav Struhar',
+
+  options: {
+
+  width:640,
+
+  height:360
+  }
+
+});
+
+ 
+
+});
+
+doAjax = function(targ){ 
+
+	$('article_list_navig').replace('<div id="article_list_navig"><img align="right"  height="20" width="20" src="images/ajax_loading.gif"  alt="loading" /></div>');
+
+	//new Ajax.Updater('mainContent', targ);
+	new Ajax.Request(targ, {
+
+  		onSuccess: function(transport) {
+
+			new Effect.Opacity('mainContent', { 
+
+			from: 1, to: 0, 
+
+			duration: 0.1, 
+
+			afterFinish: function(){
+
+				$('mainContent').replace('<div id="mainContent">'+transport.responseText+'</div>');
+
+				$('mainContent').style.opacity=0;
+
+				new Effect.Opacity('mainContent', { from: 0, to: 1, duration: 0.1}); 
+
+			}
+
+		});
+
+		  
+
+  }
+
+});
+
+}
+
+-->
+
+</script>
+
+<!--[if lt IE 7.]>
+
+<link rel="stylesheet" type="text/css" href="css/ie.css">
+
+<script language="JavaScript" type="text/javascript">
+
+try { document.execCommand("BackgroundImageCache", false, true); } catch(err) {} 
+
+</script> 
+
+<![endif]-->
+
+
+
+
+
+</head>
+
+
+
+<body id="gallery_active">
+
+
+
+<div id="container">
+
+  <div id="header">
+
+ 	<h1>AVI Studio , FLAME, AVID DS NITRIS, SCRATCH, digital postproduction workflow, color grading | RED ONE rental, highspeed camera PHANTOM HD rental, cinemakers equipment</h1>
+
+    <div id="headernav">
+
+		<ul id="nav">
+
+			<li id="h_main"><a href="index.php">main</a></li>
+
+            <li id="h_studio"><a href="digital_postproduction_studio.php">studio</a></li>
+
+            <li id="h_rental"><a href="rental.php">rental</a></li>
+
+            <li id="h_gallery"><a href="gallery.php">gallery</a></li>
+
+            <li id="h_clients"><a href="clients.php">clients</a></li>
+
+        <li id="h_contact"><a href="contact.php">contact</a>		</li></ul>
+
+	</div>
+
+  <!-- end #header --></div>
+
+	<div class="clearfloat"><!-- START FILTER-->
+    
+		<div class="menu">
+
+
+<ul>
+	<li><a href="#">AGENCIES</a>
+		<ul>
+			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=12&amp;info=agency:ABWadvertising');">ABWadvertising</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=15&amp;info=agency:ADVENTURE');">ADVENTURE</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=93&amp;info=agency:Agencia');">Agencia</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=94&amp;info=agency:AVI+Studio');">AVI Studio</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=56&amp;info=agency:FCB');">FCB</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=85&amp;info=agency:Forza');">Forza</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=98&amp;info=agency:Good+Ad');">Good Ad</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=60&amp;info=agency:Hammer%26amp%3BNails');">Hammer&amp;Nails</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=10&amp;info=agency:i-Step+communication');">i-Step communication</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=2&amp;info=agency:Istropolitana+D%60Arcy');">Istropolitana D`Arcy</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=7&amp;info=agency:Lazar%7EKlostermann');">Lazar~Klostermann</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=5&amp;info=agency:Mayer%2FMcCann-Erickson');">Mayer/McCann-Erickson</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=1&amp;info=agency:MUW+SAATCHI+%26amp%3B+SAATCHI');">MUW SAATCHI &amp; SAATCHI</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=54&amp;info=agency:Publicis+Knut');">Publicis Knut</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=86&amp;info=agency:Torsten+Advertising');">Torsten Advertising</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=3&amp;info=agency:VACULIK+ADVERTISING');">VACULIK ADVERTISING</a></li>
+
+  			        
+  				<li><a onclick="doAjax('gallery_req.php?agency=4&amp;info=agency:Wiktor+Leo+Burnett%2C+Ltd.');">Wiktor Leo Burnett, Ltd.</a></li>
+
+  					</ul>
+	</li>
+
+	<li><a href="#">PRODUCTIONS</a>
+		<ul>
+			
+  				<li><a onclick="doAjax('gallery_req.php?prod=8&amp;info=production: AD MAKERS');"> AD MAKERS</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=9&amp;info=production: Agencia , s. r. o.');"> Agencia , s. r. o.</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=16&amp;info=production: AVI Studio s.r.o.');"> AVI Studio s.r.o.</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=88&amp;info=production: Eibner production');"> Eibner production</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=51&amp;info=production: Film service');"> Film service</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=90&amp;info=production: Filmservice');"> Filmservice</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=78&amp;info=production: Globe');"> Globe</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=6&amp;info=production: Hitchhiker Films');"> Hitchhiker Films</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=14&amp;info=production: PROMEA COMMUNICATION');"> PROMEA COMMUNICATION</a></li>
+
+  				
+  				<li><a onclick="doAjax('gallery_req.php?prod=64&amp;info=production: VACULIK ADVERTISING');"> VACULIK ADVERTISING</a></li>
+
+  						</ul>
+	</li>
+	<li><a href="#">DIRECTORS</a>
+		<ul>
+			
+  					<li><a onclick="doAjax('gallery_req.php?dir=47&amp;info=director:Beno Palo');">Beno Palo</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=52&amp;info=director:Dezorz Gejza');">Dezorz Gejza</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=49&amp;info=director:Ivana Zajacová Michal Struss');">Ivana Zajacová Michal Struss</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=50&amp;info=director:Jozef Mitáľ,Peter Skála Štefan Gura, Jakub Goda');">Jozef Mitáľ,Peter Skála Štefan Gura, Jakub Goda</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=41&amp;info=director:Plaftik Demovič, Struss, Janovský');">Plaftik Demovič, Struss, Janovský</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=40&amp;info=director:Raýmanová Vanda ');">Raýmanová Vanda </a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=1&amp;info=director:Struhar Vladislav');">Struhar Vladislav</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=16&amp;info=director:Struss Michal');">Struss Michal</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=12&amp;info=director:Šulík Martin');">Šulík Martin</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=35&amp;info=director:Tallo Miroslav ');">Tallo Miroslav </a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=46&amp;info=director:Valent Roman');">Valent Roman</a></li>
+
+  				
+  					<li><a onclick="doAjax('gallery_req.php?dir=36&amp;info=director:Zajacová Ivana ');">Zajacová Ivana </a></li>
+
+  						</ul>
+	</li>
+	<li><a href="#">CLIENTS</a>
+		<ul>
+			
+  				<li><a onclick="doAjax('gallery_req.php?client=84&amp;info=client:Artfilm');">Artfilm</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=91&amp;info=client:AVI Studio');">AVI Studio</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=80&amp;info=client:B.O.F.');">B.O.F.</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=87&amp;info=client:Billa');">Billa</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=52&amp;info=client:Carat Distillery');">Carat Distillery</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=81&amp;info=client:Clinea');">Clinea</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=23&amp;info=client:Corgoň');">Corgoň</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=28&amp;info=client:ČSOB');">ČSOB</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=32&amp;info=client:DEXIA');">DEXIA</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=35&amp;info=client:ENEL');">ENEL</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=79&amp;info=client:ERGO');">ERGO</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=48&amp;info=client:Gas familia');">Gas familia</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=34&amp;info=client:HVB Bank');">HVB Bank</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=53&amp;info=client:IMT Smile');">IMT Smile</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=42&amp;info=client:KCero');">KCero</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=74&amp;info=client:Kenvelo');">Kenvelo</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=36&amp;info=client:Kooperativa');">Kooperativa</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=69&amp;info=client:Kozel');">Kozel</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=68&amp;info=client:LIVE');">LIVE</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=40&amp;info=client:Omv');">Omv</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=55&amp;info=client:Orange');">Orange</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=92&amp;info=client:PALMA Group');">PALMA Group</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=70&amp;info=client:Panasonic');">Panasonic</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=63&amp;info=client:Perex a.s');">Perex a.s</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=62&amp;info=client:Petit press');">Petit press</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=89&amp;info=client:Peugeot');">Peugeot</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=26&amp;info=client:Poštová Banka');">Poštová Banka</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=57&amp;info=client:PSS');">PSS</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=33&amp;info=client:Radio EXPRES');">Radio EXPRES</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=30&amp;info=client:Rajo');">Rajo</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=59&amp;info=client:Saris');">Saris</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=24&amp;info=client:Slovak TELECOM');">Slovak TELECOM</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=73&amp;info=client:ST');">ST</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=72&amp;info=client:St.Nicolaus');">St.Nicolaus</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=37&amp;info=client:T-com');">T-com</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=83&amp;info=client:T-Mobile');">T-Mobile</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=46&amp;info=client:Topvar');">Topvar</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=95&amp;info=client:Trailer');">Trailer</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=77&amp;info=client:UniBanka');">UniBanka</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=97&amp;info=client:Vodax, a.s.');">Vodax, a.s.</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=65&amp;info=client:VUB Banka');">VUB Banka</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=82&amp;info=client:Wrigleys');">Wrigleys</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=31&amp;info=client:Zlatý Bažant');">Zlatý Bažant</a></li>
+
+  			
+  				<li><a onclick="doAjax('gallery_req.php?client=75&amp;info=client:Zoznam.sk');">Zoznam.sk</a></li>
+
+  			  			
+		</ul>
+	</li>
+	<li><a href="#">MEDIUM</a>
+		<ul>
+			<li><a onclick="doAjax('gallery_req.php?media=35mm FILM&amp;info=medium:35mm FILM');">35mm FILM</a></li>
+    		<li><a onclick="doAjax('gallery_req.php?media=16mm FILM&amp;info=medium:16mm FILM');">16mm FILM</a></li>
+    		<li><a onclick="doAjax('gallery_req.php?media=RED Camera&amp;info=medium:RED Camera');">RED Camera</a></li>
+    		<li><a onclick="doAjax('gallery_req.php?media=Phantom HD&amp;info=medium:Phantom HD');">Phantom HD</a></li>
+    		<li><a onclick="doAjax('gallery_req.php?media=HD Cam&amp;info=medium:HD Cam');">HD Cam</a></li>
+
+		</ul>
+	</li>
+	
+	<li><a onclick="doAjax('gallery_req.php');">ALL</a></li>
+
+</ul>    
+
+
+		</div>
+
+	</div><!-- END FILTER-->
+
+
+  
+
+  <div id="mainContent">
+  
+<div id="article_list_navig">
+
+
+	 <table width="112" border="0" align="right" cellpadding="0" cellspacing="0">
+
+      <tr>
+
+        <td width="56" height="20" align="center" valign="middle">
+			<a><span class="navig_btn_stop"> &lt; </span></a> 
+		</td>  
+
+        <td width="56" height="20" align="center" valign="middle">    
+
+        <a><span class="navig_btn_stop">&gt;</span></a> 
+        </td>   
+
+         </tr>
+
+	  </table>   
+
+<script type='text/javascript'>
+<!--
+doAjax('gallery_req.php');
+-->
+</script>
+<noscript>
+
+<div>You have to enable JavaScript to view Gallery.</div>
+
+</noscript>
+</div>	
+ 
+
+
+
+
+
+
+  <!-- end #mainContent --></div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div class="vspacer"></div>
+
+    
+
+  <div id="footer">
+    <img src="images/footer_bg.png" alt="" width="945" height="50" border="0" usemap="#Map" />
+<map name="Map" id="Map"><area shape="rect" coords="284,22,445,45" href="mailto:office@avistudio.sk" alt="" />
+</map>
+    <p>Digital Postproduction and Rental of Filmmaker accessories - AVI Studio s.r.o. Lazaretská 12, 081 52 Bratislava, SLOVAKIA</p>
+
+  <!-- end #footer --></div>
+
+<!-- end #container --></div>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+
+_uacct = "UA-1663880-1";
+
+urchinTracker();
+
+</script>
+
+</body>
+
+</html>
+
