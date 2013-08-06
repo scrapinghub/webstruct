@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import re
-from nltk.tokenize.treebank import TreebankWordTokenizer
 
 
-class WordTokenizer(TreebankWordTokenizer):
+class WordTokenizer(object):
     """
     This tokenizer is copy-pasted version of TreebankWordTokenizer
     that doesn't split on @ and ':' symbols and doesn't split contractions::
