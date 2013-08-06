@@ -1,0 +1,143 @@
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml"><head id="Head"><meta content="AutoSol specializes in solving challenges of SCADA applications for Oil &amp; Gas, Pipelines, WasteWater and manufacturing industries including Automotive, Food and Beverage, Data Centers, and many more. With system integration and software solutions, AutoSol can often help extend the life of your older legacy systems as well as update to new technologies by upgrading obsolete outdate hardware." id="MetaDescription" name="DESCRIPTION"/><meta content="AES, Enterprise Server, multi-protocol, integration,  legacy devices,DotNetNuke,DNN" id="MetaKeywords" name="KEYWORDS"/><meta content="&#169; 2013 by Automation Solutions, Inc." id="MetaCopyright" name="COPYRIGHT"/><meta content="DotNetNuke " id="MetaGenerator" name="GENERATOR"/><meta content="AutoSol" id="MetaAuthor" name="AUTHOR"/><meta content="DOCUMENT" name="RESOURCE-TYPE"/><meta content="GLOBAL" name="DISTRIBUTION"/><meta content="INDEX, FOLLOW" name="ROBOTS"/><meta content="1 DAYS" name="REVISIT-AFTER"/><meta content="GENERAL" name="RATING"/><meta content="RevealTrans(Duration=0,Transition=1)" http-equiv="PAGE-ENTER"/><title>Enterprise Server</title>
+
+</head><body id="Body"><noscript><div></div><span id="dnn_dnnSOLPARTMENU_ctldnnSOLPARTMENU_divOuterTables"><div id="Container"><div id="HeaderRow"><div id="Logo"><img border="0" alt="AutoSol" src="/Portals/_default/Skins/AutoSolClean/images/logo.png"/></div><div class="right"><a id="dnn_dnnLOGIN_cmdLogin" href="" class="LOGIN_object">Login</a> &#160;&#160;|&#160;&#160;</div><span id="Language"></span>
+</div><div id="NavBar"><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr><td id="NavBarBgL"><img border="0" alt="canto do menu" src="/Portals/_default/Skins/AutoSolClean/images/dummy.gif"/><td id="Nav"><span menubarheight="16" iconbackgroundcolor="#333333" cssmenubar="MainMenu_MenuBar" cssmenuicon="MainMenu_MenuIcon" selforecolor="White" cssmenucontainer="MainMenu_MenuContainer" backcolor="#333333" cssmenuarrow="MainMenu_MenuArrow" cssmenuitem="MainMenu_MenuItem" id="dnn_dnnSOLPARTMENU_ctldnnSOLPARTMENU" sysimgpath="/images/" rootarrow="-1" name="dnn$dnnSOLPARTMENU$ctldnnSOLPARTMENU" arrowimage="breadcrumb.gif" moutdelay="500" rootarrowimage="menu_down.gif" cssmenubreak="MainMenu_MenuBreak" selcolor="#CCCCCC" csssubmenu="MainMenu_SubMenu" display="horizontal" shcolor="#404040" hlcolor="#FF8080" menutransition="None" iconimgpath="/Portals/0/" fontstyle="font-family: Tahoma,Arial,Helvetica; font-size: 9pt; font-weight: bold; font-style: normal; text-decoration: " borderwidth="0" menuitemheight="21" cssmenuitemsel="MainMenu_MenuItemSel" cssrootmenuarw="MainMenu_RootMenuArrow" iconwidth="15"></span></td></td><td id="Search"><span id="dnn_dnnSEARCH_ClassicSearch">&#160;</span></td></tr><a id="dnn_dnnSEARCH_cmdSearch" class="SearchButton" href=""><img border="0" alt="Search" src="/Portals/_default/Skins/AutoSolClean/images/search.png"/><td id="NavBarBgR"><img border="0" alt="canto do menu" src="/Portals/_default/Skins/AutoSolClean/images/dummy.gif"/></td></a>
+</tbody></table></div><div id="SubHeader"><div id="Breadcrumb"><span id="dnn_dnnBREADCRUMB_lblBreadCrumb"><a href="http://www.autosoln.com/Products/EnterpriseServer/tabid/105/Default.aspx" class="SubTitle">Products</a> &#160;&#160;&gt;&#160;&#160; <a href="http://www.autosoln.com/Products/EnterpriseServer/tabid/105/Default.aspx" class="SubTitle">Enterprise Server</a></span></div>
+</div><div id="MiddleRow"><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr></tr><tr><td valign="top"><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr><td><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr><td id="dnn_ContentPane" class="ContentPane"><a name="553"><span id="dnn_ctr553_ContentPane" class="DNNAlignleft"><div id="dnn_ctr553_ModuleContent"><span id="dnn_ctr553_pnc.Publisher.Content_MessageHolder" class="Normal">
+<p><img src="http://www.autosoln.com//Portals/0/aeslogoLarge.gif" height="75" vspace="5" alt="" align="left" width="155"/></p><p>&#160;</p>
+<h3>&#160;</h3>
+<h3>Overview</h3>
+
+<p>The AutoSol Enterprise Server (AES) is software that communicates with different manufacturer SCADA and utility metering devices in their native protocols, over a single or multiple telemetry circuits. Simultaneously, AES delivers real-time data to SCADA host systems and historical meter data to EFM/AMR data validation and accounting systems, using a single configurable solution.</p>
+
+<p>&#160;</p>
+
+</span></div></span></a></td><p><img src="http://www.autosoln.com//Portals/0/AESDiagram.gif" height="112" alt="" align="middle" width="450"/><span id="dnn_ctr553_pnc.Publisher.Content_StatHolder" class="Normal"></span></p><td id="dnn_SidePane2" class="SidePane"><a name="566"><span id="dnn_ctr566_ContentPane" class="DNNAlignleft"><div id="dnn_ctr566_ModuleContent"><div id="dnn_ctr566_HtmlModule_HtmlModule_lblContent" class="Normal"><p>&#160;&#160;&#160;&#160;</p>
+</div></div></span></a></td></tr>
+</tbody></table></td></tr>
+<tr><td><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr></tr></tbody></table></td></tr><tr><td><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr><td id="dnn_ContentPane2" class="ContentPane"><a name="556"><span id="dnn_ctr556_ContentPane" class="DNNAlignleft"><div id="dnn_ctr556_ModuleContent"><div id="dnn_ctr556_HtmlModule_HtmlModule_lblContent" class="Normal"><h3>Multi-Protocol</h3>
+
+<p><span>The Enterprise Server&#160;multi-protocol ability enables the integration of legacy devices with emerging communication technologies. This extends the useful life of the installed base while at the same time providing a path for systematic upgrades. Enterprise Server&#160;allows for immediate and effective implementation of the complete system, resulting in a significant return on investment. Native protocols include:</span></p>
+<table cellpadding="0" cellspacing="0" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>ABB Totalflow</li>
+<li>Allen Bradely DF1</li>
+<li>Amocams AINET</li>
+<li>Benchmark</li>
+<li>Bristol Babcock BSAP</li>
+<li>Bytel</li>
+<li>Cutler Hammer IMPACC</li>
+<li>Control Microsystems SCADAPack</li>
+<li>Daniels DSI</li>
+<li>DNP 3.0</li>
+</ul></td><td class="FeaturesColumn"><ul><li>Dresser Micro Corrector</li>
+<li>Eagle Research</li>
+<li>Emerson (Fisher) FloBoss</li>
+<li>Emerson (Fisher) ROC</li>
+<li>Galvanic Gas Micro</li>
+<li>GE Multilin</li>
+<li>Hewlett Packard 48000</li>
+<li>Kimray</li>
+<li>Mercury Instruments</li>
+</ul></td><td class="FeaturesColumn"><ul><li>OMNI Flow Computers</li>
+<li>Opto 22</li>
+<li>Reynolds Equipment</li>
+<li>Siemens 505</li>
+<li>Siemens CAMP</li>
+<li>Siemens TIWAY</li>
+<li>Teledyne</li>
+<li>TGP Module</li>
+<li>Thermo Automation</li>
+</ul></td></tr>
+</caption></tbody></table><p>AES can be expanded by developing additional interface with any Modbus device. Specific protocols that are currently provided with the AES software are:</p>
+<table cellpadding="3" cellspacing="1" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>ABB Totalflow</li>
+<li>Baker CAC 8800</li>
+<li>Barton</li>
+<li>Bristol</li>
+<li>Control Microsystems SCADAPack</li>
+<li>Daniels</li>
+<li>Enron</li>
+</ul></td><td class="FeaturesColumn"><ul><li>Emerson (Fisher) FloBoss</li>
+<li>Emerson (Fisher) ROC</li>
+<li>Flow Automation</li>
+<li>GE Multilin</li>
+<li>Halliburton</li>
+<li>Motorola MOSCAD</li>
+<li>Modbus/TCP</li>
+</ul></td></tr>
+</caption></tbody></table><h3>Telemetry Methods</h3>
+
+<p>Enterprise Server uses multi-threaded communication channels to increase communication throughput for all connection types simultaneously. Telemetery methods include:</p>
+<table cellpadding="3" cellspacing="1" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>Conventional Radio</li>
+<li>Trunking Radio</li>
+<li>SpreadSpectrumRadio</li>
+<li>Motorola DataTAC</li>
+<li>Serial Cable</li>
+<li>Dial Up</li>
+<li>Serial Multi-Drop</li>
+<li>Leased-Line</li>
+<li>Internet IP</li>
+<li>Ethernet TCP/IP, UDP/IP</li>
+</ul></td><td class="FeaturesColumn"><ul><li>TCP Pooling</li>
+<li>TCP Listen</li>
+<li>Terminal Server (TCP/IP, UDP/IP)</li>
+<li>Satellite</li>
+<li>VSAT</li>
+<li>PSTN</li>
+<li>CDPD</li>
+<li>CDMA</li>
+<li>GPRS</li>
+</ul></td></tr>
+</caption></tbody></table><h3>Back-End Data Interface</h3>
+<table cellpadding="3" cellspacing="1" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>SQL Databases via ADO</li>
+<li>Microsoft Access</li>
+<li>Microsoft Excel</li>
+<li>Oracle</li>
+</ul></td><td class="FeaturesColumn"><ul><li>MicrosoftSQL Server</li>
+<li>IP to Sonic MQ Message Broker</li>
+<li>IP to AutoSol MQ Message Broker</li>
+</ul></td></tr>
+</caption></tbody></table><h3>HMI/SCADA Hosts</h3>
+<table cellpadding="3" cellspacing="1" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>Citect</li>
+<li>CMI ClearSCADA</li>
+<li>GE Fanuc</li>
+<li>Honeywell</li>
+<li>Iconics</li>
+</ul></td><td class="FeaturesColumn"><ul><li>Intellution</li>
+<li>ObjectAutomation</li>
+<li>Rockwell</li>
+<li>Telvent / Teledyne / Metso</li>
+<li>Wonderware</li>
+</ul></td></tr>
+</caption></tbody></table><h3>EFM Validation Software</h3>
+<table cellpadding="3" cellspacing="1" class="Features"><caption class="FeaturesHeader"></caption><tbody><caption class="FeaturesHeader"><tr><td class="FeaturesColumn"><ul><li>ABB WinCCU Enterprise</li>
+<li>Flow Automation - MBS##</li>
+<li>Flow-Cal CFX</li>
+<li>Flow-Cal Transaction Queue</li>
+</ul></td><td class="FeaturesColumn"><ul><li>PGAS 5.1</li>
+<li>PGAS XM</li>
+<li>Quorum</li>
+</ul></td></tr>
+</caption></tbody></table><h3>Scalability &amp; Redundancy</h3>
+
+<p>The AES runtime and configuration databases permit online changes while maintaining continuous operations, providing non-stop data acquisition for safety and business critical applications. Additionally, AES supports redundancy at several levels, including redundant communication paths, redundant configurations, and load sharing, all of which allow automatic switch-over upon detection of a failure.This scalability provides you with the flexibility to expand your system on a just-in-time basis further maximizing your return on investment. These are just a few of the industry leading capabilities of the AutoSol Enterprise Server (AES).</p>
+
+<p>&#160;</p>
+
+<p><span><em><span><font face="Verdana, Arial, Helvetica, sans-serif">The innovative technological capabilities of&#160;AutoSol Products are protected by US Patents&#160;6,628,992; 6,950,851; 6,961,753; 7,073,182; 7,225,248; 7,587,481; 7,646,298; 7,673,337; 7,673,338 and Patents Pending.</font></span></em></span></p>
+</div></div></span></a></td></tr>
+</tbody></table></td></tr>
+</tbody></table></td><tr><td><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr></tr></tbody></table></td></tr><td id="dnn_RightPane" class="RightPane"><a name="554"><div class="container_sftools"><div class="sftools_Actions"><span id="dnn_ctr554_dnnTITLE_lblTitle" class="Title">Next Steps</span></div>
+<div id="dnn_ctr554_ContentPane" class="FullContentPane DNNAlignleft"><div id="dnn_ctr554_ModuleContent"><span id="dnn_ctr554_pnc.Publisher.Content_MessageHolder" class="Normal"><ul><li><a target="_blank" href="/LinkClick.aspx?fileticket=%2bSJ0dQ8wrIo%3d&amp;tabid=105">Download Data Sheet</a></li>
+<li><a href="/LinkClick.aspx?link=79&amp;tabid=56">Request Product Demo</a></li>
+</ul></span></div></div><span id="dnn_ctr554_pnc.Publisher.Content_StatHolder" class="Normal"></span><span class="sftools_Icons">&#160; &#160; &#160;</span></div>
+</a><a name="559"><span id="dnn_ctr559_ContentPane" class="DNNAlignleft"><div id="dnn_ctr559_ModuleContent"><div id="dnn_ctr559_HtmlModule_HtmlModule_lblContent" class="Normal">
+<p>&#160;</p>
+
+</div></div></span></a></td></tr><p><img height="199" src="/Portals/0/customers.gif" alt="" width="232"/></p>
+</tbody></table></div><tr></tr><div id="FooterRow"><div id="FooterLeft"><p class="FooterAddress"><b><ORG>Automation Solutions, Inc.</ORG></b>
+<br/><STREET>16055 Space Center Blvd., Suite 450</STREET>
+<br/><CITY>Houston</CITY>, <STATE>TX</STATE> <ZIPCODE>77062</ZIPCODE>
+<br/>Phone: <TEL>281.286.6017</TEL>
+<br/>www.autosoln.com</p>
+</div><div id="FooterRight"><span id="dnn_dnnLinks_lblLinks"><a class="BOTTOM_LINKS" href="http://www.autosoln.com/Home/tabid/104/Default.aspx">Home</a> <span class="BOTTOM_LINKS">&#160;&#160;&#160;&#160;&#160;&#160;</span> <a class="BOTTOM_LINKS" href="http://www.autosoln.com/Products/EnterpriseServer/tabid/105/Default.aspx">Products</a> <span class="BOTTOM_LINKS">&#160;&#160;&#160;&#160;&#160;&#160;</span> <a class="BOTTOM_LINKS" href="http://www.autosoln.com/Support/SupportCenter/tabid/55/Default.aspx">Support</a> <span class="BOTTOM_LINKS">&#160;&#160;&#160;&#160;&#160;&#160;</span> <a class="BOTTOM_LINKS" href="http://www.autosoln.com/Services/tabid/57/Default.aspx">Services</a> <span class="BOTTOM_LINKS">&#160;&#160;&#160;&#160;&#160;&#160;</span> <a class="BOTTOM_LINKS" href="http://www.autosoln.com/Company/AboutUs/tabid/58/Default.aspx">Company</a> <span class="BOTTOM_LINKS">&#160;&#160;&#160;&#160;&#160;&#160;</span> <a class="BOTTOM_LINKS" href="http://www.autosoln.com/ContactUs/tabid/59/Default.aspx">Contact Us</a></span>
+<br/><span id="dnn_dnnCOPYRIGHT_lblCopyright" class="FOOTER_objects">&#169; 2013 by <ORG>Automation Solutions, Inc.</ORG></span> &#160;&#160;&#160;&#160; <span class="FOOTER_objects"><a id="dnn_dnnPRIVACY_hypPrivacy" href="http://www.autosoln.com/Home/tabid/104/ctl/Privacy/Default.aspx" class="FOOTER_objects">Privacy Statement</a> &#160;&#160;|&#160;&#160;</span> <span class="FOOTER_objects"><a id="dnn_dnnTERMS_hypTerms" href="http://www.autosoln.com/Home/tabid/104/ctl/Terms/Default.aspx" class="FOOTER_objects">Terms Of Use</a></span>
+</div></div></div></span></noscript></body><br/><div id="dnn_ControlPanel" class="MyControlPanel"></div></html>

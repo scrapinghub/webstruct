@@ -1,0 +1,356 @@
+<!doctype html>
+
+<!--
+*************************************
+  Content handled by
+  imCMS - Content Management System
+  http://www.imcms.net/
+*************************************
+-->
+
+<html lang="en">
+<head>
+	
+	<meta charset="utf-8" />
+	
+	<title>Sweet Caroline - Babs Paylink AB</title>
+	
+	
+	<meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6" />
+	<link rel="shortcut icon" href="/images_gui/icons/favicon.ico" />
+	<link rel="icon" type="image/gif" href="/images_gui/icons/animated_favicon1.gif" />
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/themes/redmond/jquery-ui.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/css/grid.css.jsp" />
+	<link rel="stylesheet" type="text/css" href="/css/default.css.jsp" />
+	
+	<link rel="stylesheet" type="text/css" href="/css/tablet.css.jsp" media="only screen and (max-width: 768px)" />
+	<link rel="stylesheet" type="text/css" href="/css/phone.css.jsp" media="only screen and (max-width: 600px)" />
+	
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/javascript/jquery.fittext.js"></script>
+	<script type="text/javascript" src="/javascript/jquery.quickfit.js"></script>
+	<script type="text/javascript" src="/javascript/jquery.mediaqueries.js"></script>
+	<script type="text/javascript" src="/javascript/jquery.defaultValue.js"></script>
+	<script type="text/javascript" src="/javascript/default.js.jsp"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    setTimeout(function(){
+			    $.getScript("http://drift.babspaylink.se/code.js?seed=13080614");
+		    }, 40);
+		});
+	</script>
+
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-20091364-1']);
+	_gaq.push(['_trackPageview']);
+	log('/imcms/404.jsp?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer) ;
+	(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+	})();
+	function popitup(url, name, height, width) {
+		var newwindow=window.open(url,name,'height=' + height + ',width=' + width);
+		if (window.focus) {newwindow.focus()}
+		return false;
+	}
+	</script>
+</head>
+<body id="article">
+
+
+<div id="container" class="container">
+	
+	<div id="header">
+		
+		<div id="topLogoGrid" class="grid_50 first">
+			<div id="topLogo">
+				<a href="/" title="Till startsidan" onclick="return easterEgg(event, 1267); return false"><img src="/images_gui/logo.png" alt="" /></a>
+			</div>
+		</div>
+		<div id="topSearchGrid" class="grid_50">
+			<form action="/sok" method="post">
+			<input type="hidden" name="action" value="search" />
+			<input type="hidden" name="type" value="all" />
+			<input type="hidden" name="sort_by" value="1_relevans" />
+			<div id="topSearch">
+				<input type="text" id="topSearchField" name="search_string" class="defaultValue" title="Skriv in ditt sökord här..." />
+				<input type="image" id="topSearchButton" src="/images_gui/1x1.gif" alt="" />
+			</div>
+			</form>
+		</div>
+		
+		<div id="topMenu" class="grid_100 topMenu noPhone">
+			<table border="0" cellspacing="0" cellpadding="0" id="topMenuTable">
+			<tr id="topMenuTableTr">
+				<td id="topMenu0" class="first"><b><a href="/1001">Start</a></b></td>
+				<td id="topMenu1"><b><a href="/terminaler">Terminaler</a></b></td>
+				<td id="topMenu2"><b><a href="/kvittorullar-tillbehor">Kvittorullar och tillbehör</a></b></td>
+				<td id="topMenu3"><b><a href="/avtal-tjanster">Avtal/tjänster</a></b></td>
+				<td id="topMenu4"><b><a href="/kundservice">Kundservice</a></b></td>
+				<td id="topMenu5" class="active"><b><a href="/om-babs-paylink">Om Babs Paylink</a></b></td>
+			</tr>
+			</table>
+			<ul id="topMenuUl">
+				<li id="topMenu6"><b><a href="/1001">Start</a></b></li>
+				<li id="topMenu7"><b><a href="/terminaler">Terminaler</a></b></li>
+				<li id="topMenu8"><b><a href="/kvittorullar-tillbehor">Kvittorullar och tillbehör</a></b></li>
+				<li id="topMenu9"><b><a href="/avtal-tjanster">Avtal/tjänster</a></b></li>
+				<li id="topMenu10"><b><a href="/kundservice">Kundservice</a></b></li>
+				<li id="topMenu11" class="active"><b><a href="/om-babs-paylink">Om Babs Paylink</a></b></li>
+			</ul>
+		</div>
+		
+		<div class="onlyPhone">
+			<div id="foldMenuContainer" class="grid_100_full">
+				<div id="foldMenu" class="grid_100">
+					<a href="#" id="foldMenuLink">Huvudmeny</a>
+				</div>
+			</div>
+			<div id="foldMenuDrop" class="dropDownItems grid_100">
+				<a href="/1001" class="first"><span>Start</span></a>
+				<a href="/terminaler"><span>Terminaler</span></a>
+				<a href="/kvittorullar-tillbehor"><span>Kvittorullar och tillbehör</span></a>
+				<a href="/avtal-tjanster"><span>Avtal/tjänster</span></a>
+				<a href="/kundservice"><span>Kundservice</span></a>
+				<a href="/om-babs-paylink" class="active"><span>Om Babs Paylink</span></a>
+				<a href="/swedbank-sparbankerna"><span>Swedbank/<br />Sparbankerna</span></a>
+			</div>
+			
+		<div id="articleInfo" class="onlyPhone">
+			<div id="phoneTopBar" class="grid_100 first breadcrumbs">
+				<h4>
+					<a href="/" title="Start">Start</a> &nbsp;/&nbsp;
+					<a href="/om-babs-paylink" title="Om Babs Paylink">Om Babs Paylink</a> &nbsp;/&nbsp;
+					<a href="/1267" class="active" title="Sweet Caroline">Sweet Caroline</a></h4>
+			</div>
+		</div>
+		<div class="clearer"></div>
+			
+			<div id="subMenu" class="grid_100 topMenu">
+				<ul>
+					<li class="first"><b><a href="/om-babs-paylink/kontakt">Kontakt</a></b></li>
+					<li><b><a href="/om-babs-paylink/var-historia">Vår historia</a></b></li>
+					<li><b><a href="/om-babs-paylink/jobba-hos-oss">Jobba hos oss</a></b></li>
+					<li><b><a href="/om-babs-paylink/betalteknologi-sa-funkar-det-for-it-ansvariga">Betalteknologi - Så funkar det för IT-ansvariga</a></b></li>
+					<li><b><a href="/om-babs-paylink/trender-i-branschen-mobila-losningar">Trender i branschen - mobila lösningar</a></b></li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	<div id="content">
+		
+		<div id="articleInfo" class="noPhone">
+			<div id="mainColBar" class="grid_75 first breadcrumbs">
+				<h4>
+					<a href="/" title="Start">Start</a> &nbsp;/&nbsp;
+					<a href="/om-babs-paylink" title="Om Babs Paylink">Om Babs Paylink</a> &nbsp;/&nbsp;
+					<a href="/1267" class="active" title="Sweet Caroline">Sweet Caroline</a></h4>
+			</div>
+			<div id="rightColBar" class="grid_25 noPhone">
+				<h4 id="rightColBarH4" style="white-space:nowrap;">Om Babs Paylink </h4>
+			</div>
+		</div>
+		<div class="clearer"></div>
+		
+		<div id="leftCol" class="grid_25 onlyHighRes first">
+			
+			<div class="clear"></div>
+			
+			<div class="clear"></div>
+			
+			<div class="clear"></div>
+			
+				<div class="teaser23 bgGradient">
+					<a href="/1005" target="_self"><img src="/images/generated/puff_240x320_support_kille_55ca1576-e476-4984-9271-97ecd37e34fd.png" alt="Kundservice" title="Kundservice" id="Kundservice" style="border-width: 0px; margin: 0px 0px;  " /></a>
+				</div>
+				<div class="teaser23 bgGradient">
+					<a href="/1027" target="_self"><img src="/images/generated/puff_240x320_kassasystem_7e59c7fe-640a-45dd-9b72-f430e8cdfd85.png" alt="Kassasystem och leverant&ouml;rer" title="Kassasystem och leverant&ouml;rer" id="Kassasystem och leverant&ouml;rer" style="border-width: 0px; margin: 0px 0px;  " /></a>
+				</div>
+			
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div id="mainCol" class="grid_50">
+			
+			<div id="topImage">
+				<img src="/images/generated/sweetcaroline_34_cbfedaca-37cb-41c8-aebe-013945f61358.jpg" alt="Bild p&aring; Caroline Wiken, butiks&auml;gare Sweet Caroline" title="Bild p&aring; Caroline Wiken, butiks&auml;gare Sweet Caroline" style="border-width: 0px; margin: 0px 0px;    " />
+			</div>
+			
+			
+			<h1>Carolin Wiken</h1>
+			<div class="ingress"><p>Carolin Wiken designar lädervaror med fokus på accessoarer i starka färger i det egna företaget som fått hennes namn (tidigare Sweet Caroline). Den första kollektionen kom 2011.</p>
+</div>
+			<div class="text"><p>– Det började med en beställning på ett par skor för ett par år sedan. Sedan har det bara rullat på, berättar hon.</p>
+<p>Caroline Wiken använder ekologiskt växtgarvat (kromfritt) läder i sina produkter. Alla produkter tillverkas i Sverige och skräddarsys på beställning om kunden så önskar.</p>
+<p>Kollektionerna säljs i flertalet butiker, men utöver det sköter Carolin även försäljning och marknadsföring på home parties, events och mässor som till exempel Formexmässan.</p>
+<p>När det gäller betallösningar ville Carolin Wiken ha ett system som är smidigt och enkelt för både henne och kunderna. Hon tycker att det är viktigt att kunderna är bekväma med terminalen, att de känner igen den och känner sig säkra när de betalar.</p>
+<p>– Jag har givetvis scannat av marknaden innan jag bestämde mig, berättar hon. Jag ville ha en säker betalningsmetod som är korrekt och enkel. Och jag tror på igenkänning, ett betalsystem som både kunden och jag vet fungerar bra i andra butiker känns tryggt.</p>
+<p>Det blev en Vx670-terminal som Carolin Wiken tycker är smidig att ta med sig vid behov.</p>
+<p>– Jag är nöjd över att betalsystemet funkar så bra som det gör idag, jag har faktiskt aldrig behövt kontakta supporten på Babs Paylink, säger hon. Dessutom kan jag ta med min terminal när jag är på mässor till exempel, vilket gör att jag känner mig fri och kan ta betalt där jag är.</p>
+</div>
+			
+			
+			
+			
+			<div class="clear"></div>
+			<div class="onlyTabletOrLess">
+				<div class="grid_50 first teaser23 bgGradient">
+					<a href="/1005" target="_self"><img src="/images/generated/puff_240x320_support_kille_55ca1576-e476-4984-9271-97ecd37e34fd.png" alt="Kundservice" title="Kundservice" id="Kundservice" style="border-width: 0px; margin: 0px 0px;  " /></a>
+				</div>
+				<div class="grid_50 teaser23 bgGradient">
+					<a href="/1027" target="_self"><img src="/images/generated/puff_240x320_kassasystem_7e59c7fe-640a-45dd-9b72-f430e8cdfd85.png" alt="Kassasystem och leverant&ouml;rer" title="Kassasystem och leverant&ouml;rer" id="Kassasystem och leverant&ouml;rer" style="border-width: 0px; margin: 0px 0px;  " /></a>
+				</div>
+			</div>
+			<div class="clear"></div>
+			
+		</div>
+		
+		
+		<div id="rightCol" class="grid_25 noPhone">
+
+			<ul id="treeMenu">
+				<li class="leaf lev1 first"><a href="/om-babs-paylink/kontakt" target="_self"><span>Kontakt</span></a></li>
+				<li class="leaf lev1"><a href="/om-babs-paylink/var-historia" target="_self"><span>Vår historia</span></a></li>
+				<li class="branch_inact lev1"><a href="/om-babs-paylink/jobba-hos-oss" target="_self"><span>Jobba hos oss</span></a></li>
+				<li class="leaf lev1"><a href="/om-babs-paylink/betalteknologi-sa-funkar-det-for-it-ansvariga" target="_self"><span>Betalteknologi - Så funkar det för IT-ansvariga</span></a></li>
+				<li class="leaf lev1"><a href="/om-babs-paylink/trender-i-branschen-mobila-losningar" target="_self"><span>Trender i branschen - mobila lösningar</span></a></li>
+			</ul>
+		</div>
+		<div class="clearer"></div>
+		
+		
+		
+		<div id="topJump" class="onlyTabletOrLess">
+			<div class="grid_100 breadcrumbs">
+				<div id="topJumpBreadCrumbs">
+					<h4>
+						<a href="/" title="Start">Start</a> &nbsp;/&nbsp;
+						<a href="/om-babs-paylink" title="Om Babs Paylink">Om Babs Paylink</a> &nbsp;/&nbsp;
+						<a href="/1267" class="active" title="Sweet Caroline">Sweet Caroline</a></h4>
+				</div>
+				<div id="topJumpTopLink">
+					<h4><a href="#top">Top</a></h4>
+				</div>
+			</div>
+		</div>
+		<div class="clearer"></div>
+		
+		
+	</div>
+	
+	
+</div>
+
+<div id="operationsInfo">
+	<div class="container">
+		<div id="opInfoLeft" class="grid_33 first">
+			<div class="opInfoHeader">Driftinformation</div>
+			<div class="opInfoHeading">Aktuella störningar:</div>
+			<div class="opInfoText">
+				<i>Inga inrapporterade</i>
+			</div>
+		</div>
+		
+		<div id="opInfoRight" class="grid_66">
+			<div class="opInfoHeader">&nbsp;</div>
+			<div class="opInfoHeading">Planerade underhållsarbeten:</div>
+			<div class="opInfoText">
+				<i>Inga inrapporterade</i>
+			</div>
+		</div>
+		<div class="clearer"></div>
+	</div>
+</div>
+
+<div id="docFoot">
+	<div class="container">
+		<div id="docFootMenu" class="grid_100 first">
+			<div id="docFootMenuInner">
+				<ul id="docFootMenu1" class="first">
+					<li class="lev1"><a href="/terminaler">Terminaler</a></li>
+					<li class="lev2"><a href="/terminaler/fristaende">Fristående terminaler</a></li>
+					<li class="lev2"><a href="/terminaler/kassakopplade">Kassakopplade terminaler</a></li>
+					<li class="lev2"><a href="/terminaler/terminalvaljaren">Terminalguiden</a></li>
+				</ul>
+				<ul id="docFootMenu2">
+					<li class="lev1"><a href="/kvittorullar-tillbehor">Kvittorullar och tillbehör</a></li>
+					<li class="lev2"><a href="/kvittorullar-tillbehor/krypteringsbox-BTB">Krypteringsbox BTB</a></li>
+					<li class="lev2"><a href="/kvittorullar-tillbehor/kvittorullar">Kvittorullar</a></li>
+					<li class="lev2"><a href="/kvittorullar-tillbehor/rengoringskort">Rengöringskort</a></li>
+					<li class="lev2"><a href="/kvittorullar-tillbehor/kopa-tillbehor">Köpa tillbehör</a></li>
+				</ul>
+				<ul id="docFootMenu3">
+					<li class="lev1"><a href="/avtal-tjanster">Avtal/tjänster</a></li>
+					<li class="lev2"><a href="/avtal-tjanster/att-hyra-av-oss">Att hyra av oss</a></li>
+					<li class="lev2"><a href="/avtal-tjanster/bestall-ny-kund">Beställa terminal - ny kund</a></li>
+					<li class="lev2"><a href="/avtal-tjanster/bestall-befintlig-kund">Beställa terminal - befintlig kund</a></li>
+					<li class="lev2"><a href="/avtal-tjanster/flera-butiker-och-kedjor">Flera butiker och kedjor</a></li>
+					<li class="lev2"><a href="/avtal-tjanster/kopa-tillbehor">Köpa tillbehör</a></li>
+				</ul>
+				<ul id="docFootMenu4">
+					<li class="lev1"><a href="/kundservice">Kundservice</a></li>
+					<li class="lev2"><a href="/1351">Viktig information</a></li>
+					<li class="lev2"><a href="/kundservice/fragor-och-svar">Frågor och svar</a></li>
+					<li class="lev2"><a href="/kundservice/sa-funkar-det">Så funkar det</a></li>
+					<li class="lev2"><a href="/1133">Manualer</a></li>
+					<li class="lev2"><a href="/kundservice/kundombud">Kundombud</a></li>
+					<li class="lev2"><a href="/kundservice/vi-i-supporten">Vi på Kundservice</a></li>
+					<li class="lev2"><a href="/1448">Öppettider</a></li>
+				</ul>
+				<ul id="docFootMenu5">
+					<li class="lev1"><a href="/om-babs-paylink">Om Babs Paylink</a></li>
+					<li class="lev2"><a href="/om-babs-paylink/kontakt">Kontakt</a></li>
+					<li class="lev2"><a href="/om-babs-paylink/var-historia">Vår historia</a></li>
+					<li class="lev2"><a href="/om-babs-paylink/jobba-hos-oss">Jobba hos oss</a></li>
+					<li class="lev2"><a href="/om-babs-paylink/betalteknologi-sa-funkar-det-for-it-ansvariga">Betalteknologi - Så funkar det för IT-ansvariga</a></li>
+					<li class="lev2"><a href="/om-babs-paylink/trender-i-branschen-mobila-losningar">Trender i branschen - mobila lösningar</a></li>
+				</ul>
+				<ul id="docFootMenu6" class="onlyHighRes">
+					<li class="lev1"><a href="/swedbank-sparbankerna">Swedbank/<br />Sparbankerna</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id="docFootLeft" class="grid_66 first">
+			<div id="socialIcons">
+				
+				
+				
+				
+				
+			</div>
+			<address>
+				<p>Norrtullsgatan 6 113 29 Stockholm<br />
+Telefon 08-691 69 00 Fax 08-743 03 20<br />
+E-post: support@babspaylink.se &nbsp;|&nbsp; avtalsgruppen@babspaylink.se &nbsp;|&nbsp; marknad@babspaylink.se &nbsp;|&nbsp; teknik@babspaylink.se &nbsp;|&nbsp; kundombud@babspaylink.se<br />
+<a href="/1265" target="_self" title="Om webbplatsen">Om webbplatsen</a></p>
+
+			</address>
+		</div>
+		<div id="docFootLogo" class="grid_33">
+			<img src="/images_gui/logo_docfoot.png" alt="" />
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+</body>
+</html>

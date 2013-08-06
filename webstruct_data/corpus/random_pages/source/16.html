@@ -1,0 +1,936 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head id="ctl00_Head1"><title>
+	Bag Makers Inc | Inspired Design. Creative Solutions.
+</title>
+        <link href="./Styles/BMIWeb.css?v=19032013164335" rel="stylesheet" type="text/css" />
+        <script src="./js/JScript.js" type="text/javascript"></script>
+        <link type="text/css" href="css/styles.css" rel="stylesheet" />
+	    <script type="text/javascript" src="./js/jquery.js"></script>
+	    <script type="text/javascript" src="./js/jquery.pikachoose.js"></script>
+	    <script type="text/javascript" src="./js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+	    <script type="text/javascript">
+			    <!--
+	        $(document).ready(
+				    function () {
+				        $("#pikame").PikaChoose({ transition: [6] });
+
+				        $("#pikame").jcarousel(
+                        { 
+                            scroll: 9,
+                            initCallback: function (carousel) 
+                            {
+                                $(carousel.list).find('img').click(function () 
+                                {
+                                    //console.log($(this).parents('.jcarousel-item').attr('jcarouselindex'));
+                                    carousel.scroll(parseInt($(this).parents('.jcarousel-item').attr('jcarouselindex')));
+                                });
+                            }
+                        });
+
+				        var txtSearchName = 'ctl00_txtSearch';
+				        var txtsearch = document.getElementById(txtSearchName);
+				        txtsearch.onfocus = function () 
+                        {
+				            if (this.value == "Enter Color/Name/Item#") 
+                            {
+				                this.value = "";
+				                this.style.color = 'black';
+				            }
+				        };
+
+				        txtsearch.onblur = function () 
+                        {
+                            if (this.value.length == 0) 
+                            {
+                                this.style.color = 'gray';
+				                this.value = "Enter Color/Name/Item#";
+				            }
+				        }
+				    });
+				
+			    -->
+	    </script>
+    </head>
+    <body style="margin-left:0px; margin-top:0px; margin:0px">
+        <form name="aspnetForm" method="post" action="Category_items.aspx?Category=EcoFriendly" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4MjQ4MzQ4MDEPZBYCZg9kFgICAw9kFgQCCw8PFgIeCEltYWdlVXJsBRdpbWFnZXMvY291bnRyaWVzL1VTLmdpZmRkAhEPZBYCZg88KwAJAQAPFgQeCERhdGFLZXlzFgAeC18hSXRlbUNvdW50Ag1kFhpmD2QWAmYPFQkINDBNMTYxMiAcVGh1bWJuYWlscy9QRVQvbWVzc2VuZ2VyLmpwZw1NZXNzZW5nZXIgQmFnD0Nsb3Nlb3V0ITxiciAvPgg0ME0xNjEyIA1NZXNzZW5nZXIgQmFnGVJlY3ljbGVkIFAuRS5ULiBCYWc8YnIgLz4MU2NyZWVuIFByaW50DTE2VyBYIDUgWCAxMkhkAgEPZBYCZg8VCQhDVk0xNjEyIB9UaHVtYm5haWxzL1BFVC9tZXNzZW5nZXJfQ1YuanBnDU1lc3NlbmdlciBCYWcPQ2xvc2VvdXQhPGJyIC8+CENWTTE2MTIgDU1lc3NlbmdlciBCYWcZUmVjeWNsZWQgUC5FLlQuIEJhZzxiciAvPgpDb2xvclZpc3RhDTE2VyBYIDUgWCAxMkhkAgIPZBYCZg8VCQkxMUVDTzEzMTUeVGh1bWJuYWlscy9QYXBlci9lY29fY2l0YXQuanBnDEVjbyBDaXRhdGlvbgAJMTFFQ08xMzE1DEVjbyBDaXRhdGlvbhFFY28gU2hvcHBlcjxiciAvPhFGbGV4byBJbmsgSW1wcmludBExM1cgWCA2IFggMTUgMy80SGQCAw9kFgJmDxUJCTExRUNPMTQxNh5UaHVtYm5haWxzL1BhcGVyL2Vjb19icnV0ZS5qcGcJRWNvIEJydXRlAAkxMUVDTzE0MTYJRWNvIEJydXRlEUVjbyBTaG9wcGVyPGJyIC8+EUZsZXhvIEluayBJbXByaW50EjE0VyBYIDEwIFggMTUgMS8ySGQCBA9kFgJmDxUJCTExRUNPMTYxMh5UaHVtYm5haWxzL1BhcGVyL2Vjb192b2d1ZS5qcGcJRWNvIFZvZ3VlAAkxMUVDTzE2MTIJRWNvIFZvZ3VlEUVjbyBTaG9wcGVyPGJyIC8+EUZsZXhvIEluayBJbXByaW50DTE2VyBYIDYgWCAxMkhkAgUPZBYCZg8VCQkxMUVDTzE2MTkeVGh1bWJuYWlscy9QYXBlci9lY29fc3RlcGguanBnDUVjbyBTdGVwaGFuaWUACTExRUNPMTYxOQ1FY28gU3RlcGhhbmllEUVjbyBTaG9wcGVyPGJyIC8+EUZsZXhvIEluayBJbXByaW50ETE2VyBYIDYgWCAxOSAxLzRIZAIGD2QWAmYPFQkJMTFFQ08xODE4HVRodW1ibmFpbHMvUGFwZXIvZWNvX2R1a2UuanBnCEVjbyBEdWtlAAkxMUVDTzE4MTgIRWNvIER1a2URRWNvIFNob3BwZXI8YnIgLz4RRmxleG8gSW5rIEltcHJpbnQRMThXIFggNyBYIDE4IDMvNEhkAgcPZBYCZg8VCQcxMUVDTzU4HFRodW1ibmFpbHMvUGFwZXIvZWNvX3B1cC5qcGcHRWNvIFB1cAAHMTFFQ081OAdFY28gUHVwEUVjbyBTaG9wcGVyPGJyIC8+EUZsZXhvIEluayBJbXByaW50FzUgMS80VyBYIDMgMS80IFggOCAxLzRIZAIID2QWAmYPFQkHMTFFQ083OR1UaHVtYm5haWxzL1BhcGVyL2Vjb19taW5pLmpwZwhFY28gTWluaQAHMTFFQ083OQhFY28gTWluaRFFY28gU2hvcHBlcjxiciAvPhFGbGV4byBJbmsgSW1wcmludBc3IDMvNFcgeCA0IDMvNCB4IDkgMy80SGQCCQ9kFgJmDxUJCDExRUNPODE0HlRodW1ibmFpbHMvUGFwZXIvZWNvX2plbm55LmpwZwlFY28gSmVubnkACDExRUNPODE0CUVjbyBKZW5ueRFFY28gU2hvcHBlcjxiciAvPhFGbGV4byBJbmsgSW1wcmludA0xMFcgeCA1IHggMTNIZAIKD2QWAmYPFQkJMTlFQ08xMjE1I1RodW1ibmFpbHMvUGxhc3RpYy9lY29fRENfMTJ4MTUuanBnCzEyIHggMTUgeCAzAAkxOUVDTzEyMTULMTIgeCAxNSB4IDMfUGxhc3RpYyBFY28tRnJpZW5kbHkgQmFnczxiciAvPhFGbGV4byBJbmsgSW1wcmludA0xMlcgeCAxNUggeCAzZAILD2QWAmYPFQkJMTlFQ08xNTE5I1RodW1ibmFpbHMvUGxhc3RpYy9lY29fRENfMTV4MTkuanBnCzE1IHggMTkgeCAzAAkxOUVDTzE1MTkLMTUgeCAxOSB4IDMfUGxhc3RpYyBFY28tRnJpZW5kbHkgQmFnczxiciAvPhFGbGV4byBJbmsgSW1wcmludA0xNVcgeCAxOUggeCAzZAIMD2QWAmYPFQkIMTlFQ085MTQiVGh1bWJuYWlscy9QbGFzdGljL2Vjb19EQ185eDE0LmpwZwo5LTEvMiB4IDE0AAgxOUVDTzkxNAo5LTEvMiB4IDE0H1BsYXN0aWMgRWNvLUZyaWVuZGx5IEJhZ3M8YnIgLz4RRmxleG8gSW5rIEltcHJpbnQMOSAxLzJXIFggMTRIZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAwUOY3RsMDAkaW1nYnRuVVMFDmN0bDAwJGltZ2J0bkNBBRNjdGwwMCRpbWdidG5Db3VudHJ5Wyp1/R9Ggoal0gTlaocl/bffG8MYuXN/GMEhtbAZdLQ=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=_f8kfsMiKGfwLuV7i539VMXI6gJDr9zlPhdrfmqetYrVTNs5DY2a2mhHWr1KlQw8WcFhFhrNnREXcNh0KxvjiqLDXADtUyENOxaiYDL3Z601&amp;t=635048192010298385" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=vkw-JUAy8o_jlrjlqbGTpvqVjGE50CSlHxAdAIy7sxnxfNMB69WvwlzZVRfxzfx07Bza3hlyLqq8Vcc9vxl1djYsGrUUSOjQmOeiKwoiKJSbx3wh7YxV61Al7uKmh-JwuVMmbI_J6U9eGCStBbqrTQ2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=BCgz62nU4KtV673cas_lKxte1jYClRNtV_rjdYwWB4DF7fqOYbgMzJBEMc3A7Pc5kJWQU-hlApp40EMD_6N1SdL-nhg8uMYyK_2jzCKxHsi-Pj5EZ4EeBOPm9KZDUs5kkXDU0nEHU1QJnXW0dj8xww2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=eBY0_O0cdWnxHrJU7DLpDaaw3bOWdtXJI5XYO47rk3dMJXSG0RwSl9pbRgEfdJENdPejjDABDmLSJg4DbKMQTi4hfSyvIMVr_6dlXVFFiGLBU74zU6DYSLfFgnXc17E6HRVQAmL4LGyMY1gNixTMBQ2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=AARk7LmqVLKuiDu7OS6ERC0K2QkI2BvIrlFlus0SKn49yLB4cjE5RvOspYtKsgYrVxUXvJ40B5JObCpkTfYnLJh7q3f7VcEtW4dzfM6Bys1MlJ7yswBQ6dL2o29miDgiNew81Ej2mEdiS0jfkZSVig2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=1W791lVAVOTfFDN3DK-gNNcFg5v_fkiPeBq5l9iMy8n2n40WJKxjdPZj3l3OopWTbWwyMhzKQzW2v6XAFAJTpAqsGFO_Qf1VVUSUs4ujklfjUNt5ljpfnQsxSemsCgBulfFP_9xHmviV0MehsOI_6g2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=1rkkY-_8o2PKeqHiaGzHtspObZiHKHLWQNLR95Ysyp6zBNE_7E-X7QZK91OnMOkE20cQ7JzdQ2PLuGTiC41sl2T1N6YUU8vxrx7zCN9GTzOBT-dp8B73ngD_M8bAWn5S8JcgMjvFRoAqw922H9cPyQ2&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dspDUlBSioj5h2g9_e1wPs8tEiq-X3u1CAoYPrnZUAhOcliW_5cDdehQjF43rRpfS5_sIJfAZrxHjywWCPxGAgYUbPjMvpELwvJQIXXJzTWD56UnIV6CRIpm3uliX12mNcyHB6WNRfT3Q4Vrww3AuKr-weTBGdGz7b6zohzi4nY1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=jlwJzIjwPd5XgD1Oq6uSdnjoClPyeurUZmP1DI8NdQJ98hqnyNjgxTvbPhLLEMz9_f1x-jYLJTymIZebRf_lkw7P3V5XUplSGKtSbuz6OybBDFAUAv3g0SyPLVflwTJF9xiogaPK3XNWX_YByBRL8fVCKut_kyQfxqomC-TqYl41&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=OHJnp_mjTWa-hTz5ZkDAoMo4u4wg5taZFT3REFj1t-XjqXsUvoEbgyOWwqBzY73dNXbEbvwIA6vyma_8WdhnlwqggAzKNHlK0GMxj-F0kOnhCxc4e0UHFbfg2l4BZE2GK-5qy49dpDSuCck4vdGigm-6oZivIsvI3_BclZ-E_gc1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=cV_b-zubnVTVTVlSBNf-bAw2GJWzF4kiSq37Ueq8ErgFOUx4MqDmXTO5m_SZX2JkmCmvBGLbykZv_3q9jpz_AuwzwveTIv-YxkGEW95hboghowN1g6THLRzhrGqDx4lSenbHO7bPvSForHSBZE5p7F7OGCfsya3CJE8dK1kMemo1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=9xkmy7hWqBaXTuOc6MYXZz5q0dBfXdqds6amn41P3ZyDkh85Dv7uvzGj3iaOWkMa4chRUyeQScuvAN3kc8QJ3Ylvkq9udeHkRD4oHjM7ZYsApbqLtzUa__u5Z_MgTa9-XnW6EkBJofH0re3A1gfOjp9AidGMOEKhISLrarRNkMo1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Dp52AXakVcPPlo7fUpzFYI6Id5vNZH7HQTNmHidB1JwAYu_HB5SLJpRj0-63Cg-tcjOv4o0vTTrlsybeAjv-7EehwsQWUzyzlpx5yXzdo92gmrBCO79MK7vAwfB8ajY7DlZnuIoq4R6c7MIMjFUa-qv2a5o9k84Q-M_moXZdRVg1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=nA9qxy44KtBn6282Hxw2Nr1fda31yilfnzYtYJH3_5IvEUB2uPvtxFsIghqRXKxOsMCtxQrRDRuYmd_bhGAVHEUaTtHEbn79Sy50Ps3ymrV9Cs1zhnR5B89gQB3714ZtpIQ6Y6VZ8pFoITnWQSbu5EEJUsSeFNjTlMHUElUxz5s1&amp;t=ffffffff8a610ee0" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCALn28RzAoCPm80IAvKO08wIApWt+5QKAtKds+QFAsTkwvQCAv2f4I4CAqnxl+8Ekq++8aydHE9lFv5zPnZ6v6jQ/8JyOTayE/Bziu7UbZo=" />
+</div>
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$bmiScriptManager', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+            <div id="ctl00_pnlCountry" class="pnlCountry">
+	
+                    <div class='countryPrompt' >Please select your country of origin:</div>
+                    <input type="image" name="ctl00$imgbtnUS" id="ctl00_imgbtnUS" class="countryImage" src="images/countries/us.gif" style="border-width:0px;" />
+                    <input type="image" name="ctl00$imgbtnCA" id="ctl00_imgbtnCA" class="countryImage" src="images/countries/ca.png" style="border-width:0px;" />
+            
+</div>
+            <a id="ctl00_lnkbtnDummy" href="" href="javascript:__doPostBack(&#39;ctl00$lnkbtnDummy&#39;,&#39;&#39;)" style="display:none;"></a>
+            
+            
+            <!--Main Table :  Rakesh Kumar Gangula -->
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0" align="center" > 
+                <tr>
+                    <td valign="top" style="background-image:url('images/logo_bg10_03.jpg');">
+                        <table style=" height:115px; margin-top:0px;"  border="0" cellpadding="0" cellspacing="0" align="center">
+                            <tr>
+                                <td style="width:205px; vertical-align:top;" rowspan="3" valign="top">
+                                    <a href="Default.aspx">
+                                        <img src="images/BagMakers_Logo.png" alt="" style="border:0" />
+                                    </a>
+                                </td>
+                                <td style="height:15px; width:450px" rowspan="3">&nbsp;</td>
+                                <td style="height:15px; width:375px" align="right" valign="middle">
+                                    <input type="image" name="ctl00$imgbtnCountry" id="ctl00_imgbtnCountry" class="countryImageTiny" src="images/countries/US.gif" style="border-width:0px;" />
+                                    <g:plusone></g:plusone>
+                                    <a href="http://twitter.com/BagMakers" target="_blank" class="hyper">
+                                        <strong class="body_black">  </strong>
+                                        <img src="images/twitter.png" width="30" height="30" style="border:0; vertical-align:top" alt="We are now on twitter!" title="We are now on twitter!"/>
+                                    </a>
+                                    <a href="https://www.facebook.com/BagMakersInc" target="_blank" class="hyper">
+                                        <strong class="body_black">  </strong>
+                                        <img src="images/facebook.png" width="30" height="30" style="border:0;" alt="Become a fan on Facebook!" title="Become a fan on Facebook!"/>
+                                    </a>
+                                    <a href="" style="font-size:12px;color:#ffffff;font-family:verdana;">
+                                        <img src="images/Bookmark_t.png" width="30" height="30" style="border:0;" alt="Bookmark this site!" title="Bookmark this site!" onclick="bookmark()"/>
+                                    </a>
+                                </td>
+                                <td rowspan="3">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td  align="right" valign="top" >
+                                    <div onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_btnSearch&#39;)">
+	
+                                        <img src="images/IamLookingFor.png" alt="" style="vertical-align:top" />
+                                        <input name="ctl00$txtSearch" type="text" value="Enter Color/Name/Item#" id="ctl00_txtSearch" style="color:Gray;width:179px;" />
+                                        <input type="submit" name="ctl00$btnSearch" value="Search" id="ctl00_btnSearch" style="vertical-align:top" />
+                                    
+</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" style="vertical-align:top">
+                                    <a href="http://portal.bagmakersinc.com/Login.aspx" target="_blank" class="body_black">
+                                        <img src="images/CorinneDistributorOrderButton.jpg" alt=""  width="185px" style="border:0px; vertical-align:top;"/>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:Black; vertical-align:top; border:0px;" align="left"  >
+                        <!-- Top nav bar -->
+                        <table style=" margin-top:0px;"  border="0" cellpadding="0" cellspacing="0" align="center">
+                            <tr>
+                                <td style="width:210px;vertical-align:middle;" align="right">
+                                    <a href="Category_Polyester.aspx?Category=Polyester">
+                                        <img alt="" id="Img45" src="TopNav/images/PolyesterN.png" 
+                                            onmouseover="swap('Img45','PolyesterND.png')" onmouseout="swap('Img45','PolyesterN.png')" style="border:0" />
+                                    </a>
+                                </td>
+                                <td  style="vertical-align:middle;" align="left">
+                                    <a href="Category_items.aspx?Category=Paper">
+                                        <img alt="" id="Img33" src="TopNav/images/PaperN.png" 
+                                            onmouseover="swap('Img33','PaperND.png')" onmouseout="swap('Img33','PaperN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_items.aspx?Category=Plastic">
+                                        <img alt="" id="Img34" src="TopNav/images/PlasticN.png" 
+                                            onmouseover="swap('Img34','PlasticND.png')" onmouseout="swap('Img34','PlasticN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_items.aspx?Category=NonWoven">
+                                        <img alt="" id="Img35" src="TopNav/images/NonWovenN.png" 
+                                            onmouseover="swap('Img35','NonWovenND.png')" onmouseout="swap('Img35','NonWovenN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_items.aspx?Category=EcoFriendly">
+                                        <img alt="" id="Img37" src="TopNav/images/EcoFrndN.png" 
+                                            onmouseover="swap('Img37','EcoFrndND.png')" onmouseout="swap('Img37','EcoFrndN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_items.aspx?Category=BestSeller">
+                                        <img alt="" id="Img38" src="TopNav/images/BestSellersN.png" 
+                                            onmouseover="swap('Img38','BestSellersND.png')" onmouseout="swap('Img38','BestSellersN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_items.aspx?Category=Halloween">
+                                        <img alt="" id="Img39" src="TopNav/images/HalloweenN.png" 
+                                            onmouseover="swap('Img39','HalloweenND.png')" onmouseout="swap('Img39','HalloweenN.png')" style="border:0" />
+                                    </a>
+                                    <a href="Category_Package.aspx" class="Menu">
+                                        <img alt="" id="Img40" src="TopNav/images/PackagingN.png" 
+                                            onmouseover="swap('Img40','PackagingND.png')" onmouseout="swap('Img40','PackagingN.png')" style="border:0" />
+                                    </a>
+                                    <a href="DesignCenter.aspx" class="Menu" style="border-right:2px solid black;">
+                                        <img alt="" id="Img43" src="TopNav/images/DesignCenterN.png" 
+                                            onmouseover="swap('Img43','DesignCenterND.png')" onmouseout="swap('Img43','DesignCenterN.png')" style="border:0" />
+                                    </a>
+                                </td>
+                                <td class="topMenuNav">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img alt="" id="Img41" src="TopNav/images/eCatalogN.png" 
+                                                    onmouseover="swap('Img41','eCatalogND.png')" onmouseout="swap('Img41','eCatalogN.png')" style="border:0" />
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a id="ctl00_downloadECatalog" href="javascript:__doPostBack(&#39;ctl00$downloadECatalog&#39;,&#39;&#39;)">
+                                                        <img alt="" id="Img28" src="TopNav/images/e-catalog/DownloadN.png" onmouseover="swap('Img28','e-catalog/DownloadND.png')" onmouseout="swap('Img28','e-catalog/DownloadN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://www.zoomcatalog.com/catalogs/bag-makers-2013" target="_blank" >
+                                                        <img alt="" id="Img36" src="TopNav/images/e-catalog/OnlineN.png" onmouseover="swap('Img36','e-catalog/OnlineND.png')" onmouseout="swap('Img36','e-catalog/OnlineN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td style="vertical-align:middle;" align="left">
+                                    <a href="MarketingTools.aspx" class="Menu" style="border-right:2px solid black;">
+                                        <img alt="" id="Img42" src="TopNav/images/MarketingToolsN.png" 
+                                            onmouseover="swap('Img42','MarketingToolsND.png')" onmouseout="swap('Img42','MarketingToolsN.png')" style="border:0" />
+                                    </a>
+                                </td>
+	                        </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:2px; background-image:URL(images/DS.jpg)">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td> 
+                        <!-- Side Menu table -->
+                        <table border="0" cellpadding="0" cellspacing="0" align="center"> 
+                            <tr>
+                                <td style=" width:150px; vertical-align:top;" align="left"> 
+                                    <div class="navigation">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" id="Img1" src="TopNav/images/CorinneBagMakers.jpg" 
+                                                        onmouseover="swap('Img1','DCorinneBagMakers.jpg')" onmouseout="swap('Img1','CorinneBagMakers.jpg')" style="border:0;" /> 
+                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="codeconduct.aspx">
+                                                            <img alt="" id="Img6" src="TopNav/images/TheEnvironmentN.png" 
+                                                                onmouseover="swap('Img6','TheEnvironmentND.png')" onmouseout="swap('Img6','TheEnvironmentN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="codeconduct.aspx#socialcompliance">
+                                                            <img alt="" id="Img7" src="TopNav/images/SocialComplianceN.png" 
+                                                                onmouseover="swap('Img7','SocialComplianceND.png')" onmouseout="swap('Img7','SocialComplianceN.png')" style="border:0" />
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="codeconduct.aspx#productsafety">
+                                                            <img alt="" id="Img8" src="TopNav/images/ProductSafetyN.png" 
+                                                                onmouseover="swap('Img8','ProductSafetyND.png')" onmouseout="swap('Img8','ProductSafetyN.png')" style="border:0" />
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="recycle.aspx">
+                                                            <img alt="" id="Img9" src="TopNav/images/RecycleBagN.png" 
+                                                                onmouseover="swap('Img9','RecycleBagND.png')" onmouseout="swap('Img9','RecycleBagN.png')" style="border:0" />
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" id="Img2" src="TopNav/images/CorinneGeneralInfo.jpg" 
+                                                        onmouseover="swap('Img2','DCorinneGenearlInfo.jpg')" onmouseout="swap('Img2','CorinneGeneralInfo.jpg')" style="border:0" /> 
+                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="sqorderinfo.aspx">
+                                                            <img alt="" id="Img10" src="TopNav/images/SmallQuantityN.png" 
+                                                                onmouseover="swap('Img10','SmallQuantityND.png')" onmouseout="swap('Img10','SmallQuantityN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="dcorderinfo.aspx">
+                                                            <img alt="" id="Img11" src="TopNav/images/DesignCentreN.png" 
+                                                                onmouseover="swap('Img11','DesignCentreND.png')" onmouseout="swap('Img11','DesignCentreN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="rush.aspx">
+                                                            <img alt="" id="Img12" src="TopNav/images/RushChargesN.png" 
+                                                                onmouseover="swap('Img12','RushChargesND.png')" onmouseout="swap('Img12','RushChargesN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="imprinting_glossary.aspx">
+                                                            <img alt="" id="Img13" src="TopNav/images/ImprintGlsN.png" 
+                                                                onmouseover="swap('Img13','ImprintGlsND.png')" onmouseout="swap('Img13','ImprintGlsN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="product_glossary.aspx">
+                                                            <img alt="" id="Img14" src="TopNav/images/ProductGlossaryN.png" 
+                                                                onmouseover="swap('Img14','ProductGlossaryND.png')" onmouseout="swap('Img14','ProductGlossaryN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" id="Img3" src="TopNav/images/CorinneImprintArtwork.jpg" 
+                                                        onmouseover="swap('Img3','DCorinneImprintArtwork.jpg')" onmouseout="swap('Img3','CorinneImprintArtwork.jpg')" style="border:0" /> 
+                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="dcart.aspx">
+                                                            <img alt="" id="Img22" src="TopNav/images/DesignCentreN.png" 
+                                                                onmouseover="swap('Img11','DesignCentreND.png')" onmouseout="swap('Img11','DesignCentreN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="flexo.aspx">
+                                                            <img alt="" id="Img15" src="TopNav/images/FlexoGraphN.png" 
+                                                                onmouseover="swap('Img15','FlexoGraphND.png')" onmouseout="swap('Img15','FlexoGraphN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="silkscreen.aspx">
+                                                            <img alt="" id="Img16" src="TopNav/images/ScreenPrintN.png" 
+                                                                onmouseover="swap('Img16','ScreenPrintND.png')" onmouseout="swap('Img16','ScreenPrintN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="hotstamp.aspx">
+                                                            <img alt="" id="Img17" src="TopNav/images/HotStampN.png" 
+                                                                onmouseover="swap('Img17','HotStampND.png')" onmouseout="swap('Img17','HotStampN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="cvista.aspx">
+                                                            <img alt="" id="Img18" src="TopNav/images/ColorVistaN.png" 
+                                                                onmouseover="swap('Img18','ColorVistaND.png')" onmouseout="swap('Img18','ColorVistaN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="imprintcolors.aspx">
+                                                            <img alt="" id="Img19" src="TopNav/images/ImprintColorsN.png" 
+                                                                onmouseover="swap('Img19','ImprintColorsND.png')" onmouseout="swap('Img19','ImprintColorsN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="artwork_req.aspx">
+                                                            <img alt="" id="Img20" src="TopNav/images/ArtRequirementN.png" 
+                                                                onmouseover="swap('Img20','ArtRequirementND.png')" onmouseout="swap('Img20','ArtRequirementN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="stock_designs.aspx">
+                                                            <img alt="" id="Img21" src="TopNav/images/StockDesignsN.png" 
+                                                                onmouseover="swap('Img21','StockDesignsND.png')" onmouseout="swap('Img21','StockDesignsN.png')" style="border:0" /> 
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img alt="" id="Img4" src="TopNav/images/CorinneCaseStudies.jpg" 
+                                                        onmouseover="swap('Img4','DCorinneCaseStudies.jpg')" onmouseout="swap('Img4','CorinneCaseStudies.jpg')" style="border:0" />
+                                                </a>
+                                                <ul>
+                                                <li>
+                                                    <a href="PDFS/Bag Makers_Health_Care.pdf" target="_blank">
+                                                        <img alt="" id="Img23" src="TopNav/images/HealthcareN.png" 
+                                                            onmouseover="swap('Img23','HealthcareND.png')" onmouseout="swap('Img23','HealthcareN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="PDFS/BagMakersCaseStudy_Hospitality.pdf" target="_blank">
+                                                        <img alt="" id="Img24" src="TopNav/images/HospitalityN.png" 
+                                                            onmouseover="swap('Img24','HospitalityND.png')" onmouseout="swap('Img24','HospitalityN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="PDFS/casestudy_travel_2web.pdf" target="_blank">
+                                                        <img alt="" id="Img25" src="TopNav/images/TourismN.png" 
+                                                            onmouseover="swap('Img25','TourismND.png')" onmouseout="swap('Img25','TourismN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="cs_celebration.aspx" >
+                                                        <img alt="" id="Img26" src="TopNav/images/CelebrationSeriesN.png" 
+                                                            onmouseover="swap('Img26','CelebrationSeriesND.png')" onmouseout="swap('Img26','CelebrationSeriesN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="cs_executote.aspx" >
+                                                        <img alt="" id="Img27" src="TopNav/images/ExecutoteN.png" 
+                                                            onmouseover="swap('Img27','ExecutoteND.png')" onmouseout="swap('Img27','ExecutoteN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img alt="" id="Img5" src="TopNav/images/CorinneAboutUs.jpg" 
+                                                    onmouseover="swap('Img5','DCorinneAboutUs.jpg')" onmouseout="swap('Img5','CorinneAboutUs.jpg')" style="border:0" />
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="background.aspx">
+                                                        <img alt="" id="Img29" src="TopNav/images/BackgroundN.png" 
+                                                            onmouseover="swap('Img29','BackgroundND.png')" onmouseout="swap('Img29','BackgroundN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="howtobuy.aspx"><img alt="" id="Img30" src="TopNav/images/HowToBuyN.png" 
+                                                        onmouseover="swap('Img30','HowToBuyND.png')" onmouseout="swap('Img30','HowToBuyN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a href="press.aspx">
+                                                        <img alt="" id="Img31" src="TopNav/images/PressandMediaN.png" 
+                                                            onmouseover="swap('Img31','PressandMediaND.png')" onmouseout="swap('Img31','PressandMediaN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://www.youtube.com/bagmakers">
+                                                        <img alt="" id="Img32" src="TopNav/images/WatchourvideosN.png" 
+                                                            onmouseover="swap('Img32','WatchourvideosND.png')" onmouseout="swap('Img32','WatchourvideosN.png')" style="border:0" />
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!--    Start   Rakesh -->
+                                <hr size="1" noshade="noshade" style="width:150px" align="left" />
+                                    <div style="margin-left:0px; margin:0px; letter-spacing:0px; height:170px; background-image:URL(images/NewsUpdates.png); background-repeat:no-repeat; " >
+                                        <br /><br />
+                                        <strong class="body_black">
+                                            &nbsp;&nbsp;
+                                            <a href="News.aspx" style="font:Bold; text-decoration:none; color:Black;">
+                                                Bag Makers  Introduces<br />&nbsp;&nbsp;&nbsp;6 New Products..
+                                            </a>
+                                        </strong>  
+                                        <br /><br />
+                                        <strong class="body_black">&nbsp;&nbsp;
+                                            <a href="News.aspx" style="font:Bold; text-decoration:none; color:Black;">
+                                                Bag Makers Expands<br />&nbsp;&nbsp;&nbsp;Color Selections..
+                                            </a>
+                                        </strong>  
+                                        <br /><br />
+                                        <strong class="body_black">&nbsp;&nbsp;
+                                            <a href="News.aspx" style="font:Bold; text-decoration:none; color:Black;">
+                                                Bag Makers  achieves...
+                                            </a>
+                                        </strong>
+ 
+                                        
+                                        <br />
+                                        
+                                    </div>
+                                    <!--    End  Rakesh  -->
+                                    <!--    Start Gangula   -->
+                                    <div style="margin-left:0px; margin:0px; letter-spacing:0px">
+                                        <hr size="1" noshade="noshade" style="width:150px" align="left" />
+                                        <a href="http://www.youtube.com/bagmakers" target="_blank">
+                                            <img src="images/BMI_VideoAD_r1.gif" alt="" width="150px" height="170px" border="0" />
+                                        </a>
+                                    </div>
+                                    
+                                </td>
+                                <td style=" width:18px">&nbsp; </td>
+                                <td style="vertical-align:top; margin-left:0px; width:860px; text-align:justify" align="left"> 
+                                    <div>
+                                        
+<table width="860" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="9" valign="top">
+          <table width="860" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top"><img id="catimg" src="Titles/ECO_03.jpg" alt="NA" width="401" height="29"/>
+             <br />
+             </td>
+            </tr>
+          <tr>
+            <td height="293" valign="top" class="body_black">
+                    <table id="ctl00_ContentPlaceHolder1_Dlreptr" class="DL1" cellspacing="0" border="0" style="border-width:0px;height:140px;width:860px;border-collapse:collapse;">
+	<tr>
+		<td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=40M1612 " style="border:0">
+                                <img src="Thumbnails/PET/messenger.jpg" 
+                                alt="Messenger Bag" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> Closeout!<br /></span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=40M1612 " style="border:0">
+                            Messenger Bag </a> </strong><br />
+                             Recycled P.E.T. Bag<br />
+                          with  Screen Print<br />
+                        16W X 5 X 12H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=CVM1612 " style="border:0">
+                                <img src="Thumbnails/PET/messenger_CV.jpg" 
+                                alt="Messenger Bag" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> Closeout!<br /></span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=CVM1612 " style="border:0">
+                            Messenger Bag </a> </strong><br />
+                             Recycled P.E.T. Bag<br />
+                          with  ColorVista<br />
+                        16W X 5 X 12H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO1315" style="border:0">
+                                <img src="Thumbnails/Paper/eco_citat.jpg" 
+                                alt="Eco Citation" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO1315" style="border:0">
+                            Eco Citation </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        13W X 6 X 15 3/4H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO1416" style="border:0">
+                                <img src="Thumbnails/Paper/eco_brute.jpg" 
+                                alt="Eco Brute" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO1416" style="border:0">
+                            Eco Brute </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        14W X 10 X 15 1/2H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO1612" style="border:0">
+                                <img src="Thumbnails/Paper/eco_vogue.jpg" 
+                                alt="Eco Vogue" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO1612" style="border:0">
+                            Eco Vogue </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        16W X 6 X 12H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td>
+	</tr><tr>
+		<td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO1619" style="border:0">
+                                <img src="Thumbnails/Paper/eco_steph.jpg" 
+                                alt="Eco Stephanie" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO1619" style="border:0">
+                            Eco Stephanie </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        16W X 6 X 19 1/4H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO1818" style="border:0">
+                                <img src="Thumbnails/Paper/eco_duke.jpg" 
+                                alt="Eco Duke" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO1818" style="border:0">
+                            Eco Duke </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        18W X 7 X 18 3/4H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO58" style="border:0">
+                                <img src="Thumbnails/Paper/eco_pup.jpg" 
+                                alt="Eco Pup" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO58" style="border:0">
+                            Eco Pup </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        5 1/4W X 3 1/4 X 8 1/4H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO79" style="border:0">
+                                <img src="Thumbnails/Paper/eco_mini.jpg" 
+                                alt="Eco Mini" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO79" style="border:0">
+                            Eco Mini </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        7 3/4W x 4 3/4 x 9 3/4H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=11ECO814" style="border:0">
+                                <img src="Thumbnails/Paper/eco_jenny.jpg" 
+                                alt="Eco Jenny" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=11ECO814" style="border:0">
+                            Eco Jenny </a> </strong><br />
+                             Eco Shopper<br />
+                          with  Flexo Ink Imprint<br />
+                        10W x 5 x 13H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td>
+	</tr><tr>
+		<td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=19ECO1215" style="border:0">
+                                <img src="Thumbnails/Plastic/eco_DC_12x15.jpg" 
+                                alt="12 x 15 x 3" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=19ECO1215" style="border:0">
+                            12 x 15 x 3 </a> </strong><br />
+                             Plastic Eco-Friendly Bags<br />
+                          with  Flexo Ink Imprint<br />
+                        12W x 15H x 3 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=19ECO1519" style="border:0">
+                                <img src="Thumbnails/Plastic/eco_DC_15x19.jpg" 
+                                alt="15 x 19 x 3" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=19ECO1519" style="border:0">
+                            15 x 19 x 3 </a> </strong><br />
+                             Plastic Eco-Friendly Bags<br />
+                          with  Flexo Ink Imprint<br />
+                        15W x 19H x 3 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td>
+                        <br />
+                        <table border="0" style="width:100%; border-top:0px">
+                        <tr>
+                            <td style="width:160px; height:136px; border:0px; border-top:0px">
+                            <div align="center">
+                                <a href="ItemMaster.aspx?Product=19ECO914" style="border:0">
+                                <img src="Thumbnails/Plastic/eco_DC_9x14.jpg" 
+                                alt="9-1/2 x 14" style=" width:120px; height:120px; vertical-align:top; border:0px" /> </a></div>
+                        </td>
+                        <td width="34" rowspan="2" valign="middle" 
+                         style="border:opx; border-top:0px; background-image:URL(images/v_rule_solid_02.jpg)" >
+                        <div align="center"></div></td>
+                        </tr>
+                        <tr>
+                         <td style="vertical-align:top; border:0px; border-top:0px"> <div align="center"> 
+                          <strong><span class="new_cat"> </span></strong>
+                           <strong> <a href="ItemMaster.aspx?Product=19ECO914" style="border:0">
+                            9-1/2 x 14 </a> </strong><br />
+                             Plastic Eco-Friendly Bags<br />
+                          with  Flexo Ink Imprint<br />
+                        9 1/2W X 14H 
+                        </div>
+                          </td>
+                        </tr>
+                          </table>
+                          <br />
+                    </td><td></td><td></td>
+	</tr>
+</table>                   
+             </td>
+          </tr>
+          </table>
+ </td>
+ </tr>
+ </table>
+
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" align="center" > 
+                            <tr>
+                                <td style="width:1020px;">
+                                    <br />
+                                    <hr size="1" style="width:1020px; text-align:left;" noshade="noshade" />
+                                </td>
+                                <td rowspan="2"> &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" style="width:1020px; text-align:center">
+                                    <div class="lower_nav style4">
+                                        <span class="body_black style7">
+                                            &copy; 2013 Bag Makers, Inc&nbsp; /&nbsp; All Rights Reserved&nbsp; /&nbsp; asi 37940&nbsp; /&nbsp; PPAI 111408&nbsp; /&nbsp; UPIC BAGMAKRS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-1428632-1']);
+                _gaq.push(['_trackPageview']);
+
+                (function () {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","DropShadow":true,"PopupControlID":"ctl00_pnlCountry","dynamicServicePath":"/Category_items.aspx","id":"countryPopup"}, null, null, $get("ctl00_lnkbtnDummy"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.RoundedCornersBehavior, {"id":"ctl00_countryRoundedCorners"}, null, null, $get("ctl00_pnlCountry"));
+});
+//]]>
+</script>
+</form>
+    </body>
+</html>
