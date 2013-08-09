@@ -15,7 +15,7 @@ Usage:
 
 Options:
   -h --help           Show this screen.
-  -o --out=<folder>   Where to store the results [default: 'cleaned'].
+  -o --out=<folder>   Where to store the results [default: cleaned].
 
 """
 
