@@ -20,17 +20,20 @@ NER Label Set
 
 Possible labels are:
 
-    * ORG
-    * PER
-    * TEL
-    * FAX
-    * EMAIL
-    * STREET
-    * CITY
-    * STATE
-    * ZIPCODE
-    * COUNTRY
-    * O
+    * ORG - organization, company name - e.g. "University of Massachusetts Amherst"
+    * PER - person name, e.g. "John Doe"
+    * FUNC - person's function, title, role, etc. - e.g. "Director" or "Sales"
+    * TEL - phone
+    * FAX - fax
+    * EMAIL - email
+    * HOURS - open hours, e.g. "Monday-Friday, 10AM - 3PM PST"
+    * SUBJ - subject of the contact data, e.g. "Admissions" or "Customer Service"
+    * STREET - street address
+    * CITY - city
+    * STATE - state, province, county, etc.
+    * ZIPCODE - zipcode, postcode
+    * COUNTRY - country
+    * O - "outside entity"
 
 EMAIL (and maybe TEL, FAX and ZIPCODE) could be easy to extract using
 regexpes, but they are still included in label set because
@@ -51,16 +54,28 @@ Ideas for extra labels:
     * P.O. box / post address
     * Facility/building
     * Department/office/branch
-    * Role (e.g. Director)
     * Open Hours
 
 
 Annotation Guidelines
 ---------------------
 
-Website vendors shouldn't be annotated as ORG.
+The distinction between SUBJ and ORG is somewhat unclear.
+If "subject" of the contact data is an organization, label it as ORG,
+if not then label it as SUBJ. "ORG + contact data" should be unambiguous;
+"SUBJ + contact data" should probably require ORG for understanding.
+Example: "Indian Office" is most likely SUBJ, but "Food Corp. Indian Office"
+is ORG.
 
-Office/department/branch names should be annotated as ORG.
+If something is a part of mailing address, it is unlikely SUBJ.
+
+These rules are not strict; prefer consistency within a single document, e.g.
+if some of the office names are unambigous and some are not, mark them
+all as SUBJ or ORG.
+
+
+Do not annotate website vendors as ORG (leave them unannotated).
+Do not annotate unrelated persons (e.g. review authors) as PER.
 
 Facility/building and P.O. box / post address should be a part of STREET.
 
