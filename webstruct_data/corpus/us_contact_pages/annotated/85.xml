@@ -24,7 +24,7 @@
 <tr><td>Zone 2 refers to the highlighted area of the United States. Items ordered with &quot;Zone 2 Pricing&quot; include all shipping charges to any state within this designated area.</td></tr><td valign="center" align="center" width="50%"><img height="135" src="http://ep.yimg.com/ca/I/yhst-54034216466120_2270_380107" hspace="0" border="0" vspace="0" width="197"/></td>
 </tbody></table></div><div id="login"><fieldset><legend><b>Login</b></legend>
 <div><span id="notify"><div>For a convenience to our Dealers, we protected access to our store with a password. To view pricing as well as other information, please log in.</div>
-<div>If you are a Dealer and are not able to log in, please contact us by phone: 770-721-8391 for assistance.</div>
+<div>If you are a Dealer and are not able to log in, please contact us by phone: <TEL>770-721-8391</TEL> for assistance.</div>
 </span></div></fieldset></div></div><div id="product-image-enlarged"><table cellpadding="0" height="100%" border="0" cellspacing="0" width="100%"><tbody><tr><td valign="center" align="center"><img id="image-enlarged" src=""/><td><div id="x2"></div></td></td></tr></tbody></table><div id="modal-overlay"><div id="header"><div id="logo"><a href="http://www.flashfurniture.com"><img height="61" hspace="0" alt="Flash Furniture" width="257" src="http://ep.yimg.com/ca/I/yhst-54034216466120_2270_395147" border="0" vspace="0"/></a></div><ul class="top-nav-links"><li><a href="index.html" class="active-link">HOME</a></li>
 <li><a href="info.html">INFORMATION</a></li>
 <li><a href="ff.html">FREE FREIGHT</a></li>
@@ -78,8 +78,8 @@
 <li><a href="task-chairs.html">Task Chairs</a></li>
 <li><a href="trash-receptacles.html">Trash Receptacles</a></li>
 </ul></div></div></div><div id="rightcol"><noscript><div id="nojs">To view page properly, javascript must be enabled.</div>
-</noscript><div class="banner">Customer Service</div>
-<table cellpadding="0" class="info-table" border="0" cellspacing="15px" width="100%"><tbody><tr><td valign="top" width="33.3%" align="left">Phone: <b><TEL>770-721-8391</TEL></b></td> <td valign="top" width="33.3%" align="left">Fax: <b><FAX>770-721-8360</FAX></b></td> <td valign="top" width="33.3%" align="left">Hours: <b>M-F 8am-9pm EST</b></td></tr>
+</noscript><div class="banner"><SUBJ>Customer Service</SUBJ></div>
+<table cellpadding="0" class="info-table" border="0" cellspacing="15px" width="100%"><tbody><tr><td valign="top" width="33.3%" align="left">Phone: <b><TEL>770-721-8391</TEL></b></td> <td valign="top" width="33.3%" align="left">Fax: <b><FAX>770-721-8360</FAX></b></td> <td valign="top" width="33.3%" align="left">Hours: <b><HOURS>M-F 8am-9pm EST</HOURS></b></td></tr>
 </tbody></table><div class="info-box"><div>Please fill out this form should you have any questions or concerns. We try our best to answer requests daily (usually within a few hours). <b>Please Note:</b> Filling out this form may not cancel your order if it has already been shipped. A customer service representative will contact you regarding your order cancellation request.</div><hr/>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-type"/><table cellpadding="0" border="0" cellspacing="5px" width="100%"><tbody><tr><td valign="top" align="right"><div><div><label for="name">Name:</label>
 </div><br/><div><label for="company">Company:</label>
@@ -107,8 +107,8 @@
 </ul></td><td valign="top"><ul><li><h3>Questions?</h3>
 </li>
 <li><a href="customer-service.html">Customer Service</a></li>
-<li><a href="catalog-request.html">Catalog Request</a></li>
-<li><TEL>770-721-8391</TEL> M-F 8am-9pm EST</li>
+<li><a href="catalog-request.html"><SUBJ>Catalog Request</SUBJ></a></li>
+<li><TEL>770-721-8391</TEL> <HOURS>M-F 8am-9pm EST</HOURS></li>
 <li><a href="free-freight.html">Free Freight</a></li>
 </ul></td><td valign="top"><ul><li><h3>Store Policies</h3>
 </li>

@@ -131,7 +131,7 @@
 <p><img src="~/media/AZ Electronic Materials/Images/Contact Blocks/geomap3.ashx?w=947&amp;h=158&amp;as=1" height="158" usemap="#rade_img_map_Editor_0" alt="" width="947"/><map id="rade_img_map_Editor_0" name="rade_img_map_Editor_0"><area href="/Contact-us.aspx#link1" coords="241,43,265,63" shape="rect"/><area href="/Contact-us.aspx#link1" coords="568,84,585,101" shape="rect"/><area href="/Contact-us.aspx#link1" coords="876,46,892,62" shape="rect"/><area href="/Contact-us.aspx#link2" coords="213,91,227,105" shape="rect"/><area href="/Contact-us.aspx#link4" coords="329,18,346,35" shape="rect"/><area href="/Contact-us.aspx#link2" coords="601,70,618,87" shape="rect"/><area href="/Contact-us.aspx#link2" coords="851,74,869,92" shape="rect"/><area href="/Contact-us.aspx#link6" coords="239,90,258,109" shape="rect"/><area href="/Contact-us.aspx#link2" coords="35,112,52,129" shape="rect"/><area href="/Contact-us.aspx#link5" coords="272,25,289,42" shape="rect"/><area href="/Contact-us.aspx#link3" coords="312,33,328,49" shape="rect"/><area href="/Contact-us.aspx#link4" coords="561,60,579,78" shape="rect"/><area href="/Contact-us.aspx#link3" coords="841,91,860,110" shape="rect"/><area href="/Contact-us.aspx#link4" coords="406,124,423,141" shape="rect"/><area href="/Contact-us.aspx#link5" coords="268,6,285,23" shape="rect"/><area href="/Contact-us.aspx#link6" coords="253,73,272,92" shape="rect"/><area href="/Contact-us.aspx#link3" coords="587,81,601,97" shape="rect"/><a name="link1"></a></map></p><div class="inr3col cfx"><div class="col col1"><h2 class="frt">ASIA</h2>
 <div class="contactCols cfx"><div class="col col1"><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/New_Shanghai_Offfice.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>China</COUNTRY></h3>
 
-<p class="type">Sales</p>
+<p class="type"><SUBJ>Sales</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials (Suzhou) Limited
 <br/>Shanghai Branch</ORG>
@@ -148,8 +148,8 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={DB099AF1-308E-4D64-964D-AF1E7CB261B8}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/HongKong_Chambers.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><CITY>Hong Kong</CITY></h3>
 
-<p class="type">Sales
-<br/>Corporate Office</p>
+<p class="type"><SUBJ>Sales
+<br/>Corporate Office</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials Hong Kong Limited</ORG>
 <br/><STREET>Unit 601-2, Li Po Chun Chambers
@@ -165,7 +165,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={D08CC78A-C6BA-4AAA-BD13-EA6319C23972}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/AZ_Tokyo office.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Japan</COUNTRY></h3>
 
-<p class="type">IP management</p>
+<p class="type"><SUBJ>IP management</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials IP (Japan) KK</ORG>
 <br/><STREET>Bunkyo Green Court, Center Office 9F
@@ -182,8 +182,8 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={7319E93F-AC95-4F08-9D84-AA2B2BD778CC}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/shizouka - Japan.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Japan</COUNTRY></h3>
 
-<p class="type">Manufacturing
-<br/>R&amp;D</p>
+<p class="type"><SUBJ>Manufacturing
+<br/>R&amp;D</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials Manufacturing (Japan) KK</ORG>
 <br/><STREET>Shizuoka Technology Center
@@ -200,7 +200,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={99D0BA3C-D9F4-4031-91A9-0F684C043862}"><span>@:</span> Email this office</a></p><a name="link5"></a>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Seoul office building.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>South Korea</COUNTRY></h3>
 
-<p class="type">Sales</p>
+<p class="type"><SUBJ>Sales</SUBJ></p>
 </div>
 <p><ORG>AZ Chem (Korea) Ltd.</ORG>
 <br/><STREET>7th Fl., Shinwon Bldg.,
@@ -217,7 +217,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={F4330DF1-3723-4A17-8687-B605A07735B1}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Taiwan Hsinchu.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Taiwan</COUNTRY></h3>
 
-<p class="type">Manufacturing</p>
+<p class="type"><SUBJ>Manufacturing</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials Taiwan Co., Ltd.</ORG>
 <br/><STREET>No. 458-6, Sinsing Road</STREET>
@@ -233,10 +233,10 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={32104B4F-E779-445D-A6F5-6D964E20FD6F}"><span>@:</span> Email this office</a></p>
 </div></div></div><div class="col col2"><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/China_Suzhou.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>China</COUNTRY></h3>
 
-<p class="type">Manufacturing
+<SUBJ><p class="type">Manufacturing
 <br/>Sales
 <br/>Warehouse</p>
-</div>
+</SUBJ></div>
 <p><ORG>AZ Electronic Materials (Suzhou)&#160;Ltd</ORG>
 <br/><STREET>70 Long Pu Road
 <br/>Suzhou Industrial Park</STREET>
@@ -251,7 +251,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={144FDD23-3537-4DE6-8AF8-100A961AE7A3}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/India-Khopoli2.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>India</COUNTRY></h3>
 
-<p class="type">Manufacturing
+<p class="type"><SUBJ>Manufacturing</SUBJ>
 <br/>To see products <a href="/en/Chemtreat Composites India.aspx">click here</a></p>
 </div>
 <p><ORG>Chemtreat Composites India Pvt Ltd</ORG>
@@ -270,7 +270,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={314BD714-1071-459B-9800-0BCD9E376373}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/AZ_Tokyo office.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Japan</COUNTRY></h3>
 
-<p class="type">Sales</p>
+<p class="type"><SUBJ>Sales</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials (Japan) K.K.</ORG>
 <br/><STREET>Bunkyo Green Court, Center Office 9F
@@ -287,7 +287,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={90D979DE-6A09-45C2-B180-94435BA95FB5}"><span>@:</span> Email this office</a></p><a name="link4"></a>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Singapore.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Singapore</COUNTRY></h3>
 
-<p class="type">Sales</p>
+<p class="type"><SUBJ>Sales</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials
 <br/>(Singapore) PTE. LTD.</ORG>
@@ -302,10 +302,10 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={755DCBF3-DA6A-4925-A589-897502A3AF12}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Ansung - Korea.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>South Korea</COUNTRY></h3>
 
-<p class="type">Manufacturing
+<SUBJ><p class="type">Manufacturing
 <br/>R&amp;D
 <br/>Warehouse</p>
-</div>
+</SUBJ></div>
 <p><ORG>AZ Electronic Materials (Korea) Ltd.</ORG>
 <br/><STREET>#325-25 Boche-Ri, Miyang-Myeon</STREET>
 <br/><CITY>Anseong-Si</CITY>, <STATE>GyeongGi-Do</STATE>
@@ -321,7 +321,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={1BD389AA-C4A2-4B6F-A447-01CF4962E045}"><span>@:</span> Email this office</a></p><a name="link6"></a>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Taiwan_Taipei.ashx" height="130" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Taiwan</COUNTRY></h3>
 
-<p class="type">Sales</p>
+<p class="type"><SUBJ>Sales</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials Taiwan Co., Ltd.</ORG>
 <br/><STREET>5th Floor No. 96 ChienKuo North Road Section 1</STREET>
@@ -337,11 +337,11 @@
 </div></div></div></div></div><div class="col col2"><h2 class="frt">EUROPE</h2>
 <div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/LaMotte - France.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>France</COUNTRY> (Klebosol®)</h3>
 
-<p class="type">Manufacturing
+<SUBJ><p class="type">Manufacturing
 <br/>Sales
 <br/>Warehouse
 <br/>R&amp;D</p>
-</div>
+</SUBJ></div>
 <p><ORG>AZ Electronic Materials France SAS</ORG>
 <br/><STREET>1 Rue du Flottage, BP 15</STREET>
 <br/><ZIPCODE>F-60350</ZIPCODE> <CITY>Trosly-Breuil</CITY>
@@ -355,11 +355,11 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={6B9D06D6-0F20-4636-9C6D-B679305806CB}"><span>@:</span> Email this office</a></p><a name="link2"></a>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Weisbaden Germany.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>Germany</COUNTRY></h3>
 
-<p class="type">Manufacturing
+<p class="type"><SUBJ>Manufacturing
 <br/>Warehouse
 <br/>Sales
 <br/>R&amp;D
-<br/>To see Custom Manufacturing <a href="/en/Custom Manufacturing.aspx">click here</a></p>
+<br/></SUBJ>To see Custom Manufacturing <a href="/en/Custom Manufacturing.aspx">click here</a></p>
 </div>
 <p><ORG>AZ Electronic Materials (Germany) GmbH</ORG>
 <br/><STREET>Rheingaustrasse 190-196</STREET>
@@ -373,7 +373,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={1D38B7A4-08B3-4F81-A60A-701E103556B6}"><span>@:</span> Email this office</a></p><a name="link3"></a>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Luxembourg-office.ashx" height="129" alt="Luxembourg office" width="216"/></div><div class="name"><h3><COUNTRY>Luxembourg</COUNTRY></h3>
 
-<p class="type">Registered Office</p>
+<p class="type"><SUBJ>Registered Office</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials S.A.</ORG>
 <br/><STREET>32-36, Boulevard d&apos;Avranches</STREET>
@@ -390,7 +390,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={26F90DB4-C016-404F-8DBD-D30E0B415FE3}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/stockley uk.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>UK</COUNTRY></h3>
 
-<p class="type">Corporate Office</p>
+<p class="type"><SUBJ>Corporate Office</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Material Services Ltd</ORG>
 <br/><STREET>Lakeside House
@@ -409,11 +409,11 @@
 </div></div></div><div class="col col3"><h2 class="frt">NORTH AMERICA</h2>
 <div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Branchburg USA.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>USA</COUNTRY></h3>
 
-<p class="type">Manufacturing
+<SUBJ><p class="type">Manufacturing
 <br/>Sales
 <br/>Warehouse
 <br/>R&amp;D</p>
-</div>
+</SUBJ></div>
 <p><ORG>AZ Electronic Materials USA Corp</ORG>
 <br/><STREET>70 Meister Avenue</STREET>
 <br/><CITY>Branchburg</CITY>, <STATE>NJ</STATE> <ZIPCODE>08876-3440</ZIPCODE>
@@ -427,9 +427,9 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={58A47CFC-9C67-4D5F-9F68-31E21073AAEE}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/USA-Charlotte.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>USA</COUNTRY> (Klebosol®)</h3>
 
-<p class="type">CPM Slurries and Colloidal Silica
+<SUBJ><p class="type">CPM Slurries and Colloidal Silica
 <br/>Sales</p>
-</div>
+</SUBJ></div>
 <p><ORG>AZ Electronic Materials USA Corp.</ORG>
 <br/><STREET>Mallard Creek Center
 <br/>8605 Cliff Cameron Drive, Suite 150</STREET>
@@ -444,7 +444,7 @@
 <p><a class="contactLink" url="/contact-form.aspx?pid={B1E8DDD3-7F78-4816-90FF-14AFC4606339}"><span>@:</span> Email this office</a></p>
 </div></div><div class="contactBox"><div class="imgWrap"><img src="/~/media/AZ Electronic Materials/Images/Contact Blocks/Martin.ashx" height="129" alt="" width="216"/></div><div class="name"><h3><COUNTRY>USA</COUNTRY> (Klebosol®)</h3>
 
-<p class="type">Manufacturing</p>
+<p class="type"><SUBJ>Manufacturing</SUBJ></p>
 </div>
 <p><ORG>AZ Electronic Materials USA Corp.</ORG>
 <br/><STREET>788 Chert Quarry Road</STREET>

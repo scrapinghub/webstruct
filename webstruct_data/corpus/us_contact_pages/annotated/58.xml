@@ -8,12 +8,12 @@
 <li><a href="http://www.chocolatesprings.com/Story4.php">Our Story</a></li>
 <li><a href="https://hugo.jf-olm.com/~chocolat/DDGAssets/Contact/sContact.php">Contact Us</a></li>
 </ul></label></nav></div></div></div><h4></h4><div class="hdrgroupwide"><div class="sixcol"><img alt="logo" src="https://hugo.jf-olm.com/~chocolat/SiteAssets/PNG/alogo3nbj600.png"/></div><div class="twocol">
-<p class="hdrbttn">Café Open 7 days
+<p class="hdrbttn">Café Open <HOURS>7 days
 <br/>Sun-Thurs:
 <br/>9:00AM-9:00PM
 <br/>Fri-Sat:
-<br/>9:00AM-10:00PM</p>
-</div><div class="fourcol last"><nav class="head clearfix"><ul class="topnavcart"><li class="phone">(413) 637-9820</li>
+<br/>9:00AM-10:00PM</HOURS></p>
+</div><div class="fourcol last"><nav class="head clearfix"><ul class="topnavcart"><li class="phone"><TEL>(413) 637-9820</TEL></li>
 <li><a href="http://www.chocolatesprings.com/DDGAssets/Cart/Cart.php">Shopping Bag 0</a></li>
 </ul><div id="login"><a class="loginsubmit" href="https://hugo.jf-olm.com/~chocolat/DDGAssets/Login/SigninCreate.php?b">My Account</a></div>
 <div id="logout"><a class="loginsubmit" href="https://hugo.jf-olm.com/~chocolat/DDGAssets/Login/Logout.php?b">Logout</a></div>
@@ -59,7 +59,7 @@
 </div><br/><div class="fourcol contact"><h4>By phone:</h4>
 <h5><TEL>413-637-9820</TEL></h5>
 <h4>By fax:</h4>
-<h5><TEL>413-637-9825</TEL></h5>
+<h5><FAX>413-637-9825</FAX></h5>
 
 </div><br/><div class="fourcol last contact"><h4>By e-mail:</h4>
 <h5><a href="mailto:info@chocolatesprings.com"><EMAIL>info@chocolatesprings.com</EMAIL></a></h5>
@@ -105,7 +105,7 @@
 </a></div><div class="fourcol prodgroup last"><a href="http://www.chocolatesprings.com/Catalog/CatProdDetail.php?94"><img class="center" alt="Chocolate Springs" src="https://hugo.jf-olm.com/~chocolat/DDGAssets/ProductThumbs/20PC.jpg"/><h3>20 Piece Custom Assortment</h3>
 </a></div></section><footer class="box"><div class="threecol first"><h3>Our Story</h3>
 
-<p>Joshua Needleman, creator and chocolatier of Chocolate Springs Café, has been fascinated with chocolate all of his life. Joshua is a native of Lebanon Springs, New York: <a href="http://www.chocolatesprings.com/Story4.php">...more</a></p>
+<p><PER>Joshua Needleman</PER>, creator and chocolatier of <ORG>Chocolate Springs Café</ORG>, has been fascinated with chocolate all of his life. Joshua is a native of Lebanon Springs, New York: <a href="http://www.chocolatesprings.com/Story4.php">...more</a></p>
 </div><div class="threecol testi"><h3>Testimonials</h3>
 <blockquote><div id="tstmnls">
 <p class="tstmnltxt"><i>&quot;Chocolates you only dream of&quot;</i></p>

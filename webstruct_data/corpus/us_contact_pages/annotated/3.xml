@@ -9,8 +9,8 @@
 <h4 class="arrowbluetext">Looking for Components information?</h4>
 <div id="contactbox">
 <p><strong>Sales Inquiries:
-</strong><br/>&#160;&#160;For components quote Inquiries, within the United States, email Arrow&apos;s Components
-<br/>&#160;&#160;Online Service Center at <a href="mailto:onlinesales@arrow.com"><EMAIL>onlinesales@arrow.com</EMAIL></a> or <TEL>800-833-3557</TEL>.</p>
+</strong><br/>&#160;&#160;For components quote Inquiries, within the United States, email <ORG>Arrow&apos;s Components
+<br/>&#160;&#160;Online Service Center</ORG> at <a href="mailto:onlinesales@arrow.com"><EMAIL>onlinesales@arrow.com</EMAIL></a> or <TEL>800-833-3557</TEL>.</p>
 
 <p>&#160;&#160; <a target="_blank" href="http://www.arrownac.com/">Click Here</a> to order parts online within the United States.</p>
 
@@ -23,7 +23,7 @@
 </div>
 <p></p><h4 class="arrowbluetext">Corporate Information:</h4>
 <div id="contactbox">
-<p><strong>Corporate Headquarters:
+<p><strong><SUBJ>Corporate Headquarters</SUBJ>:
 </strong><br/>&#160;&#160;<ORG>Arrow Electronics, Inc.</ORG>
 <br/>&#160;&#160;<STREET>7459 S. Lima Street</STREET>
 <br/>&#160;&#160;<CITY>Englewood</CITY>, <STATE>CO</STATE> <ZIPCODE>80112-5816</ZIPCODE>
@@ -35,11 +35,11 @@
 <p><strong>Press and Media Contacts:</strong>
 <br/>&#160;&#160;Contact information for media inquiries is located in our <a href="/media_center/index.html">Media Center</a> .</p>
 
-<p><strong>Investor Relations:
+<p><strong><SUBJ>Investor Relations</SUBJ>:
 </strong><br/>&#160;&#160;If you have any questions about Investor Relations please email us at
 <br/>&#160;&#160; <a href="mailto:investor@arrow.com"><EMAIL>investor@arrow.com</EMAIL></a> .</p>
 
-<p><strong>Website Feedback:
+<p><strong><SUBJ>Website Feedback</SUBJ>:
 </strong><br/>&#160;&#160;We would like your feedback. Please email us at <a href="mailto:webrequest@arrow.com"><EMAIL>webrequest@arrow.com</EMAIL></a> .</p>
 </div></div><div><div id="onearrow_footer"></div></div>
 <p>&#160;</p>

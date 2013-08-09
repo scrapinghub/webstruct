@@ -18,8 +18,8 @@
 <br/><FAX>(650) 566-1122</FAX> fax
 <br/><a id="email" href="mailto:dan@dangoldie.com"><EMAIL>dan@dangoldie.com</EMAIL></a>
 </p><br/>
-</div><div id="mainContent"><div class="photo"><img id="Photo" height="254" src="Images/experienced.jpg" alt="Dan Goldie Financial Services - About Us" width="699" name="Photo"/><h1 class="twoColFixLtHdr"><img class="twoColFixLtHdr" height="32" src="Images/AboutUs.png" alt="About Dan Goldie Financial Services - An independent financial advisor and financial planner" width="660"/></h1></div><h1 class="twoColFixLtHdr"><PER>Daniel C. Goldie</PER>, CFA, CFP
-<br/>President</h1>
+</div><div id="mainContent"><div class="photo"><img id="Photo" height="254" src="Images/experienced.jpg" alt="Dan Goldie Financial Services - About Us" width="699" name="Photo"/><h1 class="twoColFixLtHdr"><img class="twoColFixLtHdr" height="32" src="Images/AboutUs.png" alt="About Dan Goldie Financial Services - An independent financial advisor and financial planner" width="660"/></h1></div><h1 class="twoColFixLtHdr"><PER>Daniel C. Goldie</PER>, <FUNC>CFA, CFP
+<br/>President</FUNC></h1>
 
 <p><img id="BioPhoto" height="158" src="Images/Goldie_retouched.jpg" alt="Daniel C. Goldie, CFA, CFP, President" width="150" name="BioPhoto"/><PER>Dan Goldie</PER> is the President and Founder of <ORG>Dan Goldie Financial Services</ORG>. He is a fee-only, independent financial advisor and financial planner. For nearly two decades he has devoted his professional career to helping individual investors and their families realize their investment and financial goals.
 <br/>
@@ -39,7 +39,7 @@
 <br/>Contact <PER>Steve Sobel</PER> with <ORG>Washington Speakers Bureau</ORG> at <TEL>703.684.0555</TEL> or <a href="mailto:SteveS@WashingtonSpeakers.com"><EMAIL>SteveS@WashingtonSpeakers.com</EMAIL></a></p>
 
 <p></p><h1 class="twoColFixLtHdr"><PER>Dirk Gilliard</PER>,
-<br/>Partner</h1>
+<br/><FUNC>Partner</FUNC></h1>
 
 <p><img id="BioPhoto" height="158" src="Images/Dirk_Headshot.jpg" alt="Dirk Gilliard, Partner" width="150" name="BioPhoto"/><PER>Dirk Gilliard</PER> is a Partner of <ORG>Dan Goldie Financial Services</ORG>. He is a fee-only, independent financial advisor and financial planner. For over 15 years, he has been helping individual investors and their families realize their investment goals.
 <br/>

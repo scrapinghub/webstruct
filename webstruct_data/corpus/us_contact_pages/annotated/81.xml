@@ -13,7 +13,7 @@
 <li><a href="http://www.coushattacasinoresort.com/meetings/">Corporate Events</a></li>
 <li><a id="currentpage" href="http://www.coushattacasinoresort.com/contact/">Contact Us</a></li>
 </ul><div class="subnav_bot"></div><div id="content_right"><h1>Contact Us</h1>
-<div class="heading_rule"><h2>Coushatta Casino Resort</h2>
+<div class="heading_rule"><h2><ORG>Coushatta Casino Resort</ORG></h2>
 
 <p><STREET>777 Coushatta Drive</STREET>
 <br/><CITY>Kinder</CITY>, <STATE>Louisiana</STATE> <ZIPCODE>70648</ZIPCODE>
@@ -27,10 +27,10 @@
 <li><label for="user_message">Enter your Message*</label></li>
 <li><label>(*required)</label></li>
 </ul><div class="clear_both">
-<p>If you have questions, you may phone Coushatta’s Service Recovery Manager, <PER>Judy McCarley</PER>, at <TEL>1-800-584-7263, ext. 7638</TEL>. You may reach Judy during regular business hours Monday-Friday. Or you may address correspondence to:</p>
+<p>If you have questions, you may phone Coushatta’s <FUNC>Service Recovery Manager</FUNC>, <PER>Judy McCarley</PER>, at <TEL>1-800-584-7263, ext. 7638</TEL>. You may reach Judy during <HOURS>regular business hours Monday-Friday</HOURS>. Or you may address correspondence to:</p>
 
 <p><PER>Judy McCarley</PER>
-<br/>Service Recovery Manager
+<br/><FUNC>Service Recovery Manager</FUNC>
 <br/><ORG>Coushatta Casino Resort</ORG>
 <br/><STREET>P.O. Box 1510</STREET>
 <br/><CITY>Kinder</CITY>, <STATE>LA</STATE> <ZIPCODE>70648</ZIPCODE></p>

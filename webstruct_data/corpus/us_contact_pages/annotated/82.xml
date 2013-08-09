@@ -286,7 +286,7 @@
 <p>We are sorry that your goods have not reached you in perfect condition. Please follow our normal returns policy for all faulty or damaged items. When creating a returns number, you will be given a list of reasons for return, please select the appropriate option so our warehouse know the item was faulty when you received it. Please refer to the Returns section in our <strong><a target="_blank" href="https://www.dorothyperkins.com/webapp/wcs/stores/servlet/CatalogNavigationSearchResultCmd?catalogId=33053&amp;storeId=12552&amp;langId=-1&amp;viewAllFlag=false&amp;categoryId=278500&amp;interstitial=true&amp;TS=1302611969343">FAQs</a></strong> for more information on this.</p>
 </div><div id="ans_21" class="ans"><h3>Can I cancel or amend my order?</h3>
 
-<p>If your order has been placed within the last four hours, please call us on&#160;0844 984 0261&#160;to request a cancellation. Please click the PHONE link below for&#160;our Customer Care opening hours.</p>
+<p>If your order has been placed within the last four hours, please call us on&#160;<TEL>0844 984 0261</TEL>&#160;to request a cancellation. Please click the PHONE link below for&#160;our Customer Care opening hours.</p>
 
 <p>Once an order has been placed, we are unable to amend any aspect of the order including sizes, number of items and delivery address.</p>
 </div><div id="ans_22" class="ans"><h3>My order did not go through but the money has been taken out of my account</h3>
@@ -300,7 +300,7 @@
 </p><br/>
 </div><div id="ans_32" class="ans"><h3>Do you have any information about your company (Company Report, Ethical Policy, etc.)?</h3>
 
-<p>Dorothy Perkins&#160;is owned by Arcadia Group Ltd. For all information relating to our company, please click <a target="_blank" href="http://www.arcadiagroup.co.uk/fashionfootprint">here</a> .</p>
+<p><ORG>Dorothy Perkins</ORG>&#160;is owned by <ORG>Arcadia Group Ltd</ORG>. For all information relating to our company, please click <a target="_blank" href="http://www.arcadiagroup.co.uk/fashionfootprint">here</a> .</p>
 </div><div id="ans_33" class="ans"><h3>I am interested in becoming a supplier or looking for a charity donation</h3>
 
 <p>If you are interested in becoming a supplier, please contact our Switchboard on <TEL>+44 (0)844 243 0000</TEL> or write to us at the below address:</p>
@@ -316,7 +316,7 @@
 
 <p>If you have forgotten your password, please click <a target="_blank" href="/webapp/wcs/stores/servlet/LogonForm?catalogId=33053&amp;storeId=12552&amp;krypto=KW8BMPEpPSoquUm1znPJqQ%3D%3D&amp;ddkey=http:LogonForm">here</a> to reset it.</p>
 
-<p>If you require your account to be unblocked urgently, please call us on 0844 984 0261.</p>
+<p>If you require your account to be unblocked urgently, please call us on <TEL>0844 984 0261</TEL>.</p>
 </div><div id="ans_36" class="ans"><h3>I need to find out the opening times or telephone number of a store</h3>
 
 <p>Please click <a target="_blank" href="http://www.dorothyperkins.com/webapp/wcs/stores/servlet/TopCategoriesDisplay?storeId=12552&amp;catalogId=33053">here</a> to find out contact information and opening hours of our stores, our store locator link can be found at the bottom of this page.</p>
@@ -377,7 +377,7 @@
 <p>To open a store card, please speak to a member of staff in any of our UK stores. Please note that we do no currently offer a store card scheme outside the UK at present.</p>
 </div><div id="ans_52" class="ans"><h3>I wish to change my account details or pay off my store card balance</h3>
 
-<p>All of our Store Cards are administered by Santander Cards. For any queries relating to your card, including paying your balance, changing your address or cancelling your card, please contact Santander on 0871 522 5454.</p>
+<p>All of our Store Cards are administered by Santander Cards. For any queries relating to your card, including paying your balance, changing your address or cancelling your card, please contact Santander on <TEL>0871 522 5454</TEL>.</p>
 
 <p>For security reasons, Santander are unable to accept any queries sent via email.</p>
 </div><div id="ans_53" class="ans"><h3>I have an account card query</h3>
@@ -392,17 +392,17 @@
 </fieldset><ul class="menu_inline cf form_navigation sp_25"><li class="continue_on"></li></ul><div id="contact_footer"><div class="cms_content"><h2 class="dottedline miniHeader">Phone</h2>
 <div class="minicontent">
 <p>Our Customer Care department is open between:
-<br/>- 9am and 9pm (GMT/BST) Monday to Friday
+<br/><HOURS>- 9am and 9pm (GMT/BST) Monday to Friday
 <br/>- 9am to 6pm (GMT/BST) - weekends
-<br/>- 9am to 5:30pm (GMT/BST) UK bank holidays</p>
+<br/>- 9am to 5:30pm (GMT/BST) UK bank holidays</HOURS></p>
 
-<p><strong>UK customers:</strong> <TEL>0844 984 0261</TEL> (calls charged at national rate)</p>
+<p><strong><SUBJ>UK customers</SUBJ>:</strong> <TEL>0844 984 0261</TEL> (calls charged at national rate)</p>
 
-<p><strong>Republic of Ireland customers:</strong> <TEL>+44 870 606 9666</TEL> (calls charged at national rate)</p>
+<p><strong><SUBJ>Republic of Ireland customers</SUBJ>:</strong> <TEL>+44 870 606 9666</TEL> (calls charged at national rate)</p>
 
-<p><strong>United States customers:</strong> <TEL>1866 296 6672</TEL> (toll free)</p>
+<p><strong><SUBJ>United States customers</SUBJ>:</strong> <TEL>1866 296 6672</TEL> (toll free)</p>
 
-<p class="last-para"><strong>International customers:</strong> <TEL>+44 844 984 0261</TEL> (calls charged at international rate)</p>
+<p class="last-para"><strong><SUBJ>International customers</SUBJ>:</strong> <TEL>+44 844 984 0261</TEL> (calls charged at international rate)</p>
 </div><h2 class="dottedline miniHeader">Telephone Orders</h2>
 <div class="minicontent">
 <p>If you are having problems buying online you can also place your order over the phone by speaking with one of our home shopping representatives.</p>

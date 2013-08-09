@@ -28,7 +28,7 @@
 <div class="blanks"><div class="contact_add">
 <p><font color="#721C27" size="2"><strong>International Market:</strong></font></p>
 
-<p><span><font color="#333333">Flavor Consultants</font></span></p>
+<p><span><font color="#333333"><ORG>Flavor Consultants</ORG></font></span></p>
 
 <p><strong><span><font color="#333333">Phone:</font></span></strong><span><font color="#333333"></font></span> <span><b><span><TEL>702-643-4378</TEL></span></b></span></p>
 
@@ -59,21 +59,21 @@
 <p align="left"><font color="#000" size="4"><b>COMPANY DIRECTORY</b></font></p>
 <div class="blanks">
 </div><p><p><p><p><p><p></p></p></p></p></p></p><p>&#160;</p>
-<div class="blanks"><div class="contact_des">President</div>
+<div class="blanks"><div class="contact_des"><FUNC>President</FUNC></div>
 <div class="contact_per"><PER>Kanu Patel</PER></div>
-<div class="blanks"><div class="contact_des">Vice President</div>
+<div class="blanks"><div class="contact_des"><FUNC>Vice President</FUNC></div>
 <div class="contact_per"><PER>Bill Robertson</PER></div>
-<div class="blanks"><div class="contact_des"><strong>Chief Financial Officer</strong></div>
+<div class="blanks"><div class="contact_des"><strong><FUNC>Chief Financial Officer</FUNC></strong></div>
 <div class="contact_per"><PER>Cathy Staley</PER></div>
-<div class="blanks"><div class="contact_des">Director of Operations</div>
+<div class="blanks"><div class="contact_des"><FUNC>Director of Operations</FUNC></div>
 <div class="contact_per"><PER>Phil Price</PER></div>
-<div class="blanks"><div class="contact_des">Director of Sales &amp; Marketing</div>
+<div class="blanks"><div class="contact_des"><FUNC>Director of Sales &amp; Marketing</FUNC></div>
 <div class="contact_per"><PER>Dave Wood</PER></div>
-<div class="blanks"><div class="contact_des">Lab Manager; R&amp;D</div>
+<div class="blanks"><div class="contact_des"><FUNC>Lab Manager; R&amp;D</FUNC></div>
 <div class="contact_per"><PER>Randy Pierce</PER></div>
-<div class="blanks"><div class="contact_des">Quality Assurance Manager</div>
+<div class="blanks"><div class="contact_des"><FUNC>Quality Assurance Manager</FUNC></div>
 <div class="contact_per"><PER>Geetika Duggal</PER></div>
-<div class="blanks"><div class="contact_des">Customer Service</div>
+<div class="blanks"><div class="contact_des"><FUNC>Customer Service</FUNC></div>
 <div class="contact_per"><PER>Jani Daly</PER>, <PER>Cathy Hooper</PER></div>
 <div class="blanks"><div class="blanks"></div></div><div class="body_main_right"><div class="right_bg"><div class="nav_section"><ul><li><a href="about_us.html">About Us</a></li>
 <li><a href="products.html">Products</a></li>

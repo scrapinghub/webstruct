@@ -2,7 +2,7 @@
 
 </head><body><div id="holder"><div id="header"><div id="header-image"><a href="/" title="TFO Home Page"><img title="TFO Logo" height="84" src="/images/assets/logo-tfo.gif" alt="TFO Logo" width="277"/></a></div><div id="header-right"><span class="header-right-large"><TEL>0845 653 2064</TEL></span> <span class="header-right-label">Email:</span> <a href="mailto:info@thefurnitureombudsman.org" class="header-right-smaller" title="Email 
 us"><EMAIL>info@thefurnitureombudsman.org</EMAIL></a>
-<br/><span class="header-right-label">Monday to Friday:</span> <span class="header-right-smaller">9am to 5pm</span></div>
+<br/><HOURS><span class="header-right-label">Monday to Friday:</span> <span class="header-right-smaller">9am to 5pm</span></HOURS></div>
 </div><div id="toolbar"><div id="toolbar-buttons"><a target="0" title="Twitter" href="http://www.twitter.com/tfombudsman"><img title="@tfombudsman" height="24" src="/images/assets/toolbartwittertfo.jpg" alt="Twitter" width="24"/><a target="0" title="LinkedIn" href="http://www.linkedin.com/company/2328317?trk=tyah"><img title="TFO LinkedIn" height="24" src="/images/assets/toolbarlinkedintfo.jpg" alt="LinkedIn" width="24"/><a href="#" title="Print Page"><img title="Print Page" height="24" src="/images/assets/toolbarprint.jpg" alt="Print Page" width="96"/></a></a></a></div></div><div id="content"><div id="content-left"><div id="left-nav"><ul><li class="nav-1"><a href="/how-to-complain" title="How To Complain">How To Complain</a></li>
 <li class="nav-2"><a href="/expert-inspections" title="Expert Inspections">Expert Inspections</a> <ul><li class=""><a href="/expert-inspections/independent-smart-report" title="Independent Smart Report">Independent Smart Report</a></li>
 <li class=""><a href="/expert-inspections/independent-expert-report" title="Independent Expert Report">Independent Expert Report</a></li>
@@ -31,7 +31,7 @@ us"><EMAIL>info@thefurnitureombudsman.org</EMAIL></a>
 <li>&#160;»&#160;Contact Us</li>
 </ul></div><h2>Contact Us</h2>
 
-<p><img src="../../images/contact.jpg" height="130" alt="" width="230"/></p><h3>Our offices are open Monday to Friday, 9am to 5pm.</h3>
+<p><img src="../../images/contact.jpg" height="130" alt="" width="230"/></p><h3>Our offices are open <HOURS>Monday to Friday, 9am to 5pm.</HOURS></h3>
 <h2>Please call us on <TEL>0845 653 2064</TEL></h2>
 <h3>or send an email to <a href="mailto:info@thefurnitureombudsman.org"><EMAIL>info@thefurnitureombudsman.org</EMAIL></a></h3>
 

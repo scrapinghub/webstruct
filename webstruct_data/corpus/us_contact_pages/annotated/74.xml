@@ -13,7 +13,7 @@
 <li id="super-contact"><a href="/contact/">Contact Us</a></li>
 <li id="super-map" class="last"><a href="/maps/">Map/Directions</a></li>
 </ul></div></div></div><div id="header"><div id="banner"><img id="print-banner" height="51" src="/contact/images/site/print.banner.gif" alt="" width="665"/><h1><a href="/contact/" title="Contact Home">Contact</a></h1>
-</div><div id="search"><fieldset class="input"><label for="search_text"><img src="/contact/images/site/search.gif" height="14" alt="Search" width="46"/><div class="clear"></div></label></fieldset></div><div id="content-wrap"><div id="content"><h2>Harvard Business School</h2>
+</div><div id="search"><fieldset class="input"><label for="search_text"><img src="/contact/images/site/search.gif" height="14" alt="Search" width="46"/><div class="clear"></div></label></fieldset></div><div id="content-wrap"><div id="content"><h2><ORG>Harvard Business School</ORG></h2>
 <div id="col1"><div id="v-card-HarvardBusiness" class="vcard"><h3>School Mailing Address:</h3>
 <div class="name-address"><h4 class="fn"><ORG>Harvard Business School</ORG></h4>
 
@@ -29,23 +29,23 @@
 <li id="tw"><a href="http://twitter.com/HarvardHBS/">Twitter</a></li>
 <li id="yt"><a href="http://www.youtube.com/user/HarvardBSchool/">YouTube</a></li>
 <li id="it"><a href="http://itunes.apple.com/WebObjects/DZR.woa/wa/viewGenre?a=379060688&amp;id=40000001">iTunes U.</a></li>
-</ul></div></div><div id="col2"><table class="contact"><tbody><tr><td class="name"><h3>Alumni Inquiries</h3>
+</ul></div></div><div id="col2"><table class="contact"><tbody><tr><td class="name"><h3><SUBJ>Alumni Inquiries</SUBJ></h3>
 <a href="http://www.hbs.edu/contact/alumni.html">More Information</a></td> <td class="tel"><a href="tel:16174956890" class="call"><TEL>1-617-495-6890</TEL></a></td> <td class="email"><a class="mail" href="mailto:alumni@hbs.edu"><EMAIL>alumni@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>Alumni Recruiter Inquiries</h3>
+<tr><td class="name"><h3><SUBJ>Alumni Recruiter Inquiries</SUBJ></h3>
 <a href="http://www.hbs.edu/recruiting/alumni/profiles.html">More Information</a></td> <td class="tel"><a href="tel:16174951433" class="call"><TEL>1-617-495-1433</TEL></a></td> <td class="email"><a class="mail" href="mailto:career_advisors@hbs.edu"><EMAIL>career_advisors@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>Corporate Giving Inquiries</h3>
+<tr><td class="name"><h3><SUBJ>Corporate Giving Inquiries</SUBJ></h3>
 <a href="http://www.alumni.hbs.edu/giving/corporate-partners/">More Information</a></td> <td class="tel"><a href="tel:16174956889" class="call"><TEL>1-617-495-6889</TEL></a></td> <td class="email"><a class="mail" href="mailto:kcietanno@hbs.edu"><EMAIL>kcietanno@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>Doctoral Programs Admissions</h3>
+<tr><td class="name"><h3><SUBJ>Doctoral Programs Admissions</SUBJ></h3>
 <a href="http://www.hbs.edu/contact/doctoral.html">More Information</a></td> <td class="tel"><a href="tel:16174956101" class="call"><TEL>1-617-495-6101</TEL></a></td> <td class="email"><a class="mail" href="mailto:DoctoralPrograms@hbs.edu"><EMAIL>DoctoralPrograms@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>Executive Education</h3>
+<tr><td class="name"><h3><SUBJ>Executive Education</SUBJ></h3>
 <a href="http://www.exed.hbs.edu/contact.html">More Information</a></td> <td class="tel"><a href="tel:16174956555" class="call"><TEL>1-617-495-6555</TEL></a></td> <td class="email"><a class="mail" href="mailto:executive_education@hbs.edu"><EMAIL>executive_education@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>MBA Admissions</h3>
+<tr><td class="name"><h3><SUBJ>MBA Admissions</SUBJ></h3>
 <a href="http://www.hbs.edu/mba/admissions/contact.html">More Information</a></td> <td class="tel"><a href="tel:16174956128" class="call"><TEL>1-617-495-6128</TEL></a></td> <td class="email"><a class="mail" href="mailto:admissions@hbs.edu"><EMAIL>admissions@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>MBA Recruiter Inquiries</h3>
+<tr><td class="name"><h3><SUBJ>MBA Recruiter Inquiries</SUBJ></h3>
 <a href="http://www.hbs.edu/recruiting/mba/our-office/">More Information</a></td> <td class="tel"><a href="tel:16174956232" class="call"><TEL>1-617-495-6232</TEL></a></td> <td class="email"><a class="mail" href="mailto:mbacareers@hbs.edu"><EMAIL>mbacareers@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name"><h3>Press Inquiries</h3>
+<tr><td class="name"><h3><SUBJ>Press Inquiries</SUBJ></h3>
 <a href="http://www.hbs.edu/news/">More Information</a></td> <td class="tel"><a href="tel:16174956155" class="call"><TEL>1-617-495-6155</TEL></a></td> <td class="email"><a class="mail" href="mailto:news@hbs.edu"><EMAIL>news@hbs.edu</EMAIL></a></td></tr>
-<tr><td class="name" colspan="2"><h3>Feedback</h3>
+<tr><td class="name" colspan="2"><h3><SUBJ>Feedback</SUBJ></h3>
 For general inquiries outside the areas of responsibility above.
 <br/>Note: For LEFA or password/account-specific information, please refer to information provided on our <a href="http://www.alumni.hbs.edu/lefa/">Alumni site</a></td> <td class="email"><a class="mail" href="mailto:feedback@hbs.edu"><EMAIL>feedback@hbs.edu</EMAIL></a></td></tr>
 <tr><td class="bottom" colspan="3">&#160;</td></tr>
@@ -63,7 +63,7 @@ For general inquiries outside the areas of responsibility above.
 <li><a href="http://www.isc.hbs.edu/contactus.htm">Institute for Strategy &amp; Competitiveness</a></li>
 <li><a href="http://www.hbs.edu/contact/leadership.html">Leadership Initiative</a></li>
 <li><a href="http://www.hbs.edu/socialenterprise/contactus.html">Social Enterprise Initiative</a></li>
-</ul></div></div><div class="clear"></div><div id="footer"><div id="copyright">Copyright &#169; 2013 President &amp; Fellows of Harvard College</div>
+</ul></div></div><div class="clear"></div><div id="footer"><div id="copyright">Copyright &#169; 2013 <ORG>President &amp; Fellows of Harvard College</ORG></div>
 <ul class="nav"><li><a href="http://www.harvard.edu/">Harvard University</a></li>
 <li><a href="http://www.hbs.edu/employment/">Employment</a></li>
 <li><a href="http://www.hbs.edu/about/privacy.html">Privacy Policy</a></li>

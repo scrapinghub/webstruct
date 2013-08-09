@@ -110,7 +110,7 @@
 <tr><th>Email</th> <td><a href="mailto:info@dinegreen.com"><EMAIL>info@dinegreen.com</EMAIL></a></td></tr>
 <tr><th>Webpage</th> <td><a href="http://www.dinegreen.com">http://www.dinegreen.com</a> <small><a href="http://www.dinegreen.com" rel="external">- open in new window</a></small></td></tr>
 <tr><th>Released</th> <td>25/02/2013</td></tr>
-<tr><th>Contributor</th> <td><PER>Diego Núñez</PER></td></tr>
+<tr><th><FUNC>Contributor</FUNC></th> <td><PER>Diego Núñez</PER></td></tr>
 <tr><th>Geographical coverage</th> <td><COUNTRY>USA</COUNTRY>,<COUNTRY>Canada</COUNTRY>,,</td></tr>
 <tr><th>Type</th><img title="Certificates" alt="Certificates" src="http://destinet.eu/portal_map/getSymbolPicture?id=symbol998"/> <td>Certificates</td></tr>
 <tr><th>Keywords</th> <td>Certification and standards, awardingorganisations,</td></tr>

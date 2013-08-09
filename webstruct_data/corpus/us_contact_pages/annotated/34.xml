@@ -177,12 +177,12 @@
 </ul></td><td><span class="title">
 <br/>Customer Assistance</span> <ul><span class="menu_plain_text"><b>Technical Assistance</b>
 <br/><TEL>1.800.523.9466</TEL>
-<br/>24/7</span> <li><a href="/en-US/Service-Support/Pages/Assistance/TechnicalSupportForm.aspx">Online Tech Support</a></li>
-<span class="menu_plain_text"><b>Customer Service</b>
+<br/><HOURS>24/7</HOURS></span> <li><a href="/en-US/Service-Support/Pages/Assistance/TechnicalSupportForm.aspx">Online Tech Support</a></li>
+<span class="menu_plain_text"><b><SUBJ>Customer Service</SUBJ></b>
 <br/><TEL>1.888.LUTRON1
 <br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(588-7661)</TEL>
-<br/>8AM-8PM EST</span> <li><a href="/en-US/Service-Support/Pages/Assistance/ContactCustomerService.aspx">Online Customer Service</a></li>
-<span class="menu_plain_text"><b>Consumer Design &amp; Assistance</b>
+<br/><HOURS>8AM-8PM EST</HOURS></span> <li><a href="/en-US/Service-Support/Pages/Assistance/ContactCustomerService.aspx">Online Customer Service</a></li>
+<span class="menu_plain_text"><b><SUBJ>Consumer Design &amp; Assistance</SUBJ></b>
 <br/><TEL>1-888-LUTRON1
 <br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(588-7661)</TEL></span></ul></td></tr>
 </tbody></table></li>
@@ -234,9 +234,9 @@
 </ul></td><td><span class="title">Contact Us</span> <ul><span class="menu_plain_text"><b><ORG>Lutron Headquarters &amp; Lighting Control Institute</ORG></b>
 <br/><STREET>7200 Suter Road</STREET>
 <br/><CITY>Coopersburg</CITY>, <STATE>PA</STATE> <ZIPCODE>18036-1299</ZIPCODE>
-<br/><TEL>1-610-282-3800</TEL></span> <span class="menu_plain_text"><b>Customer Service</b>
+<br/><TEL>1-610-282-3800</TEL></span> <span class="menu_plain_text"><b><SUBJ>Customer Service</SUBJ></b>
 <br/><TEL>1-888-LUTRON1 (588-7661)</TEL>
-<br/>8AM-8PM EST</span> <li><a href="/en-US/Service-Support/Pages/Assistance/ContactCustomerService.aspx">Online Contact Form</a></li>
+<br/><HOURS>8AM-8PM EST</HOURS></span> <li><a href="/en-US/Service-Support/Pages/Assistance/ContactCustomerService.aspx">Online Contact Form</a></li>
 <li><a href="/en-US/Company-Info/Pages/AboutUS/WorldwideLocation.aspx">International Contact Information</a></li>
 <li><a href="/en-US/Company-Info/Pages/Contact/SiteFeedback.aspx">Provide Site Feedback</a></li>
 <li><a href="/en-US/Company-Info/Pages/Contact/RequestProductLiterature.aspx">Request Product Literature</a></li>
@@ -467,7 +467,7 @@
 <div><span class="subhead">&#160;&#160;Video Conference Indirect Wash Fluorescent Fixture</span></div>
 <div><a href="/en-US/Products/Pages/LightingFixtures/LutronFixtures/VideoConferenceIndirectWashLED/Overview.aspx">&#160;&#160;Video Conference Indirect Wash LED Fixture</a></div>
 <div><span class="subhead">&#160;&#160;Video Conference Indirect Wash LED Fixture</span></div>
-</div></div></div><div id="print_footer" class="clearfix"><table><tbody><tr><td>Customer Service &#160;&#160; &#160; <span class="black_strong"><TEL>1.888.LUTRON1(588-7661)</TEL></span> ( <span class="black">8 am - 8 pm EST</span> )</td> <td>Technical Support <span class="black_strong"><TEL>1.800.523.9466</TEL></span> ( <span class="black">24/7</span> )</td></tr>
+</div></div></div><div id="print_footer" class="clearfix"><table><tbody><tr><td><SUBJ>Customer Service</SUBJ> &#160;&#160; &#160; <span class="black_strong"><TEL>1.888.LUTRON1(588-7661)</TEL></span> ( <span class="black"><HOURS>8 am - 8 pm EST</HOURS></span> )</td> <td><SUBJ>Technical Support</SUBJ> <span class="black_strong"><TEL>1.800.523.9466</TEL></span> ( <span class="black"><HOURS>24/7</HOURS></span> )</td></tr>
 </tbody></table><div class="bordered"><span class="crumb">&#169; 2011 <ORG>Lutron Electronics Co., Inc</ORG></span></div>
 </div><div id="footer" class="clearfix"><ul class="first"><li class="bordered">Shop</li>
 <li class="first"><a target="_blank" href="http://www.lutronstore.com/">Lutron Online Store</a></li>
@@ -482,17 +482,17 @@
 <li class="spacer">&#160;</li>
 <li><a target="_blank" href="https://dims.lutron.com/dims/AuthFiles/login.asp">DIMS Login</a></li>
 <li class="last"><a href="/en-US/general/Pages/Marketing-Materials.aspx">eMaps Login</a></li>
-</ul><ul><li class="bordered">Customer Service</li>
+</ul><ul><li class="bordered"><SUBJ>Customer Service</SUBJ></li>
 <li class="first"><TEL>1.888.LUTRON1 (588-7661)</TEL></li>
-<li>(8 am - 8 pm EST)</li>
+<li>(<HOURS>8 am - 8 pm EST</HOURS>)</li>
 <li><a id="ctl00_CustomerServiceOnline" href="/en-US/Service-Support/Pages/Assistance/ContactCustomerService.aspx">Customer Service Online</a></li>
 <li class="spacer">&#160;</li>
 <li><a id="ctl00_InternationalSupport" href="/en-US/Company-Info/Pages/AboutUS/WorldwideLocation.aspx">International Support &amp; Contact</a></li>
 <li><a id="ctl00_OnlineCatalogs" href="/en-US/Service-Support/Pages/Technical/SpecificationGuides.aspx">Online Catalogs</a></li>
 <li><a id="ctl00_RequestProductLiterature" href="/en-US/Company-Info/Pages/Contact/RequestProductLiterature.aspx">Request Product Literature</a></li>
 <li class="last"><a id="ctl00_ProvideSiteFeedback" href="/en-US/Company-Info/Pages/Contact/SiteFeedback.aspx">Provide Site Feedback</a></li>
-</ul><ul class="last"><li class="bordered">Technical Support</li>
-<li class="first"><TEL>1.800.523.9466</TEL> (24/7)</li>
+</ul><ul class="last"><li class="bordered"><SUBJ>Technical Support</SUBJ></li>
+<li class="first"><TEL>1.800.523.9466</TEL> (<HOURS>24/7</HOURS>)</li>
 <li><a id="ctl00_TechnicalSupportOnline" href="/en-US/Service-Support/Pages/Assistance/TechnicalSupportForm.aspx">Technical Support Online</a></li>
 <li class="spacer">&#160;</li>
 <li><span><b>Important Safety Notice</b></span></li>

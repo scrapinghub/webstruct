@@ -14,7 +14,7 @@
 <div id="topCartContent" class="mybag"><a id="YourBagLink" href="http://www.igigi.com/checkout/cart/" class="head">YOUR BAG ( <strong>0</strong> )</a>
 <div id="bagBlock" class="block"><span class="h3"><span class="close">Close</span> Recently added item(s)</span>
 <div class="empty">You have no items in your shopping cart.</div>
-</div></div><div class="welcome"><a href="">Email Sign Up</a> &#160;&#160;&#160; <a href="http://www.igigi.com/customer/account/">Your Account</a> &#160;&#160;&#160; <a href="http://www.igigi.com/cms/inside-igigi/customer-service/">Customer Care</a> &#160;&#160;&#160;<TEL>877.597.8953</TEL></div>
+</div></div><div class="welcome"><a href="">Email Sign Up</a> &#160;&#160;&#160; <a href="http://www.igigi.com/customer/account/">Your Account</a> &#160;&#160;&#160; <a href="http://www.igigi.com/cms/inside-igigi/customer-service/">Customer Care</a> &#160;&#160;&#160;877.597.8953</div>
 <div class="gg_invite"><div>Invite a Friend and Get a $10 Credit</div>
 </div></div><div class="search"></div><div id="menu_top"><ul class="menu_top"><li class=" centered "><span class="menu_item">SHOP BY CATEGORY</span>
 <div class="submenu"><div class="big_wrapper"><div class="wrapper"><div class="col just_in "><ul><li><b><a href="http://www.igigi.com/plus-size-new-arrivals/?linkid=topmenu" title="Plus Size New Arrivals" rel="1">JUST IN</a></b></li>
@@ -161,14 +161,14 @@
 <p><strong>PHONE</strong>
 <br/><TEL>1.877.597.8953</TEL> (US)
 <br/><TEL>+1.415.692.5639</TEL> (Worldwide)
-<br/>Customer Care Hours: 9AM - 5PM PST M-F</p>
+<br/>Customer Care Hours: <HOURS>9AM - 5PM PST M-F</HOURS></p>
 
 <p><strong>FAX</strong>
 <br/><FAX>+1.415.962.0638</FAX> (US &amp; Worldwide)</p>
 
 <p><strong>MAIL</strong>
-<br/>IGIGI by Yuliya Raquel
-<br/>Customer Care
+<br/><ORG>IGIGI by Yuliya Raquel
+<br/>Customer Care</ORG>
 <br/><STREET>267 8th Street</STREET>
 <br/><CITY>San Francisco</CITY>, <STATE>CA</STATE> <ZIPCODE>94103</ZIPCODE></p>
 </div></div></div></div><div class="clearfloat"><div id="ngc-please-wait" class="please-wait-js"><img class="v-middle" alt="please wait..." src="http://i.statigi.com/i/trans-ajax-loader.gif"/></div><div class="footer"><ul><li class="shop"><h2>Shop</h2>
@@ -204,7 +204,7 @@
 <li class="customer_care"><h2>Assistance</h2>
 <ul><li class="section first"><TEL>1-877-597-8953</TEL> (domestic)
 <br/><TEL>1-415-692-5639</TEL> (intl.)
-<br/>Hours: 9AM - 5PM PST M-F</li>
+<br/>Hours: <HOURS>9AM - 5PM PST M-F</HOURS></li>
 <li class="section"><a href="http://www.igigi.com/cms/inside-igigi/customer-service/?linkid=bottommenu">Customer Care</a></li>
 <li><a href="http://www.igigi.com/cms/inside-igigi/customer-service/contact-us/?linkid=bottommenu">Contact Us</a></li>
 <li class="section"><a href="http://www.igigi.com/customer/account/?linkid=bottommenu">Your Account</a></li>
@@ -213,7 +213,7 @@
 <div class="social"><div data-width="140" data-href="https://www.facebook.com/IGIGISTYLE" class="fb-like" data-show-faces="true" data-layout="button_count" data-send="false"><a target="_blank" class="pinit_icon" href="http://pinterest.com/IGIGI/">Pinit</a> <a target="_blank" class="fb_icon" href="https://www.facebook.com/IGIGISTYLE/app_205521576149308">Facebook</a> <a target="_blank" class="tw_icon" href="http://twitter.com/IGIGI">Twitter</a> <a target="_blank" class="yb_icon" href="http://www.youtube.com/user/IgigiTV">Youtube</a>
 <div class="clearfix"></div><a href="http://www.igigi.com/cms/inside-igigi/new-inside-igigi/?linkid=bottommenu">More about Plus Size Fashion &amp; IGIGI by Yuliya Raquel</a>
 <p>IGIGI specializes in sexy and sophisticated plus size fashion with an emphasis on formal wear, wedding gowns, other types of dresses as well as separates. We believe that words like &quot;ample,&quot; &quot;opulent,&quot; &quot;curvaceous,&quot; and &quot;voluptuous&quot; should be mainstays in the fashion dictionary. It is important to accentuate and celebrate the beauty and sensuality of the female figure rather than cover it up with piles of fabric. You ARE beautiful!</p>
-<div class="copy">&#169; IGIGI by Yuliya Raquel 2012
+<div class="copy">&#169; <ORG>IGIGI by Yuliya Raquel</ORG> 2012
 <br/><STREET>267 8th Street</STREET>, <CITY>San Francisco</CITY>, <STATE>CA</STATE> <ZIPCODE>94103</ZIPCODE> <COUNTRY>USA</COUNTRY> <TEL>1.877.597.8953</TEL></div>
 </div></div></li><div class="trust_us_block"><a target="_blank" href="http://www.stellaservice.com/profile/igigi.com/"><img alt="A" src="//i.statigi.com/i/stellaservice_excellent.png"/><a target="_blank" href="http://www.bbb.org/greater-san-francisco/business-reviews/clothing-retail/igigi-in-san-francisco-ca-308193#bbblogo"><img alt="A+" src="//i.statigi.com/i/bbb_aplus.png"/><img src="//i.statigi.com/i/card_icons_big.png"/></a></a></div>
 </ul></div></div></div></div></div></div></div></body></html>

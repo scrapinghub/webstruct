@@ -17,11 +17,11 @@
 
 <p align="center"><img class="imgstyle" height="109" src="../gfx/BBU_sign.jpg" alt="BBU Signage" width="200"/></p><p align="center">&#160;</p>
 
-<p class="redBoldSM" align="center">Consumer Hotline</p>
+<p class="redBoldSM" align="center"><SUBJ>Consumer Hotline</SUBJ></p>
 
 <p class="redBoldSM" align="center"><TEL>1-800-984-0989</TEL></p>
 
-<p class="redBoldSM" align="center">Monday-Friday 8 a.m. to 8 p.m. (EST)</p>
+<p class="redBoldSM" align="center"><HOURS>Monday-Friday 8 a.m. to 8 p.m. (EST)</HOURS></p>
 </div></div><div id="secright"><div id="sechero"><div class="secheroimg"><img src="../gfx/svcinquiry_header.jpg" height="162" alt="Images of BBU Products" width="544"/></div><div class="sectagline">
 <p class="sectagline-copy">A company with trustworthy, leading brands for our consumers.</p>
 </div></div><div id="sec-content"><h2>Contact Us
@@ -33,7 +33,7 @@
 <p><strong>Where can I find your coupons?</strong> <em>We do not honor coupon requests. Please check your local store for current offers.</em></p>
 </td></tr><hr/>
 <tr><td><p><strong>For urgent inquiries
-<br/>(such as food safety issues) please contact our <span class="redBoldSM">Consumer Hotline at
+<br/>(such as food safety issues) please contact our <span class="redBoldSM"><SUBJ>Consumer Hotline</SUBJ> at
 <br/><TEL>1-800-984-0989</TEL></span> .</strong></p>
 
 <p>If calling after the normal business hours, there is an <strong>after-hours answering service</strong> that will assist you.</p>
@@ -53,7 +53,7 @@
 <p><span class="blueBoldSM">Tell Us About Our Drivers</span>
 <br/><a href="truck_driver.php">Click here</a> to contact us if you would like to send a compliment or a complaint about one of our driver&apos;s safety performance.</p>
 
-<p class="copy"><strong class="blueBoldSM">Mailing Address</strong>
+<p class="copy"><strong class="blueBoldSM"><SUBJ>Mailing Address</SUBJ></strong>
 <br/><ORG>Bimbo Bakeries USA
 <br/>Consumer Relations Department</ORG>
 <br/><STREET>P. O. Box 976</STREET>

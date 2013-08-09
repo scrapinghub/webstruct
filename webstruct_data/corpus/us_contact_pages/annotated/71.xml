@@ -62,7 +62,7 @@
 <br/><a target="_self" href="asklibform.php" title="">Submit a reference question</a> and receive a reply within two business days from a professional librarian.</p>
 
 <p><img class="alignleft" src="../dir_images/icons/phone60x60.jpg" border="0" alt="phone icon"/><strong>By Phone</strong>
-<br/>The Information Center offers quick reference assistance over the phone. Call <TEL>(312) 747-4300</TEL> for assistance. Hours: Monday through Thursday, 9:00 a.m.-9:00 p.m.; Friday and Saturday, 9:00 a.m.-5:00 p.m.; Sunday 1:00 p.m.-5:00 p.m.</p>
+<br/>The Information Center offers quick reference assistance over the phone. Call <TEL>(312) 747-4300</TEL> for assistance. Hours: <HOURS>Monday through Thursday, 9:00 a.m.-9:00 p.m.; Friday and Saturday, 9:00 a.m.-5:00 p.m.; Sunday 1:00 p.m.-5:00 p.m.</HOURS></p>
 <div class="border clearfix">
 </div><br/><h4>eBooks and eAudiobooks Support</h4>
 
@@ -76,12 +76,12 @@
 
 <p><a target="_self" href="../cplbooksmovies/suggestion.php" title="">Suggest a purchase</a> to be considered by the Chicago Public Library.</p>
 <div class="border clearfix">
-</div><br/><h4>Website Comments</h4>
+</div><br/><h4><SUBJ>Website Comments</SUBJ></h4>
 
-<p>Email comments or questions about the website to <a href="mailto:webmaster@chipublib.org"><EMAIL>webmaster@chipublib.org</EMAIL></a> . This account is monitored during business hours Monday through Friday. You will receive a response within two business days. We welcome your feedback.</p>
+<p>Email comments or questions about the website to <a href="mailto:webmaster@chipublib.org"><EMAIL>webmaster@chipublib.org</EMAIL></a> . This account is monitored during <HOURS>business hours Monday through Friday</HOURS>. You will receive a response within two business days. We welcome your feedback.</p>
 <div class="border clearfix">
-</div><br/><h4>General Questions</h4>
-<ul class="bullets"><li>Email <a href="mailto:info@chipublib.org"><EMAIL>info@chipublib.org</EMAIL></a> with all other questions or comments. This account is monitored during business hours Monday through Friday. You will receive a response within two business days.</li>
+</div><br/><h4><SUBJ>General Questions</SUBJ></h4>
+<ul class="bullets"><li>Email <a href="mailto:info@chipublib.org"><EMAIL>info@chipublib.org</EMAIL></a> with all other questions or comments. This account is monitored during <HOURS>business hours Monday through Friday</HOURS>. You will receive a response within two business days.</li>
 <li>Contact <a target="_self" href="senior_staff.php" title="">administrative staff</a> .</li>
 </ul><div class="border clearfix">
 </div><br/><h4>FOIA Request</h4>

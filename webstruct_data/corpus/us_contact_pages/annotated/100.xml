@@ -14,54 +14,54 @@
 <br/><STREET>1430 Tulane Avenue</STREET>
 <br/><CITY>New Orleans</CITY>, <STATE>LA</STATE> <ZIPCODE>70112</ZIPCODE>
 <br/><strong>
-<br/>School of Medicine Dean&apos;s Office</strong>
-<br/>Physical Address
+<br/><ORG>School of Medicine Dean&apos;s Office</ORG></strong>
+<br/><SUBJ>Physical Address</SUBJ>
 <br/><STREET>131 S Robertson, Suite 1500</STREET>
 <br/><CITY>New Orleans</CITY>, <STATE>LA</STATE> <ZIPCODE>70112</ZIPCODE>
 </p><br/>
-<p>Mailing Address
+<p><SUBJ>Mailing Address</SUBJ>
 <br/><STREET>1430 Tulane Avenue, #8001</STREET>
 <br/><CITY>New Orleans</CITY>, <STATE>LA</STATE> <ZIPCODE>70112</ZIPCODE></p>
 
-<p>Admissions &amp; Student Affairs - <em>Applications</em>
+<p><SUBJ>Admissions &amp; Student Affairs - <em>Applications</em></SUBJ>
 <br/><TEL>504-988-5187</TEL>
 <br/>
-<br/>Graduate Medical Education - <em>Transcripts</em>
+<br/><SUBJ>Graduate Medical Education - <em>Transcripts</em></SUBJ>
 <br/><TEL>504-988-5464</TEL>
 </p><br/>
-<p>Dean&apos;s Office
+<p><SUBJ>Dean&apos;s Office</SUBJ>
 <br/><TEL>504-988-5462</TEL></p>
 
 <p class="text-xlarge"><strong>Key Contacts</strong>
 </p><br/>
-<ul><li><a href="http://pandora.tcs.tulane.edu/acctrec/"><strong>Accounts Receivable</strong></a>
+<ul><li><a href="http://pandora.tcs.tulane.edu/acctrec/"><strong><SUBJ>Accounts Receivable</SUBJ></strong></a>
 <br/><TEL>504-865-5368</TEL> or <a href="mailto:acctrec@tulane.edu"><EMAIL>acctrec@tulane.edu</EMAIL></a></li>
-<li><strong><a href="http://tulane.edu/tulane/copyright.cfm">Copyright Infringements</a></strong>
+<li><strong><a href="http://tulane.edu/tulane/copyright.cfm"><SUBJ>Copyright Infringements</SUBJ></a></strong>
 <br/><TEL>504-988-8500</TEL> or <a href="mailto:dmca@tulane.edu"><EMAIL>dmca@tulane.edu</EMAIL></a></li>
-<li><strong><a class="CP___PAGEID_670977" href="/giving/index.cfm">Development Office</a>
+<li><strong><a class="CP___PAGEID_670977" href="/giving/index.cfm"><SUBJ>Development Office</SUBJ></a>
 </strong><br/><TEL>504-865-5794</TEL> or <TEL>888-265-7576</TEL></li>
-<li><span><a class="CP___PAGEID_3607" href="http://emergency.tulane.edu/">Emergency Notices / AlertLine</a>
-</span><br/>Disaster &amp; Threat Updates</li>
+<li><SUBJ><span><a class="CP___PAGEID_3607" href="http://emergency.tulane.edu/">Emergency Notices / AlertLine</a>
+</span><br/>Disaster &amp; Threat Updates</SUBJ></li>
 <li><ul><li><TEL>504-862-8080</TEL></li>
 <li><TEL>877-862-8080</TEL></li>
 </ul></li>
-<li><strong><a href="http://financialaid.tulane.edu/">Financial Aid</a>
+<li><strong><a href="http://financialaid.tulane.edu/"><SUBJ>Financial Aid</SUBJ></a>
 </strong><br/><TEL>504-988-6135</TEL> or <a href="mailto:dfasull@tulane.edu"><EMAIL>dfasull@tulane.edu</EMAIL></a></li>
-<li><strong><span class="CP___PAGEID_5753"><a href="http://tulane.edu/news">Public Relations</a></span>
+<li><strong><span class="CP___PAGEID_5753"><a href="http://tulane.edu/news"><SUBJ>Public Relations</SUBJ></a></span>
 </strong><br/><TEL>504-865-5210</TEL> or <a href="mailto:pr@tulane.edu"><EMAIL>pr@tulane.edu</EMAIL></a></li>
 <li><span><a href="/police/downtown/index.cfm" class="CP___PAGEID_2714217" src="">Public Safety</a>
 </span><br/>Fire, Medical &amp; Police Emergency Assistance</li>
 <li><ul><li><span>Downtown</span>
 <br/><TEL>504-988-5555</TEL></li>
-<li><span>Uptown</span>
+<li><span><SUBJ>Uptown</SUBJ></span>
 <br/><TEL>504-865-5200</TEL></li>
-<li><span>Primate Research Center</span>
+<li><span><SUBJ>Primate Research Center</SUBJ></span>
 <br/><TEL>985-871-6411</TEL></li>
 </ul></li>
 </ul></div></div></td><td id="cs_idCell2563406x1x2" class="CS_Layout_TD" width="4%"><img src="/commonspot/images/clear.gif" height="1" alt="" width="1"/></td><td id="cs_idCell2563406x1x3" class="CS_Layout_TD" width="48%"><div id="cs_control_2563414" class="cs_control CS_Element_Textblock"><div class="CS_Textblock_Text"><p class="text-xlarge"><strong>Directory Assistance</strong></p>
 <ul><li><span>Hospital Operator</span>
 <br/><TEL>504-988-5263</TEL></li>
-<li><span>University Operator</span>
+<li><span><SUBJ>University Operator</SUBJ></span>
 <br/><TEL>504-865-5000</TEL>
 </li><br/>
 </ul><p class="text-xlarge"><strong>University Phone Books</strong>
