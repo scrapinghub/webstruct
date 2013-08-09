@@ -10,13 +10,13 @@
 <p class="p0">From the <COUNTRY>U.S.</COUNTRY> and <COUNTRY>Canada</COUNTRY> call</p>
 <h2 class="p0"><TEL>1-800-426-4840</TEL></h2>
 
-<p class="">Monday through Sunday, 4 AM to 11 PM Pacific Time.</p>
+<p class=""><HOURS>Monday through Sunday, 4 AM to 11 PM Pacific Time</HOURS>.</p>
 
-<p class="p2">Our Contact Center is open Monday through Sunday, 4 AM to 11 PM Pacific Time.</p>
+<p class="p2">Our <SUBJ>Contact Center</SUBJ> is open <HOURS>Monday through Sunday, 4 AM to 11 PM Pacific Time</HOURS>.</p>
 
 <p>We are closed on the following holidays: New Year&apos;s Day, Easter, Thanksgiving and Christmas.</p>
 
-<p><span class="p1">International:</span> Call <TEL>1-253-891-2500</TEL> Monday through Sunday 4 AM to 11 PM Pacific Time</p>
+<p><span class="p1">International:</span> Call <TEL>1-253-891-2500</TEL> <HOURS>Monday through Sunday 4 AM to 11 PM Pacific Time</HOURS></p>
 
 <p><span class="p1">Fax:</span> Dial <FAX>1-253-891-2523</FAX></p>
 </div><div id="liveHelp_tab" class="tabContent"><h3>Online Live Help</h3>
@@ -25,11 +25,11 @@
 
 <p>You are welcome to <a id="openEmailTab" href="#">email us</a> instead.</p>
 
-<p>If you prefer to chat with an <ORG>REI</ORG> representative, Live Help is available daily between 5 AM and 10:30 PM Pacific Time.</p>
+<p>If you prefer to chat with an <ORG>REI</ORG> representative, <SUBJ>Live Help</SUBJ> is available <HOURS>daily between 5 AM and 10:30 PM Pacific Time</HOURS>.</p>
 </div><div id="agentAvailable">
 <p>To start a live chat session with an <ORG>REI</ORG> customer service representative, enter your information in the fields below and click <span class="p1">Connect</span></p>
 
-<p>Live Help is available daily between 5 AM and 10:30 PM Pacific Time.</p>
+<p><SUBJ>Live Help</SUBJ> is available <HOURS>daily between 5 AM and 10:30 PM Pacific Time</HOURS>.</p>
 
 <p>*Required fields</p>
 

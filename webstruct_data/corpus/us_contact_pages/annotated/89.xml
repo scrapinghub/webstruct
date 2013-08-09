@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>IMAX Theatre @ SM Cinema</title>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>IMAX Theatre @ <ORG>SM Cinema</ORG></title>
 
 </head><body><div id="wrap"><div id="header"><div class="logo"><a href="../smcinema"><img border="0" src="../templates/smcinema/images/logo.jpg"/></a></div><div class="header_right"><div class="top_nav"><div><ul><li><a href="?p=1740">home</a></li>
 <li><a href="?p=1622">corporate sales</a></li>
@@ -192,7 +192,7 @@
 </ul></div></li><a href="#"><img src="../templates/smcinema/images/mashead02.png" height="27" border="0" alt="" width="50"/></a>
 <li><div id="smenu3" class="dropdown"><ul class="dropMnu"><li><a><strong>Residential</strong></a>
 <div class="drop10"><a>Corporate</a></div>
-<div class="drop20"><a target="_blank" href="http://www.smdevelopment.com/"><ORG>SM Development Corp.</ORG></a></div>
+<div class="drop20"><a target="_blank" href="http://www.smdevelopment.com/">SM Development Corp.</a></div>
 <div class="drop30"><a target="_blank" href="http://www.chateauelysee.com/">Chateau Elysee</a></div>
 <div class="drop30"><a target="_blank" href="http://www.mezzaresidences.com/">Mezza Residences</a></div>
 <div class="drop30"><a target="_blank" href="http://www.lindenwoodresidences.com/">Lindenwood Residences</a></div>

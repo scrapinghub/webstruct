@@ -36,7 +36,7 @@
 <li><a href="http://www.hsc.wvu.edu/som/Contact-Us.aspx">Contact Us</a></li>
 </ul></div></div></div><div class="LeftNavButtonWrap"></div><div class="RightColContainer"><div class="BreadcrumbsBar"><span id="ctl00_ctl00_ctl00_MasterContent_SiteContent_Breadcrumbs1_SiteMapPathBreadcrumbs" class="Breadcrumbs"><a href="#ctl00_ctl00_ctl00_MasterContent_SiteContent_Breadcrumbs1_SiteMapPathBreadcrumbs_SkipLink"><img src="/som/WebResource.axd?d=c_B0lQEGq-PlNqXdiGMUBH6lcIzme4UvJQsQT5OgI_iSB7CbBwu2zFARltJBpzOujB1ZF7atb_AJzHzpkcL7vArSPQuQvw5Q8FwEr6K3Xog1&amp;t=634897255304959576" height="0" alt="Skip Navigation Links" width="0"/></a><span><a href="/som/Default.aspx">Home</a></span> <span>&gt;</span> <span><a href="/som/Contact-Us.aspx">Contact Us</a></span></span></div><a id="ctl00_ctl00_ctl00_MasterContent_SiteContent_Breadcrumbs1_SiteMapPathBreadcrumbs_SkipLink"></a>
 <h1 class="Sub">Contact Us</h1>
-<h3>School Mailing Address</h3>
+<h3><SUBJ>School Mailing Address</SUBJ></h3>
 <ORG>West Virginia University School of Medicine
 <br/>Robert C. Byrd Health Sciences Center</ORG>
 <br/><STREET>P.O. Box 9100</STREET>
@@ -45,9 +45,9 @@
 <div class="CaptionImageBorder">
 </div><br/><small></small><div class="Caption"><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=1+Medical+Center+Drive,+Morgantown,+WV&amp;sll=37.0625,-95.677068&amp;sspn=46.14027,73.828125&amp;ie=UTF8&amp;hq=&amp;hnear=Medical+Center+Dr,+Morgantown,+West+Virginia&amp;z=14&amp;ll=39.652376,-79.959166">View Larger Map</a></div>
 <h3>Selected Phone Numbers</h3>
-<table><tbody><tr><td><b>General Inquiries</b></td> <td><TEL>304-293-6607</TEL></td></tr>
-<tr><td><b>Student Services</b></td> <td><TEL>304-293-2408</TEL></td></tr>
-<tr><td><b>Admissions</b></td> <td><TEL>304-293-1439</TEL></td></tr>
+<table><tbody><tr><td><b><SUBJ>General Inquiries</SUBJ></b></td> <td><TEL>304-293-6607</TEL></td></tr>
+<tr><td><b><SUBJ>Student Services</SUBJ></b></td> <td><TEL>304-293-2408</TEL></td></tr>
+<tr><td><b><SUBJ>Admissions</SUBJ></b></td> <td><TEL>304-293-1439</TEL></td></tr>
 <tr><td><b>Fax</b></td> <td><FAX>304-293-6627</FAX></td></tr>
 </tbody></table><h3>Contact Form</h3>
 <div align="center"><center><table border="0" width="100%"><tbody><tr><td valign="top" class="bodytext"><b>Your Name:</b></td></tr><td class="bodytext"></td>
@@ -55,6 +55,6 @@
 <tr><td valign="top" class="bodytext"><b>Message:</b></td></tr><td class="bodytext"></td>
 </tbody></table></center>
 </div></div></div><div class="ClearFloats"><div class="LeftNavFooter"><div class="ContentBottom"></div></div></div><div class="FooterContainer"><div class="ContentShadow"><div class="Footer"><div class="FooterLeft"><a href="http://www.hsc.wvu.edu/"><ORG>Robert C. Byrd Health Sciences Center</ORG></a> | <a href="/som/"><ORG>School of Medicine</ORG></a> | <STREET>P.O. Box 9100</STREET> | <CITY>Morgantown</CITY>, <STATE>WV</STATE> <ZIPCODE>26506-9600</ZIPCODE> | Phone: <TEL>304-293-6607</TEL>
-<br/>&#169; 2013 <a href="http://www.wvu.edu/">West Virginia University</a> | <a href="http://www.hsc.wvu.edu/its/">Powered by ITS</a> | <a href="http://www.hsc.wvu.edu/som/Contact-Us.aspx">Webmaster</a>
-<br/>West Virginia University is an Equal Opportunity / Affirmative Action Institution.</div>
+<br/>&#169; 2013 <a href="http://www.wvu.edu/"><ORG>West Virginia University</ORG></a> | <a href="http://www.hsc.wvu.edu/its/">Powered by ITS</a> | <a href="http://www.hsc.wvu.edu/som/Contact-Us.aspx">Webmaster</a>
+<br/><ORG>West Virginia University</ORG> is an Equal Opportunity / Affirmative Action Institution.</div>
 </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body><div class="FooterRight"><a target="_blank" class="SOLE" title="SOLE" href="https://sole.hsc.wvu.edu/"><span class="White"><a target="_blank" class="Outlook" title="HSC Outlook Webmail" href="https://exweb.hsc.wvu.edu/"><span class="White"><a target="_blank" class="MIX" title="MIX" href="http://mix.wvu.edu/"><span class="White"><a target="_blank" class="YouTube" title="WVU on YouTube" href="http://www.youtube.com/westvirginiau"><span class="White"><a target="_blank" class="Twitter" title="WVU on Twitter" href="http://twitter.wvu.edu/"><span class="White"><a target="_blank" class="Facebook" title="WVU on Facebook" href="http://facebook.wvu.edu/"><span class="White"><a target="_blank" class="iTunesU" title="WVU on iTunes" href="http://itunes.wvu.edu/"><span class="White"><a target="_blank" class="GIVE" title="Make a Gift Now" href="http://www.hsc.wvu.edu/development/"><span class="White"><a target="_blank" class="WVUALERT" title="WVU Alert" href="http://emergency.wvu.edu/alert/"><span class="White"><a target="_blank" class="MTRAK" title="MountaineerTRAK" href="http://careerservices.wvu.edu/mountaineertraklogins"><span class="White"><a target="_blank" class="MyAccess" title="MyAccess" href="http://myaccess.wvu.edu/"></a></span></a></span></a></span></a></span></a></span></a></span></a></span></a></span></a></span></a></span></a></div></html>

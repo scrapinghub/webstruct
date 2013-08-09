@@ -115,9 +115,9 @@
 <p><a class="external" href="http://www.caltex.com/global/resources/station-finder/">Find a Caltex Station</a></p>
 </div><h3 class="padTopMed">Service Station Feedback and Questions</h3>
 
-<p>We welcome your feedback and inquiries about any of our service stations. Customer service representatives are available between the hours of 7:00 a.m. to 7:00 p.m. Central Time, Monday through Friday.</p>
-<address>Consumer Connection Center
-<br/><STREET>P.O. Box 4000</STREET>
+<p>We welcome your feedback and inquiries about any of our service stations. Customer service representatives are available between the hours of <HOURS>7:00 a.m. to 7:00 p.m. Central Time, Monday through Friday</HOURS>.</p>
+<address><STREET>Consumer Connection Center
+<br/>P.O. Box 4000</STREET>
 <br/><CITY>Bellaire</CITY>, <STATE>TX</STATE> <ZIPCODE>77402-4000</ZIPCODE></address>
 <div data-force-link-list="true">
 <p><a class="external" href="https://www.chevronwithtechron.com/contact-us/customerServiceForm.aspx">Send an Email</a></p>

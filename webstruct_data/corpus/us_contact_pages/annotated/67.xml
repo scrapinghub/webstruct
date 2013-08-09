@@ -63,92 +63,92 @@
 <p>Your Message
 </p><br/><span class="wpcf7-form-control-wrap your-message"></span>
 <p><div class="wpcf7-response-output wpcf7-display-none"></div></p>
-<br/><img height="10" src="http://michtheater.org/images/contacts_bar_staff.gif" border="0" alt="Staff Contacts" width="452"/><p><strong>Business:</strong> &#160;&#160;<TEL>(734) 668-8397</TEL></p>
+<br/><img height="10" src="http://michtheater.org/images/contacts_bar_staff.gif" border="0" alt="Staff Contacts" width="452"/><p><strong><SUBJ>Business</SUBJ>:</strong> &#160;&#160;<TEL>(734) 668-8397</TEL></p>
 <div>
 <p><strong><PER>Russ Collins</PER></strong>
-<br/>Executive Director &amp; CEO
+<br/><FUNC>Executive Director &amp; CEO</FUNC>
 <br/><TEL>Extension 23</TEL></p>
 
 <p><strong><strong><PER>Chris Tabaczka</PER></strong>
-</strong><br/>Director, Finance &amp; Administration
+</strong><br/><FUNC>Director, Finance &amp; Administration</FUNC>
 <br/><TEL>Extension 30</TEL></p>
 
 <p><strong><strong><PER>Amanda Bynum</PER></strong>
-</strong><br/>Director, Programming &amp; Educ.
+</strong><br/><FUNC>Director, Programming &amp; Educ.</FUNC>
 <br/><TEL>Extension 21</TEL><strong>
 </strong></p><br/>
 <p><strong><strong><strong><PER>Brian Hunter</PER></strong>
-</strong></strong><br/>Facility &amp; Programming Manager
+</strong></strong><br/><FUNC>Facility &amp; Programming Manager</FUNC>
 <br/><TEL>Extension 29</TEL></p>
 
 <p><strong><PER>Emily Mathews</PER></strong>
-<br/>Marketing Head
+<br/><FUNC>Marketing Head</FUNC>
 <br/><TEL>Extension 46</TEL></p>
 
 <p><strong><PER>Natalie Hensel</PER></strong>
-<br/>Box Office Mgr/Accounting Asst
+<br/><FUNC>Box Office Mgr/Accounting Asst</FUNC>
 <br/><TEL>Extension 27</TEL></p>
 
 <p><strong><strong><PER>Kirsten Lund</PER>
-</strong></strong><br/>E-Marketing Designer
+</strong></strong><br/><FUNC>E-Marketing Designer</FUNC>
 <br/><TEL>Extension 16</TEL></p>
 
 <p><strong><PER>Barbara Twist</PER></strong>
-<br/>Executive Asst/Art House Convergence
+<br/><FUNC>Executive Asst/Art House Convergence</FUNC>
 <br/><TEL>Extension 35</TEL></p>
 
 <p><strong><PER>Walt Bishop</PER></strong>
-<br/>Head Projectionist
+<br/><FUNC>Head Projectionist</FUNC>
 <br/><TEL>Extension 20</TEL></p>
 </div><div>
 <p><strong><PER>Lee Berry</PER></strong>
-<br/>Chief Development Officer
+<br/><FUNC>Chief Development Officer</FUNC>
 <br/><TEL>Extension 22</TEL></p>
 
 <p><strong><PER>Steve Crowley</PER></strong>
-<br/>General Manager
+<br/><FUNC>General Manager</FUNC>
 <br/><TEL>Extension 42</TEL></p>
 
 <p><strong><strong><PER>Drew Waller</PER></strong></strong>
-<br/>Director, Sponsorship and Towsley Society
+<br/><FUNC>Director, Sponsorship and Towsley Society</FUNC>
 <br/><TEL>Extension 25</TEL></p>
 
 <p><strong><strong><strong><PER>J Scott Clarke</PER></strong>
-</strong></strong><br/>Technical Director
+</strong></strong><br/><FUNC>Technical Director</FUNC>
 <br/><TEL>Extension 18</TEL></p>
 
 <p><strong><strong><PER>Amber Duncan</PER></strong></strong>
-<br/>Membership&#160;Manager
+<br/><FUNC>Membership&#160;Manager</FUNC>
 <br/><TEL>Extension 28</TEL><strong>
 </strong></p><br/>
 <p><strong><strong><PER>Susan Cybulski</PER></strong>
-</strong><br/>Creative Manager
+</strong><br/><FUNC>Creative Manager</FUNC>
 <br/><TEL>Extension 16</TEL></p>
 
 <p><strong><PER>Sarah Madsen</PER></strong>
-<br/>Membership Coordinator
+<br/><FUNC>Membership Coordinator</FUNC>
 <br/><TEL>Extension 24</TEL></p>
 
 <p><strong><PER>Christine Tremblay</PER></strong>
-<br/>State Theater Manager
+<br/><FUNC>State Theater Manager</FUNC>
 <br/><TEL>(734) 761-3531</TEL></p>
-</div></div></div></div><div id="sidebar"><h4 class="main-title widget-title">General Contacts</h4>
+</div></div></div></div><div id="sidebar"><h4 class="main-title widget-title"><SUBJ>General Contacts</SUBJ></h4>
 <div class="widget"><div class="textwidget">
-<p>If you have any general questions or concerns, contact the <ORG>Michigan Theater</ORG>:</p>
+<p>If you have any general questions or concerns, contact the Michigan Theater:</p>
 
 <p><STREET>603 East Liberty Street</STREET>&#160;
 <br/><CITY>Ann Arbor</CITY>, <STATE>MI</STATE> <ZIPCODE>48104</ZIPCODE></p>
 
-<p><strong>Business:</strong> &#160;&#160;<TEL>(734) 668-8397</TEL>&#160;
+<p><strong><SUBJ>Business</SUBJ>:</strong> &#160;&#160;<TEL>(734) 668-8397&#160;</TEL>
 <br/>(answered live from one hour before the first show through show time)</p>
 
-<p><strong>Events/Films:</strong> &#160;&#160;<TEL>(734) 668-TIME&#160;
-<br/>(668-8463;</TEL> recorded message available 24 hours a day)</p>
+<p><strong><SUBJ>Events/Films</SUBJ>:</strong> &#160;&#160;<TEL>(734) 668-TIME</TEL>&#160;
+<br/>(668-8463; recorded message available 24 hours a day)</p>
 
-<p><strong>Fax:</strong> &#160;&#160;<TEL>(734) 668-7136</TEL>&#160;
+<p><strong>Fax:</strong> &#160;&#160;<FAX>(734) 668-7136&#160;</FAX>
 <br/><strong>Email:</strong> &#160;&#160; <a href="mailto:info@michtheater.org"><EMAIL>info@michtheater.org</EMAIL></a>
 <br/><strong>Feedback</strong> :&#160; <a href="mailto:feedback@michtheater.org"><EMAIL>feedback@michtheater.org</EMAIL></a>
-<br/><strong>Lost and Found:</strong> &#160;&#160;<TEL>(734) 668-8397 Extension 10</TEL></p>
+<br/><strong><SUBJ>Lost and Found</SUBJ>:</strong> &#160;&#160;<TEL>(734) 668-8397 Extension 10</TEL></p>
 
 <p><strong>Request a donation for your organization:</strong> &#160; <a href="http://michtheater.org/donationrequestform.pdf">Complete this form</a></p>
 

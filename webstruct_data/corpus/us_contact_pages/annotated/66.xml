@@ -21,9 +21,9 @@
 
 <p class="m-body"><STREET>123 Elizabeth Street</STREET></p>
 
-<p class="m-body">Monday to Friday 5am to 12am</p>
+<HOURS><p class="m-body">Monday to Friday 5am to 12am</p>
 
-<p class="m-body">Saturday and Sunday 6am to 11pm</p>
+<p class="m-body">Saturday and Sunday 6am to 11pm</p></HOURS>
 
 <p class="m-body">&#160;</p>
 
@@ -31,9 +31,9 @@
 
 <p class="m-body"><STREET>800 Spruce Street</STREET></p>
 
-<p class="m-body">Monday to Friday 5am to 12am</p>
+<HOURS><p class="m-body">Monday to Friday 5am to 12am</p>
 
-<p class="m-body">Saturday and Sunday 9am to 9pm</p>
+<p class="m-body">Saturday and Sunday 9am to 9pm</p></HOURS>
 
 <p class="m-body">&#160;</p>
 
@@ -41,9 +41,9 @@
 
 <p class="m-body"><STREET>301 Carmel Street</STREET></p>
 
-<p class="m-body">Monday to Friday 7am to 9pm</p>
+<HOURS><p class="m-body">Monday to Friday 7am to 9pm</p>
 
-<p class="m-body">Saturday and Sunday 6am to 11pm</p>
+<p class="m-body">Saturday and Sunday 6am to 11pm</p></HOURS>
 
 <p class="menu-body">&#160;</p>
 </div></div><div id="u2692" class="clearfix grpelem"><a id="u2576" class="nonblock nontext grpelem" href="http://www.facebook.com/KatiesCafeSF"><img id="u2576_img" class="block" height="128" src="/images/facebok.png" alt="" width="126"/><a id="u2581" class="nonblock nontext grpelem" href="https://plus.google.com/u/1/117800212967830061444/posts"><img id="u2581_img" class="block" height="128" src="/images/google.png" alt="" width="126"/><a id="u2586" class="nonblock nontext grpelem" href="http://twitter.com/katiescafesf"><img id="u2586_img" class="block" height="128" src="/images/twitter.png" alt="" width="126"/></a></a></a></div><div class="verticalspacer"><div id="pu2574-4" class="clearfix colelem"><a id="u2574-4" href="tel:14156524050" class="nonblock nontext m-footer clearfix browser_width grpelem"><div>

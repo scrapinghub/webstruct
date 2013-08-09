@@ -20,8 +20,8 @@
 <br/>
 <br/><a target="_blank" href="http://www.google.com/maps?daddr=12700%20Park%20Central%20Drive%20Suite%201300%20Dallas,%20Tx%2075251">Get Directions</a>
 <br/>
-<br/>Monday-Friday
-<br/>8:30 a.m. - 5:30 p.m. CST</p>
+<br/><HOURS>Monday-Friday
+<br/>8:30 a.m. - 5:30 p.m. CST</HOURS></p>
 
 <br/><p>Phone: <TEL>972.619.4100</TEL>
 <br/>Toll Free: <TEL>800.309.4642</TEL></p>
@@ -52,10 +52,10 @@
 </ul></fieldset></h1><li></li>
 <h2>Donation Requests</h2>
 
-<p>Corner Bakery Cafe is committed to giving back to our neighborhoods and communities. To request a donation for a community event or school night fundraiser, please submit your request following these&#160;guidelines:</p>
+<p><ORG>Corner Bakery Cafe</ORG> is committed to giving back to our neighborhoods and communities. To request a donation for a community event or school night fundraiser, please submit your request following these&#160;guidelines:</p>
 <ul><li>All requests must be submitted in writing by&#160;regular mail or e-mail.</li>
 <li>We do not accept requests or inquiries by phone or fax.</li>
-<li>Address: Corner Bakery Cafe Donations
+<li>Address: <ORG>Corner Bakery Cafe Donations</ORG>
 <br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <STREET>12700 Park Central Drive, Suite 1300</STREET>
 <br/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <CITY>Dallas</CITY>, <STATE>TX</STATE> <ZIPCODE>75251</ZIPCODE></li>
 <li>E-mail address: <EMAIL>donations[at]cornerbakerycafe[dot]com</EMAIL></li>

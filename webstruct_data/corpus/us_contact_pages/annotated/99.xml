@@ -29,9 +29,9 @@
 <li><a id="ContentPlaceHolderLeftNavigation_Menu_Control_ctl00_A5" href="../AboutUs/RequestFlagFlying.aspx">Commemorative Flag Flying Requests</a></li>
 <li><a id="ContentPlaceHolderLeftNavigation_Menu_Control_ctl00_A6" class="noBottomBorder" href="FeedbackForm.aspx">Comments and Questions</a></li>
 </ul></div></div><div><img id="ContentPlaceHolderLeftNavigation_Menu_Control_Image1" alt="" src="../images/BorderLeftNav_Bottom.jpg"/></div><div id="HoursOfOp"><div class="hoursTitle">Hours:</div>
-<div class="hoursContent">7 days a week, 365 days
+<div class="hoursContent"><HOURS>7 days a week, 365 days
 <br/>8am-7pm (April-September)
-<br/>8am-5pm (October-March)
+<br/>8am-5pm (October-March)</HOURS>
 <br/>
 <p>Parking garage closes 1 hour after cemetery</p>
 <span class="tanOrange">Phone:</span> <TEL>(877) 907-8585</TEL>
@@ -43,8 +43,8 @@
 <br/><h1 class="lessMarginBottom">Telephone Inquiries</h1>
 <div>Toll Free Calls
 <br/><TEL>1-877-907-8585</TEL>
-<br/>Monday - Friday, 6:30 a.m. - 9:00 p.m. EST
-<br/>Saturday, 8:00 a.m. - 1:00 p.m. EST</div>
+<br/><HOURS>Monday - Friday, 6:30 a.m. - 9:00 p.m. EST
+<br/>Saturday, 8:00 a.m. - 1:00 p.m. EST</HOURS></div>
 
 <br/><h1 class="lessMarginBottom">Funeral Arrangements &amp; Eligibility Requirements</h1>
 <div>Contact our Interment Services Branch at the toll free number above. Please note that Arlington National Cemetery cannot make arrangements or official eligibility determinations for an individual that is not deceased.</div>
