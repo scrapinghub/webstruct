@@ -53,8 +53,6 @@ Ideas for extra labels:
 
     * P.O. box / post address
     * Facility/building
-    * Department/office/branch
-    * Open Hours
 
 
 Annotation Guidelines
