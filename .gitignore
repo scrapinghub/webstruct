@@ -37,4 +37,4 @@ nosetests.xml
 # Other
 .idea
 webstruct_data/datastore
-
+.ipynb_checkpoints
