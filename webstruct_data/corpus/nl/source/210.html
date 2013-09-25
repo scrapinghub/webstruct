@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>STE Languages - Home - overzicht</title>
+	<meta name="revisit-after" content="7 days">
+<meta name="robots" content="index,follow">
+<meta name="robots" content="all">
+<meta name="generator" content="C4 Software WebConnect Portal">
+<meta name="content-type" content="text/html; charset=iso-8859-1">
+<meta name="rating" content="general">
+<link rel="shortcut icon" href="/_images/favicon.ico?v=20130925" type="image/x-icon">
+		<link rel="stylesheet" href="/_css/generic-print.css" type="text/css" media="screen, print">
+	<link rel="stylesheet" href="/_css/generic.css" type="text/css">
+			<link rel="stylesheet" href="/_css/ste.css" type="text/css">
+					<link rel="stylesheet" href="/_css/ste_menu.css" type="text/css">
+			<link rel="stylesheet" href="/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" type="text/css">
+	
+				
+	<script type="text/javascript" src="/_script/generic.js"></script>
+	<script type="text/javascript" src="/_script/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/_script/jquery.km_modal.js"></script>
+
+			<script type="text/javascript" src="/_script/wz_tooltip.js"></script>
+	
+			<script type="text/javascript" src="/_script/jquery.bgiframe.min.js"></script>
+		<script type="text/javascript" src="/_script/jquery.autocomplete.min.js"></script>
+		<link rel="stylesheet" href="/_css/jquery.autocomplete.css" type="text/css">
+		<script type="text/javascript" src="/_script/jquery.blockUI.js"></script>
+
+		<link href="_css/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/_script/jquery.cssemoticons.min.js"></script>
+
+	
+	<script language="javascript">
+		var bTryInterceptClose = false;
+
+		var delayedSubLabels = [];
+		var delayedActions = [];
+
+		var scriptaculousSortables = [];
+
+		var formFieldsLightbox = [];
+
+		var showSelectsTimeout = null;
+		var showTooltipsTimeout = null;
+		var flashMessageTimeout = null;
+
+		var sCheckLoadingMessage = 'Pagina wordt geladen. Even geduld a.u.b.';
+		var sSiteName = 'STE Languages';
+		var sAlertMessage1 = 'Afzender';
+		var sAlertMessage2 = 'Verzonden op';
+		var sAlertMessage3 = '---------------------------------------------------';
+		var sAlertMessage4 = 'Uw berichten';
+		var sAlertMessage5 = 'Bericht';
+
+		var inlineDeleteAccessDenied = 'U heeft niet de juiste rechten om dit object te verwijderen.';
+		var inlineDeleteFailure = 'Het verwijderen van het object is mogelijk niet goed gegaan.\nNeem contact op met KnowMany als het probleem blijft bestaan.';
+
+		var helpPopupWidth = '900';
+		var helpPopupHeight = '600';
+		var helpPopupWithToolbar = 'no';
+		var helpPopupWithMenubar = 'no';
+
+		var popupWindowNotOpenedHelpText = 'Deze site probeert een popup te openen (bijvoorbeeld omdat iemand met u wil chatten, maar uw browser heeft deze popup geblokkeerd. Wijzigt u a.u.b. de instellingen van uw browser, zodat popups voor deze site toegestaan zijn.';
+		var shared_chat = true;
+		var im_window = null;
+
+								jQuery(document).ready(doHeartbeat);
+
+			var heartbeatData = {
+				'interval': '60000',
+				'startInterval': false,
+				'onlineStatus': {
+					'msg': {
+						'online': '<strong>Deze gebruiker is momenteel aanwezig.</strong><br><br>Klik om naar het Who\'s online overzicht te gaan om deze gebruiker een bericht te sturen of uit te nodigen voor een vergadering.',
+						'offline': 'Deze gebruiker is momenteel niet aanwezig.'
+					},
+					'img': {
+						'online': '/_images/picto_status_online.gif',
+						'offline': '/_images/picto_status_offline.gif',
+						'hidden': '/_images/picto_status_hidden.gif'
+					}
+				},
+				'favorites': {
+					'msg': {
+						'addFav': 'Toevoegen aan favorieten',
+						'isFav': 'Dit is één van uw favorieten. Klik om het object te verwijderen uit uw favorieten.',
+						'busy': 'Dit object wordt momenteel toegevoegd aan uw favorieten',
+						'error': 'Er is een fout opgetreden bij het toevoegen aan uw favorieten'
+					},
+					'img': {
+						'addFav': '/_images/picto_make_fav.gif',
+						'isFav': '/_images/picto_is_fav.gif',
+						'busy': '/_images/favorite_busy.gif'
+					}
+				},
+				'admincart': {
+					'msg': {
+						'clickForInfo': 'Klik hier om de inhoud van uw adminmand te bekijken en acties uit te voeren.'
+					}
+				},
+				'flashMessage': {
+					'fadeInTime': 1000,
+					'fadeOutTime': 1500,
+					'showTime': 4000				}
+			};
+		
+					jQuery(document).ready(function() {
+				jQuery('span.kkp_tooltip').each(function() {
+					var tooltipText = jQuery.trim(this.getAttribute('tooltip'));
+					if (tooltipText) {
+						jQuery(this).bind('mouseover', function() {
+							Tip(tooltipText,
+								BORDERCOLOR, '#A1CFDC',
+								BGCOLOR, '#EFEFEF',
+								FONTCOLOR, '#3F67A7',
+								FONTSIZE, '10px'
+							);
+						});
+						jQuery(this).bind('mouseout', function() {
+							UnTip();
+						});
+					} else {
+						// lege tooltip tekst? dan uiterlijk van een tooltip ook maar even weghalen
+						jQuery(this).removeClass('kkp_tooltip');
+					}
+				});
+			});
+		
+		jQuery(document).ready(function() {
+			imageHighlight();
+			imageLightbox();
+		});
+
+		var lightboxData = {
+			'overlayOpacity': 0.7,
+			'okay': 'OK',
+			'cancel': 'Annuleren',
+			'add': 'Toevoegen',
+			'remove': 'Verwijderen',
+			'loading': 'Content wordt geladen. Een ogenblik geduld a.u.b.',
+			'close': 'Sluiten',
+			'store': 'opslaan',
+			'confirmTitle': 'Bevestig uw keuze',
+			'alertTitleActionDone': 'Actie voltooid',
+			'alertTitleActionError': 'Actie mislukt',
+			'alertTitleActionNotPossible': 'Actie is niet mogelijk',
+			'alertTitleMissingData': 'Ontbrekende gegevens',
+			'alertTitleInvalidChoice': 'Ongeldige keuze',
+			'alertTitleErrors': 'Fout(en) geconstateerd',
+			'markOffensiveTitle': 'Ongewenste content melden',
+			'markOffensiveMessageRequired': 'Vul een boodschap in voor de moderator a.u.b.',
+			'admincartMultiAddFailed': 'Het toevoegen van meerdere objecten aan uw adminmand is niet gelukt vanwege de volgende reden:',
+			'confirmJoinChat': 'U bent uitgenodigd om deel te nemen aan een lopende chat sessie.<br />Wilt u het chat venster openen?',
+			'browseContainers': 'Container documenten toevoegen aan kalender'
+		};
+
+		var defaultLightboxFormSettings = {
+			width: 750,
+			contentBackgroundColor: '#FFFFFF',
+			buttons: [ { text: lightboxData.cancel } ]
+		};
+	</script>
+
+		<link rel="stylesheet" href="/_css/system.datepick.css" />
+	<script type="text/javascript" src="/_script/jquery.datepick.pack.js"></script>
+	<script type="text/javascript" src="/_script/jquery.datepick.ext.pack.js"></script>
+	<script type="text/javascript" src="/_script/jquery.datepick-nl.js"></script>
+			<script type="text/javascript" src="/_script/scorm12.js"></script>
+			
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-37368576-1']);
+		_gaq.push(['_setDomainName', 'ste.nl']);
+		_gaq.push(['_setAllowLinker', true]);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+<body class="main_layout page_index action_contact" id="main_body" style="background: transparent url('/_images/ste.knowmany.net/bg_6.jpg') no-repeat top center;">
+	<div id="page">
+		<div id="page_top" class="no_print">
+			<h1 id="logo"><a href="/">STE Trainingen</a></h1>
+			<div id="payoff">committed to learning</div>
+												<div id="mijnste"><a href="/login.php"><img src="/_images/ste.knowmany.net/mijn_ste.png" alt="Mijn STE" /></a></div>
+										<div id="topmenu">
+									<span> &nbsp;</span>
+									
+				<!-- div class="aboutmenu" id="aboutmenu" onmouseover="hideTooltips()" onmouseout="showTooltipsDelayed()">
+					<ul>
+						<li class="first">
+							<a href="#">Over STE Languages</a>
+							<ul>
+								<li class="first"><a href="/view.php?action=view&Pagina_Id=27">Waarom STE Languages</a></li>
+								<li><a href="/view.php?action=view&Pagina_Id=28">Visie</a></li>
+								<li><a href="/view.php?action=view&Pagina_Id=32">Werken bij STE Languages</a></li>
+								<li><a href="/view.php?action=view&Pagina_Id=39">Historie</a></li>
+								<li><a href="/view.php?action=view&Pagina_Id=31">Keurmerken en Certificering</a></li>
+								<li class="last"><a href="/view.php?action=view&Pagina_Id=30">Partners</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><a href="/nieuws.php">Nieuws</a>&nbsp;-->
+	
+						<a href="/newsletters.php?action=ste_subscribe">Nieuwsbrief</a>&nbsp;
+						<a href="/index.php?action=contact">Contact</a>&nbsp;<a href="http://ace.explio.com/nl/ste/" target="_blank"><strong>
+													Mijn e-Learning
+											</strong></a>
+			</div>
+			<div id="flags">
+				<a href="/index.php?action=contact&set_language=Nederlands"><img src="/_images/ste.knowmany.net/flag_nl.png" alt="Nederlands" /></a>
+				<a href="/index.php?action=contact&set_language=Engels"><img src="/_images/ste.knowmany.net/flag_en.png" alt="English" /></a>
+			</div>
+		</div>
+		<div id="header" class="no_print">
+			<div class="cssmenu" id="cssmenu" onmouseover="hideTooltips()" onmouseout="showTooltipsDelayed()"><ul><li class="first"><a href="/index.php?action=list" >home</a></li><li><a class="has_children" href="#" >aanbod<!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul><li class="first"><a href="/view.php?action=view&Pagina_Id=4" >Talen</a></li><li><a href="/view.php?action=view&Pagina_Id=5" >Individuele trainingen</a></li><li><a href="/view.php?action=view&Pagina_Id=6" >Groepstrainingen</a></li><li><a href="/view.php?action=view&Pagina_Id=7" >Bedrijfstrainingen</a></li><li><a href="/view.php?action=view&Pagina_Id=8" >Weblearning</a></li><li><a href="/view.php?action=view&Pagina_Id=10" >Taalassessments</a></li><li><a href="/view.php?action=view&Pagina_Id=9" >Workshops</a></li><li><a href="/view.php?action=view&Pagina_Id=11" >Staatsexamen en Inburgering</a></li><li class="last"><a href="/view.php?action=view&Pagina_Id=42" >Intensieve dagtrainingen</a></li></ul><!--[if lte IE 6]></td></tr></table></a><![endif]--></li><li><a class="has_children" href="#" >werkwijze<!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul><li class="first"><a href="/view.php?action=view&Pagina_Id=12" >Taaltrainingen </a></li><li><a href="/view.php?action=view&Pagina_Id=14" >Taalassessments</a></li><li><a href="/view.php?action=view&Pagina_Id=15" >Europees referentiekader</a></li><li><a href="/view.php?action=view&Pagina_Id=29" >Vrij van BTW</a></li><li><a href="/view.php?action=view&Pagina_Id=17" >Tarieven</a></li><li class="last"><a href="/view.php?action=view&Pagina_Id=18" >Algemene voorwaarden</a></li></ul><!--[if lte IE 6]></td></tr></table></a><![endif]--></li><li><a class="has_children" href="#" >over STE<!--[if IE 7]><!--></a><!--<![endif]--><!--[if IE 8]><!--></a><!--<![endif]--><!--[if lte IE 6]><table><tr><td><![endif]--><ul><li class="first"><a href="/view.php?action=view&Pagina_Id=27" >Waarom STE Languages</a></li><li><a href="/view.php?action=view&Pagina_Id=28" >Visie</a></li><li><a href="/view.php?action=view&Pagina_Id=32" >Werken bij STE Languages</a></li><li><a href="/view.php?action=view&Pagina_Id=39" >Historie</a></li><li><a href="/view.php?action=view&Pagina_Id=31" >Keurmerken en Certificering</a></li><li class="last"><a href="/view.php?action=view&Pagina_Id=30" >Partners</a></li></ul><!--[if lte IE 6]></td></tr></table></a><![endif]--></li><li><a href="/nieuws.php?action=list" >nieuws</a></li><li class="last"><a href="/index.php?action=contact" target="_self">contact</a></li></ul></div>		</div>
+				<div id="content_page">			
+		<div class="header_where_am_i"><a class="where_am_i" href="/index.php">home</a></div>
+		<div id="main_content">
+			<h2>Contact</h2>
+			<h2 class="help_tussenkop">
+	Meer weten over onze taaltrainingen of STE Languages?</h2>
+<p>
+	Gedurende onze openingstijden kunt u telefonisch met ons contact opnemen. Een andere mogelijkheid is het contactformulier in te vullen. STE Languages voorziet u ook dan snel van een helder antwoord.<br />
+	&nbsp;</p>
+
+			<div id="contact_wrapper">
+				<div id="contact_wrapper_address">
+					<h4>Adresgegevens</h4>
+					<h2 class="help_tussenkop">
+	STE Languages</h2>
+<p>
+	<a href="http://www.ste.nl">www.ste.nl</a></p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>Vestiging Eindhoven</strong><br />
+	Heggeranklaan 1<br />
+	5643 BP Eindhoven</p>
+<p>
+	<a href="/view/56-routebeschrijving_06-2012.pdf" target="_blank"><br />
+	Routebeschrijving</a></p>
+<p>
+	&nbsp;</p>
+<p>
+	T +31 (0)40 - 245 28 60<br />
+	F +31 (0)40 - 246 04 55<a href="mailto:info@ste.nl"><br />
+	info@ste.nl </a></p>
+<p>
+	&nbsp;</p>
+<p>
+	Openingstijden<br />
+	Maandag t/m donderdag:<br />
+	08.30 - 21.30 uur<br />
+	Vrijdag:<br />
+	08.30 - 17.00 uur</p>
+<p>
+	Zaterdag:</p>
+<p>
+	09.00 - 13.30 uur</p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>Vestiging Geleen</strong><br />
+	Pastoor Vonckenstraat 1A<br />
+	6166 CV Geleen</p>
+<p>
+	&nbsp;</p>
+<p>
+	T +31 (0)46 - 411 09 29<br />
+	F +31 (0)46 - 474 67 43<br />
+	<a href="mailto:info.geleen@ste.nl">info.geleen@ste.nl</a></p>
+<p>
+	&nbsp;</p>
+<p>
+	Openingstijden<br />
+	Maandag t/m vrijdag<br />
+	08.30 - 17.00 uur</p>
+<p>
+	&nbsp;</p>
+<p>
+	STE Languages is de handelsnaam&nbsp;van<br />
+	Studiecentrum Talen Eindhoven bv<br />
+	BTW-nummer: 8038.78.618.01<br />
+	Handelsregister KvK: 17089616<br />
+	Rekeningnummer bank: NL57ABNA528970992</p>
+<p>
+	&nbsp;</p>
+<p>
+	STE Eindhoven BV<br />
+	BTW-nummer: 8177.79.607.01<br />
+	Handelsregister KvK: 50298054<br />
+	Rekeningnummer bank: NL57ABNA555181162<br />
+	&nbsp;</p>
+				</div>
+				<div id="contact_wrapper_form">
+					<form action="/index.php?action=contact" method="post" name="contact_form" id="contact_form">
+							<h4>Contactformulier</h4>
+
+		<table class="contact_form" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="first_cell">Aanhef:</td>
+				<td><input type="radio" name="aanhef" id="aanhef_m" value="M" checked="checked" /> <label for="aanhef_m">Dhr.</label> <input type="radio" name="aanhef" id="aanhef_v" value="V" /> <label for="aanhef_v">Mevr.</label></td>
+			</tr>
+			<tr>
+				<td>Achternaam: <sup class="required" title="Dit veld is verplicht">&nbsp;*</sup></td>
+				<td><input type="text" size="40" name="achternaam" id="achternaam" value="" /></td>
+			</tr>
+			<tr>
+				<td>Voorletters:</td>
+				<td><input type="text" size="40" name="voorletters" id="voorletters" value="" /></td>
+			</tr>
+			<tr>
+				<td>Telefoonnummer: <sup class="required" title="Dit veld is verplicht">&nbsp;*</sup></td>
+				<td><input type="text" size="40" name="telefoonnr" id="telefoonnr" value="" /></td>
+			</tr>
+			<tr>
+				<td>E-mailadres: <sup class="required" title="Dit veld is verplicht">&nbsp;*</sup></td>
+				<td><input type="text" size="40" name="email" id="email" value="" /></td>
+			</tr>
+			<tr>
+				<td>Organisatie:</td>
+				<td><input type="text" size="40" name="organisatie" id="organisatie" value="" /></td>
+			</tr>
+			<tr>
+				<td>Ge&iuml;nteresseerd in:</td>
+				<td>
+					<select id="interesse" name="interesse">
+											<option value="IND" />Individuele trainingen</option>
+											<option value="AS" />Taalassessments</option>
+											<option value="GROEP" />Groepstrainingen</option>
+											<option value="IC" />Bedrijfstrainingen</option>
+											<option value="WL" />Weblearning</option>
+											<option value="WS" />Workshops</option>
+											<option value="INB" />Inburgering - Staatsexamen</option>
+											<option value="OV" />Overige</option>
+										</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Taal:</td>
+				<td>
+					<select name="taal" id="taal">
+											<option value="NED">Nederlands</option>
+											<option value="ENG">Engels</option>
+											<option value="DUI">Duits</option>
+											<option value="FRA">Frans</option>
+											<option value="SPA">Spaans</option>
+											<option value="CHI">Chinees</option>
+											<option value="POR">(Braziliaans) Portugees</option>
+											<option value="OVR">Overige</option>
+										</select>
+										<input type="text" name="Url" value="" class="formulier_url">
+					<textarea name="Info" class="formulier_info"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Vragen / opmerkingen:</td>
+				<td><textarea name="opmerking" id="opmerking" style="width: 200px; height: 100px;"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="line-height:14px;">
+					<input type="checkbox" value="1" name="newsletter"/>&nbsp;<span>Wilt u op de hoogte blijven van de activiteiten van STE?</span>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" name="submit" id="submit" value="Verstuur" /></td>
+			</tr>
+		</table>
+					</form>
+				</div>
+			</div>
+		</div>
+				<div class="clearAll"></div>
+		</div>
+				<div id="footer">
+			Copyright STE Languages 2013			| <a href="/view.php?action=view&Pagina_Id=34">Disclaimer</a>
+			| <a href="/view.php?action=view&Pagina_Id=18">Algemene voorwaarden</a>
+			| <a href="/view/83-Privacyreglement+STE+Languages.PDF" target="_blank">Privacy</a>
+			<span>
+				<a href="http://www.linkedin.com/company/980060"><img src="/_images/ste.knowmany.net/icon-linkedin.png" alt="LinkedIn" /></a>
+			</span>
+		</div>
+	</div>
+</body>
+</html>
+
