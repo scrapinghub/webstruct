@@ -39,8 +39,8 @@
 <li>Dinsdag <span>09:00 - 11:30</span></li>
 <li>Woensdag <span>11:30 - 14:00</span></li>
 <li>Donderdag <span>09:00 - 11:30</span></li>
-<li>Vrijdag <span>09:00 - 11:30</span></li></HOURS>
-</ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
+<li>Vrijdag <span>09:00 - 11:30</span></li>
+<div class="clearer"><span></span></div></HOURS></ul></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div><div class="clearer"><span><div id="google4" class="googlemap"><div class="clearer"><span></span></div></div></span></div>
 <p>CJG Regiokantoor is ook gevestigd op dit adres.</p>
@@ -52,8 +52,8 @@
 <li class="clearer">Tel: <span>0800 - 2540000 (gratis)</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Dinsdag <span>13:30 - 15:00</span></li>
-<li>Donderdag <span>13:30 - 15:00</span></li>
+<HOURS><li>Dinsdag <span>13:30 - 15:00</span></li>
+<li>Donderdag <span>13:30 - 15:00</span></li></HOURS>
 </ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div><div class="clearer"><span><div id="google1" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="location"><h2 id="schaijk">Schaijk</h2>
@@ -64,7 +64,7 @@
 <li class="clearer">Tel: <span>0800 - 2540000</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Maandag <span>10:00 - 12:00</span></li>
+<li><HOURS>Maandag <span>10:00 - 12:00</span></HOURS></li>
 </ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div><div class="clearer"><span><div id="google6" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="location"><h2 id="speelotheek">Speelotheek</h2>
@@ -75,10 +75,10 @@
 <li class="clearer">Tel: <span>013-4643813</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Maandag <span>19:00 - 21:00</span></li>
+<HOURS><li>Maandag <span>19:00 - 21:00</span></li>
 <li>Woensdag <span>13:30 - 16:00</span></li>
 <li>Donderdag <span>09:00 - 11:30</span></li>
-</ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
+<div class="clearer"><span></span></div></HOURS></ul></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div><div class="clearer"><span><div id="google3" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="location"><h2 id="st-oedenrode">St. Oedenrode</h2>
 <div class="info">
@@ -88,9 +88,9 @@
 <li class="clearer">Tel: <span>0800 - 2540000</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Maandag <span>09:00 - 12:00</span></li>
+<HOURS><li>Maandag <span>09:00 - 12:00</span></li>
 <li>Donderdag <span>14:00 - 16:00</span></li>
-</ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
+<div class="clearer"><span></span></div></HOURS></ul></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div><div class="clearer"><span><div id="google5" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="location"><h2 id="veghel">Veghel</h2>
 <div class="info">
@@ -100,12 +100,12 @@
 <li class="clearer">Tel: <span>0800 - 2540000</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Maandag <span>13:30 - 15:30</span></li>
+<HOURS><li>Maandag <span>13:30 - 15:30</span></li>
 <li>Dinsdag <span>09:00 - 11:30</span></li>
 <li>Woensdag <span>09:00 - 11:30</span></li>
 <li>Donderdag <span>09:00 - 11:30</span></li>
 <li>Vrijdag <span>09:00 - 11:30</span></li>
-</ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
+<div class="clearer"><span></span></div></HOURS></ul></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div><div class="clearer"><span><div id="google2" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="location"><h2 id="zeeland">Zeeland</h2>
 <div class="info">
@@ -115,7 +115,7 @@
 <li class="clearer">Tel: <span>0800 - 2540000</span></li>
 <li class="clearer">E-mail: <span><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></span></li>
 </ul><div class="clearer"><span></span></div><ul class="plain"><li><strong>Openingstijden</strong></li>
-<li>Woensdag <span>09:00 - 10:30</span></li>
+<li><HOURS>Woensdag <span>09:00 - 10:30</span></HOURS></li>
 </ul></div><div class="clearer"><span></span></div><div class="map"><div class="route">
 <p><strong>Plan uw route</strong></p>
 </div></div></div><div class="clearer"><span><div id="google7" class="googlemap"><div class="clearer"><span></span></div></div></span></div><div class="sidebar"><div class="callus"><a href="/contact.html" title="Bel ons: 0800 - 2540000">Bel ons: 0800 - 2540000</a></div>
@@ -133,7 +133,7 @@
 <br/>Stadhuisplein 47</a></li>
 <li class="last"><a href="/contact.html#zeeland"><span>Zeeland</span>
 <br/>Brouwerspad 13a</a></li>
-</ul></div><div class="clearer"><span></span></div><div id="credits"><ul><li>Copyright Â&#169; 2013 CJG Geeft Antwoord | Boekel, Schaijk, St. Oedenrode, Uden, Veghel, Zeeland <span>-</span></li>
+</ul></div><div class="clearer"><span></span></div><div id="credits"><ul><li>Copyright &#169; 2013 CJG Geeft Antwoord | Boekel, Schaijk, St. Oedenrode, Uden, Veghel, Zeeland <span>-</span></li>
 <li><a href="mailto:info@cjggeeftantwoord.nl" rel="nofollow">info@cjggeeftantwoord.nl</a></li>
 </ul><ul class="right"><li><a href="/over-cjg.html" title="Over CJG">Over CJG</a> <span>-</span></li>
 <li><a href="/disclaimer.html" title="Disclaimer">Disclaimer</a> <span>-</span></li>
