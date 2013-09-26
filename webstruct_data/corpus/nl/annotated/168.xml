@@ -25,12 +25,12 @@
 <p>Of kom gezellig langs in onze showroom.</p>
 
 <p>Onze openingstijden:</p>
-<table cellpadding="1" border="0" cellspacing="1" align="left"><tbody><tr><td><strong>Maandag:</strong></td> <td>13.15 - 17.30u</td> <td>&#160;</td></tr>
-<tr><td><strong>Dinsdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td> <td>&#160;</td></tr>
-<tr><td><strong>Woensdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td> <td>&#160;</td></tr>
-<tr><td><strong>Donderdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td> <td>&#160;</td></tr>
-<tr><td><strong>Vrijdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td> <td>&#160;</td></tr>
-<tr><td><strong>Zaterdag:</strong></td> <td>09.30 - &#160;16.30u</td> <td>&#160;</td></tr>
+<table cellpadding="1" border="0" cellspacing="1" align="left"><tbody><tr><HOURS><td><strong>Maandag:</strong></td> <td>13.15 - 17.30u</td></HOURS> <td>&#160;</td></tr>
+<tr><HOURS><td><strong>Dinsdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td></HOURS> <td>&#160;</td></tr>
+<tr><HOURS><td><strong>Woensdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td></HOURS> <td>&#160;</td></tr>
+<tr><HOURS><td><strong>Donderdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td></HOURS> <td>&#160;</td></tr>
+<tr><HOURS><td><strong>Vrijdag:</strong></td> <td>09.00 - 12.15u | 13.15 - 17.30u</td></HOURS> <td>&#160;</td></tr>
+<tr><HOURS><td><strong>Zaterdag:</strong></td> <td>09.30 - &#160;16.30u</td></HOURS> <td>&#160;</td></tr>
 <tr><td><strong>Zondag:</strong></td> <td><strong><em>&#160; &#160; &#160; &#160; &#160;Gesloten.</em></strong></td> <td>&#160;</td></tr>
 </tbody></table>
 <p>&#160;</p>

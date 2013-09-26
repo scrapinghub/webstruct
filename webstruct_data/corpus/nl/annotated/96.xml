@@ -48,15 +48,15 @@
 <br/><strong>Email:</strong> <a href="mailto:planning@dekrommespaak.nl">planning@dekrommespaak.nl</a></p>
 </div></div><div class="clear"><div class="widget widget_text"><h3 class="title">Openingstijden</h3>
 <div class="textwidget"><div class="three columns alpha"><div class="textwidget">
-<p>Dinsdag t/m donderdag
+<p><HOURS>Dinsdag t/m donderdag
 <br/>Vrijdag
 <br/>Zaterdag
-<br/>Zondag en Maandag</p>
+<br/>Zondag en Maandag</HOURS></p>
 </div></div><div class="three columns omega"><div class="textwidget">
-<p>van 8.00 tot 18.00 uur
+<p><HOURS>van 8.00 tot 18.00 uur
 <br/>van 8.00 tot 20.00 uur
 <br/>van 9.00 tot 16.00 uur
-<br/>gesloten</p>
+<br/>gesloten</HOURS></p>
 </div></div></div></div><div class="clear"><div class="widget google-maps-widget"><h3 class="title">Op de kaart</h3>
 <div class="google-map component "><span class="map-data">{&quot;latLong&quot;:&quot;51.484884,3.954002&quot;, &quot;mapType&quot;:&quot;ROADMAP&quot;, &quot;zoom&quot;:11, &quot;contentTitle&quot;:&quot;De Kromme Spaak&quot;, &quot;contentTooltip&quot;:&quot;De Kromme Spaak, Kapelle&quot;, &quot;allowFullScreen&quot;:false}</span>
 <div class="infobox-content">

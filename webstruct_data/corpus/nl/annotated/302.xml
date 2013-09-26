@@ -20,7 +20,7 @@
 <br/>
 <br/>Wilt u op de hoogte blijven van de laatste ontwikkelingen bij Joosse, reageer dan d.m.v. onderstaand formulier.</p>
 
-<p>Openingstijden: dinsdag t/m zaterdag van 10.00 tot 12.00 uur en van 13.00 tot 17.00 uur.</p>
+<p>Openingstijden: <HOURS>dinsdag t/m zaterdag van 10.00 tot 12.00 uur en van 13.00 tot 17.00 uur</HOURS>.</p>
 
 <p>Heeft u vragen, opmerkingen, of wilt u zich inschrijven voor onze nieuwsbrief? Vul dan onderstaand formulier in.</p>
 <div><div id="webform-component-naam" class="webform-component webform-component-textfield"><div id="edit-submitted-naam-wrapper" class="form-item"><label for="edit-submitted-naam">Naam: <span class="form-required" title="Dit veld is verplicht.">*</span></label></div>
@@ -39,9 +39,9 @@
 <br/>E <a target="_blank" href="mailto:info@joosseinterieurs.nl">info@joosseinterieurs.nl</a></div>
 </div></div><div id="block-block-4" class="clear-block block block-block"><h2>Openingstijden</h2>
 <div class="content"><div><HOURS>Di t/m Za:
-<br/>10:00u - 17:00u
+<br/>10:00u - 17:00u</HOURS>
 <br/>Lunchpauze:
-<br/>12:00u - 13:00u</HOURS></div>
-</div></div></div></div><div id="block-block-5" class="clear-block block block-block"><div class="content"><div><img width="165" height="134" src="/sites/default/files/koffie-footer.jpg"/></div></div></div><div id="subfooter"><div class="centered"><div id="block-block-2" class="clear-block block block-block"><div class="content"><div><a href="http://www.joosseinterieurs.nl/sitemap">Sitemap</a> |  <a href="http://www.joosseinterieurs.nl/woordenlijst">Woordenlijst</a>  |  <a href="http://www.joosseinterieurs.nl/contact">Contact</a></div>
-<div id="realisatie">Ontwerp &amp; realisatie: <a href="http://www.nilsson.nl/">Nilsson communicatiekunstenaars</a></div>
+<br/><HOURS>12:00u - 13:00u</HOURS></div>
+</div></div></div></div><div id="block-block-5" class="clear-block block block-block"><div class="content"><div><img width="165" height="134" src="/sites/default/files/koffie-footer.jpg"/></div></div></div><div id="subfooter"><div class="centered"><div id="block-block-2" class="clear-block block block-block"><div class="content"><div><a href="http://www.joosseinterieurs.nl/sitemap">Sitemap</a> |&#160; <a href="http://www.joosseinterieurs.nl/woordenlijst">Woordenlijst</a> &#160;|&#160; <a href="http://www.joosseinterieurs.nl/contact">Contact</a></div>
+<div id="realisatie">Ontwerp &amp; realisatie: <a href="http://www.nilsson.nl/">Nilsson&#160;communicatiekunstenaars</a></div>
 </div></div></div></div></div></div></div></body></html>
