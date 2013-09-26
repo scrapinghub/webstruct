@@ -11,6 +11,7 @@ def token_shape(index, tokens, elem, is_tail):
         'lower': token.lower(),
         'shape': _shape(token),
         'endswith_dot': token.endswith('.') and token != '.',
+        'endswith_colon': token.endswith(':') and token != ':',
         'first_upper': token[0].isupper(),
         'has_copyright': u'©' in token
     }
