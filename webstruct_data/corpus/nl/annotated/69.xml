@@ -20,8 +20,8 @@
 <tr><td class="shop_paging2" bgcolor="#F1F2E2">wo</td> <td bgcolor="#F1F2E2">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">09:30 - 18:00 uur</td></tr>
 <tr><td class="shop_paging2">do</td> <td>&#160;</td> <td class="shop_cat">09:30 - 18:00 uur</td></tr>
 <tr><td class="shop_paging2" bgcolor="#F1F2E2">vr</td> <td bgcolor="#F1F2E2">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">09:30 - 18:00 uur</td></tr>
-<tr><td class="shop_paging2">za</td> <td>&#160;</td> <td class="shop_cat">09:00 - 17:00 uur</td></tr>
-</HOURS></tbody></table>
+<tr><td class="shop_paging2">za</td> <td>&#160;</td> <td class="shop_cat">09:00 - 17:00 uur</td></tr></HOURS>
+</tbody></table>
 <p class="shop_tekst2"><strong>Routebeschrijving:</strong>
 <br/>Winkelcentrum Brusselse Poort, volg in Maastricht wijk 16.
 <br/>Klik <a target="_blank" href="http://www.brusselsepoort.nl/index.php?page=route">hier</a> voor een routebeschrijving</p>
@@ -42,12 +42,12 @@
 </span><br/><span class="omschrijving_tekst">Reparatie van klokken en horloges in eigen atelier
 <br/>
 </span><br/><table cellpadding="0" border="0" cellspacing="0" width="100%"><tbody><tr><td class="nuprijs" colspan="3">Openingstijden</td></tr>
-<tr><td class="shop_paging2" bgcolor="#F1F2E2" width="50">ma</td> <td bgcolor="#F1F2E2" width="10">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">gesloten</td></tr>
+<HOURS><tr><td class="shop_paging2" bgcolor="#F1F2E2" width="50">ma</td> <td bgcolor="#F1F2E2" width="10">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">gesloten</td></tr>
 <tr><td class="shop_paging2">di</td> <td>&#160;</td> <td class="shop_cat">10:30 - 17:30 uur</td></tr>
 <tr><td class="shop_paging2" bgcolor="#F1F2E2">wo</td> <td bgcolor="#F1F2E2">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">10:30 - 17:30 uur</td></tr>
 <tr><td class="shop_paging2">do</td> <td>&#160;</td> <td class="shop_cat">10:30 - 17:30 uur</td></tr>
 <tr><td class="shop_paging2" bgcolor="#F1F2E2">vr</td> <td bgcolor="#F1F2E2">&#160;</td> <td class="shop_cat" bgcolor="#F1F2E2">10:30 - 17:30 uur</td></tr>
-<tr><td class="shop_paging2">za</td> <td>&#160;</td> <td class="shop_cat">11:00 - 16:00 uur</td></tr>
+<tr><td class="shop_paging2">za</td> <td>&#160;</td> <td class="shop_cat">11:00 - 16:00 uur</td></tr></HOURS>
 </tbody></table></td></tr>
 </tbody></table><p class="shop_tekst2">&#160;</p>
 </td></tr>

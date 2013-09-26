@@ -23,11 +23,11 @@
 <br/>Website: www.vanoirschotnatuursteen.nl
 <br/>
 <br/>K.v.K nr.: 17081685</p>
-</td><td><HOURS>
+</td><td>
 <p>Openingstijden:
-<br/>Maandag t/m vrijdag
+<br/><HOURS>Maandag t/m vrijdag
 <br/>van 08.00 tot 17.00
-<br/>Zaterdag: op afspraak</p></HOURS>
+<br/>Zaterdag: op afspraak</HOURS></p>
 </td></tr>
 </tbody></table><div id="footer">
 <br/><h3><a name="formulier">contactformulier</a></h3>
@@ -49,5 +49,5 @@
 <tr><td valign="top"></td><td>* verplichte velden</td></tr>
 </tbody></table><div id="footer"><a href="index.php?page=sitemap&amp;img=0">Sitemap</a></div>
 
-<p> </p>
+<p>&#160;</p>
 </div></div></body></html>
