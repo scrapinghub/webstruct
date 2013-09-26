@@ -4,7 +4,7 @@
 <li class="Zakelijk"><a href="Zakelijk.php">Zakelijk</a></li>
 <li class="Bloemisten"><a href="Bloemisten.php">Bloemisten</a></li>
 <li class="Webshop"><a href="Webshop.php">Webshop</a></li>
-</ul></div><div id="subMenu"><div id="subContent"><a href="Bruidsarrangementen.php">Bruidsarrangementen</a>  |  <a href="Rouwarrangementen.php">Rouwarrangementen</a>  |  <a href="Abonnementen.php">Abonnementen</a>  |  <a href="Links.php">Links</a>  |  <a href="Contact.php">Contact</a></div>
+</ul></div><div id="subMenu"><div id="subContent"><a href="Bruidsarrangementen.php">Bruidsarrangementen</a> &#160;|&#160; <a href="Rouwarrangementen.php">Rouwarrangementen</a> &#160;|&#160; <a href="Abonnementen.php">Abonnementen</a> &#160;|&#160; <a href="Links.php">Links</a> &#160;|&#160; <a href="Contact.php">Contact</a></div>
 </div></div><div id="containerTxT"><h1>Contact</h1>
 
 <p>Voor vragen of opmerkingen kunt u contact met ons opnemen per e-mail op info@fleurrijk.nl of per telefoon (078) 6215651.</p>
@@ -33,5 +33,5 @@
 
 <p><a href="mailto:Info@Fleurrijk.nl">Info@Fleurrijk.nl</a> (algemeen)
 <br/><a href="mailto: Breda@Fleurrijk.nl">Breda@Fleurrijk.nl</a> (voor bestellingen)</p>
-<div></div><div id="containerFTR">Copyright �&#169; <span class="bedrijfsnaam"><span class="logokleur">Fleur</span> <span class="logokleur2">rijk</span></span> | Site &amp; logo design by <a target="_blank" href="http://www.cb-services.nl">CB Services</a></div>
+<div></div><div id="containerFTR">Copyright &#169; <span class="bedrijfsnaam"><span class="logokleur">Fleur</span> <span class="logokleur2">rijk</span></span> | Site &amp; logo design by <a target="_blank" href="http://www.cb-services.nl">CB Services</a></div>
 </div></div></php></body></html>

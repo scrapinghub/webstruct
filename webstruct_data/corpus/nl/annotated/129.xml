@@ -30,9 +30,9 @@
 <div class="field"></div><div class="form-field"><div class="label">Email</div>
 <div class="field"></div><div class="form-field"><div class="label">Vraag over</div>
 </div><div class="field"></div><div class="form-field"><div class="label">Bericht</div>
-</div><div class="field"></div><div class="form-field"><div class="label"> </div>
+</div><div class="field"></div><div class="form-field"><div class="label">&#160;</div>
 </div></div></div></div></div><div class="field"></div>
-<br class="clear"/><div id="left-column"><p> </p>
+<br class="clear"/><div id="left-column"><p>&#160;</p>
 </div><div id="right-column"><div id="block-container"><div class="block"><div class="block-content big-box"><h1>Openingstijden</h1>
 <div><h2>Openingstijden verkoop</h2>
 
@@ -40,8 +40,8 @@
 
 <p>Zaterdag: 09.00u tot 16.00u</p></HOURS>
 </div><div><h2>Openingstijden werkplaats</h2>
-<HOURS>
-<p>Maandag - Vrijdag: 08.30u tot 17.00u</p>
+
+<HOURS><p>Maandag - Vrijdag: 08.30u tot 17.00u</p>
 
 <p>Zaterdag: 09.00u tot 14.30u</p></HOURS>
 </div></div></div></div></div>
@@ -49,7 +49,7 @@
 <br/><h1>Route beschrijving</h1>
 <div id="map"></div><div id="directions"><h2>Details</h2>
 </div>
-</div><br class="clear"/><div id="footer"><div class="column first"><h2>�&#169; 2011 Autobedrijf Reubsaet</h2>
+</div><br class="clear"/><div id="footer"><div class="column first"><h2>&#169; 2011 Autobedrijf Reubsaet</h2>
 <ul><li><a href="disclaimer.html">Disclaimer</a></li>
 <li><a target="_blank" href="doc/Alg_Voorw_Autobedrijven_Particulier.pdf">Algemene voorwaarden</a></li>
 <li><a href="colofon.html">Colofon</a></li>
