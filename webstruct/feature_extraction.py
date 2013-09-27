@@ -4,8 +4,7 @@ import lxml.html
 import lxml.html.clean
 import lxml.etree
 from sklearn.base import BaseEstimator
-from . import features
-from .preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
+from .preprocess import IobSequence, Tagset, to_features_and_labels
 from .tokenize import default_tokenizer
 
 _cleaner = lxml.html.clean.Cleaner(
@@ -39,7 +38,8 @@ class HtmlFeaturesExtractor(BaseEstimator):
     from html data::
 
         >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
-        >>> fe = HtmlFeaturesExtractor(feature_func=feature_func)
+        >>> from .preprocess import DEFAULT_TAGSET
+        >>> fe = HtmlFeaturesExtractor(DEFAULT_TAGSET, feature_func)
         >>> features, labels = fe.fit_transform(html)
         >>> for feat, label in zip(features, labels):
         ...     print("%s %s" % (sorted(feat.items()), label))
@@ -56,8 +56,7 @@ class HtmlFeaturesExtractor(BaseEstimator):
 
     """
 
-    def __init__(self, tokenizer=default_tokenizer, tags=DEFAULT_TAGSET,
-                 feature_func=features.DEFAULT, tagset=None, label_encoder=None):
+    def __init__(self, tags, feature_func, tokenizer=default_tokenizer, tagset=None, label_encoder=None):
         self.tokenizer = tokenizer
         self.feature_func = feature_func
         if tagset is None:
