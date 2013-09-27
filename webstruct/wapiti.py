@@ -21,7 +21,7 @@ class WapitiChunker(BaseEstimator):
     """
     Class for tagging using pre-built Wapiti models.
     """
-    def __init__(self, model, feature_encoder, feature_extractor=None):
+    def __init__(self, model, feature_encoder, feature_extractor):
         """
 
         Parameters
