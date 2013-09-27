@@ -23,10 +23,10 @@ Usage
 ::
 
     >>> import wapiti
-    >>> from webstruct_token.wapiti import WapitiChunker
+    >>> from webstruct.wapiti import WapitiChunker
     >>> from sklearn.externals import joblib
 
-Load trained model ('wfe.joblib' and 'model.wapiti' files must exitsts)::
+Load trained model ('wfe.joblib' and 'model.wapiti' files must exists)::
 
     >>> feature_encoder = joblib.load('wfe.joblib')
     >>> wapiti_model = wapiti.Model(model='model.wapiti')
