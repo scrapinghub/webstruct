@@ -1,9 +1,9 @@
 # This file define date/time notations among different countries.
 
-__all__ = ['MONTHES', 'WEEKDAYS']
+__all__ = ['MONTHS', 'WEEKDAYS']
 
 # http://en.wikipedia.org/wiki/Date_and_time_notation_in_the_Netherlands
-_NL_MONTHES = [
+_NL_MONTHS = [
     ("Jan", "January", "Januari", "jan."),
     ("Feb", "February", "Februari", "feb."),
     ("Mar", "Mrt", "Maart", "March", "mrt.", "maa.", "maa"),
@@ -34,7 +34,7 @@ _NL_HMS = [
     ("s", "seconde", "seconden")
 ]
 
-_EN_MONTHES = [
+_EN_MONTHS = [
     ("Jan", "January"),
     ("Feb", "February"),
     ("Mar", "March"),
@@ -50,4 +50,4 @@ _EN_MONTHES = [
 ]
 
 WEEKDAYS = (_NL_WEEKDAYS, )
-MONTHES = (_EN_MONTHES, _NL_MONTHES)
+MONTHS = (_EN_MONTHS, _NL_MONTHS)
