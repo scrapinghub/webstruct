@@ -17,7 +17,8 @@ DEFAULT = CombinedFeatures(
     number_pattern,
     prefixes_and_suffixes,
 
-    looks_like_date,
+    looks_like_year,
+    looks_like_month,
     looks_like_email,
     looks_like_street_part,
 )

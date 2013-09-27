@@ -1,0 +1,69 @@
+<!DOCTYPE php PUBLIC "-//W3C//DTD Xphp 1.1//EN" "http://www.w3.org/TR/xphp11/DTD/xphp11.dtd">
+<php xmlns="http://www.w3.org/1999/xphp">
+
+<!-- ################################################# -->
+<!--  Richard van Breugel | Versie 1.01 | 01-04-2011   -->
+<!-- ################################################# -->
+
+<!-- Valideren? -->
+<!-- http://validator.w3.org/#validate_by_input -->
+
+<head>
+<title>Fleurrijk - Contact</title>
+<meta http-equiv="Content-Type" content="text/php; charset=UTF-8" />
+<link rel="stylesheet" href="Stylesheet/main.css" type="text/css" media="all">
+<link href="Stylesheet/imageMenu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="Javascript/mootools-1.2.5-core-yc.js"></script>
+<script type="text/javascript" src="Javascript/mootools-1.2.5.1-more.js"></script>
+<script type="text/javascript" src="Javascript/imageMenu.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="container">
+			<div id="logo"><a href="http://www.Fleurrijk.nl"></a></div>
+			<div id="imageMenu">
+			<ul>
+				<li class="Particulier"><a href="Particulier.php">Particulier</a></li>
+				<li class="Zakelijk"><a href="Zakelijk.php">Zakelijk</a></li>
+				<li class="Bloemisten"><a href="Bloemisten.php">Bloemisten</a></li>
+				<li class="Webshop"><a href="Webshop.php">Webshop</a></li>
+				<!-- <li class="Webshop"><a href="https://www.topbloemen.nl/webshop/category.php?p=758&l=1&c=20&category=Boeketten" target="_blank">Webshop</a></li> -->
+			</ul>
+			</div>
+			<div id="subMenu">
+				<div id="subContent"><a href="Bruidsarrangementen.php">Bruidsarrangementen</a>&nbsp;|&nbsp;<a href="Rouwarrangementen.php">Rouwarrangementen</a>&nbsp;|&nbsp;<a href="Abonnementen.php">Abonnementen</a>&nbsp;|&nbsp;<a href="Links.php">Links</a>&nbsp;|&nbsp;<a href="Contact.php">Contact</a></div>
+			</div>			
+			<script type="text/javascript">
+				
+				window.addEvent('domready', function(){
+					var myMenu = new ImageMenu($$('#imageMenu a'),{openWidth:310, border:2, onOpen:function(e,i){window.location=(e);}});
+									});
+			</script>
+		</div>
+		<div id="containerTxT">			<h1>Contact</h1>
+			<p>Voor vragen of opmerkingen kunt u contact met ons opnemen per e-mail op info@fleurrijk.nl of per telefoon (078) 6215651.<p>
+			<p>U bent van harte welkom in onze winkel!</p>
+			<p>Openingstijden:<br />
+			Maandag van 09.00 tot 18.00, Dinsdag t/m Vrijdag 08.30 tot 18.00, zaterdag 08.30 t/m 17.00 uur, Zondag gesloten</p>
+			<p><b><span class="logofont"><span class="logokleur">Fleur</span><span class="logokleur2">rijk</span></span> vof</b><br />
+            <img src="Images/Content/P1010074.JPG" alt="" border="1" style="float:right;margin-left:15px;margin-bottom:15px;border: 1px solid #C0C0C0;" />
+			Winkelcentrum Bieshof (Stadspolders)<br />
+			Van Eesterenplein 212<br />
+			3315 KW Dordrecht<br />
+			(078) 6215651</p>
+			<p>KvK 852220686</p>
+			<p><a href="mailto:Info@Fleurrijk.nl">Info@Fleurrijk.nl</a> (algemeen)<br />
+			<a href="mailto:Dordrecht@Fleurrijk.nl">Dordrecht@Fleurrijk.nl</a> (voor bestellingen)</p>
+			<p><b><span class="logofont"><span class="logokleur">Fleur</span><span class="logokleur2">rijk</span></span> vof</b> (Bloem Binders Breda) (<a href="https://plus.google.com/106806512610978744015/about?gl=nl&hl=nl" target="_blank">Virtuele rondleiding</a>)<br />
+			Winkelcentrum Hoge Vught<br />
+			Moerwijk 22<br />
+			4826 HN Breda<br />
+			(076) 5872100</p>
+			<p><a href="mailto:Info@Fleurrijk.nl">Info@Fleurrijk.nl</a> (algemeen)<br />
+			<a href="mailto: Breda@Fleurrijk.nl">Breda@Fleurrijk.nl</a> (voor bestellingen)</p>
+            <div style="clear:both;"></div>
+		</div>
+		<div id="containerFTR">Copyright &copy; <span class="bedrijfsnaam"><span class="logokleur">Fleur</span><span class="logokleur2">rijk</span></span> | Site & logo design by <a href="http://www.cb-services.nl" target="_blank">CB Services</a></div>
+	</div>
+</body>
+</html>
