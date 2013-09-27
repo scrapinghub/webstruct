@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import re
-from .datetime_format import *
-from .utils import flatten
+from webstruct.utils import flatten
+from .datetime_format import WEEKDAYS, MONTHS
 
 __all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time', 'looks_like_weekday',
            'looks_like_email', 'looks_like_street_part', 'looks_like_range']
