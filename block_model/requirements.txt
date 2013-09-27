@@ -1,2 +1,0 @@
-lxml
-git+https://github.com/tpeng/pyCRFsuite.git
