@@ -12,7 +12,7 @@ EMAIL_RE = re.compile(
     r'|"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
     r')@(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?', re.IGNORECASE)  # domain
 
-MONTHS_SRE = '|'.join(set(flatten(MONTHES))).replace('.', '\.')
+MONTHS_SRE = '|'.join(set(flatten(MONTHS))).replace('.', '\.')
 MONTHS_RE = re.compile(r'^(' + MONTHS_SRE + ')$', re.IGNORECASE)
 
 WEEKDAYS_SRE = '|'.join(set(flatten(WEEKDAYS))).replace('.', '\.')
@@ -50,7 +50,7 @@ def looks_like_email(index, tokens, elem, is_tail):
     }
 
 def looks_like_street_part(index, tokens, elem, is_tail):
-    token = tokens[0].lower()
+    token = tokens[index].lower()
     return {
         'common_street_part': token in STREET_PART_TOKENS,
         'common_address_part': token in COMMON_ADDRESS_PARTS,
@@ -59,7 +59,7 @@ def looks_like_street_part(index, tokens, elem, is_tail):
 
 
 def looks_like_year(index, tokens, elem, is_tail):
-    token = tokens[0]
+    token = tokens[index]
     return {
         'looks_like_year': token.isdigit() and len(token) == 4 and token[:2] in ['19', '20'],
     }
