@@ -31,14 +31,14 @@ class HtmlFeaturesExtractor(BaseEstimator):
         ...     return {'tok': tokens[index]}
 
     features.CombinedFeatures provides an easy way to combine features::
-        >>> from .features import CombinedFeatures, parent_tag
+        >>> from webstruct.features import CombinedFeatures, parent_tag
         >>> feature_func = CombinedFeatures(current_token, parent_tag)
 
     Use HtmlFeaturesExtractor.fit_transform to extract features and labels
     from html data::
 
         >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
-        >>> from .preprocess import DEFAULT_TAGSET
+        >>> from webstruct.preprocess import DEFAULT_TAGSET
         >>> fe = HtmlFeaturesExtractor(DEFAULT_TAGSET, feature_func)
         >>> features, labels = fe.fit_transform(html)
         >>> for feat, label in zip(features, labels):
