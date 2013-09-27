@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from distutils.core import setup
+from setuptools import find_packages
 
 for cmd in ('egg_info', 'develop', 'bdist_egg'):
     import sys
@@ -7,10 +8,10 @@ for cmd in ('egg_info', 'develop', 'bdist_egg'):
         from setuptools import setup
 
 setup(
-    name='webstruct-token',
+    name='webstruct',
     version='0.1',
     author='Mikhail Korobov, Terry Peng',
-    author_email='kmike84@gmail.com',
-    packages=['webstruct_token', 'webstruct_token.features'],
+    author_email='kmike84@gmail.com, pengtaoo@gmail.com',
+    packages=find_packages(),
     license = 'MIT license',
 )
