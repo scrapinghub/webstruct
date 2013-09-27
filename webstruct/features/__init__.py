@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from .webstruct_token.features.block_features import *
-from .webstruct_token.features.token_features import *
-from .webstruct_token.features.data_features import *
-from .webstruct_token.features.utils import CombinedFeatures
+from .block_features import *
+from .token_features import *
+from .data_features import *
+from .utils import CombinedFeatures
 
 
 DEFAULT = CombinedFeatures(

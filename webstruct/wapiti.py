@@ -13,8 +13,8 @@ and then apply this model from Python using WapitiChunker class.
 from __future__ import absolute_import
 import re
 from sklearn.base import BaseEstimator, TransformerMixin
-from .webstruct_token.utils import get_combined_keys, tostr
-from webstruct_token.feature_extraction import HtmlFeaturesExtractor
+from .utils import get_combined_keys, tostr
+from .feature_extraction import HtmlFeaturesExtractor
 
 
 class WapitiChunker(BaseEstimator):
