@@ -1,11 +1,5 @@
 #!/usr/bin/env python
-from distutils.core import setup
-from setuptools import find_packages
-
-for cmd in ('egg_info', 'develop', 'bdist_egg'):
-    import sys
-    if cmd in sys.argv:
-        from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='webstruct',
