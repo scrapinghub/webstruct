@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from ..webstruct_token.utils import merge_dicts
+from ..utils import merge_dicts
 
 class CombinedFeatures(object):
     """

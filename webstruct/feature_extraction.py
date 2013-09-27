@@ -4,9 +4,9 @@ import lxml.html
 import lxml.html.clean
 import lxml.etree
 from sklearn.base import BaseEstimator
-from .webstruct_token.preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
-from .webstruct_token.tokenize import default_tokenizer
-from webstruct_token import features
+from . import features
+from .preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
+from .tokenize import default_tokenizer
 
 _cleaner = lxml.html.clean.Cleaner(
     style=True,
@@ -32,8 +32,7 @@ class HtmlFeaturesExtractor(BaseEstimator):
         ...     return {'tok': tokens[index]}
 
     features.CombinedFeatures provides an easy way to combine features::
-
-        >>> from webstruct_token.features import CombinedFeatures, parent_tag
+        >>> from .features import CombinedFeatures, parent_tag
         >>> feature_func = CombinedFeatures(current_token, parent_tag)
 
     Use HtmlFeaturesExtractor.fit_transform to extract features and labels
