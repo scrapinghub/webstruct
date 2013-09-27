@@ -4,9 +4,9 @@ import lxml.html
 import lxml.html.clean
 import lxml.etree
 from sklearn.base import BaseEstimator
-from .preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
-from . import features
-from .tokenize import default_tokenizer
+from .webstruct_token.preprocess import IobSequence, Tagset, to_features_and_labels, DEFAULT_TAGSET
+from .webstruct_token.tokenize import default_tokenizer
+from webstruct_token import features
 
 _cleaner = lxml.html.clean.Cleaner(
     style=True,
