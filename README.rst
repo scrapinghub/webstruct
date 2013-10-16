@@ -7,7 +7,7 @@ HTML pages.
 Supported functionality (so far)
 ------------
 
-- American contact extraction
+- American contact information extraction
 - Netherlands open hours extraction
 - Ireland open hours extraction
 
