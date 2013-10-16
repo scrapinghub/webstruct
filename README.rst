@@ -4,6 +4,13 @@ Contact extraction library
 This package contains a library for extracting contact information from
 HTML pages.
 
+Supported functionality (so far)
+------------
+
+- American contact extraction
+- Netherlands open hours extraction
+- Ireland open hours extraction
+
 Installation
 ------------
 
