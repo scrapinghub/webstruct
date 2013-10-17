@@ -63,7 +63,10 @@ if __name__ == '__main__':
         with open(in_name, 'rb') as f:
             encoding, html = html_to_unicode(None, f.read())
 
-        cleaned = clean_html(html.encode(encoding), encoding)
+        try:
+            cleaned = clean_html(html.encode(encoding), encoding)
 
-        with codecs.open(out_name, 'w', encoding='utf8') as out:
-            out.write(cleaned)
+            with codecs.open(out_name, 'w', encoding='utf8') as out:
+                out.write(cleaned)
+        except Exception as e:
+            print fname, e
