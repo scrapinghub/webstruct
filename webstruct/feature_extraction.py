@@ -38,8 +38,7 @@ class HtmlFeaturesExtractor(BaseEstimator):
     from html data::
 
         >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
-        >>> from webstruct.preprocess import DEFAULT_TAGSET
-        >>> fe = HtmlFeaturesExtractor(DEFAULT_TAGSET, feature_func)
+        >>> fe = HtmlFeaturesExtractor({'per'}, feature_func)
         >>> features, labels = fe.fit_transform(html)
         >>> for feat, label in zip(features, labels):
         ...     print("%s %s" % (sorted(feat.items()), label))
