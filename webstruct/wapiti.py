@@ -14,7 +14,6 @@ from __future__ import absolute_import
 import re
 from sklearn.base import BaseEstimator, TransformerMixin
 from .utils import get_combined_keys, tostr
-from .feature_extraction import HtmlFeaturesExtractor
 
 
 class WapitiChunker(BaseEstimator):
@@ -38,7 +37,7 @@ class WapitiChunker(BaseEstimator):
         """
         self.model = model
         self.feature_encoder = feature_encoder
-        self.feature_extractor = feature_extractor or HtmlFeaturesExtractor()
+        self.feature_extractor = feature_extractor
 
     def transform(self, X, encoding=None):
         """
@@ -56,7 +55,7 @@ class WapitiChunker(BaseEstimator):
         ]
 
     def _prepare_features(self, X, encoding=None):
-        feature_dicts, _ = self.feature_extractor.fit_transform(X, encoding)
+        feature_dicts, _ = self.feature_extractor.fit_transform(X, encoding=encoding)
         feature_lines = self.feature_encoder.transform(feature_dicts)
         return feature_dicts, feature_lines
 

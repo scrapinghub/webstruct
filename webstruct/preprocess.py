@@ -2,10 +2,6 @@
 from __future__ import absolute_import
 import re
 
-DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
-                  'zipcode', 'email', 'tel', 'fax', 'subj', 'func', 'hours'}
-
-
 class Tagset(object):
     """
     Utility class for working with tags and converting between
