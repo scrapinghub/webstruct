@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
+from .cluster_features import *
 from .utils import CombinedFeatures
 
 DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
@@ -36,6 +37,7 @@ OPEN_HOURS_FEATURES = CombinedFeatures(
     number_pattern,
     prefixes_and_suffixes,
     looks_like_email,
+    token_word2vec_class,
 
     # datetime
     looks_like_year,
