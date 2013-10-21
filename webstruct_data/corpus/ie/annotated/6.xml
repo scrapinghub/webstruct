@@ -46,10 +46,10 @@
 </span><br/><span>Email: info@theexchequer.ie
 </span><br/><span>www.theexchequer.ie</span></p>
 
-<p><span>Mon to Wed 12pm to 11.30pm
+<HOURS><p><span>Mon to Wed 12pm to 11.30pm
 </span><br/><span>Thurs 12pm to 12.30am
 </span><br/><span>Fri &amp; Sat 12pm to 2.30am
-</span><br/><span>Sun 12pm to 11pm</span></p>
+</span><br/><span>Sun 12pm to 11pm</span></p></HOURS>
 </div></div></div></article><div class="hr"><hr/></div><footer><div id="footer_top"><div class="outer bottom"><div class="middle"><div class="inner"><div class="container"><div class="col col_odd"><h3>Navigation</h3>
 <ul class="left"><li><a href="http://www.theexchequer.ie/&lt;br /&gt;
 &lt;b&gt;Notice&lt;/b&gt;:  Undefined variable: access in &lt;b&gt;/home/theexche/public_html/includes/footer.php&lt;/b&gt; on line &lt;b&gt;19&lt;/b&gt;&lt;br /&gt;">Home</a></li>
@@ -71,10 +71,10 @@
 <br/>email: <a href="mailto:info@theexchequer.ie">info@theexchequer.ie</a>
 <br/>www.theexchequer.ie</p>
 </div><div class="col col_odd"><h3>Opening Hours</h3>
-<ul><li>Mon to Wed, Midday to 11.30pm</li>
+<HOURS><ul><li>Mon to Wed, Midday to 11.30pm</li>
 <li>Thurs, Midday to 12.30am</li>
 <li>Fri &amp; Sat, Midday to 2.30am</li>
-<li>Sun, Midday to 11pm</li>
+<li>Sun, Midday to 11pm</li></HOURS>
 </ul></div><div class="col col_even last_col"><div id="book_table_footer"><a class="book_table book_table_foot" href="book_table.php">Book A Table Now</a></div>
 </div></div></div></div></div><div class="logos"><div class="logo_container"><img class="left" alt="" src="http://www.theexchequer.ie/images/logo_restaurants_association.png"/><div class="logo_container"><img class="right" alt="" src="http://www.theexchequer.ie/images/logo_the_gathering.png"/><div class="clear"></div></div></div></div><div id="footer_bottom"><div class="outer"><div class="middle"><div class="container">
 <p class="left">Designed &amp; Produced by <a href="http://www.rocketbug.com/2.0/">rocketbug</a></p>
