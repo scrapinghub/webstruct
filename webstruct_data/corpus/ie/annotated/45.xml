@@ -20,7 +20,7 @@
 <li id="delivery"><ul><li class="first_item"><strong>Eat In</strong></li>
 <li><strong>Take Out</strong></li>
 <li>Delivery</li>
-</ul><h5><strong>Delivery Hours</strong> from 6PM to 11PM</h5>
+</ul><h5><strong>Delivery Hours</strong> <HOURS>from 6PM to 11PM</h5></HOURS>
 
 <p><strong>Delivery Charge</strong> €2.50, Minimum Order €10</p>
 </li>
