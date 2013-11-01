@@ -1,14 +1,15 @@
-<html dir="ltr" lang="en-US"><head><meta charset="UTF-8"/><meta content="width=1000" name="viewport"/><meta content="telephone=no" name="format-detection"/><title>Contact Us | Fayco</title>
+<?xml version="1.0" encoding="utf8" ?>
+<html dir="ltr" lang="en-US"><head><meta charset="UTF-8"><meta content="width=1000" name="viewport"><meta content="telephone=no" name="format-detection"></meta></meta></meta><title>Contact Us | Fayco</title>
 
-</head><meta content="WordPress 3.3.1" name="generator"/><meta content="7fCGt1aZ7RzyW-XptW6DCLBnr1x_psVc9-zWmi0isUA" name="google-site-verification"/><body class="page page-id-14 page-template page-template-contact-template-php single-author singular two-column right-sidebar page-contact-us"><div id="page" class="hfeed"><header id="branding" role="banner"><div class="content-wrap"><div id="header-image"><div class="content-section"><div id="header-wrap"><div class="group"><div id="site-title"><a class="txt-img" title="Fayco" rel="home" href="http://www.fayco.ie/">Fayco</a></div>
+</head><meta content="WordPress 3.3.1" name="generator"><meta content="7fCGt1aZ7RzyW-XptW6DCLBnr1x_psVc9-zWmi0isUA" name="google-site-verification"></meta></meta><body class="page page-id-14 page-template page-template-contact-template-php single-author singular two-column right-sidebar page-contact-us"><div id="page" class="hfeed"><header id="branding" role="banner"><div class="content-wrap"><div id="header-image"><div class="content-section"><div id="header-wrap"><div class="group"><div id="site-title"><a class="txt-img" title="Fayco" rel="home" href="http://www.fayco.ie/">Fayco</a></div>
 <div id="site-description">Engineering &amp; Storage Products</div>
 </div><div id="header-right"><div id="contact-details">
 <p id="phone"><span class="number"><a href="tel:+35318200100">01 8200 100</a></span></p>
 </div></div></div><div id="header-blurb"><h1 id="header-text">Contact Us</h1>
 <div id="header-content">For further information on our services and products why not give us a call or alternatively fill in the contact form below and we&apos;ll get back to you.</div>
 </div></div></div><div id="navigation" class="content-wrap"><div class="content-section"><nav id="access" role="navigation"><h3 class="assistive-text">Main menu</h3>
-<div class="skip-link"><a href="#content" class="assistive-text" title="Skip to primary content">Skip to primary content</a></div>
-<div class="skip-link"><a href="#secondary" class="assistive-text" title="Skip to secondary content">Skip to secondary content</a></div>
+<div class="skip-link"><a class="assistive-text" href="#content" title="Skip to primary content">Skip to primary content</a></div>
+<div class="skip-link"><a class="assistive-text" href="#secondary" title="Skip to secondary content">Skip to secondary content</a></div>
 <div class="menu"><ul><li><a href="http://www.fayco.ie/" title="Home">Home</a></li>
 <li class="page_item page-item-6"><a href="http://www.fayco.ie/about-us/">About Us</a></li>
 <li class="page_item page-item-8"><a href="http://www.fayco.ie/products/">Products</a> <ul class="children"><li class="page_item page-item-640"><a href="http://www.fayco.ie/products/lockers/">Lockers</a></li>
@@ -46,16 +47,16 @@
 <div></div><div><label for="si_contact_email1">E-Mail Address: <span class="required">*</span></label></div>
 <div></div><div><label for="si_contact_subject1">Subject: <span class="required">*</span></label></div>
 <div></div><div><label for="si_contact_message1">Message: <span class="required">*</span></label></div>
-<div><div><div><img id="si_image_ctf1" title="CAPTCHA Image" height="60" alt="CAPTCHA Image" width="175" class="ctf-captcha" src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/securimage_show.php?prefix=hsRa3wqThEOiWnQu"/><div id="si_refresh_ctf1"><a title="Refresh Image" rel="nofollow" href="#"><img src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/images/refresh.png" height="20" alt="Refresh Image" width="22"/></a></div></div></div></div><div><label for="si_contact_captcha_code1">CAPTCHA Code: <span class="required">*</span></label></div>
-</div></div><div><div></div></div><div id="address"><div class="address"><span class="address-head">Fayco Limited</span>
-<br/>Damastown Way
-<br/>Damastown Industrial Estate
-<br/>Blanchardstown
-<br/>Dublin 15
-<br/><a href="tel:+35318200100">Ph: (01) 8200100</a>
-<br/><a href="tel:+35318200100">Mob: (087) 2832650</a>
-<br/><a href="fax:+35318242425">Fax: (01) 8242425</a></div>
-</div></div></div><div id="map_canvas"></div><footer id="colophon" role="contentinfo"><div class="content-wrap"><div class="content-section"><div id="footer-outer"><div id="supplementary" class="three"><div id="first" role="complementary" class="widget-area"><aside id="categoryposts-2" class="widget widget_categoryposts"><h3 class="widget-title">Products</h3>
+<div><div><div><img id="si_image_ctf1" title="CAPTCHA Image" height="60" alt="CAPTCHA Image" width="175" class="ctf-captcha" src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/securimage_show.php?prefix=hsRa3wqThEOiWnQu"><div id="si_refresh_ctf1"><a title="Refresh Image" rel="nofollow" href="#"><img height="20" src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/images/refresh.png" alt="Refresh Image" width="22"></img></a></div></img></div></div></div><div><label for="si_contact_captcha_code1">CAPTCHA Code: <span class="required">*</span></label></div>
+</div></div><div><div></div></div><div id="address"><div class="address"><span class="address-head"><ORG>Fayco Limited</ORG></span>
+<br></br><ADDR>Damastown Way
+<br></br>Damastown Industrial Estate
+<br></br>Blanchardstown
+<br></br>Dublin 15</ADDR>
+<br></br><a href="tel:+35318200100">Ph: (01) 8200100</a>
+<br></br><a href="tel:+35318200100">Mob: (087) 2832650</a>
+<br></br><a href="fax:+35318242425">Fax: (01) 8242425</a></div>
+</div></div></div><div id="map_canvas"></div><footer id="colophon" role="contentinfo"><div class="content-wrap"><div class="content-section"><div id="footer-outer"><div id="supplementary" class="three"><div id="first" class="widget-area" role="complementary"><aside id="categoryposts-2" class="widget widget_categoryposts"><h3 class="widget-title">Products</h3>
 <ul><li class="cat-post-item"><a class="post-title" title="Permanent link to Lockers" rel="bookmark" href="http://www.fayco.ie/products/lockers/">Lockers</a></li>
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Pallet Racking" rel="bookmark" href="http://www.fayco.ie/products/pallet-racking/">Pallet Racking</a></li>
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Drive in Racking" rel="bookmark" href="http://www.fayco.ie/products/drive-in-racking/">Drive in Racking</a></li>
@@ -73,18 +74,18 @@
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Vertical Carousels" rel="bookmark" href="http://www.fayco.ie/products/vertical-carousels/">Vertical Carousels</a></li>
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Automated Warehousing" rel="bookmark" href="http://www.fayco.ie/products/automated-warehousing/">Automated Warehousing</a></li>
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Other Products" rel="bookmark" href="http://www.fayco.ie/products/other-products/">Other Products</a></li>
-</ul></aside></div><div id="second" role="complementary" class="widget-area"><aside id="text-2" class="widget widget_text"><h3 class="widget-title">Contact</h3>
+</ul></aside></div><div id="second" class="widget-area" role="complementary"><aside id="text-2" class="widget widget_text"><h3 class="widget-title">Contact</h3>
 <div class="textwidget">
-<p>Fayco
-<br/>Damastown Way
-<br/>Damastown Industrial Estate
-<br/>Mulhuddart
-<br/>Dublin 15</p>
+<p><ORG>Fayco</ORG>
+<br></br><ADDR>Damastown Way
+<br></br>Damastown Industrial Estate
+<br></br>Mulhuddart
+<br></br>Dublin 15</ADDR></p>
 
 <p>tel. <a href="tel:+35318200100">01 820 0100</a>
-<br/>fax. <a href="fax:+3538242425">01 824 2425</a></p>
+<br></br>fax. <a href="fax:+3538242425">01 824 2425</a></p>
 
 <p><a href="mailto:sales@fayco.ie">sales@fayco.ie</a></p>
-</div></aside></div><div id="third" role="complementary" class="widget-area"><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Manufactuers</h3>
-</aside></div></div></div><div class="textwidget"><a target="_blank" href="http://www.mecalux.com/"><img alt="Mecalux" src="/wp-content/themes/fayco/images/img_mecalux.png"/><a target="_blank" href="http://www.metalscreen.it/"><img alt="Metalscreen" src="/wp-content/themes/fayco/images/img_metalscreen.png"/><a target="_blank" href="http://www.troax.com/"><img alt="Troax" src="/wp-content/themes/fayco/images/img_troax.png"/></a></a></a></div><div id="copyright">Copyright &#169; 2012 Fayco Limited. All rights reserved. <a target="_blank" href="http://www.graftonmedia.com/" title="Website Design Company Dublin">Website design and development</a> by Grafton Media.</div>
+</div></aside></div><div id="third" class="widget-area" role="complementary"><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Manufactuers</h3>
+</aside></div></div></div><div class="textwidget"><a target="_blank" href="http://www.mecalux.com/"><img alt="Mecalux" src="/wp-content/themes/fayco/images/img_mecalux.png"><a target="_blank" href="http://www.metalscreen.it/"><img alt="Metalscreen" src="/wp-content/themes/fayco/images/img_metalscreen.png"><a target="_blank" href="http://www.troax.com/"><img alt="Troax" src="/wp-content/themes/fayco/images/img_troax.png"></img></a></img></a></img></a></div><div id="copyright">Copyright &#169; 2012 Fayco Limited. All rights reserved. <a target="_blank" href="http://www.graftonmedia.com/" title="Website Design Company Dublin">Website design and development</a> by Grafton Media.</div>
 </div></div></footer></div></div></div></body><div></div></html>

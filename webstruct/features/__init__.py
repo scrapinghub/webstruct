@@ -13,6 +13,7 @@ DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
 DEFAULT = CombinedFeatures(
     parent_tag,
     inside_a_tag,
+    inside_bold_tag,
     borders,
     block_length,
 

@@ -1,7 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Compare insurance | Life insurance quotes | Hello.ie Assurance for life</title>
+<?xml version="1.0" encoding="utf8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta><title>Compare insurance | Life insurance quotes | Hello.ie Assurance for life</title>
 
-</head><meta content="Hello.ie offers competitive life insurance quotes. We work with a panel of leading irish insurance companies to get you the best insurance package that suits your needs. Give us a call today on 1890 940 920." name="description"/><meta content="irish insurance, life insurance quotes, mortgage protection insurance, life assurance, mortgage insurance, insurance companies, assurance for life, insurance, irish insurance" name="keywords"/><body><div id="wrapper"><div id="cookieWrapper"><div id="cookieInner"><span id="cookieText">The hello.ie website uses cookies. By using our website you consent to the use of cookies in accordance with our <a href="/insurance-brokers/cookies/">cookie policy</a> .</span> <span id="cookieCloseButton"><a id="cookie_close" class="moreLink" href="#">Close this message</a></span></div>
-</div><div id="headerWrapper"><div id="header"><a class="headerLogo" href="/"><img title="Hello.ie" alt="Hello.ie" src="/include/common/img/logo.png"/></a><ul class="headerMenu"><li><a href="/">Home</a></li>
+</head><meta content="Hello.ie offers competitive life insurance quotes. We work with a panel of leading irish insurance companies to get you the best insurance package that suits your needs. Give us a call today on 1890 940 920." name="description"><meta content="irish insurance, life insurance quotes, mortgage protection insurance, life assurance, mortgage insurance, insurance companies, assurance for life, insurance, irish insurance" name="keywords"></meta></meta><body><div id="wrapper"><div id="cookieWrapper"><div id="cookieInner"><span id="cookieText">The hello.ie website uses cookies. By using our website you consent to the use of cookies in accordance with our <a href="/insurance-brokers/cookies/">cookie policy</a> .</span> <span id="cookieCloseButton"><a id="cookie_close" href="#" class="moreLink">Close this message</a></span></div>
+</div><div id="headerWrapper"><div id="header"><a href="/" class="headerLogo"><img title="Hello.ie" src="/include/common/img/logo.png" alt="Hello.ie"></img></a><ul class="headerMenu"><li><a href="/">Home</a></li>
 <li><a href="/insurance-about-us/">About</a></li>
 <li><a href="/insurance-contact-us/">Contact</a></li>
 <li><a href="/insurance-help/">Help</a></li>
@@ -21,8 +22,8 @@
 <h3>By post</h3>
 
 <p>hello.ie
-<br/>PO Box 12230
-<br/>Dublin 18</p>
+<br></br><ADDR>PO Box 12230
+<br></br>Dublin 18</ADDR></p>
 
 <p>Our call centre in Dublin is staffed by friendly, knowledgeable professionals who are all here to help you in any way we can. Our customer support staff really will pull out all the stops to ensure you get the cover and service you want.</p>
 
@@ -32,9 +33,9 @@
 <li><a href="/life-insurance/privacy/">Privacy Statement</a></li>
 <li><a href="/insurance-brokers/cookies/">About Cookies</a></li>
 </ul>
-<p>Hello Business Services Limited trading as hello.ie is regulated by the Central Bank of Ireland. Registered office Suite 3, The Mall, Beacon Court, Sandyford Dublin 18.
-<br/>Registered in Ireland Number 501015
-<br/>Calls may be recorded for training and verification purposes.
-</p><br/>
+<p>Hello Business Services Limited trading as hello.ie is regulated by the Central Bank of Ireland. Registered office <ADDR>Suite 3, The Mall, Beacon Court, Sandyford Dublin 18</ADDR>.
+<br></br>Registered in Ireland Number 501015
+<br></br>Calls may be recorded for training and verification purposes.
+</p><br></br>
 <p class="footerCopyright">&#169;</p>
 </div></div></div></body></html>
