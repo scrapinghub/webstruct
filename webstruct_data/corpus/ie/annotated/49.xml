@@ -1,6 +1,7 @@
-<html class="no-js" og="http://opengraphprotocol.org/schema/" fb="http://ogp.me/ns/fb#"><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><meta content="text/html;charset=utf-8" http-equiv="Content-Type"/><title>Contact Us | Jack Wills</title>
+<?xml version="1.0" encoding="utf8" ?>
+<html class="no-js" fb="http://ogp.me/ns/fb#" og="http://opengraphprotocol.org/schema/"><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"></meta></meta><title>Contact Us | Jack Wills</title>
 
-</head><meta content="Contact Jack Wills for product advice, enquiries, feedback or any other reason. Let us know how we can assist you - we are only an email or phone call away." name="description"/><meta content="Contact Jack Wills for product advice, enquiries, feedback or any other reason. Let us know how we can assist you - we are only an email or phone call away." property="og:description"/><meta content="Contact Us | Jack Wills" property="og:title"/><meta content="width=1021, maximum-scale=1" name="viewport"/><meta content="" property="og:type"/><meta content="http://www.jackwills.com/en-GB/about/here-to-help/contact-us/" property="og:url"/><meta content="http://www.jackwills.com/media/2596476/jw_logo.jpg" property="og:image"/><meta content="300" property="og:image:width"/><meta content="300" property="og:image:height"/><meta content="Jack Wills" property="og:site_name"/><meta content="549808631732105" property="fb:app_id"/><body><div id="fb-root"><div class="container"><div id="header_strip"><div id="header_strip_inner"><div id="store_prefs"><ul class="nav_currency"><li class="gbp active" data-lang="gbp"><a href="/en-gb/about/here-to-help/contact-us/" title="Switch to Great Britain website">Great Britain</a></li>
+</head><meta content="Contact Jack Wills for product advice, enquiries, feedback or any other reason. Let us know how we can assist you - we are only an email or phone call away." name="description"><meta content="Contact Jack Wills for product advice, enquiries, feedback or any other reason. Let us know how we can assist you - we are only an email or phone call away." property="og:description"><meta content="Contact Us | Jack Wills" property="og:title"><meta content="width=1021, maximum-scale=1" name="viewport"><meta content="" property="og:type"><meta content="http://www.jackwills.com/en-GB/about/here-to-help/contact-us/" property="og:url"><meta content="http://www.jackwills.com/media/2596476/jw_logo.jpg" property="og:image"><meta content="300" property="og:image:width"><meta content="300" property="og:image:height"><meta content="Jack Wills" property="og:site_name"><meta content="549808631732105" property="fb:app_id"></meta></meta></meta></meta></meta></meta></meta></meta></meta></meta></meta><body><div id="fb-root"><div class="container"><div id="header_strip"><div id="header_strip_inner"><div id="store_prefs"><ul class="nav_currency"><li class="gbp active" data-lang="gbp"><a href="/en-gb/about/here-to-help/contact-us/" title="Switch to Great Britain website">Great Britain</a></li>
 <li class="eur " data-lang="eur"><a href="/en-ie/about/here-to-help/contact-us/" title="Switch to Europe website">Europe</a></li>
 <li class="gbp active" data-lang="gbp"><a href="/en-gb/about/here-to-help/contact-us/" title="Switch to Hong Kong website">Hong Kong</a></li>
 </ul><a href="/en-gb/about/shopping-with-us/store-locator/" class="storeLocatorLink">Store Locator</a></div>
@@ -17,7 +18,7 @@
 <div id="mini_basket"><div id="basket_count" class="basket_count"><a id="mini_cart" class="text_link basket_icon" title="View Shopping Bag" href="/en-gb/store/shopping-bag"><span class="item_count">[0]</span> Items in Bag</a>
 <div class="mini_basket"><ul class="mini_basket_list"><li>There are no items in your bag.</li>
 </ul></div></div></div></div><ul id="navigation"><div id="navigation_links"><li class=" sub_menu"><a class="new" href="/en-gb/new/">New</a> <ul class="mega_dropdown onecolumn"><li class="mega_dropdown_column first_col"><ul><li><a class="ladies new arrivals" href="/en-gb/ladies/ladies-new-arrivals/">Ladies New Arrivals</a></li>
-<li><a arrivals="" class="gentlemen" new="" s="" href="/en-gb/gentlemen/gentlemens-new-arrivals/">Gentlemen&apos;s New Arrivals</a></li>
+<li><a class="gentlemen" arrivals="" new="" s="" href="/en-gb/gentlemen/gentlemens-new-arrivals/">Gentlemen&apos;s New Arrivals</a></li>
 </ul></li>
 </ul></li>
 <li class=" sub_menu"><a class="ladies" href="/en-gb/ladies/">Ladies</a> <ul class="mega_dropdown twocolumn"><li class="mega_dropdown_column first_col"><ul><li><a class="ladies lookbook" href="/en-gb/look-book/ladies">Ladies Lookbook</a></li>
@@ -55,7 +56,7 @@
 <li><a class="gilet guide" href="/en-gb/features/gilets">Gilet Guide</a></li>
 <li><a class="gentlemens knitwear guide" href="/en-gb/features/gentlemen/knitwear-guide/">Gentlemens Knitwear Guide</a></li>
 <li><a class="gentlemen" s="" href="/en-gb/features/gentlemen/coat-tales" coat="" tales="">Gentlemen&apos;s Coat Tales</a></li>
-<li><a guide="" fit="" denim="" class="gentlemen" s="" href="/en-gb/features/gentlemen/denim">Gentlemen&apos;s Denim Fit Guide</a></li>
+<li><a guide="" class="gentlemen" denim="" fit="" s="" href="/en-gb/features/gentlemen/denim">Gentlemen&apos;s Denim Fit Guide</a></li>
 </ul><ul><li><a class="outerwear" href="/en-gb/gentlemen/outerwear">Outerwear</a></li>
 <li><a class="blazers" href="/en-gb/gentlemen/blazers">Blazers</a></li>
 <li><a class="gilets" href="/en-gb/gentlemen/gents-gilets">Gilets</a></li>
@@ -99,7 +100,7 @@
 <li><a class="ladies lookbook" href="/en-gb/look-book/ladies">Ladies Lookbook</a></li>
 <li><a lookbook="" class="gentlemen" s="" href="/en-gb/look-book/gentlemen">Gentlemen&apos;s Lookbook</a></li>
 <li><a class="ladies denim fit guide" href="/en-gb/features/ladies/denim">Ladies Denim Fit Guide</a></li>
-<li><a guide="" fit="" denim="" class="gentlemen" s="" href="/en-gb/features/gentlemen/denim">Gentlemen&apos;s Denim Fit Guide</a></li>
+<li><a guide="" class="gentlemen" denim="" fit="" s="" href="/en-gb/features/gentlemen/denim">Gentlemen&apos;s Denim Fit Guide</a></li>
 </ul></li>
 <li class="mega_dropdown_column second_col"><ul><li><a class="ladies shirts" href="/en-gb/features/ladies/shirts">Ladies shirts</a></li>
 <li><a class="gentlemens shirts" href="/en-gb/features/gentlemen/shirts">Gentlemens shirts</a></li>
@@ -116,7 +117,7 @@
 </ul></li>
 </ul></li>
 </div></ul><fieldset><legend class="hide">Search Jack Wills</legend></fieldset>
-<div id="service_message" class="image"><ul><li><img src="/media/2015936/top-nav-page-template_03.jpg" height="48" alt="Free delivery and student discount" width="1001"/><ul><li><a href="/en-gb/about/shopping-with-us/delivery-returns/"><span>Free Delivery Service Message</span></a></li>
+<div id="service_message" class="image"><ul><li><img height="48" src="/media/2015936/top-nav-page-template_03.jpg" alt="Free delivery and student discount" width="1001"></img><ul><li><a href="/en-gb/about/shopping-with-us/delivery-returns/"><span>Free Delivery Service Message</span></a></li>
 <li><a href="/en-gb/features/university-students"><span>Student Discount</span></a></li>
 </ul></li>
 </ul></div></div><div id="content"><div class="rowa landing_page"><h1>CONTACT US</h1>
@@ -140,10 +141,10 @@
 <p><strong>Telephone</strong></p>
 
 <p>Our Customer Services team
-<br/>will be happy to help you.</p>
+<br></br>will be happy to help you.</p>
 
 <p>Our number is 0845 262 5225
-<br/>and we&apos;re open for business from:</p>
+<br></br>and we&apos;re open for business from:</p>
 
 <HOURS><p>Mon - Fri 8am - 8pm</p>
 
@@ -155,16 +156,16 @@
 
 <p>You can write to us at:</p>
 
-<p>Jack Wills Customer Services
-<br/>Unit 4, Ockham Drive
-<br/>Greenford
-<br/>Middlesex
-<br/>UB6 0FD&#160;</p>
+<p><ORG>Jack Wills Customer Services</ORG>
+<br></br>Unit 4, Ockham Drive
+<br></br>Greenford
+<br></br>Middlesex
+<br></br>UB6 0FD&#160;</p>
 
 <p><strong>Email</strong></p>
 
 <p>We check all our emails regularly and will respond as soon as possible.<strong>
-</strong></p><br/>
+</strong></p><br></br>
 <p>For General Enquiries, please email <strong><a href="mailto:jack@jackwills.com">jack@jackwills.com</a></strong></p>
 
 <p>For Order Status Enquiries, please email <strong><a href="mailto:orderstatus@jackwills.com">orderstatus@jackwills.com</a></strong></p>
@@ -213,4 +214,4 @@
 <li><a href="/en-us/home">USA</a></li>
 <li class="last"><a href="/en-hk/home">HK</a></li>
 </ul><h6>&#169; Jack Wills <span id="copyrightYear">2012</span></h6>
-</div></div></div></div></div></body><ul id="accepted_payments"><li><img src="/media/1577696/visa_white.jpg"/><li><img src="/media/1577684/mastercard_white.jpg"/><li><img src="/media/1577678/maestro_white.jpg"/><li><img src="/media/1577690/visa_electron_white.jpg"/><div id="aubin_modal"></div></li></li></li></li></ul></html>
+</div></div></div></div></div></body><ul id="accepted_payments"><li><img src="/media/1577696/visa_white.jpg"><li><img src="/media/1577684/mastercard_white.jpg"><li><img src="/media/1577678/maestro_white.jpg"><li><img src="/media/1577690/visa_electron_white.jpg"><div id="aubin_modal"></div></img></li></img></li></img></li></img></li></ul></html>
