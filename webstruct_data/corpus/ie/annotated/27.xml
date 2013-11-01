@@ -1,37 +1,38 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Temple Garden &amp; Farm Shop</title>
+<?xml version="1.0" encoding="utf8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"></meta><title>Temple Garden &amp; Farm Shop</title>
 
-</head><body><div align="center"><img height="282" width="1020" src="header.jpg"/>
-<br/><table height="35" border="0" width="1020" background="button bar.jpg"><tbody><tr><td width="20">&#160;</td> <td width="83" align="left"><span class="style1"><a href="index.html">home</a></span></td> <td width="200" align="left"><span class="style1"><a href="bird food.html">bird food &amp; produce</a></span></td> <td width="126" align="left"><span class="style1"><a href="gardening.html">gardening</a></span></td> <td width="118" align="left"><span class="style1"><a href="seasonal.html">seasonal</a></span></td> <td width="115" align="left"><span class="style1"><a href="fireworks.html">fireworks</a></span></td> <td width="123" align="left"><span class="style1"><a href="farm shop.html">farm shop</a></span></td> <td width="121" align="left"><span class="style1"><a href="contact.html">contact us</a></span></td> <td width="76" align="left"><span class="style1"><a href="links.html">links</a></span></td></tr>
-</tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td valign="bottom" height="21" width="10">&#160;</td> <td valign="bottom" width="533">&#160;</td> <td valign="bottom" width="463">&#160;</td></tr>
+</head><body><div align="center"><img height="282" src="header.jpg" width="1020"></img>
+<br></br><table height="35" border="0" width="1020" background="button bar.jpg"><tbody><tr><td width="20">&#160;</td> <td width="83" align="left"><span class="style1"><a href="index.html">home</a></span></td> <td width="200" align="left"><span class="style1"><a href="bird food.html">bird food &amp; produce</a></span></td> <td width="126" align="left"><span class="style1"><a href="gardening.html">gardening</a></span></td> <td width="118" align="left"><span class="style1"><a href="seasonal.html">seasonal</a></span></td> <td width="115" align="left"><span class="style1"><a href="fireworks.html">fireworks</a></span></td> <td width="123" align="left"><span class="style1"><a href="farm shop.html">farm shop</a></span></td> <td width="121" align="left"><span class="style1"><a href="contact.html">contact us</a></span></td> <td width="76" align="left"><span class="style1"><a href="links.html">links</a></span></td></tr>
+</tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td valign="bottom" width="10" height="21">&#160;</td> <td valign="bottom" width="533">&#160;</td> <td valign="bottom" width="463">&#160;</td></tr>
 <tr><td>&#160;</td><td valign="top">
 <div class="style2" align="justify">
 <p><span class="style5">Contact Us...</span>
-<br/><strong>Temple Garden and Farm Shop</strong>
-<br/><span class="style15">88H Carryduff Road,
-<br/>Lisburn,
-<br/>Co Antrim,
-<br/>BT27 6YL,
-<br/>Northern Ireland
-<br/>
-<br/><span class="style18">We are only 10 minutes from Belfast</span>
-<br/>
-<br/><span class="style16">Tel: 028 9263 8318</span></span>
-<br/><strong>Email: hughgilmore@btinternet.com</strong>
-<br/>
-<br/><strong>Opening Hours:</strong>
-<br/>We are open <HOURS>Monday to Saturday, 10am to 6pm.</HOURS>
-</p><br/>
-</div></td></tr><td valign="top" align="right"><img height="189" width="435" src="shop image.jpg"/></td>
+<br></br><strong><ORG>Temple Garden and Farm Shop</ORG></strong>
+<br></br><span class="style15"><ADDR>88H Carryduff Road,
+<br></br>Lisburn,
+<br></br>Co Antrim</ADDR>,
+<br></br>BT27 6YL,
+<br></br>Northern Ireland
+<br></br>
+<br></br><span class="style18">We are only 10 minutes from Belfast</span>
+<br></br>
+<br></br><span class="style16">Tel: 028 9263 8318</span></span>
+<br></br><strong>Email: hughgilmore@btinternet.com</strong>
+<br></br>
+<br></br><strong>Opening Hours:</strong>
+<br></br>We are open <HOURS>Monday to Saturday, 10am to 6pm.</HOURS>
+</p><br></br>
+</div></td></tr><td valign="top" align="right"><img height="189" src="shop image.jpg" width="435"></img></td>
 </tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td>&#160;</td></tr>
 </tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td valign="top" width="437">&#160;</td> <td width="144">&#160;</td><td width="425" align="right">
-<br/><small><a href="http://maps.google.co.uk/maps?hl=en&amp;ie=UTF8&amp;q=temple+garden+centre+%26+farm+shop&amp;fb=1&amp;gl=uk&amp;hq=temple+garden+centre+%26+farm+shop&amp;cid=0,0,1992250315115693323&amp;ei=t97rS4rRMJ-iOLT23OkH&amp;ved=0CBUQnwIwAA&amp;hnear=&amp;ll=54.482456,-5.903006&amp;spn=0.017452,0.036478&amp;z=14&amp;iwloc=A&amp;source=embed" class="style13">View Larger Map</a></small> &#160;</td></tr>
+<br></br><small><a href="http://maps.google.co.uk/maps?hl=en&amp;ie=UTF8&amp;q=temple+garden+centre+%26+farm+shop&amp;fb=1&amp;gl=uk&amp;hq=temple+garden+centre+%26+farm+shop&amp;cid=0,0,1992250315115693323&amp;ei=t97rS4rRMJ-iOLT23OkH&amp;ved=0CBUQnwIwAA&amp;hnear=&amp;ll=54.482456,-5.903006&amp;spn=0.017452,0.036478&amp;z=14&amp;iwloc=A&amp;source=embed" class="style13">View Larger Map</a></small> &#160;</td></tr>
 </tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td>&#160;</td></tr>
-</tbody></table><img height="18" width="1020" src="FOOTER.jpg"/>
-<br/><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td><div align="center"><span class="style12">Temple Garden &amp; Farm Shop, 88H Carryduff Road, Lisburn, Co Antrim, BT27 6YL, N. Ireland | Tel: 028 9263 8318
-<br/><span class="style17">(Temple Garden &amp; Farm Shop withhold the right to change the price of products at any time)</span>
-<br/><a target="_blank" href="http://www.blackwatergraphics.com">Web design by blackwatergraphics</a></span></div>
+</tbody></table><img height="18" src="FOOTER.jpg" width="1020"></img>
+<br></br><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td><div align="center"><span class="style12">Temple Garden &amp; Farm Shop, 88H Carryduff Road, Lisburn, Co Antrim, BT27 6YL, N. Ireland | Tel: 028 9263 8318
+<br></br><span class="style17">(Temple Garden &amp; Farm Shop withhold the right to change the price of products at any time)</span>
+<br></br><a target="_blank" href="http://www.blackwatergraphics.com">Web design by blackwatergraphics</a></span></div>
 </td></tr>
 </tbody></table>
-<br/>
-<br/>
-</div></body><br/></html>
+<br></br>
+<br></br>
+</div></body><br></br></html>

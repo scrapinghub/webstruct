@@ -1,6 +1,7 @@
-<html class="no-js" lang="en"><head><meta charset="UTF-8"/><title>Contact The Alteration Rooms</title>
+<?xml version="1.0" encoding="utf8" ?>
+<html class="no-js" lang="en"><head><meta charset="UTF-8"></meta><title>Contact The Alteration Rooms</title>
 
-</head><meta content="Christian Rochford" name="author"/><meta content="Contact The Alteration Rooms for the highest quality of seamstress skills for alterations, repairs and production of garments and fabric items at an affordable price." name="description"/><meta content="clothing, alterations, Shankhill, Dublin, Ireland, Co. Dublin" name="keywords"/><meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/><body><div id="wrap"><header><h1><a href="index.html"><img alt="The Alteration Rooms, alteration services Shankill, Dublin" src="img/header.jpg"/></a></h1></header><div id="leftcontent"><nav><ul><li><a href="index.html">Home</a></li>
+</head><meta content="Christian Rochford" name="author"><meta content="Contact The Alteration Rooms for the highest quality of seamstress skills for alterations, repairs and production of garments and fabric items at an affordable price." name="description"><meta content="clothing, alterations, Shankhill, Dublin, Ireland, Co. Dublin" name="keywords"><meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"></meta></meta></meta></meta><body><div id="wrap"><header><h1><a href="index.html"><img alt="The Alteration Rooms, alteration services Shankill, Dublin" src="img/header.jpg"></img></a></h1></header><div id="leftcontent"><nav><ul><li><a href="index.html">Home</a></li>
 <li><a href="about.html">About</a></li>
 <li><a href="services.html">Services</a></li>
 <li><a href="contact.html">Contact</a></li>
@@ -8,14 +9,14 @@
 <dl><HOURS><dt><strong>Mondays</strong></dt> <dd>Closed</dd> <dt><strong>Tuesdays-Saturdays</strong></dt> <dd>9.30am-5.30pm</dd> <dt><strong>Sundays</strong></dt> <dd>Closed</dd></HOURS></dl></section></div>
 <div id="rightcontent"><article id="contact">
 <p><strong>Contact Us</strong></p>
-<address itemscope="" itemtype="http://data-vocabulary.org/Organization"><span itemprop="name">The Alteration Rooms</span>
-<br/><span itemtype="http://data-vocabulary.org/Address" itemscope="" itemprop="address"><span itemprop="street-address">Unit 5 &amp; 6 Barbeque Centre</span>
-<br/><span itemprop="locality">Shankill</span>
-<br/><span itemprop="region">Co Dublin</span></span></address>
+<address itemscope="" itemtype="http://data-vocabulary.org/Organization"><span itemprop="name"><ORG>The Alteration Rooms</ORG></span>
+<br></br><span itemscope="" itemtype="http://data-vocabulary.org/Address" itemprop="address"><ADDR><span itemprop="street-address">Unit 5 &amp; 6 Barbeque Centre</span>
+<br></br><span itemprop="locality">Shankill</span>
+<br></br><span itemprop="region">Co Dublin</span></ADDR></span></address>
 <p>Clare <span itemprop="tel">086 322 6719</span>
-<br/>Gerry <span itemprop="tel">086 451 5335</span>
-<br/>Email: <a href="mailto:info@alterationrooms.com?Subject=email%20from%20website">info@alterationrooms.com</a></p>
-</article></div><figure><img id="zip4" height="159" src="img/zip1.png" alt="image of zipper" width="150"/><figure><img id="scissors3" height="159" src="img/scissors1.png" alt="image of scissors" width="150"/></figure></figure><section id="contacthours"><h3>Opening Hours</h3>
+<br></br>Gerry <span itemprop="tel">086 451 5335</span>
+<br></br>Email: <a href="mailto:info@alterationrooms.com?Subject=email%20from%20website">info@alterationrooms.com</a></p>
+</article></div><figure><img id="zip4" src="img/zip1.png" height="159" alt="image of zipper" width="150"><figure><img id="scissors3" src="img/scissors1.png" height="159" alt="image of scissors" width="150"></img></figure></img></figure><section id="contacthours"><h3>Opening Hours</h3>
 <dl><HOURS><dt><strong>Mondays</strong></dt> <dd>Closed</dd> <dt><strong>Tuesdays-Saturdays</strong></dt> <dd>9.30am-5.30pm</dd> <dt><strong>Sundays</strong></dt> <dd>Closed</dd></HOURS></dl></section></div>
 <footer>
 <p><sup>&#169;</sup> The Alteration Rooms 2012</p>
