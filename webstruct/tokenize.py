@@ -15,6 +15,14 @@ class WordTokenizer(object):
         >>> WordTokenizer().tokenize(s)
         ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
 
+        >>> s = '''Shelbourne Road,'''
+        >>> WordTokenizer().tokenize(s)
+        ['Shelbourne', 'Road', ',']
+
+        >>> s = '''Shelbourne Road,1000'''
+        >>> WordTokenizer().tokenize(s)
+        ['Shelbourne', 'Road,1000']
+
     """
     def tokenize(self, text):
         #starting quotes
@@ -23,7 +31,7 @@ class WordTokenizer(object):
         text = re.sub(r'([ (\[{<])"', r'\1 `` ', text)
 
         #punctuation
-        text = re.sub(r'([,])([^\d])', r' \1 \2', text)     # CHANGED :
+        text = re.sub(r'([,])(?![\d])', r' \1 ', text)     # CHANGED :
         text = re.sub(r'\.\.\.', r' ... ', text)
         text = re.sub(r'[;#$%&]', r' \g<0> ', text)         # CHANGED @
 

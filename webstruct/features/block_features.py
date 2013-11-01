@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-__all__ = ['parent_tag', 'inside_a_tag', 'borders', 'block_length']
+__all__ = ['parent_tag', 'inside_a_tag', 'inside_bold_tag', 'borders', 'block_length']
 
 def parent_tag(index, tokens, elem, is_tail):
     return {'parent_tag': elem.tag if not is_tail else elem.getparent().tag}
 
 def inside_a_tag(index, token, elem, is_tail):
     return {'inside_a_tag': any(e is not None for e in elem.iterancestors('a'))}
+
+def inside_bold_tag(index, token, elem, is_tail):
+    return {'inside_bold_tag': any(e is not None for e in elem.iterancestors('strong'))}
 
 def borders(index, tokens, elem, is_tail):
     return {
