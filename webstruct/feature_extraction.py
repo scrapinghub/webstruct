@@ -6,6 +6,7 @@ import lxml.etree
 from sklearn.base import BaseEstimator
 from .preprocess import IobSequence, Tagset, to_features_and_labels
 from .tokenize import default_tokenizer
+from .htmls import replace_tags, kill_tags
 
 _cleaner = lxml.html.clean.Cleaner(
     style=True,
@@ -80,7 +81,10 @@ class HtmlFeaturesExtractor(BaseEstimator):
         return _cleaner.clean_html(html)
 
     def _parse_html(self, html, encoding=None):
-        return self.clean_html(html, encoding)
+        doc = self.clean_html(html, encoding)
+        doc = replace_tags(doc, {'h3', 'h4', 'b'}, 'strong')
+        doc = kill_tags(doc, {'br'}, keep_child=False)
+        return doc
 
     def fit_transform(self, X, y=None, encoding=None):
         """
