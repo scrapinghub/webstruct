@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import functools
+
 from .block_features import *
 from .token_features import *
 from .data_features import *
@@ -11,10 +13,12 @@ DEFAULT_TAGSET = {'org', 'per', 'subj', 'street', 'city', 'state', 'country',
 
 DEFAULT = CombinedFeatures(
     parent_tag,
-    inside_a_tag,
-    inside_bold_tag,
     borders,
     block_length,
+
+    # inside certain ancestor tags
+    functools.partial(inside_tag, 'a'),
+    functools.partial(inside_tag, 'strong'),
 
     token_shape,
     number_pattern,

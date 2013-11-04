@@ -6,7 +6,6 @@ import lxml.etree
 from sklearn.base import BaseEstimator
 from .preprocess import IobSequence, Tagset, to_features_and_labels
 from .tokenize import default_tokenizer
-from .htmls import replace_tags, kill_tags
 
 _cleaner = lxml.html.clean.Cleaner(
     style=True,
@@ -80,11 +79,18 @@ class HtmlFeaturesExtractor(BaseEstimator):
         html = lxml.html.document_fromstring(html, parser=parser)
         return _cleaner.clean_html(html)
 
-    def _parse_html(self, html, encoding=None):
-        doc = self.clean_html(html, encoding)
-        doc = replace_tags(doc, {'h3', 'h4', 'b'}, 'strong')
-        doc = kill_tags(doc, {'br'}, keep_child=False)
-        return doc
+    def preprocess(self, html, encoding=None):
+        """
+        Preprocess the data: param:html with optional encoding.
+
+        by default it simply clean the HTML with `lxml.clean.Cleaner`
+
+        but it can be override to do more task specific cleanups,
+        such as replacing some HTML tags with more generalized one,
+        or removing some HTML elements.
+
+        """
+        return self.clean_html(html, encoding)
 
     def fit_transform(self, X, y=None, encoding=None):
         """
@@ -94,7 +100,7 @@ class HtmlFeaturesExtractor(BaseEstimator):
         Return (features, labels) tuple.
         """
         html = self.tagset.encode_tags(X)
-        doc = self._parse_html(html, encoding=encoding)
+        doc = self.preprocess(html, encoding=encoding)
         res = list(to_features_and_labels(doc, self.tokenizer, self.label_encoder, self.feature_func))
         self.label_encoder.reset()
         if not res or not any(res):
