@@ -19,18 +19,9 @@ class WordTokenizer(object):
         >>> WordTokenizer().tokenize(s)
         ['Shelbourne', 'Road', ',']
 
-        >>> s = '''Shelbourne Road,1000'''
-        >>> WordTokenizer().tokenize(s)
-        ['Shelbourne', 'Road', ',', '1000']
-
         >>> s = '''population of 100,000'''
         >>> WordTokenizer().tokenize(s)
-        ['population', 'of', '100000']
-
-        >>> s = '''unit 6,'''
-        >>> WordTokenizer().tokenize(s)
-        ['unit', '6', ',']
-
+        ['population', 'of', '100,000']
     """
     def tokenize(self, text):
         # starting quotes
@@ -39,9 +30,9 @@ class WordTokenizer(object):
         text = re.sub(r'([ (\[{<])"', r'\1 `` ', text)
 
         # punctuation
-        text = re.sub(r'(?<=\d)([,])(?=\d)', '', text)      # remove ',' in digits
+        text = re.sub(r'(,)(\D|\Z)', r' \1 \2', text)
         text = re.sub(r'\.\.\.', r' ... ', text)
-        text = re.sub(r'[;#$%&,]', r' \g<0> ', text)         # CHANGED @
+        text = re.sub(r'[;#$%&]', r' \g<0> ', text)         # CHANGED @
 
 
         text = re.sub(r'([^\.])(\.)([\]\)}>"\']*)\s*$', r'\1 \2\3 ', text)
