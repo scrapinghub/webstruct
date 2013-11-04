@@ -21,7 +21,11 @@ class WordTokenizer(object):
 
         >>> s = '''Shelbourne Road,1000'''
         >>> WordTokenizer().tokenize(s)
-        ['Shelbourne', 'Road,1000']
+        ['Shelbourne', 'Road', ',', '1000']
+
+        >>> s = '''population of 100,000'''
+        >>> WordTokenizer().tokenize(s)
+        ['population', 'of', '100,000']
 
     """
     def tokenize(self, text):
@@ -31,7 +35,7 @@ class WordTokenizer(object):
         text = re.sub(r'([ (\[{<])"', r'\1 `` ', text)
 
         #punctuation
-        text = re.sub(r'([,])(?![\d])', r' \1 ', text)     # CHANGED :
+        text = re.sub(r'(?<!\d)([,])', r' \1 ', text)     # CHANGED :
         text = re.sub(r'\.\.\.', r' ... ', text)
         text = re.sub(r'[;#$%&]', r' \g<0> ', text)         # CHANGED @
 
