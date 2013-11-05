@@ -7,12 +7,12 @@ def replace_tags(root, tags, name):
 
     >>> from lxml.html import fragment_fromstring, document_fromstring, tostring
     >>> root = fragment_fromstring('<h1>head 1</h1>')
-    >>> root = replace_tags(root, {'h1'}, 'strong')
+    >>> root = replace_tags(root, ['h1'], 'strong')
     >>> tostring(root)
     '<strong>head 1</strong>'
 
     >>> root = document_fromstring('<h1>head 1</h1> <h2>head 2</h2>')
-    >>> root = replace_tags(root, {'h1','h2','h3','h4'}, 'strong')
+    >>> root = replace_tags(root, ['h1','h2','h3','h4'], 'strong')
     >>> tostring(root)
     '<html><body><strong>head 1</strong> <strong>head 2</strong></body></html>'
     """
@@ -21,25 +21,25 @@ def replace_tags(root, tags, name):
             e.tag = name
     return root
 
-def kill_tags(root, tags, keep_child=True):
+def kill_tags(doc, tags, keep_child=True):
     """
     >>> from lxml.html import fragment_fromstring, tostring
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
-    >>> root = kill_tags(root, {'h1'})
+    >>> root = kill_tags(root, ['h1'])
     >>> tostring(root)
     '<div>head 1</div>'
 
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
-    >>> root = kill_tags(root, {'h1'}, False)
+    >>> root = kill_tags(root, ['h1'], False)
     >>> tostring(root)
     '<div></div>'
     """
-    for _, elem in iterwalk(root):
+    for _, elem in iterwalk(doc):
         if elem.tag in tags:
             if keep_child:
                 elem.drop_tag()
             else:
                 elem.drop_tree()
-    return root
+    return doc
 
 

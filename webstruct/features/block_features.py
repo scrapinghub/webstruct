@@ -1,16 +1,26 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-__all__ = ['parent_tag', 'inside_a_tag', 'inside_bold_tag', 'borders', 'block_length']
+__all__ = ['parent_tag', 'inside_tag', 'borders', 'block_length']
 
 def parent_tag(index, tokens, elem, is_tail):
     return {'parent_tag': elem.tag if not is_tail else elem.getparent().tag}
 
-def inside_a_tag(index, token, elem, is_tail):
-    return {'inside_a_tag': any(e is not None for e in elem.iterancestors('a'))}
+def inside_tag(tag, index, token, elem, is_tail):
+    """
+    >>> from lxml.html import fragment_fromstring
+    >>> root = fragment_fromstring('<div><strong><p>head 1</p></strong></div>')
+    >>> elem = list(root.iter('p'))[0]
+    >>> inside_tag('strong', 0, None, elem, False)
+    {'inside_tag_strong': True}
 
-def inside_bold_tag(index, token, elem, is_tail):
-    return {'inside_bold_tag': any(e is not None for e in elem.iterancestors('strong'))}
+    >>> root = fragment_fromstring('<div><strong>head 1</strong></div>')
+    >>> elem = list(root.iter('strong'))[0]
+    >>> inside_tag('strong', 0, None, elem, False)
+    {'inside_tag_strong': True}
+
+    """
+    return {'inside_tag_{}'.format(tag): any(e is not None for e in elem.iterancestors(tag)) or elem.tag == tag}
 
 def borders(index, tokens, elem, is_tail):
     return {
