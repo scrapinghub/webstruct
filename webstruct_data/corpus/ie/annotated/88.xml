@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf8" ?>
-<html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>Contact Us</title>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"><head><title>Contact Us</title>
 
-</head><base href="http://qualityseaveg.ie/"></base><body><div id="container"><div id="header"><div id="logo"><a href="http://qualityseaveg.ie/index.php?route=common/home"><img title="Quality Sea Veg" src="http://qualityseaveg.ie/image/data/Quality_Sea_Veg_Logo.png" alt="Quality Sea Veg"></img></a></div><div id="currency">Currency
-<br></br><a title="Euro"><b>€</b></a> <a title="Pound Sterling">£</a> <a title="US Dollar">$</a></div>
+</head><base href="http://qualityseaveg.ie/"/><body><div id="container"><div id="header"><div id="logo"><a href="http://qualityseaveg.ie/index.php?route=common/home"><img alt="Quality Sea Veg" title="Quality Sea Veg" src="http://qualityseaveg.ie/image/data/Quality_Sea_Veg_Logo.png"/></a></div><div id="currency">Currency
+<br/><a title="Euro"><b>€</b></a> <a title="Pound Sterling">£</a> <a title="US Dollar">$</a></div>
 <div id="cart"><div class="heading"><h4>Shopping Cart</h4>
 <a><span id="cart_total">0 item(s) - €0.00</span></a></div>
 <div class="content"></div><div id="search"><div class="button-search"></div><div id="welcome">Welcome visitor you can <a href="http://qualityseaveg.ie/index.php?route=account/login">login</a> or <a href="http://qualityseaveg.ie/index.php?route=account/register">create an account</a> .</div>
@@ -35,27 +34,27 @@
 <h1>Contact Us</h1>
 <h2>Our Location</h2>
 <div class="contact-info"><div class="content"><div class="left"><b>Address:</b>
-<br></br><ORG>Quality Sea Veg</ORG>
-<br></br><ADDR>Cloughglass,
-<br></br>Burtonport,
-<br></br>Co. Donegal,
-<br></br>Ireland</ADDR>.</div>
+<br/><ADDR>Quality Sea Veg
+<br/>Cloughglass,
+<br/>Burtonport,
+<br/>Co. Donegal,
+<br/>Ireland.</ADDR></div>
 <div class="right"><b>Telephone:</b>
-<br></br>+353 (0)74 - 9542159
-<br></br>
-</div></div></div><br></br><h2>Contact Form</h2>
+<br/>+353 (0)74 - 9542159
+<br/>
+</div></div></div><br/><h2>Contact Form</h2>
 <div class="content"><b>First Name:</b>
-<br></br>
-<br></br>
-<br></br><b>E-Mail Address:</b>
-<br></br>
-<br></br>
-<br></br><b>Enquiry:</b>
-<br></br>
-<br></br>
-<br></br><b>Enter the code in the box below:</b>
-<br></br>
-</div><br><img alt="" src="index.php?route=information/contact/captcha"></img></br><div class="buttons"><div class="right"><a class="button"><span>Continue</span></a></div>
+<br/>
+<br/>
+<br/><b>E-Mail Address:</b>
+<br/>
+<br/>
+<br/><b>Enquiry:</b>
+<br/>
+<br/>
+<br/><b>Enter the code in the box below:</b>
+<br/>
+</div><br/><img alt="" src="index.php?route=information/contact/captcha"/><div class="buttons"><div class="right"><a class="button"><span>Continue</span></a></div>
 </div></div><div id="footer"><div class="column"><h3>Information</h3>
 <ul><li><a href="http://qualityseaveg.ie/about_quality_sea_veg">About Us</a></li>
 <li><a href="http://qualityseaveg.ie/index.php?route=information/information&amp;information_id=6">Delivery Information</a></li>
@@ -76,6 +75,6 @@
 <li><a href="http://qualityseaveg.ie/index.php?route=account/wishlist">Wish List</a></li>
 <li><a href="http://qualityseaveg.ie/index.php?route=account/newsletter">Newsletter</a></li>
 </ul></div></div><div id="powered">Powered By <a target="_blank" href="http://www.opencart.com">OpenCart</a>
-<br></br>Green hosted by <a target="_blank" href="http://www.ecoweb.me" title="Carbon postiive hosting with EcoWeb.me">EcoWeb.me</a>
-<br></br>Quality Sea Veg &#169; 2013</div>
+<br/>Green hosted by <a target="_blank" href="http://www.ecoweb.me" title="Carbon postiive hosting with EcoWeb.me">EcoWeb.me</a>
+<br/>Quality Sea Veg &#169; 2013</div>
 </div></div></div></div></body></html>
