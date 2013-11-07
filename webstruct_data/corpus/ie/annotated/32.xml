@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf8" ?>
-<html class="no-js" lang="en"><head><base href="http://www.bookhaven.ie/"><meta charset="utf-8"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"></meta></meta></base><title>Book Haven: Where to find us | Primary School Books Ireland | Secondary School Books | Third Level Books | School and Office Stationery | Art and Craft Supplies | Educational Resources and Materials | Revision Guides and Exam papers | Educational Toys, Games and Puzzles | Book Covering</title>
+<html class="no-js" lang="en"><head><base href="http://www.bookhaven.ie/"/><meta charset="utf-8"/><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><title>Book Haven: Where to find us | Primary School Books Ireland | Secondary School Books | Third Level Books | School and Office Stationery | Art and Craft Supplies | Educational Resources and Materials | Revision Guides and Exam papers | Educational Toys, Games and Puzzles | Book Covering</title>
 
-</head><meta content="primary school books ireland, primary school books online ireland, order primary school books, order primary school books online, secondary school books ireland, college books ireland, Folens, Fallons, Gill and MacMillian, order secondary school books, order secondary school books online, third level books, third level books online, educational resources and materials, revision guides and exam papers, educational toys, book covering, school books ireland, booklists, book list, school books, schoolbooks, school supplies, exam papers, revision guides, school stationery,School and office stationery, school arts and crafts, primary and secondary school books, textbooks, online shop, online store, online school books shop, online school books store, games and puzzles, jolly phonics, bookseller, bookshop, bookhaven.ie" name="keywords"><meta content="bookhaven.ie, Order primary school books, secondary school books and college books online for delivery to your home or office or school. Stockist of Exam papers and revision guides along with school and office stationery and school art supplies." name="description"><meta content="iWeb Solutions" name="author"><meta content="width=device-width, initial-scale=1.0" name="viewport"></meta></meta></meta></meta><body><div id="wrapper"><div id="header" class="header"><div id="nav" class="nav" role="navigation"><ul><li class="firstmenu"><a href="/">Home</a></li>
+</head><meta content="primary school books ireland, primary school books online ireland, order primary school books, order primary school books online, secondary school books ireland, college books ireland, Folens, Fallons, Gill and MacMillian, order secondary school books, order secondary school books online, third level books, third level books online, educational resources and materials, revision guides and exam papers, educational toys, book covering, school books ireland, booklists, book list, school books, schoolbooks, school supplies, exam papers, revision guides, school stationery,School and office stationery, school arts and crafts, primary and secondary school books, textbooks, online shop, online store, online school books shop, online school books store, games and puzzles, jolly phonics, bookseller, bookshop, bookhaven.ie" name="keywords"/><meta content="bookhaven.ie, Order primary school books, secondary school books and college books online for delivery to your home or office or school. Stockist of Exam papers and revision guides along with school and office stationery and school art supplies." name="description"/><meta content="iWeb Solutions" name="author"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><body><div id="wrapper"><div id="header" class="header"><div id="nav" role="navigation" class="nav"><ul><li class="firstmenu"><a href="/">Home</a></li>
 <li><a href="/about-us">About us</a></li>
 <li><a href="/where-to-find-us">Our location</a></li>
 <li><a href="/links">Links</a></li>
@@ -14,7 +13,7 @@
 </ul></div><div class="clearfix"><div class="shopping-basket">
 <p>Your shopping basket contains - <strong><span id="cart_num_items">0</span> Items</strong> at <strong>€ <span id="cart_total">0.00</span></strong> // <a href="/cart">View basket &amp; checkout »</a></p>
 </div><div class="search-and-logo">
-</div></div></div><p></p><div id="container"><div id="content" class="section container-2 clearfix" role="main"><div class="navbar"><div class="logo"><a href="/">Book Haven</a></div>
+</div></div></div><p></p><div id="container"><div id="content" role="main" class="section container-2 clearfix"><div class="navbar"><div class="logo"><a href="/">Book Haven</a></div>
 <h2 class="navbar-title">Filter by:</h2>
 <ul id="menu-filter" class="menu-parent"><li><a href="#">Primary Schoolbooks</a> <ul class="menu-genre"><li><a href="/product-list/primary+schoolbooks/"><ul class="menu-sub-genre"><li><a href="/product-list/primary+schoolbooks//English">English</a></li>
 <li><a href="/product-list/primary+schoolbooks//Geography">Geography</a></li>
@@ -380,15 +379,15 @@
 
 <p>You can find our shops at the addresses below:</p>
 <h3>Online</h3>
-<address><strong>bookhaven.ie</strong>
-<br></br>Units 3/10 , Block 4,
-<br></br>Ashbourne Business Park,
-<br></br>Ashbourne
-<br></br>Co Meath</address>
+<address><strong><ORG>bookhaven.ie</ORG></strong>
+<br/><ADDR>Units 3/10 , Block 4,
+<br/>Ashbourne Business Park,
+<br/>Ashbourne
+<br/>Co Meath</ADDR></address>
 <p>E-Mail: <a href="mailto:info@bookhaven.ie">info@bookhaven.ie</a>
-<br></br>Tel: 01 8352621
-<br></br>Fax: 01 8352620
-</p><br></br>
+<br/>Tel: 01 8352621
+<br/>Fax: 01 8352620
+</p><br/>
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.00am - 5.30pm</li>
 <li>Tuesday - 9.00am - 5.30pm</li>
@@ -397,14 +396,14 @@
 <li>Friday - 9.00am – 5.30pm</li>
 <li>Saturday - Closed</li>
 <li>Sunday - Closed</li></HOURS>
-</ul><ORG>
-<br class="clearfix"></br><h3>The Wise Owl/Book Haven</h3></ORG>
-<ADDR><address><strong>Artaine Castle</strong>
-<br></br>Artaine Castle Shopping Centre
-<br></br>Artane
-<br></br>Dublin 5</address>
-</ADDR><p>Tel: 01 8512660
-<br></br>Fax: 01 8512656</p>
+</ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Artaine Castle</strong>
+<br/>Artaine Castle Shopping Centre
+<br/>Artane
+<br/>Dublin 5</ADDR></address>
+<p>Tel: 01 8512660
+<br/>Fax: 01 8512656</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Mon - 9.30am - 6.00pm</li>
@@ -413,16 +412,16 @@
 <li>Thursday - 9.30am - 6.00pm</li>
 <li>Friday - 9.30am - 6.00pm</li>
 <li>Saturday - 9.30am - 6.00pm</li>
-<li>Sunday Closed</li></HOURS>
-</ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
-<address><ADDR><strong>Balbriggan, Georges Hill</strong>
-<br></br>Unit 6 Supervalu Shopping Centre,
-<br></br>Drogheda Street,
-<br></br>Balbriggan,
-<br></br>Co Dublin</ADDR></address>
+<li>Sunday Closed</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><strong>Balbriggan, Georges Hill</strong>
+<br/><ADDR>Unit 6 Supervalu Shopping Centre,
+<br/>Drogheda Street,
+<br/>Balbriggan,
+<br/>Co Dublin</ADDR></address>
 <p>Tel: 01 8414641
-<br></br>Fax: 018412970</p>
+<br/>Fax: 018412970</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 5.30pm</li>
@@ -433,13 +432,13 @@
 <li>Saturday - 9.30am - 5.30pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
-<address><ADDR><strong>Clare Hall Shopping Centre</strong>
-<br></br>Clarehall Shopping Centre
-<br></br>Malahide Road
-<br></br>Dublin 17</ADDR></address>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><strong>Clare Hall Shopping Centre</strong>
+<br/><ADDR>Clarehall Shopping Centre
+<br/>Malahide Road
+<br/>Dublin 17</ADDR></address>
 <p>Tel: 01 8482378
-<br></br>Fax: 01 8775471</p>
+<br/>Fax: 01 8775471</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -450,12 +449,12 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday - 2.00pm - 6.00pm</li></HOURS>
 </ul>
-<h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><ADDR><strong>Donaghmede Shopping Centre</strong>
-<br></br>Donaghmede
-<br></br>Dublin 13</ADDR></address>
+<br/>Donaghmede
+<br/>Dublin 13</ADDR></address>
 <p>Tel: 01 8470952
-<br></br>Fax: 01 8670206</p>
+<br/>Fax: 01 8670206</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -464,15 +463,15 @@
 <li>Thursday - 9.30am - 6.00pm</li>
 <li>Friday - 9.30am - 6.00pm</li>
 <li>Saturday - 9.30am - 6.00pm</li>
-<li>Sunday - Closed</li></HOURS>
-</ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<li>Sunday - Closed</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><ADDR><strong>Monread Shopping Centre</strong>
-<br></br>Naas
-<br></br>Co. Kildare</ADDR></address>
+<br/>Naas
+<br/>Co. Kildare</ADDR></address>
 <p>Tel: 045 883722
-<br></br>Fax: 045 883723
-<br></br>E-mail: <a href="mailto:naas@bookhaven.ie">naas@bookhaven.ie</a></p>
+<br/>Fax: 045 883723
+<br/>E-mail: <a href="mailto:naas@bookhaven.ie">naas@bookhaven.ie</a></p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -481,14 +480,14 @@
 <li>Thursday - 9.30am - 9.00pm</li>
 <li>Friday - 9.30am - 9.00pm</li>
 <li>Saturday - 9.30am - 7.00pm</li>
-<li>Sunday 12pm - 4.00pm</li></HOURS>
-</ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<li>Sunday 12pm - 4.00pm</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><ADDR><strong>Roselawn Shopping Centre</strong>
-<br></br>Blanchardstown
-<br></br>Dublin 15</ADDR></address>
+<br/>Blanchardstown
+<br/>Dublin 15</ADDR></address>
 <p>Tel: 01 8227647
-<br></br>Fax: 01 8227647</p>
+<br/>Fax: 01 8227647</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -499,14 +498,14 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><ADDR><strong>Sutton Cross</strong>
-<br></br>Superquinn Centre
-<br></br>Sutton Cross
-<br></br>Sutton
-<br></br>Dublin13</ADDR></address>
+<br/>Superquinn Centre
+<br/>Sutton Cross
+<br/>Sutton
+<br/>Dublin13</ADDR></address>
 <p>Tel: 01 8395054
-<br></br>Fax: 01 8395322&#160;</p>
+<br/>Fax: 01 8395322&#160;</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -517,13 +516,13 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"></br><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><ADDR><strong>Swords, River Mall</strong>
-<br></br>River Mall
-<br></br>Swords
-<br></br>Co Dublin</ADDR></address>
+<br/>River Mall
+<br/>Swords
+<br/>Co Dublin</ADDR></address>
 <p>Tel: 01 8405470&#160;
-<br></br>Fax: 01 8405470</p>
+<br/>Fax: 01 8405470</p>
 
 <p class="opening-hours">Opening Hours</p>
 <ul><HOURS><li>Monday - 9.30am - 6.00pm</li>
@@ -533,11 +532,11 @@
 <li>Friday - 9.30am - 6.00pm</li>
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday Closed</li></HOURS>
-</ul></div></div></div><div id="footer" class="footer clearfix"><div id="place-footer"><div class="payment-method"><ul><li class="cards">We Accept:</li><img alt="Credit Cards" src="/img/layout/credit-cards.gif"></img>
-<li>We are secured by:</li><img alt="Realex" src="/img/layout/img-realex.png"></img>
+</ul></div></div></div><div id="footer" class="footer clearfix"><div id="place-footer"><div class="payment-method"><ul><li class="cards">We Accept:</li><img alt="Credit Cards" src="/img/layout/credit-cards.gif"/>
+<li>We are secured by:</li><img alt="Realex" src="/img/layout/img-realex.png"/>
 </ul></div></div><div id="place-copyright"><div class="copyright">
 <p>&#169; Copyright The Book Haven 2011 - 2013. All Right Reserved. <a href="/terms-and-conditions.php">Terms &amp; Conditions</a> - <a href="/privacy">Privacy</a> - <a href="/sitemap.php">Sitemap</a></p>
 
 <p>Website by iWeb: <a target="_blank" class="footerLink" title="Ecommerce Website Design" rel="nofollow" href="http://www.iwebsolutions.co.uk">Ecommerce Website Design</a> | Hosted by <a target="_blank" class="footerLink" title="iWeb Hosting" href="http://www.iweb-hosting.co.uk/">iWeb Hosting</a></p>
 </div><div class="follow-us-on"><h3>Follow Us On:</h3>
-</div></div></div></div></div></body><ul id="ul-follow"><li class="no-dots"><a target="new" title="Follow us on Facebook as bookhavenireland" href="http://www.facebook.com/bookhavenireland"><img height="48" src="/img/layout/logo-fb.png" alt="Facebook" width="47"><li class="no-dots"><a target="new" title="Follow us on Twitter as @BookhavenIre" href="https://twitter.com/#!/BookhavenIre"><img height="48" src="/img/layout/logo-twitter.png" alt="Twitter" width="48"></img></a></li></img></a></li></ul></html>
+</div></div></div></div></div></body><ul id="ul-follow"><li class="no-dots"><a target="new" title="Follow us on Facebook as bookhavenireland" href="http://www.facebook.com/bookhavenireland"><img src="/img/layout/logo-fb.png" height="48" alt="Facebook" width="47"/><li class="no-dots"><a target="new" title="Follow us on Twitter as @BookhavenIre" href="https://twitter.com/#!/BookhavenIre"><img src="/img/layout/logo-twitter.png" height="48" alt="Twitter" width="48"/></a></li></a></li></ul></html>

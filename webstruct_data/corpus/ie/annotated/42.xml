@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf8" ?>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><title>Contact the council | Your Council | Clare County Council</title>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/><title>Contact the council | Your Council | Clare County Council</title>
 
-</head><meta content="Percussion CM System" name="generator"><meta content="FmRsZW14B2RjeAFgbGV4BmZlYHgTbWxk" id="perc_linkback" name="perc_linkback"></meta></meta><body><div id="container"><div id="cookie-info"><p>A notice about cookies</p>
+</head><meta content="Percussion CM System" name="generator"/><meta content="FmRsZW14B2RjeAFgbGV4BmZlYHgTbWxk" id="perc_linkback" name="perc_linkback"/><body><div id="container"><div id="cookie-info"><p>A notice about cookies</p>
 
 <p>Clarecoco.ie uses cookies. Some cookies may have been set already. To find out more about our use of cookies you can visit our <a href="/info/privacy-statement/">privacy statement</a> . By browsing this website, you agree to our use of cookies. <a href="">Hide this message</a></p>
 </div><noscript><div id="cookie-info2">
 <p>A notice about cookies</p>
 
 <p>Clarecoco.ie uses cookies. Some cookies may have been set already. To find out more about our use of cookies you can visit our <a href="/info/privacy-statement/">privacy statement</a> . By browsing this website, you agree to our use of cookies. To hide this message please turn on Javascript and click the &apos;Hide this message&apos; link.</p>
-</div></noscript><div id="header"><div id="logo"><a href="/" title="Clare County Council"><img height="69" src="/images/item916.gif" alt="Clare County Council" width="320"></img></a></div><div id="topRight"><div class="skipLinks"><ul><li class="first"><a href="#content">Skip to content</a> <span class="pipe">|</span></li>
+</div></noscript><div id="header"><div id="logo"><a href="/" title="Clare County Council"><img src="/images/item916.gif" height="69" alt="Clare County Council" width="320"/></a></div><div id="topRight"><div class="skipLinks"><ul><li class="first"><a href="#content">Skip to content</a> <span class="pipe">|</span></li>
 <li><a id="plainText" href="#">Text version</a> <a id="graphicText" href="#">Graphic version</a> <span class="pipe">|</span></li>
 <li><span lang="ga"><a href="/ga/" title="Gaeilge">Gaeilge</a></span> <span class="pipe">|</span></li>
 <li><a href="/help/a-z/" title="A-Z">A-Z</a> <span class="pipe">|</span></li>
@@ -16,7 +15,7 @@
 <li id="fontsizebuttons"><noscript><a href="/help/zoomtext/" title="Zoom Text">Zoom Text</a></noscript></li>
 <li class="last"><fieldset><label for="q" title="search">Search</label></fieldset></li>
 </ul>
-<br class="clear"></br><span class="skipLinksCnrBtmLeft">&#160;</span> <span class="skipLinksCnrBtmRight">&#160;</span></div>
+<br class="clear"/><span class="skipLinksCnrBtmLeft">&#160;</span> <span class="skipLinksCnrBtmRight">&#160;</span></div>
 <div id="topNav"><ul><li><a href="/" title="Home">Home</a> |</li>
 <li><a href="/quicklinks/online-services/" title="Online Services">Online Services</a> |</li>
 <li><a href="/your-council/forms/" title="Forms">Forms</a> |</li>
@@ -24,8 +23,8 @@
 <li><a href="/your-council/publications/" title="Publications">Publications</a> |</li>
 <li><a href="/your-council/contact-the-council/" title="Contact Us">Contact Us</a></li>
 </ul></div>
-</div><br></br>
-</div><br class="clear"></br><div id="gns"><ul><li class="on"><a href="/your-council/" title="Your Council">Your Council</a></li>
+</div><br/>
+</div><br class="clear"/><div id="gns"><ul><li class="on"><a href="/your-council/" title="Your Council">Your Council</a></li>
 <li><a href="/planning/" title="Planning">Planning</a></li>
 <li><a href="/water-waste-environment/" title="Water, Waste &amp; Environment">Water, Waste &amp; Environment</a></li>
 <li><a href="/housing/" title="Housing">Housing</a></li>
@@ -42,7 +41,7 @@
 </ul>
 <p id="printbutton" class="print"></p><p class="locale"><a href="http://www.clarecoco.ie/ga/your-council/contact-the-council/" title="Gaeilge">Gaeilge</a> <span class="pipe">|</span></p>
 
-</div><br class="clear"></br><div id="wrapper"><div id="lhsCol"><p class="title">Your Council</p>
+</div><br class="clear"/><div id="wrapper"><div id="lhsCol"><p class="title">Your Council</p>
 <ul><li class="first"><a href="/your-council/about-the-council/" title="About the Council">About the Council</a></li>
 <li><a href="/your-council/customer-services/" title="Customer Services">Customer Services</a></li>
 <li><a href="/your-council/voting/" title="Voting">Voting</a></li>
@@ -53,7 +52,7 @@
 <li><a href="/your-council/forms/" title="Forms">Forms</a></li>
 <li><a href="/your-council/publications/" title="Publications">Publications</a></li>
 <li><a href="/your-council/opendata/" title="OpenData">OpenData</a></li>
-<li class="on open"><a href="/your-council/contact-the-council/" class="first" title="Contact the Council">Contact the Council</a> <ul class="open"><li class="first"><a href="http://www.clarecoco.ie/your-council/contact-the-council/online-query/default.aspx" title="Online Query">Online Query</a></li>
+<li class="on open"><a class="first" href="/your-council/contact-the-council/" title="Contact the Council">Contact the Council</a> <ul class="open"><li class="first"><a href="http://www.clarecoco.ie/your-council/contact-the-council/online-query/default.aspx" title="Online Query">Online Query</a></li>
 <li><a href="/your-council/contact-the-council/map-of-office-locations/" title="Map of Office Locations">Map of Office Locations</a></li>
 <li><a href="/your-council/contact-the-council/departments/" title="Departments">Departments</a></li>
 <li><a href="/your-council/contact-the-council/councillors/" title="Councillors">Councillors</a></li>
@@ -62,36 +61,36 @@
 <li class="last"><a href="/your-council/contact-the-council/libraries/" title="Libraries">Libraries</a></li>
 </ul></li>
 </ul><div class="customer"><p class="custButt">Customer Service
-<br></br>Tel: (065) 6821616</p>
+<br/>Tel: (065) 6821616</p>
 <div class="rhsCustomer">&#160;</div>
 
-</div></div><br class="clear"><div id="rhsCol"></div></br><div id="content"><h1>Contact the council</h1>
-<address><ORG>Clare County Council,</ORG>
-<br></br><span lang="ga">Áras Contae an Chláir,</span>
-<br></br><ADDR>New Road,
-<br></br>Ennis,
-<br></br>Co. Clare</ADDR></address>
+</div></div><br class="clear"/><div id="rhsCol"></div><div id="content"><h1>Contact the council</h1>
+<address><ORG>Clare County Council</ORG>,
+<br/><ADDR><span lang="ga">Áras Contae an Chláir,</span>
+<br/>New Road,
+<br/>Ennis,
+<br/>Co. Clare</ADDR></address>
 <p>Telephone: (065) 6821616
-<br></br>Fax: (065) 6828233
-<br></br>Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie
-</a><br></br><a href="/your-council/contact-the-council/map-of-office-locations/clare-county-council-headquarters.html">Map of office location</a></p>
+<br/>Fax: (065) 6828233
+<br/>Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie
+</a><br/><a href="/your-council/contact-the-council/map-of-office-locations/clare-county-council-headquarters.html">Map of office location</a></p>
 <h2>Opening hours</h2>
 <ul><li>All Offices (except for Planning, Motor Tax, and Cash Office) open <strong><HOURS>Monday - Friday: 9:00 a.m. - 5:00 p.m.</HOURS></strong></li>
-<li>Planning Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m</HOURS> .</strong></li>
+<li>Planning Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m.</HOURS></strong></li>
 <li>Motor Tax Office open <strong><HOURS>Monday - Friday: 9:15 a.m. - 3:30 p.m.</HOURS></strong></li>
-<li>Cash Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m.</HOURS></strong></li>
-<li><HOURS><strong>Saturdays, Sundays and Bank Holidays:</strong> Closed</HOURS></li>
+<li>Cash Office open <strong>Monday - Friday: 9:00 a.m. - 4:00 p.m.</strong></li>
+<li><strong>Saturdays, Sundays and Bank Holidays:</strong> Closed</li>
 <li>Emergency Contact Number: (087) 4169496 (outside office hours only)</li>
 </ul>
 <p class="back2top"><a href="#content">Back to top</a></p>
 
 <p class="lastUpdated">Page last updated: 16/05/13</p>
 </div>
-</div><br class="clear"></br><div id="footer"><p><ORG>Clare County Council</ORG>, <ADDR>New Road, Ennis, Co. Clare</ADDR>
-<br></br>Tel: +353 65 6821616 | Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie</a></p>
+</div><br class="clear"/><div id="footer"><p><ORG>Clare County Council</ORG>, <ADDR>New Road, Ennis, Co. Clare</ADDR>
+<br/>Tel: +353 65 6821616 | Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie</a></p>
 <ul><li><a href="/info/accessibility/" title="Accessibility">Accessibility</a> |</li>
 <li><a href="/info/privacy-statement/" title="Privacy Statement">Privacy Statement</a> |</li>
 <li><a href="/info/terms-and-conditions/" title="Terms and Conditions">Terms and Conditions</a></li>
 </ul>
-<br class="clear"></br><span class="footerCnrBtmLeft">&#160;</span> <span class="footerCnrBtmRight">&#160;</span>
-</div></div></div></body><br class="clear"></br></html>
+<br class="clear"/><span class="footerCnrBtmLeft">&#160;</span> <span class="footerCnrBtmRight">&#160;</span>
+</div></div></div></body><br class="clear"/></html>
