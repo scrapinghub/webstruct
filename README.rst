@@ -10,6 +10,7 @@ Supported functionality (so far)
 - American contact information extraction
 - Netherlands open hours extraction
 - Ireland open hours extraction
+- Ireland contact address extraction
 
 Installation
 ------------
