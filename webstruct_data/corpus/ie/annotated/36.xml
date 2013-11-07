@@ -17,24 +17,24 @@
 <li><a href="courses.php"><b><em>Courses</em></b></a></li>
 <li><a href="staff.php"><b><em>Staff</em></b></a></li>
 <li class="current"><a href="contactus.php"><b><em>Contact</em></b></a></li>
-</ul></nav></div></header><div class="container bg-cont"><section id="content"><div class="inside"><article><div class="container"><div class="col-1"><h2>Solar Spa</h2>
-<span class="w">9a Trinity Street (First Floor) Dublin 2
+</ul></nav></div></header><div class="container bg-cont"><section id="content"><div class="inside"><article><div class="container"><div class="col-1"><h2><ORG>Solar Spa</ORG></h2>
+<span class="w"><ADDR>9a Trinity Street (First Floor) Dublin 2</ADDR>
 <br/>Phone: 01 6350022</span>
 <br/>
 </div><br/><div class="col-2"><h2>Opening Hours</h2>
-<table><tbody><tr><td><b>Monday
+<table><tbody><tr><HOURS><td><b>Monday
 <br/>Tuesday
 <br/>Wednesday
 <br/>Thursday
 <br/>Friday
 <br/>Saturday
-<br/>Sunday</b></td> <td><HOURS>10:00am - 7:00pm
+<br/>Sunday</b></td> <td>10:00am - 7:00pm
 <br/>10:00am - 7:00pm
 <br/>10:00am - 9:00pm
 <br/>10:00am - 9:00pm
 <br/>9:00am - 7:00pm
 <br/>9:00am - 7:00pm
-<br/>Closed</HOURS></td></tr>
+<br/>Closed</td></HOURS></tr>
 </tbody></table>
 <br/>
 <br/><h2>Contact Form</h2>
@@ -46,7 +46,7 @@ Enter Name:
 <br/>
 <br/><div class="rowElem">Spam filter: 4 + 5 =
 </div></div></div></div></div></div></article></div></section></div><div class="rowElem"></div><footer><div class="inside"><div class="fright w"><div><a href="index.php">Solar Spa</a> &#160;&#169; 2013 &#160; <b>01 6350022</b>
-<br/>9a Trinity Street (First Floor) Dublin 2</div>
+<br/><ADDR>9a Trinity Street (First Floor) Dublin 2</ADDR></div>
 </div><div class="fleft">Powered by Phorest.com, the UK and Ireland&apos;s leading <a href="http://www.phorest.com/">salon software</a>
 <br/>Designed by <a href="http://www.phorest.com" title="Phorest Salon Software" alt="Phorest Salon Software">Phorest</a> <a href="http://www.joseromero.me">Jose Romero</a></div>
 </div></footer></div></body></html>

@@ -6,12 +6,12 @@
 <tr><td>&#160;</td><td valign="top">
 <div class="style2" align="justify">
 <p><span class="style5">Contact Us...</span>
-<br/><strong>Temple Garden and Farm Shop</strong>
-<br/><span class="style15">88H Carryduff Road,
+<br/><strong><ORG>Temple Garden and Farm Shop</ORG></strong>
+<br/><span class="style15"><ADDR>88H Carryduff Road,
 <br/>Lisburn,
 <br/>Co Antrim,
 <br/>BT27 6YL,
-<br/>Northern Ireland
+<br/>Northern Ireland</ADDR>
 <br/>
 <br/><span class="style18">We are only 10 minutes from Belfast</span>
 <br/>
@@ -19,7 +19,7 @@
 <br/><strong>Email: hughgilmore@btinternet.com</strong>
 <br/>
 <br/><strong>Opening Hours:</strong>
-<br/>We are open <HOURS>Monday to Saturday, 10am to 6pm.</HOURS>
+<br/>We are open <HOURS>Monday to Saturday, 10am to 6pm</HOURS>.
 </p><br/>
 </div></td></tr><td valign="top" align="right"><img height="189" width="435" src="shop image.jpg"/></td>
 </tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td>&#160;</td></tr>
@@ -27,7 +27,7 @@
 <br/><small><a href="http://maps.google.co.uk/maps?hl=en&amp;ie=UTF8&amp;q=temple+garden+centre+%26+farm+shop&amp;fb=1&amp;gl=uk&amp;hq=temple+garden+centre+%26+farm+shop&amp;cid=0,0,1992250315115693323&amp;ei=t97rS4rRMJ-iOLT23OkH&amp;ved=0CBUQnwIwAA&amp;hnear=&amp;ll=54.482456,-5.903006&amp;spn=0.017452,0.036478&amp;z=14&amp;iwloc=A&amp;source=embed" class="style13">View Larger Map</a></small> &#160;</td></tr>
 </tbody></table><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td>&#160;</td></tr>
 </tbody></table><img height="18" width="1020" src="FOOTER.jpg"/>
-<br/><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td><div align="center"><span class="style12">Temple Garden &amp; Farm Shop, 88H Carryduff Road, Lisburn, Co Antrim, BT27 6YL, N. Ireland | Tel: 028 9263 8318
+<br/><table border="0" bgcolor="#FFFFFF" width="1020"><tbody><tr><td><div align="center"><span class="style12"><ORG>Temple Garden &amp; Farm Shop</ORG>, <ADDR>88H Carryduff Road, Lisburn, Co Antrim, BT27 6YL, N. Ireland</ADDR> | Tel: 028 9263 8318
 <br/><span class="style17">(Temple Garden &amp; Farm Shop withhold the right to change the price of products at any time)</span>
 <br/><a target="_blank" href="http://www.blackwatergraphics.com">Web design by blackwatergraphics</a></span></div>
 </td></tr>

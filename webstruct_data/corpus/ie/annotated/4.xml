@@ -53,10 +53,10 @@ Content" name="description"/><meta content="concrete5 - 5.4.2.2" name="generator
 <br/>9.00am - 5.00pm</HOURS></p>
 
 <p><strong>Our address:
-</strong><br/>McHale Muldoon Solicitors
-<br/>Denshaw House
+</strong><br/><ORG>McHale Muldoon Solicitors</ORG>
+<br/><ADDR>Denshaw House
 <br/>121 Baggot Street Lower
-<br/>Dubin 2</p>
+<br/>Dubin 2</ADDR></p>
 </div><div class="image-block"><div class="title">Click to view us on Google Maps</div>
 </div></div><a href="https://maps.google.co.uk/maps?hl=en&amp;q=google+maps+121+baggot+street+lower&amp;ie=UTF-8&amp;hq=&amp;hnear=0x48670e99d22c7921:0x1300c7a6fbaea040,121+Baggot+Street+Lower,+Dublin,+Co.+Dublin,+Ireland&amp;gl=uk&amp;ei=f-ZqUOC-AciEhQeS5oCABQ&amp;ved=0CB4Q8gEwAA"><img class="ccm-image-block" height="236" src="/files/3613/4909/9025/map-ie.jpg" border="0" alt="Click to view us on Google Maps" width="230"/></a><div class="grid_9 content"><div class="content"><h1>Contact Us Today</h1>
 </div><div class="form"><h5>Contact form</h5>
@@ -81,7 +81,7 @@ Content" name="description"/><meta content="concrete5 - 5.4.2.2" name="generator
 
 <p>&#169; Copyright 2010 to 2013 McHale Muldoon Solicitors</p>
 </div></div><div class="grid_5 push_2 credits"><div class="content">
-<p>McHale Muldoon Solicitors, Denshaw House, 121 Baggot Street Lower, Dublin 2</p>
+<p><ORG>McHale Muldoon Solicitors</ORG>, <ADDR>Denshaw House, 121 Baggot Street Lower, Dublin 2</ADDR></p>
 
 <p>Telephone: 01 901 4658</p>
 

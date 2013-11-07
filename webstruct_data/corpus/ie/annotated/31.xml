@@ -16,7 +16,7 @@
 </div></ul></section><section id="google_map"><span class="icon"><div id="map" data-icons-url="http://www.marcopolo.ie/google_map_icons/"></div></span></section><section id="contact_details"><h2>Contact Details</h2><span class="icon"></span>
 <ul id="contact_informations"><li>Phone: <span>061 412 888</span></li>
 <li>Email: <span><a href="mailto:info@marcopolo.ie">info@marcopolo.ie</a></span></li>
-<li>Address: <span>O&apos;Connell Street, Limerick, Ireland</span></li>
+<li>Address: <span><ADDR>O&apos;Connell Street, Limerick, Ireland</ADDR></span></li>
 </ul><h3>Opening Times</h3>
 <ul id="contact_opening_times"><HOURS><li>Monday to Saturday: <span>12PM to 10:30PM</span></li>
 <li>Sunday: <span>1PM to 9:30PM</span></li></HOURS>

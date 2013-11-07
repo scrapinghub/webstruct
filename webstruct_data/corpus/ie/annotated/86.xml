@@ -20,10 +20,10 @@
 <h1 class="txtcaption2">If you would like to contact us please use the form below</h1>
 <div></div>
 <br/><span class="txtcaption2"><b>Address:</b></span>
-<br/><span class="txtcaption2">Mullagh - Co Cavan</span>
+<br/><span class="txtcaption2"><ADDR>Mullagh - Co Cavan</ADDR></span>
 <br/><span class="txtcaption2"><b>Email:</b> <a href="mailto:info@lifesleepcomfort.ie" class="link">info@lifesleepcomfort.ie</a></span>
 <p class="txtnormal">&#160;</p>
-</div></div></div></div></div><div class="footer"><div class="footerleft"><div><img height="23" width="192" src="assets/payments.jpg"/></div><div class="footerdts"><span class="smalltext"><strong>Life <strong>Sleep</strong> Comfort</strong> Mullagh, County Cavan
+</div></div></div></div></div><div class="footer"><div class="footerleft"><div><img height="23" width="192" src="assets/payments.jpg"/></div><div class="footerdts"><span class="smalltext"><strong><ORG>Life <strong>Sleep</strong> Comfort</ORG></strong> <ADDR>Mullagh, County Cavan</ADDR>
 <br/><strong>Email:</strong></span> <a target="_blank" class="smalllink" href="mailto:info@lifesleepcomfort.ie">info@lifesleepcomfort.ie</a></div>
 </div><div class="footerright"><a href="index.htm" class="smalllink">Home</a> &#160;|&#160; <a href="about.htm" class="smalllink">About Us</a> &#160;|&#160; <a href="index.php" class="smalllink">Store</a> &#160;|&#160; <a href="faqs.htm" class="smalllink">FAQs</a> &#160;|&#160; <a href="privacy.htm" class="smalllink">Privacy Policy</a> &#160;|&#160; <a href="contact.htm" class="smalllink">Contact Us</a></div>
 </div>

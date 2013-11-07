@@ -2,7 +2,7 @@
 
 </head><base href="http://www.peninsulastone.ie/"/><meta content="CMS Made Simple - Copyright (C) 2004-12 Ted Kulp. All rights reserved." name="Generator"/><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><meta content="Peninsula Stone are based in Howth, County Dublin and are open 6 days per week. Monday to Friay 9am to 5pm and Saturday 10am to 3pm." name="description"/><body><div id="main_outer_outer"><div id="main_outer"><div id="main"><div id="inner"><div id="header"><div id="top"><div id="logo"><a><img alt="Peninsula Stone Logo" src="uploads/logo.png"/></a></div><div id="heading"><div class="row header-text"><h1>Supply - Design - Build - Maintain</h1>
 <h6>t/f: (01) 8323388 - m: (086) 8206556
-<br/>68 Main Street, Howth, Co. Dublin, Ireland</h6>
+<br/><ADDR>68 Main Street, Howth, Co. Dublin, Ireland</ADDR></h6>
 </div></div><div class="bordered"><div id="primary_nav"><ul><li><a href="http://www.peninsulastone.ie/"><span>Home:</span></a></li>
 <li><a href="http://www.peninsulastone.ie/about"><span>About Us:</span></a></li>
 <li><a href="http://www.peninsulastone.ie/supply"><span>Supply:</span></a></li>
@@ -71,11 +71,11 @@
 <p>If you have a question or would like to leave a comment, use the form below and we will get in touch with you.</p>
 <div class="row"><div class="col"><h2><span>Address:</span></h2>
 
-<p>Peninsula Stone Limited
-<br/>68 Main Street,
+<p><ORG>Peninsula Stone Limited</ORG>
+<br/><ADDR>68 Main Street,
 <br/>Howth.
 <br/>Co. Dublin.
-<br/>Ireland.</p>
+<br/>Ireland</ADDR>.</p>
 </div><div class="col"><h2><span>Opening Hours:</span></h2>
 
 <p><HOURS>Monday to Friday: 9am - 5pm

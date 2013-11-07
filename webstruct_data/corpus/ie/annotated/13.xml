@@ -8,10 +8,10 @@
 <dl><HOURS><dt><strong>Mondays</strong></dt> <dd>Closed</dd> <dt><strong>Tuesdays-Saturdays</strong></dt> <dd>9.30am-5.30pm</dd> <dt><strong>Sundays</strong></dt> <dd>Closed</dd></HOURS></dl></section></div>
 <div id="rightcontent"><article id="contact">
 <p><strong>Contact Us</strong></p>
-<address itemscope="" itemtype="http://data-vocabulary.org/Organization"><span itemprop="name">The Alteration Rooms</span>
-<br/><span itemtype="http://data-vocabulary.org/Address" itemscope="" itemprop="address"><span itemprop="street-address">Unit 5 &amp; 6 Barbeque Centre</span>
+<address itemscope="" itemtype="http://data-vocabulary.org/Organization"><span itemprop="name"><ORG>The Alteration Rooms</ORG></span>
+<br/><span itemtype="http://data-vocabulary.org/Address" itemscope="" itemprop="address"><ADDR><span itemprop="street-address">Unit 5 &amp; 6 Barbeque Centre</span>
 <br/><span itemprop="locality">Shankill</span>
-<br/><span itemprop="region">Co Dublin</span></span></address>
+<br/><span itemprop="region">Co Dublin</span></ADDR></span></address>
 <p>Clare <span itemprop="tel">086 322 6719</span>
 <br/>Gerry <span itemprop="tel">086 451 5335</span>
 <br/>Email: <a href="mailto:info@alterationrooms.com?Subject=email%20from%20website">info@alterationrooms.com</a></p>

@@ -48,7 +48,7 @@
 <li class="menuactive"><a class="menuactive" href="http://pureskill.ie/contact-us.html"><dfn>11:</dfn> Contact Us</a></li>
 </ul></div><div class="clearb"><hr class="accessibility"/></div><div id="content" class="subpage"><div id="subpage-left"><div id="main"><div id="contact-left"><h2>Contact Us</h2>
 
-<p><img src="uploads/images/Pure-Skill-Fusion-of-Sport/Outside.jpg" height="163" alt="" width="247"/></p><h4>Galway West Retail Park, Western Distributor Road, Knocknacarra, Galway, Ireland</h4>
+<p><img src="uploads/images/Pure-Skill-Fusion-of-Sport/Outside.jpg" height="163" alt="" width="247"/></p><h4><ADDR>Galway West Retail Park, Western Distributor Road, Knocknacarra, Galway, Ireland</ADDR></h4>
 <h3>Tel: +353 (0) 91 515510</h3>
 <h4>Email: <a href="mailto:info@pureskill.ie">info@pureskill.ie</a></h4>
 
@@ -56,10 +56,10 @@
 
 <p>&#160;</p>
 <h3>Winter Opening Hours:</h3>
-<HOURS><h4><span>(September-April)</span></h4>
+<h4><span>(September-April)</span></h4>
 
 <p>&#160;</p>
-<h4>Monday-Friday: 12:00pm - 8:30pm</h4>
+<HOURS><h4>Monday-Friday: 12:00pm - 8:30pm</h4>
 <h3>(Last circuit 7.00pm)</h3>
 
 <p>&#160;</p>
@@ -80,7 +80,7 @@
 <div><label for="m3fbrp__6">Subject</label></div>
 <div class="required"><label for="m3fbrp__7">Message*</label></div>
 </div></div></div><div class="submit"></div><div id="subpage-right"><div id="ad2"><img src="images/pure/ad2.jpg"/></div><div id="contact">
-<p>Knocknacarra, Galway, Ireland
+<p><ADDR>Knocknacarra, Galway, Ireland</ADDR>
 <br/>
 <br/>Tel: +353 (0) 91 515510
 <br/>
@@ -88,8 +88,8 @@
 <span><span>Winter</span> Opening Hours:
 <br/>(September-April)</span>
 <br/>
-<br/>Mon-Fri 12pm-8:30pm (Last circuit 7:00pm)
+<br/><HOURS>Mon-Fri 12pm-8:30pm (Last circuit 7:00pm)
 <br/>Sat 11am -7:30pm (Last circuit 6:00pm)
-<br/>Sun 11am -6:30pm (Last circuit 5:00pm)
+<br/>Sun 11am -6:30pm (Last circuit 5:00pm)</HOURS>
 <p>&#160;</p>
 </div></div></div></div></div></div></div></div></body><hr class="accessibility"/></html>

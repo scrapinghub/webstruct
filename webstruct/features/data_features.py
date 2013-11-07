@@ -30,9 +30,11 @@ circle
 place pl
 ridgeway parkway highway
 park
+unit
+block
 '''.split())
 
-COMMON_ADDRESS_PARTS = set('''suite floor p.o. center'''.split())
+COMMON_ADDRESS_PARTS = set('''suite floor p.o. po center'''.split())
 DIRECTIONS = set('''
 north south east west
 N S E W N. S. E. W.

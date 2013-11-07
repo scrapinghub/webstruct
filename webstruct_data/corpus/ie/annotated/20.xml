@@ -40,8 +40,8 @@
 
 <p>Saturday 9am - 7pm</p>
 
-<p>Sunday 9am - 6pm</p>
-</HOURS>
+<p>Sunday 9am - 6pm</p></HOURS>
+
 <p><strong>Email:</strong> info@prepaypower.ie</p>
 
 <p></p><div><h3>Our Dedicated Top Up Line</h3>
@@ -60,7 +60,7 @@
 
 <p><strong>ESB networks:</strong> 1850 372 999</p>
 
-<p><address>Company Address:&#160;19 Rock Hill, Blackrock, Co. Dublin, Ireland &#160;</address> <address><span>Company Registered in Ireland Number: 467144</span></address></p>
+<p><address>Company Address:&#160;<ADDR>19 Rock Hill, Blackrock, Co. Dublin, Ireland</ADDR> &#160;</address> <address><span>Company Registered in Ireland Number: 467144</span></address></p>
 </div></div></div></div></div></div></div></div></div><div id="Footer"><div class="inner"><div class="sf_cols footercols"><div class="sf_colsOut sf_3cols_1_33 footercol"><div id="FooterPlaceholder_TB73A8CFB016_Col00" class="sf_colsIn sf_3cols_1in_33"><div><div class="sfsimpleListWrp"><h2 class="sflistTitle">Landlords</h2>
 <ul class="sflistList"><li class="sflistListItem"><a href="http://www.prepaypower.ie/ads/index.php?id=10">Landlord Sign up</a></li>
 <li class="sflistListItem"><a href="/landlords">Benefits for you</a></li>
@@ -89,5 +89,5 @@
 <li class="sflistListItem"><a href="/support/tips-and-advice">Save on your usage</a></li>
 </ul></div></div></div></div></div><span id="ctl00_FooterPlaceholder_TB73A8CFB017_ctl00_ctl00_ctl00_listsControl_ctrl0_listItemsControl"><span id="ctl00_FooterPlaceholder_TB73A8CFB017_ctl00_ctl00_ctl00_listsControl"><span></span></span></span><div><div class="footer-contact"><ul><li>PrePayPower</li>
 <li>Company Registered in Ireland Number: 467144</li>
-<li>19 Rock Hill, Blackrock, Co. Dublin, Ireland</li>
+<li><ADDR>19 Rock Hill, Blackrock, Co. Dublin, Ireland</ADDR></li>
 </ul></div></div></div></div></div></div></body><span id="ctl00_FooterPlaceholder_TB73A8CFB024_ctl00_ctl00_ctl00_listsControl_ctrl0_listItemsControl"><span id="ctl00_FooterPlaceholder_TB73A8CFB024_ctl00_ctl00_ctl00_listsControl"><span></span></span></span></html>

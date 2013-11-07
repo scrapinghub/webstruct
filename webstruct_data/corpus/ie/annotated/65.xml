@@ -14,7 +14,7 @@
 
 <p>You can phone us or email us for a free quote or to organise a free survey of your windows and doors.</p>
 
-<p>Or come visit our comprehensive windows and doors showrooms complete with a large selection of windows and doors, located in Dublin 12 – just off the Naas Road. We are open from 9 – 5 Monday to Friday and are available at weekends and evenings by appointment. We also offer a free design and survey service that can be carried out at a time that suits you.</p>
+<p>Or come visit our comprehensive windows and doors showrooms complete with a large selection of windows and doors, located in Dublin 12 – just off the Naas Road. We are open from <HOURS>9 – 5 Monday to Friday and are available at weekends and evenings by appointment</HOURS>. We also offer a free design and survey service that can be carried out at a time that suits you.</p>
 
 <p>If you are going to visit our showroom, if you want to, you can send us some details of your project and schedule a visit so that we can prepare some options for you before you arrive with the form below!</p>
 <div id="ninja_forms_form_1_process_msg">Processing</div><img alt="loading" src="http://jfkwindowsanddoors.ie/wp-content/plugins/ninja-forms/images/loading.gif"/>
@@ -33,9 +33,9 @@
 <hr/>
 <p>JFK WINDOWS AND DOORS
 <br/>John F Kennedy Drive,
-<br/>JFK Industrial Estate,
-<br/>Naas Road,
-<br/>Dublin 12</p>
+<br/><ORG>JFK Industrial Estate</ORG>,
+<br/><ADDR>Naas Road,
+<br/>Dublin 12</ADDR></p>
 
 <p>Phone: <a href="tel:014504001">01 450 4001</a>
 <br/>Fax: 01 450 4010

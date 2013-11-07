@@ -87,11 +87,11 @@
 
 </div><p></p><div id="colMain"><div class="mod clearfix"><h1>Contact us</h1>
 
-<p><strong>AFG Alliance Française Galway Ltd</strong></p>
+<p><strong><ORG>AFG Alliance Française Galway Ltd</ORG></strong></p>
 
-<p>Plaza Offices (2nd floor, above Lidl and Argos)
+<p><ADDR>Plaza Offices (2nd floor, above Lidl and Argos)
 <br/>Headford Road
-<br/>Galway</p>
+<br/>Galway</ADDR></p>
 
 <p><strong>See Map below.</strong>
 </p><br/><span><span></span></span>
@@ -115,7 +115,7 @@
 <p class="adress"><strong>Tel.:</strong> &#160;00 353 (0)91 770 017
 <br/>or&#160;00 353 (0)87 242 7992</p>
 
-<p class="adress"><strong>Address:</strong> &#160;Plaza Offices, Headford rd, 2nd floor, above Lidl and Argos, Galway
+<p class="adress"><strong>Address:</strong> &#160;<ADDR>Plaza Offices, Headford rd, 2nd floor, above Lidl and Argos, Galway</ADDR>
 <br/>
 </p><br/>
 <p class="notification"><em>Please note that Alliance Française Galway Ltd. is not affiliated to the French Institute in Bridge Mills</em>
@@ -142,6 +142,6 @@
 
 </fieldset></div></div></div><p class="ac"></p><div id="footerInfos" class="clear"><div class="mod clearfix"><p class="ac">AFG Alliance Française (Galway) Ltd company number: 478627 - Registered in Ireland as a Company Limited by Guarantee</p>
 
-<p class="ac">Registered Office Address: 7 Upper Abbeygate Street, Galway, co Galway
+<p class="ac">Registered Office Address: <HOURS>7 Upper Abbeygate Street, Galway, co Galway</HOURS>
 </p><br/>
 </div></div></div></ul></div></div></ul></div></div></ul></div></div></div></div></body></html>

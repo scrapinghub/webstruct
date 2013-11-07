@@ -25,8 +25,8 @@
 <li>Large range of Carbon Wheels</li>
 <li>Convenient free car parking available right outside</li>
 <li>Gift Vouchers Available !</li>
-<li>Opening 11:00 - 6pm Sunday, open late Thursday til 9pm</li>
-<li>Open 8am - 7pm Monday, Tuesday, Wednesday, Friday</li>
+<HOURS><li>Opening 11:00 - 6pm Sunday, open late Thursday til 9pm</li>
+<li>Open 8am - 7pm Monday, Tuesday, Wednesday, Friday</li></HOURS>
 <li>Trade-ins taken</li>
 <li>Tax-free bikes - up to 52% tax relief</li>
 </ul></div></div><div class="main-container col2-left-layout"><div class="main"><div class="col-main"><div class="std">
@@ -40,11 +40,11 @@
 <li class="wide"><label for="comment" class="required"><em>*</em> Comment</label>
 </li><div class="input-box"></div>
 </ul></div><div class="buttons-set"><p class="required">* Required Fields</p>
-</div><div _mce_style="padding: 20px;"><table border="0" width="584"><tbody><tr><td width="6">&#160;</td> <td valign="top" width="280"><strong>Harry&apos;s Bikes</strong>
-<p>109 Clonskeagh Road,
+</div><div _mce_style="padding: 20px;"><table border="0" width="584"><tbody><tr><td width="6">&#160;</td> <td valign="top" width="280"><strong><ORG>Harry&apos;s Bikes</ORG></strong>
+<p><ADDR>109 Clonskeagh Road,
 <br/>Clonskeagh,
 <br/>Dublin 14,
-<br/>Ireland.</p>
+<br/>Ireland</ADDR>.</p>
 
 <p><strong>Phone:</strong> &#160; +353 1 207 1831
 <br/><strong>Email:</strong> &#160; <a target="_blank" title="website enquiry" href="mailto:info@harrysbikes.ie" _mce_href="mailto:info@harrysbikes.ie">info@harrysbikes.ie</a>

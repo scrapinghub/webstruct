@@ -11,8 +11,8 @@
 
 <p>Quick contact <a href="#">hello@madison-nightclub.com</a></p>
 <span class="phone">+353 (0)86 400 5998</span>
-<p>6-8 Wicklow Street,
-<br/>Dublin 2, Ireland</p>
+<p><ADDR>6-8 Wicklow Street,
+<br/>Dublin 2, Ireland</ADDR></p>
 </div></div></aside><div class="span8"><div id="personal" class="bay form-horizontal"><h1>Your Personal Details <span class="hand-written sub-heading">tell us about youself</span></h1>
 <div class="control-group"><label for="inputName" class="control-label">Name</label>
 <div class="controls"><span class="help-inline">required</span></div>
@@ -35,6 +35,6 @@
 
 <p>Quick contact <a href="#">hello@madison-nightclub.com</a></p>
 <span class="phone">+353 (0)86 400 5998</span>
-<p>6-8 Wicklow Street,
-<br/>Dublin 2, Ireland</p>
+<p><ADDR>6-8 Wicklow Street,
+<br/>Dublin 2, Ireland</ADDR></p>
 </div></div></div></div></footer></div></body><div class="span7"><div class="row-fluid"><div class="inner-spacer-left"><div class="row-fluid btm-bar"><div class="span5"><div class="span7"></div></div></div></div></div></div></html>

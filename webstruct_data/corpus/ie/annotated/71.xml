@@ -35,10 +35,10 @@
 </div></div></div><ul><li class="cat-item cat-item-1"><a href="http://www.solaris-energy.ie/category/latest_solar_news/" title="View all posts filed under Latest News">Latest News</a></li>
 </ul></div></div></div><div id="text-3" class="widget widget_text"><div class="widget-bgr"><div class="indent"><div class="title"><div><div><h2>Contact Information</h2>
 </div></div></div><div class="textwidget">
-<p>Solaris Energy Systems Ltd,
-<br/>E-Business Park,
+<p><ORG>Solaris Energy Systems Ltd</ORG>,
+<br/><ADDR>E-Business Park,
 <br/>Macroom,
-<br/>Co. Cork.
+<br/>Co. Cork</ADDR>.
 <br/><b>Phone: 00 353 (0)26 21014</b>
 <br/>Fax: 00 353 (0)26 20536
 <br/>Email: <a href="mailto:info@solaris-energy.ie&lt;br /&gt;">info@solaris-energy.ie</a></p>
@@ -50,7 +50,7 @@
 </div><div class="indent"><div class="text-box">
 <br/><div><p>Please use the following information to contact us or fill in our form below</p>
 
-<p>SOLARIS Energy Systems Ltd, E-Business Park, Macroom, Co. Cork.
+<p><ORG>SOLARIS Energy Systems Ltd</ORG>, <ADDR>E-Business Park, Macroom, Co. Cork</ADDR>.
 <br/><strong>Phone: 026 21014</strong>
 <br/>Fax: (00353) 026 20536
 <br/>Email: <a href="mailto:info@solaris-energy.ie%3Cbr%20/%3E">info@solaris-energy.ie</a></p>
@@ -63,7 +63,7 @@
 </p><br/><span class="wpcf7-form-control-wrap your-subject"></span>
 <p>Your Message
 </p><br/><span class="wpcf7-form-control-wrap your-message"></span>
-</div></div></div></div></div><p><img class="ajax-loader" alt="Sending ..." src="http://www.solaris-energy.ie/wp-content/plugins/contact-form-7/images/ajax-loader.gif"/><div class="wpcf7-response-output wpcf7-display-none"><div class="link-edit"><div class="clear"></div></div></div></p><div class="footer"><div class="width"><div class="corner-left"><div class="corner-right"><div class="indent"><p><span>Solaris Energy Systems Limited | Registered in Dublin Ireland : Registered No. 413150 | Registered Office: Kilnarovanagh, Toames, Macroom, Co. Cork</span>
+</div></div></div></div></div><p><img class="ajax-loader" alt="Sending ..." src="http://www.solaris-energy.ie/wp-content/plugins/contact-form-7/images/ajax-loader.gif"/><div class="wpcf7-response-output wpcf7-display-none"><div class="link-edit"><div class="clear"></div></div></div></p><div class="footer"><div class="width"><div class="corner-left"><div class="corner-right"><div class="indent"><p><span>Solaris Energy Systems Limited | Registered in Dublin Ireland : Registered No. 413150 | Registered Office: <ADDR>Kilnarovanagh, Toames, Macroom, Co. Cork</ADDR></span>
 </p><br/>
 </div></div></div></div></div><center><p><img src="http://www.solaris-energy.ie/images/banner1.gif"/></p></center><center>&#169; Solaris Energy Systems Limited</center>
 </ul></div></div></div></div></h1>
