@@ -17,7 +17,7 @@
 
 <p class="email"><span class="detail">Email</span> <span class="text"><a href="mailto:seamus.maguire08@gmail.com">seamus.maguire08@gmail.com</a></span></p>
 
-<p><span class="detail">Address:</span> <span class="text">9 melrose avenue, bawnouge, clondalkin, Co. Dublin</span></p>
+<p><span class="detail">Address:</span> <span class="text"><ADDR>9 melrose avenue, bawnouge, clondalkin, Co. Dublin</ADDR></span></p>
 
 <p class="email">Alternatively please use our contact page <a href="contact.html">Contact us</a></p>
 </div><div id="social-icons" class="social"><ul><li><a href="contact.html" title="Contact Page"><img alt="Contact Details" src="./common/images/social-email16.png"/><li><a target="_blank" title="Facebook" href="http://www.facebook.com/maguire.greenclean"><img alt="Facebook" src="./common/images/social-facebook16.png"/><li><a target="_blank" title="YouTube" href="http://www.youtube.com/watch?v=cHr4RqWUdmM&amp;feature=player_detailpage"><img alt="YouTube" src="./common/images/social-youtube16.png"/></a></li></a></li></a></li></ul></div>

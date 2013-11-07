@@ -26,12 +26,12 @@
 <tr><td valign="top" align="left"><img height="191" width="685" src="images/mainimage.jpg"/></td></tr><tr><td valign="top" class="heading" align="left">Contact Us</td></tr>
 <tr><td><table><tbody><tr><td><h1>Our Head office is located at:</h1>
 
-<p>Drummond,</p>
+<ADDR><p>Drummond,</p>
 
 <p>Inniskeen,</p>
 
 <p>Co. Monaghan</p>
-
+</ADDR>
 <p>Tel: 00353 42 9378470</p>
 
 <p>Mob: 00353 87 9537426</p>
@@ -42,13 +42,13 @@
 </td></tr><td><img alt="Contact us" src="images/contact_img_1.jpg"/></td>
 <tr><td><h1>Meegan Insulations have also a branch office at:</h1>
 
-<p>8 Keady Road,</p>
+<ADDR><p>8 Keady Road,</p>
 
 <p>Cornonagh, Crosmaglen,</p>
 
 <p>Newry,</p>
 
-<p>Co. Down</p>
+<p>Co. Down</p></ADDR>
 
 <p>BT35 9EL</p>
 

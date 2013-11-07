@@ -19,7 +19,7 @@
 <div><label for="radio_miles">Miles</label></div>
 </div></div></div><div class="dir-sub-cntn"><div class="dir-clear"><div id="rendered-directions-placeholder-8b395468375a827cca11bc029b350a30" class="rendered-directions-placeholder"></div></div></div><div>
 <p>Mobile: 085 7720001 or 087 6912055 or for Ardee branch: 041 6850003
-<br/>Call in: Carriage Road, Navan, Co.Meath (opposite Chadwicks) or Irish Street, Ardee, Co. Louth.</p>
+<br/>Call in: <ADDR>Carriage Road, Navan, Co.Meath (opposite Chadwicks) or Irish Street, Ardee, Co. Louth</ADDR>.</p>
 
 <p>Our working hours are: <HOURS>Monday to Friday: 9am – 6.30pm / Saturday: 9am – 3pm</HOURS></p>
 <h2>Email us</h2>
@@ -34,15 +34,15 @@
 </p><br/><span class="wpcf7-form-control-wrap your-message"></span>
 </div></div></div></div></div></b></div></div></article></div></div></div><p><div class="wpcf7-response-output wpcf7-display-none"></div></p><aside id="sidebar" class="grid_3 right"><div class="dark-box"><div id="text-2" class="widget"><div class="textwidget"><h3>Navan Office</h3>
 
-<p>Carriage Road,
+<p><ADDR>Carriage Road,
 <br/>Navan,
-<br/>Co.Meath (opposite Chadwicks)
+<br/>Co.Meath</ADDR> (opposite Chadwicks)
 <br/>Mobile: 085 7720001 or 087 6912055</p>
 <h3>Ardee Office</h3>
 
-<p>Irish Street,
+<p><ADDR>Irish Street,
 <br/>Ardee,
-<br/>Louth
+<br/>Louth</ADDR>
 <br/>Phone: 041 6850003</p>
 </div></div><div id="text-5" class="widget"><h3>Our social network</h3>
 <div class="textwidget"><a target="_blank" href="http://www.facebook.com/tyrehangar" class="side_facebook">Tyre Hangar Facebook</a></div>

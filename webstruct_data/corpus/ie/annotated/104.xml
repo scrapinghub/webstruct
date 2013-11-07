@@ -34,9 +34,9 @@
 <p class="move"><span class="wpcf7-form-control-wrap your-message"></span></p><p class="ecode1"><label>Please enter code:*</label></p>
 
 </div><p class="ecode"><img class="wpcf7-form-control  wpcf7-captchac wpcf7-captcha-captcha-385" height="24" src="http://www.50hzphotography.ie/wp-content/uploads/wpcf7_captcha/1004047788.png" alt="captcha" width="72"/><span class="wpcf7-form-control-wrap captcha-385"><p id="bsubmit"><span class="fadebtn"><div class="wpcf7-response-output wpcf7-display-none"></div></span></p></span></p><div class="grid two-fourth last"><div id="margleft"><span class="lato">Studio Address:</span>
-<br/>57 Lower Gardiner Street
+<br/><ADDR>57 Lower Gardiner Street
 <br/>Dublin 1
-<br/>Ireland
+<br/>Ireland</ADDR>
 <div id="margtopcon"><span class="lato">Phone:</span>
 <br/>(+353) 87 – 219 – 9151
 <br/><span class="lato">Email:</span>

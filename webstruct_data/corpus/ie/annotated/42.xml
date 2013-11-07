@@ -65,28 +65,28 @@
 <div class="rhsCustomer">&#160;</div>
 
 </div></div><br class="clear"/><div id="rhsCol"></div><div id="content"><h1>Contact the council</h1>
-<address>Clare County Council,
-<br/><span lang="ga">Áras Contae an Chláir,</span>
+<address><ORG>Clare County Council</ORG>,
+<br/><ADDR><span lang="ga">Áras Contae an Chláir,</span>
 <br/>New Road,
 <br/>Ennis,
-<br/>Co. Clare</address>
+<br/>Co. Clare</ADDR></address>
 <p>Telephone: (065) 6821616
 <br/>Fax: (065) 6828233
 <br/>Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie
 </a><br/><a href="/your-council/contact-the-council/map-of-office-locations/clare-county-council-headquarters.html">Map of office location</a></p>
 <h2>Opening hours</h2>
-<ul><li>All Offices (except for Planning, Motor Tax, and Cash Office) open <strong>Monday - Friday: 9:00 a.m. - 5:00 p.m.</strong></li>
-<li>Planning Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m</HOURS>.</strong></li>
+<ul><li>All Offices (except for Planning, Motor Tax, and Cash Office) open <strong><HOURS>Monday - Friday: 9:00 a.m. - 5:00 p.m.</HOURS></strong></li>
+<li>Planning Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m.</HOURS></strong></li>
 <li>Motor Tax Office open <strong><HOURS>Monday - Friday: 9:15 a.m. - 3:30 p.m.</HOURS></strong></li>
-<li>Cash Office open <strong><HOURS>Monday - Friday: 9:00 a.m. - 4:00 p.m.</HOURS></strong></li>
-<li><HOURS><strong>Saturdays, Sundays and Bank Holidays:</strong> Closed</HOURS></li>
+<li>Cash Office open <strong>Monday - Friday: 9:00 a.m. - 4:00 p.m.</strong></li>
+<li><strong>Saturdays, Sundays and Bank Holidays:</strong> Closed</li>
 <li>Emergency Contact Number: (087) 4169496 (outside office hours only)</li>
 </ul>
 <p class="back2top"><a href="#content">Back to top</a></p>
 
 <p class="lastUpdated">Page last updated: 16/05/13</p>
 </div>
-</div><br class="clear"/><div id="footer"><p>Clare County Council, New Road, Ennis, Co. Clare
+</div><br class="clear"/><div id="footer"><p><ORG>Clare County Council</ORG>, <ADDR>New Road, Ennis, Co. Clare</ADDR>
 <br/>Tel: +353 65 6821616 | Email: <a href="mailto:info@clarecoco.ie">info@clarecoco.ie</a></p>
 <ul><li><a href="/info/accessibility/" title="Accessibility">Accessibility</a> |</li>
 <li><a href="/info/privacy-statement/" title="Privacy Statement">Privacy Statement</a> |</li>

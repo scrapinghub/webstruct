@@ -6,7 +6,7 @@
 <div class="para">Telephone: (+353) 01 � 6144727</div>
 <div class="para">Email: info@roast.ie</div>
 <div class="para">Roast is located at the address below and should you require directions then just scroll down the page and you can see our location on Google maps and get exact directions from your location.</div>
-<div class="para">10 Merrion Road, Ballsbridge, Dublin 4
+<div class="para"><ADDR>10 Merrion Road, Ballsbridge, Dublin 4</ADDR>
 <br/>
 <br/><table width="450px"><tbody><tr><td valign="top"><label for="first_name">First Name *</label></td></tr><td valign="top"></td>
 <tr><td valign="top"><label for="last_name">Last Name *</label></td></tr><td valign="top"></td>
@@ -29,5 +29,5 @@
 
 <p>to our mailing list</p>
 <div id="mc_embed_signup"><div class="clear"></div></div>
-<p>10 Merrion Road, Ballsbridge, Dublin 4. T:(+353) 01 � 6144727. E: info(@)roast.ie Roast Restaurant Copyright 2013.</p>
+<p><ADDR>10 Merrion Road, Ballsbridge, Dublin 4</ADDR>. T:(+353) 01 � 6144727. E: info(@)roast.ie Roast Restaurant Copyright 2013.</p>
 </div></div></div></div></body></html>

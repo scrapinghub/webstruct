@@ -14,14 +14,14 @@
 <li class="buttons"><div class="clr"></div><div><h4>map</h4>
 </div><div></div><div id="right_c"><h2>open 7 days a week</h2>
 
-<p>monday - saturday from 10am - 9pm
-<br/>sunday 12am - 9pm
+<p><HOURS>monday - saturday from 10am - 9pm
+<br/>sunday 12am - 9pm</HOURS>
 </p><br/>
 <h4>contact info</h4>
 
 <p>phone: 015482363
-<br/>UNIT 1 ROSSE COURT WAY BALGADDY
-<br/>LUCAN CO. DUBLIN
+<br/><ADDR>UNIT 1 ROSSE COURT WAY BALGADDY
+<br/>LUCAN CO. DUBLIN</ADDR>
 <br/>(beside &quot;LitPol&quot; shop)</p>
 
 <p>phone: 014845195
@@ -38,8 +38,8 @@
 </div><img src="images/karty.png"/><div id="f_middle"><h3>contact us</h3>
 
 <p>phone: 015482363
-<br/>UNIT 1 ROSSE COURT WAY BALGADDY
-<br/>LUCAN CO. DUBLIN
+<br/><ADDR>UNIT 1 ROSSE COURT WAY BALGADDY
+<br/>LUCAN CO. DUBLIN</ADDR>
 <br/>(beside &quot;LitPol&quot; shop)</p>
 </div><div id="f_right"><h3>copyrights</h3>
 

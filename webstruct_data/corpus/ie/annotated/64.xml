@@ -16,12 +16,12 @@
 </div><img alt="Prestigious Textiles Building at Twilight" src="assets/images/content/contact-building-twilight.jpg"/><div class="grid__item one-whole desk-two-thirds cont-col"><div class="grid"><div class="grid__item one-whole"><h2 class="delta">International Offices</h2>
 </div><div class="grid__item one-whole desk-one-half office-col"><h3 class="epsilon">Head Office</h3>
 
-<p>Prestigious Textiles
-<br/>4 Cross Lane
+<p><ORG>Prestigious Textiles</ORG>
+<br/><ADDR>4 Cross Lane
 <br/>Westgate Hill Street
 <br/>Bradford
 <br/>BD4 0SG
-<br/>England</p>
+<br/>England</ADDR></p>
 
 <p>Telephone +44 (0)1274 688448
 <br/>Fax +44 (0)1274 689560</p>
@@ -30,11 +30,11 @@
 <br/>Web <a href="http://www.prestigious.co.uk">www.prestigious.co.uk</a></p>
 <h3 class="epsilon">Ireland</h3>
 
-<p>Block O Ballymount Drive
-<br/>Ballymount Road
+<p><ORG>Block O Ballymount Drive</ORG>
+<br/><ADDR>Ballymount Road
 <br/>Walkinstown
 <br/>Dublin 12
-<br/>Ireland</p>
+<br/>Ireland</ADDR></p>
 
 <p>Telephone (353) 14568280
 <br/>Fax (353) 14568278</p>

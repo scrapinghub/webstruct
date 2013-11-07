@@ -16,9 +16,9 @@
 <tr><td><table cellpadding="0" class="tabs" border="0" cellspacing="0" width="100%"><tbody><tr><td valign="middle">&#160;</td></tr>
 </tbody></table></td></tr>
 <tr><td><table cellpadding="5" border="0" cellspacing="0" align="center" width="98%"><tbody><tr><td valign="top" width="49%"><img src="images/map.jpg" height="242" alt="location map" width="350"/></td><td valign="top" align="center" colspan="2"><p><strong>Address:</strong>
-<br/>Cork Arts Studio,
-<br/>2A Coburg Street,
-<br/>Cork</p>
+<br/><ORG>Cork Arts Studio,</ORG>
+<br/><ADDR>2A Coburg Street,
+<br/>Cork</ADDR></p>
 
 <p><strong>Tel:</strong> 021: 4365614 <strong>&#160;&#160;&#160;
 <br/>Mob:</strong> 087 8257645 &#160;</p>
@@ -36,7 +36,7 @@
 </tbody></table></td></tr>
 </tbody></table></td></tr>
 <tr><td>&#160;</td></tr>
-<tr><td><table cellpadding="3" class="email" border="0" cellspacing="0" width="100%"><tbody><tr><td align="center">Cork Arts Studio, 2A Coburg Street, Cork</td></tr>
+<tr><td><table cellpadding="3" class="email" border="0" cellspacing="0" width="100%"><tbody><tr><td align="center"><ORG>Cork Arts Studio</ORG>, <ADDR>2A Coburg Street, Cork</ADDR></td></tr>
 <tr><td align="center">Directors: Philip McTeggart Walsh &amp; Rebecca Allman</td></tr>
 <tr><td align="center">Tel: 021: 4365614 &#160;&#160;&#160;Mob: 087 8257645 &#160;&#160;&#160;Email:</td></tr>
 <tr><td align="center">web design by <a target="_blank" href="http://www.headperm.com">headperm.com</a></td></tr>

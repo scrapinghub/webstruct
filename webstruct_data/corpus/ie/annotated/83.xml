@@ -47,11 +47,11 @@
 <div></div><div><label for="si_contact_subject1">Subject: <span class="required">*</span></label></div>
 <div></div><div><label for="si_contact_message1">Message: <span class="required">*</span></label></div>
 <div><div><div><img id="si_image_ctf1" title="CAPTCHA Image" height="60" alt="CAPTCHA Image" width="175" class="ctf-captcha" src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/securimage_show.php?prefix=hsRa3wqThEOiWnQu"/><div id="si_refresh_ctf1"><a title="Refresh Image" rel="nofollow" href="#"><img src="http://www.fayco.ie/wp-content/plugins/si-contact-form/captcha/images/refresh.png" height="20" alt="Refresh Image" width="22"/></a></div></div></div></div><div><label for="si_contact_captcha_code1">CAPTCHA Code: <span class="required">*</span></label></div>
-</div></div><div><div></div></div><div id="address"><div class="address"><span class="address-head">Fayco Limited</span>
-<br/>Damastown Way
+</div></div><div><div></div></div><div id="address"><div class="address"><span class="address-head"><ORG>Fayco Limited</ORG></span>
+<br/><ADDR>Damastown Way
 <br/>Damastown Industrial Estate
 <br/>Blanchardstown
-<br/>Dublin 15
+<br/>Dublin 15</ADDR>
 <br/><a href="tel:+35318200100">Ph: (01) 8200100</a>
 <br/><a href="tel:+35318200100">Mob: (087) 2832650</a>
 <br/><a href="fax:+35318242425">Fax: (01) 8242425</a></div>
@@ -75,7 +75,7 @@
 <li class="cat-post-item"><a class="post-title" title="Permanent link to Other Products" rel="bookmark" href="http://www.fayco.ie/products/other-products/">Other Products</a></li>
 </ul></aside></div><div id="second" role="complementary" class="widget-area"><aside id="text-2" class="widget widget_text"><h3 class="widget-title">Contact</h3>
 <div class="textwidget">
-<p>Fayco
+<p><ORG>Fayco</ORG>
 <br/>Damastown Way
 <br/>Damastown Industrial Estate
 <br/>Mulhuddart

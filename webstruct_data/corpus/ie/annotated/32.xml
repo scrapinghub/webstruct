@@ -379,11 +379,11 @@
 
 <p>You can find our shops at the addresses below:</p>
 <h3>Online</h3>
-<address><strong>bookhaven.ie</strong>
-<br/>Units 3/10 , Block 4,
+<address><strong><ORG>bookhaven.ie</ORG></strong>
+<br/><ADDR>Units 3/10 , Block 4,
 <br/>Ashbourne Business Park,
 <br/>Ashbourne
-<br/>Co Meath</address>
+<br/>Co Meath</ADDR></address>
 <p>E-Mail: <a href="mailto:info@bookhaven.ie">info@bookhaven.ie</a>
 <br/>Tel: 01 8352621
 <br/>Fax: 01 8352620
@@ -397,11 +397,11 @@
 <li>Saturday - Closed</li>
 <li>Sunday - Closed</li></HOURS>
 </ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Artaine Castle</strong>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Artaine Castle</strong>
 <br/>Artaine Castle Shopping Centre
 <br/>Artane
-<br/>Dublin 5</address>
+<br/>Dublin 5</ADDR></address>
 <p>Tel: 01 8512660
 <br/>Fax: 01 8512656</p>
 
@@ -412,14 +412,14 @@
 <li>Thursday - 9.30am - 6.00pm</li>
 <li>Friday - 9.30am - 6.00pm</li>
 <li>Saturday - 9.30am - 6.00pm</li>
-<li>Sunday Closed</li></HOURS>
-</ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
+<li>Sunday Closed</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><strong>Balbriggan, Georges Hill</strong>
-<br/>Unit 6 Supervalu Shopping Centre,
+<br/><ADDR>Unit 6 Supervalu Shopping Centre,
 <br/>Drogheda Street,
 <br/>Balbriggan,
-<br/>Co Dublin</address>
+<br/>Co Dublin</ADDR></address>
 <p>Tel: 01 8414641
 <br/>Fax: 018412970</p>
 
@@ -432,11 +432,11 @@
 <li>Saturday - 9.30am - 5.30pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
 <address><strong>Clare Hall Shopping Centre</strong>
-<br/>Clarehall Shopping Centre
+<br/><ADDR>Clarehall Shopping Centre
 <br/>Malahide Road
-<br/>Dublin 17</address>
+<br/>Dublin 17</ADDR></address>
 <p>Tel: 01 8482378
 <br/>Fax: 01 8775471</p>
 
@@ -449,10 +449,10 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday - 2.00pm - 6.00pm</li></HOURS>
 </ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Donaghmede Shopping Centre</strong>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Donaghmede Shopping Centre</strong>
 <br/>Donaghmede
-<br/>Dublin 13</address>
+<br/>Dublin 13</ADDR></address>
 <p>Tel: 01 8470952
 <br/>Fax: 01 8670206</p>
 
@@ -463,12 +463,12 @@
 <li>Thursday - 9.30am - 6.00pm</li>
 <li>Friday - 9.30am - 6.00pm</li>
 <li>Saturday - 9.30am - 6.00pm</li>
-<li>Sunday - Closed</li></HOURS>
-</ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Monread Shopping Centre</strong>
+<li>Sunday - Closed</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Monread Shopping Centre</strong>
 <br/>Naas
-<br/>Co. Kildare</address>
+<br/>Co. Kildare</ADDR></address>
 <p>Tel: 045 883722
 <br/>Fax: 045 883723
 <br/>E-mail: <a href="mailto:naas@bookhaven.ie">naas@bookhaven.ie</a></p>
@@ -480,12 +480,12 @@
 <li>Thursday - 9.30am - 9.00pm</li>
 <li>Friday - 9.30am - 9.00pm</li>
 <li>Saturday - 9.30am - 7.00pm</li>
-<li>Sunday 12pm - 4.00pm</li></HOURS>
-</ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Roselawn Shopping Centre</strong>
+<li>Sunday 12pm - 4.00pm</li>
+</HOURS></ul>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Roselawn Shopping Centre</strong>
 <br/>Blanchardstown
-<br/>Dublin 15</address>
+<br/>Dublin 15</ADDR></address>
 <p>Tel: 01 8227647
 <br/>Fax: 01 8227647</p>
 
@@ -498,12 +498,12 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Sutton Cross</strong>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Sutton Cross</strong>
 <br/>Superquinn Centre
 <br/>Sutton Cross
 <br/>Sutton
-<br/>Dublin13</address>
+<br/>Dublin13</ADDR></address>
 <p>Tel: 01 8395054
 <br/>Fax: 01 8395322&#160;</p>
 
@@ -516,11 +516,11 @@
 <li>Saturday - 9.30am - 6.00pm</li>
 <li>Sunday Closed</li></HOURS>
 </ul>
-<br class="clearfix"/><h3>The Wise Owl/Book Haven</h3>
-<address><strong>Swords, River Mall</strong>
+<br class="clearfix"/><h3><ORG>The Wise Owl/Book Haven</ORG></h3>
+<address><ADDR><strong>Swords, River Mall</strong>
 <br/>River Mall
 <br/>Swords
-<br/>Co Dublin</address>
+<br/>Co Dublin</ADDR></address>
 <p>Tel: 01 8405470&#160;
 <br/>Fax: 01 8405470</p>
 

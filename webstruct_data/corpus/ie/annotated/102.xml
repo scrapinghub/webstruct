@@ -20,9 +20,9 @@
 <p>(01) 254 3619</p>
 <h3>By post</h3>
 
-<p>hello.ie
-<br/>PO Box 12230
-<br/>Dublin 18</p>
+<p><ORG>hello.ie</ORG>
+<br/><ADDR>PO Box 12230
+<br/>Dublin 18</ADDR></p>
 
 <p>Our call centre in Dublin is staffed by friendly, knowledgeable professionals who are all here to help you in any way we can. Our customer support staff really will pull out all the stops to ensure you get the cover and service you want.</p>
 
@@ -32,7 +32,7 @@
 <li><a href="/life-insurance/privacy/">Privacy Statement</a></li>
 <li><a href="/insurance-brokers/cookies/">About Cookies</a></li>
 </ul>
-<p>Hello Business Services Limited trading as hello.ie is regulated by the Central Bank of Ireland. Registered office Suite 3, The Mall, Beacon Court, Sandyford Dublin 18.
+<p>Hello Business Services Limited trading as hello.ie is regulated by the Central Bank of Ireland. Registered office <ADDR>Suite 3, The Mall, Beacon Court, Sandyford Dublin 18</ADDR>.
 <br/>Registered in Ireland Number 501015
 <br/>Calls may be recorded for training and verification purposes.
 </p><br/>

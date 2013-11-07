@@ -23,8 +23,8 @@
 <br/><img src="images/telephone_black-128.png"/>
 <br/>
 </div><br/><img src="images/power_black-128.png"/><div id="contente"><p><strong>write to us:</strong>
-<br/>Allwood Architectural Joinery, Ballymacken,
-<br/>Portlaoise, Co. Laois.</p>
+<br/><ORG>Allwood Architectural Joinery</ORG>, <ADDR>Ballymacken,
+<br/>Portlaoise, Co. Laois</ADDR>.</p>
 
 <br/><p><strong>email us:</strong>
 <br/><a href="contactallwood.htm">info@allwood.ie</a></p>
@@ -37,9 +37,9 @@
 <br/>(057) 8663224
 <br/>International: 00353 57 8663224</p>
 </div></div></div><div id="footerwrap"><div id="footer1">
-<p class="footertext">Copyright &#169; Allwood Architectural Joinery</p>
+<p class="footertext">Copyright &#169; <ORG>Allwood Architectural Joinery</ORG></p>
 
-<p class="footertext">Ballymacken, Portlaoise, Co. Laois</p>
+<p class="footertext"><ADDR>Ballymacken, Portlaoise, Co. Laois</ADDR></p>
 
 <p class="footertext">Website by&#160; <a href="http://www.webalicious.ie">Webalicious</a></p>
 </div><div id="footer2"><a target="_blank" title="Allwood on Facebook" href="http://en-gb.facebook.com/people/Allwood-Architectural-Joinery/100000980422853"><img border="0" alt="Allwood on Facebook" src="images/facebook.png"/></a>&#160;&#160;</div><a target="_blank" title="Allwood on LinkedIn" href="http://ie.linkedin.com/pub/gerard-magee/20/313/76b"><img border="0" alt="Allwood on LinkedIn" src="images/linkedin.png"/></a>

@@ -5,9 +5,9 @@
 </div><div id="contentCTA" class="f-x3"><div id="ctaTag" class="f-x2 f-x3"><div id="item3" class="mainTag">Your Business... Anywhere</div>
 <div id="item3a" class="subTag">Professional Virtual Office Services</div>
 </div></div><div id="ctaLink" class=".contactCTA"><img src="/webyep-system/data/6-im-Contact_CTA-1373.png" height="130" alt="" width="345"/></div><div id="contentServices" class="f-x2 f-x3"><div id="bodyCol1" class="serviceBox"><div id="serviceCopy1a1a" class="f-x2 f-x3">
-</div><p class="f-lp"></p><div id="serviceCopy1a1a1" class="f-x2 f-x3"><div id="item6" class="f-x3"><img height="107" src="/webyep-system/data/6-im-LBC_Brand-7981.png" alt="" width="386"/></div><div id="serviceCopy1a1a1a" class="f-x2 f-x3"><h4>Lucan Business Centre</h4>
-
-<p>Units 9 &amp; 10,&#160;Village Centre,&#160;Lucan, Co. Dublin
+</div><p class="f-lp"></p><div id="serviceCopy1a1a1" class="f-x2 f-x3"><div id="item6" class="f-x3"><img height="107" src="/webyep-system/data/6-im-LBC_Brand-7981.png" alt="" width="386"/></div><div id="serviceCopy1a1a1a" class="f-x2 f-x3"><ORG><h4>Lucan Business Centre</h4>
+</ORG>
+<p><ADDR>Units 9 &amp; 10,&#160;Village Centre,&#160;Lucan, Co. Dublin</ADDR>
 <br/>Telephone:(01) 6010 883 &#160; &#160; &#160;&#160;E-mail: info@LucanBusinessCentre.ie</p>
 
 <p></p><h4>How to Find Us</h4>
@@ -16,10 +16,10 @@
 </div></div></div></div></div><div id="contentServices1" class="f-x2 f-x3"><div id="item1" class="subNavBox"></div></div><div id="headerWrap1" z-index="9999"><div id="header_header"><div id="header_navbar" class="f-x2"><a class="home" href="index.php">Home</a> <a class="about" href="about.php">About</a> <a class="services" href="prices.php">Prices</a> <a class="testimonials" href="testimonials.php">Testimonials</a> <a class="contact" href="contact.php">Contact</a></div>
 <div id="header_item1"><a href="/webyep-system/program/webyep-logon-en.php" title="WebYep Logon"><img src="/webyep-system/program/images/nix.gif" height="16" alt="Logon" width="16"/><div id="header_item3"><a href="index.php"><img height="48" src="Resources/header3.png" border="0" alt="Lucan-Business-Centre-Logo" width="486"/></a></div></a></div><div id="header_item5"><a id="phone" href="tel:+35316010883">Call us today</a></div>
 </div></div></div><div id="header_item4"><a href="mailto:info@lucanbusinesscentre.ie"><img height="31" src="Resources/header4.png" border="0" alt="Lucan-Business-Centre-email" width="399"/></a></div><div id="footerBlock" class="f-x2"><div id="footerContent" class="f-x2"><div id="footerbar"><div id="item1a1" class="f-x2 f-x3">
-<p><span class="style1"><strong><span class="style4">Lucan Business Centre</span></strong></span></p>
+<p><span class="style1"><strong><span class="style4"><ORG>Lucan Business Centre</ORG></span></strong></span></p>
 
-<p><span class="style6">Units 9 &amp; 10, Lucan Village Centre,
-<br/>Lucan, Co. Dublin</span></p>
+<p><span class="style6"><ADDR>Units 9 &amp; 10, Lucan Village Centre,
+<br/>Lucan, Co. Dublin</ADDR></span></p>
 
 <p class="f-lp"><span class="style6">Telephone:(01) 6010 883
 <br/><a href="mailto:lucanbusinesscentre.ie">E-mail: info@LucanBusinessCentre.ie</a></span></p>

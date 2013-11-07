@@ -15,11 +15,11 @@
 </h1>
 </section></div></section><div class="wrapper ContactContainer clearfix"><section class="contactleft fleft"><div class="sfContentBlock"><h2>Contact Address</h2>
 
-<br/><strong>Energlaze</strong>
-<br/>Dreemskerry
+<br/><strong><ORG>Energlaze</ORG></strong>
+<br/><ADDR>Dreemskerry
 <br/>Dennistown
 <br/>Murrintown
-<br/>Wexford, Ireland
+<br/>Wexford, Ireland</ADDR>
 <br/>
 <br/>E: <a href="mailto:info@energlaze.ie">info@energlaze.ie</a>
 <br/>P: 01 9011 635
@@ -54,9 +54,9 @@
 <li><a href="/privacy-statement">Privacy statement</a></li>
 </ul></div></section><section class="fCInfo fleft"><h1><div class="sfContentBlock">Contact Us</div>
 </h1>
-<div class="sfContentBlock"><p>Dreemskerry
+<div class="sfContentBlock"><p><ADDR>Dreemskerry
 <br/>Dennistown, Murrintown
-<br/>Wexford, Ireland</p>
+<br/>Wexford, Ireland</ADDR></p>
 
 <p>E: <a href="mailto:info@energlaze.ie">info@energlaze.ie</a>
 <br/>P: 01 9011635 or 021 6010095</p>
