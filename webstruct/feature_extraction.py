@@ -1,108 +1,170 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-import lxml.html
-import lxml.html.clean
-import lxml.etree
-from sklearn.base import BaseEstimator
-from .preprocess import IobSequence, Tagset, to_features_and_labels
-from .tokenize import default_tokenizer
+import copy
+from collections import namedtuple
+from .sequence_encoding import IobEncoder
+from .tokenizers import tokenize
+from webstruct.features import CombinedFeatures
+from webstruct.utils import replace_tags, kill_tags
 
-_cleaner = lxml.html.clean.Cleaner(
-    style=True,
-    scripts=True,
-    embedded=True,
-    links=True,
-    page_structure=False,
-    remove_unknown_tags=False,
-    meta=False,
-    safe_attrs_only=False
-)
+_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail label')
 
-class HtmlFeaturesExtractor(BaseEstimator):
+class HtmlToken(_HtmlToken):
     """
-    Extracts features and labels from html.
+    HTML token info.
 
-    First, we need some features. Feature can depend on current
-    token, all other tokens in the same HTML block, all other data in
-    document (accessible via 'elem') and on whenever text is from tail
-    of element.
+    * ``index`` is a token index (in the ``tokens`` list);
+    * ``tokens`` is a list of all tokens in current html block;
+    * ``elem`` is the current html block (as lxml's Element) - most likely
+      you want ``HtmlToken.parent`` instead of it;
+    * ``is_tail`` flag that indicates that token belongs to element tail
+    * ``label`` is a NER tag for this token. For unannotated HTML
+      it is always "O". Feature functions shouldn't access this attribute.
 
-        >>> def current_token(index, tokens, elem, is_tail):
-        ...     return {'tok': tokens[index]}
+    Computed properties:
 
-    features.CombinedFeatures provides an easy way to combine features::
-        >>> from webstruct.features import CombinedFeatures, parent_tag
-        >>> feature_func = CombinedFeatures(current_token, parent_tag)
-
-    Use HtmlFeaturesExtractor.fit_transform to extract features and labels
-    from html data::
-
-        >>> html = "<p>hello <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>"
-        >>> fe = HtmlFeaturesExtractor({'per'}, feature_func)
-        >>> features, labels = fe.fit_transform(html)
-        >>> for feat, label in zip(features, labels):
-        ...     print("%s %s" % (sorted(feat.items()), label))
-        [('parent_tag', 'p'), ('tok', 'hello')] O
-        [('parent_tag', 'p'), ('tok', 'John')] B-PER
-        [('parent_tag', 'b'), ('tok', 'Doe')] I-PER
-        [('parent_tag', 'p'), ('tok', 'Mary')] B-PER
-        [('parent_tag', 'p'), ('tok', 'said')] O
-
-    For HTML without text it returns two empty tuples::
-
-        >>> fe.fit_transform('<p></p>')
-        ((), ())
+    * ``token`` is the current token (as text);
+    * ``parent`` is token's parent HTML element (as lxml's Element).
 
     """
+    @property
+    def token(self):
+        return self.tokens[self.index]
 
-    def __init__(self, tags, feature_func, tokenizer=default_tokenizer, tagset=None, label_encoder=None):
-        self.tokenizer = tokenizer
-        self.feature_func = feature_func
-        if tagset is None:
-            self.tagset = Tagset(tags)
-        else:
-            self.tagset = tagset
-
-        if label_encoder is None:
-            self.label_encoder = IobSequence(self.tagset)
-        else:
-            self.label_encoder = label_encoder
+    @property
+    def parent(self):
+        if not self.is_tail:
+            return self.elem
+        return self.elem.getparent()
 
 
-    @classmethod
-    def clean_html(cls, html, encoding=None):
-        parser = lxml.html.HTMLParser(encoding=encoding)
+class HtmlTokenizer(object):
+    """
+    Use ``HtmlTokenizer.tokenize`` to convert HTML tree (returned by one
+    of the webstruct loaders) to a list of HtmlToken instances::
 
-        if isinstance(html, unicode) and encoding is not None:
-            html = html.encode(encoding)
+        >>> from webstruct import GateLoader, HtmlTokenizer
+        >>> loader = GateLoader(known_tags=['PER'])
+        >>> html_tokenizer = HtmlTokenizer(replace_tags={'b': 'strong'})
 
-        html = lxml.html.document_fromstring(html, parser=parser)
-        return _cleaner.clean_html(html)
+        >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
+        >>> for tok in html_tokenizer.tokenize(tree):
+        ...     print tok.token, tok.label, tok.elem.tag, tok.parent.tag
+        hello O p p
+        John B-PER p p
+        Doe I-PER strong strong
+        Mary B-PER br p
+        said O br p
 
-    def preprocess(self, html, encoding=None):
+    For HTML without text it returns empty list::
+
+        >>> html_tokenizer.tokenize(loader.loadbytes(b'<p></p>'))
+        []
+
+    """
+    def __init__(self, tagset=None, sequence_encoder=None, text_tokenize=None,
+                 kill_tags=None, replace_tags=None):
+        self.tagset_ = set(tagset) if tagset is not None else None
+        self.sequence_encoder_ = sequence_encoder or IobEncoder()
+        self.text_tokenize_ = text_tokenize or tokenize
+        self.kill_tags_ = kill_tags
+        self.replace_tags_ = replace_tags
+
+    def tokenize(self, tree):
         """
-        Preprocess the data: param:html with optional encoding.
+        Return a list of HtmlToken tokens.
 
-        by default it simply clean the HTML with `lxml.clean.Cleaner`
-
-        but it can be override to do more task specific cleanups,
-        such as replacing some HTML tags with more generalized one,
-        or removing some HTML elements.
-
+        For unannotated HTML tags list will contain "O" tags and may be ignored.
         """
-        return self.clean_html(html, encoding)
+        tree = copy.deepcopy(tree)
+        self.sequence_encoder_.reset()
+        self._prepare_tree(tree)
+        return list(self._process_tree(tree))
 
-    def fit_transform(self, X, y=None, encoding=None):
-        """
-        Convert HTML data :param:X to lists of feature dicts and labels.
-        :param:y is ignored.
+    def _prepare_tree(self, tree):
+        if self.kill_tags_:
+            kill_tags(tree, self.kill_tags_, keep_child=True)
 
-        Return (features, labels) tuple.
-        """
-        html = self.tagset.encode_tags(X)
-        doc = self.preprocess(html, encoding=encoding)
-        res = list(to_features_and_labels(doc, self.tokenizer, self.label_encoder, self.feature_func))
-        self.label_encoder.reset()
-        if not res or not any(res):
-            return (), ()
-        return zip(*res)
+        if self.replace_tags_:
+            replace_tags(tree, self.replace_tags_)
+
+    def _process_tree(self, tree):
+        head_tokens, head_tags = self._tokenize_and_split(tree.text)
+        for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
+            yield HtmlToken(index, head_tokens, tree, False, tag)
+
+        for child in tree:  # where is my precious "yield from"?
+            for token in self._process_tree(child):
+                yield token
+
+        tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
+        for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
+            yield HtmlToken(index, tail_tokens, tree, True, tag)
+
+    def _tokenize_and_split(self, text):
+        input_tokens = self._limit_tags(self.text_tokenize_(text or ''))
+        return self.sequence_encoder_.encode_split(input_tokens)
+
+    def _limit_tags(self, input_tokens):
+        if self.tagset_ is None:
+            return input_tokens
+
+        proc = self.sequence_encoder_.token_processor_
+        token_classes = [proc.classify(tok) for tok in input_tokens]
+        return [
+            tok for (tok, (typ, value)) in zip(input_tokens, token_classes)
+            if not (typ in {'start', 'end'} and value not in self.tagset_)
+        ]
+
+
+class HtmlFeatureExtractor(object):
+    """
+    This class extracts features from a list of HtmlTokens (html tree tokenized
+    using HtmlTokenizer).
+
+    To create HtmlFeatureExtractor, pass a list of feature functions
+    to the constructor. Each feature function must accept 3 parameters:
+    ``html_token``, ``index`` and ``html_tokens`` and return a dictionary
+    wich maps feature names to feature values.
+
+    ``html_token`` always equals to ``html_tokens[index]``. ``html_tokens``
+    is a list of all html tokens from this tree.
+
+    Example feature that returns token text::
+
+        >>> def current_token(html_token, index, html_tokens):
+        ...     return {'tok': html_token.token}
+
+    ``webstruct.features`` module provides some predefined feature functions,
+    e.g. ``parent_tag`` which returns token's parent tag.
+
+    Example::
+
+        >>> from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
+        >>> from webstruct.features import parent_tag
+
+        >>> loader = GateLoader(known_tags=['PER'])
+        >>> html_tokenizer = HtmlTokenizer()
+        >>> feature_extractor = HtmlFeatureExtractor([parent_tag])
+
+        >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
+        >>> html_tokens = html_tokenizer.tokenize(tree)
+        >>> feature_dicts = feature_extractor.transform(html_tokens)
+        >>> for token, feat in zip(html_tokens, feature_dicts):
+        ...     print("%s %s %s" % (token.token, token.label, feat))
+        hello O {'parent_tag': 'p'}
+        John B-PER {'parent_tag': 'p'}
+        Doe I-PER {'parent_tag': 'b'}
+        Mary B-PER {'parent_tag': 'p'}
+        said O {'parent_tag': 'p'}
+
+    """
+    def __init__(self, feature_functions):
+        self.feature_func_ = CombinedFeatures(*feature_functions)
+
+    def transform(self, html_tokens):
+        return [
+            self.feature_func_(tok, index, html_tokens)
+            for index, tok in enumerate(html_tokens)
+        ]
+

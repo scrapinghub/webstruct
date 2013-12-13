@@ -30,7 +30,7 @@ class CombinedFeatures(object):
         return self
 
     def __call__(self, *args, **kwargs):
-        features = (f(*args, **kwargs) for f in self.feature_funcs)
+        features = [f(*args, **kwargs) for f in self.feature_funcs]
         res = merge_dicts(*features)
         self.seen_keys.update(res.keys())
         return res

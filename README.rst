@@ -5,7 +5,7 @@ This package contains a library for extracting contact information from
 HTML pages.
 
 Supported functionality (so far)
-------------
+--------------------------------
 
 - American contact information extraction
 - Netherlands open hours extraction

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from lxml.etree import iterwalk
+
 
 def merge_dicts(*dicts):
     """
@@ -53,3 +55,45 @@ def flatten(x):
         else:
             result.append(el)
     return result
+
+
+def replace_tags(root, tag_replaces):
+    """
+    Replace lxml elements' tag.
+
+    >>> from lxml.html import fragment_fromstring, document_fromstring, tostring
+    >>> root = fragment_fromstring('<h1>head 1</h1>')
+    >>> replace_tags(root, {'h1': 'strong'})
+    >>> tostring(root)
+    '<strong>head 1</strong>'
+
+    >>> root = document_fromstring('<h1>head 1</h1> <H2>head 2</H2>')
+    >>> replace_tags(root, {'h1': 'strong', 'h2': 'strong', 'h3': 'strong', 'h4': 'strong'})
+    >>> tostring(root)
+    '<html><body><strong>head 1</strong> <strong>head 2</strong></body></html>'
+    """
+    for _, elem in iterwalk(root):
+        if elem.tag in tag_replaces:
+            elem.tag = tag_replaces[elem.tag]
+
+
+def kill_tags(doc, tags, keep_child=True):
+    """
+    >>> from lxml.html import fragment_fromstring, tostring
+    >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
+    >>> kill_tags(root, ['h1'])
+    >>> tostring(root)
+    '<div>head 1</div>'
+
+    >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
+    >>> kill_tags(root, ['h1'], False)
+    >>> tostring(root)
+    '<div></div>'
+    """
+    tags = set(tags)
+    for _, elem in iterwalk(doc):
+        if elem.tag in tags:
+            if keep_child:
+                elem.drop_tag()
+            else:
+                elem.drop_tree()

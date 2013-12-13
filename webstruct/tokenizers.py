@@ -26,12 +26,12 @@ class WordTokenizer(object):
     def tokenize(self, text):
         # starting quotes
         text = re.sub(r'^\"', r'``', text)
-        text = re.sub(r'(``)', r' \1 ', text)
+        text = text.replace('``', " `` ")
         text = re.sub(r'([ (\[{<])"', r'\1 `` ', text)
 
         # punctuation
-        text = re.sub(r'(,)(\D|\Z)', r' \1 \2', text)
-        text = re.sub(r'\.\.\.', r' ... ', text)
+        text = re.sub(r'(,)(\D|\Z)', r' \1 \2', text)       # CHANGED
+        text = text.replace("...", " ... ")
         text = re.sub(r'[;#$%&]', r' \g<0> ', text)         # CHANGED @
 
 
@@ -42,39 +42,25 @@ class WordTokenizer(object):
 
         # parens, brackets, etc.
         text = re.sub(r'[\]\[\(\)\{\}\<\>]', r' \g<0> ', text)
-        text = re.sub(r'--', r' -- ', text)
+        text = text.replace("--", " -- ")
 
         # add extra space to make things easier
         text = " " + text + " "
 
-        #ending quotes
-        text = re.sub(r'"', " '' ", text)
+        # ending quotes
+        text = text.replace('"', " '' ")
         text = re.sub(r'(\S)(\'\')', r'\1 \2 ', text)
 
-        # CHANGED:
-
-        # text = re.sub(r"([^' ])('[sS]|'[mM]|'[dD]|') ", r"\1 \2 ", text)
-        # text = re.sub(r"([^' ])('ll|'LL|'re|'RE|'ve|'VE|n't|N'T) ", r"\1 \2 ",
-        #               text)
-        #
-        # for regexp in self.CONTRACTIONS2:
-        #     text = regexp.sub(r' \1 \2 ', text)
-        # for regexp in self.CONTRACTIONS3:
-        #     text = regexp.sub(r' \1 \2 ', text)
-
-        # We are not using CONTRACTIONS4 since
-        # they are also commented out in the SED scripts
-        # for regexp in self.CONTRACTIONS4:
-        #     text = regexp.sub(r' \1 \2 \3 ', text)
+        # XXX: contractions handling is removed
 
         return text.split()
 
 
-word_tokenizer = WordTokenizer()
+class DefaultTokenizer(WordTokenizer):
+    def tokenize(self, text):
+        tokens = super(DefaultTokenizer, self).tokenize(text)
+        # remove standalone commas and semicolons
+        return [t for t in tokens if t not in {',', ';'}]
 
-def default_tokenizer(text):
-    for tok in word_tokenizer.tokenize(text):
-        if tok in ',;':
-            continue
-        yield tok
 
+tokenize = DefaultTokenizer().tokenize
