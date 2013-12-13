@@ -4,8 +4,8 @@ import re
 
 __all__ = ['token_shape', 'number_pattern', 'prefixes_and_suffixes']
 
-def token_shape(index, tokens, elem, is_tail):
-    token = tokens[index]
+def token_shape(html_token, index, html_tokens):
+    token = html_token.token
     return {
         'token': token,
         'lower': token.lower(),
@@ -17,8 +17,8 @@ def token_shape(index, tokens, elem, is_tail):
     }
 
 
-def number_pattern(index, tokens, elem, is_tail):
-    token = tokens[index]
+def number_pattern(html_token, index, html_tokens):
+    token = html_token.token
     digit_ratio = sum(1 for ch in token if ch.isdigit()) / len(token)
 
     if digit_ratio >= 0.3:
@@ -32,8 +32,8 @@ def number_pattern(index, tokens, elem, is_tail):
         return {}
 
 
-def prefixes_and_suffixes(index, tokens, elem, is_tail):
-    token = tokens[index].lower()
+def prefixes_and_suffixes(html_token, index, html_tokens):
+    token = html_token.token.lower()
     return {
         'prefix2': token[:2],
         'suffix2': token[-2:],
