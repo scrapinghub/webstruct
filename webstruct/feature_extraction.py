@@ -103,6 +103,7 @@ class HtmlTokenizer(object):
 
     def _tokenize_and_split(self, text):
         input_tokens = self._limit_tags(self.text_tokenize_(text or ''))
+        input_tokens = map(unicode, input_tokens)
         return self.sequence_encoder_.encode_split(input_tokens)
 
     def _limit_tags(self, input_tokens):
