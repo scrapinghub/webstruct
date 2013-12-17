@@ -122,18 +122,21 @@ class HtmlFeatureExtractor(object):
     This class extracts features from a list of HtmlTokens (html tree tokenized
     using HtmlTokenizer).
 
-    To create HtmlFeatureExtractor, pass a list of feature functions
-    to the constructor. Each feature function must accept 3 parameters:
-    ``html_token``, ``index`` and ``html_tokens`` and return a dictionary
-    wich maps feature names to feature values.
+    HtmlFeatureExtractor accepts 2 kinds of features: "token features"
+    and "global features".
 
-    ``html_token`` always equals to ``html_tokens[index]``. ``html_tokens``
-    is a list of all html tokens from this tree.
+    Each "token" feature function accepts a single ``html_token``
+    and returns a dictionary wich maps feature names to feature values
+    (dicts from all token feature functions are merged).
 
-    Example feature that returns token text::
+    Example token feature (it returns token text)::
 
-        >>> def current_token(html_token, index, html_tokens):
+        >>> def current_token(html_token):
         ...     return {'tok': html_token.token}
+
+    "global" feature functions accept a list of
+    (``html_token``, ``feature_dict``) tuples.
+    "Global" feature functions should change ``feature_dict``s inplace.
 
     ``webstruct.features`` module provides some predefined feature functions,
     e.g. ``parent_tag`` which returns token's parent tag.
@@ -145,7 +148,7 @@ class HtmlFeatureExtractor(object):
 
         >>> loader = GateLoader(known_tags=['PER'])
         >>> html_tokenizer = HtmlTokenizer()
-        >>> feature_extractor = HtmlFeatureExtractor([parent_tag])
+        >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
 
         >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
         >>> html_tokens = html_tokenizer.tokenize(tree)
@@ -159,12 +162,15 @@ class HtmlFeatureExtractor(object):
         said O {'parent_tag': 'p'}
 
     """
-    def __init__(self, feature_functions):
-        self.feature_func_ = CombinedFeatures(*feature_functions)
+    def __init__(self, token_features, global_features=None):
+        self.feature_func_ = CombinedFeatures(*token_features)
+        self.global_features_ = global_features or []
 
     def transform(self, html_tokens):
-        return [
-            self.feature_func_(tok, index, html_tokens)
-            for index, tok in enumerate(html_tokens)
-        ]
+        token_data = list(zip(html_tokens, map(self.feature_func_, html_tokens)))
 
+        for feat in self.global_features_:
+            feat(token_data)
+
+        return [{k: fd[k] for k in fd if not k.startswith('_')}
+                for tok, fd in token_data]

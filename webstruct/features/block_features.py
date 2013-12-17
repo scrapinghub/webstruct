@@ -24,7 +24,7 @@ def _inside_tag(elem, tagname):
     return any(e is not None for e in elem.iterancestors(tagname))
 
 
-def parent_tag(html_token, index, html_tokens):
+def parent_tag(html_token):
     return {'parent_tag': html_token.parent.tag}
 
 
@@ -33,18 +33,18 @@ class InsideTag(object):
         self.tagname = tagname
         self.key = 'inside_tag_' + tagname
 
-    def __call__(self, html_token, index, html_tokens):
+    def __call__(self, html_token):
         return {self.key: _inside_tag(html_token.elem, self.tagname)}
 
 
-def borders(html_token, index, html_tokens):
+def borders(html_token):
     return {
         'border_at_left': html_token.index == 0,
         'border_at_right': html_token.index == len(html_token.tokens)-1,
     }
 
 
-def block_length(html_token, index, html_tokens):
+def block_length(html_token):
     block_len = len(html_token.tokens)
     if block_len == 1:
         bl = '1'

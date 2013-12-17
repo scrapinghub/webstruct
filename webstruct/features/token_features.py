@@ -4,7 +4,7 @@ import re
 
 __all__ = ['token_shape', 'number_pattern', 'prefixes_and_suffixes']
 
-def token_shape(html_token, index, html_tokens):
+def token_shape(html_token):
     token = html_token.token
     return {
         'token': token,
@@ -17,7 +17,7 @@ def token_shape(html_token, index, html_tokens):
     }
 
 
-def number_pattern(html_token, index, html_tokens):
+def number_pattern(html_token):
     token = html_token.token
     digit_ratio = sum(1 for ch in token if ch.isdigit()) / len(token)
 
@@ -32,7 +32,7 @@ def number_pattern(html_token, index, html_tokens):
         return {}
 
 
-def prefixes_and_suffixes(html_token, index, html_tokens):
+def prefixes_and_suffixes(html_token):
     token = html_token.token.lower()
     return {
         'prefix2': token[:2],
