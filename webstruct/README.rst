@@ -68,14 +68,12 @@ Feature extraction
 ------------------
 
 To extract features, user-defined feature functions are applied to HTML tokens.
-Feature functions take 3 arguments:
+There are 2 types of feature functions: "token" feature functions and "global"
+feature functions.
 
-* html_token - current HtmlToken;
-* index - index of the current HtmlToken in a document;
-* html_tokens - all HtmlTokens in a document;
-
-This means user-defined feature functions can ask questions about token itself,
-its neighbours, its position in HTML and all other HTML tokens in a document.
+Token feature functions take 'html_token' argument which is a current
+HtmlToken instance. Such features can ask questions about token itself,
+its neighbours (in the same HTML element) and its position in HTML.
 
 Example features:
 
@@ -86,24 +84,41 @@ Example features:
 * "1" if this token is inside ``<a>`` tag, "0" otherwise;
 * "1" if there are more than 100 tokens in this HTML element, "0" otherwise.
 
-Feature function must return a dictionary with a {feature_name: feature_value}
-mapping. The results of individual feature functions are merged into
-a single dictionary.
+Example implementations::
 
-First feature function::
-
-    >>> def token_lower(html_token, index, html_tokens):
+    >>> def token_lower(html_token):
     ...     return {'token_lower': html_token.token.lower()}
+
+    >>> def token_isupper(html_token):
+    ...     return {'isupper': html_token.token.isupper()}
+
+
+Token feature function must return a dictionary with a
+{feature_name: feature_value} mapping. The results of individual
+feature functions are merged into a single dictionary.
+
+Second type of feature function is a "global" feature function.
+Global feature functions also take a single argument: a list of
+``(html_token, merged_feature_dict)`` tuples. This argument contains
+all tokens from this document and all features extracted by token
+feature functions.
+
+Global feature functions should modify feature dicts inplace. They are applied
+sequentially; subsequent global feature functions get
+updated ``merged_feature_dict``s.
 
 There are some predefined feature functions in ``webstruct.features`` package.
 
-To extract features from a list of HtmlTokens, pass all feature functions
+To extract features from a list of HtmlTokens, pass feature functions
 to ``HtmlFeatureExtractor`` constructor and then call its ``transform()``
 method::
 
     >>> from webstruct import HtmlFeatureExtractor
     >>> from webstruct.features import token_shape
-    >>> feature_extractor = HtmlFeatureExtractor([token_lower, token_shape])
+    >>> feature_extractor = HtmlFeatureExtractor(
+    ...     token_features = [token_lower, token_shape],
+    ...     global_features = [],
+    ... )
     >>> feature_dicts = feature_extractor.transform(html_tokens)
 
 
