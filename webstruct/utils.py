@@ -161,3 +161,72 @@ def alphanum_key(s):
     return [int(c) if c.isdigit() else c for c in re.split('([0-9]+)', s)]
 
 human_sorted = partial(sorted, key=alphanum_key)
+
+
+class BestMatch(object):
+    """
+    Class for finding best non-overlapping matches in a sequence of tokens.
+    Override ``get_sorted_ranges`` method to define which results are best.
+    """
+    def __init__(self, known):
+
+        self.known = known
+        if hasattr(known, 'iterkeys'):
+            keys_iter = known.iterkeys()
+        else:
+            keys_iter = known
+        self.max_length = max(len(key.split()) for key in keys_iter)
+
+    def find_ranges(self, tokens):
+        ranges = self._find_matches(tokens)
+        ranges = self._remove_overlapping(ranges, tokens)
+        return sorted(ranges)  # sort by position
+
+    def get_sorted_ranges(self, ranges, tokens):
+        raise NotImplementedError()
+
+    def _find_matches(self, tokens):
+        # find all matching ranges
+        res = []
+        i = 0
+        while i < len(tokens):
+            max_length = min(self.max_length, max(len(tokens)-i, 0))
+            for length in reversed(range(1, max_length+1)):
+                lookup = " ".join(tokens[i:i+length])
+                if lookup in self.known:
+                    res.append((i, length+i, lookup))
+                    break
+            i += 1
+        return res
+
+    def _remove_overlapping(self, ranges, tokens):
+        # remove overlapping sequences, keeping the best
+        res = []
+        filled_indices = set()
+        for begin, end, lookup in self.get_sorted_ranges(ranges, tokens):
+            indices = set(range(begin, end))
+            if not indices & filled_indices:
+                res.append((begin, end, lookup))
+                filled_indices |= indices
+        return res
+
+
+class LongestMatch(BestMatch):
+    """
+    Class for finding longest non-overlapping matches in a sequence of tokens.
+
+    >>> known_entities = {'North Las', 'North Las Vegas', 'North Pole', 'Vegas USA', 'Las Vegas', 'USA', "Toronto"}
+    >>> lm = LongestMatch(known_entities)
+    >>> lm.max_length
+    3
+    >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
+    >>> for start, end, key in lm.find_ranges(tokens):
+    ...     print(tokens[start:end], key)
+    (['Toronto'], 'Toronto')
+    (['North', 'Las', 'Vegas'], 'North Las Vegas')
+    (['USA'], 'USA')
+    """
+
+    def get_sorted_ranges(self, ranges, tokens):
+        return sorted(ranges, key=lambda k: k[1]-k[0], reverse=True)
+
