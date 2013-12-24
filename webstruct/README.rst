@@ -23,7 +23,7 @@ For training annotated data is needed. There are different tools
 for annotating HTML; we support WebAnnotator_ and GATE_ annotation formats
 (WebAnnotator_ is recommended).
 
-.. _WebAnnotator: http://perso.limsi.fr/xtannier/en/WebAnnotator/
+.. _WebAnnotator: https://github.com/xtannier/WebAnnotator
 .. _GATE: http://gate.ac.uk/
 
 Both GATE and WebAnnotator embed annotations into HTML using special tags:

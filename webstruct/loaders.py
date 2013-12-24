@@ -12,15 +12,14 @@ import lxml.html
 import lxml.html.clean
 
 
-class WebAnnotatorLoader(object):
+def html_document_fromstring(data, encoding):
+    parser = lxml.html.HTMLParser(encoding=encoding)
+    return lxml.html.document_fromstring(data, parser=parser)
+
+
+class HtmlLoader(object):
     """
-    Class for loading HTML annotated using
-    `WebAnnotator <http://perso.limsi.fr/xtannier/en/WebAnnotator/>`_.
-
-    .. note::
-
-        Use WebAnnotator's "save format", not "export format".
-
+    Class for loading unannotated HTML files.
     """
     def __init__(self, encoding=None, cleaner=None):
         self.encoding_ = encoding
@@ -31,8 +30,25 @@ class WebAnnotatorLoader(object):
             return self.loadbytes(f.read())
 
     def loadbytes(self, data):
-        parser = lxml.html.HTMLParser(encoding=self.encoding_)
-        tree = lxml.html.document_fromstring(data, parser=parser)
+        tree = html_document_fromstring(data, self.encoding_)
+        return self.cleaner_.clean_html(tree)
+
+
+
+class WebAnnotatorLoader(HtmlLoader):
+    """
+    Class for loading HTML annotated using
+    `WebAnnotator <https://github.com/xtannier/WebAnnotator>`_.
+
+    .. note::
+
+        Use WebAnnotator's "save format", not "export format".
+
+    """
+    def loadbytes(self, data):
+        # defer cleaning the tree to prevent custom cleaners from cleaning
+        # WebAnnotator markup
+        tree = html_document_fromstring(data, encoding=self.encoding_)
         entities = self._get_entities(tree)
         self._process_entities(entities)
         return self._cleanup_tree(tree)
@@ -58,7 +74,7 @@ class WebAnnotatorLoader(object):
         return self.cleaner_.clean_html(tree)
 
 
-class GateLoader(object):
+class GateLoader(HtmlLoader):
     """
     Class for loading HTML annotated using `GATE <http://gate.ac.uk/>`_
 
@@ -75,22 +91,15 @@ class GateLoader(object):
 
     def __init__(self, encoding=None, cleaner=None, known_tags=None):
         if known_tags is None:
-            raise ValueError("Please pass `tags` argument with a list of all possible tags")
+            raise ValueError("Please pass `known_tags` argument with a list of all possible tags")
         self.known_tags_ = known_tags
-        self.encoding_ = encoding
-        self.cleaner_ = cleaner or _default_cleaner
-
-    def load(self, filename):
-        with open(filename, 'rb') as f:
-            return self.loadbytes(f.read())
+        super(GateLoader, self).__init__(encoding, cleaner)
 
     def loadbytes(self, data):
         # tags are replaced before parsing data as HTML because
         # GATE's html is invalid
         data = self._replace_tags(data)
-        parser = lxml.html.HTMLParser(encoding=self.encoding_)
-        tree = lxml.html.document_fromstring(data, parser=parser)
-        return self.cleaner_.clean_html(tree)
+        return super(GateLoader, self).loadbytes(data)
 
     def _replace_tags(self, html_bytes):
         # replace requested tags with unified tokens
