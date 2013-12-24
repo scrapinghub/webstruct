@@ -62,7 +62,7 @@ to a list of HtmlTokens::
 
 For annotated data start/end tokens (e.g. ``__START_ORG__`` and ``__END_ORG__``)
 are converted to IOB tag sequences and removed from token stream. IOB tags are
-available as ``label`` attribute of HtmlTokens.
+available as ``tag`` attribute of HtmlTokens.
 
 Feature extraction
 ------------------
