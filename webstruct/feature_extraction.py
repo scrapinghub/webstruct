@@ -5,9 +5,9 @@ from collections import namedtuple
 from .sequence_encoding import IobEncoder
 from .tokenizers import tokenize
 from webstruct.features import CombinedFeatures
-from webstruct.utils import replace_tags, kill_tags
+from webstruct.utils import replace_html_tags, kill_html_tags
 
-_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail label')
+_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail tag')
 
 class HtmlToken(_HtmlToken):
     """
@@ -18,7 +18,7 @@ class HtmlToken(_HtmlToken):
     * ``elem`` is the current html block (as lxml's Element) - most likely
       you want ``HtmlToken.parent`` instead of it;
     * ``is_tail`` flag that indicates that token belongs to element tail
-    * ``label`` is a NER tag for this token. For unannotated HTML
+    * ``tag`` is a NER tag for this token. For unannotated HTML
       it is always "O". Feature functions shouldn't access this attribute.
 
     Computed properties:
@@ -45,11 +45,11 @@ class HtmlTokenizer(object):
 
         >>> from webstruct import GateLoader, HtmlTokenizer
         >>> loader = GateLoader(known_tags=['PER'])
-        >>> html_tokenizer = HtmlTokenizer(replace_tags={'b': 'strong'})
+        >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
 
         >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
         >>> for tok in html_tokenizer.tokenize(tree):
-        ...     print tok.token, tok.label, tok.elem.tag, tok.parent.tag
+        ...     print tok.token, tok.tag, tok.elem.tag, tok.parent.tag
         hello O p p
         John B-PER p p
         Doe I-PER strong strong
@@ -63,12 +63,12 @@ class HtmlTokenizer(object):
 
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize=None,
-                 kill_tags=None, replace_tags=None):
+                 kill_html_tags=None, replace_html_tags=None):
         self.tagset_ = set(tagset) if tagset is not None else None
         self.sequence_encoder_ = sequence_encoder or IobEncoder()
         self.text_tokenize_ = text_tokenize or tokenize
-        self.kill_tags_ = kill_tags
-        self.replace_tags_ = replace_tags
+        self.kill_html_tags_ = kill_html_tags
+        self.replace_html_tags_ = replace_html_tags
 
     def tokenize(self, tree):
         """
@@ -82,11 +82,11 @@ class HtmlTokenizer(object):
         return list(self._process_tree(tree))
 
     def _prepare_tree(self, tree):
-        if self.kill_tags_:
-            kill_tags(tree, self.kill_tags_, keep_child=True)
+        if self.kill_html_tags_:
+            kill_html_tags(tree, self.kill_html_tags_, keep_child=True)
 
-        if self.replace_tags_:
-            replace_tags(tree, self.replace_tags_)
+        if self.replace_html_tags_:
+            replace_html_tags(tree, self.replace_html_tags_)
 
     def _process_tree(self, tree):
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
@@ -155,7 +155,7 @@ class HtmlFeatureExtractor(object):
         >>> html_tokens = html_tokenizer.tokenize(tree)
         >>> feature_dicts = feature_extractor.transform(html_tokens)
         >>> for token, feat in zip(html_tokens, feature_dicts):
-        ...     print("%s %s %s" % (token.token, token.label, feat))
+        ...     print("%s %s %s" % (token.token, token.tag, feat))
         hello O {'parent_tag': 'p'}
         John B-PER {'parent_tag': 'p'}
         Doe I-PER {'parent_tag': 'b'}
