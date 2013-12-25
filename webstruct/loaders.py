@@ -49,9 +49,27 @@ class WebAnnotatorLoader(HtmlLoader):
         # defer cleaning the tree to prevent custom cleaners from cleaning
         # WebAnnotator markup
         tree = html_document_fromstring(data, encoding=self.encoding_)
+        self._fix_title(tree)
         entities = self._get_entities(tree)
         self._process_entities(entities)
         return self._cleanup_tree(tree)
+
+    def _fix_title(self, tree):
+        # WebAnnotator > 1.14 allows annotation of <title> contents;
+        # it is stored after body in <wa-title> elements.
+        # This replaces original <title> with a <wa-title> and removes
+        # <wa-title> tag.
+        for wa_title in tree.xpath('//wa-title'):
+            titles = tree.xpath('//title')
+            if not titles:
+                wa_title.drop_tree()
+                return
+            title = titles[0]
+            head = title.getparent()
+            head.insert(head.index(title), wa_title)
+            title.drop_tree()
+            wa_title.tag = 'title'
+            return
 
     def _get_entities(self, tree):
         entities = defaultdict(list)
