@@ -7,7 +7,7 @@ from .tokenizers import tokenize
 from webstruct.features import CombinedFeatures
 from webstruct.utils import replace_html_tags, kill_html_tags
 
-_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail tag')
+_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail')
 
 class HtmlToken(_HtmlToken):
     """
@@ -18,8 +18,6 @@ class HtmlToken(_HtmlToken):
     * ``elem`` is the current html block (as lxml's Element) - most likely
       you want ``HtmlToken.parent`` instead of it;
     * ``is_tail`` flag that indicates that token belongs to element tail
-    * ``tag`` is a NER tag for this token. For unannotated HTML
-      it is always "O". Feature functions shouldn't access this attribute.
 
     Computed properties:
 
@@ -41,45 +39,58 @@ class HtmlToken(_HtmlToken):
 class HtmlTokenizer(object):
     """
     Use ``HtmlTokenizer.tokenize`` to convert HTML tree (returned by one
-    of the webstruct loaders) to a list of HtmlToken instances::
+    of the webstruct loaders) to lists of HtmlToken instances
+    and associated tags::
 
         >>> from webstruct import GateLoader, HtmlTokenizer
         >>> loader = GateLoader(known_tags=['PER'])
         >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
-
         >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
-        >>> for tok in html_tokenizer.tokenize(tree):
-        ...     print tok.token, tok.tag, tok.elem.tag, tok.parent.tag
-        hello O p p
-        John B-PER p p
-        Doe I-PER strong strong
-        Mary B-PER br p
-        said O br p
+        >>> html_tokens, tags = html_tokenizer.tokenize(tree)
+        >>> html_tokens  # doctest: +ELLIPSIS
+        [HtmlToken(index=0, tokens=[u'hello', u'John'], elem=<Element p at ...>, is_tail=False), HtmlToken...]
+        >>> tags
+        ['O', u'B-PER', u'I-PER', u'B-PER', 'O']
+        >>> for tok, iob_tag in zip(html_tokens, tags):
+        ...     print "%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag
+            O hello p p
+        B-PER John p p
+        I-PER Doe strong strong
+        B-PER Mary br p
+            O said br p
 
-    For HTML without text it returns empty list::
+    For HTML without text it returns empty lists::
 
         >>> html_tokenizer.tokenize(loader.loadbytes(b'<p></p>'))
-        []
+        ([], [])
 
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize=None,
                  kill_html_tags=None, replace_html_tags=None):
         self.tagset_ = set(tagset) if tagset is not None else None
-        self.sequence_encoder_ = sequence_encoder or IobEncoder()
         self.text_tokenize_ = text_tokenize or tokenize
         self.kill_html_tags_ = kill_html_tags
         self.replace_html_tags_ = replace_html_tags
 
+        # FIXME: don't use shared instance of sequence encoder
+        self.sequence_encoder_ = sequence_encoder or IobEncoder()
+
     def tokenize(self, tree):
         """
-        Return a list of HtmlToken tokens.
+        Return two lists:
 
-        For unannotated HTML tags list will contain "O" tags and may be ignored.
+        * a list a list of HtmlToken tokens;
+        * a list of associated tags.
+
+        For unannotated HTML all tags will be "O" - they may be ignored.
         """
         tree = copy.deepcopy(tree)
         self.sequence_encoder_.reset()
         self._prepare_tree(tree)
-        return list(self._process_tree(tree))
+        res = zip(*(self._process_tree(tree)))
+        if not res:
+            return ([], [])
+        return list(res[0]), list(res[1])
 
     def _prepare_tree(self, tree):
         if self.kill_html_tags_:
@@ -91,15 +102,15 @@ class HtmlTokenizer(object):
     def _process_tree(self, tree):
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
         for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
-            yield HtmlToken(index, head_tokens, tree, False, tag)
+            yield HtmlToken(index, head_tokens, tree, False), tag
 
         for child in tree:  # where is my precious "yield from"?
-            for token in self._process_tree(child):
-                yield token
+            for html_token, tag in self._process_tree(child):
+                yield html_token, tag
 
         tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
-            yield HtmlToken(index, tail_tokens, tree, True, tag)
+            yield HtmlToken(index, tail_tokens, tree, True), tag
 
     def _tokenize_and_split(self, text):
         input_tokens = self._limit_tags(self.text_tokenize_(text or ''))
@@ -120,8 +131,8 @@ class HtmlTokenizer(object):
 
 class HtmlFeatureExtractor(object):
     """
-    This class extracts features from a list of HtmlTokens (html tree tokenized
-    using HtmlTokenizer).
+    This class extracts features from lists of HtmlTokens
+    (from html trees tokenized using HtmlTokenizer).
 
     HtmlFeatureExtractor accepts 2 kinds of features: "token features"
     and "global features".
@@ -152,10 +163,10 @@ class HtmlFeatureExtractor(object):
         >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
 
         >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
-        >>> html_tokens = html_tokenizer.tokenize(tree)
+        >>> html_tokens, tags = html_tokenizer.tokenize(tree)
         >>> feature_dicts = feature_extractor.transform(html_tokens)
-        >>> for token, feat in zip(html_tokens, feature_dicts):
-        ...     print("%s %s %s" % (token.token, token.tag, feat))
+        >>> for token, tag, feat in zip(html_tokens, tags, feature_dicts):
+        ...     print("%s %s %s" % (token.token, tag, feat))
         hello O {'parent_tag': 'p'}
         John B-PER {'parent_tag': 'p'}
         Doe I-PER {'parent_tag': 'b'}

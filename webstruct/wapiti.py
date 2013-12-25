@@ -74,27 +74,35 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         """
-        X should be a list of dicts with features;
+        X should be a list of lists of dicts with features;
         It can be obtained using HtmlFeaturesExtractor.
         """
         return self.partial_fit(X)
 
-    def partial_fit(self, X):
-        keys = self.feature_names_ or set()
-        keys = (set(keys) | get_combined_keys(X)) - set(self.move_to_front)
+    def partial_fit(self, X, y=None):
+        keys = set(self.feature_names_ or set())
+        move_to_front = set(self.move_to_front)
+
+        for feature_dicts in X:
+            keys = (keys | get_combined_keys(feature_dicts)) - move_to_front
+
         self.feature_names_ = self.move_to_front + tuple(keys)
         self.vocabulary_ = dict((f, i) for i, f in enumerate(self.feature_names_))
         return self
 
-    def transform(self, X):
+    def transform_single(self, feature_dicts):
         """
-        Transform a sequence of dicts X to a list of Wapiti data file lines.
+        Transform a sequence of dicts ``feature_dicts``
+        to a list of Wapiti data file lines.
         """
         lines = []
-        for dct in X:
+        for dct in feature_dicts:
             line = ' '.join(tostr(dct.get(key)) for key in self.feature_names_)
             lines.append(line)
         return lines
+
+    def transform(self, X):
+        return [self.transform_single(feature_dicts) for feature_dicts in X]
 
     def prepare_template(self, template):
         r"""
@@ -103,7 +111,8 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
         with :meth:`WapitiFeatureEncoder.transform` output.
 
             >>> we = WapitiFeatureEncoder(['token', 'tag'])
-            >>> we.fit([{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}])
+            >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
+            >>> we.fit([seq_features])
             WapitiFeatureEncoder(move_to_front=('token', 'tag'))
             >>> we.prepare_template('*:Pos-1 L=%x[-1, tag]\n*:Suf-2 X=%m[ 0,token,".?.?$"]')
             '*:Pos-1 L=%x[-1,1]\n*:Suf-2 X=%m[0,0,".?.?$"]'
@@ -122,7 +131,8 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
         known features.
 
             >>> we = WapitiFeatureEncoder(['token', 'tag'])
-            >>> we.fit([{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}])
+            >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
+            >>> we.fit([seq_features])
             WapitiFeatureEncoder(move_to_front=('token', 'tag'))
             >>> print(we.unigram_features_template())
             <BLANKLINE>
