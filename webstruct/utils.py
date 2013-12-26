@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import subprocess
 from lxml.etree import iterwalk
 
 
@@ -97,3 +98,33 @@ def kill_html_tags(doc, tagnames, keep_child=True):
                 elem.drop_tag()
             else:
                 elem.drop_tree()
+
+
+def run_command(args, verbose=True):
+    """
+    Execute a command in a subprocess, terminate it if exception occurs,
+    raise CalledProcessError exception if command returned non-zero exit code.
+
+    If ``verbose == True`` then print output as it appears using "print".
+    Unlike ``subprocess.check_call`` it doesn't assume that stdout
+    has a file descriptor - this allows printing to works in IPython notebook.
+    """
+    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    output = []
+    try:
+        while True:
+            line = p.stdout.readline()
+            if not line:
+                break
+            if verbose:
+                print(line.rstrip("\n\r"))
+            output.append(line)
+        p.wait()
+        if p.returncode != 0:
+            cmd = subprocess.list2cmdline(args)
+            raise subprocess.CalledProcessError(p.returncode, cmd, "\n".join(output))
+    finally:
+        # kill a process if exception occurs
+        if p.returncode is None:
+            p.terminate()
+
