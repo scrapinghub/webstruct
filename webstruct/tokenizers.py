@@ -9,30 +9,34 @@ class WordTokenizer(object):
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
         >>> from nltk.tokenize.treebank import TreebankWordTokenizer
-        >>> s = '''Good muffins cost $3.88\\nin New York. Email: muffins@gmail.com'''
+        >>> s = u'''Good muffins cost $3.88\\nin New York. Email: muffins@gmail.com'''
         >>> TreebankWordTokenizer().tokenize(s)
-        ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
+        [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email', u':', u'muffins', u'@', u'gmail.com']
         >>> WordTokenizer().tokenize(s)
-        ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
+        [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email:', u'muffins@gmail.com']
 
-        >>> s = '''Shelbourne Road,'''
+        >>> s = u'''Shelbourne Road,'''
         >>> WordTokenizer().tokenize(s)
-        ['Shelbourne', 'Road', ',']
+        [u'Shelbourne', u'Road', u',']
 
-        >>> s = '''population of 100,000'''
+        >>> s = u'''population of 100,000'''
         >>> WordTokenizer().tokenize(s)
-        ['population', 'of', '100,000']
+        [u'population', u'of', u'100,000']
+
+        >>> s = u'''Hello|World'''
+        >>> WordTokenizer().tokenize(s)
+        [u'Hello', u'|', u'World']
     """
     def tokenize(self, text):
         # starting quotes
-        text = re.sub(r'^\"', r'``', text)
+        text = re.sub(ur'^["“]', r'``', text)               # +unicode quotes
         text = text.replace('``', " `` ")
         text = re.sub(r'([ (\[{<])"', r'\1 `` ', text)
 
         # punctuation
         text = re.sub(r'(,)(\D|\Z)', r' \1 \2', text)       # CHANGED
         text = text.replace("...", " ... ")
-        text = re.sub(r'[;#$%&]', r' \g<0> ', text)         # CHANGED @
+        text = re.sub(r'[;#$%&|]', r' \g<0> ', text)         # CHANGED @|
 
 
         text = re.sub(r'([^\.])(\.)([\]\)}>"\']*)\s*$', r'\1 \2\3 ', text)
@@ -48,7 +52,7 @@ class WordTokenizer(object):
         text = " " + text + " "
 
         # ending quotes
-        text = text.replace('"', " '' ")
+        text = text.replace(u'["”]', " '' ")               # +unicode quotes
         text = re.sub(r'(\S)(\'\')', r'\1 \2 ', text)
 
         # XXX: contractions handling is removed
