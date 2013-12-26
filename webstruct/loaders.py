@@ -7,14 +7,39 @@ tokens.
 """
 from __future__ import absolute_import
 import re
+import glob
+from itertools import chain
 from collections import defaultdict
 import lxml.html
 import lxml.html.clean
 
+from webstruct.utils import human_sorted, html_document_fromstring
 
-def html_document_fromstring(data, encoding):
-    parser = lxml.html.HTMLParser(encoding=encoding)
-    return lxml.html.document_fromstring(data, parser=parser)
+
+def load_trees(patterns, verbose=False):
+    """
+    Load HTML data from several paths to a single list of lxml trees.
+
+    ``patterns`` should be a list of tuples ``(glob_pathname, loader)``.
+
+    Example::
+
+        >>> loader = HtmlLoader()
+        >>> patterns = [('path1/*.html', loader), ('path2/*.html', loader)]
+        >>> trees = load_trees(patterns)  # doctest: +SKIP
+
+    """
+    return chain.from_iterable(
+        load_trees_from_files(pat, loader, verbose) for pat, loader in patterns
+        # map(load_trees_from_files, *zip(*patterns))
+    )
+
+
+def load_trees_from_files(pathname, loader, verbose=False):
+    for path in human_sorted(glob.glob(pathname)):
+        if verbose:
+            print(path)
+        yield loader.load(path)
 
 
 class HtmlLoader(object):

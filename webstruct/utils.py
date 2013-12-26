@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import re
 import subprocess
+from functools import partial
+import lxml.html
 from lxml.etree import iterwalk
 
 
@@ -100,6 +103,11 @@ def kill_html_tags(doc, tagnames, keep_child=True):
                 elem.drop_tree()
 
 
+def html_document_fromstring(data, encoding):
+    parser = lxml.html.HTMLParser(encoding=encoding)
+    return lxml.html.document_fromstring(data, parser=parser)
+
+
 def run_command(args, verbose=True):
     """
     Execute a command in a subprocess, terminate it if exception occurs,
@@ -128,3 +136,9 @@ def run_command(args, verbose=True):
         if p.returncode is None:
             p.terminate()
 
+
+def alphanum_key(s):
+    """ Key func for sorting strings according to numerical value. """
+    return [int(c) if c.isdigit() else c for c in re.split('([0-9]+)', s)]
+
+human_sorted = partial(sorted, key=alphanum_key)
