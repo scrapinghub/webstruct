@@ -36,6 +36,7 @@ class WordTokenizer(object):
         # punctuation
         text = re.sub(r'(,)(\D|\Z)', r' \1 \2', text)       # CHANGED
         text = text.replace("...", " ... ")
+        text = text.replace(u"…", u" ... ")
         text = re.sub(r'[;#$%&|]', r' \g<0> ', text)         # CHANGED @|
 
 
