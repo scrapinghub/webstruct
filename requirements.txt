@@ -1,4 +1,5 @@
 nose
 lxml
 scikit-learn
--e https://github.com/adsva/python-wapiti.git@6f0139fb6d2de03e3bc54c0982a1d596c515f3b5#egg=python-wapiti
+-e https://github.com/adsva/python-wapiti.git@0e22f2d53c1d42dba6fb45144ff656cf39420c7e#egg=python-wapiti
+-e https://github.com/larsmans/seqlearn.git@62a4390f54c2063a60262f8640ed975446f5fa57#egg=seqlearn
