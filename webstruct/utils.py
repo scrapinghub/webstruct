@@ -61,6 +61,18 @@ def flatten(x):
     return result
 
 
+EXTRA_SPACE_RE = re.compile(' ([,:;.!?"])')
+def smart_join(tokens):
+    """
+    Join tokens without adding unneeded spaces before punctuation::
+
+        >>> smart_join(['Hello', ',', 'world', '!'])
+        'Hello, world!'
+
+    """
+    return EXTRA_SPACE_RE.sub(r"\1", " ".join(tokens))
+
+
 def replace_html_tags(root, tag_replaces):
     """
     Replace lxml elements' tag.
