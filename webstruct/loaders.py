@@ -16,31 +16,6 @@ import lxml.html.clean
 from webstruct.utils import human_sorted, html_document_fromstring
 
 
-def load_trees(patterns, verbose=False):
-    """
-    Load HTML data from several paths to a single list of lxml trees.
-
-    ``patterns`` should be a list of tuples ``(glob_pathname, loader)``.
-
-    Example::
-
-        >>> loader = HtmlLoader()
-        >>> patterns = [('path1/*.html', loader), ('path2/*.html', loader)]
-        >>> trees = load_trees(patterns)  # doctest: +SKIP
-
-    """
-    return chain.from_iterable(
-        load_trees_from_files(pat, loader, verbose) for pat, loader in patterns
-    )
-
-
-def load_trees_from_files(pathname, loader, verbose=False):
-    for path in human_sorted(glob.glob(pathname)):
-        if verbose:
-            print(path)
-        yield loader.load(path)
-
-
 class HtmlLoader(object):
     """
     Class for loading unannotated HTML files.
@@ -154,6 +129,32 @@ class GateLoader(HtmlLoader):
         open_re = re.compile('<(%s)>' % tags_pattern, re.I)
         close_re = re.compile('</(%s)>' % tags_pattern, re.I)
         return open_re, close_re
+
+
+def load_trees(patterns, verbose=False):
+    """
+    Load HTML data from several paths, maybe using different loaders.
+    Return a list of lxml trees.
+
+    ``patterns`` should be a list of tuples ``(glob_pathname, loader)``.
+
+    Example::
+
+        >>> loader = HtmlLoader()
+        >>> patterns = [('path1/*.html', loader), ('path2/*.html', loader)]
+        >>> trees = load_trees(patterns)  # doctest: +SKIP
+
+    """
+    return chain.from_iterable(
+        load_trees_from_files(pat, loader, verbose) for pat, loader in patterns
+    )
+
+
+def load_trees_from_files(pathname, loader, verbose=False):
+    for path in human_sorted(glob.glob(pathname)):
+        if verbose:
+            print(path)
+        yield loader.load(path)
 
 
 _default_cleaner = lxml.html.clean.Cleaner(
