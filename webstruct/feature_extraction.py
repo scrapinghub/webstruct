@@ -68,10 +68,10 @@ class HtmlTokenizer(object):
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize_func=None,
                  kill_html_tags=None, replace_html_tags=None):
-        self.tagset_ = set(tagset) if tagset is not None else None
-        self.text_tokenize_func_ = text_tokenize_func or tokenize
-        self.kill_html_tags_ = kill_html_tags
-        self.replace_html_tags_ = replace_html_tags
+        self.tagset = set(tagset) if tagset is not None else None
+        self.text_tokenize_func = text_tokenize_func or tokenize
+        self.kill_html_tags = kill_html_tags
+        self.replace_html_tags = replace_html_tags
 
         # FIXME: don't use shared instance of sequence encoder
         self.sequence_encoder_ = sequence_encoder or IobEncoder()
@@ -102,11 +102,11 @@ class HtmlTokenizer(object):
         return X, y
 
     def _prepare_tree(self, tree):
-        if self.kill_html_tags_:
-            kill_html_tags(tree, self.kill_html_tags_, keep_child=True)
+        if self.kill_html_tags:
+            kill_html_tags(tree, self.kill_html_tags, keep_child=True)
 
-        if self.replace_html_tags_:
-            replace_html_tags(tree, self.replace_html_tags_)
+        if self.replace_html_tags:
+            replace_html_tags(tree, self.replace_html_tags)
 
     def _process_tree(self, tree):
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
@@ -122,19 +122,19 @@ class HtmlTokenizer(object):
             yield HtmlToken(index, tail_tokens, tree, True), tag
 
     def _tokenize_and_split(self, text):
-        input_tokens = self._limit_tags(self.text_tokenize_func_(text or ''))
+        input_tokens = self._limit_tags(self.text_tokenize_func(text or ''))
         input_tokens = map(unicode, input_tokens)
         return self.sequence_encoder_.encode_split(input_tokens)
 
     def _limit_tags(self, input_tokens):
-        if self.tagset_ is None:
+        if self.tagset is None:
             return input_tokens
 
         proc = self.sequence_encoder_.token_processor_
         token_classes = [proc.classify(tok) for tok in input_tokens]
         return [
             tok for (tok, (typ, value)) in zip(input_tokens, token_classes)
-            if not (typ in {'start', 'end'} and value not in self.tagset_)
+            if not (typ in {'start', 'end'} and value not in self.tagset)
         ]
 
 
@@ -184,8 +184,8 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
 
     """
     def __init__(self, token_features, global_features=None):
-        self.feature_func_ = CombinedFeatures(*token_features)
-        self.global_features_ = global_features or []
+        self.token_features = token_features
+        self.global_features = global_features or []
 
     def fit(self, X, y=None):
         return self
@@ -194,9 +194,10 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         return [self.transform_single(html_tokens) for html_tokens in X]
 
     def transform_single(self, html_tokens):
-        token_data = list(zip(html_tokens, map(self.feature_func_, html_tokens)))
+        feature_func = CombinedFeatures(*self.token_features)
+        token_data = list(zip(html_tokens, map(feature_func, html_tokens)))
 
-        for feat in self.global_features_:
+        for feat in self.global_features:
             feat(token_data)
 
         return [{k: fd[k] for k in fd if not k.startswith('_')}
