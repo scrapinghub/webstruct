@@ -202,3 +202,4 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
 
         return [{k: fd[k] for k in fd if not k.startswith('_')}
                 for tok, fd in token_data]
+
