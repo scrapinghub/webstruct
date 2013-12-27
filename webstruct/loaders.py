@@ -31,7 +31,6 @@ def load_trees(patterns, verbose=False):
     """
     return chain.from_iterable(
         load_trees_from_files(pat, loader, verbose) for pat, loader in patterns
-        # map(load_trees_from_files, *zip(*patterns))
     )
 
 
@@ -47,17 +46,16 @@ class HtmlLoader(object):
     Class for loading unannotated HTML files.
     """
     def __init__(self, encoding=None, cleaner=None):
-        self.encoding_ = encoding
-        self.cleaner_ = cleaner or _default_cleaner
+        self.encoding = encoding
+        self.cleaner = cleaner or _default_cleaner
 
     def load(self, filename):
         with open(filename, 'rb') as f:
             return self.loadbytes(f.read())
 
     def loadbytes(self, data):
-        tree = html_document_fromstring(data, self.encoding_)
-        return self.cleaner_.clean_html(tree)
-
+        tree = html_document_fromstring(data, self.encoding)
+        return self.cleaner.clean_html(tree)
 
 
 class WebAnnotatorLoader(HtmlLoader):
@@ -73,7 +71,7 @@ class WebAnnotatorLoader(HtmlLoader):
     def loadbytes(self, data):
         # defer cleaning the tree to prevent custom cleaners from cleaning
         # WebAnnotator markup
-        tree = html_document_fromstring(data, encoding=self.encoding_)
+        tree = html_document_fromstring(data, encoding=self.encoding)
         self._fix_title(tree)
         entities = self._get_entities(tree)
         self._process_entities(entities)
@@ -114,7 +112,7 @@ class WebAnnotatorLoader(HtmlLoader):
         for el in tree.xpath('//wa-color'):
             el.drop_tree()
 
-        return self.cleaner_.clean_html(tree)
+        return self.cleaner.clean_html(tree)
 
 
 class GateLoader(HtmlLoader):
