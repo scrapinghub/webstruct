@@ -61,7 +61,8 @@ def flatten(x):
     return result
 
 
-EXTRA_SPACE_RE = re.compile(' ([,:;.!?"])')
+EXTRA_SPACE_BEFORE_RE = re.compile(r' ([,:;.!?"\)])')
+EXTRA_SPACE_AFTER_RE = re.compile(r'([\(]) ')
 def smart_join(tokens):
     """
     Join tokens without adding unneeded spaces before punctuation::
@@ -69,8 +70,14 @@ def smart_join(tokens):
         >>> smart_join(['Hello', ',', 'world', '!'])
         'Hello, world!'
 
+        >>> smart_join(['(', '303', ')', '444-7777'])
+        '(303) 444-7777'
+
     """
-    return EXTRA_SPACE_RE.sub(r"\1", " ".join(tokens))
+    text = " ".join(tokens)
+    text = EXTRA_SPACE_BEFORE_RE.sub(r"\1", text)
+    text = EXTRA_SPACE_AFTER_RE.sub(r"\1", text)
+    return text
 
 
 def replace_html_tags(root, tag_replaces):
