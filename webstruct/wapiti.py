@@ -33,24 +33,23 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
 
     WAPITI_CMD = 'wapiti'
 
-    def __init__(self, model_filename, wapiti_args=(),
-                 feature_template="# Label ungigrams and bigrams:\n*",
+    def __init__(self, model_filename, wapiti_train_args=(),
+                 feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None):
 
         self.model_filename = model_filename
-        if isinstance(wapiti_args, (list, tuple)):
-            self.wapiti_args = wapiti_args
+        if isinstance(wapiti_train_args, (list, tuple)):
+            self.wapiti_train_args = wapiti_train_args
         else:
-            self.wapiti_args = shlex.split(wapiti_args)
+            self.wapiti_train_args = shlex.split(wapiti_train_args)
         self.feature_template = feature_template
         self.unigrams_scope = unigrams_scope
         self.tempdir = tempdir
         self.unlink_temp = unlink_temp
         self.verbose = verbose
         self._wapiti_model = None
-
-        self.feature_encoder_ = feature_encoder or WapitiFeatureEncoder()
+        self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
         super(WapitiCRF, self).__init__()
 
     def fit(self, X, y, X_dev=None, y_dev=None, out_dev=None):
@@ -78,8 +77,8 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
                 raise ValueError("Pass both X_dev and y_dev to use the development data")
 
         self._wapiti_model = None
-        self.feature_encoder_.reset()
-        self.feature_encoder_.fit(X, y)
+        self.feature_encoder.reset()
+        self.feature_encoder.fit(X, y)
 
         dev_fn = None
         to_unlink = []
@@ -97,7 +96,7 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
             to_unlink.append(template_fn)
 
             # run wapiti training
-            args = ['train', '--pattern', template_fn] + self.wapiti_args
+            args = ['train', '--pattern', template_fn] + self.wapiti_train_args
             if dev_fn:
                 args += ['--devel', dev_fn]
             args += [train_fn, self.model_filename]
@@ -159,7 +158,7 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
         self._wapiti_model = wapiti.Model(model=self.model_filename)
 
     def _to_wapiti_sequences(self, X, y=None):
-        X = self.feature_encoder_.transform(X)
+        X = self.feature_encoder.transform(X)
         if y is None:
             return ["\n".join(lines) for lines in X]
         else:
@@ -181,11 +180,11 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
     def _create_wapiti_feature_template_file(self):
         # create feature template
         with tempfile.NamedTemporaryFile('wb', prefix="feature-template-", suffix=".txt", dir=self.tempdir, delete=False) as fp:
-            template = self.feature_encoder_.prepare_template(self.feature_template)
+            template = self.feature_encoder.prepare_template(self.feature_template)
             fp.write(template.encode('utf8'))
 
             if self.unigrams_scope is not None:
-                unigram_template = self.feature_encoder_.unigram_features_template(self.unigrams_scope)
+                unigram_template = self.feature_encoder.unigram_features_template(self.unigrams_scope)
                 fp.write(b"\n")
                 fp.write(unigram_template.encode('utf8'))
         return fp.name
