@@ -28,26 +28,32 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
     subprocess), so "wapiti" binary must be available if you need "fit"
     method.
 
-    For prediction it relies on python-wapiti library.
+    Trained model is saved in an external file; its filename is a first
+    parameter to constructor. This file is created and overwritten by
+    :meth:`WapitiCRF.fit`; it must exist for :meth:`WapitiCRF.transform`
+    to work.
+
+    For prediction WapitiCRF relies on python-wapiti library.
     """
 
     WAPITI_CMD = 'wapiti'
 
-    def __init__(self, model_filename, wapiti_train_args=(),
+    def __init__(self, model_filename, train_args=(),
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
-                 verbose=True, feature_encoder=None):
+                 verbose=True, feature_encoder=None, dev_size=0):
 
         self.model_filename = model_filename
-        if isinstance(wapiti_train_args, (list, tuple)):
-            self.wapiti_train_args = wapiti_train_args
+        if isinstance(train_args, (list, tuple)):
+            self.train_args = train_args
         else:
-            self.wapiti_train_args = shlex.split(wapiti_train_args)
+            self.train_args = shlex.split(train_args)
         self.feature_template = feature_template
         self.unigrams_scope = unigrams_scope
         self.tempdir = tempdir
         self.unlink_temp = unlink_temp
         self.verbose = verbose
+        self.dev_size = dev_size
         self._wapiti_model = None
         self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
         super(WapitiCRF, self).__init__()
@@ -72,13 +78,18 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
             Path to a file where tagged development data will be written.
 
         """
-        if any([X_dev, y_dev, out_dev]):
-            if X_dev is None or y_dev is None:
-                raise ValueError("Pass both X_dev and y_dev to use the development data")
-
         self._wapiti_model = None
         self.feature_encoder.reset()
         self.feature_encoder.fit(X, y)
+
+        if any([X_dev, y_dev, out_dev]):
+            if X_dev is None or y_dev is None:
+                raise ValueError("Pass both X_dev and y_dev to use the development data")
+        elif self.dev_size > 0:
+            # Use a part of training data to help with stopping.
+            # It means less data is used for training.
+            X_dev, y_dev = X[:self.dev_size], y[:self.dev_size]
+            X, y = X[self.dev_size:], y[self.dev_size:]
 
         dev_fn = None
         to_unlink = []
@@ -96,7 +107,7 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
             to_unlink.append(template_fn)
 
             # run wapiti training
-            args = ['train', '--pattern', template_fn] + self.wapiti_train_args
+            args = ['train', '--pattern', template_fn] + self.train_args
             if dev_fn:
                 args += ['--devel', dev_fn]
             args += [train_fn, self.model_filename]
