@@ -26,9 +26,7 @@ class NER(object):
         self.html_tokenizer = html_tokenizer or HtmlTokenizer()
 
     def extract(self, bytes_data):
-        tree = self.loader.loadbytes(bytes_data)
-        html_tokens, _ = self.html_tokenizer.tokenize_single(tree)
-        tags = self.model.transform([html_tokens])[0]
+        html_tokens, tags = self.extract_raw(bytes_data)
         groups = IobEncoder.group(zip([tok.token for tok in html_tokens], tags))
         return [
             (smart_join(tokens), tag)
@@ -38,6 +36,12 @@ class NER(object):
     def extract_from_url(self, url):
         data = urllib2.urlopen(url).read()
         return self.extract(data)
+
+    def extract_raw(self, bytes_data):
+        tree = self.loader.loadbytes(bytes_data)
+        html_tokens, _ = self.html_tokenizer.tokenize_single(tree)
+        tags = self.model.transform([html_tokens])[0]
+        return html_tokens, tags
 
 
 def create_wapiti_pipeline(model_filename,
