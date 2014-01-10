@@ -32,9 +32,9 @@ _select_score = operator.itemgetter(1)
 def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None):
     """
     Select a best way to split ``html_tokens`` and ``tags`` into clusters
-    of named entities. Return ``(threshold, score, clustering)`` tuple.
+    of named entities. Return ``(threshold, score, clusters)`` tuple.
 
-    ``clustering`` is a list of clusters; each cluster is a list of
+    ``clusters`` is a list of clusters; each cluster is a list of
     named entities: ``(html_tokens, tag, distance)`` tuples.
     """
     score_func = score_func or default_clustering_score
