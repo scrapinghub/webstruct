@@ -5,27 +5,57 @@ import numpy as np
 import csv
 import marisa_trie
 
+GAZETTEER_FORMAT = "2s 1s 5s 2s 3s"
+GAZETTEER_COLUMNS = ['country_code', 'feature_class', 'feature_code',
+                     'admin1_code', 'admin2_code']
+
+_GEONAMES_COLUMNS = ['geonameid', 'main_name', 'asciiname', 'alternatenames',
+                     'latitude', 'longitude', 'feature_class',
+                     'feature_code', 'country_code', 'cc2',
+                     'admin1_code', 'admin2_code', 'admin3_code', 'admin4_code',
+                     'population', 'elevation', 'dem', 'timezone',
+                     'modification_date']
+
+_GEONAMES_DTYPES = {
+    'feature_class': object,
+    'feature_code': object,
+    'country_code': object,
+    'admin1_code': object,
+    'admin2_code': object,
+    'admin3_code': object,
+    'admin4_code': object,
+}
+
+
+def to_marisa(df, columns=GAZETTEER_COLUMNS, format=GAZETTEER_FORMAT):
+    """
+    Encode ``pandas.DataFrame`` with GeoNames data
+    (loaded using :func:`read_geonames` and maybe filtered in some way)
+    to a ``marisa.RecordTrie``.
+    """
+    def data_iter(df):
+        df = _split_names_into_rows(df)
+        for idx, row in df.iterrows():
+            yield row['name'], _ensure_utf8([row[c] for c in columns])
+
+    return marisa_trie.RecordTrie(format, data_iter(df))
+
 
 def read_geonames(filename):
-    COLUMNS = ['geonameid', 'main_name', 'asciiname', 'alternatenames',
-               'latitude', 'longitude', 'feature_class', 'feature_code',
-               'country_code', 'cc2', 'admin1_code', 'admin2_code', 'admin3_code', 'admin4_code',
-               'population', 'elevation', 'dem', 'timezone', 'modification_date']
-
-    dtypes = {
-        'feature_class': object,
-        'feature_code': object,
-        'country_code': object,
-        'admin1_code': object,
-        'admin2_code': object,
-        'admin3_code': object,
-        'admin4_code': object,
-    }
+    """
+    Parse geonames file to a pandas.DataFrame. File may be downloaded
+    from http://download.geonames.org/export/dump/; it should be
+    in "geonames table" format.
+    """
     return pd.read_csv(filename, sep='\t', header=None, encoding='utf8',
-                       quoting=csv.QUOTE_NONE, names=COLUMNS, dtype=dtypes)
+                       quoting=csv.QUOTE_NONE, names=_GEONAMES_COLUMNS,
+                       dtype=_GEONAMES_DTYPES)
 
 
 def _joined_names_column(df):
+    """
+    Join data from all name columns into a single column.
+    """
     return df.apply(
         lambda row: ','.join(set([
             unicode(n)
@@ -37,6 +67,11 @@ def _joined_names_column(df):
 
 
 def _split_names_into_rows(df):
+    """
+    Create a separate row for each alternate name (with other data duplicated).
+    Delete 'main_name', 'asciiname' and 'alternatenames' columns and add
+    a single 'name' column instead.
+    """
     names = _joined_names_column(df).str.split(',')
     name_lenghts = names.map(len)
     idx = np.repeat(name_lenghts.index, name_lenghts.values)
@@ -56,10 +91,6 @@ def _split_names_into_rows(df):
     return df.reset_index()
 
 
-def to_marisa(df):
-    df = _split_names_into_rows(df)
-    def data_iter():
-        for idx, row in df.iterrows():
-            data = (row['country_code'], row['feature_class'], row['feature_code'], row['admin1_code'], row['admin2_code'])
-            yield row['name'], [v.encode('utf8') if not isinstance(v, float) else str(v) for v in data]
-    return marisa_trie.RecordTrie("2s 1s 5s 2s 3s", data_iter())
+def _ensure_utf8(lst):
+    return [v.encode('utf8') if not isinstance(v, float) else str(v)
+            for v in lst]

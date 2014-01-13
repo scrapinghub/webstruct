@@ -5,7 +5,6 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .gazetteer_features import us_census
 from .utils import CombinedFeatures
 
 DEFAULT_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
@@ -28,8 +27,6 @@ DEFAULT_FEATURES = [
     looks_like_month,
     looks_like_email,
     looks_like_street_part,
-
-    # us_census
 ]
 
 OPEN_HOURS_TAGSET = {'HOURS'}
