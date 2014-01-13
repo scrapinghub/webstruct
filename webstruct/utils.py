@@ -220,13 +220,36 @@ class LongestMatch(BestMatch):
     >>> lm.max_length
     3
     >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
-    >>> for start, end, key in lm.find_ranges(tokens):
-    ...     print(tokens[start:end], key)
-    (['Toronto'], 'Toronto')
-    (['North', 'Las', 'Vegas'], 'North Las Vegas')
-    (['USA'], 'USA')
+    >>> for start, end, matched_text in lm.find_ranges(tokens):
+    ...     print(start, end, tokens[start:end], matched_text)
+    (0, 1, ['Toronto'], 'Toronto')
+    (2, 5, ['North', 'Las', 'Vegas'], 'North Las Vegas')
+    (5, 6, ['USA'], 'USA')
     """
 
     def get_sorted_ranges(self, ranges, tokens):
         return sorted(ranges, key=lambda k: k[1]-k[0], reverse=True)
 
+
+def substrings(txt, min_length=2, max_length=10, pad=''):
+    """
+    >>> substrings("abc", 1)
+    ['a', 'ab', 'abc', 'b', 'bc', 'c']
+    >>> substrings("abc", 2)
+    ['ab', 'abc', 'bc']
+    >>> substrings("abc", 1, 2)
+    ['a', 'ab', 'b', 'bc', 'c']
+    >>> substrings("abc", 1, 3, '$')
+    ['$a', 'a', '$ab', 'ab', '$abc', 'abc', 'abc$', 'b', 'bc', 'bc$', 'c', 'c$']
+    """
+    res = []
+    for start in range(len(txt)):
+        remaining_length = len(txt) - start
+        for length in range(min_length, min(max_length+1, remaining_length+1)):
+            token = txt[start:start+length]
+            if start == 0 and pad:
+                res.append(pad+token)
+            res.append(token)
+            if length == remaining_length and pad:
+                res.append(token+pad)
+    return res

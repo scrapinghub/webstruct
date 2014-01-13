@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from ..utils import merge_dicts
+from webstruct.utils import merge_dicts, LongestMatch
+
 
 class CombinedFeatures(object):
     """
@@ -44,25 +45,33 @@ class CombinedFeatures(object):
         return res
 
 
-def substrings(txt, min_length=2, max_length=10, pad=''):
-    """
-    >>> substrings("abc", 1)
-    ['a', 'ab', 'abc', 'b', 'bc', 'c']
-    >>> substrings("abc", 2)
-    ['ab', 'abc', 'bc']
-    >>> substrings("abc", 1, 2)
-    ['a', 'ab', 'b', 'bc', 'c']
-    >>> substrings("abc", 1, 3, '$')
-    ['$a', 'a', '$ab', 'ab', '$abc', 'abc', 'abc$', 'b', 'bc', 'bc$', 'c', 'c$']
-    """
-    res = []
-    for start in range(len(txt)):
-        remaining_length = len(txt) - start
-        for length in range(min_length, min(max_length+1, remaining_length+1)):
-            token = txt[start:start+length]
-            if start == 0 and pad:
-                res.append(pad+token)
-            res.append(token)
-            if length == remaining_length and pad:
-                res.append(token+pad)
-    return res
+class LongestMatchGlobalFeature(object):
+    def __init__(self, lookup_data, featname):
+        """
+        Create a global feature function that adds 3 types of features:
+
+        1) B-featname - if current token starts an entity from
+           the ``lookup_data``;
+        2) I-featname - if current token is inside an entity from
+           the ``lookup_data``;
+        3) featname - if current token belongs to an entity from the
+           ``lookup_data``.
+
+        """
+        self.lm = LongestMatch(lookup_data)
+        self.b_featname = 'B-' + featname
+        self.i_featname = 'I-' + featname
+        self.featname = featname
+
+    def __call__(self, doc):
+        token_strings = [tok.token for tok, feat in doc]
+        for start, end, matched_text in self.lm.find_ranges(token_strings):
+            self.process_range(doc, start, end, matched_text)
+
+    def process_range(self, doc, start, end, matched_text):
+        doc[start][1][self.b_featname] = True
+        doc[start][1][self.featname] = True
+
+        for idx in range(start+1, end):
+            doc[idx][1][self.i_featname] = True
+            doc[idx][1][self.featname] = True
