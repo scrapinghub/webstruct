@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import csv
+import zipfile
 import pandas as pd
 import numpy as np
-import csv
 import marisa_trie
 
 GAZETTEER_FORMAT = "2s 1s 5s 2s 3s"
@@ -57,6 +58,13 @@ def read_geonames(filename):
     and in a "geonames table" format.
     """
     return pd.read_csv(filename, **_GEONAMES_PANDAS_PARAMS)
+
+
+def read_geonames_zipped(zip_filename, geonames_filename):
+    """ Parse zipped geonames file. """
+    with zipfile.ZipFile(zip_filename, 'r') as zf:
+        fp = zf.open(geonames_filename)
+        return read_geonames(fp)
 
 
 def _joined_names_column(df):
