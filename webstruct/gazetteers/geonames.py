@@ -2,7 +2,6 @@
 from __future__ import absolute_import
 import csv
 import zipfile
-import pandas as pd
 import numpy as np
 import marisa_trie
 
@@ -57,6 +56,7 @@ def read_geonames(filename):
     from http://download.geonames.org/export/dump/; it should be unzipped
     and in a "geonames table" format.
     """
+    import pandas as pd
     return pd.read_csv(filename, **_GEONAMES_PANDAS_PARAMS)
 
 
@@ -87,6 +87,8 @@ def _split_names_into_rows(df):
     Delete 'main_name', 'asciiname' and 'alternatenames' columns and add
     a single 'name' column instead.
     """
+    import pandas as pd
+
     names = _joined_names_column(df).str.split(',')
     name_lenghts = names.map(len)
     idx = np.repeat(name_lenghts.index, name_lenghts.values)
