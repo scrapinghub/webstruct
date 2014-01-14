@@ -26,6 +26,15 @@ _GEONAMES_DTYPES = {
     'admin4_code': object,
 }
 
+_GEONAMES_PANDAS_PARAMS = dict(
+    sep='\t',
+    header=None,
+    encoding='utf8',
+    quoting=csv.QUOTE_NONE,
+    names=_GEONAMES_COLUMNS,
+    dtype=_GEONAMES_DTYPES
+)
+
 
 def to_marisa(df, columns=GAZETTEER_COLUMNS, format=GAZETTEER_FORMAT):
     """
@@ -44,12 +53,10 @@ def to_marisa(df, columns=GAZETTEER_COLUMNS, format=GAZETTEER_FORMAT):
 def read_geonames(filename):
     """
     Parse geonames file to a pandas.DataFrame. File may be downloaded
-    from http://download.geonames.org/export/dump/; it should be
-    in "geonames table" format.
+    from http://download.geonames.org/export/dump/; it should be unzipped
+    and in a "geonames table" format.
     """
-    return pd.read_csv(filename, sep='\t', header=None, encoding='utf8',
-                       quoting=csv.QUOTE_NONE, names=_GEONAMES_COLUMNS,
-                       dtype=_GEONAMES_DTYPES)
+    return pd.read_csv(filename, **_GEONAMES_PANDAS_PARAMS)
 
 
 def _joined_names_column(df):
