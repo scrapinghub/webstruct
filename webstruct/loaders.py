@@ -163,8 +163,10 @@ _default_cleaner = lxml.html.clean.Cleaner(
     embedded=True,
     links=True,
     page_structure=False,
-    remove_unknown_tags=False,
+    annoying_tags=False,
     meta=False,
+    forms=False,
+    remove_unknown_tags=False,
     safe_attrs_only=False
 )
 
