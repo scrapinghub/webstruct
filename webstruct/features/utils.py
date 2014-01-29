@@ -58,7 +58,10 @@ class LongestMatchGlobalFeature(object):
            ``lookup_data``.
 
         """
-        self.lm = LongestMatch(lookup_data)
+        if hasattr(lookup_data, 'find_ranges'):
+            self.lm = lookup_data
+        else:
+            self.lm = LongestMatch(lookup_data)
         self.b_featname = 'B-' + featname
         self.i_featname = 'I-' + featname
         self.featname = featname
