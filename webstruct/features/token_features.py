@@ -10,7 +10,9 @@ __all__ = [
     'token_endswith_colon',
     'token_has_copyright',
     'number_pattern',
-    'prefixes_and_suffixes'
+    'prefixes_and_suffixes',
+    'PrefixFeatures',
+    'SuffixFeatures',
 ]
 
 
@@ -57,6 +59,31 @@ def number_pattern(html_token):
         }
     else:
         return {}
+
+
+class PrefixFeatures(object):
+    def __init__(self, lenghts=(2,3,4), featname="prefix", lower=True):
+        self.lower = lower
+        self.featname = featname
+        self.sizes = dict(
+            zip(["%s%s" % (featname, i) for i in lenghts], lenghts)
+        )
+
+    def __call__(self, html_token):
+        token = html_token.token if not self.lower else html_token.token.lower()
+        return {key: token[:size] for key, size in self.sizes.items()}
+
+
+class SuffixFeatures(object):
+    def __init__(self, lenghts=(2,3,4), featname="suffix", lower=True):
+        self.lower = lower
+        self.sizes = dict(
+            zip(["%s%s" % (featname, i) for i in lenghts], lenghts)
+        )
+
+    def __call__(self, html_token):
+        token = html_token.token if not self.lower else html_token.token.lower()
+        return {key: token[-size:] for key, size in self.sizes.items()}
 
 
 def prefixes_and_suffixes(html_token):
