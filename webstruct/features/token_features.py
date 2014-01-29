@@ -2,19 +2,46 @@
 from __future__ import absolute_import, division
 import re
 
-__all__ = ['token_shape', 'number_pattern', 'prefixes_and_suffixes']
+__all__ = [
+    'token_identity',
+    'token_lower',
+    'token_shape',
+    'token_endswith_dot',
+    'token_endswith_colon',
+    'token_has_copyright',
+    'number_pattern',
+    'prefixes_and_suffixes'
+]
+
+
+def token_identity(html_token):
+    return {'token': html_token.token}
+
+
+def token_lower(html_token):
+    return {'lower': html_token.token.lower()}
+
 
 def token_shape(html_token):
     token = html_token.token
     return {
-        'token': token,
-        'lower': token.lower(),
         'shape': _shape(token),
-        'endswith_dot': token.endswith('.') and token != '.',
-        'endswith_colon': token.endswith(':') and token != ':',
         'first_upper': token[0].isupper(),
-        'has_copyright': u'©' in token
     }
+
+
+def token_endswith_dot(html_token):
+    token = html_token.token
+    return {'endswith_dot': token.endswith('.') and token != '.'}
+
+
+def token_endswith_colon(html_token):
+    token = html_token.token
+    return {'endswith_colon': token.endswith(':') and token != ':'}
+
+
+def token_has_copyright(html_token):
+    return {'has_copyright': u'©' in html_token.token}
 
 
 def number_pattern(html_token):
