@@ -19,7 +19,12 @@ DEFAULT_FEATURES = [
     InsideTag('a'),
     InsideTag('strong'),
 
+    token_identity,
+    token_lower,
     token_shape,
+    token_endswith_colon,
+    token_endswith_dot,
+    token_has_copyright,
     number_pattern,
     prefixes_and_suffixes,
 
@@ -36,7 +41,12 @@ OPEN_HOURS_FEATURES = [
     borders,
     block_length,
 
+    token_identity,
+    token_lower,
     token_shape,
+    token_endswith_colon,
+    token_endswith_dot,
+    token_has_copyright,
     number_pattern,
     prefixes_and_suffixes,
     looks_like_email,
