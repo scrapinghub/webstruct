@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import copy
-from collections import namedtuple
+from itertools import chain
+from collections import namedtuple, Counter
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.tokenizers import tokenize
@@ -143,55 +144,71 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     This class extracts features from lists of HtmlTokens
     (from html trees tokenized using HtmlTokenizer).
 
-    HtmlFeatureExtractor accepts 2 kinds of features: "token features"
-    and "global features".
+    Parameters
+    ----------
 
-    Each "token" feature function accepts a single ``html_token``
-    and returns a dictionary wich maps feature names to feature values
-    (dicts from all token feature functions are merged).
+    token_features : list of callables
+        List of "token" feature functions. Each function accepts
+        a single ``html_token`` parameter and returns a dictionary
+        wich maps feature names to feature values. Dicts from all
+        token feature functions are merged by HtmlFeatureExtractor.
+        Example token feature (it just returns token text)::
 
-    Example token feature (it returns token text)::
+            >>> def current_token(html_token):
+            ...     return {'tok': html_token.token}
 
-        >>> def current_token(html_token):
-        ...     return {'tok': html_token.token}
+        ``webstruct.features`` module provides some predefined feature
+        functions, e.g. ``parent_tag`` which returns token's parent tag.
 
-    "global" feature functions accept a list of
-    (``html_token``, ``feature_dict``) tuples.
-    "Global" feature functions should change ``feature_dict``s inplace.
+        Example::
 
-    ``webstruct.features`` module provides some predefined feature functions,
-    e.g. ``parent_tag`` which returns token's parent tag.
+            >>> from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
+            >>> from webstruct.features import parent_tag
 
-    Example::
+            >>> loader = GateLoader(known_tags=['PER'])
+            >>> html_tokenizer = HtmlTokenizer()
+            >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
 
-        >>> from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
-        >>> from webstruct.features import parent_tag
+            >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
+            >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
+            >>> feature_dicts = feature_extractor.transform_single(html_tokens)
+            >>> for token, tag, feat in zip(html_tokens, tags, feature_dicts):
+            ...     print("%s %s %s" % (token.token, tag, feat))
+            hello O {'parent_tag': 'p'}
+            John B-PER {'parent_tag': 'p'}
+            Doe I-PER {'parent_tag': 'b'}
+            Mary B-PER {'parent_tag': 'p'}
+            said O {'parent_tag': 'p'}
 
-        >>> loader = GateLoader(known_tags=['PER'])
-        >>> html_tokenizer = HtmlTokenizer()
-        >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
+    global_features : list of callables, optional
+        List of "global" feature functions. Each "global" feature function
+        accepts a list of (``html_token``, ``feature_dict``) tuples.
+        "Global" feature functions should change ``feature_dict``s inplace.
 
-        >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
-        >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
-        >>> feature_dicts = feature_extractor.transform_single(html_tokens)
-        >>> for token, tag, feat in zip(html_tokens, tags, feature_dicts):
-        ...     print("%s %s %s" % (token.token, tag, feat))
-        hello O {'parent_tag': 'p'}
-        John B-PER {'parent_tag': 'p'}
-        Doe I-PER {'parent_tag': 'b'}
-        Mary B-PER {'parent_tag': 'p'}
-        said O {'parent_tag': 'p'}
+    min_df : integer of Mapping, optional
+        Feature values that have a document frequency strictly
+        lower than the given threshold are removed.
+        If ``min_df`` is integer, its value is used as threshold.
+
+        TODO: if ``min_df`` is a dictionary, it should map feature names
+        to thresholds.
 
     """
-    def __init__(self, token_features, global_features=None):
+    def __init__(self, token_features, global_features=None, min_df=1):
         self.token_features = token_features
         self.global_features = global_features or []
+        self.min_df = min_df
 
-    def fit(self, X, y=None):
+    def fit(self, htmltoken_lists, y=None):
+        self.fit_transform(htmltoken_lists)
         return self
 
-    def transform(self, X):
-        return [self.transform_single(html_tokens) for html_tokens in X]
+    def fit_transform(self, htmltoken_lists, y=None, **fit_params):
+        X = [self.transform_single(html_tokens) for html_tokens in htmltoken_lists]
+        return self._pruned(X, low=self.min_df)
+
+    def transform(self, htmltoken_lists):
+        return [self.transform_single(html_tokens) for html_tokens in htmltoken_lists]
 
     def transform_single(self, html_tokens):
         feature_func = CombinedFeatures(*self.token_features)
@@ -203,3 +220,20 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         return [{k: fd[k] for k in fd if not k.startswith('_')}
                 for tok, fd in token_data]
 
+    def _pruned(self, X, low=None):
+        if low is None or low <= 1:
+            return X
+        cnt = self._document_frequency(X)
+        keep = {k for (k, v) in cnt.items() if v >= low}
+        del cnt
+        return [
+            [{k: v for k, v in fd.items() if (k, v) in keep} for fd in doc]
+            for doc in X
+        ]
+
+    def _document_frequency(self, X):
+        cnt = Counter()
+        for doc in X:
+            seen_features = set(chain.from_iterable(fd.items() for fd in doc))
+            cnt.update(seen_features)
+        return cnt
