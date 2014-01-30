@@ -49,6 +49,7 @@ def create_wapiti_pipeline(model_filename,
                            global_features=None,
                            train_args=None,
                            feature_template=None,
+                           min_df=1,
                            **wapiti_kwargs):
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
@@ -74,7 +75,7 @@ def create_wapiti_pipeline(model_filename,
         train_args = '--algo l-bfgs --maxiter 100 --compact --nthread 8 --jobsize 1 --stopwin 15'
 
     return Pipeline([
-        ('fe', HtmlFeatureExtractor(token_features, global_features)),
+        ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
         ('crf', WapitiCRF(model_filename, train_args, feature_template, **wapiti_kwargs)),
     ])
 
