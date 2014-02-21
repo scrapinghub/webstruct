@@ -7,10 +7,14 @@ from .datetime_format import WEEKDAYS, MONTHS
 __all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time', 'looks_like_weekday',
            'looks_like_email', 'looks_like_street_part', 'looks_like_range']
 
-EMAIL_RE = re.compile(
-    r"([-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
-    r'|"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
-    r')@(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?', re.IGNORECASE)  # domain
+EMAIL_PARTS = dict(
+    username_re=r"(?P<username>[\w][\w_.-]*)",
+    domain_re=r"(?P<domain>[\w][\w_.-]*)",
+    zone_re=r"(?P<zone>[a-z]{2}|aero|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|moby|museum|name|net|org|pro|tel|travel|xxx)",
+)
+EMAIL_SRE = r"(?P<space>(\s|%20|\b)){username_re}@{domain_re}\.{zone_re}\b".format(**EMAIL_PARTS)
+EMAIL_RE = re.compile(EMAIL_SRE, re.IGNORECASE)
+
 
 MONTHS_SRE = '|'.join(set(flatten(MONTHS))).replace('.', '\.')
 MONTHS_RE = re.compile(r'^(' + MONTHS_SRE + ')$', re.IGNORECASE)
