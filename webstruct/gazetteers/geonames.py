@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import csv
 import zipfile
 import numpy as np
-import marisa_trie
 
 GAZETTEER_FORMAT = "2s 1s 5s 2s 3s"
 GAZETTEER_COLUMNS = ['country_code', 'feature_class', 'feature_code',
@@ -42,6 +41,8 @@ def to_marisa(df, columns=GAZETTEER_COLUMNS, format=GAZETTEER_FORMAT):
     (loaded using :func:`read_geonames` and maybe filtered in some way)
     to a ``marisa.RecordTrie``.
     """
+    import marisa_trie
+
     def data_iter(df):
         df = _split_names_into_rows(df)
         for idx, row in df.iterrows():
