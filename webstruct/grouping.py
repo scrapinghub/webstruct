@@ -1,21 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-This module implements a simple, heuristic algorithm to group extracted
+Often it is not enough to find all entities on a webpage.
+For example, one may want to extract separate "entity groups"
+with combined information about individual offices
+from a page that has contact details of several offices.
+An "entity group" may constsit of the name of the office along
+with office address (street, city, zipcode) and contacts
+(phones, faxes) in this case.
+
+This module provides a simple unsupervised algorithm to group extracted
 entities into clusters. It works this way:
 
-1. Each HTML token is assigned a position: position is increased
-   with each token and when HTML element changes.
+1. Each HTML token is assigned a position (an integer number).
+   Position increases with each token and when HTML element changes.
 
 2. Distances between subsequent entities are calculated.
 
 3. If a distance between 2 subsequent entities is greater than
    a certain threshold then new "cluster" is started.
 
-4. Clusters are scored - longer clusters get bigger scores,
-   but clusters with several entities of the same type are penalized.
+4. Clusters are scored - longer clusters get larger scores,
+   but clusters with several entities of the same type are penalized
+   (unless user explicitly asked not to penalize this entity type).
+   Total clustering score is calculated as a sum of scores
+   of individual clusters.
 
 5. Threshold value for the final clustering is selected
-   to maximize total clustering score.
+   to maximize total clustering score (4). Each input page gets
+   its own threshold.
 
 """
 from __future__ import absolute_import
@@ -63,7 +75,8 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     Heuristic scoring function for clusters:
 
     - larger clusters get bigger scores;
-    - clusters with multiple entities with the same tag are penalized.
+    - clusters that have multiple entities of the same tag are penalized;
+    - total score is computed as a sum of scores of all clusters.
 
     ``dont_penalize`` is a set of tags for which duplicates
     are allowed (empty by default).
@@ -103,7 +116,7 @@ def group_entities_by_threshold(html_tokens, tags, threshold, iob_encoder=IobEnc
 
 def _get_positions(html_tokens):
     # XXX: IMHO it penalizes text between entities too much
-    pos = -(2+2+1)
+    pos = -(2+1+2)
     prev_parent, prev_elem = None, None
     positions = []
     for tok in html_tokens:

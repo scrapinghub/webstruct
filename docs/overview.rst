@@ -1,9 +1,11 @@
 Webstruct
 =========
 
-Webstruct is a framework for creating statistical NER_ systems that work
-on HTML data, i.e. a framework for building tools that extract named
-entities from webpages.
+Installation
+------------
+
+Overview
+--------
 
 To develop a statistical NER system the following steps are needed:
 
@@ -25,7 +27,6 @@ Webstruct can:
   for other toolkits like CRFSuite_ and seqlearn_ is planned).
 
 .. _GeoNames: http://www.geonames.org/
-.. _NER: http://en.wikipedia.org/wiki/Named-entity_recognition
 .. _wapiti: http://wapiti.limsi.fr
 .. _CRFSuite: http://www.chokkan.org/software/crfsuite/
 .. _seqlearn: https://github.com/larsmans/seqlearn
