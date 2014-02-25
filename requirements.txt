@@ -1,4 +1,3 @@
-nose
 lxml
 scikit-learn
 -e https://github.com/adsva/python-wapiti.git@0e22f2d53c1d42dba6fb45144ff656cf39420c7e#egg=python-wapiti
