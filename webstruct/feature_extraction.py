@@ -199,16 +199,16 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         self.global_features = global_features or []
         self.min_df = min_df
 
-    def fit(self, htmltoken_lists, y=None):
-        self.fit_transform(htmltoken_lists)
+    def fit(self, html_token_lists, y=None):
+        self.fit_transform(html_token_lists)
         return self
 
-    def fit_transform(self, htmltoken_lists, y=None, **fit_params):
-        X = [self.transform_single(html_tokens) for html_tokens in htmltoken_lists]
+    def fit_transform(self, html_token_lists, y=None, **fit_params):
+        X = [self.transform_single(html_tokens) for html_tokens in html_token_lists]
         return self._pruned(X, low=self.min_df)
 
-    def transform(self, htmltoken_lists):
-        return [self.transform_single(html_tokens) for html_tokens in htmltoken_lists]
+    def transform(self, html_token_lists):
+        return [self.transform_single(html_tokens) for html_tokens in html_token_lists]
 
     def transform_single(self, html_tokens):
         feature_func = CombinedFeatures(*self.token_features)
