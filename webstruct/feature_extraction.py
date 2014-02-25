@@ -1,4 +1,41 @@
 # -*- coding: utf-8 -*-
+"""
+:mod:`webstruct.feature_extraction` contains classes that help
+with:
+
+- converting HTML pages into lists of feature dicts and
+- extracting annotations.
+
+Usually, the approach is the following:
+
+1. Extract text from the webpage and tokenize it, preserving information
+   about token position in original HTML tree
+   (token + its tree position = :class:`HtmlToken`).
+   Information about annotations (if present) is splitted from the rest
+   of data at this stage. :class:`HtmlTokenizer` is used for extracting
+   HTML tokens and annotation tags.
+
+2. Run a number of "token feature functions" that return bits of information
+   about each token: token text, token shape (uppercased/lowercased/...),
+   whether token is in ``<a>`` HTML element, etc. For each token information
+   is combined into a single feature dictionary.
+
+   Use :class:`HtmlTokenizer` at this stage. There is a number of
+   predefined token feature functions in :mod:`webstruct.features`.
+
+3. Run a number of "global feature functions" that can modify token feature
+   dicts (insert new features, change, remove them) using "global"
+   information - information about all other tokens in a document and their
+   existing token-level feature dicts.
+
+   This is also done by :class:`HtmlTokenizer`.
+
+   :class:`webstruct.features.utils.LongestMatchGlobalFeature` can be used
+   to create features that capture multi-token patterns. Some predefined
+   global feature functions can be found in :mod:`webstruct.gazetteers`.
+
+
+"""
 from __future__ import absolute_import
 import copy
 from itertools import chain
@@ -40,32 +77,12 @@ class HtmlToken(_HtmlToken):
 
 class HtmlTokenizer(object):
     """
-    Use ``HtmlTokenizer.tokenize_single`` to convert HTML tree (returned by one
-    of the webstruct loaders) to lists of HtmlToken instances
-    and associated tags::
+    Class for converting HTML trees (returned by one of the
+    :mod:`webstruct.loaders`) into lists of :class:`HtmlToken` instances
+    and associated tags.
 
-        >>> from webstruct import GateLoader, HtmlTokenizer
-        >>> loader = GateLoader(known_tags=['PER'])
-        >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
-        >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
-        >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
-        >>> html_tokens  # doctest: +ELLIPSIS
-        [HtmlToken(index=0, tokens=[u'hello', u'John'], elem=<Element p at ...>, is_tail=False), HtmlToken...]
-        >>> tags
-        ['O', u'B-PER', u'I-PER', u'B-PER', 'O']
-        >>> for tok, iob_tag in zip(html_tokens, tags):
-        ...     print "%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag
-            O hello p p
-        B-PER John p p
-        I-PER Doe strong strong
-        B-PER Mary br p
-            O said br p
-
-    For HTML without text it returns empty lists::
-
-        >>> html_tokenizer.tokenize_single(loader.loadbytes(b'<p></p>'))
-        ([], [])
-
+    Use :meth:`tokenize_single` to convert a single tree and :meth:`tokenize`
+    to convert multiple trees.
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize_func=None,
                  kill_html_tags=None, replace_html_tags=None):
@@ -75,6 +92,7 @@ class HtmlTokenizer(object):
         self.replace_html_tags = replace_html_tags
 
         # FIXME: don't use shared instance of sequence encoder
+        # because sequence encoder is stateful
         self.sequence_encoder_ = sequence_encoder or IobEncoder()
 
     def tokenize_single(self, tree):
@@ -85,6 +103,31 @@ class HtmlTokenizer(object):
         * a list of associated tags.
 
         For unannotated HTML all tags will be "O" - they may be ignored.
+
+        Example:
+
+            >>> from webstruct import GateLoader, HtmlTokenizer
+            >>> loader = GateLoader(known_tags=['PER'])
+            >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
+            >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
+            >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
+            >>> html_tokens  # doctest: +ELLIPSIS
+            [HtmlToken(index=0, tokens=[u'hello', u'John'], elem=<Element p at ...>, is_tail=False), HtmlToken...]
+            >>> tags
+            ['O', u'B-PER', u'I-PER', u'B-PER', 'O']
+            >>> for tok, iob_tag in zip(html_tokens, tags):
+            ...     print "%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag
+                O hello p p
+            B-PER John p p
+            I-PER Doe strong strong
+            B-PER Mary br p
+                O said br p
+
+        For HTML without text it returns empty lists::
+
+            >>> html_tokenizer.tokenize_single(loader.loadbytes(b'<p></p>'))
+            ([], [])
+
         """
         tree = copy.deepcopy(tree)
         self.sequence_encoder_.reset()
@@ -141,8 +184,21 @@ class HtmlTokenizer(object):
 
 class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     """
-    This class extracts features from lists of HtmlTokens
-    (from html trees tokenized using HtmlTokenizer).
+    This class extracts features from lists of :class:`HtmlToken` instances
+    (:class:`HtmlTokenizer` can be used to create such lists).
+
+    :meth:`fit` / :meth:`transform` / :meth:`fit_transform` interface
+    may look familiar to you if you ever used scikit-learn_.
+    And in fact :class:`HtmlFeatureExtractor` implements sklearn's
+    Transformer interface. But there is one twist: usually for sequence
+    labelling tasks the whole sequences are considered observations.
+    So in our case a single observation is a tokenized document
+    (a list of tokens), not an individual token:
+    :meth:`fit` / :meth:`transform` / :meth:`fit_transform` methods accept
+    lists of documents (lists of lists of tokens), and return lists
+    of documents' feature dicts (lists of lists of feature dicts).
+
+    .. _scikit-learn: http://scikit-learn.org
 
     Parameters
     ----------
@@ -157,8 +213,9 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
             >>> def current_token(html_token):
             ...     return {'tok': html_token.token}
 
-        ``webstruct.features`` module provides some predefined feature
-        functions, e.g. ``parent_tag`` which returns token's parent tag.
+        :mod:`webstruct.features` module provides some predefined feature
+        functions, e.g. :func:`parent_tag <webstruct.features.block_features.parent_tag>`
+        which returns token's parent tag.
 
         Example::
 
@@ -183,9 +240,10 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     global_features : list of callables, optional
         List of "global" feature functions. Each "global" feature function
         accepts a list of (``html_token``, ``feature_dict``) tuples.
-        "Global" feature functions should change ``feature_dict``s inplace.
+        "Global" feature functions should change feature dicts
+        ``feature_dict`` inplace.
 
-    min_df : integer of Mapping, optional
+    min_df : integer or Mapping, optional
         Feature values that have a document frequency strictly
         lower than the given threshold are removed.
         If ``min_df`` is integer, its value is used as threshold.

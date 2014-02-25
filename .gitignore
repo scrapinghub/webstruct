@@ -38,3 +38,4 @@ nosetests.xml
 .idea
 webstruct_data/datastore
 .ipynb_checkpoints
+docs/_build

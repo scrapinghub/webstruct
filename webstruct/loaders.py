@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Classes from this module load HTML annotated with WebAnnotator or GATE
-into a common representation: cleaned lxml.etree.ElementTree with
-annotation tags replaced by ``__START_TAGNAME__`` and ``__END_TAGNAME__``
-tokens.
+Classes from :mod:`webstruct.loaders` allow loading of HTML annotated with
+WebAnnotator_ or GATE_ into a common representation:
+cleaned lxml.etree.ElementTree with annotation tags replaced
+by ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens.
+
+.. _WebAnnotator: https://github.com/xtannier/WebAnnotator
+.. _GATE: http://gate.ac.uk/
+
 """
 from __future__ import absolute_import
 import re
@@ -133,10 +137,10 @@ class GateLoader(HtmlLoader):
 
 def load_trees(patterns, verbose=False):
     """
-    Load HTML data from several paths, maybe using different loaders.
-    Return a list of lxml trees.
+    Load HTML data from several paths/glob patterns,
+    maybe using different loaders. Return a list of lxml trees.
 
-    ``patterns`` should be a list of tuples ``(glob_pathname, loader)``.
+    ``patterns`` should be a list of tuples ``(glob_pattern, loader)``.
 
     Example::
 
@@ -150,8 +154,12 @@ def load_trees(patterns, verbose=False):
     )
 
 
-def load_trees_from_files(pathname, loader, verbose=False):
-    for path in human_sorted(glob.glob(pathname)):
+def load_trees_from_files(pattern, loader, verbose=False):
+    """
+    Load HTML data using loader ``loader`` from all files matched by
+    ``pattern`` glob pattern.
+    """
+    for path in human_sorted(glob.glob(pattern)):
         if verbose:
             print(path)
         yield loader.load(path)

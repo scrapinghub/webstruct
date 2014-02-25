@@ -5,7 +5,7 @@ import re
 
 class IobEncoder(object):
     """
-    Utility class for encoding tagged token streams using IOB encoding.
+    Utility class for encoding tagged token streams using IOB2 encoding.
 
     Encode input tokens using ``encode`` method::
 
@@ -92,7 +92,7 @@ class IobEncoder(object):
     @classmethod
     def group(cls, data, strict=False):
         """
-        Group IOB-encoded entities. ``data`` should be an iterable
+        Group IOB2-encoded entities. ``data`` should be an iterable
         of ``(info, iob_tag)`` tuples. ``info`` could be any Python object,
         ``iob_tag`` should be a string with a tag.
 
