@@ -26,7 +26,7 @@ class HtmlLoader(object):
     """
     def __init__(self, encoding=None, cleaner=None):
         self.encoding = encoding
-        self.cleaner = cleaner or _default_cleaner
+        self.cleaner = cleaner or _get_default_cleaner()
 
     def load(self, filename):
         with open(filename, 'rb') as f:
@@ -165,16 +165,17 @@ def load_trees_from_files(pattern, loader, verbose=False):
         yield loader.load(path)
 
 
-_default_cleaner = lxml.html.clean.Cleaner(
-    style=True,
-    scripts=True,
-    embedded=True,
-    links=True,
-    page_structure=False,
-    annoying_tags=False,
-    meta=False,
-    forms=False,
-    remove_unknown_tags=False,
-    safe_attrs_only=False
-)
+def _get_default_cleaner():
+    return lxml.html.clean.Cleaner(
+        style=True,
+        scripts=True,
+        embedded=True,
+        links=True,
+        page_structure=False,
+        annoying_tags=False,
+        meta=False,
+        forms=False,
+        remove_unknown_tags=False,
+        safe_attrs_only=False
+    )
 
