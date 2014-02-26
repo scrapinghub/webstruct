@@ -46,8 +46,28 @@ def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None
     Select a best way to split ``html_tokens`` and ``tags`` into clusters
     of named entities. Return ``(threshold, score, clusters)`` tuple.
 
-    ``clusters`` is a list of clusters; each cluster is a list of
-    named entities: ``(html_tokens, tag, distance)`` tuples.
+    ``clusters`` in the resulting tuple is a list of clusters;
+    each cluster is a list of named entities: ``(html_tokens, tag, distance)``
+    tuples.
+
+    ``html_tokens`` and ``tags`` could be a result of
+    :meth:`webstruct.model.NER.extract_raw()`.
+
+    If ``score_func`` is None, :func:`choose_best_clustering` uses
+    :func:`default_clustering_score` to compute the score
+    of a set of clusters under consideration (optimization objective).
+    You can pass your own scoring function to change the heuristic used.
+    Your function must have 2 positional parameters:
+    ``clusters`` and ``threshold`` (and any number of keyword arguments)
+    and return a score (number) which should be large if the clustering
+    is good and small or negative if it is bad.
+
+    ``score_kwargs`` is a dict of keyword arguments passed to
+    scoring function. For example, if you use default ``score_func``,
+    the goal is to group contact information, and you want to allow
+    several phones (TEL) and faxes (FAX) in the same group, pass
+    ``score_kwargs={'dont_penalize': {'TEL', 'FAX'}}``.
+
     """
     score_func = score_func or default_clustering_score
     score_kwargs = score_kwargs or {}
@@ -75,11 +95,12 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     Heuristic scoring function for clusters:
 
     - larger clusters get bigger scores;
-    - clusters that have multiple entities of the same tag are penalized;
+    - clusters that have multiple entities of the same tag are penalized
+      (unless the tag is in ``dont_penalize`` set);
     - total score is computed as a sum of scores of all clusters.
 
     ``dont_penalize`` is a set of tags for which duplicates
-    are allowed (empty by default).
+    are not penalized. It is empty by default.
     """
 
     # XXX: Maybe penalize large thresholds?

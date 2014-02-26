@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-This module provides some utils for easier creation of Wapiti_ templates
-and data files.
+This module provides some utils for easier creation of Wapiti_ models,
+templates and data files.
 
 .. _Wapiti: http://wapiti.limsi.fr/
 
-The idea is to train models with command-line wapiti utility
-using templates and training files prepared with WapitiFeatureEncoder,
-and then apply this model from Python using WapitiChunker class.
 """
 
 from __future__ import absolute_import
@@ -33,10 +30,13 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
     :meth:`WapitiCRF.fit`; it must exist for :meth:`WapitiCRF.transform`
     to work.
 
-    For prediction WapitiCRF relies on python-wapiti library.
+    For prediction WapitiCRF relies on python-wapiti_ library.
+
+    .. _python-wapiti: https://github.com/adsva/python-wapiti
     """
 
     WAPITI_CMD = 'wapiti'
+    """ Command used to start wapiti """
 
     def __init__(self, model_filename, train_args=(),
                  feature_template="# Label unigrams and bigrams:\n*\n",
@@ -64,17 +64,19 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
 
         Parameters
         ----------
-        X: a sequence of lists of feature dicts
+        X : list of lists of dicts
+            Feature dicts for several documents.
 
-        y: a sequence of lists of labels
+        y : a list of lists of strings
+            Labels for several documents.
 
-        X_dev: (optional) a sequence of lists of feature dicts
+        X_dev : (optional) list of lists of feature dicts
             Data used for testing and as a stopping criteria.
 
-        y_dev: (optional) a sequence of lists of labels
+        y_dev : (optional) list of lists of labels
             Labels corresponding to X_dev.
 
-        out_dev: (optional) string
+        out_dev : (optional) string
             Path to a file where tagged development data will be written.
 
         """
@@ -129,11 +131,13 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
 
         Parameters
         ----------
-        X: a sequence of lists of feature dicts
+        X : list of lists
+            feature dicts
 
         Returns
         -------
-        y: a sequence of lists of labels
+        y : list of lists
+            predicted labels
 
         """
         model = self._get_python_wapiti_model()
@@ -205,7 +209,11 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
 
 
 class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
-
+    """
+    Utility class for preparing Wapiti templates and
+    converting sequences of dicts with features to the format Wapiti_
+    understands.
+    """
     def __init__(self, move_to_front=('token',)):
         self.move_to_front = tuple(move_to_front)
         self.feature_names_ = None
@@ -213,8 +221,9 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         """
-        X should be a list of lists of dicts with features;
-        It can be obtained using HtmlFeaturesExtractor.
+        X should be a list of lists of dicts with features.
+        It can be obtained, for example, using
+        :class:`webstruct.feature_extraction.HtmlFeatureExtractor`.
         """
         return self.partial_fit(X)
 
