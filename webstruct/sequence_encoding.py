@@ -45,7 +45,7 @@ class IobEncoder(object):
     """
 
     def __init__(self, token_processor=None):
-        self.token_processor_ = token_processor or InputTokenProcessor()
+        self.token_processor = token_processor or InputTokenProcessor()
         self.reset()
 
     def reset(self):
@@ -54,7 +54,7 @@ class IobEncoder(object):
 
     def iter_encode(self, input_tokens):
         for token in input_tokens:
-            token_type, value = self.token_processor_.classify(token)
+            token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
                 self.tag = "B-" + value
