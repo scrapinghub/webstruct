@@ -3,7 +3,8 @@
 Classes from :mod:`webstruct.loaders` allow loading of HTML annotated with
 WebAnnotator_ or GATE_ into a common representation:
 cleaned lxml.etree.ElementTree with annotation tags replaced
-by ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens.
+by ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens. Such trees can
+be processed with utilities from :mod:`webstruct.feature_extraction`.
 
 .. _WebAnnotator: https://github.com/xtannier/WebAnnotator
 .. _GATE: http://gate.ac.uk/

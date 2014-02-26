@@ -11,7 +11,7 @@ Usually, the approach is the following:
 1. Extract text from the webpage and tokenize it, preserving information
    about token position in original HTML tree
    (token + its tree position = :class:`HtmlToken`).
-   Information about annotations (if present) is splitted from the rest
+   Information about annotations (if present) is split from the rest
    of data at this stage. :class:`HtmlTokenizer` is used for extracting
    HTML tokens and annotation tags.
 
@@ -52,16 +52,18 @@ class HtmlToken(_HtmlToken):
     """
     HTML token info.
 
-    * ``index`` is a token index (in the ``tokens`` list);
-    * ``tokens`` is a list of all tokens in current html block;
-    * ``elem`` is the current html block (as lxml's Element) - most likely
-      you want ``HtmlToken.parent`` instead of it;
-    * ``is_tail`` flag that indicates that token belongs to element tail
+    Attributes:
+
+    * :attr:`index` is a token index (in the :attr:`tokens` list)
+    * :attr:`tokens` is a list of all tokens in current html block
+    * :attr:`elem` is the current html block (as lxml's Element) - most
+      likely you want :attr:`parent` instead of it
+    * :attr:`is_tail` flag indicates that token belongs to element tail
 
     Computed properties:
 
-    * ``token`` is the current token (as text);
-    * ``parent`` is token's parent HTML element (as lxml's Element).
+    * :attr:`token` is the current token (as text);
+    * :attr:`parent` is token's parent HTML element (as lxml's Element).
 
     """
     @property
@@ -83,6 +85,26 @@ class HtmlTokenizer(object):
 
     Use :meth:`tokenize_single` to convert a single tree and :meth:`tokenize`
     to convert multiple trees.
+
+    Parameters
+    ----------
+
+    tagset : set, optional
+        A set of entity types to keep. If not passed, all entity types are kept.
+        Use this argument to discard some entity types from training data.
+    sequence_encoder : object, optional
+        Sequence encoder object. If not passed,
+        :class:`webstruct.sequence_encoding.IobEncoder` instance is created.
+    text_toknize_func : callable, optional
+        Function used for tokenizing text inside HTML elements.
+        By default, :class:`HtmlTokenizer` uses
+        :func:`webstruct.tokenizers.tokenize`.
+    kill_html_tags: set, optional
+        A set of HTML tags which should be removed. Contents inside
+        removed tags is not removed. See :func:`webstruct.utils.kill_html_tags`
+    replace_html_tags: dict, optional
+        A mapping ``{'old_tagname': 'new_tagname'}``. It defines how tags
+        should be renamed. See :func:`webstruct.utils.replace_html_tags`
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize_func=None,
                  kill_html_tags=None, replace_html_tags=None):

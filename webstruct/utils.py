@@ -160,7 +160,9 @@ def alphanum_key(s):
     """ Key func for sorting strings according to numerical value. """
     return [int(c) if c.isdigit() else c for c in re.split('([0-9]+)', s)]
 
+
 human_sorted = partial(sorted, key=alphanum_key)
+human_sorted.__doc__ = "``sorted`` that uses :func:`alphanum_key` as a key function"
 
 
 class BestMatch(object):
