@@ -115,7 +115,7 @@ class HtmlTokenizer(object):
 
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful
-        self.sequence_encoder_ = sequence_encoder or IobEncoder()
+        self.sequence_encoder = sequence_encoder or IobEncoder()
 
     def tokenize_single(self, tree):
         """
@@ -152,7 +152,7 @@ class HtmlTokenizer(object):
 
         """
         tree = copy.deepcopy(tree)
-        self.sequence_encoder_.reset()
+        self.sequence_encoder.reset()
         self._prepare_tree(tree)
         res = zip(*(self._process_tree(tree)))
         if not res:
@@ -190,13 +190,13 @@ class HtmlTokenizer(object):
     def _tokenize_and_split(self, text):
         input_tokens = self._limit_tags(self.text_tokenize_func(text or ''))
         input_tokens = map(unicode, input_tokens)
-        return self.sequence_encoder_.encode_split(input_tokens)
+        return self.sequence_encoder.encode_split(input_tokens)
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:
             return input_tokens
 
-        proc = self.sequence_encoder_.token_processor_
+        proc = self.sequence_encoder.token_processor
         token_classes = [proc.classify(tok) for tok in input_tokens]
         return [
             tok for (tok, (typ, value)) in zip(input_tokens, token_classes)
