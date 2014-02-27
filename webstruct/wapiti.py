@@ -223,7 +223,7 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
         """
         X should be a list of lists of dicts with features.
         It can be obtained, for example, using
-        :class:`webstruct.feature_extraction.HtmlFeatureExtractor`.
+        :class:`~.HtmlFeatureExtractor`.
         """
         return self.partial_fit(X)
 

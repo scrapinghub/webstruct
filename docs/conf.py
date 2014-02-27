@@ -47,7 +47,7 @@ class Mock(object):
 
 MOCK_MODULES = ['lxml', 'lxml.html', 'lxml.html.clean', 'lxml.etree',
                 'sklearn', 'sklearn.base', 'sklearn.metrics',
-                'sklearn.pipeline']
+                'sklearn.pipeline', 'numpy']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
 
