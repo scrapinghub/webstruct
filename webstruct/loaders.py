@@ -1,14 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Classes from :mod:`webstruct.loaders` allow loading of HTML annotated with
-WebAnnotator_ or GATE_ into a common representation:
-cleaned lxml.etree.ElementTree with annotation tags replaced
-by ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens. Such trees can
-be processed with utilities from :mod:`webstruct.feature_extraction`.
+Webstruct supports WebAnnotator_ and GATE_ annotation formats out of box;
+WebAnnotator_ is recommended.
+
+Both GATE and WebAnnotator embed annotations into HTML using special tags:
+GATE uses custom tags like ``<ORG>`` while WebAnnotator uses tags like
+``<span wa-type="ORG">``.
+
+:mod:`webstruct.loaders` classes convert GATE and WebAnnotator tags into
+``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens, clean the HTML
+and return the result as a tree parsed by lxml::
+
+    >>> from webstruct import WebAnnotatorLoader  # doctest: +SKIP
+    >>> loader = WebAnnotatorLoader()  # doctest: +SKIP
+    >>> loader.load('0.html')  # doctest: +SKIP
+    <Element html at ...>
+
+Such trees can be processed with utilities from
+:mod:`webstruct.feature_extraction`.
 
 .. _WebAnnotator: https://github.com/xtannier/WebAnnotator
 .. _GATE: http://gate.ac.uk/
-
 """
 from __future__ import absolute_import
 import re

@@ -20,17 +20,19 @@ Usually, the approach is the following:
    whether token is in ``<a>`` HTML element, etc. For each token information
    is combined into a single feature dictionary.
 
-   Use :class:`HtmlTokenizer` at this stage. There is a number of
+   Use :class:`HtmlFeatureExtractor` at this stage. There is a number of
    predefined token feature functions in :mod:`webstruct.features`.
 
 3. Run a number of "global feature functions" that can modify token feature
-   dicts (insert new features, change, remove them) using "global"
+   dicts inplace (insert new features, change, remove them) using "global"
    information - information about all other tokens in a document and their
-   existing token-level feature dicts.
+   existing token-level feature dicts. Global feature functions are applied
+   sequentially: subsequent global feature functions get feature dicts updated
+   by previous feature functions.
 
-   This is also done by :class:`HtmlTokenizer`.
+   This is also done by :class:`HtmlFeatureExtractor`.
 
-   :class:`webstruct.features.utils.LongestMatchGlobalFeature` can be used
+   :class:`~webstruct.features.utils.LongestMatchGlobalFeature` can be used
    to create features that capture multi-token patterns. Some predefined
    global feature functions can be found in :mod:`webstruct.gazetteers`.
 
@@ -94,7 +96,7 @@ class HtmlTokenizer(object):
         Use this argument to discard some entity types from training data.
     sequence_encoder : object, optional
         Sequence encoder object. If not passed,
-        :class:`webstruct.sequence_encoding.IobEncoder` instance is created.
+        :class:`~webstruct.sequence_encoding.IobEncoder` instance is created.
     text_toknize_func : callable, optional
         Function used for tokenizing text inside HTML elements.
         By default, :class:`HtmlTokenizer` uses
@@ -261,9 +263,15 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
 
     global_features : list of callables, optional
         List of "global" feature functions. Each "global" feature function
-        accepts a list of (``html_token``, ``feature_dict``) tuples.
-        "Global" feature functions should change feature dicts
-        ``feature_dict`` inplace.
+        should accept a single argument - a list
+        of ``(html_token, feature_dict)`` tuples.
+        This list contains all tokens from the document and
+        features extracted by previous feature functions.
+
+        "Global" feature functions are applied after "token" feature
+        functions in the order they are passed.
+
+        They should change feature dicts ``feature_dict`` inplace.
 
     min_df : integer or Mapping, optional
         Feature values that have a document frequency strictly

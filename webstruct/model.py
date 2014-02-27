@@ -20,7 +20,7 @@ class NER(object):
 
     Initialize it with a trained ``model``. ``model`` must have
     ``transform`` method that accepts lists of
-    :class:`webstruct.feature_extraction.HtmlToken` sequences and returns
+    :class:`~webstruct.feature_extraction.HtmlToken` sequences and returns
     lists of predicted IOB2 tags. :func:`create_wapiti_pipeline` function
     returns such model.
     """
@@ -70,7 +70,7 @@ def create_wapiti_pipeline(model_filename,
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by
-    :class:`webstruct.feature_extraction.HtmlTokenizer`
+    :class:`~webstruct.feature_extraction.HtmlTokenizer`
     as an input and produces sequences of IOB2 tags as output.
 
     Example of training, with all parameters default::
