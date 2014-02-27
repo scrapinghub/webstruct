@@ -56,8 +56,8 @@ loaders into labels and HTML tokens:
 >>> X, y = html_tokenizer.tokenize(trees)
 
 For each tree :class:`~.HtmlTokenizer` extracts two arrays: a list of
-:class:`~.HtmlToken` instances ``X`` and a list of tags encoded
-using IOB2_ encoding (also known as BIO encoding) ``y``.
+:class:`~.HtmlToken` instances and a list of tags encoded
+using IOB2_ encoding (also known as BIO encoding).
 So in our example ``X`` is a list of lists of :class:`~.HtmlToken`
 instances, and  ``y`` is a list of lists of strings.
 
@@ -156,7 +156,7 @@ to get the templates idea - CRF++ and Wapiti template formats are very similar.
 
 WebStruct allows to use feature names instead of numbers in Wapiti templates.
 
-Let's define a template that will make wapiti use first-order transition
+Let's define a template that will make Wapiti use first-order transition
 features, plus ``token`` text values in a +-2 window near the current token.
 
 >>> feature_template = '''
@@ -182,7 +182,7 @@ features, plus ``token`` text values in a +-2 window near the current token.
         ufeat:token=%x[0,token]
         ufeat:isupper=%x[0,isupper]
         ufeat:parent_tag=%x[0,parent_tag]
-        ufeat:boprder_at_left=%x[0,boprder_at_left]
+        ufeat:border_at_left=%x[0,boprder_at_left]
 
 Defining a Model
 ~~~~~~~~~~~~~~~~
@@ -196,12 +196,12 @@ Let's define a CRF model:
 
 First :class:`~.WapitiCRF` constructor argument is a file name
 the model will be save to after training.
-For ``train_args`` description check the Wapiti
-`manual <http://wapiti.limsi.fr/manual.html>`__.
+``train_args`` is a string or a list with arguments passed to wapiti;
+check Wapiti `manual <http://wapiti.limsi.fr/manual.html>`__ for available
+options.
 
 For training :class:`~.WapitiCRF` uses command-line ``wapiti``
 tool from Wapiti C++ library; make sure it is installed.
-To train the model use :meth:`.WapitiCRF.fit` method:
 
 Knowing about of :class:`~.WapitiCRF` and :class:`~.HtmlFeatureExtractor`
 is helpful to understand the big picture, but usually you don't use
@@ -229,7 +229,7 @@ lists of string IOB labels).
 
 If you use :class:`~.WapitiCRF` directly then train a CRF using
 :meth:`.WapitiCRF.fit` method. It accepts 2 lists: a list of lists of
-feature dicts for all documents, and a list of lists of tags for all documents:
+feature dicts, and a list of lists of tags:
 
 >>> crf.fit(features, y)
 
@@ -250,8 +250,8 @@ To do it, you need:
 1. Load data using :class:`~.HtmlLoader` loader. If a custom HTML cleaner
    was used for loading training data make sure to apply it here as well.
 2. Use the same ``html_tokenizer`` as used for training to extract HTML tokens
-   and labels from loaded trees. All labels would be "O" here;
-   ``y`` can be discarded.
+   from loaded trees. All labels would be "O" when using :class:`~.HtmlLoader`
+   loader - ``y`` can be discarded.
 3. Use the same ``feature_extractor`` as used for training to extract
    features.
 4. Run ``your_crf.transform()`` method on features extracted in (3)
@@ -279,13 +279,19 @@ fits this definition::
 
 >>> ner = webstruct.NER(model)
 
-and use :meth:`.NER.extract` method to extract entities:
+And finally use :meth:`.NER.extract` method to extract entities:
 
 >>> ner.extract(html)
 [('Scrapinghub', 'ORG'), ..., ('Iturriaga 3429 ap. 1', 'STREET'), ...]
 
 Unlike training, prediction doesn't require C++ Wapiti binary, but it requires
 `python-wapiti <https://github.com/adsva/python-wapiti>`_.
+
+
+Entity Grouping
+---------------
+
+TODO
 
 
 Model Development
