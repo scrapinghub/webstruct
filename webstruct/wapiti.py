@@ -13,8 +13,48 @@ import re
 import shlex
 import tempfile
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.pipeline import Pipeline
+from webstruct import HtmlFeatureExtractor
+from webstruct.features import DEFAULT_FEATURES
 from webstruct.utils import get_combined_keys, tostr, run_command
 from webstruct.metrics import avg_bio_f1_score
+
+
+def create_wapiti_pipeline(model_filename,
+                           token_features=None,
+                           global_features=None,
+                           train_args=None,
+                           feature_template=None,
+                           min_df=1,
+                           **wapiti_kwargs):
+    """
+    Create a scikit-learn Pipeline for HTML tagging using Wapiti.
+    This pipeline expects data produced by
+    :class:`~.HtmlTokenizer` as an input and produces
+    sequences of IOB2 tags as output.
+
+    Example of training, with all parameters default::
+
+        >>> import webstruct
+        >>> trees = webstruct.load_trees([
+        ...    ("train/*.html", webstruct.WebAnnotatorLoader())
+        ... ])  # doctest: +SKIP
+        >>> X, y = webstruct.HtmlTokenizer().tokenize(trees)  # doctest: +SKIP
+        >>> model = webstruct.create_wapiti_pipeline('model.wapiti')  # doctest: +SKIP
+        >>> model.fit(X, y)  # doctest: +SKIP
+
+    """
+
+    if token_features is None:
+        token_features = DEFAULT_FEATURES
+
+    if train_args is None:
+        train_args = '--algo l-bfgs --maxiter 100 --compact --nthread 8 --jobsize 1 --stopwin 15'
+
+    return Pipeline([
+        ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
+        ('crf', WapitiCRF(model_filename, train_args, feature_template, **wapiti_kwargs)),
+    ])
 
 
 class WapitiCRF(BaseEstimator, TransformerMixin):
