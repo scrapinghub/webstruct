@@ -313,7 +313,7 @@ contains contact phones of several persons or several business locations
 it is better to split all entities into groups of related
 entities - "person name + his/her phone(s)" or "address".
 
-WebStruct provides an :ref:`unsupervised algorithm <entity-grouping>`
+WebStruct provides an :ref:`unsupervised algorithm <grouping-algorithm>`
 for extracting such entity groups. Algorithm prefers to build
 large groups without entities of duplicate types; if a split is needed
 algorithm tries to split at points where distance between entities is larger.
@@ -327,7 +327,6 @@ Sometimes it is better to allow some entity types to appear
 multuple times in a group. For example, a person (PER entity) may have
 several contact phones and faxes (TEL and FAX entities) - we should penalize
 groups with multiple PERs, but multiple TELs and FAXes are fine.
-
 Use ``dont_penalize`` argument if you want to allow some entity types
 to appear multiple times in a group::
 
