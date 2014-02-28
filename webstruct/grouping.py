@@ -8,8 +8,8 @@ An "entity group" may constsit of the name of the office along
 with office address (street, city, zipcode) and contacts
 (phones, faxes) in this case.
 
-This module provides a simple unsupervised algorithm to group extracted
-entities into clusters. It works this way:
+:mod:`webstruct.grouping` module provides a simple unsupervised
+algorithm to group extracted entities into clusters. It works this way:
 
 1. Each HTML token is assigned a position (an integer number).
    Position increases with each token and when HTML element changes.

@@ -11,14 +11,11 @@ entities (addresses, organization names, open hours, etc) from webpages.
 Contents:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    intro
    tutorial
-   ref/loaders
-   ref/features
-   api
-
+   ref/index
 
 
 Indices and tables

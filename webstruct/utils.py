@@ -123,6 +123,7 @@ def kill_html_tags(doc, tagnames, keep_child=True):
 
 
 def html_document_fromstring(data, encoding):
+    """ Load HTML document from string using lxml.html.HTMLParser """
     parser = lxml.html.HTMLParser(encoding=encoding)
     return lxml.html.document_fromstring(data, parser=parser)
 
@@ -168,7 +169,7 @@ human_sorted.__doc__ = "``sorted`` that uses :func:`alphanum_key` as a key funct
 class BestMatch(object):
     """
     Class for finding best non-overlapping matches in a sequence of tokens.
-    Override ``get_sorted_ranges`` method to define which results are best.
+    Override :meth:`get_sorted_ranges` method to define which results are best.
     """
     def __init__(self, known):
 

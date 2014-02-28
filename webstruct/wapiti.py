@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-This module provides some utils for easier creation of Wapiti_ models,
-templates and data files.
+:mod:`webstruct.wapiti` module provides utilities for easier creation
+of Wapiti_ models, templates and data files.
 
 .. _Wapiti: http://wapiti.limsi.fr/
 

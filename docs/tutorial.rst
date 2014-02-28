@@ -264,7 +264,7 @@ all the steps above manually. You already know about
 :func:`.create_wapiti_pipeline` function that combines feature extraction
 and CRF model. :mod:`webstruct.model` has one more class called
 :class:`~.NER` that combines HTML loading, HTML tokenization,
-feature extraction, CRF model and entity building; it is the most
+feature extraction, CRF model and entity building; it is a more
 convenient way to extract entities.
 
 First, get some binary HTML data:
