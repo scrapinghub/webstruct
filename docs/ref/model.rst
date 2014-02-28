@@ -2,6 +2,8 @@ Model Creation Helpers
 ----------------------
 
 .. automodule:: webstruct.model
+
+.. autoclass:: NER
     :members:
-    :undoc-members:
+    :member-order: bysource
 

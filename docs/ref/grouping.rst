@@ -1,3 +1,5 @@
+.. _entity-grouping:
+
 Entity Grouping
 ---------------
 
