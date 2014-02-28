@@ -223,7 +223,7 @@ features, plus ``token`` text values in a +-2 window near the current token.
         ufeat:token=%x[0,token]
         ufeat:isupper=%x[0,isupper]
         ufeat:parent_tag=%x[0,parent_tag]
-        ufeat:border_at_left=%x[0,boprder_at_left]
+        ufeat:border_at_left=%x[0,border_at_left]
 
 To make Wapiti use this template, pass it as an argument to
 :func:`.create_wapiti_pipeline` (or :class:`~.WapitiCRF`, whatever you use):
@@ -261,14 +261,14 @@ from unseen (unannotated) webpages. First, get some binary HTML data:
 >>> import urllib2
 >>> html = urllib2.urlopen("http://scrapinghub.com/contact").read()
 
-Then initialize :class:`~.NER` with a trained model. The model must be able
-to extract features from HTML tokens and predict labels for these tokens.
-A pipeline created with :func:`.create_wapiti_pipeline` function
-fits this definition:
+Then create a :class:`~.NER` instance initialized with a trained model.
+The model must provide a ``transform`` method that extracts features
+from HTML tokens and predicts labels for these tokens. A pipeline created with
+:func:`.create_wapiti_pipeline` function fits this definition:
 
 >>> ner = webstruct.NER(model)
 
-And finally use :meth:`.NER.extract` method to extract entities:
+Finally, use :meth:`.NER.extract` method to extract entities:
 
 >>> ner.extract(html)
 [('Scrapinghub', 'ORG'), ..., ('Iturriaga 3429 ap. 1', 'STREET'), ...]
