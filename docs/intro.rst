@@ -25,8 +25,8 @@ Webstruct can:
   features, html-based features and gazetteer-based features
   (GeoNames_ support is built-in);
 * convert these features to the format sequence labelling toolikits accept
-  (only Wapiti_ CRF toolkit support it built-in at the moment, but support
-  for other toolkits like CRFSuite_ and seqlearn_ is planned).
+  (only Wapiti_ CRF toolkit support it built-in at the moment, but helpers
+  for other toolkits like CRFSuite_ and seqlearn_ are planned).
 
 Unlike most NER systems, webstruct works on HTML data, not on text data.
 This allows to easily use HTML structure as features, and also
