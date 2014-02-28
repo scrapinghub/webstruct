@@ -33,7 +33,7 @@ class NER(object):
         html_tokens, tags = self.extract_raw(bytes_data)
         groups = IobEncoder.group(zip([tok.token for tok in html_tokens], tags))
         return [
-            (smart_join(tokens), tag)
+            (self.build_entity(tokens, tag), tag)
             for (tokens, tag) in groups if tag != 'O'
         ]
 
@@ -55,3 +55,11 @@ class NER(object):
         tags = self.model.transform([html_tokens])[0]
         return html_tokens, tags
 
+    def build_entity(self, text_tokens, tag):
+        """
+        Join tokens to an entity. Return an entity, as text.
+        By default this function uses :func:`webstruct.utils.smart_join`;
+        override it to customize :meth:`extract` and :meth:`extract_from_url`
+        results.
+        """
+        return smart_join(text_tokens)
