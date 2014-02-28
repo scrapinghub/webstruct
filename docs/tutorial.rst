@@ -261,23 +261,21 @@ from unseen (unannotated) webpages. First, get some binary HTML data:
 >>> import urllib2
 >>> html = urllib2.urlopen("http://scrapinghub.com/contact").read()
 
-Then create a :class:`~.NER` instance initialized with a trained model.
-The model must provide a ``transform`` method that extracts features
-from HTML tokens and predicts labels for these tokens. A pipeline created with
-:func:`.create_wapiti_pipeline` function fits this definition:
+Then create a :class:`~.NER` instance initialized with a trained model:
 
 >>> ner = webstruct.NER(model)
+
+The ``model`` must provide a ``transform`` method that extracts features
+from HTML tokens and predicts labels for these tokens. A pipeline created with
+:func:`.create_wapiti_pipeline` function fits this definition.
 
 Finally, use :meth:`.NER.extract` method to extract entities:
 
 >>> ner.extract(html)
 [('Scrapinghub', 'ORG'), ..., ('Iturriaga 3429 ap. 1', 'STREET'), ...]
 
-:class:`~.NER` helper class combines HTML loading, HTML tokenization,
-feature extraction, CRF model and entity building; it is a more
-convenient way to extract entities.
 
-If you want to do it without :class:`~.NER` helper, the steps are:
+Generally, the steps are:
 
 1. Load data using :class:`~.HtmlLoader` loader. If a custom HTML cleaner
    was used for loading training data make sure to apply it here as well.
@@ -291,13 +289,52 @@ If you want to do it without :class:`~.NER` helper, the steps are:
    tags for each input document.
 5. Build entities from input tokens based on predicted tags
    (check :meth:`.IobEncoder.group` and :func:`.smart_join`).
+6. Split entities into groups (optional). One way to do it is to use
+   :mod:`webstruct.grouping`.
 
-
+:class:`~.NER` helper class combines HTML loading, HTML tokenization,
+feature extraction, CRF model, entity building and grouping.
 
 Entity Grouping
----------------
+~~~~~~~~~~~~~~~
 
-TODO
+Detecting entities on their own is not always enough; in many cases
+what is wanted is to find the relationship between them. For example,
+"**street_name/STREET city_name/CITY zipcode_number/ZIPCODE**
+form an address", or "**phone/TEL** is a phone of **person/PER**".
+
+The first approximation is to say that all entities from a single webpage
+are related. For example, if we have extracted some **organizaion/ORG** and some
+**phone/TEL** from a single webpage we may assume that the phone
+is a contact phone of the organization.
+
+Sometimes there are several "entity groups" on a webpage. If a page
+contains contact phones of several persons or several business locations
+it is better to split all entities into groups of related
+entities - "person name + his/her phone(s)" or "address".
+
+WebStruct provides an :ref:`unsupervised algorithm <entity-grouping>`
+for extracting such entity groups. Algorithm prefers to build
+large groups without entities of duplicate types; if a split is needed
+algorithm tries to split at points where distance between entities is larger.
+
+Use :meth:`.NER.extract_groups` to extract groups of entities:
+
+>>> ner.extract_groups(html)
+[[...], ... [('Iturriaga 3429 ap. 1', 'STREET'), ('Montevideo', 'CITY'), ...]]
+
+Sometimes it is better to allow some entity types to appear
+multuple times in a group. For example, a person (PER entity) may have
+several contact phones and faxes (TEL and FAX entities) - we should penalize
+groups with multiple PERs, but multiple TELs and FAXes are fine.
+
+Use ``dont_penalize`` argument if you want to allow some entity types
+to appear multiple times in a group::
+
+    ner.extract_groups(html, dont_penalize={'TEL', 'FAX'})
+
+The simple algorithm WebStruct provides is by no means a general solution
+to relation detection, but give it a try - maybe it is enough for your task.
 
 
 Model Development
