@@ -2,13 +2,14 @@
 """
 :mod:`webstruct.model` contains convetional wrappers for creating NER models.
 """
-
 from __future__ import absolute_import
 import urllib2
+
 from webstruct.loaders import HtmlLoader
 from webstruct.feature_extraction import HtmlTokenizer
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.utils import smart_join
+from webstruct.grouping import choose_best_clustering
 
 
 class NER(object):
@@ -55,11 +56,39 @@ class NER(object):
         tags = self.model.transform([html_tokens])[0]
         return html_tokens, tags
 
+    def extract_groups(self, bytes_data, dont_penalize=None):
+        """
+        Extract groups of named entities from binary HTML data ``bytes_data``.
+        Return a list of lists of ``(entity_text, entity_type)`` tuples.
+
+        Entites are grouped using algorithm from :mod:`webstruct.grouping`.
+        """
+        html_tokens, tags = self.extract_raw(bytes_data)
+        _, _, clusters = choose_best_clustering(
+            html_tokens,
+            tags,
+            score_kwargs={'dont_penalize': dont_penalize}
+        )
+
+        entities = []
+        for cluster in clusters:
+            text_entities = [
+                (text, tag) for (text, tag) in [
+                    (self.build_entity(tokens, tag), tag)
+                    for tokens, tag, dist in cluster
+                ]
+                if text
+            ]
+            if text_entities:
+                entities.append(text_entities)
+
+        return entities
+
     def build_entity(self, text_tokens, tag):
         """
         Join tokens to an entity. Return an entity, as text.
         By default this function uses :func:`webstruct.utils.smart_join`;
-        override it to customize :meth:`extract` and :meth:`extract_from_url`
-        results.
+        override it to customize :meth:`extract`, :meth:`extract_from_url`
+        and :meth:`extract_groups` results.
         """
         return smart_join(text_tokens)
