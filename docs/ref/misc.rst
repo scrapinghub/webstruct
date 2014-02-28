@@ -1,34 +1,5 @@
-Reference
-=========
-
-
-Model Creation Helpers
-----------------------
-
-.. automodule:: webstruct.model
-    :members:
-    :undoc-members:
-
-Metrics
--------
-
-.. automodule:: webstruct.metrics
-    :members:
-
-Entity Grouping
----------------
-
-.. automodule:: webstruct.grouping
-    :members:
-
-
-Wapiti Helpers
---------------
-
-.. automodule:: webstruct.wapiti
-    :members:
-    :undoc-members:
-
+Miscellaneous
+=============
 
 Utils
 -----
