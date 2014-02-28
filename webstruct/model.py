@@ -32,11 +32,11 @@ class NER(object):
         Return a list of ``(entity_text, entity_type)`` tuples.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
-        groups = IobEncoder.group(zip([tok.token for tok in html_tokens], tags))
-        return [
+        groups = IobEncoder.group(zip(html_tokens, tags))
+        return _drop_empty(
             (self.build_entity(tokens, tag), tag)
             for (tokens, tag) in groups if tag != 'O'
-        ]
+        )
 
     def extract_from_url(self, url):
         """
@@ -72,23 +72,26 @@ class NER(object):
 
         entities = []
         for cluster in clusters:
-            text_entities = [
-                (text, tag) for (text, tag) in [
-                    (self.build_entity(tokens, tag), tag)
-                    for tokens, tag, dist in cluster
-                ]
-                if text
-            ]
+            text_entities = _drop_empty(
+                (self.build_entity(tokens, tag), tag)
+                for tokens, tag, dist in cluster
+            )
             if text_entities:
                 entities.append(text_entities)
 
         return entities
 
-    def build_entity(self, text_tokens, tag):
+    def build_entity(self, html_tokens, tag):
         """
         Join tokens to an entity. Return an entity, as text.
-        By default this function uses :func:`webstruct.utils.smart_join`;
-        override it to customize :meth:`extract`, :meth:`extract_from_url`
-        and :meth:`extract_groups` results.
+        By default this function uses :func:`webstruct.utils.smart_join`.
+
+        Override it to customize :meth:`extract`, :meth:`extract_from_url`
+        and :meth:`extract_groups` results. If this function returns empty
+        string or None, entity is dropped.
         """
-        return smart_join(text_tokens)
+        return smart_join(t.token for t in html_tokens)
+
+
+def _drop_empty(entities):
+    return [(text, tag) for (text, tag) in entities if text]
