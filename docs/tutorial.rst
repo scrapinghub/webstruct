@@ -253,7 +253,7 @@ feature dicts, and a list of lists of tags:
 >>> crf.fit(features, y)
 
 Named Entity Recognition
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Once you got a trained model you can use it to extract entities
 from unseen (unannotated) webpages. First, get some binary HTML data:
@@ -296,7 +296,7 @@ Generally, the steps are:
 feature extraction, CRF model, entity building and grouping.
 
 Entity Grouping
-~~~~~~~~~~~~~~~
+---------------
 
 Detecting entities on their own is not always enough; in many cases
 what is wanted is to find the relationship between them. For example,
