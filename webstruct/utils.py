@@ -29,8 +29,10 @@ def get_combined_keys(dicts):
     return seen_keys
 
 
-def tostr(val):
-    if isinstance(val, basestring):
+def tostr(val, encoding='utf8'):
+    if isinstance(val, unicode):
+        return val.encode(encoding)
+    if isinstance(val, str):
         return val
     if isinstance(val, bool):
         return str(int(val))
