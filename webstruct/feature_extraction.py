@@ -65,7 +65,8 @@ class HtmlToken(_HtmlToken):
     Computed properties:
 
     * :attr:`token` is the current token (as text);
-    * :attr:`parent` is token's parent HTML element (as lxml's Element).
+    * :attr:`parent` is token's parent HTML element (as lxml's Element);
+    * :attr:`root` is an ElementTree this token belongs to.
 
     """
     @property
@@ -77,6 +78,10 @@ class HtmlToken(_HtmlToken):
         if not self.is_tail:
             return self.elem
         return self.elem.getparent()
+
+    @property
+    def root(self):
+        return self.elem.getroottree()
 
 
 class HtmlTokenizer(object):
