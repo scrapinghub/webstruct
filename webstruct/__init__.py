@@ -5,3 +5,4 @@ from .sequence_encoding import IobEncoder, InputTokenProcessor
 from .feature_extraction import HtmlFeatureExtractor, HtmlTokenizer, HtmlToken
 from .wapiti import WapitiCRF, create_wapiti_pipeline
 from .model import NER
+from .crfsuite import create_crfsuite_pipeline
