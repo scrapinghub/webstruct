@@ -155,6 +155,7 @@ class IobEncoder(object):
             yield buf, tag
 
 
+# FIXME: this hook is incomplete: __START_TAG__ tokens are assumed everywhere.
 class InputTokenProcessor(object):
     def __init__(self, tagset=None):
         if tagset is not None:
@@ -185,3 +186,4 @@ class InputTokenProcessor(object):
 
         # regular token
         return 'token', token
+
