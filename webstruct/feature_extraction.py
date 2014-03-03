@@ -41,13 +41,14 @@ Usually, the approach is the following:
 from __future__ import absolute_import
 import re
 import copy
-from itertools import chain
+from itertools import chain, groupby
 from collections import namedtuple, Counter
+from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.tokenizers import tokenize
 from webstruct.features import CombinedFeatures
-from webstruct.utils import replace_html_tags, kill_html_tags
+from webstruct.utils import replace_html_tags, kill_html_tags, smart_join
 
 _HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail')
 
@@ -177,6 +178,62 @@ class HtmlTokenizer(object):
             X.append(html_tokens)
             y.append(tags)
         return X, y
+
+    def detokenize_single(self, html_tokens, tags):
+        """
+        Build annotated ``lxml.etree.ElementTree`` from
+        ``html_tokens`` (a list of :class:`.HtmlToken` instances)
+        and ``tags`` (a list of their tags).
+
+        Annotations are encoded as ``__START_TAG__`` and ``__END_TAG__``
+        text tokens.
+        """
+        if len(html_tokens) != len(tags):
+            raise ValueError("len(html_tokens) must be equal to len(tags)")
+
+        if not html_tokens:
+            return None
+
+        orig_tree = html_tokens[0].root
+        tree = copy.deepcopy(orig_tree)
+        xpatheval = XPathEvaluator(tree)
+
+        # find starts/ends of token groups
+        token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
+        starts, ends = set(), set()
+        pos = 0
+        for gr_tokens, gr_tag in token_groups:
+            n_tokens = len(gr_tokens)
+            if gr_tag != 'O':
+                starts.add(pos)
+                ends.add(pos + n_tokens - 1)
+            pos += n_tokens
+
+        # mark starts/ends with special tokens
+        data = zip(html_tokens, tags, range(len(html_tokens)))
+        keyfunc = lambda rec: (rec[0].elem, rec[0].is_tail)
+
+        for (orig_elem, is_tail), g in groupby(data, keyfunc):
+            g = list(g)
+            fix = False
+            tokens = g[0][0].tokens[:]
+            for token, tag, token_idx in g:
+                if token_idx in starts:
+                    tokens[token.index] = ' __START_%s__ %s' % (tag[2:], tokens[token.index])
+                    fix = True
+                if token_idx in ends:
+                    tokens[token.index] = '%s __END_%s__ ' % (tokens[token.index], tag[2:])
+                    fix = True
+
+            if fix:
+                xpath = orig_tree.getpath(orig_elem)
+                elem = xpatheval(xpath)[0]
+                if is_tail:
+                    elem.tail = smart_join(tokens)
+                else:
+                    elem.text = smart_join(tokens)
+
+        return tree
 
     def _prepare_tree(self, tree):
         if self.kill_html_tags:
