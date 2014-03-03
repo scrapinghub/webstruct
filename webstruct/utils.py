@@ -122,7 +122,7 @@ def kill_html_tags(doc, tagnames, keep_child=True):
                 elem.drop_tree()
 
 
-def html_document_fromstring(data, encoding):
+def html_document_fromstring(data, encoding=None):
     """ Load HTML document from string using lxml.html.HTMLParser """
     parser = lxml.html.HTMLParser(encoding=encoding)
     return lxml.html.document_fromstring(data, parser=parser)
