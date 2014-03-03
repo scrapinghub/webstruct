@@ -39,6 +39,7 @@ Usually, the approach is the following:
 
 """
 from __future__ import absolute_import
+import re
 import copy
 from itertools import chain
 from collections import namedtuple, Counter
@@ -124,6 +125,9 @@ class HtmlTokenizer(object):
         # because sequence encoder is stateful
         self.sequence_encoder = sequence_encoder or IobEncoder()
 
+        tag_pattern = self.sequence_encoder.token_processor.tag_re.pattern.strip()
+        self._tag_re = re.compile(" %s " % tag_pattern)
+
     def tokenize_single(self, tree):
         """
         Return two lists:
@@ -193,6 +197,15 @@ class HtmlTokenizer(object):
         tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
             yield HtmlToken(index, tail_tokens, tree, True), tag
+
+        self._cleanup_elem(tree)
+
+    def _cleanup_elem(self, elem):
+        """ Remove special tokens from elem """
+        if elem.text:
+            elem.text = self._tag_re.sub("", elem.text)
+        if elem.tail:
+            elem.tail = self._tag_re.sub("", elem.tail)
 
     def _tokenize_and_split(self, text):
         input_tokens = self._limit_tags(self.text_tokenize_func(text or ''))
