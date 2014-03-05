@@ -10,8 +10,8 @@ import itertools
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
+from webstruct.base import BaseCRF
 from webstruct.features import DEFAULT_FEATURES
-from webstruct.metrics import avg_bio_f1_score
 from webstruct.utils import get_combined_keys, tostr
 
 
@@ -26,7 +26,7 @@ CRFPP_MACRO_PATTERN = re.compile(r'''
 
 def parse_crfpp_template(template):
     """
-    parse a CRF++ compatible template into the list of tuple (name, offset)
+    parse a CRF++ compatible template into the list of templates in form of (name, offset)
 
     >>> parse_crfpp_template("U22:%x[0,tag]")
     [(('tag', 0),)]
@@ -57,7 +57,6 @@ def parse_crfpp_template(template):
 def create_crfsuite_pipeline(model_filename,
                              token_features=None,
                              global_features=None,
-                             train_args=None,
                              feature_template=None,
                              min_df=1,
                              **crfsuite_kwargs):
@@ -84,8 +83,8 @@ def create_crfsuite_pipeline(model_filename,
 
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('cfe', CRFsuiteFeatureEncoder(template=feature_template)),
-        ('crf', CRFsuite(model_filename, verbose=True)),
+        ('encoder', CRFsuiteFeatureEncoder(feature_template)),
+        ('crf', CRFsuite(model_filename, **crfsuite_kwargs)),
     ])
 
 
@@ -95,8 +94,10 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
     """
 
     def __init__(self, template="#"):
-        self.templates_ = parse_crfpp_template(template)
+        self.template = template
+        self.templates_ = parse_crfpp_template(self.template)
         self.feature_names_ = None
+        super(CRFsuiteFeatureEncoder, self).__init__()
 
     def fit(self, X, y=None):
         return self.partial_fit(X)
@@ -176,16 +177,33 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
 
         return items
 
-class CRFsuite(BaseEstimator, TransformerMixin):
-    """
-    Class for training and applying CRFsuite models.
+class CRFsuite(BaseCRF):
+    """Class for training and applying CRFsuite models.
 
     It relies on CRFsuite's python SWIG package.
+
+    Parameters
+    ----------
+    algorithm : string,
+        'lbfgs' for Gradient descent using the L-BFGS method,
+        'l2sgd' for Stochastic Gradient Descent with L2 regularization term
+        'ap' for Averaged Perceptron
+        'pa' for Passive Aggressive
+        'arow' for Adaptive Regularization Of Weight Vector
+
+    c1: float
+        the coefficient for L1 regularization.
+
+    c2: float
+        The coefficient for L2 regularization.
     """
 
-    def __init__(self, model_filename, verbose=True):
+    def __init__(self, model_filename, algorithm='l2sgd', c1=0.0, c2=1.0, verbose=True):
         self.model_filename = model_filename
         self.verbose = verbose
+        self.algorithm = algorithm
+        self.c1 = c1
+        self.c2 = c2
         super(CRFsuite, self).__init__()
 
     def fit(self, X, y):
@@ -212,21 +230,25 @@ class CRFsuite(BaseEstimator, TransformerMixin):
                     print msg.strip()
 
         trainer = Trainer(self)
-        trainer.select('l2sgd', 'crf1d')
+        trainer.select(self.algorithm, 'crf1d')
 
         for items, labels in itertools.izip(X, y):
             xseq = self._to_item_sequence(items)
             yseq = self._to_stringlist(labels)
             trainer.append(xseq, yseq, 0)
 
-        trainer.set('c2', '0.1')
+        if self.algorithm == 'lbfgs':
+            trainer.set('c1', str(self.c1))
+
+        trainer.set('c2', str(self.c2))
         trainer.train(self.model_filename, -1)
         return self
 
     def transform(self, X):
         import crfsuite
 
-        tagger = crfsuite.Tagger(self.model_filename)
+        tagger = crfsuite.Tagger()
+        tagger.open(self.model_filename)
         xseqs = [self._to_item_sequence(items) for items in X]
         yseqs = []
         for xseq in xseqs:
@@ -250,7 +272,3 @@ class CRFsuite(BaseEstimator, TransformerMixin):
             yseq.append(tostr(label))
 
         return yseq
-
-    def score(self, X, y):
-        y_pred = self.transform(X)
-        return avg_bio_f1_score(y, y_pred)
