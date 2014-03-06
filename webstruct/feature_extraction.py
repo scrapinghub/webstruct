@@ -127,7 +127,7 @@ class HtmlTokenizer(object):
         self.sequence_encoder = sequence_encoder or IobEncoder()
 
         tag_pattern = self.sequence_encoder.token_processor.tag_re.pattern.strip()
-        self._tag_re = re.compile(" %s " % tag_pattern)
+        self._tag_re = re.compile(r"(^|\s)%s(\s|$)" % tag_pattern)
 
     def tokenize_single(self, tree):
         """

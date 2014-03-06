@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from copy import deepcopy
 from lxml.html import tostring
 from webstruct.feature_extraction import HtmlTokenizer
-from webstruct.loaders import GateLoader
+from webstruct.loaders import GateLoader, HtmlLoader
 from webstruct.utils import html_document_fromstring
 from .utils import HtmlTest
 
@@ -36,8 +36,7 @@ ANNOTATED_HTML = b"""
         <b>office</b>in  __START_CITY__ Montevideo __END_CITY__
     </p>
   </body>
-</html>
-"""
+</html>"""
 
 
 class HtmlTokenizerTest(HtmlTest):
@@ -53,8 +52,8 @@ class HtmlTokenizerTest(HtmlTest):
         # original tree is not changed
         self.assertHtmlTreeEqual(src_tree, orig_src_tree)
 
-    def test_tokenize_single(self):
-        html_tokens, tags = HtmlTokenizer().tokenize_single(self._load())
+    def assertTokenizationWorks(self, loaded_data):
+        html_tokens, tags = HtmlTokenizer().tokenize_single(loaded_data)
 
         # data is correct
         self.assertListEqual(
@@ -65,6 +64,15 @@ class HtmlTokenizerTest(HtmlTest):
             tags,
             [u'B-ORG', u'I-ORG', 'O', 'O', 'O', 'O', u'B-CITY']
         )
+
+        tree = html_tokens[0].root
+        self.assertNotIn('__', tostring(tree))
+
+    def test_tokenize_single(self):
+        self.assertTokenizationWorks(self._load())
+
+    def test_tokenize_single_lineends(self):
+        self.assertTokenizationWorks(HtmlLoader().loadbytes(ANNOTATED_HTML))
 
     def test_detokenize_single(self):
         src_tree = self._load()
