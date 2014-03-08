@@ -115,14 +115,14 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
 
     def transform_single(self, x):
         r"""
-        Transform a sequence of dict to a list of ``CRFsuite.Item```
+        Transform a sequence of dict to a list of ``CRFsuite.Item``
 
         >>> encoder = CRFsuiteFeatureEncoder("U:token L=%x[0, token]/%x[1, token]")
         >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
         >>> encoder.fit([seq_features])
-        CRFsuiteFeatureEncoder(template=None)
+        CRFsuiteFeatureEncoder(template='U:token L=%x[0, token]/%x[1, token]')
 
-        >>> items = encoder.transform_single([{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}])
+        >>> items = encoder.transform_single([{'token': u'the', 'tag': 'DT'}, {'token': u'dog', 'tag': 'NN'}])
 
         >>> [(attr.attr, attr.value) for attr in items[0]]
         [('token=the', 1.0), ('tag=DT', 1.0), ('token[0]|token[1]=the|dog', 1.0)]
@@ -134,7 +134,7 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
         >>> encoder = CRFsuiteFeatureEncoder("U:token L=%x[0, token]/%x[1, token]")
         >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
         >>> encoder.fit([seq_features])
-        CRFsuiteFeatureEncoder(template=None)
+        CRFsuiteFeatureEncoder(template='U:token L=%x[0, token]/%x[1, token]')
 
         >>> items = encoder.transform_single([{'token': ('the', 2.0), 'tag': 'DT'}, {'token': ('dog', 1.5), 'tag': 'NN'}])
 
@@ -151,9 +151,9 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
             for key in self.feature_names_:
                 v = x[t].get(key)
                 if isinstance(v, tuple):
-                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v[0])), v[1]))
+                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v[0]).encode('utf8')), v[1]))
                 else:
-                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v))))
+                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v).encode('utf8'))))
 
         # expand bigram features and other unigram features in CRF++ compatible template
         for template in self.templates_:
@@ -169,9 +169,9 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
                         v = x[p][field]
                         if isinstance(v, tuple):
                             # always skip the scale
-                            values.append(tostr(v[0]))
+                            values.append(tostr(v[0]).encode('utf8'))
                         else:
-                            values.append(tostr(v))
+                            values.append(tostr(v).encode('utf8'))
                 if values:
                     items[t].append(crfsuite.Attribute('%s=%s' % (name, '|'.join(values))))
 
@@ -212,7 +212,7 @@ class CRFsuite(BaseCRF):
 
         Parameters
         ----------
-        X : a list of lists of ```crfsuite.Item```
+        X : a list of lists of ``crfsuite.Item``
 
         y : a list of lists of strings
             Labels for several documents.
@@ -269,6 +269,6 @@ class CRFsuite(BaseCRF):
 
         yseq = crfsuite.StringList()
         for label in labels:
-            yseq.append(tostr(label))
+            yseq.append(label.encode('utf8'))
 
         return yseq
