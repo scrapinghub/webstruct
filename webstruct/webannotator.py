@@ -12,7 +12,7 @@ from copy import deepcopy
 from collections import defaultdict, OrderedDict
 from xml.sax.handler import ContentHandler
 import lxml.sax
-from lxml.etree import Element
+from lxml.etree import Element, LXML_VERSION
 
 DEFAULT_COLORS = [
     # foreground, background
@@ -147,7 +147,16 @@ class _WaContentHandler(ContentHandler):
                 ('style', 'color:%s; background-color:%s;' % (fg, bg)),
                 ('class', 'WebAnnotator_%s' % self.entity),
             ])
-            self.out.startElement('span', attrs)
+            self.out.startElement('span', _fix_sax_attributes(attrs))
+
+
+def _fix_sax_attributes(attrs):
+    """ Fix sax startElement attributes for lxml < 3.1.2 """
+    if LXML_VERSION >= (3,1,2):
+        return attrs
+    items = [((None, key), value) for key, value in attrs.items()]
+    return OrderedDict(items)
+
 
 def _add_wacolor_elements(tree, entity_data):
     """
