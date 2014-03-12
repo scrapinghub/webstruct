@@ -12,6 +12,7 @@ from copy import deepcopy
 from collections import defaultdict, OrderedDict
 from xml.sax.handler import ContentHandler
 import lxml.sax
+from lxml import html
 from lxml.etree import Element, LXML_VERSION
 
 DEFAULT_COLORS = [
@@ -74,7 +75,7 @@ class _WaContentHandler(ContentHandler):
         self.idx = 0
         self.entity = None
         self.text_buf = []
-        self.out = lxml.sax.ElementTreeContentHandler()
+        self.out = lxml.sax.ElementTreeContentHandler(makeelement=html.Element)
         self.entity_next_index = 0
 
         def new_entity_data():
