@@ -67,3 +67,17 @@ class WaConvertTest(HtmlTest):
         </html>
         """)
 
+    def test_handle_nonxml_attributes(self):
+        html = b"""
+        <html>
+          <body>
+            <a class="addthis_button_facebook_like" like:layout="button_count">
+          </body>
+        </html>
+        """
+        tree = html_document_fromstring(html)
+        wa_tree = webannotator.to_webannotator(tree)
+        wa_tree_str = tostring(wa_tree)
+        self.assertHtmlEqual(wa_tree_str, html)
+
+
