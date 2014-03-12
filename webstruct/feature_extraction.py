@@ -114,13 +114,21 @@ class HtmlTokenizer(object):
     replace_html_tags: dict, optional
         A mapping ``{'old_tagname': 'new_tagname'}``. It defines how tags
         should be renamed. See :func:`webstruct.utils.replace_html_tags`
+    ignore_html_tags: set, optional
+        A set of HTML tags which won't produce :class:`HtmlToken` instances,
+        but will be kept in a tree. Default is ``{'script', 'style'}``.
     """
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize_func=None,
-                 kill_html_tags=None, replace_html_tags=None):
+                 kill_html_tags=None, replace_html_tags=None, ignore_html_tags=None):
         self.tagset = set(tagset) if tagset is not None else None
         self.text_tokenize_func = text_tokenize_func or tokenize
         self.kill_html_tags = kill_html_tags
         self.replace_html_tags = replace_html_tags
+
+        if ignore_html_tags is not None:
+            self.ignore_html_tags = set(ignore_html_tags)
+        else:
+            self.ignore_html_tags = {'script', 'style'}
 
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful
@@ -243,6 +251,9 @@ class HtmlTokenizer(object):
             replace_html_tags(tree, self.replace_html_tags)
 
     def _process_tree(self, tree):
+        if tree.tag in self.ignore_html_tags:
+            return
+
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
         for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
             yield HtmlToken(index, head_tokens, tree, False), tag
