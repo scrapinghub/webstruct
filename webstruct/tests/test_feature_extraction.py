@@ -52,8 +52,8 @@ class HtmlTokenizerTest(HtmlTest):
         # original tree is not changed
         self.assertHtmlTreeEqual(src_tree, orig_src_tree)
 
-    def assertTokenizationWorks(self, loaded_data):
-        html_tokens, tags = HtmlTokenizer().tokenize_single(loaded_data)
+    def assertTokenizationWorks(self, tree):
+        html_tokens, tags = HtmlTokenizer().tokenize_single(tree)
 
         # data is correct
         self.assertListEqual(
@@ -101,6 +101,38 @@ class HtmlTokenizerTest(HtmlTest):
 
     def test_detokenize_single_empty(self):
         self.assertIs(HtmlTokenizer().detokenize_single([], []), None)
+
+    def test_tokenize_scripts_and_styles(self):
+        html = b"""
+        <html>
+          <head>
+            <script>function foo(){}</script>
+            <style>
+              body {
+                color: "red"
+              }
+            </style>
+          </head>
+          <body>hello</body>
+        </html>
+        """
+
+        tree = HtmlLoader().loadbytes(html)
+        tree2 = html_document_fromstring(html)
+
+        # tokenizer doesn't produce tokens for <script> and <style> contents
+        tokenizer = HtmlTokenizer()
+        html_tokens, tags = tokenizer.tokenize_single(tree)
+        self.assertEqual(len(html_tokens), 1)
+        self.assertEqual(html_tokens[0].tokens, ['hello'])
+        self.assertEqual(html_tokens[0].elem.tag, 'body')
+
+        # but it preserves <script> and <style> elements
+        self.assertHtmlTreeEqual(tree, tree2)
+
+        # and restores the tree if needed
+        detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
+        self.assertHtmlTreeEqual(tree, detokenized_tree)
 
 
 

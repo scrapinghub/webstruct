@@ -164,15 +164,19 @@ def load_trees_from_files(pattern, loader, verbose=False):
 
 def _get_default_cleaner():
     return lxml.html.clean.Cleaner(
-        style=True,
-        scripts=True,
+        scripts=False,     # non-default: preserve scripts
+        javascript=False,  # non-default: keep external stylesheets
+                           # (javascript=True removes them)
+        comments=True,
+        style=False,  # non-default: keep stylesheets
+        links=False,  # non-default: keep external stylesheets
+        meta=False,   # non-default
+        page_structure=False,  # non-default
+        processing_instructions=True,
         embedded=True,
-        links=True,
-        page_structure=False,
-        annoying_tags=False,
-        meta=False,
-        forms=False,
-        remove_unknown_tags=False,
-        safe_attrs_only=False
+        frames=True,
+        forms=False,  # non-default
+        annoying_tags=False,  # non-default
+        remove_unknown_tags=False,  # non-default
+        safe_attrs_only=False,  # non-default
     )
-
