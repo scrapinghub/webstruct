@@ -71,8 +71,6 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
 
         # Unlike other CRF toolkit, CRFsuite support non-binary feature value. e.g.
         >>> encoder = CRFsuiteFeatureEncoder()
-        CRFsuiteFeatureEncoder()
-
         >>> items = encoder.transform_single([{'token': ('the', 2.0), 'tag': 'DT'}, {'token': ('dog', 1.5), 'tag': 'NN'}])
         >>> [(attr.attr, attr.value) for attr in items[0]]
         [('token=the', 2.0), ('tag=DT', 1.0)]
