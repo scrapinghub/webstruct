@@ -45,6 +45,17 @@ def _get_colors(index):
         return fg, bg
 
 
+class EntityColors(defaultdict):
+    def __init__(self, **kwargs):
+        self.next_index = 0
+        super(EntityColors, self).__init__(self._new_item_factory, **kwargs)
+
+    def _new_item_factory(self):
+        fg, bg = _get_colors(self.next_index)
+        self.next_index += 1
+        return fg, bg, self.next_index-1
+
+
 def apply_wa_title(tree):
     """
     Replace page's ``<title>`` contents with a contents of
@@ -71,21 +82,14 @@ class _WaContentHandler(ContentHandler):
     TAG_SPLIT_RE = re.compile(r'\s?(__(?:START|END)_(?:\w+)__)\s?')
     TAG_PARSE_RE = re.compile(r'__(START|END)_(\w+)__')
 
-    def __init__(self, entity_data=None):
+    def __init__(self, entity_colors=None):
         self.idx = 0
         self.entity = None
         self.text_buf = []
         self.out = lxml.sax.ElementTreeContentHandler(makeelement=html.Element)
-        self.entity_next_index = 0
-
-        def new_entity_data():
-            fg, bg = _get_colors(self.entity_next_index)
-            self.entity_next_index += 1
-            return fg, bg, self.entity_next_index-1
-
-        if entity_data is None:
-            entity_data = defaultdict(new_entity_data)
-        self.entity_data = entity_data
+        if entity_colors is None:
+            entity_colors = EntityColors()
+        self.entity_colors = entity_colors
 
     def startElementNS(self, name, qname, attributes):
         self._flush()
@@ -140,7 +144,7 @@ class _WaContentHandler(ContentHandler):
     def _openSpan(self):
         if self.entity:
             # print('open span %s' % self.entity)
-            fg, bg, entity_idx = self.entity_data[self.entity]
+            fg, bg, entity_idx = self.entity_colors[self.entity]
             attrs = OrderedDict([
                 ('wa-id', str(self.idx)),
                 ('wa-type', str(self.entity)),
@@ -159,7 +163,7 @@ def _fix_sax_attributes(attrs):
     return OrderedDict(items)
 
 
-def _add_wacolor_elements(tree, entity_data):
+def _add_wacolor_elements(tree, entity_colors):
     """
     Add <wa-color> elements after <body>::
 
@@ -174,7 +178,7 @@ def _add_wacolor_elements(tree, entity_data):
     for wa_color in tree.xpath('//wa-color'):
         wa_color.drop_tree()
 
-    items = sorted(entity_data.items(), key=lambda it: -it[1][2])
+    items = sorted(entity_colors.items(), key=lambda it: -it[1][2])
     for ent, (fg, bg, idx) in items:
         attrs = OrderedDict([
             ('id', "WA-color-%s" % idx),
@@ -211,13 +215,18 @@ def _copy_title(tree):
     title.text = text
 
 
-def to_webannotator(tree):
+def to_webannotator(tree, entity_colors=None):
     """
     Convert tree loaded by one of WebStruct loaders to WebAnnotator format.
+
+    If you want a predictable colors assignment use `entity_colors` argument;
+    it should be a mapping {'entity_name': (fg, bg, entity_idx)};
+    entity names should be lowercased. You can use :class:`EntityColors`
+    to generate this mapping automatically.
     """
-    handler = _WaContentHandler()
+    handler = _WaContentHandler(entity_colors)
     lxml.sax.saxify(tree, handler)
     tree = handler.out.etree
     _copy_title(tree)
-    _add_wacolor_elements(tree, handler.entity_data)
+    _add_wacolor_elements(tree, handler.entity_colors)
     return tree
