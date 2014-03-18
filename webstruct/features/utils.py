@@ -1,8 +1,37 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import itertools
 from webstruct.utils import merge_dicts, LongestMatch
 
+class JoinFeatures(object):
+    """
+    Utility for join several feature functions::
+
+        >>> from pprint import pprint
+        >>> def f1(tok): return {'upper': tok.isupper()}
+        >>> def f2(tok): return {'len': len(tok)}
+        >>> features = JoinFeatures(f1, f2)
+        >>> pprint(features('foo'))
+        {'upper/len': 'False/3'}
+
+    """
+    def __init__(self, *feature_funcs):
+        self.feature_funcs = list(feature_funcs)
+
+    def __iadd__(self, other):
+        self.feature_funcs.append(other)
+        return self
+
+    def __isub__(self, other):
+        self.feature_funcs.remove(other)
+        return self
+
+    def __call__(self, *args, **kwargs):
+        features = [f(*args, **kwargs) for f in self.feature_funcs]
+        keys = itertools.chain.from_iterable([feat.keys() for feat in features])
+        values = itertools.chain.from_iterable([feat.values() for feat in features])
+        return {"/".join(keys) : u'/'.join(map(lambda x: unicode(x), values))}
 
 class CombinedFeatures(object):
     """
