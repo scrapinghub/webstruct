@@ -14,50 +14,9 @@ from webstruct.base import BaseCRF
 from webstruct.features import DEFAULT_FEATURES
 from webstruct.utils import get_combined_keys, tostr
 
-
-CRFPP_MACRO_PATTERN = re.compile(r'''
-    (?P<macro>%[xX])
-    \[
-    \s*(?P<offset>[\d-]+),
-    \s*(?P<column>[^\],\s]+)\s*
-    (?P<rest>[\],])
-    ''', re.VERBOSE | re.UNICODE)
-
-
-def parse_crfpp_template(template):
-    """
-    parse a CRF++ compatible template into the list of templates in form of (name, offset)
-
-    >>> parse_crfpp_template("U22:%x[0,tag]")
-    [(('tag', 0),)]
-
-    >>> parse_crfpp_template("U22:%x[0,tag]/%x[-1,tag]")
-    [(('tag', 0), ('tag', -1))]
-    """
-    templates = []
-    for line in template.splitlines():
-        line = line.strip()
-        tuples = []
-        if line.startswith('#'):
-            continue
-        if line.startswith('u') or line.startswith('U'):
-            tuples = [(m.groupdict()['column'], int(m.groupdict()['offset']))
-                      for m in CRFPP_MACRO_PATTERN.finditer(line) if m]
-        if line == 'B' or line == 'b':
-            continue
-        if line.startswith('b') or line.startswith('B'):
-            import warnings
-
-            warnings.warn("bigram templates: %s not supported in CRFsuite" % line)
-        if len(tuples):
-            templates.append(tuple(tuples))
-    return templates
-
-
 def create_crfsuite_pipeline(model_filename,
                              token_features=None,
                              global_features=None,
-                             feature_template=None,
                              min_df=1,
                              **crfsuite_kwargs):
     """
@@ -83,31 +42,15 @@ def create_crfsuite_pipeline(model_filename,
 
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('encoder', CRFsuiteFeatureEncoder(feature_template)),
+        ('encoder', CRFsuiteFeatureEncoder()),
         ('crf', CRFsuite(model_filename, **crfsuite_kwargs)),
     ])
 
 
 class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
+    """A utility class to encode the features to ``crfsuite.Attribute``
     """
-    A utility class to expand the features with CRF++ compatible template.
-    """
-
-    def __init__(self, template="#"):
-        self.template = template
-        self.templates_ = parse_crfpp_template(self.template)
-        self.feature_names_ = None
-        super(CRFsuiteFeatureEncoder, self).__init__()
-
-    def fit(self, X, y=None):
-        return self.partial_fit(X)
-
-    def partial_fit(self, X, y=None):
-        keys = set(self.feature_names_ or set())
-        for feature_dicts in X:
-            keys = (keys | get_combined_keys(feature_dicts))
-
-        self.feature_names_ = tuple(keys)
+    def fit(self, X, y):
         return self
 
     def transform(self, X, y=None):
@@ -117,29 +60,22 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
         r"""
         Transform a sequence of dict to a list of ``CRFsuite.Item``
 
-        >>> encoder = CRFsuiteFeatureEncoder("U:token L=%x[0, token]/%x[1, token]")
-        >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
-        >>> encoder.fit([seq_features])
-        CRFsuiteFeatureEncoder(template='U:token L=%x[0, token]/%x[1, token]')
-
+        >>> encoder = CRFsuiteFeatureEncoder()
         >>> items = encoder.transform_single([{'token': u'the', 'tag': 'DT'}, {'token': u'dog', 'tag': 'NN'}])
 
         >>> [(attr.attr, attr.value) for attr in items[0]]
-        [('token=the', 1.0), ('tag=DT', 1.0), ('token[0]|token[1]=the|dog', 1.0)]
+        [('token=the', 1.0), ('tag=DT', 1.0)]
 
         >>> [(attr.attr, attr.value) for attr in items[1]]
         [('token=dog', 1.0), ('tag=NN', 1.0)]
 
-        Unlike other CRF toolkit, CRFsuite support non-binary feature value. e.g.
-        >>> encoder = CRFsuiteFeatureEncoder("U:token L=%x[0, token]/%x[1, token]")
-        >>> seq_features = [{'token': 'the', 'tag': 'DT'}, {'token': 'dog', 'tag': 'NN'}]
-        >>> encoder.fit([seq_features])
-        CRFsuiteFeatureEncoder(template='U:token L=%x[0, token]/%x[1, token]')
+        # Unlike other CRF toolkit, CRFsuite support non-binary feature value. e.g.
+        >>> encoder = CRFsuiteFeatureEncoder()
+        CRFsuiteFeatureEncoder()
 
         >>> items = encoder.transform_single([{'token': ('the', 2.0), 'tag': 'DT'}, {'token': ('dog', 1.5), 'tag': 'NN'}])
-
         >>> [(attr.attr, attr.value) for attr in items[0]]
-        [('token=the', 2.0), ('tag=DT', 1.0), ('token[0]|token[1]=the|dog', 1.0)]
+        [('token=the', 2.0), ('tag=DT', 1.0)]
 
         """
         import crfsuite
@@ -148,33 +84,11 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
 
         # each feature convert to a unigram feature
         for t in range(len(x)):
-            for key in self.feature_names_:
-                v = x[t].get(key)
+            for k, v in x[t].iteritems():
                 if isinstance(v, tuple):
-                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v[0]).encode('utf8')), v[1]))
+                    items[t].append(crfsuite.Attribute('%s=%s' % (k, tostr(v[0]).encode('utf8')), v[1]))
                 else:
-                    items[t].append(crfsuite.Attribute('%s=%s' % (key, tostr(v).encode('utf8'))))
-
-        # expand bigram features and other unigram features in CRF++ compatible template
-        for template in self.templates_:
-            name = '|'.join(['%s[%d]' % (f, o) for f, o in template])
-            for t in range(len(x)):
-                values = []
-                for field, offset in template:
-                    p = t + offset
-                    if p not in range(len(x)):
-                        values = []
-                        break
-                    if field in x[p]:
-                        v = x[p][field]
-                        if isinstance(v, tuple):
-                            # always skip the scale
-                            values.append(tostr(v[0]).encode('utf8'))
-                        else:
-                            values.append(tostr(v).encode('utf8'))
-                if values:
-                    items[t].append(crfsuite.Attribute('%s=%s' % (name, '|'.join(values))))
-
+                    items[t].append(crfsuite.Attribute('%s=%s' % (k, tostr(v).encode('utf8'))))
         return items
 
 class CRFsuite(BaseCRF):
