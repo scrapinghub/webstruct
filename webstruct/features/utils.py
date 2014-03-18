@@ -13,7 +13,7 @@ class JoinFeatures(object):
         >>> def f2(tok): return {'len': len(tok)}
         >>> features = JoinFeatures(f1, f2)
         >>> pprint(features('foo'))
-        {'upper/len': 'False/3'}
+        {'upper/len': u'False/3'}
 
     """
     def __init__(self, *feature_funcs):
