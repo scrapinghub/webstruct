@@ -5,14 +5,12 @@ CRFsuite_ backend for webstruct.
 .. _CRFsuite: http://www.chokkan.org/software/crfsuite/
 """
 from __future__ import absolute_import
-import re
 import itertools
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
-from webstruct.base import BaseCRF
-from webstruct.features import DEFAULT_FEATURES
-from webstruct.utils import get_combined_keys, tostr
+from webstruct.base import BaseSequenceClassifier
+from webstruct.utils import tostr
 
 def create_crfsuite_pipeline(model_filename,
                              token_features=None,
@@ -38,6 +36,7 @@ def create_crfsuite_pipeline(model_filename,
     """
 
     if token_features is None:
+        from webstruct.features import DEFAULT_FEATURES
         token_features = DEFAULT_FEATURES
 
     return Pipeline([
@@ -48,7 +47,7 @@ def create_crfsuite_pipeline(model_filename,
 
 
 class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
-    """A utility class to encode the features to ``crfsuite.Attribute``
+    """A utility class to encode the features into ``crfsuite.Attribute``
     """
     def fit(self, X, y):
         return self
@@ -84,12 +83,13 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
         for t in range(len(x)):
             for k, v in x[t].iteritems():
                 if isinstance(v, tuple):
+                    # (feature, scale)
                     items[t].append(crfsuite.Attribute('%s=%s' % (k, tostr(v[0]).encode('utf8')), v[1]))
                 else:
                     items[t].append(crfsuite.Attribute('%s=%s' % (k, tostr(v).encode('utf8'))))
         return items
 
-class CRFsuite(BaseCRF):
+class CRFsuite(BaseSequenceClassifier):
     """Class for training and applying CRFsuite models.
 
     It relies on CRFsuite's python SWIG package.
@@ -97,7 +97,7 @@ class CRFsuite(BaseCRF):
     Parameters
     ----------
     algorithm : string,
-        'lbfgs' for Gradient descent using the L-BFGS method,
+        'lbfgs' for Gradient descent using the L-BFGS method
         'l2sgd' for Stochastic Gradient Descent with L2 regularization term
         'ap' for Averaged Perceptron
         'pa' for Passive Aggressive
@@ -110,7 +110,7 @@ class CRFsuite(BaseCRF):
         The coefficient for L2 regularization.
     """
 
-    def __init__(self, model_filename, algorithm='l2sgd', c1=0.0, c2=1.0, verbose=True):
+    def __init__(self, model_filename, algorithm='l2sgd', c1=0.0, c2=1.0, verbose=False):
         self.model_filename = model_filename
         self.verbose = verbose
         self.algorithm = algorithm

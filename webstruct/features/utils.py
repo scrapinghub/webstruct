@@ -4,35 +4,6 @@ from __future__ import absolute_import
 import itertools
 from webstruct.utils import merge_dicts, LongestMatch
 
-class JoinFeatures(object):
-    """
-    Utility for join several feature functions::
-
-        >>> from pprint import pprint
-        >>> def f1(tok): return {'upper': tok.isupper()}
-        >>> def f2(tok): return {'len': len(tok)}
-        >>> features = JoinFeatures(f1, f2)
-        >>> pprint(features('foo'))
-        {'upper/len': u'False/3'}
-
-    """
-    def __init__(self, *feature_funcs):
-        self.feature_funcs = list(feature_funcs)
-
-    def __iadd__(self, other):
-        self.feature_funcs.append(other)
-        return self
-
-    def __isub__(self, other):
-        self.feature_funcs.remove(other)
-        return self
-
-    def __call__(self, *args, **kwargs):
-        features = [f(*args, **kwargs) for f in self.feature_funcs]
-        keys = itertools.chain.from_iterable([feat.keys() for feat in features])
-        values = itertools.chain.from_iterable([feat.values() for feat in features])
-        return {"/".join(keys) : u'/'.join(map(lambda x: unicode(x), values))}
-
 class CombinedFeatures(object):
     """
     Utility for combining several feature functions::
@@ -107,3 +78,29 @@ class LongestMatchGlobalFeature(object):
         for idx in range(start+1, end):
             doc[idx][1][self.i_featname] = True
             doc[idx][1][self.featname] = True
+
+class Ngram(object):
+    """
+    Create a ngram global feature to combine local features.
+    """
+    def __init__(self, offsets, feature_names, seperator='/', default='?'):
+        self.offsets = offsets
+        self.feature_names = feature_names
+        self.seperator = seperator
+        self.default = default
+
+    def __call__(self, doc):
+        features = [feat for _, feat in doc]
+
+        # XXX: use index value on HTML element level?
+        for i, (html_token, feature) in enumerate(doc):
+            keys = []
+            values = []
+            for offset, name in itertools.izip_longest(self.offsets, self.feature_names, fillvalue=self.feature_names[0]):
+                index = offset + i
+                keys.append('%s_%s' % (name, offset))
+                if 0 <= index < len(features):
+                    values.append(features[index][name])
+                else:
+                    values.append(self.default)
+            feature.setdefault(self.seperator.join(keys), self.seperator.join(values))
