@@ -2,7 +2,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.metrics import avg_bio_f1_score
 
 
-class BaseCRF(BaseEstimator, TransformerMixin):
+class BaseSequenceClassifier(BaseEstimator, TransformerMixin):
 
     def score(self, X, y):
         """

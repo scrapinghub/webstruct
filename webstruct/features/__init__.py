@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .utils import CombinedFeatures, JoinFeatures
+from .utils import CombinedFeatures, Ngram
 import functools
 
 DEFAULT_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
@@ -20,16 +20,14 @@ DEFAULT_FEATURES = [
     InsideTag('a'),
     InsideTag('strong'),
 
-    functools.partial(token_identity, index=0),
-    functools.partial(token_lower, index=0),
+    token_identity,
+    token_lower,
 
-    first_upper,
-    functools.partial(token_shape, index=0),
+    token_shape,
     token_endswith_colon,
     token_endswith_dot,
     token_has_copyright,
     number_pattern,
-    number_pattern2,
     prefixes_and_suffixes,
 
     looks_like_year,
@@ -38,22 +36,10 @@ DEFAULT_FEATURES = [
     looks_like_street_part,
 ]
 
-CRFSUITE_FEATURES = DEFAULT_FEATURES + [
-    functools.partial(token_identity, index=-1),
-    functools.partial(token_identity, index=1),
+CRFSUITE_GLOBAL_FEATURES = [
+    Ngram([-2, -1], ['lower']),
+    Ngram([-1, 0], ['lower']),
 
-    functools.partial(token_lower, index=-1),
-    functools.partial(token_lower, index=1),
-
-    functools.partial(token_shape, index=-1),
-    functools.partial(token_shape, index=1),
-
-    JoinFeatures(functools.partial(token_lower, index=-2), functools.partial(token_lower, index=-1)),
-    JoinFeatures(functools.partial(token_lower, index=-1), functools.partial(token_lower, index=0)),
-
-    JoinFeatures(functools.partial(token_lower, index=0), functools.partial(token_lower, index=1)),
-    JoinFeatures(functools.partial(token_lower, index=1), functools.partial(token_lower, index=2)),
-
-    JoinFeatures(functools.partial(token_lower, index=-1), functools.partial(token_lower, index=0)),
-    JoinFeatures(functools.partial(token_lower, index=0), functools.partial(token_lower, index=1)),
+    Ngram([0, 1], ['lower']),
+    Ngram([1, 2], ['lower'])
 ]
