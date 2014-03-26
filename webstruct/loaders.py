@@ -61,14 +61,26 @@ class WebAnnotatorLoader(HtmlLoader):
         Use WebAnnotator's "save format", not "export format".
 
     """
+    def __init__(self, encoding=None, cleaner=None, known_entities=None):
+        self.known_entities = known_entities
+        super(WebAnnotatorLoader, self).__init__(encoding, cleaner)
+
     def loadbytes(self, data):
         # defer cleaning the tree to prevent custom cleaners from cleaning
         # WebAnnotator markup
         tree = html_document_fromstring(data, encoding=self.encoding)
         webannotator.apply_wa_title(tree)
+        if self.known_entities:
+            self._prune_tags(tree)
         entities = self._get_entities(tree)
         self._process_entities(entities)
         return self._cleanup_tree(tree)
+
+    def _prune_tags(self, tree):
+        """remove the element with wa-type not in ``known_entities``"""
+        for el in tree.xpath('//span[@wa-type]'):
+            if el.attrib['wa-type'] not in self.known_entities:
+                el.drop_tag()
 
     def _get_entities(self, tree):
         entities = defaultdict(list)
@@ -98,7 +110,7 @@ class GateLoader(HtmlLoader):
     >>> import lxml.html
     >>> from webstruct import GateLoader
 
-    >>> loader = GateLoader(known_tags=['ORG', 'CITY'])
+    >>> loader = GateLoader(known_entities={'ORG', 'CITY'})
     >>> html = b"<html><body><p><ORG>Scrapinghub</ORG> has an <b>office</b> in <CITY>Montevideo</CITY></p></body></html>"
     >>> tree = loader.loadbytes(html)
     >>> lxml.html.tostring(tree)
@@ -106,29 +118,29 @@ class GateLoader(HtmlLoader):
 
     """
 
-    def __init__(self, encoding=None, cleaner=None, known_tags=None):
-        if known_tags is None:
-            raise ValueError("Please pass `known_tags` argument with a list of all possible tags")
-        self.known_tags_ = known_tags
+    def __init__(self, encoding=None, cleaner=None, known_entities=None):
+        if known_entities is None:
+            raise ValueError("Please pass `known_entities` argument with a list of all possible entities")
+        self.known_entities = known_entities
         super(GateLoader, self).__init__(encoding, cleaner)
 
     def loadbytes(self, data):
         # tags are replaced before parsing data as HTML because
         # GATE's html is invalid
-        data = self._replace_tags(data)
+        data = self._replace_entities(data)
         return super(GateLoader, self).loadbytes(data)
 
-    def _replace_tags(self, html_bytes):
-        # replace requested tags with unified tokens
-        open_re, close_re = self._tag_patterns(self.known_tags_)
+    def _replace_entities(self, html_bytes):
+        # replace requested entities with unified tokens
+        open_re, close_re = self._entity_patterns(self.known_entities)
         html_bytes = re.sub(open_re, r' __START_\1__ ', html_bytes)
         html_bytes = re.sub(close_re, r' __END_\1__ ', html_bytes)
         return html_bytes
 
-    def _tag_patterns(self, tags):
-        tags_pattern = '|'.join(list(tags))
-        open_re = re.compile('<(%s)>' % tags_pattern, re.I)
-        close_re = re.compile('</(%s)>' % tags_pattern, re.I)
+    def _entity_patterns(self, entities):
+        entities_pattern = '|'.join(list(entities))
+        open_re = re.compile('<(%s)>' % entities_pattern, re.I)
+        close_re = re.compile('</(%s)>' % entities_pattern, re.I)
         return open_re, close_re
 
 

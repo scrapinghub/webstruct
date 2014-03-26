@@ -218,8 +218,8 @@ class LongestMatch(BestMatch):
     """
     Class for finding longest non-overlapping matches in a sequence of tokens.
 
-    >>> known_entities = {'North Las', 'North Las Vegas', 'North Pole', 'Vegas USA', 'Las Vegas', 'USA', "Toronto"}
-    >>> lm = LongestMatch(known_entities)
+    >>> known = {'North Las', 'North Las Vegas', 'North Pole', 'Vegas USA', 'Las Vegas', 'USA', "Toronto"}
+    >>> lm = LongestMatch(known)
     >>> lm.max_length
     3
     >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
