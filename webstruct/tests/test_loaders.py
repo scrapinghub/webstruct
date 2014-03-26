@@ -39,8 +39,8 @@ Website Designed by <a wa_temp_href="http://www.western-webs.com" target="_blank
     expected1 = {'Tuam': 'B-city', 'County': 'B-state', 'Galway': 'I-state', 'Ireland': 'B-country'}
     expected2 = {'Tuam': 'B-addr', 'County': 'I-addr', 'Galway': 'I-addr', 'Ireland': 'I-addr'}
 
-    _assert_entities(fragment, ('city', 'state', 'country', 'street'), expected1)
-    _assert_entities(fragment, ('addr'), expected2)
+    _assert_entities(fragment, {'city', 'state', 'country', 'street'}, expected1)
+    _assert_entities(fragment, {'addr'}, expected2)
 
     # same as fragment but labeled in different order with WA
     fragment2 = """
@@ -50,5 +50,5 @@ Website Designed by <a wa_temp_href="http://www.western-webs.com" target="_blank
 <span style="color: rgb(0, 0, 0); background-color: rgb(255, 0, 0); text-decoration: none;" wa-subtypes="" wa-id="2014" wa-type="state" class="WebAnnotator_state">                </span></span><a wa_temp_href="http://www.galway-ireland.ie" target="_blank" title="www.galway-ireland.ie/"><span style="color: rgb(255, 255, 255); background-color: rgb(102, 51, 102); text-decoration: none;" wa-subtypes="" wa-id="2012" wa-type="addr" class="WebAnnotator_addr"><span style="color: rgb(0, 0, 0); background-color: rgb(255, 0, 0); text-decoration: none;" wa-subtypes="" wa-id="2014" wa-type="state" class="WebAnnotator_state">County Galway</span></span></a><span style="color: rgb(255, 255, 255); background-color: rgb(102, 51, 102); text-decoration: none;" wa-subtypes="" wa-id="2012" wa-type="addr" class="WebAnnotator_addr">,</span>
                 <a wa_temp_href="http://www.ebookireland.com" target="_blank" title="www.ebookireland.com"><span style="color: rgb(255, 255, 255); background-color: rgb(102, 51, 102); text-decoration: none;" wa-subtypes="" wa-id="2012" wa-type="addr" class="WebAnnotator_addr"><span style="color:#000000; background-color:#FF9900;" wa-subtypes="" wa-id="2015" wa-type="country" class="WebAnnotator_country"> Ireland</span></span></a></div>"""
 
-    _assert_entities(fragment2, ('city', 'state', 'country', 'street'), expected1)
-    _assert_entities(fragment2, ('addr'), expected2)
+    _assert_entities(fragment2, {'city', 'state', 'country', 'street'}, expected1)
+    _assert_entities(fragment2, {'addr'}, expected2)

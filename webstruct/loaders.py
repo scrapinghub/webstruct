@@ -56,6 +56,15 @@ class WebAnnotatorLoader(HtmlLoader):
     Class for loading HTML annotated using
     `WebAnnotator <https://github.com/xtannier/WebAnnotator>`_.
 
+    >>> import lxml.html
+    >>> from webstruct import WebAnnotatorLoader
+
+    >>> loader = WebAnnotatorLoader(known_entities={'ORG'})
+    >>> html = b"<html><body><p><span wa-subtypes='' wa-id='227' wa-type='ORG' class='WebAnnotator_org'>Scrapinghub</span> has an <b>office</b> in <span wa-subtypes='' wa-id='228' wa-type='CITY' class='WebAnnotator_org'>Montevideo</span></p></body></html>"
+    >>> tree = loader.loadbytes(html)
+    >>> lxml.html.tostring(tree)
+    '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in Montevideo</p></body></html>'
+
     .. note::
 
         Use WebAnnotator's "save format", not "export format".
