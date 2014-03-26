@@ -61,14 +61,27 @@ class WebAnnotatorLoader(HtmlLoader):
         Use WebAnnotator's "save format", not "export format".
 
     """
+    def __init__(self, encoding=None, cleaner=None, known_tags=None):
+        if known_tags is None:
+            raise ValueError("Please pass `known_tags` argument with a list of all possible tags")
+        self.known_tags_ = known_tags
+        super(WebAnnotatorLoader, self).__init__(encoding, cleaner)
+
     def loadbytes(self, data):
         # defer cleaning the tree to prevent custom cleaners from cleaning
         # WebAnnotator markup
         tree = html_document_fromstring(data, encoding=self.encoding)
         webannotator.apply_wa_title(tree)
+        self._prune_tags(tree)
         entities = self._get_entities(tree)
         self._process_entities(entities)
         return self._cleanup_tree(tree)
+
+    def _prune_tags(self, tree):
+        """remove the element with wa-type not in known_tags"""
+        for el in tree.xpath('//span[@wa-type]'):
+            if el.attrib['wa-type'] not in self.known_tags_:
+                el.drop_tag()
 
     def _get_entities(self, tree):
         entities = defaultdict(list)
