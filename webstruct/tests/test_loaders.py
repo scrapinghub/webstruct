@@ -18,6 +18,16 @@ def test_wa_loader():
     assert "wa-" not in res, res
     assert "WA-" not in res, res
 
+
+def test_wa_loader_with_known_entities():
+
+    loader = WebAnnotatorLoader(known_entities={'ORG'})
+    html = b"<html><body><p><span wa-subtypes='' wa-id='227' wa-type='ORG' class='WebAnnotator_org'>Scrapinghub</span> has an <b>office</b> in <span wa-subtypes='' wa-id='228' wa-type='CITY' class='WebAnnotator_org'>Montevideo</span></p></body></html>"
+    tree = loader.loadbytes(html)
+    res = lxml.html.tostring(tree)
+    assert '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in Montevideo</p></body></html>' in res
+
+
 def _assert_entities(fragment, known_entities, expected):
 
     ld = WebAnnotatorLoader(known_entities=known_entities)

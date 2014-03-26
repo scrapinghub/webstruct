@@ -56,15 +56,6 @@ class WebAnnotatorLoader(HtmlLoader):
     Class for loading HTML annotated using
     `WebAnnotator <https://github.com/xtannier/WebAnnotator>`_.
 
-    >>> import lxml.html
-    >>> from webstruct import WebAnnotatorLoader
-
-    >>> loader = WebAnnotatorLoader(known_entities={'ORG'})
-    >>> html = b"<html><body><p><span wa-subtypes='' wa-id='227' wa-type='ORG' class='WebAnnotator_org'>Scrapinghub</span> has an <b>office</b> in <span wa-subtypes='' wa-id='228' wa-type='CITY' class='WebAnnotator_org'>Montevideo</span></p></body></html>"
-    >>> tree = loader.loadbytes(html)
-    >>> lxml.html.tostring(tree)
-    '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in Montevideo</p></body></html>'
-
     .. note::
 
         Use WebAnnotator's "save format", not "export format".
@@ -119,7 +110,7 @@ class GateLoader(HtmlLoader):
     >>> import lxml.html
     >>> from webstruct import GateLoader
 
-    >>> loader = GateLoader(known_entities=['ORG', 'CITY'])
+    >>> loader = GateLoader(known_entities={'ORG', 'CITY'})
     >>> html = b"<html><body><p><ORG>Scrapinghub</ORG> has an <b>office</b> in <CITY>Montevideo</CITY></p></body></html>"
     >>> tree = loader.loadbytes(html)
     >>> lxml.html.tostring(tree)
@@ -136,20 +127,20 @@ class GateLoader(HtmlLoader):
     def loadbytes(self, data):
         # tags are replaced before parsing data as HTML because
         # GATE's html is invalid
-        data = self._replace_tags(data)
+        data = self._replace_entities(data)
         return super(GateLoader, self).loadbytes(data)
 
-    def _replace_tags(self, html_bytes):
-        # replace requested tags with unified tokens
-        open_re, close_re = self._tag_patterns(self.known_entities)
+    def _replace_entities(self, html_bytes):
+        # replace requested entities with unified tokens
+        open_re, close_re = self._entity_patterns(self.known_entities)
         html_bytes = re.sub(open_re, r' __START_\1__ ', html_bytes)
         html_bytes = re.sub(close_re, r' __END_\1__ ', html_bytes)
         return html_bytes
 
-    def _tag_patterns(self, tags):
-        tags_pattern = '|'.join(list(tags))
-        open_re = re.compile('<(%s)>' % tags_pattern, re.I)
-        close_re = re.compile('</(%s)>' % tags_pattern, re.I)
+    def _entity_patterns(self, entities):
+        entities_pattern = '|'.join(list(entities))
+        open_re = re.compile('<(%s)>' % entities_pattern, re.I)
+        close_re = re.compile('</(%s)>' % entities_pattern, re.I)
         return open_re, close_re
 
 

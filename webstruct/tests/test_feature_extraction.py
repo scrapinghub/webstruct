@@ -42,7 +42,7 @@ ANNOTATED_HTML = b"""
 class HtmlTokenizerTest(HtmlTest):
 
     def _load(self):
-        return GateLoader(known_entities=['ORG', 'CITY']).loadbytes(GATE_HTML)
+        return GateLoader(known_entities={'ORG', 'CITY'}).loadbytes(GATE_HTML)
 
     def test_tokenization_doesnt_alter_tree(self):
         src_tree = self._load()
