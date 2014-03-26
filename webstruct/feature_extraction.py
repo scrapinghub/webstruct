@@ -149,7 +149,7 @@ class HtmlTokenizer(object):
         Example:
 
             >>> from webstruct import GateLoader, HtmlTokenizer
-            >>> loader = GateLoader(known_tags=['PER'])
+            >>> loader = GateLoader(known_entities=['PER'])
             >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
@@ -332,7 +332,7 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
             >>> from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
             >>> from webstruct.features import parent_tag
 
-            >>> loader = GateLoader(known_tags=['PER'])
+            >>> loader = GateLoader(known_entities=['PER'])
             >>> html_tokenizer = HtmlTokenizer()
             >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
 
