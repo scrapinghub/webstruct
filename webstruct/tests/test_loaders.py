@@ -11,16 +11,16 @@ HTML = b"""
 """
 
 def test_wa_loader():
-    ld = WebAnnotatorLoader(known_tags=('ORG', 'CITY'))
+    ld = WebAnnotatorLoader()
     tree = ld.loadbytes(HTML)
     res = lxml.html.tostring(tree)
     assert "<p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p>" in res
     assert "wa-" not in res, res
     assert "WA-" not in res, res
 
-def _assert_entities(fragment, known_tags, expected):
+def _assert_entities(fragment, known_entities, expected):
 
-    ld = WebAnnotatorLoader(known_tags=known_tags)
+    ld = WebAnnotatorLoader(known_entities=known_entities)
     tree = ld.loadbytes(fragment)
     tokenizer = HtmlTokenizer()
 
