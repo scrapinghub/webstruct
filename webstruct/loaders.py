@@ -120,7 +120,7 @@ class GateLoader(HtmlLoader):
 
     def __init__(self, encoding=None, cleaner=None, known_entities=None):
         if known_entities is None:
-            raise ValueError("Please pass `known_entities` argument with a list of all possible tags")
+            raise ValueError("Please pass `known_entities` argument with a list of all possible entities")
         self.known_entities = known_entities
         super(GateLoader, self).__init__(encoding, cleaner)
 
