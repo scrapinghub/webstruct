@@ -55,4 +55,3 @@ def block_length(html_token):
     else:
         bl = 'large'
     return {'block_length': bl}
-

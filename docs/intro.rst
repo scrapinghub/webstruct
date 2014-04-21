@@ -24,14 +24,17 @@ Webstruct can:
 * extract various features from these HTML tokens, including text-based
   features, html-based features and gazetteer-based features
   (GeoNames_ support is built-in);
-* convert these features to the format sequence labelling toolikits accept
-  (only Wapiti_ CRF toolkit support it built-in at the moment, but helpers
-  for other toolkits like CRFSuite_ and seqlearn_ are planned).
+* convert these features to the format sequence labelling toolikits accept;
+* use Wapiti_ CRF toolkit for entity extraction (helpers for other
+  toolkits like CRFSuite_ and seqlearn_ are planned);
+* group extracted entites using an unsupervised algorithm;
+* embed annotation results back into HTML files (using WebAnnotator_ format),
+  allowing to view them in a web browser and fix using visual tools.
 
-Unlike most NER systems, webstruct works on HTML data, not on text data.
-This allows to easily use HTML structure as features, and also
-(potentially, not implemented at the moment) to to embed annotation
-results back into HTML.
+Unlike most NER systems, webstruct works on HTML data, not only
+on text data. This allows to define features that use HTML structure,
+and also to embed annotation results back into HTML.
+
 
 .. _GeoNames: http://www.geonames.org/
 .. _wapiti: http://wapiti.limsi.fr
@@ -39,5 +42,3 @@ results back into HTML.
 .. _seqlearn: https://github.com/larsmans/seqlearn
 .. _WebAnnotator: https://github.com/xtannier/WebAnnotator
 .. _GATE: http://gate.ac.uk/
-
-

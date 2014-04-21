@@ -133,6 +133,3 @@ class HtmlTokenizerTest(HtmlTest):
         # and restores the tree if needed
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
         self.assertHtmlTreeEqual(tree, detokenized_tree)
-
-
-

@@ -217,10 +217,10 @@ def _copy_title(tree):
 
 def to_webannotator(tree, entity_colors=None):
     """
-    Convert tree loaded by one of WebStruct loaders to WebAnnotator format.
+    Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
 
     If you want a predictable colors assignment use `entity_colors` argument;
-    it should be a mapping {'entity_name': (fg, bg, entity_idx)};
+    it should be a mapping ``{'entity_name': (fg, bg, entity_idx)}``;
     entity names should be lowercased. You can use :class:`EntityColors`
     to generate this mapping automatically.
     """
