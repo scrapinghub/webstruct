@@ -37,7 +37,7 @@ Possible labels are:
 
 EMAIL (and maybe TEL, FAX and ZIPCODE) could be easy to extract using
 regexpes, but they are still included in label set because
-it could be much easier to combine extracted data to records this way
+it could be easier to combine extracted data to records this way
 (i.e. to determine that this email belongs to this person).
 
 Sometimes customers want STREET1 / STREET2 separation.
@@ -73,7 +73,7 @@ all as SUBJ or ORG.
 
 
 Do not annotate website vendors as ORG (leave them unannotated).
-Do not annotate unrelated persons (e.g. review authors) as PER.
+(?) Do not annotate unrelated persons (e.g. review authors) as PER.
 
 Facility/building and P.O. box / post address should be a part of STREET.
 
