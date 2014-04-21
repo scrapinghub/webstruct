@@ -90,10 +90,13 @@ class HtmlTokenizer(object):
     """
     Class for converting HTML trees (returned by one of the
     :mod:`webstruct.loaders`) into lists of :class:`HtmlToken` instances
-    and associated tags.
+    and associated tags. Also, it can do the reverse conversion.
 
     Use :meth:`tokenize_single` to convert a single tree and :meth:`tokenize`
     to convert multiple trees.
+
+    Use :meth:`detokenize_single` to get an annotated tree out of a list
+    of :class:`HtmlToken` instances and a list of tags.
 
     Parameters
     ----------
@@ -194,7 +197,7 @@ class HtmlTokenizer(object):
         and ``tags`` (a list of their tags).
 
         Annotations are encoded as ``__START_TAG__`` and ``__END_TAG__``
-        text tokens.
+        text tokens (this is the format :mod:`webstruct.loaders` use).
         """
         if len(html_tokens) != len(tags):
             raise ValueError("len(html_tokens) must be equal to len(tags)")
@@ -298,8 +301,8 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     (:class:`HtmlTokenizer` can be used to create such lists).
 
     :meth:`fit` / :meth:`transform` / :meth:`fit_transform` interface
-    may look familiar to you if you ever used scikit-learn_.
-    And in fact :class:`HtmlFeatureExtractor` implements sklearn's
+    may look familiar to you if you ever used scikit-learn_:
+    :class:`HtmlFeatureExtractor` implements sklearn's
     Transformer interface. But there is one twist: usually for sequence
     labelling tasks the whole sequences are considered observations.
     So in our case a single observation is a tokenized document

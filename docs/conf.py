@@ -36,7 +36,7 @@ class Mock(object):
 
     @classmethod
     def __getattr__(cls, name):
-        if name in ('__file__', '__path__'):
+        if name in ['__file__', '__path__']:
             return '/dev/null'
         elif name[0] == name[0].upper():
             mockType = type(name, (), {})
@@ -45,9 +45,11 @@ class Mock(object):
         else:
             return Mock()
 
-MOCK_MODULES = ['lxml', 'lxml.html', 'lxml.html.clean', 'lxml.etree',
-                'sklearn', 'sklearn.base', 'sklearn.metrics',
-                'sklearn.pipeline', 'numpy']
+MOCK_MODULES = [
+    'lxml', 'lxml.html', 'lxml.html.clean', 'lxml.etree', 'lxml.sax',
+    'sklearn', 'sklearn.base', 'sklearn.metrics', 'sklearn.pipeline',
+    'numpy'
+]
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
 
