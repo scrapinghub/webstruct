@@ -10,7 +10,7 @@ import warnings
 import random
 from copy import deepcopy
 from collections import defaultdict, OrderedDict
-from xml.sax.handler import ContentHandler
+import xml.sax.handler
 import lxml.sax
 from lxml import html
 from lxml.etree import Element, LXML_VERSION
@@ -77,7 +77,7 @@ def apply_wa_title(tree):
         return
 
 
-class _WaContentHandler(ContentHandler):
+class _WaContentHandler(xml.sax.handler.ContentHandler):
 
     TAG_SPLIT_RE = re.compile(r'\s?(__(?:START|END)_(?:\w+)__)\s?')
     TAG_PARSE_RE = re.compile(r'__(START|END)_(\w+)__')
