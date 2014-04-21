@@ -9,8 +9,6 @@ Unlike most NER systems, webstruct works on HTML data, not only
 on text data. This allows to define features that use HTML structure,
 and also to embed annotation results back into HTML.
 
-The license is MIT.
-
 Read the docs_ for more info.
 
 .. _docs: http://webstruct.readthedocs.org/en/latest/
@@ -18,6 +16,8 @@ Read the docs_ for more info.
 
 Contributing
 ------------
+
+The license is MIT.
 
 * Source code: https://github.com/scrapinghub/webstruct
 * Bug tracker: https://github.com/scrapinghub/webstruct/issues

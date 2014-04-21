@@ -22,12 +22,12 @@ Follow WebAnnotator `manual <http://perso.limsi.fr/xtannier/en/WebAnnotator/>`__
 to define named entities and annotate some web pages
 (nested WebAnnotator entities are not supported).
 
-After that you can load annotated webpages as lxml trees:
+After that you can load annotated webpages as lxml trees::
 
->>> import webstruct
->>> trees = webstruct.load_trees([
-...    ("train/*.html", webstruct.WebAnnotatorLoader())
-... ])
+    import webstruct
+    trees = webstruct.load_trees([
+        ("train/*.html", webstruct.WebAnnotatorLoader())
+    ])
 
 See :ref:`html-loaders` for more info.
 GATE_ annotation format is also supported.
@@ -47,21 +47,26 @@ To convert HTML trees to a format suitable for sequence prediction algorithm
    contains information not only about the text token itself, but also about
    its position in HTML tree.
 
-A single HTML page corresponds to a single sequence (a list of HtmlTokens).
+A single HTML page corresponds to a single input sequence
+(a list of HtmlTokens). For training/testing data
+(where webpages are already annotated) there is also a list of labels for
+each webpage, a label per HtmlToken.
 
 To transform HTML trees into labels and HTML tokens
-use :class:`~.HtmlTokenizer`:
+use :class:`~.HtmlTokenizer`.
 
->>> html_tokenizer = webstruct.HtmlTokenizer()
->>> X, y = html_tokenizer.tokenize(trees)
+::
+
+    html_tokenizer = webstruct.HtmlTokenizer()
+    X, y = html_tokenizer.tokenize(trees)
 
 Input trees should be loaded by one of the WebStruct loaders.
-
-For each tree :class:`~.HtmlTokenizer` extracts two arrays: a list of
-:class:`~.HtmlToken` instances and a list of tags encoded
-using IOB2_ encoding (also known as BIO encoding).
-So in our example ``X`` is a list of lists of :class:`~.HtmlToken`
-instances, and  ``y`` is a list of lists of strings.
+For consistency, for each tree (even if it is loaded from raw unannotated html)
+:class:`~.HtmlTokenizer` extracts two arrays: a list of :class:`~.HtmlToken`
+instances and a list of tags encoded using IOB2_ encoding
+(also known as BIO encoding). So in our example ``X`` is a list of
+lists of :class:`~.HtmlToken` instances, and  ``y`` is a list of lists
+of strings.
 
 .. _IOB2: http://en.wikipedia.org/wiki/Inside_Outside_Beginning
 
@@ -78,13 +83,20 @@ each HTML token. How to convert these dicts into representation required
 by a sequence labelling toolkit depends on a toolkit used; we will cover
 that later.
 
-To compute feature dicts use :class:`~.HtmlFeatureExtractor`.
+To compute feature dicts we'll use :class:`~.HtmlFeatureExtractor`.
+
 First, define your feature functions. A feature function should take
 an :class:`~.HtmlToken` instance and return a feature dict;
 feature dicts from individual feature functions will be merged
-into the final feature dict for a token. Such functions can ask questions
+into the final feature dict for a token. Feature functions can ask questions
 about token itself, its neighbours (in the same HTML element),
 its position in HTML.
+
+.. note::
+
+    WebStruct supports another kind of feature functions that work on multiple
+    tokens; we don't cover them in this tutorial.
+
 
 There are predefined feature functions in :mod:`webstruct.features`,
 but for this tutorial let's create some functions ourselves::
@@ -102,21 +114,22 @@ but for this tutorial let's create some functions ourselves::
         return {'border_at_left': html_token.index == 0}
 
 
-Next, create :class:`~.HtmlFeatureExtractor` and use it to extract
-feature dicts:
+Next, create :class:`~.HtmlFeatureExtractor`:
 
->>> feature_extractor = HtmlFeatureExtractor(
-...     token_features = [
-...         token_identity,
-...         token_isupper,
-...         parent_tag,
-...         border_at_left
-...     ]
-... )
->>> features = feature_extractor.fit_transform(X)
+.. code-block:: python
 
-WebStruct supports another kind of feature functions that work on multiple
-tokens; we don't cover them in this tutorial.
+    feature_extractor = HtmlFeatureExtractor(
+        token_features = [
+            token_identity,
+            token_isupper,
+            parent_tag,
+            border_at_left
+        ]
+    )
+
+and use it to extract feature dicts::
+
+    features = feature_extractor.fit_transform(X)
 
 See :ref:`feature-extraction` for more info about HTML tokenization and
 feature extraction.
@@ -151,12 +164,12 @@ We'll use Wapiti in this tutorial.
 Defining a Model
 ~~~~~~~~~~~~~~~~
 
-Basic way to define CRF model is the following:
+Basic way to define CRF model is the following::
 
->>> model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
-...     token_features = [token_identity, token_isupper, parent_tag, border_at_left],
-...     train_args = '--algo l-bfgs --maxiter 50 --compact'
-... )
+    model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
+        token_features = [token_identity, token_isupper, parent_tag, border_at_left],
+        train_args = '--algo l-bfgs --maxiter 50 --compact'
+    )
 
 First :func:`.create_wapiti_pipeline` argument is a file name Wapiti
 model will be save to after training.
@@ -199,16 +212,18 @@ WebStruct allows to use feature names instead of numbers in Wapiti templates.
 Let's define a template that will make Wapiti use first-order transition
 features, plus ``token`` text values in a +-2 window near the current token.
 
->>> feature_template = '''
-... # Label unigram & bigram
-... *
-...
-... # Nearby token unigrams
-... uLL:%x[-2,token]
-... u-L:%x[-1,token]
-... u-R:%x[ 1,token]
-... uRR:%x[ 2,token]
-... '''
+::
+
+    feature_template = '''
+    # Label unigram & bigram
+    *
+
+    # Nearby token unigrams
+    uLL:%x[-2,token]
+    u-L:%x[-1,token]
+    u-R:%x[ 1,token]
+    uRR:%x[ 2,token]
+    '''
 
 .. note::
 
@@ -226,13 +241,13 @@ features, plus ``token`` text values in a +-2 window near the current token.
         ufeat:border_at_left=%x[0,border_at_left]
 
 To make Wapiti use this template, pass it as an argument to
-:func:`.create_wapiti_pipeline` (or :class:`~.WapitiCRF`, whatever you use):
+:func:`.create_wapiti_pipeline` (or :class:`~.WapitiCRF`, whatever you use)::
 
->>> model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
-...     token_features = [token_identity, token_isupper, parent_tag, border_at_left],
-...     feature_template = feature_template,
-...     train_args = '--algo l-bfgs --maxiter 50 --compact'
-... )
+    model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
+        token_features = [token_identity, token_isupper, parent_tag, border_at_left],
+        feature_template = feature_template,
+        train_args = '--algo l-bfgs --maxiter 50 --compact'
+    )
 
 
 Training
@@ -240,7 +255,7 @@ Training
 
 To train a model use its ``fit`` method::
 
->>> model.fit(X, y)
+    model.fit(X, y)
 
 ``X`` and ``y`` are return values of :meth:`.HtmlTokenizer.tokenize`
 (a list of lists of :class:`~.HtmlToken` instances and a list of
@@ -248,9 +263,9 @@ lists of string IOB labels).
 
 If you use :class:`~.WapitiCRF` directly then train it using
 :meth:`.WapitiCRF.fit` method. It accepts 2 lists: a list of lists of
-feature dicts, and a list of lists of tags:
+feature dicts, and a list of lists of tags::
 
->>> crf.fit(features, y)
+    crf.fit(features, y)
 
 Named Entity Recognition
 ------------------------
@@ -339,7 +354,49 @@ to relation detection, but give it a try - maybe it is enough for your task.
 Model Development
 -----------------
 
-TODO
+To develop the model you need to choose the learning algorithm,
+features, hyperparameters, etc. To do that you need scoring metrics,
+cross-validation utilities and tools for debugging what classifier learned.
+WebStruct helps in the following way:
 
-Pipeline created by :func:`.create_wapiti_pipeline` has a big advantage:
-it can b
+1. Pipeline created by :func:`.create_wapiti_pipeline` is compatible with
+   `cross-validation`_ and `grid search`_ utilities from scikit-learn;
+   use them to select model parameters and check the quality.
+
+   One limitation of :func:`.create_wapiti_pipeline` is that ``n_jobs``
+   in scikit-learn functions and classes should be 1, but other than that
+   WebStruct objects should work fine with scikit-learn. Just keep in mind
+   that for WebStruct an "observation" is a document, not an individual token,
+   and a "label" is a sequence of labels for a document, not an individual
+   IOB tag.
+
+
+2. There is :mod:`webstruct.metrics` module with a couple of metrics useful
+   for sequence classification. Currently they require seqlearn_
+   to be installed.
+
+
+To debug what CRF learned you should use methods specific
+to a labelling toolkit used. With Wapiti_ it would be ``wapiti dump``
+console command and some UNIX utilities. For example, if we've
+saved our model to ``mymodel.wapiti`` file, and we want to check top positive
+features for ``CITY`` entity, we can execute the following in UNIX shell::
+
+    $ wapiti dump mymodel.wapiti | sort -nr -k4 | grep CITY | head -n 8
+
+and get an output similar to this::
+
+    * Load model
+    * Dump model
+    *	B-CITY	I-CITY	2.74057
+    *	B-CITY	B-STATE	2.33235
+    *	I-STREET	B-CITY	1.98106
+    *	I-CITY	B-STATE	1.71408
+    u--L:street	#	B-CITY	1.34199
+    u--L:west	#	I-CITY	1.32428
+    u--L:in	#	B-CITY	1.24937
+    u--L:-	#	B-CITY	1.11139
+
+
+.. _cross-validation: http://scikit-learn.org/stable/modules/cross_validation.html
+.. _grid search: http://scikit-learn.org/stable/modules/grid_search.html
