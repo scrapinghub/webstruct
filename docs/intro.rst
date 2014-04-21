@@ -1,11 +1,6 @@
 Webstruct
 =========
 
-Installation
-------------
-
-TODO
-
 Overview
 --------
 
@@ -35,10 +30,41 @@ Unlike most NER systems, webstruct works on HTML data, not only
 on text data. This allows to define features that use HTML structure,
 and also to embed annotation results back into HTML.
 
-
 .. _GeoNames: http://www.geonames.org/
-.. _wapiti: http://wapiti.limsi.fr
 .. _CRFSuite: http://www.chokkan.org/software/crfsuite/
-.. _seqlearn: https://github.com/larsmans/seqlearn
-.. _WebAnnotator: https://github.com/xtannier/WebAnnotator
 .. _GATE: http://gate.ac.uk/
+
+
+Installation
+------------
+
+To install Webstruct, use pip::
+
+    $ pip install webstruct
+
+Webstruct depends on the following Python packages:
+
+* lxml_ for parsing HTML;
+* `scikit-learn`_ >= 0.14.
+
+Note that these dependencies are not installed automatically
+when ``pip install webstruct`` is executed.
+
+There are also some optional dependencies:
+
+* seqlearn_ (from github master) is used for metrics; it could
+  be also used as a sequence labelling toolkit;
+* Webstruct has support for Wapiti_ sequence labelling toolkit;
+  you'll need both the ``wapiti`` binary and `python-wapiti`_ wrapper
+  (from github master) for the tutorial.
+* For training data annotation you may use WebAnnotator_ Firefox extension.
+* Code for preparing GeoNames gazetteers uses `marisa-trie`_ and `pandas`_.
+
+.. _lxml: https://github.com/lxml/lxml
+.. _scikit-learn: https://github.com/scikit-learn/scikit-learn
+.. _seqlearn: https://github.com/larsmans/seqlearn
+.. _python-wapiti: https://github.com/adsva/python-wapiti
+.. _Wapiti: http://wapiti.limsi.fr
+.. _WebAnnotator: https://github.com/xtannier/WebAnnotator
+.. _marisa-trie: https://github.com/kmike/marisa-trie
+.. _pandas: http://pandas.pydata.org/

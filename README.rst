@@ -11,13 +11,13 @@ and also to embed annotation results back into HTML.
 
 Read the docs_ for more info.
 
+License is MIT.
+
 .. _docs: http://webstruct.readthedocs.org/en/latest/
 .. _NER: http://en.wikipedia.org/wiki/Named-entity_recognition
 
 Contributing
 ------------
-
-The license is MIT.
 
 * Source code: https://github.com/scrapinghub/webstruct
 * Bug tracker: https://github.com/scrapinghub/webstruct/issues
