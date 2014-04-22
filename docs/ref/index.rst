@@ -10,4 +10,5 @@ Reference
    metrics
    grouping
    wapiti
+   webannotator
    misc
