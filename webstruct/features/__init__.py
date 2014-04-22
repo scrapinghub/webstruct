@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .global_features import Ngram
+from .global_features import Pattern
 
 
 DEFAULT_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
@@ -34,12 +34,4 @@ DEFAULT_FEATURES = [
     looks_like_month,
     looks_like_email,
     looks_like_street_part,
-]
-
-CRFSUITE_GLOBAL_FEATURES = [
-    Ngram([-2, -1], ['lower']),
-    Ngram([-1, 0], ['lower']),
-
-    Ngram([0, 1], ['lower']),
-    Ngram([1, 2], ['lower'])
 ]

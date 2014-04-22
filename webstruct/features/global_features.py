@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-import itertools
 from webstruct.utils import LongestMatch
 
 
@@ -40,28 +39,45 @@ class LongestMatchGlobalFeature(object):
             doc[idx][1][self.featname] = True
 
 
-class Ngram(object):
+class Pattern(object):
     """
-    Create a ngram global feature to combine local features.
+    Global feature that combines local features.
     """
-    def __init__(self, offsets, feature_names, seperator='/', default='?'):
-        self.offsets = offsets
-        self.feature_names = feature_names
-        self.seperator = seperator
-        self.default = default
+    def __init__(self, *lookups, **kwargs):
+        self.separator = kwargs.get('separator', '/')
+        self.out_value = kwargs.get('out_value', '?')
+        self.missing_value = kwargs.get('missing_value', '_NA_')
+        self.lookups = lookups
+        # TODO: add an option to use index values on HTML element level
 
     def __call__(self, doc):
-        features = [feat for _, feat in doc]
+        _add_pattern_features(
+            feature_dicts = [feat for html_token, feat in doc],
+            pattern = self.lookups,
+            out_value = self.out_value,
+            missing_value = self.missing_value,
+            separator = self.separator
+        )
 
-        # XXX: use index value on HTML element level?
-        for i, (html_token, feature) in enumerate(doc):
-            keys = []
-            values = []
-            for offset, name in itertools.izip_longest(self.offsets, self.feature_names, fillvalue=self.feature_names[0]):
-                index = offset + i
-                keys.append('%s_%s' % (name, offset))
-                if 0 <= index < len(features):
-                    values.append(features[index][name])
-                else:
-                    values.append(self.default)
-            feature.setdefault(self.seperator.join(keys), self.seperator.join(values))
+
+def _add_pattern_features(feature_dicts, pattern, out_value, missing_value, separator):
+    for pos, featdict in enumerate(feature_dicts):
+        keys = []
+        values = []
+        for offset, key in pattern:
+            if offset == 0:
+                keys.append(key)
+            elif offset < 0:
+                keys.append('%s[%s]' % (key, offset))
+            else:
+                keys.append('%s[+%s]' % (key, offset))
+
+            index = pos + offset
+            if 0 <= index < len(feature_dicts):
+                values.append(feature_dicts[index].get(key, missing_value))
+            else:
+                values.append(out_value)
+
+        # FIXME: there should be a cleaner/faster way
+        if not all(v == out_value for v in values):
+            featdict[separator.join(keys)] = separator.join(values)
