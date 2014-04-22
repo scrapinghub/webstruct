@@ -17,7 +17,7 @@ Utils
 Text Tokenization
 -----------------
 
-.. automodule:: webstruct.tokenizers
+.. automodule:: webstruct.text_tokenizers
     :members:
     :undoc-members:
 
