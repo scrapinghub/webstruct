@@ -30,6 +30,18 @@ def get_combined_keys(dicts):
 
 
 def tostr(val):
+    """
+    >>> tostr('foo')
+    'foo'
+    >>> tostr(u'foo')
+    u'foo'
+    >>> tostr(10)
+    '10'
+    >>> tostr(True)
+    '1'
+    >>> tostr(False)
+    '0'
+    """
     if isinstance(val, basestring):
         return val
     if isinstance(val, bool):
@@ -136,6 +148,12 @@ def run_command(args, verbose=True):
     If ``verbose == True`` then print output as it appears using "print".
     Unlike ``subprocess.check_call`` it doesn't assume that stdout
     has a file descriptor - this allows printing to works in IPython notebook.
+
+    Example:
+
+    >>> run_command(["python", "-c", "print(1+2)"])
+    3
+    >>> run_command(["python", "-c", "print(1+2)"], verbose=False)
     """
     p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = []
@@ -228,6 +246,15 @@ class LongestMatch(BestMatch):
     (0, 1, ['Toronto'], 'Toronto')
     (2, 5, ['North', 'Las', 'Vegas'], 'North Las Vegas')
     (5, 6, ['USA'], 'USA')
+
+    :class:`LongestMatch` also accepts a dict instead of a list/set for
+    a ``known`` argument. In this case dict keys are used:
+
+    >>> lm = LongestMatch({'North': 'direction', 'North Las Vegas': 'location'})
+    >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
+    >>> for start, end, matched_text in lm.find_ranges(tokens):
+    ...     print(start, end, tokens[start:end], matched_text)
+    (2, 5, ['North', 'Las', 'Vegas'], 'North Las Vegas')
     """
 
     def get_sorted_ranges(self, ranges, tokens):
