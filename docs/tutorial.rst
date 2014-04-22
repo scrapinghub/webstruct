@@ -377,7 +377,7 @@ WebStruct helps in the following way:
 
 
 To debug what CRF learned you should use methods specific
-to a labelling toolkit used. With Wapiti_ it would be ``wapiti dump``
+to a labelling toolkit. With Wapiti_ it would be ``wapiti dump``
 console command and some UNIX utilities. For example, if we've
 saved our model to ``mymodel.wapiti`` file, and we want to check top positive
 features for ``CITY`` entity, we can execute the following in UNIX shell::
