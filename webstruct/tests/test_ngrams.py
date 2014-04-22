@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
 from webstruct.features import token_lower, token_identity
-from webstruct.features.utils import Ngram
+from webstruct.features import Ngram
 
 def _load_document():
     loader = GateLoader(known_tags=['PER'])
