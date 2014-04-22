@@ -5,7 +5,7 @@ from webstruct.features import token_lower, token_identity
 from webstruct.features import Ngram
 
 def _load_document():
-    loader = GateLoader(known_tags=['PER'])
+    loader = GateLoader(known_entities=['PER'])
     html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
     tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
     html_tokens, _ = html_tokenizer.tokenize_single(tree)
