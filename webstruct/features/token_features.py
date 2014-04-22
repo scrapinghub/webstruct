@@ -15,7 +15,6 @@ __all__ = [
     'SuffixFeatures',
 ]
 
-
 def token_identity(html_token):
     return {'token': html_token.token}
 
@@ -114,4 +113,3 @@ def _shape(token):
         return 'mixedcase'
     else:
         return 'other'
-

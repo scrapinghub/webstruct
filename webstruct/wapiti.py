@@ -15,9 +15,9 @@ import tempfile
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
+from webstruct.base import BaseSequenceClassifier
 from webstruct.features import DEFAULT_FEATURES
 from webstruct.utils import get_combined_keys, tostr, run_command
-from webstruct.metrics import avg_bio_f1_score
 
 
 def create_wapiti_pipeline(model_filename,
@@ -57,7 +57,7 @@ def create_wapiti_pipeline(model_filename,
     ])
 
 
-class WapitiCRF(BaseEstimator, TransformerMixin):
+class WapitiCRF(BaseSequenceClassifier):
     """
     Class for training and applying Wapiti CRF models.
 
@@ -184,19 +184,6 @@ class WapitiCRF(BaseEstimator, TransformerMixin):
         sequences = self._to_wapiti_sequences(X)
         return [model.label_sequence(seq).splitlines() for seq in sequences]
 
-    def score(self, X, y):
-        """
-        Macro-averaged F1 score of lists of BIO-encoded sequences
-        ``y_true`` and ``y_pred``.
-
-        A named entity in a sequence from ``y_pred`` is considered
-        correct only if it is an exact match of the corresponding entity
-        in the ``y_true``.
-
-        It requires https://github.com/larsmans/seqlearn to work.
-        """
-        y_pred = self.transform(X)
-        return avg_bio_f1_score(y, y_pred)
 
     def run_wapiti(self, args):
         return run_command([self.WAPITI_CMD] + args, self.verbose)

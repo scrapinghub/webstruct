@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import itertools
 from webstruct.utils import merge_dicts, LongestMatch
-
 
 class CombinedFeatures(object):
     """
@@ -78,3 +78,29 @@ class LongestMatchGlobalFeature(object):
         for idx in range(start+1, end):
             doc[idx][1][self.i_featname] = True
             doc[idx][1][self.featname] = True
+
+class Ngram(object):
+    """
+    Create a ngram global feature to combine local features.
+    """
+    def __init__(self, offsets, feature_names, seperator='/', default='?'):
+        self.offsets = offsets
+        self.feature_names = feature_names
+        self.seperator = seperator
+        self.default = default
+
+    def __call__(self, doc):
+        features = [feat for _, feat in doc]
+
+        # XXX: use index value on HTML element level?
+        for i, (html_token, feature) in enumerate(doc):
+            keys = []
+            values = []
+            for offset, name in itertools.izip_longest(self.offsets, self.feature_names, fillvalue=self.feature_names[0]):
+                index = offset + i
+                keys.append('%s_%s' % (name, offset))
+                if 0 <= index < len(features):
+                    values.append(features[index][name])
+                else:
+                    values.append(self.default)
+            feature.setdefault(self.seperator.join(keys), self.seperator.join(values))
