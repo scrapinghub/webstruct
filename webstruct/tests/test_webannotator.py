@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import random
+import string
 from lxml.html import tostring
 from webstruct import webannotator
 from webstruct.utils import html_document_fromstring
@@ -7,22 +9,57 @@ from webstruct.tests.utils import HtmlTest
 
 
 class WaTitleTest(HtmlTest):
-    def test_wa_title(self):
-        tree = html_document_fromstring(b"""
-        <html>
-            <head><title>Foo</title></head>
-            <body>contents</body>
-            <wa-title><b>hello</b>, world</wa-title>
-        </html>
-        """)
-        webannotator.apply_wa_title(tree)
 
-        self.assertHtmlTreeEqual(tree, html_document_fromstring(b"""
-        <html>
-            <head><title><b>hello</b>, world</title></head>
-            <body>contents</body>
-        </html>
-        """))
+    def assertApplyWaTitle(self, source, result):
+        tree = html_document_fromstring(source)
+        webannotator.apply_wa_title(tree)
+        self.assertHtmlTreeEqual(tree, html_document_fromstring(result))
+
+    def test_wa_title(self):
+        self.assertApplyWaTitle(
+            b"""
+            <html>
+                <head><title>Foo</title></head>
+                <body>contents</body>
+                <wa-title><b>hello</b>, world</wa-title>
+            </html>
+            """,
+
+            b"""
+            <html>
+                <head><title><b>hello</b>, world</title></head>
+                <body>contents</body>
+            </html>
+            """
+        )
+
+    def test_wa_title_no_title(self):
+        self.assertApplyWaTitle(
+            b"""
+            <html>
+                <head><title>Foo</title></head>
+                <body>contents</body>
+            </html>
+            """,
+
+            b"""
+            <html>
+                <head><title>Foo</title></head>
+                <body>contents</body>
+            </html>
+            """
+        )
+
+    def test_wa_title_no_invalid(self):
+        self.assertApplyWaTitle(
+            b"""
+            <html>
+                <body>contents</body>
+                <wa-title><b>hello</b>, world</wa-title>
+            </html>
+            """,
+            b"<html><body>contents</body></html>"
+        )
 
 
 class WaConvertTest(HtmlTest):
@@ -67,6 +104,24 @@ class WaConvertTest(HtmlTest):
         </html>
         """)
 
+    def test_wa_convert_no_title(self):
+        tree = html_document_fromstring(b"""
+        <html><body><p> __START_ORG__ Scrapinghub __END_ORG__ </p></body></html>
+        """)
+        wa_tree = webannotator.to_webannotator(tree)
+        wa_tree_str = tostring(wa_tree)
+
+        self.assertHtmlEqual(wa_tree_str, br"""
+        <html>
+          <body>
+            <p>
+              <span class="WebAnnotator_ORG" style="color:#000000; background-color:#33CCFF;" wa-id="0" wa-subtypes="" wa-type="ORG">Scrapinghub</span>
+            </p>
+          </body>
+          <wa-color bg="#33CCFF" class="WebAnnotator_ORG" fg="#000000" id="WA-color-0" type="ORG"></wa-color>
+        </html>
+        """)
+
     def test_handle_nonxml_attributes(self):
         html = b"""
         <html>
@@ -81,3 +136,17 @@ class WaConvertTest(HtmlTest):
         self.assertHtmlEqual(wa_tree_str, html)
 
 
+def test_entity_colors():
+    color_dict = webannotator.EntityColors()
+    colors = {}
+    entities = reversed(string.ascii_letters)
+    for entity in entities:
+        colors[entity] = color_dict[entity]
+
+    for entity in string.ascii_letters:
+        fg, bg, index = color_dict[entity]
+        assert (fg, bg, index) == colors[entity]
+        assert fg[0] == '#'
+        assert bg[0] == '#'
+        assert len(fg) == 7
+        assert len(bg) == 7
