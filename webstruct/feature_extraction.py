@@ -46,7 +46,7 @@ from collections import namedtuple, Counter
 from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.sequence_encoding import IobEncoder
-from webstruct.tokenizers import tokenize
+from webstruct.text_tokenizers import tokenize
 from webstruct.features import CombinedFeatures
 from webstruct.utils import replace_html_tags, kill_html_tags, smart_join
 
@@ -110,7 +110,7 @@ class HtmlTokenizer(object):
     text_toknize_func : callable, optional
         Function used for tokenizing text inside HTML elements.
         By default, :class:`HtmlTokenizer` uses
-        :func:`webstruct.tokenizers.tokenize`.
+        :func:`webstruct.text_tokenizers.tokenize`.
     kill_html_tags: set, optional
         A set of HTML tags which should be removed. Contents inside
         removed tags is not removed. See :func:`webstruct.utils.kill_html_tags`
