@@ -36,7 +36,7 @@ Predefined Feature Functions
     :members:
     :undoc-members:
 
-.. automodule:: webstruct.features.utils
+.. automodule:: webstruct.features.global_features
     :members:
     :undoc-members:
 
