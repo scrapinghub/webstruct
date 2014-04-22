@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 
 import itertools
-from webstruct.utils import merge_dicts, LongestMatch
+from webstruct.utils import LongestMatch
 
 
 class LongestMatchGlobalFeature(object):
