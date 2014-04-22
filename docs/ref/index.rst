@@ -11,4 +11,5 @@ Reference
    grouping
    wapiti
    webannotator
+   base
    misc

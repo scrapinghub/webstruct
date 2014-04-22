@@ -1,7 +1,8 @@
 BaseSequenceClassifier
---------------
+----------------------
 
-.. automodule:: webstruct.BaseSequenceClassifier
+.. automodule:: webstruct.base
     :members:
     :undoc-members:
+    :show-inheritance:
 

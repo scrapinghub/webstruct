@@ -186,6 +186,7 @@ class WapitiCRF(BaseSequenceClassifier):
 
 
     def run_wapiti(self, args):
+        """ Run ``wapiti`` binary in a subprocess """
         return run_command([self.WAPITI_CMD] + args, self.verbose)
 
     def _get_python_wapiti_model(self):
