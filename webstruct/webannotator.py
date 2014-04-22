@@ -219,10 +219,16 @@ def to_webannotator(tree, entity_colors=None):
     """
     Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
 
-    If you want a predictable colors assignment use `entity_colors` argument;
+    If you want a predictable colors assignment use ``entity_colors`` argument;
     it should be a mapping ``{'entity_name': (fg, bg, entity_idx)}``;
     entity names should be lowercased. You can use :class:`EntityColors`
-    to generate this mapping automatically.
+    to generate this mapping automatically:
+
+    >>> from webstruct.webannotator import EntityColors, to_webannotator
+    >>> # trees = ...
+    >>> entity_colors = EntityColors()
+    >>> wa_trees = [to_webannotator(tree, entity_colors) for tree in trees]  # doctest: +SKIP
+
     """
     handler = _WaContentHandler(entity_colors)
     lxml.sax.saxify(tree, handler)
