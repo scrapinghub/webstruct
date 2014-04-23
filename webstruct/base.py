@@ -15,5 +15,5 @@ class BaseSequenceClassifier(BaseEstimator, TransformerMixin):
 
         It requires https://github.com/larsmans/seqlearn to work.
         """
-        y_pred = self.transform(X)
+        y_pred = self.predict(X)
         return avg_bio_f1_score(y, y_pred)
