@@ -16,7 +16,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
-from webstruct.features import DEFAULT_FEATURES
 from webstruct.utils import get_combined_keys, tostr, run_command
 
 
@@ -46,7 +45,7 @@ def create_wapiti_pipeline(model_filename,
     """
 
     if token_features is None:
-        token_features = DEFAULT_FEATURES
+        token_features = []
 
     if train_args is None:
         train_args = '--algo l-bfgs --maxiter 100 --compact --nthread 8 --jobsize 1 --stopwin 15'

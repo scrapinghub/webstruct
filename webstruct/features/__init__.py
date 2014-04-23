@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-
 from .block_features import *
 from .token_features import *
 from .data_features import *
 from .global_features import Pattern
 
 
-DEFAULT_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
+EXAMPLE_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
                   'ZIPCODE', 'EMAIL', 'TEL', 'FAX', 'SUBJ', 'FUNC', 'HOURS'}
 
-DEFAULT_FEATURES = [
+EXAMPLE_TOKEN_FEATURES = [
     parent_tag,
     borders,
     block_length,
