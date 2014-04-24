@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-CRFsuite_ backend for webstruct base on python-crfsuite_
+CRFsuite_ backend for webstruct based on python-crfsuite_
 
 .. _CRFsuite: http://www.chokkan.org/software/crfsuite/
 .. _python-crfsuite: https://github.com/tpeng/python-crfsuite
