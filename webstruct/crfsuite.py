@@ -21,21 +21,39 @@ def create_crfsuite_pipeline(model_filename,
     :class:`~.HtmlTokenizer` as an input and produces
     sequences of IOB2 tags as output.
 
-    Example of training, with all parameters default::
+    Example::
 
-        >>> import webstruct
-        >>> trees = webstruct.load_trees([
-        ...    ("train/*.html", webstruct.WebAnnotatorLoader())
-        ... ])  # doctest: +SKIP
-        >>> X, y = webstruct.HtmlTokenizer().tokenize(trees)  # doctest: +SKIP
-        >>> model = webstruct.create_crfsuite_pipeline('model.crfsuite')  # doctest: +SKIP
-        >>> model.fit(X, y)  # doctest: +SKIP
+        import webstruct
+        from webstruct.features import EXAMPLE_TOKEN_FEATURES
+
+        # load train data
+        html_tokenizer = webstruct.HtmlTokenizer()
+        train_trees = webstruct.load_trees([
+           ("train/*.html", webstruct.WebAnnotatorLoader())
+        ])
+        X_train, y_train = html_tokenizer.tokenize(train_trees)
+
+        # train
+        model = webstruct.create_crfsuite_pipeline(
+            model_filename = 'model.crfsuite',
+            token_features = EXAMPLE_TOKEN_FEATURES,
+        )
+        model.fit(X_train, y_train)
+
+        # load test data
+        test_trees = webstruct.load_trees([
+           ("test/*.html", webstruct.WebAnnotatorLoader())
+        ])
+        X_test, y_test = html_tokenizer.tokenize(test_trees)
+
+        # do a prediction
+        y_pred = model.predict(X_test)
 
     """
     from pycrfsuite import CRFSuite
 
     if token_features is None:
-        token_features = DEFAULT_FEATURES
+        token_features = []
 
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
