@@ -90,6 +90,11 @@ class HtmlToken(_HtmlToken):
     def root(self):
         return self.elem.getroottree()
 
+    def __repr__(self):
+        return "HtmlToken(token=%r, parent=%r, index=%s)" % (
+            self.token, self.parent, self.index
+        )
+
 
 class HtmlTokenizer(object):
     """
@@ -162,7 +167,7 @@ class HtmlTokenizer(object):
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
             >>> html_tokens  # doctest: +ELLIPSIS
-            [HtmlToken(index=0, tokens=[u'hello', u'John'], elem=<Element p at ...>, is_tail=False), HtmlToken...]
+            [HtmlToken(token=u'hello', parent=<Element p at ...>, index=0), HtmlToken...]
             >>> tags
             ['O', u'B-PER', u'I-PER', u'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
