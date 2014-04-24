@@ -1,5 +1,5 @@
 CRFsuite Helpers
---------------
+----------------
 
 .. automodule:: webstruct.crfsuite
     :members:
