@@ -22,8 +22,6 @@ from webstruct.utils import get_combined_keys, tostr, run_command
 def create_wapiti_pipeline(model_filename,
                            token_features=None,
                            global_features=None,
-                           train_args=None,
-                           feature_template=None,
                            min_df=1,
                            **wapiti_kwargs):
     """
@@ -61,16 +59,12 @@ def create_wapiti_pipeline(model_filename,
         y_pred = model.predict(X_test)
 
     """
-
     if token_features is None:
         token_features = []
 
-    if train_args is None:
-        train_args = '--algo l-bfgs --maxiter 100 --compact --nthread 8 --jobsize 1 --stopwin 15'
-
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('crf', WapitiCRF(model_filename, train_args, feature_template, **wapiti_kwargs)),
+        ('crf', WapitiCRF(model_filename, **wapiti_kwargs)),
     ])
 
 
@@ -95,16 +89,20 @@ class WapitiCRF(BaseSequenceClassifier):
     WAPITI_CMD = 'wapiti'
     """ Command used to start wapiti """
 
-    def __init__(self, model_filename, train_args=(),
+    def __init__(self, model_filename, train_args=None,
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0):
 
         self.model_filename = model_filename
+
+        if train_args is None:
+            train_args = '--algo l-bfgs --maxiter 50 --compact --nthread 8 --jobsize 1 --stopwin 15'
         if isinstance(train_args, (list, tuple)):
             self.train_args = train_args
         else:
             self.train_args = shlex.split(train_args)
+
         self.feature_template = feature_template
         self.unigrams_scope = unigrams_scope
         self.tempdir = tempdir
