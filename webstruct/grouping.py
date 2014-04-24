@@ -4,7 +4,7 @@ Often it is not enough to find all entities on a webpage.
 For example, one may want to extract separate "entity groups"
 with combined information about individual offices
 from a page that has contact details of several offices.
-An "entity group" may constsit of the name of the office along
+An "entity group" may consist of the name of the office along
 with office address (street, city, zipcode) and contacts
 (phones, faxes) in this case.
 

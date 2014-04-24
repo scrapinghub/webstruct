@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from webstruct.gazetteers.geonames import GAZETTEER_FORMAT
-from webstruct.features.utils import LongestMatchGlobalFeature
+from webstruct.features.global_features import LongestMatchGlobalFeature
 
 
 class MarisaGeonamesGlobalFeature(LongestMatchGlobalFeature):

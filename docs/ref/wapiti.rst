@@ -3,5 +3,6 @@ Wapiti Helpers
 
 .. automodule:: webstruct.wapiti
     :members:
-    :undoc-members:
+    :show-inheritance:
+    :inherited-members:
 

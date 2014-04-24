@@ -17,7 +17,7 @@ class NER(object):
     Class for extracting named entities from HTML.
 
     Initialize it with a trained ``model``. ``model`` must have
-    ``transform`` method that accepts lists of :class:`~.HtmlToken`
+    ``predict`` method that accepts lists of :class:`~.HtmlToken`
     sequences and returns lists of predicted IOB2 tags.
     :func:`~.create_wapiti_pipeline` function returns such model.
     """
@@ -53,7 +53,7 @@ class NER(object):
         """
         tree = self.loader.loadbytes(bytes_data)
         html_tokens, _ = self.html_tokenizer.tokenize_single(tree)
-        tags = self.model.transform([html_tokens])[0]
+        tags = self.model.predict([html_tokens])[0]
         return html_tokens, tags
 
     def extract_groups(self, bytes_data, dont_penalize=None):

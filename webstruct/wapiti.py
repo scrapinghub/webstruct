@@ -16,7 +16,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
-from webstruct.features import DEFAULT_FEATURES
 from webstruct.utils import get_combined_keys, tostr, run_command
 
 
@@ -29,24 +28,42 @@ def create_wapiti_pipeline(model_filename,
                            **wapiti_kwargs):
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
-    This pipeline expects data produced by
-    :class:`~.HtmlTokenizer` as an input and produces
-    sequences of IOB2 tags as output.
+    This pipeline expects data produced by :class:`~.HtmlTokenizer`
+    as an input and produces sequences of IOB2 tags as output.
 
-    Example of training, with all parameters default::
+    Example::
 
-        >>> import webstruct
-        >>> trees = webstruct.load_trees([
-        ...    ("train/*.html", webstruct.WebAnnotatorLoader())
-        ... ])  # doctest: +SKIP
-        >>> X, y = webstruct.HtmlTokenizer().tokenize(trees)  # doctest: +SKIP
-        >>> model = webstruct.create_wapiti_pipeline('model.wapiti')  # doctest: +SKIP
-        >>> model.fit(X, y)  # doctest: +SKIP
+        import webstruct
+        from webstruct.features import EXAMPLE_TOKEN_FEATURES
+
+        # load train data
+        html_tokenizer = webstruct.HtmlTokenizer()
+        train_trees = webstruct.load_trees([
+           ("train/*.html", webstruct.WebAnnotatorLoader())
+        ])
+        X_train, y_train = html_tokenizer.tokenize(train_trees)
+
+        # train
+        model = webstruct.create_wapiti_pipeline(
+            model_filename = 'model.wapiti',
+            token_features = EXAMPLE_TOKEN_FEATURES,
+            train_args = '--algo l-bfgs --maxiter 50 --nthread 8 --jobsize 1 --stopwin 10',
+        )
+        model.fit(X_train, y_train)
+
+        # load test data
+        test_trees = webstruct.load_trees([
+           ("test/*.html", webstruct.WebAnnotatorLoader())
+        ])
+        X_test, y_test = html_tokenizer.tokenize(test_trees)
+
+        # do a prediction
+        y_pred = model.predict(X_test)
 
     """
 
     if token_features is None:
-        token_features = DEFAULT_FEATURES
+        token_features = []
 
     if train_args is None:
         train_args = '--algo l-bfgs --maxiter 100 --compact --nthread 8 --jobsize 1 --stopwin 15'
@@ -165,7 +182,7 @@ class WapitiCRF(BaseSequenceClassifier):
                 for filename in to_unlink:
                     os.unlink(filename)
 
-    def transform(self, X):
+    def predict(self, X):
         """
         Make a prediction.
 
@@ -186,6 +203,7 @@ class WapitiCRF(BaseSequenceClassifier):
 
 
     def run_wapiti(self, args):
+        """ Run ``wapiti`` binary in a subprocess """
         return run_command([self.WAPITI_CMD] + args, self.verbose)
 
     def _get_python_wapiti_model(self):

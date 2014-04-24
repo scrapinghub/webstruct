@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .utils import CombinedFeatures, Ngram
-import functools
+from .global_features import Pattern
 
-DEFAULT_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
+
+EXAMPLE_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
                   'ZIPCODE', 'EMAIL', 'TEL', 'FAX', 'SUBJ', 'FUNC', 'HOURS'}
 
-DEFAULT_FEATURES = [
+EXAMPLE_TOKEN_FEATURES = [
     parent_tag,
     borders,
     block_length,
@@ -34,12 +33,4 @@ DEFAULT_FEATURES = [
     looks_like_month,
     looks_like_email,
     looks_like_street_part,
-]
-
-CRFSUITE_GLOBAL_FEATURES = [
-    Ngram([-2, -1], ['lower']),
-    Ngram([-1, 0], ['lower']),
-
-    Ngram([0, 1], ['lower']),
-    Ngram([1, 2], ['lower'])
 ]

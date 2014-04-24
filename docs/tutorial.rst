@@ -280,7 +280,7 @@ Then create a :class:`~.NER` instance initialized with a trained model:
 
 >>> ner = webstruct.NER(model)
 
-The ``model`` must provide a ``transform`` method that extracts features
+The ``model`` must provide a ``predict`` method that extracts features
 from HTML tokens and predicts labels for these tokens. A pipeline created with
 :func:`.create_wapiti_pipeline` function fits this definition.
 
@@ -299,7 +299,7 @@ Generally, the steps are:
    loader - ``y`` can be discarded.
 3. Use the same ``feature_extractor`` as used for training to extract
    features.
-4. Run ``your_crf.transform()`` method (e.g. :meth:`.WapitiCRF.transform`)
+4. Run ``your_crf.predict()`` method (e.g. :meth:`.WapitiCRF.predict`)
    on features extracted in (3) to get the prediction - a list of IOB2-encoded
    tags for each input document.
 5. Build entities from input tokens based on predicted tags

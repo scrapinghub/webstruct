@@ -43,12 +43,17 @@ import re
 import copy
 from itertools import chain, groupby
 from collections import namedtuple, Counter
+
 from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize
-from webstruct.features import CombinedFeatures
-from webstruct.utils import replace_html_tags, kill_html_tags, smart_join
+from webstruct.utils import (
+    replace_html_tags,
+    kill_html_tags,
+    smart_join,
+    merge_dicts
+)
 
 _HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail')
 
@@ -388,7 +393,7 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         return [self.transform_single(html_tokens) for html_tokens in html_token_lists]
 
     def transform_single(self, html_tokens):
-        feature_func = CombinedFeatures(*self.token_features)
+        feature_func = _CombinedFeatures(*self.token_features)
         token_data = list(zip(html_tokens, map(feature_func, html_tokens)))
 
         for feat in self.global_features:
@@ -414,3 +419,23 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
             seen_features = set(chain.from_iterable(fd.items() for fd in doc))
             cnt.update(seen_features)
         return cnt
+
+
+class _CombinedFeatures(object):
+    """
+    Utility for combining several feature functions::
+
+        >>> from pprint import pprint
+        >>> def f1(tok): return {'upper': tok.isupper()}
+        >>> def f2(tok): return {'len': len(tok)}
+        >>> features = _CombinedFeatures(f1, f2)
+        >>> pprint(features('foo'))
+        {'len': 3, 'upper': False}
+
+    """
+    def __init__(self, *feature_funcs):
+        self.feature_funcs = list(feature_funcs)
+
+    def __call__(self, *args, **kwargs):
+        features = [f(*args, **kwargs) for f in self.feature_funcs]
+        return merge_dicts(*features)

@@ -55,7 +55,7 @@ when ``pip install webstruct`` is executed.
 There are also some optional dependencies:
 
 * seqlearn_ (from github master) is used for metrics; it could
-  be also used as a sequence labelling toolkit;
+  be also used as a sequence labelling toolkit.
 * Webstruct has support for Wapiti_ sequence labelling toolkit;
   you'll need both the ``wapiti`` binary and `python-wapiti`_ wrapper
   (from github master) for the tutorial.
