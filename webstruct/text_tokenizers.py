@@ -8,9 +8,9 @@ class WordTokenizer(object):
     This tokenizer is copy-pasted version of TreebankWordTokenizer
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
-        >>> from nltk.tokenize.treebank import TreebankWordTokenizer
+        >>> from nltk.tokenize.treebank import TreebankWordTokenizer  # doctest: +SKIP
         >>> s = u'''Good muffins cost $3.88\\nin New York. Email: muffins@gmail.com'''
-        >>> TreebankWordTokenizer().tokenize(s)
+        >>> TreebankWordTokenizer().tokenize(s)  # doctest: +SKIP
         [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email', u':', u'muffins', u'@', u'gmail.com']
         >>> WordTokenizer().tokenize(s)
         [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email:', u'muffins@gmail.com']
