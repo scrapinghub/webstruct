@@ -38,16 +38,16 @@ class WordTokenizer(object):
     # regex, token
     # if token is None - regex match group is taken
     rules = [
-        (re.compile(r'\s+'), ''),
+        (re.compile(r'\s+', re.UNICODE), ''),
         (re.compile(ur'“'), u"``"),
         (re.compile(ur'["”]'), u"''"),
         (re.compile(r'``'), None),
-        (re.compile(r'…|\.\.\.'), u'...'),
+        (re.compile(ur'…|\.\.\.'), u'...'),
         (re.compile(r'--'), None),
         (re.compile(r',(?=\D|$)'), None),
         (re.compile(r'\.$'), None),
-        (re.compile(r'[;#$%&|!?[\](){}<>]'), None),
-        (re.compile(r"'(?=\s)|''"), None),
+        (re.compile(ur'[;#$£%&|!?[\](){}<>]'), None),
+        (re.compile(r"'(?=\s)|''", re.UNICODE), None),
     ]
 
     open_quotes = re.compile(r'(^|[\s(\[{<])"')
