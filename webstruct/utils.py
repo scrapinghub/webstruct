@@ -147,7 +147,7 @@ def run_command(args, verbose=True):
 
     If ``verbose == True`` then print output as it appears using "print".
     Unlike ``subprocess.check_call`` it doesn't assume that stdout
-    has a file descriptor - this allows printing to works in IPython notebook.
+    has a file descriptor - this allows printing to work in IPython notebook.
 
     Example:
 
@@ -261,11 +261,11 @@ class LongestMatch(BestMatch):
         return sorted(ranges, key=lambda k: k[1]-k[0], reverse=True)
 
 
-def substrings(txt, min_length=2, max_length=10, pad=''):
+def substrings(txt, min_length, max_length, pad=''):
     """
-    >>> substrings("abc", 1)
+    >>> substrings("abc", 1, 100)
     ['a', 'ab', 'abc', 'b', 'bc', 'c']
-    >>> substrings("abc", 2)
+    >>> substrings("abc", 2, 100)
     ['ab', 'abc', 'bc']
     >>> substrings("abc", 1, 2)
     ['a', 'ab', 'b', 'bc', 'c']
