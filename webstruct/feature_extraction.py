@@ -304,6 +304,17 @@ class HtmlTokenizer(object):
             if not (typ in {'start', 'end'} and value not in self.tagset)
         ]
 
+    def __getstate__(self):
+        dct = self.__dict__.copy()
+        if self.text_tokenize_func is tokenize:
+            dct['text_tokenize_func'] = 'DEFAULT'
+        return dct
+
+    def __setstate__(self, state):
+        if state['text_tokenize_func'] == 'DEFAULT':
+            state['text_tokenize_func'] = tokenize
+        self.__dict__.update(state)
+
 
 class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     """
