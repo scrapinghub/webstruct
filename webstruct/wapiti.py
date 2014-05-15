@@ -180,6 +180,8 @@ class WapitiCRF(BaseSequenceClassifier):
                 for filename in to_unlink:
                     os.unlink(filename)
 
+        return self
+
     def predict(self, X):
         """
         Make a prediction.
