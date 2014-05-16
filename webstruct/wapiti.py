@@ -23,7 +23,7 @@ def create_wapiti_pipeline(model_filename,
                            token_features=None,
                            global_features=None,
                            min_df=1,
-                           **wapiti_kwargs):
+                           **crf_kwargs):
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by :class:`~.HtmlTokenizer`
@@ -64,7 +64,7 @@ def create_wapiti_pipeline(model_filename,
 
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('crf', WapitiCRF(model_filename, **wapiti_kwargs)),
+        ('crf', WapitiCRF(model_filename, **crf_kwargs)),
     ])
 
 
@@ -200,7 +200,6 @@ class WapitiCRF(BaseSequenceClassifier):
         model = self._get_python_wapiti_model()
         sequences = self._to_wapiti_sequences(X)
         return [model.label_sequence(seq).splitlines() for seq in sequences]
-
 
     def run_wapiti(self, args):
         """ Run ``wapiti`` binary in a subprocess """
