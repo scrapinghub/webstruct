@@ -16,7 +16,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
-from webstruct.utils import get_combined_keys, tostr, run_command
+from webstruct.utils import get_combined_keys, run_command
 
 
 def create_wapiti_pipeline(model_filename,
@@ -289,7 +289,7 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
         """
         lines = []
         for dct in feature_dicts:
-            line = ' '.join(tostr(dct.get(key)) for key in self.feature_names_)
+            line = ' '.join(_tostr(dct.get(key)) for key in self.feature_names_)
             lines.append(line)
         return lines
 
@@ -392,6 +392,26 @@ def prepare_wapiti_template(template, vocabulary):
     ]
 
     return "\n".join(lines)
+
+
+def _tostr(val):
+    """
+    >>> _tostr('foo')
+    'foo'
+    >>> _tostr(u'foo')
+    u'foo'
+    >>> _tostr(10)
+    '10'
+    >>> _tostr(True)
+    '1'
+    >>> _tostr(False)
+    '0'
+    """
+    if isinstance(val, basestring):
+        return val
+    if isinstance(val, bool):
+        return str(int(val))
+    return str(val)
 
 
 def _wapiti_line_is_comment(line):
