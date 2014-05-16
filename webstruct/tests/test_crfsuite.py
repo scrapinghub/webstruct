@@ -54,7 +54,7 @@ class CRFsuiteTest(unittest.TestCase):
 
         # It should handle files automatically:
         crf = model.steps[-1][1]
-        filename = crf.model_filename_
+        filename = crf.modelfile.name
         self.assertTrue(os.path.isfile(filename))
 
         # Temporary files should be collected.
@@ -72,7 +72,7 @@ class CRFsuiteTest(unittest.TestCase):
         assert score > 0.3
 
         data = pickle.dumps(model, pickle.HIGHEST_PROTOCOL)
-        filename = model.steps[-1][1].model_filename_
+        filename = model.steps[-1][1].modelfile.name
 
         # make sure model file is gone
         del model
@@ -96,8 +96,8 @@ class CRFsuiteTest(unittest.TestCase):
         model.fit(X_train, y_train)
 
         crf = model.steps[-1][1]
-        self.assertFalse(crf._modelfile_auto)
-        self.assertEqual(crf.model_filename_, fname)
+        self.assertFalse(crf.modelfile.auto)
+        self.assertEqual(crf.modelfile.name, fname)
 
         # the file should be preserved when the model is closed
         del crf
@@ -117,7 +117,7 @@ class CRFsuiteTest(unittest.TestCase):
         model3 = pickle.loads(dump)
         assert model3.score(X_test, y_test) > 0.3
         self.assertTrue(os.path.isfile(fname))
-        self.assertEqual(model3.steps[-1][1].model_filename_, fname)
+        self.assertEqual(model3.steps[-1][1].modelfile.name, fname)
 
         # cleanup
         os.unlink(fname)
@@ -159,8 +159,8 @@ class CRFsuiteTest(unittest.TestCase):
         ner2 = pickle.loads(dump)
 
         self.assertNotEqual(
-            ner.model.steps[-1][1].model_filename_,
-            ner2.model.steps[-1][1].model_filename_,
+            ner.model.steps[-1][1].modelfile.name,
+            ner2.model.steps[-1][1].modelfile.name,
         )
 
         groups = ner2.extract_groups(html, dont_penalize={'TEL', 'FAX'})

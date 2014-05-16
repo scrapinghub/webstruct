@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.metrics import avg_bio_f1_score
 

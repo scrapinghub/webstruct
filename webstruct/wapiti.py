@@ -17,9 +17,10 @@ from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
+from webstruct._fileresource import FileResource
 
 
-def create_wapiti_pipeline(model_filename,
+def create_wapiti_pipeline(model_filename=None,
                            token_features=None,
                            global_features=None,
                            min_df=1,
@@ -89,12 +90,17 @@ class WapitiCRF(BaseSequenceClassifier):
     WAPITI_CMD = 'wapiti'
     """ Command used to start wapiti """
 
-    def __init__(self, model_filename, train_args=None,
+    def __init__(self, model_filename=None, train_args=None,
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0):
 
-        self.model_filename = model_filename
+        self.modelfile = FileResource(
+            filename=model_filename,
+            keep_tempfiles=not unlink_temp,
+            suffix='.wapiti',
+            prefix='model',
+        )
 
         if train_args is None:
             train_args = '--algo l-bfgs --maxiter 50 --compact --nthread 8 --jobsize 1 --stopwin 15'
@@ -135,6 +141,7 @@ class WapitiCRF(BaseSequenceClassifier):
             Path to a file where tagged development data will be written.
 
         """
+        self.modelfile.refresh()
         self._wapiti_model = None
         self.feature_encoder.reset()
         self.feature_encoder.fit(X, y)
@@ -167,12 +174,12 @@ class WapitiCRF(BaseSequenceClassifier):
             args = ['train', '--pattern', template_fn] + self.train_args
             if dev_fn:
                 args += ['--devel', dev_fn]
-            args += [train_fn, self.model_filename]
+            args += [train_fn, self.modelfile.name]
             self.run_wapiti(args)
 
             # do a final check on development data
             if dev_fn:
-                args = ['label', '-m', self.model_filename, '--check', dev_fn, out_dev]
+                args = ['label', '-m', self.modelfile.name, '--check', dev_fn, out_dev]
                 self.run_wapiti(args)
 
         finally:
@@ -212,9 +219,9 @@ class WapitiCRF(BaseSequenceClassifier):
 
     def _load_model(self):
         import wapiti
-        if self.model_filename is None:
+        if self.modelfile.name is None:
             raise ValueError("model filename is unknown, can't load model")
-        self._wapiti_model = wapiti.Model(model=self.model_filename)
+        self._wapiti_model = wapiti.Model(model=self.modelfile.name)
 
     def _to_wapiti_sequences(self, X, y=None):
         X = self.feature_encoder.transform(X)
@@ -250,6 +257,12 @@ class WapitiCRF(BaseSequenceClassifier):
 
     def _to_train_sequence(self, wapiti_lines, tags):
         return "\n".join(["%s %s" %(line, tag) for line, tag in zip(wapiti_lines, tags)])
+
+    def __getstate__(self):
+        dct = self.__dict__.copy()
+        dct['_wapiti_model'] = None
+        return dct
+
 
 
 class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
