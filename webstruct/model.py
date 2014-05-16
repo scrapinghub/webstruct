@@ -4,12 +4,14 @@
 """
 from __future__ import absolute_import
 import urllib2
+from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
 from webstruct.feature_extraction import HtmlTokenizer
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.utils import smart_join
 from webstruct.grouping import choose_best_clustering
+from webstruct.webannotator import EntityColors, to_webannotator
 
 
 class NER(object):
@@ -25,6 +27,7 @@ class NER(object):
         self.model = model
         self.loader = loader or HtmlLoader()
         self.html_tokenizer = html_tokenizer or HtmlTokenizer()
+        self.entity_colors = EntityColors()
 
     def extract(self, bytes_data):
         """
@@ -91,6 +94,32 @@ class NER(object):
         string or None, entity is dropped.
         """
         return smart_join(t.token for t in html_tokens)
+
+    def annotate(self, bytes_data, pretty_print=False):
+        """
+        Return annotated HTML data in WebAnnotator format.
+        """
+        html_tokens, tags = self.extract_raw(bytes_data)
+        tree = self.html_tokenizer.detokenize_single(html_tokens, tags)
+        tree = to_webannotator(tree, self.entity_colors)
+        return tostring(tree, pretty_print=pretty_print)
+
+    def annotate_url(self, url):
+        """
+        Return annotated HTML data in WebAnnotator format; input is downloaded
+        from ``url``.
+        """
+        data = urllib2.urlopen(url).read()
+        return self.annotate(data)
+
+    def __getstate__(self):
+        dct = self.__dict__.copy()
+        dct['entity_colors'] = dict(self.entity_colors)
+        return dct
+
+    def __setstate__(self, state):
+        state['entity_colors'] = EntityColors(**state['entity_colors'])
+        self.__dict__.update(state)
 
 
 def _drop_empty(entities):
