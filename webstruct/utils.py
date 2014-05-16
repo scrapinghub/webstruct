@@ -30,26 +30,6 @@ def get_combined_keys(dicts):
     return seen_keys
 
 
-def tostr(val):
-    """
-    >>> tostr('foo')
-    'foo'
-    >>> tostr(u'foo')
-    u'foo'
-    >>> tostr(10)
-    '10'
-    >>> tostr(True)
-    '1'
-    >>> tostr(False)
-    '0'
-    """
-    if isinstance(val, basestring):
-        return val
-    if isinstance(val, bool):
-        return str(int(val))
-    return str(val)
-
-
 def flatten(x):
     """flatten(sequence) -> list
 
