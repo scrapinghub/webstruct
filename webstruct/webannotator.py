@@ -47,7 +47,7 @@ def _get_colors(index):
 
 class EntityColors(defaultdict):
     def __init__(self, **kwargs):
-        self.next_index = 0
+        self.next_index = len(kwargs)
         super(EntityColors, self).__init__(self._new_item_factory, **kwargs)
 
     def _new_item_factory(self):

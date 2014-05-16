@@ -149,3 +149,9 @@ def test_entity_colors():
         assert bg[0] == '#'
         assert len(fg) == 7
         assert len(bg) == 7
+
+    color_dict2 = webannotator.EntityColors(**dict(color_dict))
+    assert color_dict.next_index == color_dict2.next_index
+
+    for entity in string.ascii_letters:
+        assert color_dict[entity] == color_dict2[entity]
