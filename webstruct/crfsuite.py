@@ -7,13 +7,12 @@ CRFsuite_ backend for webstruct based on python-crfsuite_
 
 """
 from __future__ import absolute_import
-import os
-import tempfile
 from sklearn.pipeline import Pipeline
 from sklearn.base import TransformerMixin, BaseEstimator
 
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
+from webstruct._fileresource import FileResource
 
 
 def _prepare_dict(dct):
@@ -57,11 +56,12 @@ class CRFsuiteCRF(BaseSequenceClassifier):
                  model_filename=None, keep_tempfiles=False):
         self.algorithm = algorithm
         self.train_params = train_params
-
-        self.model_filename_ = model_filename
-        self._modelfile_auto = model_filename is None
-        self.keep_tempfiles = keep_tempfiles
-
+        self.modelfile = FileResource(
+            filename =model_filename,
+            keep_tempfiles=keep_tempfiles,
+            suffix=".crfsuite",
+            prefix="model"
+        )
         self.verbose = verbose
         self._tagger = None
         super(CRFsuiteCRF, self).__init__()
@@ -78,7 +78,10 @@ class CRFsuiteCRF(BaseSequenceClassifier):
         y : list of lists of strings
             Labels for several documents.
         """
-        self._cleanup()
+        if self._tagger is not None:
+            self._tagger.close()
+            self._tagger = None
+        self.modelfile.refresh()
 
         import pycrfsuite
         trainer = pycrfsuite.Trainer(
@@ -90,9 +93,7 @@ class CRFsuiteCRF(BaseSequenceClassifier):
         for xseq, yseq in zip(X, y):
             trainer.append(xseq, yseq)
 
-        if self._modelfile_auto:
-            self.model_filename_ = self._tempname()
-        trainer.train(self.model_filename_)
+        trainer.train(self.modelfile.name)
         return self
 
     def predict(self, X):
@@ -111,63 +112,27 @@ class CRFsuiteCRF(BaseSequenceClassifier):
 
         """
         y = []
-        tagger = self.get_tagger()
+        tagger = self.tagger
         for xseq in X:
             y.append(tagger.tag(xseq))
         return y
 
-    def get_tagger(self):
+    @property
+    def tagger(self):
         if self._tagger is None:
-            if self.model_filename_ is None:
+            if self.modelfile.name is None:
                 raise Exception("Can't load model. Is the model trained?")
 
             import pycrfsuite
             tagger = pycrfsuite.Tagger()
-            tagger.open(self.model_filename_)
+            tagger.open(self.modelfile.name)
             self._tagger = tagger
         return self._tagger
-
-    def __del__(self):
-        self._cleanup()
 
     def __getstate__(self):
         dct = self.__dict__.copy()
         dct['_tagger'] = None
-
-        if self._modelfile_auto:
-            filename = dct['model_filename_']
-            if filename is not None:
-                with open(filename, 'rb') as f:
-                    dct['crfsuite_data'] = f.read()
-                dct['model_filename_'] = None
-
         return dct
-
-    def __setstate__(self, state):
-        data = state.pop('crfsuite_data', None)
-        if data is not None:
-            assert state['_modelfile_auto']
-            assert state['model_filename_'] is None
-            state['model_filename_'] = self._tempname()
-            with open(state['model_filename_'], 'wb') as f:
-                f.write(data)
-        self.__dict__.update(state)
-
-    def _tempname(self):
-        fd, fname = tempfile.mkstemp(suffix='.crfsuite', prefix='model')
-        return fname
-
-    def _cleanup(self):
-        if self._tagger is not None:
-            self._tagger.close()
-            self._tagger = None
-
-        if self.model_filename_ and self._modelfile_auto and not self.keep_tempfiles:
-            try:
-                os.unlink(self.model_filename_)
-            except OSError:
-                pass
-            self.model_filename_ = None
 
 
 def create_crfsuite_pipeline(token_features=None,
