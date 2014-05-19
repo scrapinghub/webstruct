@@ -1,0 +1,594 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html class=" ext-strict"><head>
+                    
+                
+                    <base href="http://www.visionproject.se/"><title>VisionProject :: Web based tool for project management, issue tracking, task tracking, bug tracking and customer support</title>
+            <meta name="description" content="$metaDescriptionE">
+            <meta name="keywords" content="project management, product management, lean, agile, alm, application lifecycle management, issue tracking, web based, bug tracking, hosted, subversion, ticket, task management, quality assurance, visionera, VisionProject, kanban, burn down chart, task board">
+                <meta name="author" content="Visionera AB">
+    
+        <meta name="robots" content="all">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" async="" src="http://dnn506yrbagrg.cloudfront.net/pages/scripts/0010/9866.js?389030"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script language="JavaScript" src="http://j.maxmind.com/app/geoip.js"></script>
+
+        <script type="text/javascript">
+
+
+            if(navigator.cookieEnabled){
+                if(window.location.href.indexOf("lang") == -1 && window.location.href.indexOf("country") == -1){
+                    if(Get_Cookie("lang") == null || Get_Cookie("lang") == ""){
+                        var value = geoip_country_code();
+                        window.location.href = window.location.href + "?lang=" + value;
+                    }
+                } else {
+                    if(window.location.href.indexOf("lang=SE") != -1 || window.location.href.indexOf("country=SE") != -1){
+                        insertParamAndRedirect("SE");
+                    } else if(window.location.href.indexOf("lang=US") != -1 || window.location.href.indexOf("country=US") != -1){
+                        insertParamAndRedirect("US");
+                    } else if(window.location.href.indexOf("lang=DE") != -1 || window.location.href.indexOf("country=DE") != -1){
+                        insertParamAndRedirect("DE");
+                    }  else if(window.location.href.indexOf("country=") != -1){
+                        insertParamAndRedirect("US");
+                    }
+                }
+            }
+
+
+            function insertParamAndRedirect(value)
+            {
+                var param1 = "";
+                var param2 = "";
+                //var param1 = "locale=";
+                //var param2 = "region=";
+                var EU = "BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,UK";
+
+                if(value == "SE"){
+                    param1 = param1 + "SE";
+                    param2 = param2 + "EU";
+                } else if(EU.indexOf(value) > -1){
+                    param1 = param1 + "EN";
+                    param2 = param2 + "EU";
+                } else {
+                    param1 = param1 + "EN";
+                    param2 = param2 + "US";
+                }
+
+                Set_Cookie("lang", param1, 365);
+                Set_Cookie("region", param2, 365);
+                if(window.location.href.indexOf("?") == -1){
+                    window.location.href = window.location.href;
+                } else if(window.location.href.indexOf("?lang") > -1){
+                    window.location.href = window.location.href.substring(0, window.location.href.indexOf("?lang"));
+                } else if(window.location.href.indexOf("?country") > -1){
+                    window.location.href = window.location.href.substring(0, window.location.href.indexOf("?country"));
+                }
+            }
+
+                                                                
+
+            /*
+            These cookie functions are downloaded from
+            http://www.mach5.com/support/analyzer/manual/html/General/CookiesJavaScript.htm
+            */
+            function Get_Cookie(name) {
+                var start = document.cookie.indexOf(name + "=");
+                var len = start + name.length + 1;
+                if ((!start) && (name != document.cookie.substring(0, name.length))) return null;
+                if (start == -1) return null;
+                var end = document.cookie.indexOf(";", len);
+                if (end == -1) end = document.cookie.length;
+                return unescape(document.cookie.substring(len, end));
+            }
+            // This function has been slightly modified
+            function Set_Cookie(name, value, expires, path, domain, secure) {
+                expires = expires * 60 * 60 * 24 * 1000;
+                var today = new Date();
+                var expires_date = new Date(today.getTime() + (expires));
+                var cookieString = name + "=" + escape(value) +
+                        ( (expires) ? ";expires=" + expires_date.toGMTString() : "") +
+                        ( (path) ? ";path=" + path : "") +
+                        ( (domain) ? ";domain=" + domain : "") +
+                        ( (secure) ? ";secure" : "");
+                document.cookie = cookieString;
+            }
+
+            function onDocumentReady(functionToCall) {
+
+
+                if(typeof window.addEventListener != 'undefined')
+                {
+                    //.. gecko, safari, konqueror and standard
+                    window.addEventListener('load', functionToCall, false);
+                }
+                else if(typeof document.addEventListener != 'undefined')
+                {
+                    //.. opera 7
+                    document.addEventListener('load', functionToCall, false);
+                }
+                else if(typeof window.attachEvent != 'undefined')
+                {
+                    //.. win/ie
+                    window.attachEvent('onload', functionToCall);
+                }
+            }
+
+            function highlightMenu(menuId) {
+                document.getElementById(menuId).className = "on";
+            }
+
+                        </script>
+        <script type="text/javascript">
+                                
+
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-209314-1']);
+                _gaq.push(['_setDomainName', 'visionproject.se']);
+                _gaq.push(['_setAllowLinker', true]);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+
+                
+                        </script>
+    </head>
+    <body onbeforeunload="" class="home  ext-gecko ext-gecko3 ext-mac">
+    <div id="wrapper1"><div id="wrapper2"><div id="wrapper3">
+        <div id="wrapper4"><div id="wrapper5"><div id="wrapper6">
+            
+
+<div id="header">
+	<a href="home.vm" title="Project management, issue tracking and customer support made easy!"><img src="images/website/visionproject.jpg" alt="Project management, issue tracking and customer support made easy!"></a>
+<ul style="float:right;list-style-type:none;text-align:center;margin: 0 0.7em 0 0;padding:0;">
+		<li>
+<a href="http://www.visionproject.se/logon.do"><img src="images/website/phone_numbers.gif"></a><br></li>
+</ul>
+	<ul id="supernav">
+<li class="memberlogin" style="margin: -1.5em 0 0 0">
+<a href="http://www.visionproject.se/logon.do"><img src="images/website/button_member_login.gif"></a>
+        <a href="http://www.visionproject.se/signup1.vm"><img src="images/website/button_free_trial_red.gif"></a></li>
+	</ul>
+	<ul id="nav">
+		<li class="on" id="homeId"><a href="home.vm">Home</a></li>
+		<li id="featuresId"><a href="featuresOverview.vm">Features</a></li>
+        		<li id="solutionsId"><a href="http://www.visionproject.se/solutions/index.vm">Solutions</a></li>
+		<li id="signupId"><a href="signup.vm">Prices/Buy</a></li>
+                <li id="aboutId"><a href="about.vm">Company</a></li>
+        <li id="supportId"><a target="_new" href="support.html">Support</a></li>
+	</ul>
+</div>
+
+
+
+ 
+
+            
+
+
+
+    
+
+
+     
+
+<style type="text/css">
+    .theQuote blockquote {
+        width: 680px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-family: georgia, serif;
+        font-size: 14pt;
+        letter-spacing: -1px;
+        line-height: 1em;
+        color: #333;
+        background: #eee url(images/screenshots/fi_top.gif) no-repeat top left;
+    }
+
+
+
+</style>
+
+<script type="text/javascript">
+
+
+function addToFavorites() {
+        if (window.sidebar) {
+            window.sidebar.addPanel("VisionProject - issue tracking and project management made easy!", "http://www.visionproject.se","");
+        } else if (document.all) {
+            window.external.AddFavorite("http://www.visionproject.se", "VisionProject - issue tracking and project management made easy!");
+        } else {
+            alert("Sorry! Your browser doesn't support this function.");
+        }
+    }
+
+    var dimages=new Array();
+    var numImages=4;
+
+    dimages[0]=new Image();
+    dimages[0].src= "images/website/screen_right_screendump5.jpg";
+    dimages[1]=new Image();
+    dimages[1].src= "images/website/morethan65kusers.gif";
+    dimages[2]=new Image();
+    dimages[2].src= "images/website/screen_right_screendump6.jpg";
+    dimages[3]=new Image();
+    dimages[3].src= "images/website/morethan65kusers.gif";
+
+    var curImage=-1;
+
+    function swapPicture()
+    {
+        if (document.images)
+        {
+            var nextImage=curImage+1;
+            if (nextImage>=numImages)
+                nextImage=0;
+            if (dimages[nextImage] && dimages[nextImage].complete)
+            {
+                var target=0;
+                if (document.images.swappableImage)
+                    target=document.images.swappableImage;
+                if (document.all && document.getElementById("swappableImage"))
+                    target=document.getElementById("swappableImage");
+
+                // make sure target is valid.  It might not be valid
+                //   if the page has not finished loading
+                if (target)
+                {
+                    target.src=dimages[nextImage].src;
+                    curImage=nextImage;
+                }
+
+                setTimeout("swapPicture()", 5000);
+
+            }
+            else
+            {
+                setTimeout("swapPicture()", 1000);
+            }
+        }
+    }
+
+    function highlight() {
+        highlightMenu('homeId');
+        setTimeout("swapPicture()", 5000);
+    }
+
+    onDocumentReady(highlight);
+
+
+
+</script>
+
+
+<div id="thebg">
+    <div id="feature">
+        <div onclick="document.location.href='featuresOverview.vm'" style="cursor:pointer;">
+            <table style="height:246px;width:100%" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr>
+                    <td width="60%">
+                        <table style="padding-left:20px" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody><tr><td width="100%"><h1><img style="vertical-align:-15%;font-family:arial" src="images/icons/32x32/chart.png">&nbsp;&nbsp;Project management</h1></td></tr>
+                            <tr><td width="100%"><h1><img style="vertical-align:-15%;font-family:arial" src="images/icons/32x32/clipboard.png">&nbsp;&nbsp;Issue/task/case tracking</h1></td></tr>
+                            <tr><td width="100%"><h1><img style="vertical-align:-15%;font-family:arial" src="images/icons/32x32/support.png">&nbsp;&nbsp;Help Desk/Customer support</h1></td></tr>
+                            <tr><td width="100%"><div class="layerwrapper" style="height:50px;margin-left:20px;">
+                                <div class="firstlayer" style="font-style:italic;font-weight:bold;padding-top:0px">
+                                    &nbsp;... Made easy!</div><div class="secondlayer" style="color:black;font-style:italic;font-weight:bold;padding-top:0px;">
+                                &nbsp;... Made easy!</div></div></td></tr>
+
+                        </tbody></table>
+
+                    </td>
+                    <td align="right" width="40%">
+                        <img id="swappableImage" src="http://www.visionproject.se/images/website/morethan65kusers.gif" alt="" align="middle" height="246" width="290">
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<div class="thirds">
+    <div class="third features"><div>
+        <h2><a href="featuresOverview.vm">Features</a></h2>
+        <p>
+            <a href="featuresOverview.vm">Have a quick look at some of the features that are available in VisionProject!</a>
+        </p>
+        <p class="greenarrowlink">
+            <a href="featuresOverview.vm">Learn more...…</a>
+        </p>
+    </div></div>
+    <div class="third freetrial"><div>
+        <h2><a href="solutions/index.vm">Solutions</a></h2>
+        <p>
+            <a href="solutions/index.vm">Our software platform can help you in many areas and it covers many use cases!</a>
+        </p>
+        <p class="greenarrowlink">
+            <a href="solutions/index.vm">Learn more...…</a>
+        </p>
+    </div></div>
+    <div class="thirdButtons">
+        <a href="https://www.visionproject.se/signup1.vm"><img src="images/website/free_trial2.png" alt="" border="0"></a><br>
+                <a href="VideoDemo.vm"><img src="images/website/flashdemoikon.gif" alt="" border="0"></a><br>
+    </div>
+</div>
+
+<div class="left_col">
+    <div>
+        <h2>What is VisionProject?</h2>
+        <p>
+            VisionProject is a <span class="highlight">Project Management Software</span> that enables you to manage projects in an efficient way, saving you time and money.
+        </p>
+
+        <p>VisionProject supports the <span class="highlight">Lean and Agile (such as Scrum and XP)</span> way to manage projects with tools such as Task Board, Kanban Board, Burn-Down Charts and Cumulative Flow Diagrams (CFD), but can also be used for <span class="highlight">Traditional Project Management</span>.
+        </p>
+        <p>    In addition to the Project Management functionality, VisionProject also has a <span class="highlight">HelpDesk/Service Desk Module for managing support tickets</span>, submitted from Emails, Phone Calls or from the built-in web-based Support Portal. Using this module the basic <span class="highlight">ITIL processes are supported</span>, such as Incident Management, Problem Management and Change Management.
+        </p>
+        <p>    To keep track of where your personnel spend their time and effort, you can use the <span class="highlight">Time Reporting Module</span> in VisionProject. Using this module both project-specific time as well as time spent outside projects can be managed.
+        </p>
+        <p>VisionProject also contains a <span class="highlight">Document Management System</span>. With this module you can organize your documents and make sure that only the right people can get access to your sensitive information.
+        </p>
+        <p>    With all modules in combination, VisionProject can also be used for <span class="highlight">Application Lifecycle Management</span>, i.e. from Idea to Execution and also during the Maintenance and Support phase.
+        </p>
+        <p>Since VisionProject enables all people in a company to be working with the same system, <span class="highlight">Communication between people will increase</span> and nobody will feel left out from the information. Experience has shown that the Project Success has been improved significantly by using VisionProject!
+            </p>
+
+       
+        <p></p> <br>
+        <!--<br><img src="images/icons/16x16/nav_right_green.gif"> <a href="docs/solutions/solutionsMain.vm">More usage scenarios here...<a/><br>-->
+
+        </div>
+
+</div>
+
+<link href="js/ext-core-3.0/examples/tabs/tabs.css" rel="stylesheet">
+<script src="js/ext-core-3.0/ext-core-debug.js"></script>
+<script src="js/ext-core-3.0/examples/tabs/tabs.js"></script>
+<script src="js/ext-core-3.0/carousel.js"></script>
+<link href="js/ext-core-3.0/carousel.css" rel="stylesheet">
+
+<script>
+    Ext.onReady(function() {
+
+        new Ext.ux.Carousel('full-example', {
+            itemSelector: 'img',
+            interval: 3,
+            autoPlay: true,
+            autoPlay: true,
+            hideNavigation: true,
+            transitionEasing: 'easeIn'
+        });
+
+        new Ext.ux.Carousel('full-example2', {
+            itemSelector: 'img',
+            interval: 3,
+            autoPlay: true,
+            hideNavigation: true,
+            transitionEasing: 'easeIn'
+        });
+    });
+</script>
+<div class="right_col">
+    <div style="height:75px;background:url(images/website/bg_header_fade_l.gif) no-repeat top left;padding:0 5px 0 15px;margin:0.1em 0 0 0;">
+        <h2 style="background:url(images/website/bg_header_fade_r.gif) no-repeat top right; padding-top:0.4em;margin-right:-5px;">Follow us on</h2>
+       <center><a href="http://www.twitter.com/VisioneraAB" target="_blank"><img src="images/icons/32x32/twitter_32.png" alt="Follow us on Twitter" border="0"></a>
+                <a href="http://www.linkedin.com/company/visionera-ab" target="_blank"><img src="images/icons/32x32/linkedin_32.png" alt="Follow us on LinkedIn" border="0"></a>
+        <a href="http://www.youtube.com/VisionProjectHQ" target="_blank"><img src="images/icons/32x32/youtube_32.png" alt="Follow us on YouTube" border="0"></a>
+           <br>
+           </center>
+        </div>
+    <div onclick="document.location.href='customers.vm'" style="height:180px;background:url(images/website/bg_header_fade_l.gif) no-repeat top left;padding:0 5px 0 15px;margin:0.1em 0 0 0;">
+        <h2 style="background:url(images/website/bg_header_fade_r.gif) no-repeat top right; padding-top:0.4em;margin-right:-5px;">
+            <a href="customers.vm">Our customers&nbsp;</a></h2>
+                <div id="full-example2" style="padding: 2px; height: 75px; width: 200px; overflow: hidden;">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <div style="width: 200px; height: 75px;" id="ext-gen18" class="ux-carousel-container"><div style="width: 2000px; left: -1800px; top: 0px;" id="ext-gen19" class="ux-carousel-slides-wrap"><div style="width: 200px; height: 75px;" id="ext-gen25" class="ux-carousel-slide"><img src="images/website/customer_logos/blessing_hospital2.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen26" class="ux-carousel-slide"><img src="images/website/customer_logos/deutsche_bahn.png" width="150"></div><div style="width: 200px; height: 75px;" id="ext-gen27" class="ux-carousel-slide"><img src="images/website/customer_logos/panopticon.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen28" class="ux-carousel-slide"><img src="/GetSCDocument.do?docId=ajbGtcNBm3OJbgyI70PPKcNW" height="66"></div><div style="width: 200px; height: 75px;" id="ext-gen29" class="ux-carousel-slide"><img src="images/website/customer_logos/mcdonalds.png" width="50"></div><div style="width: 200px; height: 75px;" id="ext-gen30" class="ux-carousel-slide"><img src="images/website/customer_logos/prodacapo.gif" height="60"></div><div style="width: 200px; height: 75px;" id="ext-gen31" class="ux-carousel-slide"><img src="images/website/customer_logos/boverket.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen32" class="ux-carousel-slide"><img src="images/website/customer_logos/massmutual.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen33" class="ux-carousel-slide"><img src="images/website/customer_logos/scanning24.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen34" class="ux-carousel-slide"><img src="images/website/customer_logos/vendtek.png" width="170"></div></div><div style="visibility: hidden;" id="ext-gen20" class="ux-carousel-nav"><h2 style="width: 96px;" id="ext-gen21" class="ux-carousel-caption"></h2><a id="ext-gen22" href="#" class="ux-carousel-nav-next"></a><a id="ext-gen23" href="#" class="ux-carousel-nav-play ux-carousel-playing"></a><a id="ext-gen24" href="#" class="ux-carousel-nav-prev"></a></div></div></div>
+                <div id="full-example" style="padding: 2px; height: 75px; width: 200px; overflow: hidden;">
+            
+            
+            
+	     
+            
+            
+            
+            
+            
+        <div style="width: 200px; height: 75px;" id="ext-gen2" class="ux-carousel-container"><div style="width: 1800px; left: -200px; top: 0px;" id="ext-gen3" class="ux-carousel-slides-wrap"><div style="width: 200px; height: 75px;" id="ext-gen9" class="ux-carousel-slide"><img src="images/website/customer_logos/lindab.gif" width="170"></div><div style="width: 200px; height: 75px;" id="ext-gen10" class="ux-carousel-slide"><img src="images/website/customer_logos/tranas_kommun.jpg" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen11" class="ux-carousel-slide"><img src="images/website/customer_logos/metrogroup.png" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen12" class="ux-carousel-slide"><img src="images/website/customer_logos/juice.gif" height="60"></div><div style="width: 200px; height: 75px;" id="ext-gen13" class="ux-carousel-slide"><img src="images/website/customer_logos/abcgroup.gif" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen14" class="ux-carousel-slide"><img src="images/website/customer_logos/ncg.gif" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen15" class="ux-carousel-slide"><img src="images/website/customer_logos/configura.png" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen16" class="ux-carousel-slide"><img src="images/website/customer_logos/barncancerfonden.gif" width="180"></div><div style="width: 200px; height: 75px;" id="ext-gen17" class="ux-carousel-slide"><img src="images/website/customer_logos/align.png" height="40"></div></div><div style="visibility: hidden;" id="ext-gen4" class="ux-carousel-nav"><h2 style="width: 96px;" id="ext-gen5" class="ux-carousel-caption"></h2><a id="ext-gen6" href="#" class="ux-carousel-nav-next"></a><a id="ext-gen7" href="#" class="ux-carousel-nav-play ux-carousel-playing"></a><a id="ext-gen8" href="#" class="ux-carousel-nav-prev"></a></div></div></div>
+
+    </div>
+    <div style="background:url(images/website/bg_header_fade_l.gif) no-repeat top left;padding:0 5px 0 15px;margin:0 5px 0 5px">
+        <h2 style="background:url(images/website/bg_header_fade_r.gif) no-repeat top right; padding-top:0.4em;margin-right:-5px;margin-bottom:0px;"><a target="_new" href="http://www.visionproject.se/ShowKBEx.do?cat=23&amp;supportCenter=8USa0ec8CyGSgfbfPTSV">Latest News</a></h2>
+        <ul class="news">
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>March 22</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=7322&amp;supportCenter=8USa0ec8CyGSgfbfPTSV%0A"><b>VisionProject 10.1 has been released!</b></a>
+				    <br>
+				   More about the release:
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=7322&amp;supportCenter=8USa0ec8CyGSgfbfPTSV%0A">Read more...</a><p></p>
+			
+			</li>
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>February 8</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=7196&amp;supportCenter=8USa0ec8CyGSgfbfPTSV%0A"><b>VisionProject 10.0 has been released!</b></a>
+				    <br>
+				   More about the new features/improvments:
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=7196&amp;supportCenter=8USa0ec8CyGSgfbfPTSV%0A">Read more...</a><p></p>
+			
+			</li>
+
+<!--
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>October 26</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=6615&supportCenter=8USa0ec8CyGSgfbfPTSV
+"><b>VisionProject 9.6 has been released!</b></a>
+				    <br/>
+				   A lot of new features and improvements in this release...
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=6615&supportCenter=8USa0ec8CyGSgfbfPTSV
+">Read more...</a></p>
+			
+			</li>
+
+
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>September 7</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=6278&supportCenter=8USa0ec8CyGSgfbfPTSV
+"><b>VisionProject 9.5 has been released.</b></a>
+				    <br/>
+				     View and read about the new features/improvments: 
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=5627810&supportCenter=8USa0ec8CyGSgfbfPTSV
+">Read more...</a></p>
+			
+			</li>
+
+
+
+
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>19 January</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4666&supportCenter=8USa0ec8CyGSgfbfPTSV
+"><b>VisionProject 9.0 has been released!</b></a>
+				    <br/>
+				    View and read about the new features/improvments:
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4666&supportCenter=8USa0ec8CyGSgfbfPTSV
+">Read more...</a></p>
+			
+			</li>
+
+
+
+
+<li>
+<div id="srw_container"></div>
+
+<script type="text/javascript" src="http://www.serchen.com/rw.ashx?spid=19988"></script>
+</li>
+
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>1 December</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4470&supportCenter=8USa0ec8CyGSgfbfPTSV
+"><b>VisionProject 8.5 has been released!</b></a>
+				    <br/>
+				    View and read about the new features/improvments:
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4470&supportCenter=8USa0ec8CyGSgfbfPTSV
+">Read more...</a></p>
+			
+			</li>
+
+ <li>
+				    <div style="height: 7px"></div>
+				    <strong>3 November</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4326&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>VisionProject 8.4 has been released!</b></a>
+				    <br/>
+				    Many improvements and new features
+				    <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=4326&supportCenter=8USa0ec8CyGSgfbfPTSV">Read more...</a></p>
+			
+			</li>
+
+
+
+<li>
+				    <div style="height: 7px"></div>
+				    <strong>9 June</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3982&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>VisionProject 8.2 has been released!</b></a>
+				    <br/>
+				    VisionProject 8.2 was released on the 9th of June
+				   <br><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3982&supportCenter=8USa0ec8CyGSgfbfPTSV">Read more...</a></p>
+			
+			</li>
+
+ <li>
+				    <div style="height: 7px"></div>
+				    <strong>21 April</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3784&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>VisionProject 8.1 has been released!</b></a>
+				    <br/>
+				    VisionProject 8.1 was released on the 21st of April
+				    <p><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3784&supportCenter=8USa0ec8CyGSgfbfPTSV">Read more...</a></p>
+			
+			</li>
+
+                <li>
+				    <div style="height: 7px"></div>
+				    <strong>January 7</strong>
+				    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3191&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>VisionProject 7.5.1 has been released!</b></a>
+				    <br/>
+				    VisionProject 7.5.1 was released on the 7th of January
+				    <p><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=3191&supportCenter=8USa0ec8CyGSgfbfPTSV">Read more...</a></p>
+			
+		</li>
+
+	              
+-->
+	              
+
+<!--	
+        <li>
+			    <div style="height: 7px"></div>
+			    <strong>April 3</strong>
+			    <a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=1553&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>VisionProject 7.1 has been released!</b></a>
+			    <br/>
+			    VisionProject 7.1 was released on the 3rd of April
+			    <p><a target="_new" href="https://www.visionproject.se/ShowKBEx.do?id=1553&supportCenter=8USa0ec8CyGSgfbfPTSV">Read more...</a></p>
+		
+		</li>
+    -->    
+        <!--
+        <li>
+            <strong>September 1</strong>
+            <a target="_new" href="http://www.visionproject.se/ShowKBEx.do?id=844&supportCenter=8USa0ec8CyGSgfbfPTSV"><b>New office on Malta</b></a>
+            <br/>
+            Visionera AB is expanding to southern Europe
+            <p><a target="_new" href="http://www.visionproject.se/https://www.visionproject.se/">Read more...</a></p>
+        </li>
+        -->
+        </ul>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+            <div class="clear-all"></div>
+        </div></div></div>
+    </div></div></div>
+    <ul id="footer">
+        <li>Phone:
+                            +46 (0)771 105000
+            | </li>
+        <li>Email: <a href="mailto:info@visionproject.se">info@visionproject.se</a></li>
+    </ul>
+
+
+
+    <script type="text/javascript">
+        setTimeout(function(){var a=document.createElement("script");
+            var b=document.getElementsByTagName('script')[0];
+            a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/9866.js?"+Math.floor(new Date().getTime()/3600000);
+            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+
+    
+    
+    </body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">VisionProject :: Web based tool for project management, issue tracking, task tracking, bug tracking and customer support</wa-title></html>

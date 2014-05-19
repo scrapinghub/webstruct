@@ -1,0 +1,768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="ctl00_Head1"><base href="http://www.coventrybuildingsociety.co.uk/"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="Cache-Control" content="max-age=3600"><link rel="stylesheet" href="/JQuery/ui/192/Redmond/jquery-ui-1.9.2.custom.css">
+    <script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="/JQuery/Core/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="/JQuery/ui/192/Redmond/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script> 
+  
+    
+    <script language="javascript" type="text/javascript" src="/Accordian.js"></script>    
+    <script type="text/javascript" language="javascript">        
+       
+ 	     function specTerms(prodCode)
+	    {
+		    winobj=window.open("/savings-and-investments/application/SpecificTermsAndConds.aspx?prodCode=" + prodCode , "specterms",'height=600,width=740,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+   	    function productFeatures(prodCode)
+	    {
+		    winobj=window.open("/savings-and-investments/productfeatures.aspx?prodCode=" + prodCode , "productfeatures",'height=750,width=740,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+	    function productFeaturesNoCTALinks(prodCode)
+        {
+	    winobj=window.open("/savings-and-investments/productfeatures.aspx?prodCode=" + prodCode + "&CTALinks=False" , "productfeatures",'height=750,width=740,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+        }
+        function mortgageFeatures(socSeqNo, prodCode, company)
+	    {
+		    winobj=window.open("/mortgages/AccountSummary.aspx?socseqno=" + socSeqNo +"&prodCode=" + prodCode + "&Company=" + company , "mortgagefeatures",'height=750,width=850,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+	    function affCalc()
+	    {
+		    winobj=window.open("http://www.coventrybuildingsociety.co.uk/Calculators/AffordabilityCalculator.aspx", "AffordabilityCalculator",'height=850,width=825,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+	    function repaymentCalc()
+	    {
+		    winobj=window.open("/mortgages/calculators/MonthlyRepaymentCalculator2.aspx", "RepaymentCalculator",'height=600,width=600,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+	    function offsetCalc()
+	    {
+		    winobj=window.open("/mortgages/calculators/OffsetCalculator.aspx", "OffsetCalculator",'height=600,width=640,left=50,top=50,location=0,toolbar=0,screenY=0, screenX=10,scrollbars=1,menubar=0,status=1,resizable=yes');
+	    }
+	    //always clear the search box
+	    function Clickclear(thisField, defaultText) {        
+        thisField.value = "";        
+        }
+
+        //put the default text into the search box if it's empty
+        function Clickrecall(thisField, defaultText) {
+        if (thisField.value == "") {
+        thisField.value = defaultText;
+        }
+        }	
+		$(document).ready(function() {
+		    // add a click handler to all links that point to href=#	
+			$("a[href^='#']").click(function() {
+            // get the href attribute of the link then strip the first character # leaving the id
+                $("#"+$(this).attr("href").slice(1)+"")	
+				// give that id focus
+			    .focus()
+  		    });
+  		
+  		     //google analytics record jquery tab clicks
+  		    if ($("#tabs").length != 0){
+            $("#tabs").bind("tabsselect",function(event,ui) {
+            _gaq.push(['_trackPageview', window.location.pathname + '/' + ui.tab.innerHTML]);
+            });
+            }
+            
+        //allow accordion links to open panels from left nav
+        $(".triggerAccordianMenu").click(function(e) {
+                e.preventDefault();
+                var i = parseInt($(this).find("a").first().prop("hash").substring(1));
+                $( ".accordion" ).accordion( "option", "active", i );
+            });
+        //allow accordion links to open panels from same page accordions
+         $(".triggerAccordian").click(function(e) {
+                e.preventDefault();
+                var i = parseInt($(this).prop("hash").substring(1));
+                $( ".accordion" ).accordion( "option", "active", i );
+            }); 
+            
+          //GA for accordions only - records clicks for open not close
+          $(".accordion").bind("accordionactivate", function( event, ui ) {
+                var category = $(this).data("ga-category");
+                var action = ui.newHeader.data("ga-action");
+                if (typeof action !== "undefined" && typeof category !== "undefined") {
+                    recordOutboundLink1(this, category, "accordion_" + action + "_open");
+                }
+             });
+
+		 });
+            
+		</script>
+
+<title>
+	Contact Us | Coventry Building Society
+</title><link rel="STYLESHEET" type="text/css" media="Screen" href="/css/CBSWEB/Corporate_SC.css"><link rel="STYLESHEET" type="text/css" media="Print" href="/css/CBSWEB/Corporate_PR.css"><link rel="canonical" href="http://www.coventrybuildingsociety.co.uk/contact-us/get-in-touch.aspx"></head>
+
+<body onbeforeunload="">
+
+    <a id="top"></a>
+
+    <div id="skipLinks">
+        <ul id="skip">
+            <li><a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx">Login to Online Services</a></li>
+	        <li><a href="#mainnav">Skip to top level navigation</a></li>
+	        <li><a href="#leftnav">Skip to this section's navigation</a></li>
+	        <li><a href="#content">Skip to page content</a></li>
+	        <li><a href="#footerLink">Skip to footer navigation</a></li>
+	    </ul>
+	</div>
+		
+    <form name="aspnetForm" method="post" action="get-in-touch.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm" class="form1">
+<div>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJODc0MDQwNDY5D2QWAmYPZBYCAgMPZBYGAgMPFgIeB1Zpc2libGVoZAIFDw8WAh4ISW1hZ2VVcmwFGy9pbWFnZXMvRW52L1dCL3RvcG5hdmJnLmdpZmRkAgcPPCsABQEADxYGHhVQYXJlbnRMZXZlbHNEaXNwbGF5ZWRmHghDc3NDbGFzcwUOYnJlYWRjcnVtYnJvb3QeBF8hU0ICAmRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBRJjdGwwMCRzZWFyY2hzdWJtaXTa6B47pMJDMSR2QsJcbizcrG/kCA==" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=GnB6p-cSEWeqyWp22yq9VmH1FFSs5Dbx6Q5A_lEHPZLJTJKdI2Jev7UEpN8xT-MKtAfAaKMTyjwRTLUWFEScO2_ND141&amp;t=634604424479085897" type="text/javascript"></script>
+
+
+<script src="/WebResource.axd?d=h73OpkhnfzIyMJX3PfXOoPXtp3rSuJf0mMiUBKPUz6KwVMUzKb7R43ukktLhqrDQ8m-3ztYT2WelpJFERpm7Hcly_w41&amp;t=634604424479085897" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBAKZ0+/eCgKgpK3SAQLzrM8rArqBqK4I3ye+8c4N/t9GA1VqukHCxURF74A=" type="hidden">
+</div>
+    	
+    <div class="cookiePane" id="cookiePane">
+        To help us continually improve our website, we collect non-personal data with cookies. Cookies tell us how you have navigated to and around our website. To find out more or if you wish to opt-out please <a href="/terms/cookies-policy.aspx" id="pri">view our Cookies policy.</a>  	 	
+    </div>	
+
+    <!-- top navbars & logo -->
+
+    <div class="headwrapper">
+    <span id="cbslogo"><a href="http://www.coventrybuildingsociety.co.uk"><img id="ctl00_Image2" class="noBorder" alt="Coventry Building Society logo" title="Coventry Building Society logo" src="/olsimages/LogoCBS.jpg" style="border-width:0px;"></a></span>
+
+
+        <div id="utility" class="newBorder">
+            <div id="utilityLink">
+                <a id="utilitySpacer" href="http://www.coventrybuildingsociety.co.uk/contact-us/Branch-Finder/Branch-Finder.aspx">Branch finder</a> 
+                <span class="whiteSpace"><a href="http://www.coventrybuildingsociety.co.uk/contact-us/get-in-touch.aspx">Contact us</a></span>
+            </div>
+                
+            <div id="utilityInner">
+                  
+                <div id="utilitySearch">
+                    <div id="ctl00_searchWrapper" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_searchsubmit')">
+	
+                        <span id="searchbox">
+                            <input name="ctl00$searchtextbox" value="Search" id="ctl00_searchtextbox" onclick="Clickclear(this, 'Search')" onblur="Clickrecall(this,'Search')" style="width:150px;" type="text">
+                            <span id="ctl00_search" style="color:Red;display:none;"></span>
+                            <div id="ctl00_searchSummary" style="color:Red;display:none;">
+
+	</div>
+                        </span>
+                        
+                        <span id="searchclick">
+                            <input name="ctl00$searchsubmit" id="ctl00_searchsubmit" src="/images/cbsweb/searchButton.png" alt="Search" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$searchsubmit", "", true, "search", "", false, false))' style="border-width:0px;" type="image">
+                        </span>
+                        
+                    
+</div>
+                </div>
+                            
+                                <a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx" id="ctl00_alogin" onclick="javascript:recordOutboundLink(this, 'OLS_Login', 'OLS_Login_button');return false;">
+                                    <span class="buttonInline">
+                                        <span class="btnPanLeft"></span>
+                                        <span class="btnPanRpt loginRegButt"><span>Login</span></span>
+                                        <span class="btnPanArrGr"></span>
+                                    </span>
+                               </a>
+                                
+                                
+                            
+                                <a href="http://www.coventrybuildingsociety.co.uk/online-services/register.aspx">
+                                    <span class="buttonInline">  
+                                        <span class="btnPanLeft"></span>
+                                        <span class="btnPanRpt loginRegButt"><span>Register</span></span>
+                                        <span class="btnPanArrBl"></span>                                
+                                    </span>
+                                </a>                        
+            </div>  
+        </div>
+       
+
+        <div id="navbar">
+            <div id="mainnav" tabindex="-1" class="accessibility">Top level navigation</div>
+                
+
+        
+<map name="nav" role="navigation">
+        <ul class="outerList" aria-relevant="all" role="menubar">
+        
+                <li class="mainNavLinks newBorderLR" id="SAVINGS" role="menuitem" aria-haspopup="true">
+                <a href="http://www.coventrybuildingsociety.co.uk/savings-accounts/home.aspx" class="mainNavLinks-link">Savings</a>
+                    <div class="NavPopUp" aria-hidden="true">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							                <div class="nav-popup-panel" id="savings"> 
+							                <div class="ddSkipLinksSec"><a href="#skipCurrent">Skip to current account</a></div>
+							                <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div>	
+							                <div>
+							                        <h3><a href="http://www.coventrybuildingsociety.co.uk/savings-accounts/home.aspx">Savings</a></h3> 
+							                            <ul role="menu" aria-labelledby="SAVINGS">							                            
+							                            <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/savings-accounts/home.aspx">Compare savings rates</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/savings-accounts/opening-your-account.aspx">Opening your account</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/savings-accounts/managing-your-account.aspx">Managing your account</a></li>
+							                            </ul>
+										        </div>
+										      
+									        </div>
+									          <div class="menuEndSav"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>
+
+                <li class="mainNavLinks newBorderLR" id="CURRENT" role="menuitem" aria-haspopup="true">
+                <a href="http://www.coventrybuildingsociety.co.uk/current-account/coventry-first/at_a_glance.aspx" class="mainNavLinks-link" id="skipCurrent">Current account</a>
+                    <div class="NavPopUp" aria-hidden="true">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							                <div class="nav-popup-panel" id="current">
+							                <div class="ddSkipLinksSec"><a href="#skipMortgages">Skip to Mortgages</a></div>
+							                <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div> 
+							                    <div> 
+							                        <h3><a href="http://www.coventrybuildingsociety.co.uk/current-account/coventry-first/at_a_glance.aspx">Current account</a></h3> 
+							                            <ul role="menu" aria-labelledby="CURRENT"> 
+							                            <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/current-account/coventry-first/at_a_glance.aspx">Coventry First</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/current-account/coventry-first/opening-your-account.aspx">Opening your account</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/current-account/coventry-first/managing-your-account.aspx">Managing your account</a></li>
+							                            </ul>
+										        </div>
+									        </div>
+									        <div class="menuEndCurr"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>
+                
+                <li class="mainNavLinks newBorderLR" id="MORTGAGES" role="menuitem" aria-haspopup="true">
+                <a href="http://www.coventrybuildingsociety.co.uk/mortgages/home.aspx" class="mainNavLinks-link" id="skipMortgages">Mortgages</a>
+                    <div class="NavPopUp" aria-hidden="true">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+                         
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							               <div class="nav-popup-panel" id="mortgage"> 
+							               <div class="ddSkipLinksSec"><a href="#skipIns">Skip to insurance</a></div>
+							               <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div>		
+    							               <div> 		
+							                     		                    
+							                        <h3><a href="http://www.coventrybuildingsociety.co.uk/mortgages/home.aspx">Mortgages</a></h3> 
+							                            <ul role="menu" aria-labelledby="MORTGAGES"> 
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/mortgages/existing-members/home.aspx">Existing customers</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/mortgages/new-customers.aspx">New customers</a></li>				                                        
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/mortgages/important-info/home.aspx">Help and information</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/mortgages/calculators/home.aspx">Calculators</a></li>
+							                            </ul>
+										        </div>
+									        </div>
+									         <div class="menuEndMtg"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>
+
+                <li class="mainNavLinks newBorderLR" id="INSURANCE" role="menuitem" aria-haspopup="true">
+                <a href="http://www.coventrybuildingsociety.co.uk/insurance/home.aspx" class="mainNavLinks-link" id="skipIns">Insurance</a>
+                    <div class="NavPopUp" aria-hidden="true">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							                <div class="nav-popup-panel" id="insurance"> 
+							                <div class="ddSkipLinksSec"><a href="#skipOnline">Skip to Online Services</a></div>
+							                <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div>
+							                    <div> 
+							                        <h3><a href="http://www.coventrybuildingsociety.co.uk/insurance/home.aspx">Insurance</a></h3> 
+							                            <ul role="menu" aria-labelledby="INSURANCE"> 
+							                            <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/insurance/home-and-contents.aspx">Home and contents</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/insurance/landlord-insurance.aspx">Landlord insurance</a></li>
+				                                        <li role="menuitem" class="group_c"><a href="http://www.coventrybuildingsociety.co.uk/insurance/protection.aspx">Protection</a></li>
+							                            </ul>
+										        </div>
+									        </div>
+									        <div class="menuEndIns"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>                
+                                
+                <li class="mainNavLinks newBorderLR" id="ONLINE" role="menuitem" aria-haspopup="true">
+                <a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx" class="mainNavLinks-link" id="skipOnline">Online Services</a>
+                    <div class="NavPopUp" aria-hidden="true" id="showOls">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							                <div class="nav-popup-panel" id="online">	
+							                <div class="ddSkipLinksSec"><a href="#skipSociety">Skip to Your Society</a></div>						              
+							                    <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div>
+							                    <div> 
+							                        <h3><a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx">Online Services</a></h3> 
+							                            <ul role="menu" aria-labelledby="ONLINE"> 
+							                            <li role="menuitem" class="group_a"><a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx">Login</a></li>
+				                                        <li role="menuitem" class="group_a"><a href="http://www.coventrybuildingsociety.co.uk/online-services/register.aspx">Register</a></li>
+				                                        <li role="menuitem" class="group_a"><a href="http://www.coventrybuildingsociety.co.uk/online-services/features-and-benefits.aspx">Features and benefits</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/online-services/online-protection-promise.aspx">Online protection promise</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/online-services/technical-help.aspx">Technical help</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/online-services/faqs.aspx" class="lastItem">FAQs</a></li>
+							                            </ul>
+										        </div>
+									        </div>
+									        <div class="menuEndOls"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>                
+                
+                <li class="mainNavLinks newBorderLR" id="SOCIETY" role="menuitem" aria-haspopup="true">
+                <a href="http://www.coventrybuildingsociety.co.uk/your-society/home.aspx" class="mainNavLinks-link" id="skipSociety">Your Society</a>
+                    <div class="NavPopUp" aria-hidden="true" id="showSociety">
+                        <div class="NavPopUp-container">
+                            <div class="holder">
+							    <div> 
+							        <div class="nest-holder"> 
+							            <div> 
+							                <div class="nav-popup-panel" id="society"> 
+							                <div class="ddSkipLinksCon"><a href="#content">Skip to current page content</a></div>
+							                    <div> 
+							                        <h3><a href="http://www.coventrybuildingsociety.co.uk/your-society/home.aspx">Your Society</a></h3> 
+							                            <ul role="menu" aria-labelledby="SOCIETY"> 
+							                            <li role="menuitem" class="group_a"><a href="http://www.coventrybuildingsociety.co.uk/your-society/get-to-know-us.aspx">Get to know us</a></li>
+				                                        <li role="menuitem" class="group_a"><a href="http://www.coventrybuildingsociety.co.uk/your-society/genuinely-different.aspx">Genuinely different</a></li>
+				                                        <li role="menuitem" class="group_a"><a href="http://www.coventrybuildingsociety.co.uk/your-society/community.aspx">Community</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/your-society/financial-information.aspx">Financial information</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/your-society/corporate-governance.aspx">Corporate Governance</a></li>
+				                                        <li role="menuitem" class="group_b"><a href="http://www.coventrybuildingsociety.co.uk/your-society/news.aspx">News</a></li>
+							                            </ul>
+										        </div>
+									        </div>
+									        <div class="menuEndSoc"></div>
+									     </div>
+									 </div>
+						        </div>
+					        </div>
+					    </div>
+                    </div>
+                </li>
+
+</ul>
+</map>
+
+<script type="text/javascript">
+$(document).ready(function () {
+                          
+    var setDelay;
+    var setDelayTime = 150;
+    var topNavBar = $('.outerList li.mainNavLinks');
+    var topNavBarLink = $('.outerList li.mainNavLinks a');
+
+    if ('ontouchstart' in document.documentElement)
+    {
+   
+    // HANDLE SHOW/HIDE 
+
+    $(topNavBar).bind('touchstart',function(e){
+        e.stopPropagation();
+        // IF PRODUCT NAV SELECTED
+        if ($(e.target).hasClass('mainNavLinks-link')) {
+        if ($(e.target).parent('.mainNavLinks').children('.NavPopUp').hasClass('mainNavLinks-now-show')){
+            topNavBar.removeClass('mainNavLinks-focused');
+            topNavBar.children('.NavPopUp').removeClass('mainNavLinks-now-show');
+            return true;
+            }
+        else 
+            {
+            topNavBar.removeClass('mainNavLinks-focused');
+            topNavBar.children('.NavPopUp').removeClass('mainNavLinks-now-show');
+            $(e.target).parent('.mainNavLinks').addClass('mainNavLinks-focused').children('.NavPopUp').addClass('mainNavLinks-now-show');
+
+                // CLOSE BY CLICKING ANYWHERE ELSE
+                $('body').one('touchstart',function(e){
+                    if (topNavBar.hasClass('mainNavLinks-focused') && $(e.target).parents('.NavPopUp').length == 0)
+                    // WHEN DROPDOWN IS SHOWN and CLICK IS OUTSIDE 
+                    {
+                    e.stopPropagation();
+                    topNavBar.removeClass('mainNavLinks-focused');
+                    topNavBar.children('.NavPopUp').removeClass('mainNavLinks-now-show');
+                    e.preventDefault();
+                    return false;
+                    }
+                });
+            return false;
+        }
+        }
+    });
+    }
+    else 
+    {
+    // WEB VERSION
+
+    $(topNavBar).bind("mouseenter focus",
+        function(e){
+        if (typeof setDelay !== "undefined") clearTimeout(setDelay);
+            setDelay=setTimeout($.proxy(function() {
+                $(topNavBar).removeClass('mainNavLinks-focused').children('.NavPopUp').removeClass('mainNavLinks-now-show');
+                $(this).addClass('mainNavLinks-focused').children('.NavPopUp').addClass('mainNavLinks-now-show');
+                }, this), setDelayTime);
+                }
+            ).parent('.outerList').mouseleave(
+                function(e) {
+                    if (typeof setDelay !== "undefined") clearTimeout(setDelay);
+                    $(topNavBar).removeClass('mainNavLinks-focused').children('.NavPopUp').removeClass('mainNavLinks-now-show');
+                        });
+                    $(topNavBarLink).focus(
+                        function(){ 
+                            $(this).parents('.mainNavLinks').addClass('mainNavLinks-focused').children('.NavPopUp').addClass('mainNavLinks-now-show').attr('aria-hidden', 'false')
+                            });
+                    $(topNavBarLink).blur(
+                        function(){
+                            $(this).parents('.mainNavLinks').removeClass('mainNavLinks-focused').children('.NavPopUp').removeClass('mainNavLinks-now-show').attr('aria-hidden', 'true')
+                            });
+                            
+                    $('.roll-over').click(function() {
+                        var thisHref = $(this).find('a').attr('href');
+                        var hasTarget = $(this).find('a').attr('target');
+                        var hasPopup = $(this).find('a').attr('onclick');
+                        var thisHrefPW = $(this).find('a');
+                        
+                        if (hasTarget == "_blank") {
+                            window.open(thisHref);
+                            return false;
+                            } 
+                            else if (hasPopup) 
+                            {
+                            return common.popwin(thisHref, 800, 600);
+                            } 
+                            else 
+                            {location.href = thisHref;}
+                        });
+            } 
+        }); 
+
+
+</script>	           
+        </div>            
+        
+        <span id="navbg"><img id="ctl00_showEnvironment" class="noBorder" src="/images/Env/WB/topnavbg.gif" style="border-width:0px;"></span> 
+        
+        
+    </div>
+
+    <div class="holdContent">
+        <!-- left nav-->
+        <div class="leftblock">
+        <div id="leftnav" tabindex="-1" class="accessibility">This section's navigation</div>
+          
+                <span id="ctl00_SideMenu">
+<div class="navigation  newBorder"><ul>
+
+<li class="navhead gradient curveCorner4Top"><a href="http://www.coventrybuildingsociety.co.uk/contact-us/get-in-touch.aspx">Contact us</a></li>
+<li class="navlvl1"><a href="http://www.coventrybuildingsociety.co.uk/contact-us/branch-finder/branch-finder.aspx">Branch finder</a></li>
+<li class="navlvl1"><a href="http://www.coventrybuildingsociety.co.uk/contact-us/customer-service-centre.aspx">Customer Service Centre</a></li>
+<li class="navlvl1"><a href="http://www.coventrybuildingsociety.co.uk/contact-us/media.aspx">Media</a></li>
+</ul>
+</div>
+</span>
+            
+        </div>
+            
+        
+    <div class="contentwrapper">
+        <!-- breadcrumb -->
+        <div id="breadcrumb">
+            <span id="ctl00_SiteMapPath1" class="breadcrumbroot"><a href="#ctl00_SiteMapPath1_SkipLink"><img alt="Skip Navigation Links" src="/WebResource.axd?d=5deYfmbCyeEK5dB5pOdOw-SjLdSULYssnrPT81itl_UVoFca8lpuyIVwjFsfAA8mcyu0UbAITftPhZtVQFtylsNq0PQ1&amp;t=634604424479085897" style="border-width:0px;" height="0" width="0"></a><span>Contact us</span><a id="ctl00_SiteMapPath1_SkipLink"></a></span>
+        </div>
+
+        <div id="content" tabindex="-1" class="accessibility">Page content</div>
+        
+
+ <div class="headHome" id="contactus">
+        <h1><img id="ctl00_BodyContentPlaceHolder_Image2" alt="Contact us Get in touch" title="Contact us Get in touch" src="/images/contactus/get-in-touch.png" style="border-width:0px;"></h1>
+        <div>
+        Before you pick up the phone or send an email, why not see if we've already answered your question in the helpful links below.
+        <p><a class="boxLink" href="/savings-accounts/Managing-your-account.aspx">Managing your savings account</a><br>
+        <a class="boxLink" href="/savings-accounts/opening-your-account.aspx">Opening your savings account</a><br>
+        <a class="boxLink" href="/mortgages/existing-members/mortgagefaqs.aspx">Mortgage FAQs</a><br>
+        <a class="boxLink" href="/online-services/faqs.aspx">Online Services FAQs</a></p>
+        <p>If you can't find the information you need please get in touch.</p>
+        </div>
+    </div>
+
+    <div class="newBorder w755">
+        <div role="tablist" class="accordion ui-accordion ui-widget ui-helper-reset" data-ga-category="Contact_Us">
+        
+                <h2 tabindex="0" aria-selected="true" aria-controls="ui-accordion-1-panel-0" id="ui-accordion-1-header-0" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top" data-ga-action="Phone us"><a href="#phone">Phone us</a></h2>
+                <div aria-hidden="false" aria-expanded="true" role="tabpanel" aria-labelledby="ui-accordion-1-header-0" id="ui-accordion-1-panel-0" style="display: block;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                <p>Our Customer Service Centre is open seven days a week, and our advisors are available Monday to Friday 8am-8pm, Saturday 9am-5pm and Sunday 10am-4pm. Our 24 hour self-service telephone option is also available 24 hours a day, 365 days a year.</p>
+                                
+	                <div class="selfBold">General enquiries and product information</div>
+	                <div class="selfBold margT15">0845 766 5522</div>
+	                <div class="margT15">+44 24 7655 5255</div>
+	  	                <p>If you think your CashLink card or Debit card may have been lost or stolen, please contact us immediately using the above number.</p>
+	                <p>If you think that any of your security details have been compromised, please either contact our Customer Service Centre or <a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_compromised.aspx">notify us online.</a></p>
+
+                </div>
+                
+                <h2 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-1-panel-1" id="ui-accordion-1-header-1" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" data-ga-action="Email us"><a href="#email">Email us</a></h2>
+                <div aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-1-header-1" id="ui-accordion-1-panel-1" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                <p>If you would prefer to contact us online, please send us an email.  When contacting us by email you should not disclose any confidential information such as details of your accounts. For the same reason we cannot answer specific questions about your account via email. You may prefer to write a <a class="triggerAccordian" href="#2">letter</a>, <a class="triggerAccordian" href="#0">telephone</a> us or visit one of our <a href="http://www.coventrybuildingsociety.co.uk/contact-us/Branch-Finder/Branch-Finder.aspx">branches</a>.</p>
+                <p>If you have a query relating to one of your accounts and manage your accounts online, then please <a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx">login</a> and send us a secure message.</p>
+
+                <p><a href="email-Us.aspx" class="boxLink">Email us</a></p>
+                </div>
+                
+                <h2 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-1-panel-2" id="ui-accordion-1-header-2" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" data-ga-action="Write to us"><a href="#write">Write to us</a></h2>
+                <div aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-1-header-2" id="ui-accordion-1-panel-2" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                <h3>Address your letter to:</h3>
+                <p>
+                Coventry Building Society<br>
+                PO Box 9<br>
+                High Street<br>
+                Coventry<br>
+                CV1 5QN</p>
+                </div>
+                
+                <h2 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-1-panel-3" id="ui-accordion-1-header-3" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" data-ga-action="Find our head offices"><a href="#offices">Find our head offices</a></h2>
+                <div aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-1-header-3" id="ui-accordion-1-panel-3" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                <p>If you would like directions to any of our offices, please select one of the links below for a detailed map and travel information.</p>
+		        <p><a class="boxLink" href="/pdfs/map_economic.pdf" target="new" title="this link will display in a new window using Adobe Acrobat">Economic House</a></p>
+		        <p><a class="boxLink" href="/pdfs/map_oakfield.pdf" target="new" title="this link will display in a new window using Adobe Acrobat">Oakfield House, Godiva House and Oak Tree Court</a></p>
+                 </div>
+                
+                <h2 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-1-panel-4" id="ui-accordion-1-header-4" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" data-ga-action="Making a complaint"><a href="#complaints">Making a complaint</a></h2>
+                <div aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-1-header-4" id="ui-accordion-1-panel-4" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                <div class="sitRight">
+                <div class=" gradient curveCorner8 w150 h150 newBorder margL10" style="position:relative; right:-10px;">
+                <p class="selfBold">Complaints report</p>
+                <p>Information about the number of complaints we receive over a six month period.</p>
+                <p class="sitRight"><a class="boxLink" href="/contact-us/complaints.aspx">Read more</a></p>
+                </div>
+                </div>
+                <p>At the Coventry, we are dedicated to putting our members first and we always aim to provide you with the highest standard of service. However, if we make a mistake or if you don't receive the service you expect, we'd like to know about it as soon as possible, so that we can put things right.</p> 
+
+                <h3>What to do if you have a complaint</h3>
+                <p>If you have a complaint, you can contact us in one of several ways:</p>
+                <ul class="bullets">
+                <li>Talk to the manager of your <a href="/contact-us/Branch-Finder/Branch-Finder.aspx">local branch</a> or <a href="/contact-us/branch-finder/agency-finder.aspx">agency</a></li>
+                <li>Talk to an advisor at our Customer Service Centre on 0845 766 5522</li>
+                <li><a href="https://www.coventrybuildingsociety.co.uk/onlineservices/login/ols_login.aspx">Log in to Online Services</a> and send us a secure message if you manage your accounts online</li>
+                <li>Write to us at PO Box 600, Oakfield House, Binley Business Park, Coventry, CV3 9YR</li>
+                </ul>
+
+                <h3>Our commitment to you</h3>
+                <p>We'll do everything we possibly can to answer your complaint straightaway. However, if we need time to investigate your complaint, we'll promptly acknowledge this in writing and keep you informed of our progress, with an estimate of how much longer it will take to complete our investigations. We'll also provide you with the name of your designated contact, whom you can call if you have any queries during our investigations.</p>
+                <p>We'll do our best to reach a satisfactory conclusion to your complaint and we will inform you of the outcome in writing. This will be our final response.</p>
+                <p>Regulations allow us eight weeks to issue our final response. We will aim to do this sooner but if we are unable to respond to your complaint within this timescale, we will write to you to let you know.</p>
+
+
+                <h3>Financial Ombudsman Service</h3>
+                <p>If you believe we have not dealt with your complaint satisfactorily, you can refer the matter to the Financial Ombudsman Service (FOS).  <a href="http://www.financial-ombudsman.org.uk/" target="_blank">The Financial Ombudsman Service<span class="hideAccess">This link opens in a new window</span></a> helps to settle disputes between financial services firms and their customers. The organisation is totally independent and their service is free to customers of all financial firms. Should you decide to refer your complaint to the FOS, you must do so within six months of the date of our final response. If your complaint is one that the FOS can deal with, they will look to find an appropriate solution and will advise you of what they believe to be a fair and reasonable outcome.</p> 
+
+                <h3>How to get more information about the Financial Ombudsman Service</h3>
+                <p>For more information about the FOS, please visit their website and read the online leaflet <a href="http://www.financial-ombudsman.org.uk/" target="_blank">'Your Complaint and the Ombudsman'<span class="hideAccess">This link opens in a new window</span></a>.  Alternatively if you would like to receive a printed version of this leaflet, you can phone our Customer Service Centre on 0845 766 5522 or visit your <a href="/contact-us/Branch-Finder/Branch-Finder.aspx">local branch<span class="hideAccess">This link opens in a new window</span></a>.</p>
+
+                <h3>Useful addresses and phone numbers</h3><br>
+                <p>
+                <b>Coventry Building Society<br>
+                Customer Service Centre</b><br>
+                PO Box 600<br>
+                Oakfield House <br>
+                Binley Business Park<br>
+                Coventry CV3 9YR<br><br>
+                Phone: 0845 766 5522
+                </p>
+                <p>
+                <b>Financial Ombudsman Service</b><br>
+                South Quay Plaza<br>
+                183 Marsh Wall<br>
+                London <br>
+                E14 9SR<br><br>
+                Phone: 0800 023 4567<br>
+                Email: <a href="mailto:complaint.info@financial-ombudsman.org.uk">complaint.info@financial-ombudsman.org.uk</a><br>
+                Website: <a href="http://www.financial-ombudsman.org.uk/" target="_blank">www.financial-ombudsman.org.uk<span class="hideAccess">This link opens in a new window</span></a>
+                </p>
+                </div>
+        </div>
+    </div>
+    <div class="shadowFix"></div>
+  
+<script type="text/javascript">
+    $(document).ready(function () {
+            $(".accordion").accordion({
+                autoHeight: false,
+                collapsible: true,
+                icons: false,
+                navigation: true,
+                header:'h2'
+            });
+     });
+</script>  
+
+    </div>
+            
+    </div>
+
+    <!-- page footer -->
+     <div class="footHolder">
+     <div id="footerLink" tabindex="-1" class="accessibility">Footer navigation</div>    
+            
+
+        <div class="footernav">
+           <ul>
+           <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/Sitemap.aspx">Site map</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/intermediaries/home.aspx">Intermediary services</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/terms/terms-of-use.aspx">Terms of use</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk//terms/privacy-policy.aspx">Privacy and cookies policy</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/careers/home.aspx">Jobs</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/contact-us/media.aspx">Media</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/accessibility/home.aspx">Accessibility</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/security/home.aspx">Security</a></li>
+            <li><a class="footSpacer" href="http://www.coventrybuildingsociety.co.uk/savings-accounts/home.aspx">Savings rates</a></li>
+            <li><a class="footSpacerEnd" href="http://www.coventrybuildingsociety.co.uk/contact-us/get-in-touch.aspx">Contact us</a></li>
+            </ul>
+        </div>
+        <div class="footerlegals">
+        <p>Coventry Building Society is authorised by the Prudential Regulation Authority and regulated by the Financial Conduct Authority and the Prudential Regulation Authority (firm reference number 150892 <a href="http://www.fca.org.uk" target="_blank">www.fca.org.uk</a>). This site is intended for UK residents only. Coventry Building Society. Registered Office: Economic House, PO Box 9, High Street, Coventry CV1 5QN.</p>
+        <p>Our advisors are available Monday to Friday 8am-8pm, Saturday 9am-5pm, Sunday 10am-4pm, telephone self-service is available 24 hours a day, 365 days a year. Contact your service provider for details of call charges, as costs may vary. Find out <a href="/contact-us/customer-service-centre.aspx#Tel0845">why we use an 0845 number</a>. To maintain a quality service, calls made to and from Coventry Building Society may be monitored and recorded. </p>
+        </div>
+    
+    </div>
+    
+ 
+
+    
+        
+    <p><input name="ctl00$HdSession" id="ctl00_HdSession" value="d92403b3-31c1-4aa2-b9a6-b412f52cd8ec" type="hidden"></p>
+
+    <div id="CheckDNT" style="display:none">0</div>
+    <div id="CheckReferrer" style="display:none">1</div>
+    <div id="CookieVer" style="display:none">1.0</div>
+
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("ctl00_searchSummary"));
+var Page_Validators =  new Array(document.getElementById("ctl00_search"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_search = document.all ? document.all["ctl00_search"] : document.getElementById("ctl00_search");
+ctl00_search.controltovalidate = "ctl00_searchtextbox";
+ctl00_search.focusOnError = "t";
+ctl00_search.errormessage = "No search criteria were entered";
+ctl00_search.display = "None";
+ctl00_search.validationGroup = "search";
+ctl00_search.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_search.initialvalue = "";
+var ctl00_searchSummary = document.all ? document.all["ctl00_searchSummary"] : document.getElementById("ctl00_searchSummary");
+ctl00_searchSummary.showmessagebox = "True";
+ctl00_searchSummary.showsummary = "False";
+ctl00_searchSummary.displaymode = "SingleParagraph";
+ctl00_searchSummary.validationGroup = "search";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        //]]>
+</script>
+</form>
+
+    <script language="javascript" type="text/javascript" src="/CBSBS.js"></script>
+    <script language="javascript" type="text/javascript" src="/Referrer.js"></script>    
+    <script language="javascript" type="text/javascript" src="/GoogleAnalytics.js"></script>
+
+    
+        
+    <script type="text/javascript">
+ 
+            
+        (function() { 
+            var currUrl = window.location.pathname;
+            var curIndex = currUrl.lastIndexOf("/") + 1;
+            var fileName = currUrl.substr(curIndex);
+            
+            var arrURL = ["TermsAndConditions.aspx", "PersonalDetails.aspx", "ContactDetails.aspx", "AccountDetails.aspx", "ReviewDetails.aspx", "ThankYou.aspx"];
+            if ( $.inArray(fileName, arrURL) > -1 ) {               
+                recordPageView(currUrl); 
+            }
+            
+        })();          
+    </script>
+    
+    
+
+
+
+</body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">
+	Contact Us | Coventry Building Society
+</wa-title></html>

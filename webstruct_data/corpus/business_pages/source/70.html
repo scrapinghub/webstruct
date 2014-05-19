@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+                    
+                
+                    <base href="http://www.visionproject.se/"><title>VisionProject :: Web based tool for project management, issue tracking, task tracking, bug tracking and customer support</title>
+            <meta name="description" content="$metaDescriptionE">
+            <meta name="keywords" content="project management, product management, lean, agile, alm, application lifecycle management, issue tracking, web based, bug tracking, hosted, subversion, ticket, task management, quality assurance, visionera, VisionProject, kanban, burn down chart, task board">
+                <meta name="author" content="Visionera AB">
+    
+        <meta name="robots" content="all">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" async="" src="http://dnn506yrbagrg.cloudfront.net/pages/scripts/0010/9866.js?389030"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script language="JavaScript" src="http://j.maxmind.com/app/geoip.js"></script>
+
+        <script type="text/javascript">
+
+
+            if(navigator.cookieEnabled){
+                if(window.location.href.indexOf("lang") == -1 && window.location.href.indexOf("country") == -1){
+                    if(Get_Cookie("lang") == null || Get_Cookie("lang") == ""){
+                        var value = geoip_country_code();
+                        window.location.href = window.location.href + "?lang=" + value;
+                    }
+                } else {
+                    if(window.location.href.indexOf("lang=SE") != -1 || window.location.href.indexOf("country=SE") != -1){
+                        insertParamAndRedirect("SE");
+                    } else if(window.location.href.indexOf("lang=US") != -1 || window.location.href.indexOf("country=US") != -1){
+                        insertParamAndRedirect("US");
+                    } else if(window.location.href.indexOf("lang=DE") != -1 || window.location.href.indexOf("country=DE") != -1){
+                        insertParamAndRedirect("DE");
+                    }  else if(window.location.href.indexOf("country=") != -1){
+                        insertParamAndRedirect("US");
+                    }
+                }
+            }
+
+
+            function insertParamAndRedirect(value)
+            {
+                var param1 = "";
+                var param2 = "";
+                //var param1 = "locale=";
+                //var param2 = "region=";
+                var EU = "BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,UK";
+
+                if(value == "SE"){
+                    param1 = param1 + "SE";
+                    param2 = param2 + "EU";
+                } else if(EU.indexOf(value) > -1){
+                    param1 = param1 + "EN";
+                    param2 = param2 + "EU";
+                } else {
+                    param1 = param1 + "EN";
+                    param2 = param2 + "US";
+                }
+
+                Set_Cookie("lang", param1, 365);
+                Set_Cookie("region", param2, 365);
+                if(window.location.href.indexOf("?") == -1){
+                    window.location.href = window.location.href;
+                } else if(window.location.href.indexOf("?lang") > -1){
+                    window.location.href = window.location.href.substring(0, window.location.href.indexOf("?lang"));
+                } else if(window.location.href.indexOf("?country") > -1){
+                    window.location.href = window.location.href.substring(0, window.location.href.indexOf("?country"));
+                }
+            }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+            /*
+            These cookie functions are downloaded from
+            http://www.mach5.com/support/analyzer/manual/html/General/CookiesJavaScript.htm
+            */
+            function Get_Cookie(name) {
+                var start = document.cookie.indexOf(name + "=");
+                var len = start + name.length + 1;
+                if ((!start) && (name != document.cookie.substring(0, name.length))) return null;
+                if (start == -1) return null;
+                var end = document.cookie.indexOf(";", len);
+                if (end == -1) end = document.cookie.length;
+                return unescape(document.cookie.substring(len, end));
+            }
+            // This function has been slightly modified
+            function Set_Cookie(name, value, expires, path, domain, secure) {
+                expires = expires * 60 * 60 * 24 * 1000;
+                var today = new Date();
+                var expires_date = new Date(today.getTime() + (expires));
+                var cookieString = name + "=" + escape(value) +
+                        ( (expires) ? ";expires=" + expires_date.toGMTString() : "") +
+                        ( (path) ? ";path=" + path : "") +
+                        ( (domain) ? ";domain=" + domain : "") +
+                        ( (secure) ? ";secure" : "");
+                document.cookie = cookieString;
+            }
+
+            function onDocumentReady(functionToCall) {
+
+
+                if(typeof window.addEventListener != 'undefined')
+                {
+                    //.. gecko, safari, konqueror and standard
+                    window.addEventListener('load', functionToCall, false);
+                }
+                else if(typeof document.addEventListener != 'undefined')
+                {
+                    //.. opera 7
+                    document.addEventListener('load', functionToCall, false);
+                }
+                else if(typeof window.attachEvent != 'undefined')
+                {
+                    //.. win/ie
+                    window.attachEvent('onload', functionToCall);
+                }
+            }
+
+            function highlightMenu(menuId) {
+                document.getElementById(menuId).className = "on";
+            }
+
+                        </script>
+        <script type="text/javascript">
+                                
+
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-209314-1']);
+                _gaq.push(['_setDomainName', 'visionproject.se']);
+                _gaq.push(['_setAllowLinker', true]);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+
+                
+                        </script>
+    </head>
+    <body onbeforeunload="" class="content">
+    <div id="wrapper1"><div id="wrapper2"><div id="wrapper3">
+        <div id="wrapper4"><div id="wrapper5"><div id="wrapper6">
+            
+
+<div id="header">
+	<a href="home.vm" title="Project management, issue tracking and customer support made easy!"><img src="images/website/visionproject.jpg" alt="Project management, issue tracking and customer support made easy!"></a>
+<ul style="float:right;list-style-type:none;text-align:center;margin: 0 0.7em 0 0;padding:0;">
+		<li>
+<a href="http://www.visionproject.se/logon.do"><img src="images/website/phone_numbers.gif"></a><br></li>
+</ul>
+	<ul id="supernav">
+<li class="memberlogin" style="margin: -1.5em 0 0 0">
+<a href="http://www.visionproject.se/logon.do"><img src="images/website/button_member_login.gif"></a>
+        <a href="http://www.visionproject.se/signup1.vm"><img src="images/website/button_free_trial_red.gif"></a></li>
+	</ul>
+	<ul id="nav">
+		<li id="homeId"><a href="home.vm">Home</a></li>
+		<li id="featuresId"><a href="featuresOverview.vm">Features</a></li>
+        		<li id="solutionsId"><a href="http://www.visionproject.se/solutions/index.vm">Solutions</a></li>
+		<li id="signupId"><a href="signup.vm">Prices/Buy</a></li>
+                <li id="aboutId"><a href="about.vm">Company</a></li>
+        <li id="supportId"><a target="_new" href="support.html">Support</a></li>
+	</ul>
+</div>
+
+
+
+ 
+
+            
+
+
+
+ <div id="feature">
+ 	<h1>About us</h1>
+</div>
+
+<div id="contentPage">
+
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+  <tbody><tr>
+    <td valign="top">
+    <p>VisionProject is developed and owned by Visionera AB, an innovative software company
+    based in Stockholm, Sweden. Visionera AB was founded in 2001 and the development of VisionProject started in 2003.</p>
+
+    <p>VisionProject comes in two versions: hosted and installed. The hosted version is hosted at
+    <a target="_blank" href="http://www.ip-only.se/page.php?lang=en">IP-only</a>,
+    a renown co-location centre and network infrastructure provider in
+    Sweden. <a target="_blank" href="http://www.ip-only.se/page.php?lang=en">
+    IP-only</a> currently houses some of the largest and most demanding web
+    sites and internet communities here in Sweden and provides excellent speed,
+    extremely low latency and stability for VisionProject.</p>
+
+    <p></p><h2>Contact information</h2>
+ 
+<b>Address for the company HQ: </b><br>
+Visionera AB<br>
+Vegagatan 3<br>
+11329 Stockholm<br>
+Sweden<br>
+<br>
+<b>Phone number (EU):</b> +46 771 105000<br>
+<b>Fax number (EU):</b> +46 850 109647<br>
+<b>Phone number (US):</b> +1 800 495 9915<br><br>
+
+<b>Email to sales team: </b><a href="mailto:sales@visionproject.se">sales@visionproject.se</a><br>
+<b>Email for general inquires: </b><a href="mailto:info@visionproject.se">info@visionproject.se</a><br>
+<b>Email to support team: </b><a href="http://www.visionproject.se/support.html" target="_blank">Go to our support center</a><br>
+<br>
+<br>
+<iframe scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=sv&amp;geocode=+&amp;q=Vegagatan+3,+Stockholm,+Sverige,+Visionera+AB&amp;aq=t&amp;g=Vegagatan+3,+113+29+STOCKHOLM,+Sverige&amp;ie=UTF8&amp;hq=Visionera+AB&amp;hnear=Vegagatan+3,+113+29+Stockholm,+Stockholms+l%C3%A4n,+Sverige&amp;t=m&amp;vpsrc=0&amp;ll=59.341187,18.051177&amp;spn=0.006295,0.006295&amp;output=embed" frameborder="0" height="350" width="750"></iframe><br><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=sv&amp;geocode=+&amp;q=Vegagatan+3,+Stockholm,+Sverige,+Visionera+AB&amp;aq=t&amp;g=Vegagatan+3,+113+29+STOCKHOLM,+Sverige&amp;ie=UTF8&amp;hq=Visionera+AB&amp;hnear=Vegagatan+3,+113+29+Stockholm,+Stockholms+l%C3%A4n,+Sverige&amp;t=m&amp;vpsrc=0&amp;ll=59.341187,18.051177&amp;spn=0.006295,0.006295" style="color:#0000FF;text-align:left">Visa stÃ¶rre karta</a></small>
+
+
+    <p></p>
+    
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+    Â&nbsp;</td>
+  </tr>
+</tbody></table>
+
+</div>
+			   
+
+            <div class="clear-all"></div>
+        </div></div></div>
+    </div></div></div>
+    <ul id="footer">
+        <li>Phone:
+                            +46 (0)771 105000
+            | </li>
+        <li>Email: <a href="mailto:info@visionproject.se">info@visionproject.se</a></li>
+    </ul>
+
+
+
+    <script type="text/javascript">
+        setTimeout(function(){var a=document.createElement("script");
+            var b=document.getElementsByTagName('script')[0];
+            a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/9866.js?"+Math.floor(new Date().getTime()/3600000);
+            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+
+    
+    
+    </body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">VisionProject :: Web based tool for project management, issue tracking, task tracking, bug tracking and customer support</wa-title></html>
