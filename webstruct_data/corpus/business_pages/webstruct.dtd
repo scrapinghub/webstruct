@@ -1,0 +1,35 @@
+<!-- organization, company name - e.g. "University of Massachusetts Amherst" -->
+<!ELEMENT ORG (#PCDATA)>
+
+<!-- person name, e.g. "John Doe" -->
+<!ELEMENT PER (#PCDATA)>
+
+<!-- person's function, title, role, etc. - e.g. "Director" or "Sales" -->
+<!ELEMENT FUNC (#PCDATA)>
+
+<!-- phone -->
+<!ELEMENT TEL (#PCDATA)>
+
+<!-- fax -->
+<!ELEMENT FAX (#PCDATA)>
+
+<!-- open hours, e.g. "Monday-Friday, 10AM - 3PM PST" -->
+<!ELEMENT HOURS (#PCDATA)>
+
+<!-- subject of the contact data, e.g. "Admissions" or "Customer Service" -->
+<!ELEMENT SUBJ (#PCDATA)>
+
+<!-- street address -->
+<!ELEMENT STREET (#PCDATA)>
+
+<!-- city -->
+<!ELEMENT CITY (#PCDATA)>
+
+<!-- state, province, county, etc. -->
+<!ELEMENT STATE (#PCDATA)>
+
+<!-- zipcode, postcode -->
+<!ELEMENT ZIPCODE (#PCDATA)>
+
+<!-- country -->
+<!ELEMENT COUNTRY (#PCDATA)>
