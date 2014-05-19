@@ -13,6 +13,9 @@
 <!-- fax -->
 <!ELEMENT FAX (#PCDATA)>
 
+<!-- email -->
+<!ELEMENT EMAIL (#PCDATA)>
+
 <!-- open hours, e.g. "Monday-Friday, 10AM - 3PM PST" -->
 <!ELEMENT HOURS (#PCDATA)>
 
