@@ -23,11 +23,14 @@ class NER(object):
     sequences and returns lists of predicted IOB2 tags.
     :func:`~.create_wapiti_pipeline` function returns such model.
     """
-    def __init__(self, model, loader=None, html_tokenizer=None):
+    def __init__(self, model, loader=None, html_tokenizer=None,
+                 entity_colors=None):
         self.model = model
         self.loader = loader or HtmlLoader()
         self.html_tokenizer = html_tokenizer or HtmlTokenizer()
-        self.entity_colors = EntityColors()
+        if entity_colors is None:
+            entity_colors = EntityColors()
+        self.entity_colors = entity_colors
 
     def extract(self, bytes_data):
         """
