@@ -37,9 +37,10 @@ def create_wapiti_pipeline(model_filename=None,
 
         # load train data
         html_tokenizer = webstruct.HtmlTokenizer()
-        train_trees = webstruct.load_trees([
-           ("train/*.html", webstruct.WebAnnotatorLoader())
-        ])
+        train_trees = webstruct.load_trees(
+            "train/*.html",
+            webstruct.WebAnnotatorLoader()
+        )
         X_train, y_train = html_tokenizer.tokenize(train_trees)
 
         # train
@@ -51,9 +52,10 @@ def create_wapiti_pipeline(model_filename=None,
         model.fit(X_train, y_train)
 
         # load test data
-        test_trees = webstruct.load_trees([
-           ("test/*.html", webstruct.WebAnnotatorLoader())
-        ])
+        test_trees = webstruct.load_trees(
+            "test/*.html",
+            webstruct.WebAnnotatorLoader()
+        )
         X_test, y_test = html_tokenizer.tokenize(test_trees)
 
         # do a prediction

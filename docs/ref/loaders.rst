@@ -27,4 +27,3 @@ API
 
 .. autofunction:: load_trees
 
-.. autofunction:: load_trees_from_files
