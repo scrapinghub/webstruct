@@ -23,7 +23,7 @@ DATA_PATH = os.path.abspath(
 def get_trees(*slice_args):
     pattern = os.path.join(DATA_PATH, '*.html')
     loader = webstruct.WebAnnotatorLoader()
-    _trees_iter = webstruct.load_trees([(pattern, loader)])
+    _trees_iter = webstruct.load_trees(pattern, loader)
     return list(islice(_trees_iter, *slice_args))
 
 
