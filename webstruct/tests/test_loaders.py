@@ -15,6 +15,13 @@ def test_wa_loader():
     assert "WA-" not in res, res
 
 
+def test_wa_loader_None_bug():
+    ld = WebAnnotatorLoader()
+    tree = ld.load(os.path.join(os.path.dirname(__file__), 'data', 'wa2.html'))
+    res = lxml.html.tostring(tree)
+    assert '<em>Inc.</em> __END_ORG__ </p>' in res, res
+
+
 def test_wa_loader_with_known_entities():
 
     loader = WebAnnotatorLoader(known_entities={'ORG'})
