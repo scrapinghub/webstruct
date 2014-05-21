@@ -149,7 +149,7 @@ class CRFsuiteTest(unittest.TestCase):
             (u'TX', 'STATE'),
             (u'75206', 'ZIPCODE'),
             (u'214-352-0031', 'TEL'),
-            (u'214-350-5302', 'TEL'),
+            (u'214-350-5302', 'FAX')
         ]
         self.assertIn(group1, groups)
         self.assertIn(group2, groups)
