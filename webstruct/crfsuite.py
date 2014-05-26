@@ -69,9 +69,10 @@ class CRFsuiteCRF(BaseSequenceClassifier):
             self.trainer_cls = pycrfsuite.Trainer
         else:
             self.trainer_cls = trainer_cls
+        self.training_log_ = None
         super(CRFsuiteCRF, self).__init__()
 
-    def fit(self, X, y):
+    def fit(self, X, y, X_dev=None, y_dev=None):
         """
         Train a model.
 
@@ -82,7 +83,16 @@ class CRFsuiteCRF(BaseSequenceClassifier):
 
         y : list of lists of strings
             Labels for several documents.
+
+        X_dev : (optional) list of lists of dicts
+            Feature dicts used for testing.
+
+        y_dev : (optional) list of lists of strings
+            Labels corresponding to X_dev.
         """
+        if (X_dev is None and y_dev is not None) or (X_dev is not None and y_dev is None):
+            raise ValueError("Pass both X_dev and y_dev to use the holdout data")
+
         if self._tagger is not None:
             self._tagger.close()
             self._tagger = None
@@ -93,7 +103,12 @@ class CRFsuiteCRF(BaseSequenceClassifier):
         for xseq, yseq in zip(X, y):
             trainer.append(xseq, yseq)
 
-        trainer.train(self.modelfile.name)
+        if X_dev is not None:
+            for xseq, yseq in zip(X_dev, y_dev):
+                trainer.append(xseq, yseq, 1)
+
+        trainer.train(self.modelfile.name, holdout=-1 if X_dev is None else 1)
+        self.training_log_ = trainer.logparser
         return self
 
     def predict(self, X):
@@ -129,7 +144,6 @@ class CRFsuiteCRF(BaseSequenceClassifier):
             self._tagger = tagger
         return self._tagger
 
-
     def _get_trainer(self):
         return self.trainer_cls(
             algorithm=self.algorithm,
@@ -143,12 +157,50 @@ class CRFsuiteCRF(BaseSequenceClassifier):
         return dct
 
 
+class CRFsuitePipeline(Pipeline):
+    """
+    A pipeline for HTML tagging using CRFsuite. It combines
+    a feature extractor, feature encoder and a CRF; they are available
+    as :attr:`fe`, :attr:`enc` and :attr:`crf` attributes for easier access.
+
+    In addition to that, this class adds support for X_dev/y_dev arguments
+    for :meth:`fit` and :meth:`fit_transform` methods - they work as expected,
+    being transformed using feature extractor and feature encoder.
+    """
+    def __init__(self, fe, enc, crf):
+        self.fe = fe
+        self.enc = enc
+        self.crf = crf
+        self.preprocess_pipeline = Pipeline([
+            ('fe', fe),
+            ('enc', enc),
+        ])
+        super(CRFsuitePipeline, self).__init__([
+            ('preprocess', self.preprocess_pipeline),
+            ('crf', self.crf),
+        ])
+
+    def fit(self, X, y=None, **fit_params):
+        X_dev = fit_params.pop('X_dev', None)
+        if X_dev is not None:
+            fit_params['crf__X_dev'] = self.preprocess_pipeline.transform(X_dev)
+            fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
+        return super(CRFsuitePipeline, self).fit(X, y, **fit_params)
+
+    def fit_transform(self, X, y=None, **fit_params):
+        X_dev = fit_params.pop('X_dev', None)
+        if X_dev is not None:
+            fit_params['crf__X_dev'] = self.preprocess_pipeline.transform(X_dev)
+            fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
+        return super(CRFsuitePipeline, self).fit_transform(X, y, **fit_params)
+
+
 def create_crfsuite_pipeline(token_features=None,
                              global_features=None,
                              min_df=1,
                              **crf_kwargs):
     """
-    Create a scikit-learn Pipeline for HTML tagging using CRFsuite.
+    Create :class:`CRFsuitePipeline` for HTML tagging using CRFsuite.
     This pipeline expects data produced by
     :class:`~.HtmlTokenizer` as an input and produces
     sequences of IOB2 tags as output.
@@ -186,8 +238,8 @@ def create_crfsuite_pipeline(token_features=None,
     if token_features is None:
         token_features = []
 
-    return Pipeline([
-        ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('enc', CRFsuiteFeatureEncoder()),
-        ('crf', CRFsuiteCRF(**crf_kwargs)),
-    ])
+    fe = HtmlFeatureExtractor(token_features, global_features, min_df=min_df)
+    enc = CRFsuiteFeatureEncoder()
+    crf = CRFsuiteCRF(**crf_kwargs)
+
+    return CRFsuitePipeline(fe, enc, crf)
