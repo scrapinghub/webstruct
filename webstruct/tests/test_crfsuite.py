@@ -53,15 +53,23 @@ class CRFsuiteTest(unittest.TestCase):
         assert model.score(X_test, y_test) > 0.3
 
         # It should handle files automatically:
-        crf = model.steps[-1][1]
-        filename = crf.modelfile.name
+        filename = model.crf.modelfile.name
         self.assertTrue(os.path.isfile(filename))
 
         # Temporary files should be collected.
         # XXX: does it work in pypy, and should we care?
-        del crf
         del model
         self.assertFalse(os.path.isfile(filename))
+
+    def test_devdata(self):
+        X_train, X_dev, y_train, y_dev = self._get_train_test(8, 4)
+        model = self.get_pipeline()
+        model.fit(X_train, y_train, X_dev=X_dev, y_dev=y_dev)
+        assert model.crf.training_log_.featgen_num_features > 100
+        assert model.crf.training_log_.last_iteration['avg_f1'] > 0.3
+
+        self.assertRaises(ValueError, model.fit, X_train, y_train, X_dev=X_dev)
+        self.assertRaises(ValueError, model.fit, X_train, y_train, y_dev=y_dev)
 
     def test_pickle(self):
         X_train, X_test, y_train, y_test = self._get_train_test(8, 2)
@@ -95,12 +103,10 @@ class CRFsuiteTest(unittest.TestCase):
         model = self.get_pipeline(model_filename=fname)
         model.fit(X_train, y_train)
 
-        crf = model.steps[-1][1]
-        self.assertFalse(crf.modelfile.auto)
-        self.assertEqual(crf.modelfile.name, fname)
+        self.assertFalse(model.crf.modelfile.auto)
+        self.assertEqual(model.crf.modelfile.name, fname)
 
         # the file should be preserved when the model is closed
-        del crf
         del model
         self.assertTrue(os.path.isfile(fname))
 
