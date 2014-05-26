@@ -7,6 +7,8 @@ Both GATE and WebAnnotator embed annotations into HTML using special tags:
 GATE uses custom tags like ``<ORG>`` while WebAnnotator uses tags like
 ``<span wa-type="ORG">``.
 
+Webstruct also supports plain text with annotation formats similar to GATE_.
+
 :mod:`webstruct.loaders` classes convert GATE and WebAnnotator tags into
 ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens, clean the HTML
 and return the result as a tree parsed by lxml::
@@ -35,7 +37,7 @@ from webstruct import webannotator
 
 class AnnotatedTextLoader(object):
     """
-    Class for loading annotated text uses format like <ORG>xxx</ORG>
+    Class for loading annotated text.
 
     >>> loader = AnnotatedTextLoader(known_entities={'ORG', 'CITY'})
     >>> text = b"<ORG>Scrapinghub</ORG> has an office in <CITY>Montevideo</CITY>"
