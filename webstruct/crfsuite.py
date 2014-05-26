@@ -53,7 +53,7 @@ class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
 
 class CRFsuiteCRF(BaseSequenceClassifier):
     def __init__(self, algorithm=None, train_params=None, verbose=False,
-                 model_filename=None, keep_tempfiles=False):
+                 model_filename=None, keep_tempfiles=False, trainer_cls=None):
         self.algorithm = algorithm
         self.train_params = train_params
         self.modelfile = FileResource(
@@ -64,6 +64,11 @@ class CRFsuiteCRF(BaseSequenceClassifier):
         )
         self.verbose = verbose
         self._tagger = None
+        if trainer_cls is None:
+            import pycrfsuite
+            self.trainer_cls = pycrfsuite.Trainer
+        else:
+            self.trainer_cls = trainer_cls
         super(CRFsuiteCRF, self).__init__()
 
     def fit(self, X, y):
@@ -83,12 +88,7 @@ class CRFsuiteCRF(BaseSequenceClassifier):
             self._tagger = None
         self.modelfile.refresh()
 
-        import pycrfsuite
-        trainer = pycrfsuite.Trainer(
-            algorithm=self.algorithm,
-            params=self.train_params,
-            verbose=self.verbose,
-        )
+        trainer = self._get_trainer()
 
         for xseq, yseq in zip(X, y):
             trainer.append(xseq, yseq)
@@ -128,6 +128,14 @@ class CRFsuiteCRF(BaseSequenceClassifier):
             tagger.open(self.modelfile.name)
             self._tagger = tagger
         return self._tagger
+
+
+    def _get_trainer(self):
+        return self.trainer_cls(
+            algorithm=self.algorithm,
+            params=self.train_params,
+            verbose=self.verbose,
+        )
 
     def __getstate__(self):
         dct = self.__dict__.copy()
