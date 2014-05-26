@@ -51,14 +51,14 @@ TIME_RE = re.compile('\d{1,2}[\.:]\d{2}')
 RANGES = set('''t/m - van tot from to'''.lower().split())
 
 
-def looks_like_email(html_token):
+def looks_like_email(token):
     return {
-        'looks_like_email': EMAIL_RE.search(html_token.token) is not None,
+        'looks_like_email': EMAIL_RE.search(token) is not None,
     }
 
 
-def looks_like_street_part(html_token):
-    token = html_token.token.lower()
+def looks_like_street_part(token):
+    token = token.lower()
     return {
         'common_street_part': token in STREET_PART_TOKENS,
         'common_address_part': token in COMMON_ADDRESS_PARTS,
@@ -66,36 +66,32 @@ def looks_like_street_part(html_token):
     }
 
 
-def looks_like_year(html_token):
-    token = html_token.token
+def looks_like_year(token):
     return {
         'looks_like_year': token.isdigit() and len(token) == 4 and token[:2] in ['19', '20'],
     }
 
 
-def looks_like_month(html_token):
-    token = html_token.token
+def looks_like_month(token):
     return {
         'looks_like_month': MONTHS_RE.match(token) is not None
     }
 
 
-def looks_like_time(html_token):
-    token = html_token.token
+def looks_like_time(token):
     return {
         'looks_like_time': TIME_RE.match(token) is not None
     }
 
 
-def looks_like_weekday(html_token):
-    token = html_token.token
+def looks_like_weekday(token):
     return {
         'looks_like_weekday': WEEKDAYS_RE.match(token) is not None
     }
 
 
-def looks_like_range(html_token):
-    token = html_token.token.lower()
+def looks_like_range(token):
+    token = token.lower()
     return {
         'looks_like_range': token in RANGES
     }

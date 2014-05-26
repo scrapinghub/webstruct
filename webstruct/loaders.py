@@ -7,6 +7,8 @@ Both GATE and WebAnnotator embed annotations into HTML using special tags:
 GATE uses custom tags like ``<ORG>`` while WebAnnotator uses tags like
 ``<span wa-type="ORG">``.
 
+Webstruct also supports plain text with annotation formats similar to GATE_.
+
 :mod:`webstruct.loaders` classes convert GATE and WebAnnotator tags into
 ``__START_TAGNAME__`` and ``__END_TAGNAME__`` tokens, clean the HTML
 and return the result as a tree parsed by lxml::
@@ -33,6 +35,36 @@ import lxml.html.clean
 from webstruct.utils import human_sorted, html_document_fromstring
 from webstruct import webannotator
 
+class GateTextLoader(object):
+    """
+    Class for loading annotated text similar to GATE format.
+
+    >>> loader = GateTextLoader()
+    >>> text = b"<ORG>Scrapinghub</ORG> has an office in <CITY>Montevideo</CITY>"
+    >>> loader.loadbytes(text)
+    ' __START_ORG__ Scrapinghub __END_ORG__  has an office in  __START_CITY__ Montevideo __END_CITY__ '
+    """
+    def __init__(self, known_entities=None):
+        self.known_entities = known_entities
+
+    def loadbytes(self, text):
+        return self._replace_entities(text)
+
+    def _replace_entities(self, bytes):
+        # replace requested entities with unified tokens
+        open_re, close_re = self._entity_patterns(self.known_entities)
+        bytes = re.sub(open_re, r' __START_\1__ ', bytes)
+        bytes = re.sub(close_re, r' __END_\1__ ', bytes)
+        return bytes
+
+    def _entity_patterns(self, entities):
+        if entities:
+            entities_pattern = '|'.join(list(entities))
+        else:
+            entities_pattern = '\w+'
+        open_re = re.compile('<(%s)>' % entities_pattern, re.I)
+        close_re = re.compile('</(%s)>' % entities_pattern, re.I)
+        return open_re, close_re
 
 class HtmlLoader(object):
     """
@@ -115,33 +147,19 @@ class GateLoader(HtmlLoader):
     >>> tree = loader.loadbytes(html)
     >>> lxml.html.tostring(tree)
     '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>'
-
     """
 
     def __init__(self, encoding=None, cleaner=None, known_entities=None):
         if known_entities is None:
             raise ValueError("Please pass `known_entities` argument with a list of all possible entities")
-        self.known_entities = known_entities
+        self.text_loader = GateTextLoader(known_entities)
         super(GateLoader, self).__init__(encoding, cleaner)
 
     def loadbytes(self, data):
         # tags are replaced before parsing data as HTML because
         # GATE's html is invalid
-        data = self._replace_entities(data)
+        data = self.text_loader.loadbytes(data)
         return super(GateLoader, self).loadbytes(data)
-
-    def _replace_entities(self, html_bytes):
-        # replace requested entities with unified tokens
-        open_re, close_re = self._entity_patterns(self.known_entities)
-        html_bytes = re.sub(open_re, r' __START_\1__ ', html_bytes)
-        html_bytes = re.sub(close_re, r' __END_\1__ ', html_bytes)
-        return html_bytes
-
-    def _entity_patterns(self, entities):
-        entities_pattern = '|'.join(list(entities))
-        open_re = re.compile('<(%s)>' % entities_pattern, re.I)
-        close_re = re.compile('</(%s)>' % entities_pattern, re.I)
-        return open_re, close_re
 
 
 def load_trees(pattern, loader, verbose=False):

@@ -10,7 +10,7 @@ from __future__ import absolute_import
 from sklearn.pipeline import Pipeline
 from sklearn.base import TransformerMixin, BaseEstimator
 
-from webstruct import HtmlFeatureExtractor
+from webstruct import FeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct._fileresource import FileResource
 
@@ -179,7 +179,7 @@ def create_crfsuite_pipeline(token_features=None,
         token_features = []
 
     return Pipeline([
-        ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
+        ('fe', FeatureExtractor(token_features, global_features, min_df=min_df)),
         ('enc', CRFsuiteFeatureEncoder()),
         ('crf', CRFsuiteCRF(**crf_kwargs)),
     ])

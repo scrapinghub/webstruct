@@ -15,38 +15,34 @@ __all__ = [
     'SuffixFeatures',
 ]
 
-def token_identity(html_token):
-    return {'token': html_token.token}
+def token_identity(token):
+    return {'token': token}
 
 
-def token_lower(html_token):
-    return {'lower': html_token.token.lower()}
+def token_lower(token):
+    return {'lower': token.lower()}
 
 
-def token_shape(html_token):
-    token = html_token.token
+def token_shape(token):
     return {
         'shape': _shape(token),
         'first_upper': token[0].isupper(),
     }
 
 
-def token_endswith_dot(html_token):
-    token = html_token.token
+def token_endswith_dot(token):
     return {'endswith_dot': token.endswith('.') and token != '.'}
 
 
-def token_endswith_colon(html_token):
-    token = html_token.token
+def token_endswith_colon(token):
     return {'endswith_colon': token.endswith(':') and token != ':'}
 
 
-def token_has_copyright(html_token):
-    return {'has_copyright': u'©' in html_token.token}
+def token_has_copyright(token):
+    return {'has_copyright': u'©' in token}
 
 
-def number_pattern(html_token):
-    token = html_token.token
+def number_pattern(token):
     digit_ratio = sum(1 for ch in token if ch.isdigit()) / len(token)
 
     if digit_ratio >= 0.3:
@@ -85,8 +81,8 @@ class SuffixFeatures(object):
         return {key: token[-size:] for key, size in self.sizes.items()}
 
 
-def prefixes_and_suffixes(html_token):
-    token = html_token.token.lower()
+def prefixes_and_suffixes(token):
+    token = token.lower()
     return {
         'prefix2': token[:2],
         'suffix2': token[-2:],

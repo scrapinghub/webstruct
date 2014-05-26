@@ -14,7 +14,7 @@ import shlex
 import tempfile
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
-from webstruct import HtmlFeatureExtractor
+from webstruct import FeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
@@ -66,7 +66,7 @@ def create_wapiti_pipeline(model_filename=None,
         token_features = []
 
     return Pipeline([
-        ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
+        ('fe', FeatureExtractor(token_features, global_features, min_df=min_df)),
         ('crf', WapitiCRF(model_filename, **crf_kwargs)),
     ])
 

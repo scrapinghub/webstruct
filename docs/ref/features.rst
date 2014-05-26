@@ -15,7 +15,7 @@ Feature Extraction Utilitites
     :members:
     :undoc-members:
 
-.. autoclass:: HtmlFeatureExtractor
+.. autoclass:: FeatureExtractor
     :members:
     :undoc-members:
 

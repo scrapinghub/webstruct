@@ -1,12 +1,18 @@
 .. _html-loaders:
 
-HTML Loaders
-------------
+Loaders
+-------
 
 .. automodule:: webstruct.loaders
 
 API
 ~~~
+
+.. autoclass:: AnnotatedTextLoader
+    :members:
+    :undoc-members:
+    :inherited-members:
+    :show-inheritance:
 
 .. autoclass:: WebAnnotatorLoader
     :members:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from webstruct.utils import LongestMatch
+from webstruct.utils import LongestMatch, get_token_text
 
 
 class LongestMatchGlobalFeature(object):
@@ -26,7 +26,7 @@ class LongestMatchGlobalFeature(object):
         self.featname = featname
 
     def __call__(self, doc):
-        token_strings = [tok.token for tok, feat in doc]
+        token_strings = [get_token_text(tok) for tok, feat in doc]
         for start, end, matched_text in self.lm.find_ranges(token_strings):
             self.process_range(doc, start, end, matched_text)
 
@@ -37,7 +37,6 @@ class LongestMatchGlobalFeature(object):
         for idx in range(start+1, end):
             doc[idx][1][self.i_featname] = True
             doc[idx][1][self.featname] = True
-
 
 class Pattern(object):
     """

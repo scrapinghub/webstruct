@@ -7,6 +7,7 @@ from itertools import chain
 import lxml.html
 from lxml.etree import iterwalk
 
+from webstruct.token import HtmlToken
 
 def merge_dicts(*dicts):
     """
@@ -242,6 +243,17 @@ class LongestMatch(BestMatch):
         return sorted(ranges, key=lambda k: k[1]-k[0], reverse=True)
 
 
+class HtmlTokenFeatures(object):
+    """
+    Utility for combining several token feature functions for :class:`HtmlToken`
+    """
+    def __init__(self, *feature_funcs):
+        self.feature_funcs = list(feature_funcs)
+
+    def __call__(self, html_token):
+        features = [f(html_token.token) for f in self.feature_funcs]
+        return merge_dicts(*features)
+
 def substrings(txt, min_length, max_length, pad=''):
     """
     >>> substrings("abc", 1, 100)
@@ -322,3 +334,11 @@ def train_test_split_noshuffle(*arrays, **options):
     return list(chain.from_iterable(
         (a[:-test_size], a[-test_size:]) for a in arrays
     ))
+
+def get_token_text(token):
+    if isinstance(token, basestring):
+        return token
+    elif isinstance(token, HtmlToken):
+        return token.token
+    else:
+        raise ValueError("unexpected token type %s" % type(token))
