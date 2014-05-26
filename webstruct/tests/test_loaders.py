@@ -3,8 +3,15 @@ from __future__ import absolute_import
 import os
 import lxml.html
 from webstruct import WebAnnotatorLoader
+from webstruct import AnnotatedTextLoader
 from webstruct import HtmlTokenizer
 
+def test_annotated_text_loader():
+    ld = AnnotatedTextLoader(known_entities={'ORG', 'CITY'})
+    res = ld.loadbytes('<ORG>Scrapinghub</ORG> has an office in <CITY>Montevideo</CITY>')
+    assert " __START_ORG__ Scrapinghub __END_ORG__  has an office in  __START_CITY__ Montevideo __END_CITY__ " in res, res
+    assert "wa-" not in res, res
+    assert "WA-" not in res, res
 
 def test_wa_loader():
     ld = WebAnnotatorLoader()
