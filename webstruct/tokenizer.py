@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-extract the tokens and tags from the annotated data.
+:mod:`webstruct.tokenize` extract the tokens and tags from the annotated data (HTML or text).
 """
 import re
 import copy
@@ -25,6 +25,7 @@ class TextTokenizer(object):
 
     Parameters
     ----------
+
     tagset : set, optional
         A set of entity types to keep. If not passed, all entity types are kept.
         Use this argument to discard some entity types from training data.
@@ -47,7 +48,7 @@ class TextTokenizer(object):
         """
         Return two lists:
 
-        * a list a list of Token tokens;
+        * a list a list of :class:`Token` tokens.
         * a list of associated tags.
 
         For unannotated text all tags will be "O" - they may be ignored.
@@ -78,7 +79,7 @@ class TextTokenizer(object):
         """
         words, tags = self.tokenize_and_split(text)
         tokens = []
-        for index, (word, tag) in enumerate(zip(words, tags)):
+        for index, (word, _) in enumerate(zip(words, tags)):
             tokens.append(Token(index, words))
         return list(tokens), list(tags)
 
@@ -136,16 +137,7 @@ class HtmlTokenizer(object):
     Parameters
     ----------
 
-    tagset : set, optional
-        A set of entity types to keep. If not passed, all entity types are kept.
-        Use this argument to discard some entity types from training data.
-    sequence_encoder : object, optional
-        Sequence encoder object. If not passed,
-        :class:`~webstruct.sequence_encoding.IobEncoder` instance is created.
-    text_toknize_func : callable, optional
-        Function used for tokenizing text inside HTML elements.
-        By default, :class:`HtmlTokenizer` uses
-        :func:`webstruct.text_tokenizers.tokenize`.
+    tagset, sequence_encoder, text_toknize_func : see :class:`TextTokenizer`
     kill_html_tags: set, optional
         A set of HTML tags which should be removed. Contents inside
         removed tags is not removed. See :func:`webstruct.utils.kill_html_tags`
@@ -159,7 +151,6 @@ class HtmlTokenizer(object):
     def __init__(self, tagset=None, sequence_encoder=None, text_tokenize_func=None,
                  kill_html_tags=None, replace_html_tags=None, ignore_html_tags=None):
         self.text_tokenizer = TextTokenizer(tagset, sequence_encoder, text_tokenize_func)
-
         self.kill_html_tags = kill_html_tags
         self.replace_html_tags = replace_html_tags
 

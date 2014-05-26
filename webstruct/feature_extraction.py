@@ -3,7 +3,7 @@
 :mod:`webstruct.feature_extraction` contains classes that help
 with:
 
-- converting HTML pages into lists of feature dicts and
+- converting annnotated data into lists of feature dicts and
 - extracting annotations.
 
 Usually, the approach is the following:
@@ -20,7 +20,7 @@ Usually, the approach is the following:
    whether token is in ``<a>`` HTML element, etc. For each token information
    is combined into a single feature dictionary.
 
-   Use :class:`HtmlFeatureExtractor` at this stage. There is a number of
+   Use :class:`FeatureExtractor` at this stage. There is a number of
    predefined token feature functions in :mod:`webstruct.features`.
 
 3. Run a number of "global feature functions" that can modify token feature
@@ -30,7 +30,7 @@ Usually, the approach is the following:
    sequentially: subsequent global feature functions get feature dicts updated
    by previous feature functions.
 
-   This is also done by :class:`HtmlFeatureExtractor`.
+   This is also done by :class:`FeatureExtractor`.
 
    :class:`~webstruct.features.utils.LongestMatchGlobalFeature` can be used
    to create features that capture multi-token patterns. Some predefined
@@ -47,11 +47,15 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.token import HtmlToken
 from webstruct.utils import merge_dicts
 
+def HtmlFeatureExtractor(*args, **kwargs):
+    import warnings
+    warnings.warn("The HtmlFeatureExtractor has renamed to FeatureExtractor")
+    return FeatureExtractor(*args, **kwargs)
 
-class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
+class FeatureExtractor(BaseEstimator, TransformerMixin):
     """
-    This class extracts features from lists of :class:`HtmlToken` instances
-    (:class:`HtmlTokenizer` can be used to create such lists).
+    This class extracts features from lists of :class:`Token` instances
+    (:class:`HtmlTokenizer` or :class:`TextTokenizer` can be used to create such lists).
 
     :meth:`fit` / :meth:`transform` / :meth:`fit_transform` interface
     may look familiar to you if you ever used scikit-learn_:
@@ -71,13 +75,13 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
 
     token_features : list of callables
         List of "token" feature functions. Each function accepts
-        a single ``html_token`` parameter and returns a dictionary
+        a single ``token`` parameter and returns a dictionary
         wich maps feature names to feature values. Dicts from all
         token feature functions are merged by HtmlFeatureExtractor.
         Example token feature (it just returns token text)::
 
-            >>> def current_token(html_token):
-            ...     return {'tok': html_token.token}
+            >>> def current_token(token):
+            ...     return {'tok': token.token}
 
         :mod:`webstruct.features` module provides some predefined feature
         functions, e.g. :func:`parent_tag <webstruct.features.block_features.parent_tag>`
@@ -85,12 +89,12 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
 
         Example::
 
-            >>> from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
+            >>> from webstruct import GateLoader, HtmlTokenizer, FeatureExtractor
             >>> from webstruct.features import parent_tag
 
             >>> loader = GateLoader(known_entities={'PER'})
             >>> html_tokenizer = HtmlTokenizer()
-            >>> feature_extractor = HtmlFeatureExtractor(token_features=[parent_tag])
+            >>> feature_extractor = FeatureExtractor(token_features=[parent_tag])
 
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
@@ -129,20 +133,20 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         self.global_features = global_features or []
         self.min_df = min_df
 
-    def fit(self, html_token_lists, y=None):
-        self.fit_transform(html_token_lists)
+    def fit(self, token_lists, y=None):
+        self.fit_transform(token_lists)
         return self
 
-    def fit_transform(self, html_token_lists, y=None, **fit_params):
-        X = [self.transform_single(html_tokens) for html_tokens in html_token_lists]
+    def fit_transform(self, token_lists, y=None, **fit_params):
+        X = [self.transform_single(tokens) for tokens in token_lists]
         return self._pruned(X, low=self.min_df)
 
-    def transform(self, html_token_lists):
-        return [self.transform_single(html_tokens) for html_tokens in html_token_lists]
+    def transform(self, token_lists):
+        return [self.transform_single(tokens) for tokens in token_lists]
 
-    def transform_single(self, html_tokens):
+    def transform_single(self, tokens):
         feature_func = _CombinedFeatures(*self.token_features)
-        token_data = list(zip(html_tokens, map(feature_func, html_tokens)))
+        token_data = list(zip(tokens, map(feature_func, tokens)))
 
         for feat in self.global_features:
             feat(token_data)

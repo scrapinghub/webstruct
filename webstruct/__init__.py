@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from .loaders import AnnotatedTextLoader, WebAnnotatorLoader, GateLoader, HtmlLoader, load_trees
 from .sequence_encoding import IobEncoder, InputTokenProcessor
-from .feature_extraction import HtmlFeatureExtractor
+from .feature_extraction import HtmlFeatureExtractor, FeatureExtractor
 from .tokenizer import HtmlTokenizer, TextTokenizer
 from .token import Token, HtmlToken
 from .wapiti import WapitiCRF, create_wapiti_pipeline

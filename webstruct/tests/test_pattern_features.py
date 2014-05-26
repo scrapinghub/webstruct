@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import unittest
-from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
+from webstruct import GateLoader, HtmlTokenizer, FeatureExtractor
 from webstruct.features import token_lower, token_identity, Pattern
 
 
@@ -17,7 +17,7 @@ class PatternTest(unittest.TestCase):
         return html_tokens
 
     def test_pattern(self):
-        featextractor = HtmlFeatureExtractor(
+        featextractor = FeatureExtractor(
             token_features = [token_lower, token_identity],
             global_features = [
                 Pattern((-2, 'lower'), (-1, 'lower'))
@@ -33,7 +33,7 @@ class PatternTest(unittest.TestCase):
         )
 
     def test_pattern_lookups(self):
-        featextractor = HtmlFeatureExtractor(
+        featextractor = FeatureExtractor(
             token_features = [token_lower, token_identity],
             global_features=[
                 Pattern((0, 'lower'), (1, 'token'), out_value='OUT'),
