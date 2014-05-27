@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .global_features import Pattern
+from .global_features import Pattern, LongestMatchGlobalFeature
 
 
 EXAMPLE_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
