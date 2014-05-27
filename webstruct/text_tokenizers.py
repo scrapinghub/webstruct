@@ -54,6 +54,9 @@ class WordTokenizer(object):
     >>> WordTokenizer().tokenize(u"1 5858/ 1800")  # doctest: +SKIP
     [u'1', u'5858', u'/', u'1800']
 
+    >>> WordTokenizer().tokenize(u"Saudi Arabia-")  # doctest: +SKIP
+    [u'Saudi', u'Arabia', u'-']
+
     """
 
     # regex, token
