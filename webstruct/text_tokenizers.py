@@ -40,6 +40,20 @@ class WordTokenizer(object):
      u'Angel', u"''", u'(', u'a', u'show', u'creator', u'John', u'Masius',
      u'worked', u'on', u')', u'wanna-be', u'if', u'she', u"didn't", u'.']
 
+    Some issues:
+
+    >>> WordTokenizer().tokenize("Phone:855-349-1914")  # doctest: +SKIP
+    [u'Phone', u':', u'855-349-1914']
+
+    >>> WordTokenizer().tokenize(u"Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")  # doctest: +SKIP
+    [u'Copyright', u'\xc2\xa9', u'2014', u'Wall', u'Decor', u'and', u'Home', u'Accents', u'.', u'All', u'Rights', u'Reserved', u'.']
+
+    >>> WordTokenizer().tokenize(u"Powai Campus, Mumbai-400077")  # doctest: +SKIP
+    [u'Powai', u'Campus', u',', u'Mumbai", "-", "400077']
+
+    >>> WordTokenizer().tokenize(u"1 5858/ 1800")  # doctest: +SKIP
+    [u'1', u'5858', u'/', u'1800']
+
     """
 
     # regex, token
