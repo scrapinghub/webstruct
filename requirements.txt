@@ -3,4 +3,4 @@ scikit-learn >= 0.14
 cython >= 0.19
 -e git+https://github.com/adsva/python-wapiti.git@f7eded69a951c50a461cbe62ecc809e28229eb8f#egg=python-wapiti
 -e git+https://github.com/larsmans/seqlearn.git@62a4390f54c2063a60262f8640ed975446f5fa57#egg=seqlearn
-python-crfsuite == 0.5
+python-crfsuite == 0.6

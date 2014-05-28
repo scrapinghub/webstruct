@@ -8,47 +8,10 @@ CRFsuite_ backend for webstruct based on python-crfsuite_
 """
 from __future__ import absolute_import
 from sklearn.pipeline import Pipeline
-from sklearn.base import TransformerMixin, BaseEstimator
 
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct._fileresource import FileResource
-
-
-def _prepare_dict(dct):
-    """
-    >>> _prepare_dict({'foo': 'bar'})
-    {'foo=bar': 1.0}
-    >>> _prepare_dict({'foo': 2.0})
-    {'foo': 2.0}
-    >>> _prepare_dict({'foo': False})
-    {'foo': 0.0}
-    >>> _prepare_dict({'foo': True})
-    {'foo': 1.0}
-    """
-    res = {}
-    for key, value in dct.items():
-        if isinstance(value, basestring):
-            res[key + "=" + value] = 1.0
-        else:
-            res[key] = float(value)
-    return res
-
-
-class CRFsuiteFeatureEncoder(BaseEstimator, TransformerMixin):
-    """
-    A Transformer for converting Webstruct feature dicts to
-    python-crfsuite format.
-
-    ``{"key": value}`` dicts are converted to ``{"key=%s" % value: 1.0}``
-    if the value is a string and to ``{"key": float(value)}`` if the value
-    is a number or a boolean value.
-    """
-    def fit(self, X, y=None):
-        return self
-
-    def transform(self, X):
-        return [[_prepare_dict(dct) for dct in xseq] for xseq in X]
 
 
 class CRFsuiteCRF(BaseSequenceClassifier):
@@ -160,37 +123,32 @@ class CRFsuiteCRF(BaseSequenceClassifier):
 class CRFsuitePipeline(Pipeline):
     """
     A pipeline for HTML tagging using CRFsuite. It combines
-    a feature extractor, feature encoder and a CRF; they are available
-    as :attr:`fe`, :attr:`enc` and :attr:`crf` attributes for easier access.
+    a feature extractor and a CRF; they are available
+    as :attr:`fe` and :attr:`crf` attributes for easier access.
 
     In addition to that, this class adds support for X_dev/y_dev arguments
     for :meth:`fit` and :meth:`fit_transform` methods - they work as expected,
-    being transformed using feature extractor and feature encoder.
+    being transformed using feature extractor.
     """
-    def __init__(self, fe, enc, crf):
+    def __init__(self, fe, crf):
         self.fe = fe
-        self.enc = enc
         self.crf = crf
-        self.preprocess_pipeline = Pipeline([
-            ('fe', fe),
-            ('enc', enc),
-        ])
         super(CRFsuitePipeline, self).__init__([
-            ('preprocess', self.preprocess_pipeline),
+            ('fe', self.fe),
             ('crf', self.crf),
         ])
 
     def fit(self, X, y=None, **fit_params):
         X_dev = fit_params.pop('X_dev', None)
         if X_dev is not None:
-            fit_params['crf__X_dev'] = self.preprocess_pipeline.transform(X_dev)
+            fit_params['crf__X_dev'] = self.fe.transform(X_dev)
             fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
         return super(CRFsuitePipeline, self).fit(X, y, **fit_params)
 
     def fit_transform(self, X, y=None, **fit_params):
         X_dev = fit_params.pop('X_dev', None)
         if X_dev is not None:
-            fit_params['crf__X_dev'] = self.preprocess_pipeline.transform(X_dev)
+            fit_params['crf__X_dev'] = self.fe.transform(X_dev)
             fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
         return super(CRFsuitePipeline, self).fit_transform(X, y, **fit_params)
 
@@ -239,7 +197,6 @@ def create_crfsuite_pipeline(token_features=None,
         token_features = []
 
     fe = HtmlFeatureExtractor(token_features, global_features, min_df=min_df)
-    enc = CRFsuiteFeatureEncoder()
     crf = CRFsuiteCRF(**crf_kwargs)
 
-    return CRFsuitePipeline(fe, enc, crf)
+    return CRFsuitePipeline(fe, crf)
