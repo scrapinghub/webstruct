@@ -415,8 +415,7 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         for feat in self.global_features:
             feat(token_data)
 
-        return [{k: fd[k] for k in fd if not k.startswith('_')}
-                for tok, fd in token_data]
+        return [featdict for tok, featdict in token_data]
 
     def _pruned(self, X, low=None):
         if low is None or low <= 1:
