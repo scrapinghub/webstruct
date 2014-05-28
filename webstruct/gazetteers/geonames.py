@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import os
 import csv
 import zipfile
 import numpy as np
@@ -61,8 +62,12 @@ def read_geonames(filename):
     return pd.read_csv(filename, **_GEONAMES_PANDAS_PARAMS)
 
 
-def read_geonames_zipped(zip_filename, geonames_filename):
+def read_geonames_zipped(zip_filename, geonames_filename=None):
     """ Parse zipped geonames file. """
+    if geonames_filename is None:
+        root, filename = os.path.split(zip_filename)
+        geonames_filename = filename.replace('.zip', '.txt')
+
     with zipfile.ZipFile(zip_filename, 'r') as zf:
         fp = zf.open(geonames_filename)
         return read_geonames(fp)
