@@ -4,5 +4,5 @@ from .loaders import WebAnnotatorLoader, GateLoader, HtmlLoader, load_trees
 from .sequence_encoding import IobEncoder, InputTokenProcessor
 from .feature_extraction import HtmlFeatureExtractor, HtmlTokenizer, HtmlToken
 from .wapiti import WapitiCRF, create_wapiti_pipeline
-from .crfsuite import CRFsuiteCRF, CRFsuiteFeatureEncoder, create_crfsuite_pipeline
+from .crfsuite import CRFsuiteCRF, create_crfsuite_pipeline
 from .model import NER
