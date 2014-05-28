@@ -15,6 +15,7 @@ EXAMPLE_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
                   'ZIPCODE', 'EMAIL', 'TEL', 'FAX', 'SUBJ', 'FUNC', 'HOURS'}
 
 EXAMPLE_TOKEN_FEATURES = [
+    bias,
     parent_tag,
     borders,
     block_length,
