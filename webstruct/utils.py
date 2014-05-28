@@ -193,7 +193,7 @@ class BestMatch(object):
         i = 0
         while i < len(tokens):
             max_length = min(self.max_length, max(len(tokens)-i, 0))
-            for length in reversed(range(1, max_length+1)):
+            for length in xrange(max_length, 0, -1):
                 lookup = " ".join(tokens[i:i+length])
                 if lookup in self.known:
                     res.append((i, length+i, lookup))
