@@ -87,6 +87,14 @@ class NER(object):
 
         return entities
 
+    def extract_groups_from_url(self, url, dont_penalize=None):
+        """
+        A convenience wrapper for :meth:`extract_groups` method that downloads
+        input data from a remote URL.
+        """
+        data = urllib2.urlopen(url).read()
+        return self.extract_groups(data)
+
     def build_entity(self, html_tokens, tag):
         """
         Join tokens to an entity. Return an entity, as text.
