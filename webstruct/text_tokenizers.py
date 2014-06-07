@@ -37,23 +37,23 @@ class WordTokenizer(object):
     >>> WordTokenizer().span_tokenize(s)
     [(0, 5), (5, 6), (6, 11)]
 
-    >>> s2 = u'"We beat some pretty good teams to get here," Slocum said.'
-    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
+    >>> s = u'"We beat some pretty good teams to get here," Slocum said.'
+    >>> WordTokenizer().tokenize(s)  # doctest: +NORMALIZE_WHITESPACE
     [u'``', u'We', u'beat', u'some', u'pretty', u'good',
     u'teams', u'to', u'get', u'here', u',', u"''", u'Slocum', u'said', u'.']
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().span_tokenize(s)  # doctest: +NORMALIZE_WHITESPACE
     [(0, 1), (1, 3), (4, 8), (9, 13), (14, 20), (21, 25), (26, 31), (32, 34),
      (35, 38), (39, 43), (43, 44), (44, 45), (46, 52), (53, 57), (57, 58)]
-    >>> s3 = u'''Well, we couldn't have this predictable,
+    >>> s = u'''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
-    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
+    >>> WordTokenizer().tokenize(s)  # doctest: +NORMALIZE_WHITESPACE
     [u'Well', u',', u'we', u"couldn't", u'have', u'this', u'predictable',
      u',', u'cliche-ridden', u',', u'``', u'Touched', u'by', u'an',
      u'Angel', u"''", u'(', u'a', u'show', u'creator', u'John', u'Masius',
      u'worked', u'on', u')', u'wanna-be', u'if', u'she', u"didn't", u'.']
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().span_tokenize(s)  # doctest: +NORMALIZE_WHITESPACE
     [(0, 4), (4, 5), (6, 8), (9, 17), (18, 22), (23, 27), (28, 39), (39, 40),
      (41, 54), (54, 55), (56, 57), (57, 64), (65, 67), (68, 70), (71, 76),
      (76, 77), (78, 79), (79, 80), (81, 85), (86, 93), (94, 98), (99, 105),
