@@ -10,6 +10,7 @@ Reference
    metrics
    grouping
    wapiti
+   crfsuite
    webannotator
    base
    misc

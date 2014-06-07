@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<base href="http://www.longolabs.com/"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Longo, Inc.  </title>
+
+<script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="/includes/jquery_lightbox/js/jquery.lightbox.packed.js?show_linkback=false"></script>
+
+<link rel="stylesheet" href="http://www.longolabs.com/wp-content/themes/BCI/style.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" title="Longo, Inc. RSS Feed" href="http://www.longolabs.com/feed/">
+<link rel="pingback" href="http://www.longolabs.com/xmlrpc.php">
+
+<style type="text/css" media="screen">
+
+</style>
+
+<script type="text/javascript" src="/includes/jquery-1.2.5.min.js"></script>
+<script type="text/javascript" src="/includes/jquery_lightbox/js/jquery.lightbox.packed.js?show_linkback=false"></script>
+
+<link rel="stylesheet" href="/includes/jquery_lightbox/css/lightbox.css" type="text/css" media="screen">
+
+        <script src="/includes/jquery_lightbox/jquery.lightbox.js" type="text/javascript"></script>
+        <script>
+                $(document).ready(function(){
+                        $(".lightbox").lightbox();
+                });
+
+        </script>
+
+<!--  added by plugin FrontpageSlideshow -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var fslast = 3; // # of last slide (if less than 4)
+var fsid = -1; // the current slide
+var fsinterval = 0; //  the setInterval var
+function fsChangeSlide(id) {
+	$('fs-entry-'+fsid).removeClassName('fs-current');
+	fsid=id;
+	window.clearInterval(fsinterval);
+	new Effect.Fade('fs-slide',{ duration: 0.5, afterFinish: fsChangeSlide2 });
+}
+function fsChangeSlide2() {
+	$('fs-picture').style.backgroundImage='url('+$('fs-entry-img-'+fsid).src+')';
+	$('fs-title').innerHTML=$('fs-entry-title-'+fsid).innerHTML;
+	$('fs-excerpt').innerHTML=$('fs-entry-comment-'+fsid).innerHTML;
+	new Effect.Appear('fs-slide',{ duration: 0.5});
+	$('fs-entry-'+fsid).addClassName('fs-current');
+	frontpageSlideshow();
+}
+function fsDoSlide() {
+	if (fsid>-1) $('fs-entry-'+fsid).removeClassName('fs-current');
+	fsid++;
+	if (fsid>fslast) fsid = 0; // new loop !
+	fsChangeSlide(fsid);
+}
+function frontpageSlideshow() {
+	fsinterval = window.setInterval('fsDoSlide()',8000);
+}
+/* ]]> */
+</script>
+<!--  /added by plugin FrontpageSlideshow -->
+<!--  added by plugin FrontpageSlideshow -->
+<!--[if IE]>
+<style type="text/css">
+#fs-text {
+	filter: alpha(opacity=75);
+}
+</style>
+<![endif]-->
+<style type="text/css">
+	#fs-main { margin-top:15px; width: 580px; height: 380px; border: 1px solid #444; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; overflow: hidden; background-color: #eee; color: #fff; font-family: Verdana, Sans, Helvetica, Arial, sans-serif!important; text-align: left; } #fs-slide { float: left; width: 100%; height: 100%; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; } #fs-picture { width: 100%; height: 100%; background-position: center center; background-repeat: no-repeat; background-image: url(http://www.longolabs.com/wp-content/plugins/frontpage-slideshow/images/loading_black.gif); -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; } #fs-placeholder { height: 324px; } #fs-placeholder a { display: block; height: 100%; width: 100%; text-decoration: none; color: transparent; border: none; } #fs-placeholder a:hover { text-decoration: none; } #fs-text { opacity: 0.75; background-color: #000; /*margin-top: 10px;*/ padding: 10px; } #fs-text a { color: #c0e7f8; text-decoration: underline; } #fs-text a:visited { color: #99fbac; text-decoration: underline; } #fs-title { font-weight: bold; font-size: 14px!important; line-height: 1.1em; margin-bottom: 0.25em; font-family: Verdana, Sans, Helvetica, Arial, sans-serif!important; } .fs-title { font-weight: bold; font-size: 11px!important; line-height: 1.4em; margin: 0!important; padding: 0!important; margin-bottom: 0.25em; font-family: Verdana, Sans, Helvetica, Arial, sans-serif!important; } #fs-excerpt { font-size: 14px!important; padding-left: 10px; line-height: 1.4em; } .fs-comment { font-size: 8px!important; line-height: 1.2em; font-family: Verdana, Sans, Helvetica, Arial, sans-serif!important; } #fs-main ul { display: block; float: right!important; clear: none!important;  margin: 0!important; padding: 0!important;  width: 0%!important; height: 100%;  list-style: none!important;  background-image: none!important;  -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; } #fs-main li { display: block!important;  padding: 5px!important; margin: 0;  width: 100%!important; height: 55px;  background-image: none!important;  -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;  cursor: pointer; } #fs-main li:before { content:\"\"; } #fs-main li:after { content:\"\"; }  .fs-entry { background-color: #000!important; margin: 0; overflow: hidden; } .fs-entry:hover { background-color: #333!important; } .fs-current { background-color: #444!important; } .fs-skip { position: absolute!important; top: -300000px!important; } 	
+</style>
+<!--  /added by plugin FrontpageSlideshow -->
+
+<link rel="alternate" type="application/rss+xml" title="Longo, Inc. » Home Comments Feed" href="http://www.longolabs.com/home/feed/">
+<link rel="stylesheet" id="dcwp_plugin_admin_dcscf_css-css" href="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/css/admin.css?ver=3.6" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="http://www.longolabs.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.4.2" type="text/css" media="all">
+<link rel="stylesheet" id="mappress-css" href="http://www.longolabs.com/wp-content/plugins/mappress-google-maps-for-wordpress/css/mappress.css?ver=2.40.3" type="text/css" media="all">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js?ver=1.7.1"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/scriptaculous.js?ver=1.9.0"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/builder.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/effects.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/dragdrop.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/controls.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/slider.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/sound.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/effects.js?ver=1.9.0"></script>
+<script type="text/javascript" src="http://www.longolabs.com/wp-includes/js/jquery/jquery.js?ver=1.10.2"></script>
+<script type="text/javascript" src="http://www.longolabs.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+<script type="text/javascript" src="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/js/jquery.slick.contact.1.3.2.js?ver=3.6"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.longolabs.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.longolabs.com/wp-includes/wlwmanifest.xml"> 
+<link rel="next" title="News" href="http://www.longolabs.com/news/">
+<meta name="generator" content="WordPress 3.6">
+<link rel="canonical" href="http://www.longolabs.com/">
+
+<!-- Simple Google Analytics Begin -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-47549478-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+				<script type="text/javascript">
+
+					(function($) {
+						
+						// Type de fichiers télechargeable						
+						var filetypes = /\.(zip|exe|dmg|pdf|doc.*|xls.*|ppt.*|mp3|txt|rar|wma|mov|avi|wmv|flv|wav)$/i ;
+						var baseHref = '' ;
+
+						if ($('base').attr('href') != undefined) baseHref = $('base').attr('href') ;
+				 
+				 		// On ajoute un event sur toutes les balises 'a' de la page
+						$('a').on('click', function(event) {
+
+							var el = $(this) ;
+							var track = true ;
+							var href = (typeof(el.attr('href')) != 'undefined' ) ? el.attr('href') :"" ;
+							var isThisDomain = href.match(document.domain.split('.').reverse()[1] + '.' + document.domain.split('.').reverse()[0]) ;
+
+							if (!href.match(/^javascript:/i)) {
+								var elEv = []; elEv.value=0, elEv.non_i=false ;
+								if (href.match(/^mailto\:/i)) {
+									elEv.category = "email" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^mailto\:/i, '') ;
+									elEv.loc = href ;
+								}
+								else if (href.match(filetypes)) {
+									var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined ;
+									elEv.category = "download" ;
+									elEv.action = "click-" + extension[0] ;
+									elEv.label = href.replace(/ /g,"-") ;
+									elEv.loc = baseHref + href ;
+								}
+								else if (href.match(/^https?\:/i) && !isThisDomain) {
+									elEv.category = "external" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^https?\:\/\//i, '') ;
+									elEv.non_i = true;  
+									elEv.loc = href ;
+								}
+								else if (href.match(/^tel\:/i)) {
+									elEv.category = "telephone" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^tel\:/i, '') ;
+									elEv.loc = href ;
+								}
+								else track = false ;
+
+								if (track) {
+									_gaq.push(['_trackEvent', elEv.category.toLowerCase(), elEv.action.toLowerCase(), elEv.label.toLowerCase(), elEv.value, elEv.non_i]) ;
+									if (el.attr('target') == undefined || el.attr('target').toLowerCase() != '_blank') {
+										setTimeout(function() { location.href = elEv.loc; }, 400) ;
+										return false ;
+									}
+								}
+							}
+
+						}) ;
+
+					})(jQuery) ;
+
+				</script>
+
+			
+<!-- Simple Google Analytics End -->
+
+	<link rel="stylesheet" href="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/skin.php?widget_id=2&amp;skin=black" type="text/css" media="screen">
+	<link rel="stylesheet" href="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/css/form.css" type="text/css" media="screen"></head>
+<body onbeforeunload="">
+<div id="container">
+
+
+<div id="header">
+<img src="/images/longo_header.jpg">
+</div>
+
+<div id="menu"><ul><li class="page_item page-item-773"><a href="http://www.longolabs.com/proj/"></a></li>
+<li class="page_item page-item-6 current_page_item"><a href="http://www.longolabs.com/">Home</a></li>
+<li class="page_item page-item-2"><a href="http://www.longolabs.com/about/">Contracts</a></li>
+<li class="page_item page-item-17"><a href="http://www.longolabs.com/products/">Products</a></li>
+<li class="page_item page-item-11"><a href="http://www.longolabs.com/news/">News</a></li>
+<li class="page_item page-item-21"><a href="http://www.longolabs.com/sheldon-difference/">K-12 Labs</a></li>
+<li class="page_item page-item-104"><a href="http://www.longolabs.com/private-schools/">Private Schools</a></li>
+<li class="page_item page-item-98"><a href="http://www.longolabs.com/industrial-labs/">Industrial Labs</a></li>
+<li class="page_item page-item-19"><a href="http://www.longolabs.com/brochures/">Brochures</a></li>
+<li class="page_item page-item-23"><a href="http://www.longolabs.com/contact-us/">Info</a></li>
+</ul></div>
+
+	<div id="content">
+
+				<div class="post" id="post-6">
+		<h2>Home</h2>
+			<div class="entry">
+				
+<!-- Frontpage Slideshow begin -->
+<div id="fs-main"><div style="opacity: 0.917039;" id="fs-slide"><div style="background-image: url(&quot;http://www.longolabs.com/homepage_slideshow/slide01.jpg&quot;);" id="fs-picture"><div id="fs-placeholder"><a href="#frontpage-slideshow" onclick="if (fsid>-1) { if ($('fs-entry-link-'+fsid).innerHTML != '') { this.href=$('fs-entry-link-'+fsid).innerHTML; } }">&nbsp;</a></div><div id="fs-text"><div id="fs-title">Private School Lab Construction &nbsp;</div><div id="fs-excerpt">We Design The Lab Space – And Build It To Specification &nbsp;</div></div></div></div><ul><li id="fs-entry-0" class="fs-entry" onclick="window.clearInterval(fsinterval); fsChangeSlide(0)"><div id="fs-entry-title-0" class="fs-title">Capture – Contain – Exhaust &nbsp;</div><div id="fs-entry-button-comment-0" class="fs-comment">&nbsp;</div><img id="fs-entry-img-0" class="fs-skip" alt=" " src="/homepage_slideshow/slide04.jpg"><span id="fs-entry-comment-0" class="fs-skip">Laboratory Fume Hood Specialists &nbsp;</span><span id="fs-entry-link-0" class="fs-skip">#</span></li><li id="fs-entry-1" class="fs-entry" onclick="window.clearInterval(fsinterval); fsChangeSlide(1)"><div id="fs-entry-title-1" class="fs-title">R&amp;D, Medical, Phamaceutical, BioTech Laboratories&nbsp;</div><div id="fs-entry-button-comment-1" class="fs-comment">&nbsp;</div><img id="fs-entry-img-1" class="fs-skip" alt=" " src="/homepage_slideshow/slide03.jpg"><span id="fs-entry-comment-1" class="fs-skip">Laboratory Casework &amp; Counter Top Selection Advice &nbsp;</span><span id="fs-entry-link-1" class="fs-skip">#</span></li><li id="fs-entry-2" class="fs-entry" onclick="window.clearInterval(fsinterval); fsChangeSlide(2)"><div id="fs-entry-title-2" class="fs-title">Laboratory Design Services Available To Architect Firms &nbsp;</div><div id="fs-entry-button-comment-2" class="fs-comment">Button 2 comment&nbsp;</div><img id="fs-entry-img-2" class="fs-skip" alt=" " src="/homepage_slideshow/slide02.jpg"><span id="fs-entry-comment-2" class="fs-skip">Space Planning, Budgets, Furnishings, Construction &nbsp;</span><span id="fs-entry-link-2" class="fs-skip">#</span></li><li id="fs-entry-3" class="fs-entry" onclick="window.clearInterval(fsinterval); fsChangeSlide(3)"><div id="fs-entry-title-3" class="fs-title">Private School Lab Construction &nbsp;</div><div id="fs-entry-button-comment-3" class="fs-comment">Button Comment&nbsp;</div><img id="fs-entry-img-3" class="fs-skip" alt=" " src="/homepage_slideshow/slide01.jpg" onload="fsDoSlide()"><span id="fs-entry-comment-3" class="fs-skip">We Design The Lab Space – And Build It To Specification &nbsp;</span><span id="fs-entry-link-3" class="fs-skip">#</span></li></ul></div>
+<!-- Frontpage Slideshow end -->
+<p>Welcome to Longo Laboratories. &nbsp;Please browse our site and feel free to contact us with any questions.</p>
+<div>
+<p>Laboratories are complex, sophisticated and expensive workspaces. Mistakes in planning and building, or in equipment selection and installation, can be extremely costly, as well as unsafe. That’s why Longo’s experience is so valuable. An efficient laboratory, professionally designed for optimum safety and maximum functionality, furnished with precision casework, instruments and equipment, is a place where important discoveries and major breakthroughs are made.</p>
+<p>At Longo, we take our partnership role seriously. We commit ourselves to a level of unsurpassed service which ensures that your laboratory environment will meet research specifications, address important regulatory requirements, and satisfy multiple user needs.</p>
+<p>For almost 40 years, Longo has offered total workspace solutions for hundreds of laboratory facilities in the pharmaceutical, chemical, electronics, food science and other research-driven industries. Whether building and furnishing a bioscience lab for a major drug company or renovating a forensics facility to satisfy new regulatory guidelines, Longo can take a project from planning stage and drawings to construction and equipment installation with unparalleled expertise—and the highest level of client service.</p>
+</div>
+
+				
+			</div>
+		</div>
+				</div>
+
+	<div id="sidebar">
+		<ul>
+			<h2>Labscape Catalog</h2>
+<br>
+<script type="text/javascript" src="http://viewer.zmags.com/js/tinyCatalog.js"></script>
+                                                <script>
+                                                    var mag = new TinyCatalog(208150, "Labscape");
+                                                    mag.setBackgroundColor("#FFFFFF");
+                                                    mag.setSize(260, 168);
+                                                    // Change line below to link to an url
+                                                    // mag.setLaunchURL("http://www.dom.tld");
+                                                    // mag.setTarget("_self");
+                                                    mag.draw();
+                                                </script><div id="tiny__4268906"><embed type="application/x-shockwave-flash" src="http://viewer.zmags.com/gfx/tinyMag2.swf" style="undefined" id="tinyCatalog" name="tinyCatalog" bgcolor="#FFFFFF" quality="high" wmode="opaque" allowscriptaccess="always" flashvars="magid=208150&amp;__width=260&amp;__height=168&amp;launchURL=http://viewer.zmags.com/showmag.php?magid=208150&amp;numpages=6&amp;launchTarget=_blank&amp;isOpen=false" height="168" width="260"></div>
+<br><br>
+<h2>Search</h2>
+<form id="searchform" method="get" action="http://www.longolabs.com/"> <input value="Type keywords, then press enter" onfocus="if (this.value == 'Type keywords, then press enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type keywords, then press enter';}" size="30" maxlength="50" name="s" id="s" type="text"> </form> 
+<h2>Archives</h2>		<ul>
+			<li><a href="http://www.longolabs.com/2012/12/" title="December 2012">December 2012</a>&nbsp;(1)</li>
+	<li><a href="http://www.longolabs.com/2012/11/" title="November 2012">November 2012</a>&nbsp;(1)</li>
+	<li><a href="http://www.longolabs.com/2012/10/" title="October 2012">October 2012</a>&nbsp;(2)</li>
+	<li><a href="http://www.longolabs.com/2011/10/" title="October 2011">October 2011</a>&nbsp;(1)</li>
+	<li><a href="http://www.longolabs.com/2011/09/" title="September 2011">September 2011</a>&nbsp;(4)</li>
+	<li><a href="http://www.longolabs.com/2011/08/" title="August 2011">August 2011</a>&nbsp;(9)</li>
+	<li><a href="http://www.longolabs.com/2011/07/" title="July 2011">July 2011</a>&nbsp;(5)</li>
+	<li><a href="http://www.longolabs.com/2011/06/" title="June 2011">June 2011</a>&nbsp;(5)</li>
+	<li><a href="http://www.longolabs.com/2011/04/" title="April 2011">April 2011</a>&nbsp;(9)</li>
+	<li><a href="http://www.longolabs.com/2011/03/" title="March 2011">March 2011</a>&nbsp;(3)</li>
+	<li><a href="http://www.longolabs.com/2011/01/" title="January 2011">January 2011</a>&nbsp;(14)</li>
+	<li><a href="http://www.longolabs.com/2010/12/" title="December 2010">December 2010</a>&nbsp;(16)</li>
+	<li><a href="http://www.longolabs.com/2010/09/" title="September 2010">September 2010</a>&nbsp;(13)</li>
+	<li><a href="http://www.longolabs.com/2010/08/" title="August 2010">August 2010</a>&nbsp;(7)</li>
+	<li><a href="http://www.longolabs.com/2010/07/" title="July 2010">July 2010</a>&nbsp;(16)</li>
+	<li><a href="http://www.longolabs.com/2010/06/" title="June 2010">June 2010</a>&nbsp;(12)</li>
+	<li><a href="http://www.longolabs.com/2010/03/" title="March 2010">March 2010</a>&nbsp;(6)</li>
+	<li><a href="http://www.longolabs.com/2009/12/" title="December 2009">December 2009</a>&nbsp;(4)</li>
+		</ul>
+<h2>Social Links</h2>
+<br><table>
+<tbody><tr>
+<td>
+<img src="/images/twitter.jpg">
+</td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td>
+<a target="_blank" href="http://www.facebook.com/pages/Longo-Laboratory-Planning-Construction/243082170760"><img src="/images/facebook.jpg" border="0"></a>
+</td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td>
+<!--
+<A TARGET="_blank" HREF="http://www.youtube.com/user/BCILibraryFurniture"><IMG BORDER=0 SRC="/images/youtube.jpg"></A>
+-->
+<img src="/images/youtube.jpg" border="0">
+</td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td>
+<a target="_blank" href="/index.php?feed=rss2&amp;cat=-3"><img src="/images/rss.jpg" border="0"></a>
+</td>
+</tr>
+</tbody></table>
+<br><br>
+		<div style="display: none;" class="dcjq-contact" id="dc_jqslickcontact_widget-2-item">
+		
+		
+			<form class="slick-form" method="post" action="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/slick_mail.php">
+			  <fieldset>
+			    <ol>
+				  <li class="comment-row">To request additional information, please fill out and submit this form.</li>									  <li class="input-row">
+				    <label style="display: none;" for="input1">Name</label>
+					<input class="required defaultText text-input" id="input1" name="input1" value="" title="Name">
+					<input name="valid1" value="1" type="hidden">
+				  </li>
+				    									  <li class="input-row">	
+				    <label style="display: none;" for="input2">Email</label>
+					<input class="required email defaultText text-input" id="input2" name="input2" value="" title="Email">
+					<input name="valid2" value="2" type="hidden">
+				  </li>
+				  				  				  <li class="input-row">	
+				    <label style="display: none;" for="input3">Phone</label>
+					<input class="required defaultText text-input" id="input3" name="input3" value="" title="Phone">
+					<input name="valid3" value="1" type="hidden">
+				  </li>
+				  				  				  <li class="text-row">	
+				    <label style="display: none;" for="dcscf-comments">Notes</label>
+					<textarea id="dcscf-comments" name="comments" class="required defaultText text-area" rows="6" title="Notes"></textarea>
+				  </li>
+				  				  <li class="nocomment">
+					<label style="display: none;" for="nocomment">Leave This Field Empty</label>
+					<input id="nocomment" value="" name="nocomment">
+				  </li>
+				  				  <li class="button-row">
+					<input name="submit" value="Submit" class="btn-submit" type="submit">
+					<input name="key" value="af16b58258c60dc3319ac6da6d4c3342" type="hidden"><input name="label1" value="Name" type="hidden"><input name="label2" value="Email" type="hidden"><input name="label3" value="Phone" type="hidden"><input name="labelText" value="Notes" type="hidden"><input name="tabText" value="Request Information" type="hidden"><input name="emailTo" value="info@longolabs.com" type="hidden"><input name="action" value="submit" type="hidden"><input name="v_error" id="v-error" value="" type="hidden"><input name="v_email" id="v-email" value="" type="hidden">				  </li>
+				</ol>
+			  </fieldset>
+			  <div class="slick-response"></div>
+			</form>
+		<div class="dc-corner"><span></span></div>		</div>
+				</ul>
+	</div>
+
+
+</div>
+<div id="footer">
+<center>
+<table border="0" cellpadding="0" cellspacing="20" width="940">
+<tbody><tr>
+<td valign="TOP" width="200">
+<li class="pagenav"><h2>Pages</h2><ul><li class="page_item page-item-773"><a href="http://www.longolabs.com/proj/"></a></li>
+<li class="page_item page-item-6 current_page_item"><a href="http://www.longolabs.com/">Home</a></li>
+<li class="page_item page-item-2"><a href="http://www.longolabs.com/about/">Contracts</a></li>
+<li class="page_item page-item-17"><a href="http://www.longolabs.com/products/">Products</a>
+<ul class="children">
+	<li class="page_item page-item-324"><a href="http://www.longolabs.com/products/prod/"></a></li>
+	<li class="page_item page-item-316"><a href="http://www.longolabs.com/products/casework/">Casework</a>
+	<ul class="children">
+		<li class="page_item page-item-732"><a href="http://www.longolabs.com/products/casework/safety-equipment/">Safety Equipment</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-422"><a href="http://www.longolabs.com/products/countertops/">Countertops</a></li>
+	<li class="page_item page-item-742"><a href="http://www.longolabs.com/products/fume-hoods/">Fume Hoods</a></li>
+</ul>
+</li>
+<li class="page_item page-item-11"><a href="http://www.longolabs.com/news/">News</a></li>
+<li class="page_item page-item-21"><a href="http://www.longolabs.com/sheldon-difference/">K-12 Labs</a>
+<ul class="children">
+	<li class="page_item page-item-763"><a href="http://www.longolabs.com/sheldon-difference/ws/"></a></li>
+</ul>
+</li>
+<li class="page_item page-item-104"><a href="http://www.longolabs.com/private-schools/">Private Schools</a>
+<ul class="children">
+	<li class="page_item page-item-766"><a href="http://www.longolabs.com/private-schools/ps/"></a></li>
+	<li class="page_item page-item-848"><a href="http://www.longolabs.com/private-schools/private-school-list/">Private School List</a></li>
+</ul>
+</li>
+<li class="page_item page-item-98"><a href="http://www.longolabs.com/industrial-labs/">Industrial Labs</a>
+<ul class="children">
+	<li class="page_item page-item-769"><a href="http://www.longolabs.com/industrial-labs/il/"></a></li>
+</ul>
+</li>
+<li class="page_item page-item-19"><a href="http://www.longolabs.com/brochures/">Brochures</a></li>
+<li class="page_item page-item-23"><a href="http://www.longolabs.com/contact-us/">Info</a></li>
+<li class="page_item page-item-798"><a href="http://www.longolabs.com/projects/k-12-project-list/">K 12 Project List</a></li>
+<li class="page_item page-item-579"><a href="http://www.longolabs.com/projects/k-12-public-schools/">K-12 Public Schools</a></li>
+</ul></li></td>
+<td valign="TOP" width="450">
+
+<h2>Latest News</h2>
+<ul>
+	<li><a href="http://www.longolabs.com/what-mount-academy-said-about-working-with-longo/" title="What Mount Academy Said About Working With Longo">What Mount Academy Said About Working With Longo</a></li>
+	<li><a href="http://www.longolabs.com/new-science-lab-furniture-at-mount-academy/" title="New Science Lab Furniture at Mount Academy">New Science Lab Furniture at Mount Academy</a></li>
+	<li><a href="http://www.longolabs.com/new-science-lab-furniture-at-mount-academy/" title="New Science Lab Furniture at Mount Academy">New Science Lab Furniture at Mount Academy</a></li>
+	<li><a href="http://www.longolabs.com/new-modern-science-lab-tables-at-hawbridge-school/" title="New Modern Science Lab Tables at Hawbridge School">New Modern Science Lab Tables at Hawbridge School</a></li>
+	<li><a href="http://www.longolabs.com/new-modern-science-lab-tables-at-hawbridge-school/" title="New Modern Science Lab Tables at Hawbridge School">New Modern Science Lab Tables at Hawbridge School</a></li>
+	<li><a href="http://www.longolabs.com/science-lab-design-and-turnkey-construction-completed-in-poughkeepsie/" title="Science Lab Design and Turnkey Construction Completed in Poughkeepsie">Science Lab Design and Turnkey Construction Completed in Poughkeepsie</a></li>
+	<li><a href="http://www.longolabs.com/science-lab-design-and-turnkey-construction-completed-in-poughkeepsie/" title="Science Lab Design and Turnkey Construction Completed in Poughkeepsie">Science Lab Design and Turnkey Construction Completed in Poughkeepsie</a></li>
+	<li><a href="http://www.longolabs.com/new-science-lab-furniture-at-wilby-high-school/" title="New Science Lab Furniture at Wilby High School">New Science Lab Furniture at Wilby High School</a></li>
+	<li><a href="http://www.longolabs.com/new-science-lab-furniture-at-wilby-high-school/" title="New Science Lab Furniture at Wilby High School">New Science Lab Furniture at Wilby High School</a></li>
+	<li><a href="http://www.longolabs.com/middle-school-science-classroom-furniture-provided-by-longo/" title="Middle School Science Classroom Furniture Provided by Longo">Middle School Science Classroom Furniture Provided by Longo</a></li>
+
+</ul>
+</td>
+<td valign="TOP" width="250">
+
+</td>
+</tr>
+</tbody></table>
+</center>
+
+<div style="border-bottom: 1px solid #444; padding-top:15px; width:100%;">&nbsp;</div>
+<p style="padding-top:15px;">
+Longo Lab Design | 100 Hilltop Road | Ramsey, NJ | 07446 | (800) 635-6646 | <a href="mailto:info@longoinc.com">info@longoinc.com</a>
+<br><br>
+© Copyright 2014 Longo Lab Design | All Rights Reserved | Design &amp; Programming by <a target="_blank" href="http://www.lfmedia.com">Lakefront Media, Inc.</a> | <a href="http://www.longolabs.com/wp-login.php">Log in</a></p>
+
+</div>
+
+			
+			<script type="text/javascript">
+				jQuery(document).ready(function($){
+					var config = {
+						method: 'stick',
+						event: 'click',
+						classWrapper: 'dc-contact-stick',
+						classContent: 'dc-contact-content',
+						width: 260,
+						location: 'left',
+						align: 'top',
+						speedContent: 600,
+						speedFloat: 1500,
+						offsetLocation: 50,
+						offsetAlign: 50,
+						autoClose: false,
+						tabText: 'Request Information',
+						idWrapper: 'dc-contact-2',
+						animateError: true,
+						loadOpen: false,
+						ajaxSubmit: true						
+					};
+					if(!jQuery().dcSlickContact) {
+						$.getScript("http://www.longolabs.com/wp-content/plugins/slick-contact-forms/js/jquery.slick.contact.1.3.2.js", function(){
+							jQuery('#dc_jqslickcontact_widget-2-item').dcSlickContact(config);
+						}); 
+					} else {
+						jQuery('#dc_jqslickcontact_widget-2-item').dcSlickContact(config);
+					}
+				});
+				
+			</script>
+		
+			<script type="text/javascript" src="http://www.longolabs.com/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.36.0-2013.06.16"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.longolabs.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.longolabs.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.4.2"></script>
+
+
+
+<div style="width: 260px; position: fixed; z-index: 10000; margin-left: -260px; top: 50px;" id="dc-contact-2" class="dc-contact-slick left align-top"><div style="position: absolute; margin-right: -100px;" class="tab"><span>Request Information</span></div><div style="height: 386px;" class="dc-contact-content">
+		
+		
+			<form class="slick-form" method="post" action="http://www.longolabs.com/wp-content/plugins/slick-contact-forms/slick_mail.php">
+			  <fieldset>
+			    <ol>
+				  <li class="comment-row">To request additional information, please fill out and submit this form.</li>									  <li class="input-row">
+				    <label style="display: none;" for="input1">Name</label>
+					<input class="required defaultText text-input defaultTextActive" id="input1" name="input1" value="" title="Name">
+					<input name="valid1" value="1" type="hidden">
+				  </li>
+				    									  <li class="input-row">	
+				    <label style="display: none;" for="input2">Email</label>
+					<input class="required email defaultText text-input defaultTextActive" id="input2" name="input2" value="" title="Email">
+					<input name="valid2" value="2" type="hidden">
+				  </li>
+				  				  				  <li class="input-row">	
+				    <label style="display: none;" for="input3">Phone</label>
+					<input class="required defaultText text-input defaultTextActive" id="input3" name="input3" value="" title="Phone">
+					<input name="valid3" value="1" type="hidden">
+				  </li>
+				  				  				  <li class="text-row">	
+				    <label style="display: none;" for="dcscf-comments">Notes</label>
+					<textarea id="dcscf-comments" name="comments" class="required defaultText text-area defaultTextActive" rows="6" title="Notes"></textarea>
+				  </li>
+				  				  <li class="nocomment">
+					<label style="display: none;" for="nocomment">Leave This Field Empty</label>
+					<input id="nocomment" value="" name="nocomment">
+				  </li>
+				  				  <li class="button-row">
+					<input name="submit" value="Submit" class="btn-submit" type="submit">
+					<input name="key" value="af16b58258c60dc3319ac6da6d4c3342" type="hidden"><input name="label1" value="Name" type="hidden"><input name="label2" value="Email" type="hidden"><input name="label3" value="Phone" type="hidden"><input name="labelText" value="Notes" type="hidden"><input name="tabText" value="Request Information" type="hidden"><input name="emailTo" value="info@longolabs.com" type="hidden"><input name="action" value="submit" type="hidden"><input name="v_error" id="v-error" value="" type="hidden"><input name="v_email" id="v-email" value="" type="hidden">				  </li>
+				</ol>
+			  </fieldset>
+			  <div class="slick-response"></div>
+			</form>
+		<div class="dc-corner"><span></span></div>		</div></div></body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">Longo, Inc.  </wa-title></html>

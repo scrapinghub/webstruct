@@ -1,0 +1,897 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+  
+    <base href="http://www.dowagro.com/"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+    <title>Dow  AgroSciences Contact Form</title>
+	
+    <meta name="keywords" content="Contact, Dow AgroSciences">
+    <meta name="description" content="Whether you have a question, or a comment.  You can contact Dow  AgroSciences.">
+    <meta name="Language" content="ENGLISH">
+    <meta name="Region" content="GLOBAL">
+    <meta name="Country" content="WORLDWIDE">
+    <meta name="robots" content="index,follow">
+	
+   <link rel="stylesheet" href="/stylesTS/agrocorporate.css" type="text/css">
+
+<style type="text/css">
+  #main-image {
+    background-image: url(/company/images/company_main_image.jpg);
+  }
+</style>
+
+	<script src="/scripts/eloqua/elqCfg.min.js" async="" type="text/javascript"></script><script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="/scriptsTS/default.js"></script>
+<script type="text/javascript">
+function validate_form(form) {
+  var errormsg = new String ("The following field(s) must not be left blank: \n\n");
+  var blnerror = false;
+  var isspam = false;
+  if (form.sFName)  {
+  if (form.sFName.value == "" || isContainSpacesOrTab(form.sFName.value )) {errormsg = errormsg + "First Name\n"; blnerror=true;}
+ if (validate_user_text(form.sFName.value )) { isspam=true ; } 
+  }
+  if (form.sLName)  {
+  if (form.sLName.value == "" || isContainSpacesOrTab(form.sLName.value )) {errormsg = errormsg + "Last Name\n"; blnerror=true;}
+ if (validate_user_text(form.sLName.value )) { isspam=true ; } 
+  }
+  if (form.sAddress)  {
+  if (form.sAddress.value == "" || isContainSpacesOrTab(form.sAddress.value )) {errormsg = errormsg + "Street Address 1\n"; blnerror=true;}
+ if (validate_user_text(form.sAddress.value )) { isspam=true ; } 
+  }
+  if (form.sCity)  {
+  if (form.sCity.value == "" || isContainSpacesOrTab(form.sCity.value )) {errormsg = errormsg + "City\n"; blnerror=true;}
+ if (validate_user_text(form.sCity.value )) { isspam=true ; } 
+  }
+  if (form.sProvince)  {
+  if (form.sProvince.value == "" || isContainSpacesOrTab(form.sProvince.value )) {errormsg = errormsg + "State/Province\n"; blnerror=true;}
+ if (validate_user_text(form.sProvince.value )) { isspam=true ; } 
+  }
+  if (form.sPostal)  {
+  if (form.sPostal.value == "" || isContainSpacesOrTab(form.sPostal.value )) {errormsg = errormsg + "Postal Code\n"; blnerror=true;}
+ if (validate_user_text(form.sPostal.value )) { isspam=true ; } 
+  }
+  if (form.sCountry)  {
+  if (form.sCountry.value == "" || isContainSpacesOrTab(form.sCountry.value )) {errormsg = errormsg + "Country\n"; blnerror=true;}
+ if (validate_user_text(form.sCountry.value )) { isspam=true ; } 
+  }
+  if (form.sPhone)  {
+  if (form.sPhone.value == "" || isContainSpacesOrTab(form.sPhone.value )) {errormsg = errormsg + "Phone\n"; blnerror=true;}
+ if (validate_user_text(form.sPhone.value )) { isspam=true ; } 
+  }
+  if (form.sEmail)  {
+  if (form.sEmail.value == "" || isContainSpacesOrTab(form.sEmail.value )) {errormsg = errormsg + "Email Address\n"; blnerror=true;}
+ if (validate_user_text(form.sEmail.value )) { isspam=true ; } 
+  }
+  if (form.ConfirmEmail)  {
+  if (form.ConfirmEmail.value == "" || isContainSpacesOrTab(form.ConfirmEmail.value )) {errormsg = errormsg + "Confirm Email Address\n"; blnerror=true;}
+ if (validate_user_text(form.ConfirmEmail.value )) { isspam=true ; } 
+  }
+  if (form.Question_Comment)  {
+  if (form.Question_Comment.value == "" || isContainSpacesOrTab(form.Question_Comment.value )) {errormsg = errormsg + "Enter your question or comment\n"; blnerror=true;}
+ if (validate_user_text(form.Question_Comment.value )) { isspam=true ; } 
+  }
+ if((blnerror) && (isspam)) { {errormsg = errormsg + "\nInappropriate Content not allowed.\n";}
+  }
+ else if (isspam){ {errormsg = "Inappropriate Content not allowed.\n"; blnerror=true;}
+  }
+  if (form.sCountry){
+ if( form.sCountry.value == "United States" )  {
+  if (isContainSpacesOrTab(form.sProvince.value) || form.sProvince.value=="" || form.sPostal.value=="" || isContainSpacesOrTab(form.sPostal.value) ){
+   if (blnerror) {errormsg = errormsg + "\nPlease enter State and Zipcode";}
+    else {errormsg = "Please enter State and Zipcode"; blnerror=true;}
+  }
+  }
+  }
+  if (form.sPhone) {
+  if( IsNumeric(form.sPhone.value)) {
+    if (blnerror) {errormsg = errormsg + " \nInvalid phone number.\n";}
+    else {errormsg = "\nInvalid phone number.\n"; blnerror=true;}
+  }
+  }
+  if (form.sFax) {
+  if(IsNumeric(form.sFax.value)) {
+    if (blnerror) {errormsg = errormsg + "\nInvalid fax number.\n";}
+    else {errormsg = "\nInvalid fax number.\n"; blnerror=true;}
+  }
+  }
+  if (form.sEmail) {
+  if (isContainSpacesOrTab(form.sEmail.value) || form.sEmail.value=="" ){
+  }
+  else {
+    if (echeck(form.sEmail.value)) {
+    if (blnerror) {errormsg = errormsg + "\nInvalid email address.";}
+    else {errormsg = "\nInvalid email address."; blnerror=true;}
+  }
+  }
+  }
+ if (form.sEmail && form.ConfirmEmail) {
+ if ( form.sEmail.value != form.ConfirmEmail.value){errormsg = errormsg + "\nPlease confirm email address\n"; blnerror=true;}
+  }
+  if (blnerror) {alert(errormsg); return false;} else {
+ return true;}
+  return null;
+}
+
+</script>
+
+
+<!--[if IE 6]>
+<link rel="stylesheet" href="/styles/agrocorporate_6.css" />
+<![endif]-->
+<link rel="stylesheet" type="text/css" media="print" href="/stylesTS/agrocorporateprint.css">
+
+
+
+
+
+	<script>!window.jQuery && document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"><\/script>');</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script>!window.jQuery && document.write('<script src="/scriptsTS/jquery-1.8.0.min.js"><\/script>');</script>
+	<script>!window.jQuery && document.write('<script src="/scriptsTS/jquery.js"><\/script>');</script>
+
+  <script type="text/javascript">
+
+
+				 var _gaq = _gaq || [];
+				 _gaq.push(
+						['_setAccount', 'UA-7110831-1'],
+						['_trackPageview']
+				 );
+
+				 (function () {
+					 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				 })();
+	 
+				 
+
+
+			function doEventTrack(a){
+				
+				var href = $(a.currentTarget).attr('href');
+				//Let's check to see if we actually have an href tag.
+				if(href){
+					var category = '';
+					var event = 'click';
+					if ( (href.match(/^http/i)) && (! href.match(document.domain)) ) {
+					  category = 'outgoing';
+					  _gaq.push(['_trackEvent', category, event, href]);
+					} else if( href.match(/\.(doc|pdf|xls|ppt|zip|txt|vsd|vxd|js|css|rar|exe|wma|mov|avi|wmv|mp3|ics)$/i) ) {
+					  category = 'download';
+					  _gaq.push(['_trackEvent', category, event, href]);
+					} else if ( href.match(/^mailto:/i) ) {
+					  category = 'mailto';
+					  _gaq.push(['_trackEvent', category, event, href]);
+					}
+				}
+
+
+			}
+
+			 if (window.jQuery){
+			 	$(function(){
+				 	if (parseFloat(jQuery.fn.jquery) >= 1.7){
+						$('body').on('click','a',doEventTrack);
+					}
+					else{
+						$('a').click(doEventTrack);
+					}
+				});
+			}
+
+</script>
+  
+<script type="text/javascript" src="/scriptsTS/DA_oneline.js"></script>
+
+
+<style>
+body{
+background-image: url(/images/2011corporate/background_clouds-farm.jpg);
+}
+</style>
+
+	<script>!window.jQuery && document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"><\/script>');</script>
+  <script>!window.jQuery && document.write('<script src="/scriptsTS/jquery-1.8.0.min.js"><\/script>');</script>
+	<script>!window.jQuery && document.write('<script src="/scriptsTS/jquery.js"><\/script>');</script>
+	<script>
+
+$('head').append('<link rel="shortcut icon" href="/favicon_dow.ico" />');
+
+</script><link rel="shortcut icon" href="/favicon_dow.ico">
+
+
+
+<script src="//www.google.com/js/th/SUdiaCY6jH4b3dZl65iOKBdM6RP8EE5Op-iH6W7KEFM.js" charset="UTF-8" type="text/javascript"></script><style type="text/css">.recaptchatable td img{display:block}.recaptchatable .recaptcha_r1_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') 0 -63px no-repeat;width:318px;height:9px}.recaptchatable .recaptcha_r2_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -18px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r2_c2{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -27px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r3_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') 0 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r3_c2{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -18px -57px no-repeat;width:300px;height:6px}.recaptchatable .recaptcha_r3_c3{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -9px 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r4_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -43px 0 no-repeat;width:171px;height:49px}.recaptchatable .recaptcha_r4_c2{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -36px 0 no-repeat;width:7px;height:57px}.recaptchatable .recaptcha_r4_c4{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -214px 0 no-repeat;width:97px;height:57px}.recaptchatable .recaptcha_r7_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -43px -49px no-repeat;width:171px;height:8px}.recaptchatable .recaptcha_r8_c1{background:url('http://www.google.com/recaptcha/api/img/white/sprite.png') -43px -49px no-repeat;width:25px;height:8px}.recaptchatable .recaptcha_image_cell center img{height:57px}.recaptchatable .recaptcha_image_cell center{height:57px}.recaptchatable .recaptcha_image_cell{background-color:white;height:57px}#recaptcha_area,#recaptcha_table{width:318px!important}.recaptchatable,#recaptcha_area tr,#recaptcha_area td,#recaptcha_area th{margin:0!important;border:0!important;padding:0!important;border-collapse:collapse!important;vertical-align:middle!important}.recaptchatable *{margin:0;padding:0;border:0;font-family:helvetica,sans-serif;font-size:8pt;color:black;position:static;top:auto;left:auto;right:auto;bottom:auto}.recaptchatable #recaptcha_image{position:relative;margin:auto}.recaptchatable #recaptcha_image #recaptcha_challenge_image{display:block}.recaptchatable #recaptcha_image #recaptcha_ad_image{display:block;position:absolute;top:0}.recaptchatable img{border:0!important;margin:0!important;padding:0!important}.recaptchatable a,.recaptchatable a:hover{cursor:pointer;outline:none;border:0!important;padding:0!important;text-decoration:none;color:blue;background:none!important;font-weight:normal}.recaptcha_input_area{position:relative!important;width:153px!important;height:45px!important;margin-left:7px!important;margin-right:7px!important;background:none!important}.recaptchatable label.recaptcha_input_area_text{margin:0!important;padding:0!important;position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;background:none!important;height:auto!important;width:auto!important}.recaptcha_theme_red label.recaptcha_input_area_text,.recaptcha_theme_white label.recaptcha_input_area_text{color:black!important}.recaptcha_theme_blackglass label.recaptcha_input_area_text{color:white!important}.recaptchatable #recaptcha_response_field{width:153px!important;position:relative!important;bottom:7px!important;padding:0!important;margin:15px 0 0 0!important;font-size:10pt}.recaptcha_theme_blackglass #recaptcha_response_field,.recaptcha_theme_white #recaptcha_response_field{border:1px solid gray}.recaptcha_theme_red #recaptcha_response_field{border:1px solid #cca940}.recaptcha_audio_cant_hear_link{font-size:7pt;color:black}.recaptchatable{line-height:1!important}#recaptcha_instructions_error{color:red!important}.recaptcha_only_if_privacy{float:right;text-align:right}#recaptcha-ad-choices{position:absolute;height:15px;top:0;right:0}#recaptcha-ad-choices img{height:15px}.recaptcha-ad-choices-collapsed{width:30px;height:15px;display:block}.recaptcha-ad-choices-expanded{width:75px;height:15px;display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-collapsed{display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-expanded{display:block}
+
+.recaptcha_is_showing_audio .recaptcha_only_if_image,.recaptcha_isnot_showing_audio .recaptcha_only_if_audio,.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol,.recaptcha_nothad_incorrect_sol .recaptcha_only_if_incorrect_sol{display:none !important}</style><script src="http://www.google.com/recaptcha/api/reload?c=03AHJ_VuvtyWdrS8BYD-RvhzAkM930ycot20ItBoqEDy4pZq3UwM4IJIiTWXudw-FrW1l6kW7Qp9qWZh5vM780Qo1dY0BynNs4DB5MWrghxTiwkyPLS9rKn2tjm5Mk2r78rsycGDbC-8MAUDSePMq9voh3zJMhupnyG-aUVzaeEzMoSDsG6t6Ys7A76LFrKPqCTuItTW0b29fQ&amp;k=6Lf8O88SAAAAAKE4hEdybgzjAyKKSUxVYjcc7-x4&amp;reason=i&amp;type=image&amp;lang=en&amp;th=,8bB5bKYOQ82wcLZvQnMPb0VqxfAAAAAaoAAAAAXYALxHtxgrFEpiNtCFFuP-wYJUZUtFUZkrZ3f2gQdK670iVKSk7KO6aIWtXoKu7RtrWYLFFsWgnbI3SnKMXvrQ0F0PK08Zo4hr20rZ-G1f5OL3oLOFiY-z_2fr0yGZfzl0U_xxv9yqCygoKEknkrjTHqUR52yK2BcQ3-GW-2EqMj_DO4xoVuelkhJ7rZqHWH4rx15rdOBqmuTgEPENOLjWWk0d6GEKu08KAsC5YhSz7moZlFThgbb-x1C52ndN_Q" type="text/javascript"></script></head><body onbeforeunload="" class="body-singlecol">
+<div class="container container-singlecol">
+<div class="main main-singlecol">
+    <style type="text/css">
+@-moz-document url-prefix() {
+    .search-box-only {
+        height:21px;
+		padding-top:0;
+    }
+}
+</style>
+<div class="header">
+<a href="/">
+<img class="header-logo" src="/images/2011corporate/agrosciences_logo.png" alt="Dow AgroSciences" style="left:15px;">
+<img class="header-logo" id="header-logoie6" src="/images/2011corporate/agrosciences_logo.gif" style="display:none" alt="Dow AgroSciences">
+</a>
+
+<div class="header-buttons">
+
+<a id="datasheet" href="/products/label/index.htm">Labels &amp; Safety Sheets</a>
+
+<a id="contact" href="/company/contact/index.htm">Contact Us</a>
+
+<a id="locations" href="/about/operations/">Worldwide Operations</a>
+
+<script type="text/javascript">
+function validate_string(form) {
+if (form.as_q.value == "search") {
+	form.as_q.value = "*" ;
+	}
+	return;
+}
+function clearText(thefield) {
+	if (thefield.value == "search")
+		thefield.value = "";
+}
+</script>
+<div class="searchbox">	
+<form action="/search.aspx" id="cse-search-box" onsubmit="return validate_string(this);">
+	<div id="search-box-form">
+		
+		<input name="q" value="Search" onfocus="this.value==this.defaultValue?this.value='':null" size="24" id="search-box-text-standard" class="search-box-only" type="text">
+        <input src="/images/2011corporate/header_go-button.gif" class="go-button" name="sa" alt="Go" border="0" type="image"> 
+		<input name="host" id="host" value="www.dowagro.com" type="hidden">
+		<input value="company" name="site" id="site" type="hidden">
+		<input value="www.dowagro.com" name="as_sitesearch" id="as_sitesearch" type="hidden"> 
+
+	</div>
+</form>
+<script type="text/javascript" src="/scriptsTS/gsearch.js"></script>
+<script type="text/javascript">
+	setSearchHost("www.dowagro.com");
+</script>
+</div>	
+</div>
+</div>
+
+
+<div class="main-nav main-nav-singlecol">
+<ul>
+<li class="main-nav-hnav-table-unselected"><a href="/about/">ABOUT US</a></li>
+<li class="main-nav-hnav-table-unselected"><a href="/products/">PRODUCTS</a></li>
+<li class="main-nav-hnav-table-unselected"><a href="/sustainability/">SUSTAINABILITY</a></li>
+<li class="main-nav-hnav-table-unselected"><a href="/innovation/">INNOVATION</a></li>
+<li class="main-nav-hnav-table-unselected"><a href="/careers/">CAREERS</a></li>
+<li class="main-nav-hnav-table-unselected"><a href="/newsroom/">NEWSROOM</a></li>
+</ul>
+
+</div>
+<div class="main-ltrans main-ltrans-singlecol">
+<table class="main-ltrans-table">
+<tbody><tr class="main-ltrans-table-row">
+<td class="main-ltrans-table-unselected"><a href="/company/">Company</a></td>
+</tr>
+</tbody></table>
+
+</div>
+
+
+<div class="main-image main-image-singlecol">
+<a href=""> <img src="/company/images/company_main_image.jpg" alt="" border="0"></a>
+ <ul class="main-image-content main-image-content-singlecol">
+<li><br>
+<ul><li></li></ul>
+</li>
+</ul>
+</div>
+<div class="column-wrapper column-wrapper-singlecol">
+<div class="nav-area nav-area-singlecol" id="content-row-navigation">
+<div class="primary-nav primary-nav-singlecol">
+
+
+<ul class="">
+<li class="first">
+<a href="/company/termofuse/index.htm">Terms of Use</a>
+</li>
+<li>
+<a href="/company/privacy/">Privacy Statement</a>
+</li>
+<li>
+<a href="/company/help/index.htm">Help &amp; Feedback</a>
+</li>
+<li>
+<a class="current-page" href="/company/contact/"><span class="primary-nav-selected">Contact Us</span></a>
+<ul class="">
+<li class="breadcrumb-only first">
+<a href="/company/contact/thanks.htm">Thank You</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/company/flipbook/">Digital Flipbook Help</a>
+</li>
+<li>
+<a href="/search.aspx">Search</a>
+</li>
+</ul>
+
+
+
+
+<!-- reg_cnt: 0 -->
+
+
+
+<!-- <ul>
+<li>
+<ul>
+</ul>
+</li>
+</ul>
+ -->
+
+</div>
+<div class="secondary-nav secondary-nav-singlecol">
+	<script type="text/javascript" src="/scriptsTS/hnav.js"></script>
+</div>
+<div class="alternate_nav alternate_nav-singlecol" id="alternate_nav alternate_nav-singlecol"></div>
+
+
+<!---Nav Inc--->
+
+
+</div>
+<script type="text/javascript" src="/scriptsTS/chk_numeric.js"></script>
+<script type="text/javascript" src="/scriptsTS/chk_empty.js"></script>
+<script type="text/javascript" src="/scriptsTS/email_valid.js"></script>
+<script type="text/javascript" src="/scriptsTS/chk_spam.js"></script>
+<div class="content-area content-area-singlecol">
+<div class="title title-singlecol">
+<h1 class="title-color-agrocorporate title-color-agrocorporate-singlecol"><a href="/company/index.htm"> Contact Us</a></h1><br>
+</div>
+<div class="intro intro-singlecol">
+</div>
+<div class="content content-singlecol">
+<div class="content-A content-A-singlecol" id="content-A">
+
+<h3>Emergency and/or Product Information Numbers</h3>
+<p>In the event of a human or animal exposure, spill, fire, accident or other   emergency, immediately call 800-992-5994, 24 hours a   day, 365 days a year.</p>
+<p>This number can also be   used to reach our US Customer Information Group for by pressing Option #4 for   information such as label, MSDS and other product related and technical   detail.</p>
+
+<h3>Global Headquarters</h3>
+<p>Dow&nbsp;AgroSciences LLC<br>
+  9330 Zionsville Road<br>
+  Indianapolis, IN 46268</p>
+<p>Telephone: +1 317 337 3000</p>
+<h3>Around the World</h3>
+<p>To find your local contact, please select from the regions and countries   listed in <a href="/products/">Products.</a></p>
+<h3>Send An E-mail</h3>
+<p>Thank you for visiting <a href="/">dowagro.com</a>. Your comments and questions are important   to us. Let us know how we can help you learn more about our products, our   services or our web site. Please note fields with ‡ are required.</p>
+
+  <a name="top"></a>
+  
+<form method="post" name="emailform" enctype="application/x-www-form-urlencoded" onsubmit="return validate_form(this);">
+    <table id="contactform" border="0" cellpadding="0" cellspacing="0" width="90%">
+	<tbody><tr>
+	    <td>
+<input name="Redirect" value="http://www.dowagro.com/company/contact/thanks.htm" type="hidden">
+<input name="Subject" value="Dow AgroSciences Corporate Contact" type="hidden">
+		<table border="0" cellpadding="4" cellspacing="0" width="75%">
+		    <tbody><tr class="table-heading">
+<td valign="top">E-mail Form</td>
+</tr>
+<tr height="10">
+<td></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">First Name<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="sFName" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">Last Name<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><input name="sLName" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">Street Address 1<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="sAddress" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">Street Address 2</td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><input name="sAddress2" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">City<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="sCity" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">State/Province<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><input name="sProvince" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">Postal Code<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="sPostal" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">Country<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><input name="sCountry" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">Phone<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="sPhone" size="40" value="" type="text">&nbsp;(Include Country/Area Code)</td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">Email Address<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><input name="sEmail" size="40" value="" type="text"></td>
+</tr>
+<!-- field_text (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top">Confirm Email Address<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcellodd" nowrap="nowrap" valign="top" width="100%"><input name="ConfirmEmail" size="40" value="" type="text"></td>
+</tr>
+<!-- field_textarea (nowrap="nowrap") -->
+<tr class="contactrowlabel">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top">Enter your question or comment<sup>‡</sup></td>
+   </tr>
+<tr class="contactrowinput">
+   <td class="contactcell contactcelleven tablerowgray" nowrap="nowrap" valign="top" width="100%"><textarea name="Question_Comment" cols="50" rows="4"></textarea></td>
+</tr>
+<tr>
+<td class="contactcell captcha"><script type="text/javascript">var RecaptchaOptions = {   theme : 'white',   lang : 'en',   tabindex : 0};</script><script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Lf8O88SAAAAAKE4hEdybgzjAyKKSUxVYjcc7-x4"></script><script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha.js"></script><div class=" recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio" id="recaptcha_widget_div" style=""><div id="recaptcha_area"><table id="recaptcha_table" class="recaptchatable recaptcha_theme_white"> <tbody><tr> <td colspan="6" class="recaptcha_r1_c1"></td> </tr> <tr> <td class="recaptcha_r2_c1"></td> <td colspan="4" class="recaptcha_image_cell"><center><div style="width: 300px; height: 57px;" id="recaptcha_image"><img id="recaptcha_challenge_image" alt="reCAPTCHA challenge image" src="http://www.google.com/recaptcha/api/image?c=03AHJ_VutGTCM1FTg91Z-YZrMw2mlYWSmbnVVpRlBcdivBoGW9d1sKa1vnTjw2hIElMFfOwvlRH2Be9YMRXNxMOB4LS04kVw2BWlrPiTH4oASI9jDVCv9NvBa3PFyxew2R8p8xmRhCJ73uM-SOJGBJEfjpn1_1SavcfozSCgFLaPUYMofiaXwLIVHUuFPgOCafj6c_HQV9tC8Zv0I0y1x6by_59zCQue211A&amp;th=,8bB5bKYOQ82wcLZvQnMPb0VqxfAAAAAaoAAAAAbYALxHtxgrFEpiNtCFFuP-wYJUZUtFUZkrZ3f2gQdK670iVKSk7KO6aIWtXoKu7RtrWYLFFsWgnbI3SnKMXvrQ0F0PK08Zo4hr20rZ-G1f5OL3oLOFiY-z_2fr0yGZfzl0U_xxv9yqCygoKEknkrjTHqUR52yK2BcQ3-GW-2EqMj_DO4xoVuelkhJ7rZqHWH4rx15rdOBqmuTgEPENOLjWWk0d6GEKu08KAsC5YhSz7moZlF6MgbZRR7tErDdyCg" height="57" width="300"></div></center></td> <td class="recaptcha_r2_c2"></td> </tr> <tr> <td rowspan="6" class="recaptcha_r3_c1"></td> <td colspan="4" class="recaptcha_r3_c2"></td> <td rowspan="6" class="recaptcha_r3_c3"></td> </tr> <tr> <td rowspan="3" class="recaptcha_r4_c1" height="49"> <div class="recaptcha_input_area"> <span style="display: none;" id="recaptcha_challenge_field_holder"><input name="recaptcha_challenge_field" id="recaptcha_challenge_field" value="03AHJ_VutGTCM1FTg91Z-YZrMw2mlYWSmbnVVpRlBcdivBoGW9d1sKa1vnTjw2hIElMFfOwvlRH2Be9YMRXNxMOB4LS04kVw2BWlrPiTH4oASI9jDVCv9NvBa3PFyxew2R8p8xmRhCJ73uM-SOJGBJEfjpn1_1SavcfozSCgFLaPUYMofiaXwLIVHUuFPgOCafj6c_HQV9tC8Zv0I0y1x6by_59zCQue211A" type="hidden"></span><input autocomplete="off" name="recaptcha_response_field" id="recaptcha_response_field" autocorrect="off" autocapitalize="off" placeholder="Type the text" type="text"> <span id="recaptcha_privacy" class="recaptcha_only_if_privacy"><a target="_blank" href="http://www.google.com/intl/en/policies/">Privacy &amp; Terms</a></span> </div> </td> <td rowspan="4" class="recaptcha_r4_c2"></td> <td><a title="Get a new challenge" id="recaptcha_reload_btn"><img alt="Get a new challenge" src="http://www.google.com/recaptcha/api/img/white/refresh.gif" id="recaptcha_reload" height="17" width="25"></a></td> <td rowspan="4" class="recaptcha_r4_c4"></td> </tr> <tr> <td><a title="Get an audio challenge" id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image"><img src="http://www.google.com/recaptcha/api/img/white/audio.gif" id="recaptcha_switch_audio" alt="Get an audio challenge" height="16" width="25"></a><a title="Get a visual challenge" id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio"><img src="http://www.google.com/recaptcha/api/img/white/text.gif" id="recaptcha_switch_img" alt="Get a visual challenge" height="16" width="25"></a></td> </tr> <tr> <td><a title="Help" id="recaptcha_whatsthis_btn"><img alt="Help" src="http://www.google.com/recaptcha/api/img/white/help.gif" id="recaptcha_whatsthis" height="16" width="25"></a></td> </tr> <tr> <td class="recaptcha_r7_c1"></td> <td class="recaptcha_r8_c1"></td> </tr> </tbody></table> </div></div><noscript><iframe src="http://www.google.com/recaptcha/api/challenge?k=6Lf8O88SAAAAAKE4hEdybgzjAyKKSUxVYjcc7-x4" frameborder="1"></iframe><><textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea><input type="hidden" name="recaptcha_response_field"value="manual_challenge"></noscript></td>
+ </tr><tr>
+<td class="tablesubhead" id="aligncenter" align="left" valign="top"><input name="submitButtonName" value="Send" type="submit"></td>
+		     </tr>
+		  </tbody></table>
+	       </td>
+	    </tr>
+	</tbody></table>
+<span class="trademark"><sup>‡</sup>&nbsp;Required Field</span>
+    </form>
+
+  
+ 
+<div id="privacy">
+<p><b>Data Privacy and Protection</b></p>
+
+<p>The information collected in this form will only be used to ensure that we provide you with an appropriate response based upon the  information you provide in the form above. We will contact you only if we need additional information to appropriately answer your question or in order to address your need. The contact information you provide, including e-mail address, may be used to respond to your request. We will not use the contact information you provide in this form for product or promotional advertising unless you specifically request to receive product news or information. </p>
+
+<p>For more information, please review our <a href="http://www.dowagro.com/company/privacy/">Privacy Policy</a>.</p> 
+</div>
+
+</div>
+<div class="content-B content-B-singlecol" id="content-B content-B-singlecol">
+</div>
+</div>
+</div>
+<div class="clearfloats"></div>
+<div class="breadcrumb breadcrumb-singlecol">
+<div class="breadcrumb-data breadcrumb-data-singlecol">
+<div class="breadcrumb-data-here breadcrumb-data-here-singlecol"></div>
+<div class="breadcrumb-data-text breadcrumb-data-text-singlecol" id="breadcrumb">
+<a href="/">Home</a>&nbsp;/&nbsp;<a href="/company/">Company</a> / <span class="breadcrumb-data-text-current-page">Contact Us</span></div>
+</div>
+	<script type="text/javascript" src="/scriptsTS/nav.js"></script><form name="mailRecipientForm" action="http://www.dow.com/" method="POST"><input name="recipient" value="" type="hidden"></form>
+</div>
+</div>
+<!--Get the footer outside column wrapper -->
+<div class="footer">
+<hr>  
+<div class="footer-socialmedia">
+    
+
+
+<a href="http://www.facebook.com/DowAgroSciences" target="_blank" style="margin-right:15px;"><img alt="Visit Facebook" src="/images/2011corporate/footer_fb.jpg" border="0"></a>
+<a href="http://twitter.com/dowagro" target="_blank" style="margin-right:15px;"><img alt="Visit Twitter" src="/images/2011corporate/footer_tw.png" border="0"></a>
+<a href="http://www.youtube.com/user/DowAgroSciences/" target="_blank"><img alt="Visit YouTube" src="/images/2011corporate/footer_yt.jpg" border="0"></a>
+
+
+</div>
+
+<!--
+'   See Brice before editing this file.
+'   Was created by Nick Faust-Doty in 2012
+'
+'   Last Edit: Bob Weld
+'
+-->
+
+<div class="footer-nav">
+
+	<table>
+		<tbody><tr>
+			<td valign="top">
+				<h3><a href="/about/">About Us</a></h3>
+					
+				<ul>
+<li class="first">
+<a href="/about/values">Corporate Values</a>
+</li>
+<li>
+<a href="/about/operations/">Worldwide Operations</a>
+</li>
+<li>
+<a href="/about/service/">Service to Our Customers</a>
+</li>
+</ul>
+		
+			
+				<h3><a href="/products/">Products</a></h3>
+				
+				<ul>
+<li class="first">
+<a href="/products/northamerica/index.htm">North America</a>
+</li>
+<li>
+<a href="/products/emea/index.htm">Europe, Middle East &amp; Africa</a>
+</li>
+<li>
+<a href="/products/latinamerica/index.htm">Latin America</a>
+</li>
+<li>
+<a href="/products/asiapacific/index.htm">Asia-Pacific</a>
+</li>
+<li>
+<a href="/products/label/index.htm">Labels and Safety Data Sheets</a>
+</li>
+<li>
+<a href="/products/finder/index.htm">Product Finder</a>
+</li>
+</ul>
+
+			</td>
+			
+			<td valign="top">
+				<h3><a href="/sustainability/">Sustainability</a></h3>
+				
+				<ul>
+<li class="first">
+<a href="/sustainability/focus/">Focus</a>
+</li>
+<li>
+<a href="/sustainability/commitments/">Commitment</a>
+</li>
+<li>
+<a href="/sustainability/efforts/">Efforts</a>
+</li>
+<li class="has-submenu">
+<a href="/sustainability/results/">Results</a>
+<ul>
+<li class="first">
+<a href="/sustainability/results/industry_recognition.htm">Industry Recognition</a>
+</li>
+<li>
+<a href="/sustainability/results/environmental_responsibility.htm">Environmental Responsibility</a>
+</li>
+<li>
+<a href="/sustainability/results/economic_responsibility.htm">Economic Responsibility</a>
+</li>
+<li>
+<a href="/sustainability/results/social_responsibility.htm">Social Responsibility</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/sustainability/foodchain/">Food Chain</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/">Product Stewardship</a>
+</li>
+</ul>
+
+<!--<ul>
+					<li><a href="/stewardship/">Product Stewardship</a></li>
+				</ul>-->
+					<ul>
+<li class="has-submenu first">
+<a href="/stewardship/agchemicals/">Crop Protection</a>
+<ul>
+<li class="first">
+<a href="/stewardship/agchemicals/what.htm">What is Crop Protection Stewardship?</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/integrity.htm">Product Integrity</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/handling_guides.htm">Product Handling Guides</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/container_mgmt.htm">Container Management Strategy</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/adverseeffects/index.htm">Adverse Effects Reporting</a>
+</li>
+<li>
+<a href="/stewardship/agchemicals/emergency.htm">Emergency Response</a>
+</li>
+</ul>
+</li>
+<li class="has-submenu">
+<a href="/stewardship/biotechnology/">Biotechnology Stewardship</a>
+<ul>
+<li class="first">
+<a href="/stewardship/biotechnology/principles.htm">Biotechnology Guiding Principles</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/what.htm">What is Biotechnology Stewardship?</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/excellence.htm">Excellence Through Stewardship</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/research.htm">Field Research Trial Compliance</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/productlaunch.htm">Product Launch Stewardship Policy</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/resistance.htm">Insect Resistance Management</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/marketing.htm">Grain Marketing</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/productprofiles.htm">Product Information</a>
+</li>
+<li>
+<a href="/stewardship/biotechnology/adverseeffects/index.htm">Adverse Effects Reporting</a>
+</li>
+</ul>
+</li>
+<li class="has-submenu">
+<a href="/stewardship/policystatements/">Policy Statements</a>
+<ul>
+<li class="first">
+<a href="/stewardship/policystatements/counterfeiting/index.htm">Policy on Product Counterfeiting</a>
+</li>
+</ul>
+</li>
+</ul>
+ 
+				<!--<ul>
+					<li><a href="/stewardship/agchemicals/adverseeffects/">Adverse Effects Reporting</a></li>
+				</ul>-->
+				
+				<h3><a href="/innovation/">Innovation</a></h3>
+
+				<ul>
+<li class="first">
+<a href="/innovation/market/index.htm">Bringing Products to Market</a>
+</li>
+<li>
+<a href="/innovation/collaboration/index.htm">Innovation &amp; Collaboration</a>
+</li>
+<li>
+<a href="/innovation/recent/index.htm">Recent Innovations</a>
+</li>
+<li>
+<a href="/innovation/pipeline/index.htm">Innovation Pipeline</a>
+</li>
+<li>
+<a href="/innovation/publications/index.htm">Scientific Publications</a>
+</li>
+</ul>
+
+				
+				
+			</td>
+			
+			<td valign="top">
+				<h3><a href="">Careers</a></h3>
+				
+				<ul>
+<li class="first">
+<a href="/careers/where/index.htm">Global Headquarters</a>
+<ul>
+<li class="first">
+<a href="/careers/where/culture.htm">Culture &amp; Leisure</a>
+</li>
+<li>
+<a href="/careers/where/education.htm">Educational Resources</a>
+</li>
+<li>
+<a href="/careers/where/sports.htm">Sports</a>
+</li>
+<li>
+<a href="/careers/where/dining.htm">Dining</a>
+</li>
+<li>
+<a href="/careers/where/links.htm">Useful Links</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/careers/culture/index.htm">Our Culture</a>
+<ul>
+<li class="first">
+<a href="/careers/culture/values.htm">Our Core Values</a>
+</li>
+<li>
+<a href="/careers/culture/diversity.htm">Valuing Diversity</a>
+</li>
+<li>
+<a href="/careers/culture/work.htm">Work/Life Balance</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/careers/why/index.htm">Why Work Here</a>
+<ul>
+<li class="first">
+<a href="/careers/why/career.htm">Career Development</a>
+</li>
+<li>
+<a href="/careers/why/comp.htm">Compensation &amp; Recognition</a>
+</li>
+<li>
+<a href="/careers/why/manage.htm">Managing Your Health</a>
+</li>
+<li>
+<a href="/careers/why/future.htm">Future Financial Security</a>
+</li>
+<li>
+<a href="/careers/why/family.htm">Family Benefits</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/careers/career/index.htm">Career Paths</a>
+<ul>
+<li class="first">
+<a href="/careers/career/who.htm">Who Are We<br>Looking For?</a>
+</li>
+<li>
+<a href="/careers/career/research.htm">Research and Development</a>
+</li>
+<li>
+<a href="/careers/career/sales.htm">Sales and Marketing</a>
+</li>
+<li>
+<a href="/careers/career/function.htm">Functional Support</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/careers/internships/index.htm">Student Internships</a>
+<ul>
+<li class="first">
+<a href="/careers/internships/crop.htm">Sales Intern, Crop Protection and Seeds</a>
+</li>
+<li>
+<a href="/careers/internships/turf.htm">Sales Intern, Urban Pest Management, Turf &amp; Ornamental, and Prof</a>
+</li>
+<li>
+<a href="/careers/internships/lab.htm">Science Intern, Laboratory Based Research</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="/careers/campus/index.htm">Campus Recruiting Events</a>
+</li>
+<li>
+<a href="http://survey.confirmit.com/wix5/p329270278.aspx" target="_blank">Search Firms<span class="externalLink">&nbsp;</span></a>
+</li>
+<li>
+<a href="/careers/contact/index.htm">Contact Dow AgroSciences</a>
+</li>
+</ul>
+
+				
+				<h3>Policies</h3>
+				
+				<ul>
+					<li><a href="/company/privacy.asp">Privacy Statement</a></li>
+					<li><a href="/company/termofuse/index.htm">Terms Of Use</a></li>
+					<li><a href="/company/transparency.htm">California Transparency Act Disclosure</a></li>
+				</ul>
+			</td>
+			
+			<td valign="top">
+				<h3><a href="/company/">Resources</a></h3>
+				
+				<ul>
+					<li><a href="/company/contact/">Contact Us</a></li>
+					<li><a href="/company/help/">Help</a></li>
+					<li><a href="/search.aspx">Search</a></li>
+				</ul>
+				
+				<h3><a href="/newsroom/">Newsroom</a></h3>
+				
+				<ul>
+<li class="first">
+<a href="%20http://newsroom.dowagro.com/">Newsroom Home</a>
+</li>
+<li>
+<a href="%20http://newsroom.dowagro.com/news_releases/">News Releases Archive</a>
+</li>
+<li>
+<a href="http://www.dowagro.com/newsroom/fast_facts/index.htm">Fast Facts</a>
+</li>
+<li>
+<a href="http://www.dowagro.com/newsroom/media_kit/index.htm">Media Kit</a>
+</li>
+<li>
+<a href="http://www.dow.com/financial/" target="_blank">Investor Relations</a>
+</li>
+</ul>
+
+				
+			</td>
+		</tr>
+	</tbody></table>
+
+</div>
+<!--<div class="footer-trademark">
+        (1998-< % Response.Write Year(now) %>) &copy; Dow AgroSciences LLC<br />
+        *<sup>&copy;&trade;</sup>Trademark of Dow AgroSciences LLC
+    </div>
+</div>-->
+
+<div class="footer-trademark">
+        Copyright © The Dow Chemical Company (1995-2014). All Rights Reserved.<br>
+	®™<sup>*</sup> Trademark of The Dow Chemical Company ("Dow") or an affiliated company of Dow
+    </div>
+</div>
+<!--Vanity domain Files-->
+<script type="text/javascript" src="/webapps/common/scripts/vanityDomain.js"></script>
+<script type="text/javascript" src="/scriptsTS/externalIcon.js"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbb3cdee99e4b6857f12586d94e7107b4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="%20http://hm.baidu.com/h.js?bb3cdee99e4b6857f12586d94e7107b4" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var _elqQ = _elqQ || [];
+    _elqQ.push(['elqSetSiteId', '279295639']);
+    _elqQ.push(['elqTrackPageView']);
+    (function () {
+        function async_load() {
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+            s.src = '/scripts/eloqua/elqCfg.min.js';
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        }
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load); 
+   })();
+</script>
+
+
+
+
+</div></div></body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">Dow  AgroSciences Contact Form</wa-title></html>

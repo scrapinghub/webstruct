@@ -25,9 +25,7 @@ to define named entities and annotate some web pages
 After that you can load annotated webpages as lxml trees::
 
     import webstruct
-    trees = webstruct.load_trees([
-        ("train/*.html", webstruct.WebAnnotatorLoader())
-    ])
+    trees = webstruct.load_trees("train/*.html", webstruct.WebAnnotatorLoader())
 
 See :ref:`html-loaders` for more info.
 GATE_ annotation format is also supported.

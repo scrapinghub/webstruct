@@ -4,14 +4,14 @@ import re
 
 
 class WordTokenizer(object):
-    """This tokenizer is copy-pasted version of TreebankWordTokenizer
+    r"""This tokenizer is copy-pasted version of TreebankWordTokenizer
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
     TODO: move test to separate module
 
 
     >>> from nltk.tokenize.treebank import TreebankWordTokenizer  # doctest: +SKIP
-    >>> s = u'''Good muffins cost $3.88\\nin New York. Email: muffins@gmail.com'''
+    >>> s = u'''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
     >>> TreebankWordTokenizer().tokenize(s)  # doctest: +SKIP
     [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email', u':', u'muffins', u'@', u'gmail.com']
     >>> WordTokenizer().tokenize(s)
@@ -37,17 +37,45 @@ class WordTokenizer(object):
     >>> WordTokenizer().span_tokenize(s)
     [(0, 5), (5, 6), (6, 11)]
 
-    >>> s = u'"We beat some pretty good teams to get here," Slocum said.'
-    >>> WordTokenizer().tokenize(s)
-    [u'``', u'We', u'beat', u'some', u'pretty', u'good', u'teams', u'to', u'get', u'here', u',', u"''", u'Slocum', u'said', u'.']
+    >>> s2 = u'"We beat some pretty good teams to get here," Slocum said.'
+    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
+    [u'``', u'We', u'beat', u'some', u'pretty', u'good',
+    u'teams', u'to', u'get', u'here', u',', u"''", u'Slocum', u'said', u'.']
     >>> WordTokenizer().span_tokenize(s)
-    [(0, 1), (1, 3), (4, 8), (9, 13), (14, 20), (21, 25), (26, 31), (32, 34), (35, 38), (39, 43), (43, 44), (44, 45), (46, 52), (53, 57), (57, 58)]
+    [(0, 1), (1, 3), (4, 8), (9, 13), (14, 20), (21, 25), (26, 31), (32, 34),
+     (35, 38), (39, 43), (43, 44), (44, 45), (46, 52), (53, 57), (57, 58)]
+    >>> s3 = u'''Well, we couldn't have this predictable,
+    ... cliche-ridden, \"Touched by an
+    ... Angel\" (a show creator John Masius
+    ... worked on) wanna-be if she didn't.'''
+    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
+    [u'Well', u',', u'we', u"couldn't", u'have', u'this', u'predictable',
+     u',', u'cliche-ridden', u',', u'``', u'Touched', u'by', u'an',
+     u'Angel', u"''", u'(', u'a', u'show', u'creator', u'John', u'Masius',
+     u'worked', u'on', u')', u'wanna-be', u'if', u'she', u"didn't", u'.']
+    >>> WordTokenizer().span_tokenize(s)
+    [(0, 4), (4, 5), (6, 8), (9, 17), (18, 22), (23, 27), (28, 39), (39, 40),
+     (41, 54), (54, 55), (56, 57), (57, 64), (65, 67), (68, 70), (71, 76),
+     (76, 77), (78, 79), (79, 80), (81, 85), (86, 93), (94, 98), (99, 105),
+     (106, 112), (113, 115), (115, 116), (117, 125), (126, 128), (129, 132),
+     (133, 139), (139, 140)]
 
-    >>> s = u"Well, we couldn't have this predictable, cliche-ridden, \\"Touched by an Angel\\" (a show creator John Masius worked on) wanna-be if she didn't."
-    >>> WordTokenizer().tokenize(s)
-    [u'Well', u',', u'we', u"couldn't", u'have', u'this', u'predictable', u',', u'cliche-ridden', u',', u'``', u'Touched', u'by', u'an', u'Angel', u"''", u'(', u'a', u'show', u'creator', u'John', u'Masius', u'worked', u'on', u')', u'wanna-be', u'if', u'she', u"didn't", u'.']
-    >>> WordTokenizer().span_tokenize(s)
-    [(0, 4), (4, 5), (6, 8), (9, 17), (18, 22), (23, 27), (28, 39), (39, 40), (41, 54), (54, 55), (56, 57), (57, 64), (65, 67), (68, 70), (71, 76), (76, 77), (78, 79), (79, 80), (81, 85), (86, 93), (94, 98), (99, 105), (106, 112), (113, 115), (115, 116), (117, 125), (126, 128), (129, 132), (133, 139), (139, 140)]
+    Some issues:
+
+    >>> WordTokenizer().tokenize("Phone:855-349-1914")  # doctest: +SKIP
+    [u'Phone', u':', u'855-349-1914']
+
+    >>> WordTokenizer().tokenize(u"Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")  # doctest: +SKIP
+    [u'Copyright', u'\xc2\xa9', u'2014', u'Wall', u'Decor', u'and', u'Home', u'Accents', u'.', u'All', u'Rights', u'Reserved', u'.']
+
+    >>> WordTokenizer().tokenize(u"Powai Campus, Mumbai-400077")  # doctest: +SKIP
+    [u'Powai', u'Campus', u',', u'Mumbai", "-", "400077']
+
+    >>> WordTokenizer().tokenize(u"1 5858/ 1800")  # doctest: +SKIP
+    [u'1', u'5858', u'/', u'1800']
+
+    >>> WordTokenizer().tokenize(u"Saudi Arabia-")  # doctest: +SKIP
+    [u'Saudi', u'Arabia', u'-']
 
     """
 

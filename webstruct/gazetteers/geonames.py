@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import os
 import csv
 import zipfile
 import numpy as np
@@ -42,13 +43,23 @@ def to_marisa(df, columns=GAZETTEER_COLUMNS, format=GAZETTEER_FORMAT):
     to a ``marisa.RecordTrie``.
     """
     import marisa_trie
+    return marisa_trie.RecordTrie(format, _iter_geonames_items(df, columns))
 
-    def data_iter(df):
+
+def to_dawg(df, columns=None, format=None):
+    """
+    Encode ``pandas.DataFrame`` with GeoNames data
+    (loaded using :func:`read_geonames` and maybe filtered in some way)
+    to ``dawg.DAWG`` or ``dawg.RecordDAWG``. ``dawg.DAWG`` is created
+    if ``columns`` and ``format`` are both None.
+    """
+    import dawg
+    if columns is None:
+        assert format is None
         df = _split_names_into_rows(df)
-        for idx, row in df.iterrows():
-            yield row['name'], _ensure_utf8([row[c] for c in columns])
+        return dawg.CompletionDAWG(iter(df.name))
 
-    return marisa_trie.RecordTrie(format, data_iter(df))
+    return dawg.RecordDAWG(format, _iter_geonames_items(df, columns))
 
 
 def read_geonames(filename):
@@ -61,11 +72,22 @@ def read_geonames(filename):
     return pd.read_csv(filename, **_GEONAMES_PANDAS_PARAMS)
 
 
-def read_geonames_zipped(zip_filename, geonames_filename):
+def read_geonames_zipped(zip_filename, geonames_filename=None):
     """ Parse zipped geonames file. """
+    if geonames_filename is None:
+        root, filename = os.path.split(zip_filename)
+        geonames_filename = filename.replace('.zip', '.txt')
+
     with zipfile.ZipFile(zip_filename, 'r') as zf:
         fp = zf.open(geonames_filename)
         return read_geonames(fp)
+
+
+def _iter_geonames_items(df, columns):
+    """ Iterate over (name, [column_values_as_utf8]) tuples """
+    df = _split_names_into_rows(df)
+    for idx, row in df.iterrows():
+        yield row['name'], _ensure_utf8([row[c] for c in columns])
 
 
 def _joined_names_column(df):

@@ -91,8 +91,8 @@ class WebAnnotatorLoader(HtmlLoader):
     def _process_entities(self, entities):
         for _id, elems in entities.items():
             tp = elems[0].attrib['wa-type']
-            elems[0].text = ' __START_%s__ %s' % (tp, elems[0].text)
-            elems[-1].text = '%s __END_%s__ ' % (elems[-1].text, tp)
+            elems[0].text = ' __START_%s__ %s' % (tp, elems[0].text or '')
+            elems[-1].text = '%s __END_%s__ ' % (elems[-1].text or '', tp)
             for el in elems:
                 el.drop_tag()
 
@@ -144,29 +144,15 @@ class GateLoader(HtmlLoader):
         return open_re, close_re
 
 
-def load_trees(patterns, verbose=False):
-    """
-    Load HTML data from several paths/glob patterns,
-    maybe using different loaders. Return a list of lxml trees.
-
-    ``patterns`` should be a list of tuples ``(glob_pattern, loader)``.
-
-    Example::
-
-        >>> loader = HtmlLoader()
-        >>> patterns = [('path1/*.html', loader), ('path2/*.html', loader)]
-        >>> trees = load_trees(patterns)  # doctest: +SKIP
-
-    """
-    return chain.from_iterable(
-        load_trees_from_files(pat, loader, verbose) for pat, loader in patterns
-    )
-
-
-def load_trees_from_files(pattern, loader, verbose=False):
+def load_trees(pattern, loader, verbose=False):
     """
     Load HTML data using loader ``loader`` from all files matched by
     ``pattern`` glob pattern.
+
+    Example:
+
+    >>> trees = load_trees('path/*.html', HtmlLoader())  # doctest: +SKIP
+
     """
     for path in human_sorted(glob.glob(pattern)):
         if verbose:

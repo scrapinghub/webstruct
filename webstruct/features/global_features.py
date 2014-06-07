@@ -39,6 +39,25 @@ class LongestMatchGlobalFeature(object):
             doc[idx][1][self.featname] = True
 
 
+class DAWGGlobalFeature(LongestMatchGlobalFeature):
+    """
+    Global feature that matches longest entities from a lexicon
+    stored either in a ``dawg.CompletionDAWG`` (if ``format`` is None)
+    or in a ``dawg.RecordDAWG`` (if ``format`` is not None).
+    """
+    def __init__(self, filename, featname, format=None):
+        import dawg
+
+        if format is None:
+            self.data = dawg.CompletionDAWG()
+        else:
+            self.data = dawg.RecordDAWG(format)
+        self.data.load(filename)
+
+        self.filename = filename
+        super(DAWGGlobalFeature, self).__init__(self.data, featname)
+
+
 class Pattern(object):
     """
     Global feature that combines local features.

@@ -4,13 +4,18 @@ from __future__ import absolute_import
 from .block_features import *
 from .token_features import *
 from .data_features import *
-from .global_features import Pattern
+from .global_features import (
+    Pattern,
+    LongestMatchGlobalFeature,
+    DAWGGlobalFeature,
+)
 
 
 EXAMPLE_TAGSET = {'ORG', 'PER', 'SUBJ', 'STREET', 'CITY', 'STATE', 'COUNTRY',
                   'ZIPCODE', 'EMAIL', 'TEL', 'FAX', 'SUBJ', 'FUNC', 'HOURS'}
 
 EXAMPLE_TOKEN_FEATURES = [
+    bias,
     parent_tag,
     borders,
     block_length,

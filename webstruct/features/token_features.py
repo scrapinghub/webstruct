@@ -3,6 +3,7 @@ from __future__ import absolute_import, division
 import re
 
 __all__ = [
+    'bias',
     'token_identity',
     'token_lower',
     'token_shape',
@@ -14,6 +15,11 @@ __all__ = [
     'PrefixFeatures',
     'SuffixFeatures',
 ]
+
+
+def bias(html_token):
+    return {'bias': 1}
+
 
 def token_identity(html_token):
     return {'token': html_token.token}

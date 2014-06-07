@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import os
 import string
 from lxml.html import tostring
 from webstruct import webannotator
@@ -135,17 +136,31 @@ class WaConvertTest(HtmlTest):
         self.assertHtmlEqual(wa_tree_str, html)
 
 
-def test_entity_colors():
-    color_dict = webannotator.EntityColors()
-    colors = {}
-    entities = reversed(string.ascii_letters)
-    for entity in entities:
-        colors[entity] = color_dict[entity]
+class EntityColorsTest(HtmlTest):
+    def test_entity_colors(self):
+        color_dict = webannotator.EntityColors()
+        colors = {}
+        entities = reversed(string.ascii_letters)
+        for entity in entities:
+            colors[entity] = color_dict[entity]
 
-    for entity in string.ascii_letters:
-        fg, bg, index = color_dict[entity]
-        assert (fg, bg, index) == colors[entity]
-        assert fg[0] == '#'
-        assert bg[0] == '#'
-        assert len(fg) == 7
-        assert len(bg) == 7
+        for entity in string.ascii_letters:
+            fg, bg, index = color_dict[entity]
+            assert (fg, bg, index) == colors[entity]
+            assert fg[0] == '#'
+            assert bg[0] == '#'
+            assert len(fg) == 7
+            assert len(bg) == 7
+
+        color_dict2 = webannotator.EntityColors(**dict(color_dict))
+        assert color_dict.next_index == color_dict2.next_index
+
+        for entity in string.ascii_letters:
+            assert color_dict[entity] == color_dict2[entity]
+
+
+    def test_html_loading(self):
+        color_dict = webannotator.EntityColors.from_htmlfile(
+            os.path.join(os.path.dirname(__file__), 'data', 'wa1.html')
+        )
+        self.assertEqual(color_dict['COUNTRY'], ("#FFFFFF", "#993311", 12))

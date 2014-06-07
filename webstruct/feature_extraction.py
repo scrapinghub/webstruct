@@ -304,6 +304,17 @@ class HtmlTokenizer(object):
             if not (typ in {'start', 'end'} and value not in self.tagset)
         ]
 
+    def __getstate__(self):
+        dct = self.__dict__.copy()
+        if self.text_tokenize_func is tokenize:
+            dct['text_tokenize_func'] = 'DEFAULT'
+        return dct
+
+    def __setstate__(self, state):
+        if state['text_tokenize_func'] == 'DEFAULT':
+            state['text_tokenize_func'] = tokenize
+        self.__dict__.update(state)
+
 
 class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
     """
@@ -404,8 +415,7 @@ class HtmlFeatureExtractor(BaseEstimator, TransformerMixin):
         for feat in self.global_features:
             feat(token_data)
 
-        return [{k: fd[k] for k in fd if not k.startswith('_')}
-                for tok, fd in token_data]
+        return [featdict for tok, featdict in token_data]
 
     def _pruned(self, X, low=None):
         if low is None or low <= 1:

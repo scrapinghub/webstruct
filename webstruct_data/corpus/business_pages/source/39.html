@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <base href="http://www.perk.com/"><meta charset="UTF-8">
+    <title>Perk | The #1 mobile rewards program.</title>
+	
+	<meta name="keywords" content="jutera Labs, perk, mobile, browser, rewards">
+	<meta name="description" content="The #1 mobile rewards program. Download the fastest Perk Browser today.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+	
+	<link rel="stylesheet" href="https://cdn2.perk.com/htmlperk/perk2k14/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdn2.perk.com/htmlperk/perk2k14/css/jquery.bxslider.css">
+	<link rel="stylesheet" media="all" href="https://cdn2.perk.com/assets/css/signup_overlay.css" type="text/css">
+    <link rel="stylesheet" media="all" href="https://cdn2.perk.com/assets/css/lightbox.css" type="text/css">
+	
+	<script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script src="//connect.facebook.net/en_US/all.js" async="" id="facebook-jssdk"></script><script type="text/javascript" src="https://cdn2.perk.com/htmlperk/lander/desktop/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="https://cdn2.perk.com/assets/js/mobile_redirect.js"></script>
+    <script type="text/javascript" src="https://cdn2.perk.com/assets/js/lightbox.js"></script>
+    <script type="text/javascript" src="https://cdn2.perk.com/assets/js/invitations.js"></script>
+	<script type="text/javascript" src="https://cdn2.perk.com/assets/js/validations.js"></script>
+	<script type="text/javascript" src="https://cdn2.perk.com/htmlperk/perk2k14/js/jquery.simplyscroll.min.js"></script>
+	<script type="text/javascript" src="https://cdn2.perk.com/htmlperk/perk2k14/js/jquery.scrollUp.min.js"></script>
+	<script type="text/javascript" src="https://cdn2.perk.com/htmlperk/perk2k14/js/jquery.easing.min.js"></script>
+	<script src="https://cdn2.perk.com/htmlperk/perk2k14/js/jquery.bxslider.min.js"></script>
+    <script src="https://cdn2.perk.com/htmlperk/perk2k14/js/jquery.raccordion.js"></script>
+    
+
+	<script type="text/javascript">
+    (function($) {
+        $(function() {
+                $("#scroller").simplyScroll({
+                    pauseOnHover: false,
+                    direction: 'backwards',
+                    speed: 1,
+                    frameRate: 24
+                });
+        });
+     })(jQuery);
+     
+     /* scrollUp setup */
+    $(function () {
+        $.scrollUp({
+            animation: 'fade',
+            scrollImg: { active: true, type: 'background', src: 'images/top.png' }
+        });
+    });
+     
+     $(document).ready(function(){
+        $('.ticker-slide').bxSlider({
+          mode: 'vertical',
+          slideMargin: 5
+        });
+        
+        
+        function goToByScroll(id){
+            // Reove "link" from the ID
+            id = id.replace("link", "");
+            // Scroll
+            $('html,body').animate({
+            scrollTop: $("#"+id).offset().top},
+            'slow');
+        }
+
+        $(".subNavBtn").click(function(e) { 
+            // Prevent a page reload when a link is pressed
+            e.preventDefault(); 
+            // Call the scroll function
+            goToByScroll($(this).attr("id"));           
+        });
+        
+        
+        $('#featured').raccordion({
+               speed: 1000,
+               sliderWidth: "100%",
+               sliderHeight: 750,
+               autoCollapse: true
+        });
+     });
+    
+    </script>
+<style type="text/css">#fancybox-overlay{position:fixed;top:0;left:0;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,.fb_connect_bar_container span,.fb_connect_bar_container a,.fb_connect_bar_container img,.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}.fb_connect_bar a:hover{color:#fff}.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}.fb_connect_bar div a,.fb_connect_bar span,.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style></head>
+<body onbeforeunload="">
+	<section id="overlay" style="display: none;">
+
+		<div class="modal">       
+            <div class="login_box" id="login_box" style="display: none;">
+                <a class="close" href="#"></a>      
+                <a class="notamember" href="#">Not a member?</a>
+                <form>
+                    <ul>
+                        <li class="main_heading">Log In</li>
+                        <li><a href="#" class="facebook" onclick="facebook_connect('login')">Log In with Facebook</a></li>
+                        <li class="heading">or sign up with your email</li>
+                        <li>
+                            <div style="display:none;" id="login-email-error" class="signup-error"><span></span></div>
+                            <input id="login-email" placeholder="Email" type="text">
+                        </li>
+                        <li>
+                            <div style="display:none;" id="login-password-error" class="signup-error"><span></span></div>
+                            <input id="login-pass" class="password" placeholder="Password" type="password">
+                           	<div style="display: none;" id="login-form-error" class="signup-error"><span></span></div>
+                        </li>
+                        <!-- <li class="remember"><input name="" type="checkbox" value=""> 
+                        Remember me</li> -->
+                        <li><input class="button" value="Log In" type="submit"></li>
+                        <li><a class="forgot_pass" href="/accounts/reset_new_password" target="_blank">Forgot password?</a></li>
+                    </ul>
+                </form>  
+                <span class="clear"></span>       
+            </div>
+ 
+	    	<div class="signup_box" id="signup_box" style="display: none;"> 
+	        <a class="close" href="#"></a>      
+	        <a class="already_amember" href="#">Already a member?</a>
+	        <span class="main_heading">Sign Up</span>
+	            <form>
+	                <div class="use_facebook">
+	                <span class="sub_heading">Use Facebook</span>
+	                    <ul>
+	                        <li><a href="#" class="facebook" onclick="facebook_connect('signup')">Sign Up with Facebook</a></li>
+	                    </ul>
+	                </div>
+	                
+	                <div class="use_youremail">
+	                <span class="sub_heading">Use your Email</span>
+	                    <ul>
+	                        <li>
+	                        	<div class="signup-error" id="email-error" style="display:none;"><span></span></div>
+	                        	<input placeholder="Email" id="sign-email" type="text">
+	                        </li>
+	                        <li>
+	                        	<div class="signup-error" id="password-error" style="display:none;"><span></span></div>
+	                        	<input class="password" placeholder="Password" id="sign-pass" type="password">
+	                        </li>
+	                        <li>
+	                        	<div class="signup-error" id="password-conf-error" style="display:none;"><span></span></div>
+	                        	<input class="password" placeholder="Confirm Password" id="conf-pass" type="password">
+	                        	<div style="display:none;" id="form-error" class="signup-error"><span></span></div>
+	                        </li>
+	                        <li><input class="button" value="FREE!  Sign Up Now!" type="submit"></li>
+	                    </ul>
+	                </div>
+	                <span class="terms">By signing up you agree to our <a href="/perkstatic/terms">Terms &amp; Conditions.</a></span>
+	            </form>
+	    	</div>
+        </div>
+        
+</section>
+
+<input id="redirect_to" value="" type="hidden">
+
+<script type="text/javascript">
+	var device_id = '';
+	$.ajax({
+		url: "https://www.perk.com/perk/generatebrowserdeviceid",
+		type: 'GET',
+		cache: false,
+		success: function(response) {
+			device_id = response;
+		}
+	});
+	
+	$(document).ready(function(){
+		var redirect = "";
+		
+		
+			$('#login_box').on('click', '.notamember', function(e){
+				e.preventDefault();
+				$('#login_box').hide();
+				$('#signup_box').fadeIn();
+			});
+
+			$('#signup_box').on('click', '.already_amember', function(e){
+				e.preventDefault();
+				$('#signup_box').hide();
+				$('#login_box').fadeIn();
+			});
+
+
+			$("#signup_box").on("submit", "form", function(e) {
+				e.preventDefault();
+				
+				var isValid = validateEmailAndPassword($("#sign-email").val(), $("#sign-pass").val());
+				if(isValid == false) {
+					return false;
+				}
+
+				if (typeof perk_get_value == 'function') {
+					var partner = perk_get_value('part_id');
+				} else {
+												var partner = 'JLW-MAC';
+									}
+					
+				$.ajax({
+					url: window.location.protocol + "//" + "api.perk.com/api/register",
+					type: 'POST',
+					crossDomain: true,
+					cache: false,
+					data: { 
+						email: $("#signup_box #sign-email").val(), 
+						password: $("#signup_box #sign-pass").val(),
+						type: 'email',
+						device_type: 'web_browser',
+						client_id: "11111",
+						client_secret: "c437a24bf277dfea375f",
+						device_id: device_id,
+						partner_id: partner
+					},
+					beforeSend: function() {
+						$("#signup_box #signup-submit").css('display','none');
+						$("#signup_box .res-cont-sent").css('display','block');
+					}
+				}).done(function( data, textStatus, jqXHR ) {
+					$("#signup_box #signup-submit").css('display','block');
+					$("#signup_box .res-cont-sent").css('display','none');
+					
+					console.log("Done response and json - response is " + JSON.stringify(jqXHR) + ' and textStatus is ' + textStatus);
+					if(textStatus == "success" && jqXHR.status == '200' && jqXHR.statusText == "OK") {
+						console.log("Done - response data is " + data);
+						if(data.access_token != "") {
+							// Make AJAX call to set session.
+							$.ajax({
+								url: "/accounts/setusersession/",
+								type: 'POST',
+								crossDomain: true,
+								cache: false,
+								data: { 
+									access_token: data.access_token, 
+									user_id: data.user_id,
+									type: 'email'
+								}
+							}).done(function( data, textStatus, jqXHR ) {
+								console.log('Success callback - response is ' + data + 'textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+								$("#signup_box #sign-email").val('');
+								$("#signup_box #sign-pass").val('');
+								$("#signup_box #conf-pass").val('');
+																	window.postMessage({action: 'register_success'}, document.location.href);
+								
+								// populating the invitations view, redirection is tagged to skip link inside '/invitations/index'
+																	var redirect_to	= $("#redirect_to").val();
+									if(redirect_to != "")
+										window.location.href = redirect_to;
+									else
+										window.location.href = "/accounts/logged_in_home";
+															}).fail(function( jqXHR, textStatus ) {
+								console.log('eror here - textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+							});
+						}
+					}
+				}).fail(function( jqXHR, textStatus ) {
+					$("#signup_box #signup-submit").css('display','block');
+					$("#signup_box .res-cont-sent").css('display','none');
+					
+					var response_text = jqXHR.responseText;
+					response_text_json = JSON.parse(response_text);
+					var response_text_error = response_text_json.error;
+					
+					if(typeof response_text_error != 'undefined') {
+						$("#signup_box #email-error span").html(response_text_error);
+						$("#signup_box #email-error").css('display', 'block');
+					} else {
+						$("#signup_box #email-error").css('display', 'none');
+					}
+					console.log("Request failed: " + textStatus + ' and error is ' + JSON.stringify(jqXHR));
+				});
+
+				return false;
+			});
+
+			$("#login_box").on("submit", "form", function(e) {
+				e.preventDefault();
+				$.ajax({
+					url: '/accounts/ajax_login',
+					type: 'post',
+					cache: false,
+					data: { 
+						email: $("#login_box #login-email").val(), 
+						password: $("#login_box #login-pass").val() 
+					},
+					beforeSend: function() {
+						$("#signup-submit").css('display','none');
+						$(".res-cont-sent").css('display','block');
+					},
+					success: function(response) {
+						// redirecting only if the user login succeeded
+						if (typeof response.email_error == 'undefined' && typeof response.password_error == 'undefined' && typeof response.message == 'undefined') {
+															if(link == 'download'){
+									location.href = decodeURIComponent("/perk/downloadconfirmation");
+								} else {
+									location.href = '/accounts/logged_in_home';
+								}
+													}
+						$("#signup-submit").css('display','block');
+						$(".res-cont-sent").css('display','none');
+						if(typeof response.email_error != 'undefined' && response.email_error != null) {
+							$("#login_box #login-email-error span").html(response.email_error);
+							$("#login_box #login-email-error").css('display', 'block');
+						} else {
+							$("#login_box #login-email-error").css('display', 'none');
+						}
+
+						if(typeof response.password_error != 'undefined' && response.password_error != null) {
+							$("#login_box #login-password-error span").html(response.password_error);
+							$("#login_box #login-password-error").css('display', 'block');
+						} else {
+							$("#login_box #login-password-error").css('display', 'none');
+						}
+
+						if(typeof response.message != 'undefined' && response.message != null) {
+							$("#login_box #login-form-error span").html(response.message);
+							$("#login_box #login-form-error").css('display', 'block');
+						} else {
+							$("#login_box #login-form-error").css('display', 'none');
+						}
+
+						if(typeof response.success != 'undefined' && response.success != null && response.success == true) {
+							window.postMessage({action: 'login_success'}, document.location.href);
+														$('.overlay_section').fadeOut();
+						}
+					}
+				});
+				
+				$.ajax({
+					url: window.location.protocol + "//" + "api.perk.com/oauth/token",
+					type: 'POST',
+					crossDomain: true,
+					cache: false,
+					data: {
+						grant_type: 'password',
+						username: $("#login-email").val(), 
+						password: $("#login-pass").val(),
+						type: 'email',
+						device_type: 'web_browser',
+						client_id: "11111",
+						client_secret: "c437a24bf277dfea375f"
+					}
+				}).done(function( data, textStatus, jqXHR ) {
+					console.log("Done response and json - response is " + JSON.stringify(jqXHR) + ' and textStatus is ' + textStatus);
+					if(textStatus == "success" && jqXHR.status == '200' && jqXHR.statusText == "OK") {
+						console.log("Done - response data is " + data);
+						if(data.access_token != "") {
+							// Make AJAX call to set session.
+							$.ajax({
+								url: "/accounts/setusersession/",
+								type: 'POST',
+								crossDomain: true,
+								cache: false,
+								data: { 
+									access_token: data.access_token, 
+									user_id: data.user_id,
+									type: 'email'
+								}
+							}).done(function( data, textStatus, jqXHR ) {
+								console.log('Success callback - response is ' + data + 'textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+								// Nothing to be done here since we set the session in a different ajax call as well.
+							}).fail(function( jqXHR, textStatus ) {
+								console.log('eror here - textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+							});
+						}
+					}
+				}).fail(function( jqXHR, textStatus ) {
+					console.log("Request failed: " + textStatus + ' and error is ' + JSON.stringify(jqXHR));
+				});
+				
+				return false;
+			});
+			
+	});
+	
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : "211055039020468",
+			status     : true, // check the login status upon init?
+			cookie     : true, // set sessions cookies to allow your server to access the session?
+			xfbml      : true  // parse XFBML tags on this page?
+		});
+
+		// Additional initialization code such as adding Event Listeners goes here
+		var facebook_login_callback = function(actionType, access_token, callback) {
+			FB.api('/me', function(response) {
+				response.access_token = access_token;
+				response.fb_user_id = response.id;
+				response.partner_id = $("#partner-id").val();
+				response.click_id = $("#click-id").val();
+				
+				if(actionType == 'signup') {
+					$.ajax({
+						url: window.location.protocol + "//" + "api.perk.com/api/register",
+						type: 'POST',
+						crossDomain: true,
+						cache: false,
+						data: { 
+							type: 'facebook',
+							device_type: 'web_browser',
+							fb_user_id: response.fb_user_id,
+							access_token: response.access_token,
+							client_id: "11111",
+							client_secret: "c437a24bf277dfea375f",
+							device_id: device_id,
+							click_id: response.click_id
+						}
+					}).done(function( data, textStatus, jqXHR ) {
+						console.log("Done response and json - response is " + JSON.stringify(jqXHR) + ' and textStatus is ' + textStatus);
+						if(textStatus == "success" && jqXHR.status == '200' && jqXHR.statusText == "OK") {
+							console.log("Done - response data is " + data);
+							if(data.access_token != "") {
+								$.ajax({
+									url: "/accounts/setusersession/",
+									type: 'POST',
+									crossDomain: true,
+									cache: false,
+									data: { 
+										access_token: data.access_token, 
+										user_id: data.user_id,
+										type: 'facebook'
+									}
+								}).done(function( data, textStatus, jqXHR ) {
+									if($("#redirect_to").val() !== "") {
+										document.location.href = $("#redirect_to").val();
+									} else {
+										document.location.href = "/perk/downloadconfirmation";
+									}
+									console.log('Success callback - response is ' + data + 'textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+								}).fail(function( jqXHR, textStatus ) {
+									console.log('eror here - textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+								});
+							}
+						}
+					}).fail(function( jqXHR, textStatus ) {
+						// Nothing to be done here.
+						console.log("Request failed: " + textStatus + ' and error is ' + JSON.stringify(jqXHR));
+					});
+				} else if(actionType == 'login') {
+					$.ajax({
+						url : '/accounts/ajax_facebook',
+						type: 'post',
+						data : response,
+						success : function(res) {
+							if(typeof res.success != 'undefined' && res.success != null && res.success == true) {
+								// Don't do anything here.
+							}
+							callback();
+						}
+					});
+					
+					$.ajax({
+						url: window.location.protocol + "//" + "api.perk.com/oauth/token",
+						type: 'POST',
+						crossDomain: true,
+						cache: false,
+						data: {
+							grant_type: 'facebook',
+							device_type: 'web_browser',
+							client_id: "11111",
+							client_secret: "c437a24bf277dfea375f",
+							fb_user_id: response.fb_user_id,
+							access_token: response.access_token
+						}
+					}).done(function( data, textStatus, jqXHR ) {
+						console.log("Done response and json - response is " + JSON.stringify(jqXHR) + ' and textStatus is ' + textStatus);
+						if(textStatus == "success" && jqXHR.status == '200' && jqXHR.statusText == "OK") {
+							console.log("Done - response data is " + data);
+							if(data.access_token != "") {
+								parent.postMessage({action: 'login_success'}, document.location.href);
+								if($("#redirect_to").val() !== "") {
+									document.location.href = $("#redirect_to").val();
+								} else {
+									document.location.href = "/perk/downloadconfirmation";
+								}
+							}
+						}
+					}).fail(function( jqXHR, textStatus ) {
+						console.log("Request failed: " + textStatus + ' and error is ' + JSON.stringify(jqXHR));
+					});
+				} else {
+					/*
+					$.ajax({
+						url : '/accounts/ajax_facebook',
+						type: 'post',
+						data : response,
+						success : function(res) {
+							if(typeof res.success != 'undefined' && res.success != null && res.success == true) {
+								parent.postMessage({action: 'register_success'}, document.location.href);
+								document.location.reload();
+							}
+							callback();
+						}
+					});
+					*/
+				}
+			});
+
+			FB.Event.subscribe('auth.login', function(response) {
+				facebook_login_callback('', response.authResponse.accessToken, function() {
+				});
+			});
+
+			FB.Event.subscribe('auth.authResponseChange', function(response) {
+				facebook_login_callback('', response.authResponse.accessToken, function() {
+				});
+			});
+			
+		};
+		
+		FB.getLoginStatus(function(response) {
+			if (response.status == 'connected') {
+				facebook_connect = function(actionType) {
+					FB.login(function(response) {
+						if (response.authResponse) {
+							facebook_login_callback(actionType, response.authResponse.accessToken, function() {
+							});
+						}
+					}, {scope : 'user_likes, email, user_birthday, publish_actions, friends_birthday'});
+				};
+			} else {
+				
+				facebook_connect = function(actionType) {
+					FB.login(function(response) {
+						if (response.authResponse) {
+							facebook_login_callback(actionType, response.authResponse.accessToken, function() {
+							});
+						}
+					}, {scope : 'user_likes, email, user_birthday, publish_actions, friends_birthday'});
+				};
+				
+			}
+		});
+	};
+
+	(function(d, debug){
+		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement('script'); js.id = id; js.async = true;
+		js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+		ref.parentNode.insertBefore(js, ref);
+	}(document, /*debug*/ false));
+                                                                                        
+
+	// get invitations view in the overlay
+	function get_invitations_view() {
+		if($("#redirect_to").val() !== "")
+		var redirect_to_url = $("#redirect_to").val();
+		else
+		var redirect_to_url = "/perk/downloadconfirmation";
+		
+		$.ajax({
+			type: 'GET',
+			url: "/invitations?redirect_url="+redirect_to_url,
+			success: function(response) {
+				$('#overlay_content').html(response);
+			}
+		});
+		// hiding close button
+		$('.close_btn_overlay').hide();
+	}
+	
+</script>    <div class="header">
+        <div class="wrapper-big">
+            <div class="subMenu">
+                  <a href="#" class="logo">HOME</a> 
+                  <a href="#" id="perkappslink" class="subNavBtn">PERK APPS</a>
+                  <a href="#" id="rewardslink" class="subNavBtn">REWARDS</a>
+                  <a href="/perk/allstores" target="_blank" id="store-link" class="store-link">STORES</a>
+                <!--  <li class="download_browser"><a href="#" class="download desktop open-signup">SIGN UP</a></li> -->
+                  <a href="#" id="login-link" class="signup-link open-signup">SIGN UP</a>
+                                    <a href="#" id="open-login" class="login-link end">LOG IN</a>
+                              </div>
+        </div>
+	</div>
+	
+	<div class="banner">
+	    <div class="simply-scroll simply-scroll-container"><div class="simply-scroll-clip"><ul style="width: 4180px;" class="simply-scroll-list" id="scroller"><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card7.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card6.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card5.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card4.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card3.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card2.png" height="140" width="210"></li><li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card1.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card12.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card11.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card10.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card9.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card8.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card7.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card6.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card5.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card4.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card3.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card2.png" height="140" width="210"></li>
+            <li><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/card1.png" height="140" width="210"></li>
+        </ul></div></div> 
+	    <div class="wrapper">
+	        <div class="device-ipad"></div>
+	        <div class="device-android"></div>
+	        <div class="text-wrap">
+	            <h1 class="main-title">The  <span class="small-top-text">#</span><span class="number-big">1</span><br>mobile rewards program.</h1>
+	            <div class="earning-points">Earning Perk points is fun &amp; easy!<br>Get giftcards like this &amp; more!</div>
+	        </div>
+	    </div>    
+	</div>   
+	
+	<div class="perk-apps">
+	    <div class="wrapper">
+	        <div class="section-title">The Perk APP Family:</div>
+	    </div>
+	    <div class="flat-apps" id="perkapps">
+	        <div style="width: 100%; height: 750px;" class="accordion-wrapper" id="featured">
+                <div style="left: 0px; height: 750px;" class="perk-shopping slide">
+                    <div class="wrapping">
+                        <img style="" src="https://cdn2.perk.com/htmlperk/perk2k14/images/top.png" class="hidden" alt="" width="985">
+                        <div class="icon">
+                            <div class="perk-title">Perk Shopping</div>
+                        </div>
+                        <div class="contents">
+                            <div class="device"><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/img-shopping.png" alt="" width=""></div>
+                            <div class="right">
+                                <div class="heading">Earn points when you shop at over 3,000 partner stores.</div>
+                                <p class="desc">Shop with Perk and earn points you can exchange for gift cards and other great rewards. Shop at over 3,000 stores in one easy-to-use app. With Perk, you can easily shop and find coupons from top brands including Target, Macy's, Best Buy, Groupon, Nordstrom, and more.</p>
+                                <p class="available">Available on iOS</p>
+                                <a target="_blank" href="https://itunes.apple.com/us/app/perk-shopping-get-rewards/id696443133?mt=8" class="appstore_btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="left: 283.8px; height: 750px;" class="perk-search slide">
+                    <div class="wrapping">
+                        <div class="icon">
+                            <div class="perk-title">Perk Search</div>
+                        </div>
+                        <div class="contents">
+                            <div class="device"><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/img-search.png" alt=""></div>
+                            <div class="right">
+                                <div class="heading">Instantly earn points when you search the web.</div>
+                                <p class="desc">Get points when you search the web. It's easy. Perk Search is also integrated with IMDB, Wikipedia, YouTube, Yelp, and Twitter. </p>
+                                <p class="available">Available on iOS and Android.</p>
+                                <a target="_blank" href="https://itunes.apple.com/us/app/perk-search/id634875415?mt=8" class="appstore_btn"></a>
+                                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.jutera.perksearch&amp;hl=en" class="googleplay_btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="left: 567.6px; height: 750px;" class="perk-screen slide">
+                    <div class="wrapping">
+                        <div class="icon">
+                            <div class="perk-title">Perk Screen</div>
+                        </div>
+                        <div class="contents">
+                            <div class="device"><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/img-screen.png" alt=""></div>
+                            <div class="right">
+                                <div class="heading">Unlock your phone and win points and prizes!</div>
+                                <p class="desc">Get points and prizes for unlocking your phone! Discover new apps, brands, and deals delivered right to your screen! Simply swipe left or right for a chance to win. Every time you unlock your phone, you could win!
+</p>
+                                <p class="available">Available on Android.</p>
+                                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.jutera.perklocker" class="googleplay_btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="left: 851.4px; height: 750px;" class="perk-browser slide">
+                    <div class="wrapping">
+                        <div class="icon">
+                            <div class="perk-title">Perk Browser</div>
+                        </div>
+                        <div class="contents">
+                            <div class="device"><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/img-browser.png" alt=""></div>
+                            <div class="right">
+                                <div class="heading">Get rewarded for doing what you already do online.</div>
+                                <p class="desc">Discover a more rewarding web with the Perk Browser. Earn points when you search and shop. Check-in to your favorite places online and get coupons and deals at your favorite stores. Other features include one-tap privacy, an integrated link shortener, and social sharing.</p>
+                                <p class="available">Available on iOS and Android.</p>
+                                <a target="_blank" href="https://itunes.apple.com/us/app/perk-web-browser-get-rewards/id663531366?mt=8" class="appstore_btn"></a>
+                                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.jutera.perkmobile" class="googleplay_btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="left: 1135.2px; height: 750px;" class="perk-tv slide">
+                    <div class="wrapping">
+                        <div class="icon">
+                            <div class="perk-title">Perk TV</div>
+                        </div>
+                        <div class="contents">
+                            <div class="device"><img src="https://cdn2.perk.com/htmlperk/perk2k14/images/img-tv.png" alt=""></div>
+                            <div class="right">
+                                <div class="heading">Earn points for watching entertaining videos!</div>
+                                <p class="desc">Watch videos and earn points on the go with Perk TV! Check out the latest movie, app, and game trailers, along with other entertaining videos on your phone or tablet! With Perk TV, you can earn points anywhere and instantly when you watch. </p>
+                                <p class="available">Available on iOS and Android.</p>
+                                <a target="_blank" href="https://itunes.apple.com/us/app/perk-tv-get-rewards-when-you/id706630901?ls=1&amp;mt=8" class="appstore_btn"></a>
+                                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.juteralabs.perktv" class="googleplay_btn"></a>
+                                <a target="_blank" href="http://www.windowsphone.com/en-us/store/app/perk-tv/81c06d0a-ff27-462a-8b63-494f79d1dff8" class="windows_btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    </div>
+	</div>
+	
+	<div class="ticker" id="rewards">
+	    <div class="wrapper">
+            <div class="ticker-wrap">
+                <div style="max-width: 100%;" class="bx-wrapper"><div style="width: 100%; overflow: hidden; position: relative; height: 235px;" class="bx-viewport"><ul style="width: auto; position: relative; transition-duration: 0s; transform: translate3d(0px, -240px, 0px);" class="ticker-slide"><li class="bx-clone" style="float: none; list-style: none outside none; position: relative; width: 629px; margin-bottom: 5px;">
+                      <img src="https://cdn2.perk.com/htmlperk/perk2k14/images/giftcard-nike.png" alt="" class="ticker-img">
+                      <div class="testimonial">
+                          <div class="name">Libin V.</div>
+                          <div class="text">"I just redeemed my Perk points for a $15 Nike Store gift card!"</div>
+                      </div>
+                      <div class="clear"></div>
+                  </li>
+                  <li style="float: none; list-style: none outside none; position: relative; width: 629px; margin-bottom: 5px;">
+                      <img src="https://cdn2.perk.com/htmlperk/perk2k14/images/giftcard-nike.png" alt="" class="ticker-img">
+                      <div class="testimonial">
+                          <div class="name">Jane L.</div>
+                          <div class="text">"I just redeemed my Perk points for a $5 Nike Store gift card!"</div>
+                      </div>
+                      <div class="clear"></div>
+                  </li>
+                  <li style="float: none; list-style: none outside none; position: relative; width: 629px; margin-bottom: 5px;">
+                      <img src="https://cdn2.perk.com/htmlperk/perk2k14/images/giftcard-nike.png" alt="" class="ticker-img">
+                      <div class="testimonial">
+                          <div class="name">Libin V.</div>
+                          <div class="text">"I just redeemed my Perk points for a $15 Nike Store gift card!"</div>
+                      </div>
+                      <div class="clear"></div>
+                  </li>
+                <li class="bx-clone" style="float: none; list-style: none outside none; position: relative; width: 629px; margin-bottom: 5px;">
+                      <img src="https://cdn2.perk.com/htmlperk/perk2k14/images/giftcard-nike.png" alt="" class="ticker-img">
+                      <div class="testimonial">
+                          <div class="name">Jane L.</div>
+                          <div class="text">"I just redeemed my Perk points for a $5 Nike Store gift card!"</div>
+                      </div>
+                      <div class="clear"></div>
+                  </li></ul></div><div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div></div><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div></div>
+            </div>
+        </div>
+	</div>
+	
+	<div class="get-perked">
+	    <div class="wrapper">
+	        <div class="title">GET PERKED:</div>
+	        
+	        <div class="col1">
+                <h2 class="green">PERK BROWSER</h2>
+                <ul>
+					<li><a href="https://itunes.apple.com/us/app/perk-web-browser-get-rewards/id663531366?mt=8" target="_blank"><span class="ios"></span>For iPhone and iPod Touch</a></li>
+					<li><a href="https://itunes.apple.com/us/app/perk-web-browser-get-rewards/id650897278?mt=8" target="_blank"><span class="ios"></span>For iPad</a></li>
+					<li><a href="https://play.google.com/store/apps/details?id=com.jutera.perkmobile" target="_blank"><span class="android"></span>For Android Devices</a></li>
+					<li><a href="/browser" target="_blank"><span class="windows"></span>For Windows</a></li>
+					<li><a href="/browser" target="_blank"><span class="mac"></span>For Mac</a></li>
+					<li><a href="https://chrome.google.com/webstore/detail/perk-lite/edpaeddemekchnbmjmcjplbbeeheionp?hl=en-US" target="_blank"><span class="chrome"></span>For Chrome</a></li>
+					<li><a href="https://addons.mozilla.org/en-US/firefox/addon/perk-for-firefox-earn-rewar/" target="_blank"><span class="firefox"></span>For Firefox</a></li>
+                </ul>
+            </div>
+            
+            <div class="col1">
+                <h2 class="red">PERK SHOPPING</h2>
+                <ul>
+                    <li><a href="https://itunes.apple.com/us/app/perk-shopping-get-rewards/id696443133?mt=8" target="_blank"><span class="ios"></span>For iPad</a></li>
+                </ul>
+                <h2 class="tv blue">PERK TV</h2>
+                <ul>
+                	<li><a href="https://itunes.apple.com/us/app/perk-tv-get-rewards-when-you/id706630901?ls=1&amp;mt=8" target="_blank"><span class="ios"></span>For iPhone and iPod Touch</a></li>
+                    <li><a href="https://itunes.apple.com/us/app/perk-tv-earn-rewards-when/id775982893?ls=1&amp;mt=8" target="_blank"><span class="ios"></span>For iPad</a></li>
+                	<li><a href="https://play.google.com/store/apps/details?id=com.juteralabs.perktv" target="_blank"><span class="android"></span>For Android Devices</a></li>
+					<li><a href="http://www.windowsphone.com/en-us/store/app/perk-tv/81c06d0a-ff27-462a-8b63-494f79d1dff8" target="_blank"><span class="windows"></span>For Windows Phone</a></li>
+                </ul>
+            </div>
+            
+            <div class="col1">
+                <h2 class="locker green">PERK SCREEN</h2>
+                <ul>
+                    <li><a href="https://play.google.com/store/apps/details?id=com.jutera.perklocker" target="_blank"><span class="android"></span>For Android Devices</a></li>
+                </ul>
+                <h2 class="search red">PERK SEARCH</h2>
+                <ul>
+                    <li><a href="https://itunes.apple.com/us/app/perk-search/id634875415?mt=8" target="_blank"><span class="ios"></span>iPhone and iPod Touch</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=com.jutera.perksearch&amp;hl=en" target="_blank"><span class="android"></span>For Android Devices</a></li>
+                </ul>
+             <!--    <h2 class="wallet blue">PERK WALLET</h2>
+                <ul>
+                    <li><a href="#" target="_blank"><span class="ios"></span>iPhone and iPod Touch</a></li>
+                    <li><a href="#" target="_blank"><span class="android"></span>For Android Devices</a></li>
+                </ul> -->
+            </div>
+            
+            <div class="perk-social">
+            	<div class="perk-address">
+            		<h3>Perk HQ</h3>
+            		<span>
+					720 Brazos Street,
+					<br>
+					Ste 110 Austin, TX 78701
+					</span>
+            	</div>
+                <div class="title">#PERK SOCIAL</div>
+                <ul>
+                    <li><a target="_blank" href="https://www.facebook.com/GetPerk" class="fb"></a></li>
+                    <li><a target="_blank" href="https://twitter.com/getperk" class="twitter"></a></li>
+                    <!-- <li><a href="#" class="gplus"></a></li> -->
+                    <li><a target="_blank" href="http://instagram.com/perkrewards" class="instagram"></a></li>
+                    <!-- <li><a href="#" class="youtube"></a></li> -->
+                    <li><a target="_blank" href="http://www.linkedin.com/company/perk-com" class="linkedin"></a></li>
+                </ul>
+            </div>
+           
+            <div class="clear"></div>
+            
+            <div class="press">
+            	<ul>
+                    <li><a class="pandodaily" href="http://pandodaily.com/2013/04/18/perk-a-simple-web-browser-that-rewards-online-shoppers/" target="_blank"></a></li>
+                    <li><a class="pcworld" href="http://www.pcworld.com/article/2035731/new-perk-browser-lets-you-rack-up-reward-points-for-surfing.html" target="_blank"></a></li>
+                    <li><a class="techcrunch" href="http://techcrunch.com/2013/07/24/perk-browser/" target="_blank"></a></li>
+                    <li><a class="usatoday" href="http://www.usatoday.com/story/tech/columnist/baig/2013/04/16/perk-browser-review/2085633/" target="_blank"></a></li>
+                </ul>
+            </div>
+	    </div>
+	</div>
+	
+	<div class="footer">
+	    <div class="wrapper-big">
+	        <ul>
+                <li><a href="/perkstatic/about">About</a></li>
+                <li><a href="http://blog.perk.com/">Blog</a></li>
+                <li><a href="/perk/allstores">Stores</a></li>
+                <li><a href="http://support.perk.com/home">Help Center</a></li>
+                <li><a href="/ads">Advertise with us</a></li>
+                <li><a href="/perkstatic/partner">Partner with us </a></li>
+                <li><a href="http://www.jobscore.com/jobs/perk/" target="_blank">Careers</a></li>
+                <li><a href="/perkstatic/privacy">Privacy Policy</a></li>
+                <li><a href="/perkstatic/terms">Terms &amp; Conditions</a></li>
+            </ul>
+	    </div>
+	    <div class="copyright">Perk © 2014</div>
+	</div>
+	
+	<script type="text/javascript">
+		var device_id = '';
+				$.ajax({
+			url: "https://www.perk.com/perk/generatebrowserdeviceid",
+			type: 'GET',
+			cache: false,
+			success: function(response) {
+				device_id = response;
+			}
+		});
+					
+		$(document).ready(function() {
+						$('#open-login').click(function(e){
+				link = 'login';
+				$("#redirect_to").val("/accounts/logged_in_home");
+				e.preventDefault();
+				$('#signup_box').hide();
+				$('#login_box').show();
+				$('#overlay').fadeIn();
+			});
+			
+			$('.download').click(function(e){
+				link = 'download';
+				$("#redirect_to").val("/perk/downloadconfirmation");
+			});
+			
+			$('.open-signup').click(function(e){
+				e.preventDefault();
+				$('#login_box').hide();
+				$('#signup_box').show();
+				$('#overlay').fadeIn();
+			});
+			
+			$('.close').click(function(){
+				$('#overlay').hide();
+			});
+									
+			$('.overlay_box').on('click','.close_btn',function(e){
+				e.preventDefault();
+				$('.overlay').fadeOut();
+				$("#video_container").html('');
+			});
+			
+			$('.show_video_popup').on('click' ,function(e){
+				e.preventDefault();
+				$(".overlay_box .container").html('<iframe src="https://player.vimeo.com/video/48459441" width="729" height="435" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>');
+				$('.overlay').fadeIn();
+			});
+			
+			$(".fb_connect_btn").on('click', '', function(e){
+				e.preventDefault();
+				$("#redirect_to").val("/accounts/logged_in_home");
+				facebook_connect('login');
+			});
+			
+			// Signup Box
+			$("body").on("submit", "#ajax-signup-box", function(e) {
+				e.preventDefault();
+				
+				var isValid = validateEmailAndPassword($("#sign-email").val(), $("#sign-pass").val());
+				if(isValid == false) {
+					return false;
+				}
+
+				if (typeof perk_get_value == 'function') {
+					var partner = perk_get_value('part_id');
+				} else {
+												var partner = 'JLW-MAC';
+									}
+
+				$.ajax({
+					url: window.location.protocol + "//" + "api.perk.com/api/register",
+					type: 'POST',
+					crossDomain: true,
+					cache: false,
+					data: { 
+						email: $("#ajax-signup-box #sign-email").val(), 
+						password: $("#ajax-signup-box #sign-pass").val(),
+						type: 'email',
+						device_type: 'web_browser',
+						client_id: "11111",
+						client_secret: "c437a24bf277dfea375f",
+						device_id: device_id,
+						partner_id: partner
+					},
+					beforeSend: function() {
+						$("#ajax-signup-box #signup-submit").css('display','none');
+						$("#ajax-signup-box .res-cont-sent").css('display','block');
+					}
+				}).done(function( data, textStatus, jqXHR ) {
+					$("#signup-submit").css('display','block');
+					$(".res-cont-sent").css('display','none');
+
+					console.log("Done response and json - response is " + JSON.stringify(jqXHR) + ' and textStatus is ' + textStatus);
+					if(textStatus == "success" && jqXHR.status == '200' && jqXHR.statusText == "OK") {
+						console.log("Done - response data is " + data);
+						if(data.access_token != "") {
+							// Set the access token in SQLite.
+														// Make AJAX call to set session.
+							$.ajax({
+								url: "/accounts/setusersession/",
+								type: 'POST',
+								crossDomain: true,
+								cache: false,
+								data: { 
+									access_token: data.access_token, 
+									user_id: data.user_id,
+									type: 'email'
+								}
+							}).done(function( data, textStatus, jqXHR ) {
+								console.log('Success callback - response is ' + data + 'textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+								parent.postMessage({action: 'register_success'}, document.location.href);
+								$("#ajax-signup-box #sign-email").val('');
+								$("#ajax-signup-box #sign-pass").val('');
+								$("#ajax-signup-box #conf-pass").val('');
+																	window.postMessage({action: 'register_success'}, document.location.href);
+								
+								// populating the invitations view, redirection is tagged to skip link inside '/invitations/index'
+																	window.location.href="/accounts/logged_in_home";
+															}).fail(function( jqXHR, textStatus ) {
+								console.log('eror here - textStatus is ' + textStatus + ' and jqXHR is ' + JSON.stringify(jqXHR));
+							});
+						}
+					}
+				}).fail(function( jqXHR, textStatus ) {
+					$("#signup-submit").css('display','block');
+					$(".res-cont-sent").css('display','none');
+
+					if(typeof jqXHR.responseJSON.error != 'undefined') {
+						$("#ajax-signup-box #email-error span").html(jqXHR.responseJSON.error);
+						$("#ajax-signup-box #email-error").css('display', 'block');
+					} else {
+						$("#ajax-signup-box #email-error").css('display', 'none');
+					}
+					console.log("Request failed: " + textStatus + ' and error is ' + JSON.stringify(jqXHR));
+				});
+
+				return false;
+			});
+			
+		});
+	</script>
+	
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-32583342-1']);
+	_gaq.push(['_setDomainName', 'perk.com']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>	
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><a style="position: fixed; z-index: 2147483647; display: none;" title="Scroll to top" href="#top" id="scrollUp"></a><div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="http://static.ak.facebook.com/connect/xd_arbiter/dgdTycPTSRj.js?version=41#channel=f26a2f46aea6c12&amp;origin=http%3A%2F%2Fwww.perk.com" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="https://s-static.ak.facebook.com/connect/xd_arbiter/dgdTycPTSRj.js?version=41#channel=f26a2f46aea6c12&amp;origin=http%3A%2F%2Fwww.perk.com" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div><iframe style="display:none" id="loader" height="0" width="0"></iframe></body><wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color><wa-color id="WA-color-1" bg="#FF0000" fg="#000000" class="WebAnnotator_PER" type="PER"></wa-color><wa-color id="WA-color-2" bg="#33FF33" fg="#000000" class="WebAnnotator_FUNC" type="FUNC"></wa-color><wa-color id="WA-color-3" bg="#CC66CC" fg="#000000" class="WebAnnotator_TEL" type="TEL"></wa-color><wa-color id="WA-color-4" bg="#FF9900" fg="#000000" class="WebAnnotator_FAX" type="FAX"></wa-color><wa-color id="WA-color-5" bg="#99FFFF" fg="#000000" class="WebAnnotator_HOURS" type="HOURS"></wa-color><wa-color id="WA-color-6" bg="#FF6666" fg="#000000" class="WebAnnotator_SUBJ" type="SUBJ"></wa-color><wa-color id="WA-color-7" bg="#66FF99" fg="#000000" class="WebAnnotator_STREET" type="STREET"></wa-color><wa-color id="WA-color-8" bg="#3333FF" fg="#FFFFFF" class="WebAnnotator_CITY" type="CITY"></wa-color><wa-color id="WA-color-9" bg="#660000" fg="#FFFFFF" class="WebAnnotator_STATE" type="STATE"></wa-color><wa-color id="WA-color-10" bg="#006600" fg="#FFFFFF" class="WebAnnotator_ZIPCODE" type="ZIPCODE"></wa-color><wa-color id="WA-color-11" bg="#663366" fg="#FFFFFF" class="WebAnnotator_COUNTRY" type="COUNTRY"></wa-color><wa-title style="box-shadow:0 0 1em black;border:2px solid blue;padding:0.5em;">Perk | The #1 mobile rewards program.</wa-title></html>

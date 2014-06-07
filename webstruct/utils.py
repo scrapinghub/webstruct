@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import re
 import subprocess
 from functools import partial
+from itertools import chain
 import lxml.html
 from lxml.etree import iterwalk
 
@@ -27,26 +28,6 @@ def get_combined_keys(dicts):
     for dct in dicts:
         seen_keys.update(dct.keys())
     return seen_keys
-
-
-def tostr(val):
-    """
-    >>> tostr('foo')
-    'foo'
-    >>> tostr(u'foo')
-    u'foo'
-    >>> tostr(10)
-    '10'
-    >>> tostr(True)
-    '1'
-    >>> tostr(False)
-    '0'
-    """
-    if isinstance(val, basestring):
-        return val
-    if isinstance(val, bool):
-        return str(int(val))
-    return str(val)
 
 
 def flatten(x):
@@ -147,7 +128,7 @@ def run_command(args, verbose=True):
 
     If ``verbose == True`` then print output as it appears using "print".
     Unlike ``subprocess.check_call`` it doesn't assume that stdout
-    has a file descriptor - this allows printing to works in IPython notebook.
+    has a file descriptor - this allows printing to work in IPython notebook.
 
     Example:
 
@@ -212,7 +193,7 @@ class BestMatch(object):
         i = 0
         while i < len(tokens):
             max_length = min(self.max_length, max(len(tokens)-i, 0))
-            for length in reversed(range(1, max_length+1)):
+            for length in xrange(max_length, 0, -1):
                 lookup = " ".join(tokens[i:i+length])
                 if lookup in self.known:
                     res.append((i, length+i, lookup))
@@ -261,11 +242,11 @@ class LongestMatch(BestMatch):
         return sorted(ranges, key=lambda k: k[1]-k[0], reverse=True)
 
 
-def substrings(txt, min_length=2, max_length=10, pad=''):
+def substrings(txt, min_length, max_length, pad=''):
     """
-    >>> substrings("abc", 1)
+    >>> substrings("abc", 1, 100)
     ['a', 'ab', 'abc', 'b', 'bc', 'c']
-    >>> substrings("abc", 2)
+    >>> substrings("abc", 2, 100)
     ['ab', 'abc', 'bc']
     >>> substrings("abc", 1, 2)
     ['a', 'ab', 'b', 'bc', 'c']
@@ -283,3 +264,61 @@ def substrings(txt, min_length=2, max_length=10, pad=''):
             if length == remaining_length and pad:
                 res.append(token+pad)
     return res
+
+
+def train_test_split_noshuffle(*arrays, **options):
+    """Split arrays or matrices into train and test subsets without shuffling.
+
+    It allows to write
+
+    ::
+
+        X_train, X_test, y_train, y_test = train_test_split_noshuffle(X, y, test_size=test_size)
+
+    instead of
+
+    ::
+
+        X_train, X_test = X[:-test_size], X[-test_size:]
+        y_train, y_test = y[:-test_size], y[-test_size:]
+
+    Parameters
+    ----------
+    *arrays : sequence of lists
+
+    test_size : float, int, or None (default is None)
+        If float, should be between 0.0 and 1.0 and represent the
+        proportion of the dataset to include in the test split. If
+        int, represents the absolute number of test samples. If None,
+        test size is set to 0.25.
+
+    Returns
+    -------
+    splitting : list of lists, length=2 * len(arrays)
+        List containing train-test split of input array.
+
+    Examples
+    --------
+    >>> train_test_split_noshuffle([1,2,3], ['a', 'b', 'c'], test_size=1)
+    [[1, 2], [3], ['a', 'b'], ['c']]
+    >>> train_test_split_noshuffle([1,2,3,4], ['a', 'b', 'c', 'd'], test_size=0.5)
+    [[1, 2], [3, 4], ['a', 'b'], ['c', 'd']]
+
+    """
+    n_arrays = len(arrays)
+    if n_arrays == 0:
+        raise ValueError("At least one array required as input")
+
+    test_size = options.pop('test_size', None)
+    train_size = options.pop('train_size', None)
+
+    if test_size is None and train_size is None:
+        test_size = 0.25
+
+    if isinstance(test_size, float):
+        n_samples = len(arrays[0])
+        test_size = int(n_samples*test_size)
+
+    return list(chain.from_iterable(
+        (a[:-test_size], a[-test_size:]) for a in arrays
+    ))

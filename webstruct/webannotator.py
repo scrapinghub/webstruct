@@ -15,6 +15,9 @@ import lxml.sax
 from lxml import html
 from lxml.etree import Element, LXML_VERSION
 
+from webstruct.utils import html_document_fromstring
+
+
 DEFAULT_COLORS = [
     # foreground, background
     ("#000000", "#33CCFF"),
@@ -46,14 +49,37 @@ def _get_colors(index):
 
 
 class EntityColors(defaultdict):
+    """
+    ``{"entity_name": ("fg_color", "bg_color", entity_index)}`` mapping
+    that generates entries for new entities on first access.
+    """
     def __init__(self, **kwargs):
-        self.next_index = 0
+        self.next_index = len(kwargs)
         super(EntityColors, self).__init__(self._new_item_factory, **kwargs)
 
     def _new_item_factory(self):
         fg, bg = _get_colors(self.next_index)
         self.next_index += 1
         return fg, bg, self.next_index-1
+
+    @classmethod
+    def from_htmlfile(cls, path, encoding=None):
+        """ Load the color mapping from WebAnnotator-annotated HTML file """
+        with open(path, 'rb') as f:
+            return cls.from_htmlbytes(f.read(), encoding=encoding)
+
+    @classmethod
+    def from_htmlbytes(cls, html_bytes, encoding=None):
+        colors = cls()
+        tree = html_document_fromstring(html_bytes, encoding=encoding)
+        for wa_color in tree.xpath('//wa-color'):
+            assert wa_color.get('id').lower().startswith('wa-color-')
+            idx = int(wa_color.get('id')[len("WA-color-"):])
+            fg = wa_color.get('fg')
+            bg = wa_color.get('bg')
+            typ = wa_color.get('type')
+            colors[typ] = (fg, bg, idx)
+        return colors
 
 
 def apply_wa_title(tree):

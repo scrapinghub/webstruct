@@ -16,14 +16,15 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
-from webstruct.utils import get_combined_keys, tostr, run_command
+from webstruct.utils import get_combined_keys, run_command
+from webstruct._fileresource import FileResource
 
 
-def create_wapiti_pipeline(model_filename,
+def create_wapiti_pipeline(model_filename=None,
                            token_features=None,
                            global_features=None,
                            min_df=1,
-                           **wapiti_kwargs):
+                           **crf_kwargs):
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by :class:`~.HtmlTokenizer`
@@ -36,9 +37,10 @@ def create_wapiti_pipeline(model_filename,
 
         # load train data
         html_tokenizer = webstruct.HtmlTokenizer()
-        train_trees = webstruct.load_trees([
-           ("train/*.html", webstruct.WebAnnotatorLoader())
-        ])
+        train_trees = webstruct.load_trees(
+            "train/*.html",
+            webstruct.WebAnnotatorLoader()
+        )
         X_train, y_train = html_tokenizer.tokenize(train_trees)
 
         # train
@@ -50,9 +52,10 @@ def create_wapiti_pipeline(model_filename,
         model.fit(X_train, y_train)
 
         # load test data
-        test_trees = webstruct.load_trees([
-           ("test/*.html", webstruct.WebAnnotatorLoader())
-        ])
+        test_trees = webstruct.load_trees(
+            "test/*.html",
+            webstruct.WebAnnotatorLoader()
+        )
         X_test, y_test = html_tokenizer.tokenize(test_trees)
 
         # do a prediction
@@ -64,7 +67,7 @@ def create_wapiti_pipeline(model_filename,
 
     return Pipeline([
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
-        ('crf', WapitiCRF(model_filename, **wapiti_kwargs)),
+        ('crf', WapitiCRF(model_filename, **crf_kwargs)),
     ])
 
 
@@ -89,12 +92,17 @@ class WapitiCRF(BaseSequenceClassifier):
     WAPITI_CMD = 'wapiti'
     """ Command used to start wapiti """
 
-    def __init__(self, model_filename, train_args=None,
+    def __init__(self, model_filename=None, train_args=None,
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0):
 
-        self.model_filename = model_filename
+        self.modelfile = FileResource(
+            filename=model_filename,
+            keep_tempfiles=not unlink_temp,
+            suffix='.wapiti',
+            prefix='model',
+        )
 
         if train_args is None:
             train_args = '--algo l-bfgs --maxiter 50 --compact --nthread 8 --jobsize 1 --stopwin 15'
@@ -135,6 +143,7 @@ class WapitiCRF(BaseSequenceClassifier):
             Path to a file where tagged development data will be written.
 
         """
+        self.modelfile.refresh()
         self._wapiti_model = None
         self.feature_encoder.reset()
         self.feature_encoder.fit(X, y)
@@ -167,18 +176,20 @@ class WapitiCRF(BaseSequenceClassifier):
             args = ['train', '--pattern', template_fn] + self.train_args
             if dev_fn:
                 args += ['--devel', dev_fn]
-            args += [train_fn, self.model_filename]
+            args += [train_fn, self.modelfile.name]
             self.run_wapiti(args)
 
             # do a final check on development data
             if dev_fn:
-                args = ['label', '-m', self.model_filename, '--check', dev_fn, out_dev]
+                args = ['label', '-m', self.modelfile.name, '--check', dev_fn, out_dev]
                 self.run_wapiti(args)
 
         finally:
             if self.unlink_temp:
                 for filename in to_unlink:
                     os.unlink(filename)
+
+        return self
 
     def predict(self, X):
         """
@@ -199,7 +210,6 @@ class WapitiCRF(BaseSequenceClassifier):
         sequences = self._to_wapiti_sequences(X)
         return [model.label_sequence(seq).splitlines() for seq in sequences]
 
-
     def run_wapiti(self, args):
         """ Run ``wapiti`` binary in a subprocess """
         return run_command([self.WAPITI_CMD] + args, self.verbose)
@@ -211,9 +221,9 @@ class WapitiCRF(BaseSequenceClassifier):
 
     def _load_model(self):
         import wapiti
-        if self.model_filename is None:
+        if self.modelfile.name is None:
             raise ValueError("model filename is unknown, can't load model")
-        self._wapiti_model = wapiti.Model(model=self.model_filename)
+        self._wapiti_model = wapiti.Model(model=self.modelfile.name)
 
     def _to_wapiti_sequences(self, X, y=None):
         X = self.feature_encoder.transform(X)
@@ -249,6 +259,12 @@ class WapitiCRF(BaseSequenceClassifier):
 
     def _to_train_sequence(self, wapiti_lines, tags):
         return "\n".join(["%s %s" %(line, tag) for line, tag in zip(wapiti_lines, tags)])
+
+    def __getstate__(self):
+        dct = self.__dict__.copy()
+        dct['_wapiti_model'] = None
+        return dct
+
 
 
 class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
@@ -288,7 +304,7 @@ class WapitiFeatureEncoder(BaseEstimator, TransformerMixin):
         """
         lines = []
         for dct in feature_dicts:
-            line = ' '.join(tostr(dct.get(key)) for key in self.feature_names_)
+            line = ' '.join(_tostr(dct.get(key)) for key in self.feature_names_)
             lines.append(line)
         return lines
 
@@ -391,6 +407,26 @@ def prepare_wapiti_template(template, vocabulary):
     ]
 
     return "\n".join(lines)
+
+
+def _tostr(val):
+    """
+    >>> _tostr('foo')
+    'foo'
+    >>> _tostr(u'foo')
+    u'foo'
+    >>> _tostr(10)
+    '10'
+    >>> _tostr(True)
+    '1'
+    >>> _tostr(False)
+    '0'
+    """
+    if isinstance(val, basestring):
+        return val
+    if isinstance(val, bool):
+        return str(int(val))
+    return str(val)
 
 
 def _wapiti_line_is_comment(line):
