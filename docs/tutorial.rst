@@ -19,8 +19,9 @@ Pro tip - enable WebAnnotator toolbar buttons:
 .. image:: images/wa-buttons.png
 
 Follow WebAnnotator `manual <http://perso.limsi.fr/xtannier/en/WebAnnotator/>`__
-to define named entities and annotate some web pages
-(nested WebAnnotator entities are not supported).
+to define named entities and annotate some web pages (nested WebAnnotator 
+entities are not supported). Use "Save as.." menu item or "Save as" 
+toolbar button to save the results; don't use "Export as".
 
 After that you can load annotated webpages as lxml trees::
 
