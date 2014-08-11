@@ -13,8 +13,6 @@ class BaseSequenceClassifier(BaseEstimator, TransformerMixin):
         A named entity in a sequence from ``y_pred`` is considered
         correct only if it is an exact match of the corresponding entity
         in the ``y_true``.
-
-        It requires https://github.com/larsmans/seqlearn to work.
         """
         y_pred = self.predict(X)
         return avg_bio_f1_score(y, y_pred)
