@@ -20,8 +20,8 @@ Webstruct can:
   features, html-based features and gazetteer-based features
   (GeoNames_ support is built-in);
 * convert these features to the format sequence labelling toolikits accept;
-* use Wapiti_ CRF toolkit for entity extraction (helpers for other
-  toolkits like CRFSuite_ and seqlearn_ are planned);
+* use Wapiti_ or CRFSuite_ CRF toolkit for entity extraction (helpers for other
+  toolkits like seqlearn_ are planned);
 * group extracted entites using an unsupervised algorithm;
 * embed annotation results back into HTML files (using WebAnnotator_ format),
   allowing to view them in a web browser and fix using visual tools.
@@ -54,8 +54,6 @@ when ``pip install webstruct`` is executed.
 
 There are also some optional dependencies:
 
-* seqlearn_ (from github master) is used for metrics; it could
-  be also used as a sequence labelling toolkit.
 * Webstruct has support for Wapiti_ sequence labelling toolkit;
   you'll need both the ``wapiti`` binary and `python-wapiti`_ wrapper
   (from github master) for the tutorial.
