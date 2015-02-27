@@ -27,6 +27,8 @@ import re
 import glob
 from itertools import chain
 from collections import defaultdict
+import six
+from .cross import bprint
 import lxml.html
 import lxml.html.clean
 
@@ -113,8 +115,8 @@ class GateLoader(HtmlLoader):
     >>> loader = GateLoader(known_entities={'ORG', 'CITY'})
     >>> html = b"<html><body><p><ORG>Scrapinghub</ORG> has an <b>office</b> in <CITY>Montevideo</CITY></p></body></html>"
     >>> tree = loader.loadbytes(html)
-    >>> lxml.html.tostring(tree)
-    '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>'
+    >>> bprint(lxml.html.tostring(tree))
+    <html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>
 
     """
 
@@ -133,14 +135,14 @@ class GateLoader(HtmlLoader):
     def _replace_entities(self, html_bytes):
         # replace requested entities with unified tokens
         open_re, close_re = self._entity_patterns(self.known_entities)
-        html_bytes = re.sub(open_re, r' __START_\1__ ', html_bytes)
-        html_bytes = re.sub(close_re, r' __END_\1__ ', html_bytes)
+        html_bytes = re.sub(open_re, br' __START_\1__ ', html_bytes)
+        html_bytes = re.sub(close_re, br' __END_\1__ ', html_bytes)
         return html_bytes
 
     def _entity_patterns(self, entities):
         entities_pattern = '|'.join(list(entities))
-        open_re = re.compile('<(%s)>' % entities_pattern, re.I)
-        close_re = re.compile('</(%s)>' % entities_pattern, re.I)
+        open_re = re.compile(six.b('<(%s)>' % entities_pattern), re.I)
+        close_re = re.compile(six.b('</(%s)>' % entities_pattern), re.I)
         return open_re, close_re
 
 

@@ -3,7 +3,7 @@
 :mod:`webstruct.model` contains convetional wrappers for creating NER models.
 """
 from __future__ import absolute_import
-import urllib2
+from six.moves.urllib.request import urlopen
 from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
@@ -49,7 +49,7 @@ class NER(object):
         A convenience wrapper for :meth:`extract` method that downloads
         input data from a remote URL.
         """
-        data = urllib2.urlopen(url).read()
+        data = urlopen(url).read()
         return self.extract(data)
 
     def extract_raw(self, bytes_data):
@@ -92,7 +92,7 @@ class NER(object):
         A convenience wrapper for :meth:`extract_groups` method that downloads
         input data from a remote URL.
         """
-        data = urllib2.urlopen(url).read()
+        data = urlopen(url).read()
         return self.extract_groups(data)
 
     def build_entity(self, html_tokens, tag):
@@ -120,7 +120,7 @@ class NER(object):
         Return annotated HTML data in WebAnnotator format; input is downloaded
         from ``url``.
         """
-        data = urllib2.urlopen(url).read()
+        data = urlopen(url).read()
         return self.annotate(data)
 
     def __getstate__(self):

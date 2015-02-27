@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 import re
+from .cross import bformat
 
 
 class WordTokenizer(object):
@@ -8,54 +9,54 @@ class WordTokenizer(object):
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
     >>> from nltk.tokenize.treebank import TreebankWordTokenizer  # doctest: +SKIP
-    >>> s = u'''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
-    >>> TreebankWordTokenizer().tokenize(s)  # doctest: +SKIP
-    [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email', u':', u'muffins', u'@', u'gmail.com']
-    >>> WordTokenizer().tokenize(s)
-    [u'Good', u'muffins', u'cost', u'$', u'3.88', u'in', u'New', u'York.', u'Email:', u'muffins@gmail.com']
+    >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
+    >>> bformat(TreebankWordTokenizer().tokenize(s)) # doctest: +SKIP
+    ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
+    >>> bformat(WordTokenizer().tokenize(s))
+    ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
 
-    >>> s = u'''Shelbourne Road,'''
-    >>> WordTokenizer().tokenize(s)
-    [u'Shelbourne', u'Road', u',']
+    >>> s = '''Shelbourne Road,'''
+    >>> bformat(WordTokenizer().tokenize(s))
+    ['Shelbourne', 'Road', ',']
 
-    >>> s = u'''population of 100,000'''
-    >>> WordTokenizer().tokenize(s)
-    [u'population', u'of', u'100,000']
+    >>> s = '''population of 100,000'''
+    >>> bformat(WordTokenizer().tokenize(s))
+    ['population', 'of', '100,000']
 
-    >>> s = u'''Hello|World'''
-    >>> WordTokenizer().tokenize(s)
-    [u'Hello', u'|', u'World']
+    >>> s = '''Hello|World'''
+    >>> bformat(WordTokenizer().tokenize(s))
+    ['Hello', '|', 'World']
 
-    >>> s2 = u'"We beat some pretty good teams to get here," Slocum said.'
-    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
-    [u'``', u'We', u'beat', u'some', u'pretty', u'good',
-    u'teams', u'to', u'get', u'here', u',', u"''", u'Slocum', u'said', u'.']
-    >>> s3 = u'''Well, we couldn't have this predictable,
+    >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
+    >>> bformat(WordTokenizer().tokenize(s2))  # doctest: +NORMALIZE_WHITESPACE
+    ['``', 'We', 'beat', 'some', 'pretty', 'good',
+    'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
+    >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
-    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
-    [u'Well', u',', u'we', u"couldn't", u'have', u'this', u'predictable',
-     u',', u'cliche-ridden', u',', u'``', u'Touched', u'by', u'an',
-     u'Angel', u"''", u'(', u'a', u'show', u'creator', u'John', u'Masius',
-     u'worked', u'on', u')', u'wanna-be', u'if', u'she', u"didn't", u'.']
+    >>> bformat(WordTokenizer().tokenize(s3))  # doctest: +NORMALIZE_WHITESPACE
+    ['Well', ',', 'we', "couldn't", 'have', 'this', 'predictable',
+     ',', 'cliche-ridden', ',', '``', 'Touched', 'by', 'an',
+     'Angel', "''", '(', 'a', 'show', 'creator', 'John', 'Masius',
+     'worked', 'on', ')', 'wanna-be', 'if', 'she', "didn't", '.']
 
     Some issues:
 
-    >>> WordTokenizer().tokenize("Phone:855-349-1914")  # doctest: +SKIP
-    [u'Phone', u':', u'855-349-1914']
+    >>> bformat(WordTokenizer().tokenize("Phone:855-349-1914"))  # doctest: +SKIP
+    ['Phone', ':', '855-349-1914']
 
-    >>> WordTokenizer().tokenize(u"Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")  # doctest: +SKIP
-    [u'Copyright', u'\xc2\xa9', u'2014', u'Wall', u'Decor', u'and', u'Home', u'Accents', u'.', u'All', u'Rights', u'Reserved', u'.']
+    >>> bformat(WordTokenizer().tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved."))  # doctest: +SKIP
+    ['Copyright', '\xc2\xa9', '2014', 'Wall', 'Decor', 'and', 'Home', 'Accents', '.', 'All', 'Rights', 'Reserved', '.']
 
-    >>> WordTokenizer().tokenize(u"Powai Campus, Mumbai-400077")  # doctest: +SKIP
-    [u'Powai', u'Campus', u',', u'Mumbai", "-", "400077']
+    >>> bformat(WordTokenizer().tokenize("Powai Campus, Mumbai-400077"))  # doctest: +SKIP
+    ['Powai', 'Campus', ',', 'Mumbai", "-", "400077']
 
-    >>> WordTokenizer().tokenize(u"1 5858/ 1800")  # doctest: +SKIP
-    [u'1', u'5858', u'/', u'1800']
+    >>> bformat(WordTokenizer().tokenize("1 5858/ 1800"))  # doctest: +SKIP
+    ['1', '5858', '/', '1800']
 
-    >>> WordTokenizer().tokenize(u"Saudi Arabia-")  # doctest: +SKIP
-    [u'Saudi', u'Arabia', u'-']
+    >>> bformat(WordTokenizer().tokenize("Saudi Arabia-"))  # doctest: +SKIP
+    ['Saudi', 'Arabia', '-']
 
     """
 
@@ -63,14 +64,14 @@ class WordTokenizer(object):
     # if token is None - regex match group is taken
     rules = [
         (re.compile(r'\s+', re.UNICODE), ''),
-        (re.compile(ur'“'), u"``"),
-        (re.compile(ur'["”]'), u"''"),
+        (re.compile(r'“'), "``"),
+        (re.compile(r'["”]'), "''"),
         (re.compile(r'``'), None),
-        (re.compile(ur'…|\.\.\.'), u'...'),
+        (re.compile(r'…|\.\.\.'), '...'),
         (re.compile(r'--'), None),
         (re.compile(r',(?=\D|$)'), None),
         (re.compile(r'\.$'), None),
-        (re.compile(ur'[;#$£%&|!?[\](){}<>]'), None),
+        (re.compile(r'[;#$£%&|!?[\](){}<>]'), None),
         (re.compile(r"'(?=\s)|''", re.UNICODE), None),
     ]
 
@@ -79,7 +80,7 @@ class WordTokenizer(object):
     def _tokenize(self, text):
         # this one cannot be placed in the loop because it requires
         # position check (beginning of the string) or previous char value
-        text = self.open_quotes.sub(ur'\1``', text)
+        text = self.open_quotes.sub(r'\1``', text)
 
         i = 0
         token_start = 0
