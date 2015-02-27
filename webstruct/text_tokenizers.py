@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 import re
-from .cross import bformat
+from .compat import bformat
 
 
 class WordTokenizer(object):
