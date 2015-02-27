@@ -10,16 +10,16 @@ def test_wa_loader():
     ld = WebAnnotatorLoader()
     tree = ld.load(os.path.join(os.path.dirname(__file__), 'data', 'wa1.html'))
     res = lxml.html.tostring(tree)
-    assert "<p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p>" in res, res
-    assert "wa-" not in res, res
-    assert "WA-" not in res, res
+    assert b"<p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p>" in res, res
+    assert b"wa-" not in res, res
+    assert b"WA-" not in res, res
 
 
 def test_wa_loader_None_bug():
     ld = WebAnnotatorLoader()
     tree = ld.load(os.path.join(os.path.dirname(__file__), 'data', 'wa2.html'))
     res = lxml.html.tostring(tree)
-    assert '<em>Inc.</em> __END_ORG__ </p>' in res, res
+    assert b'<em>Inc.</em> __END_ORG__ </p>' in res, res
 
 
 def test_wa_loader_with_known_entities():
@@ -28,7 +28,7 @@ def test_wa_loader_with_known_entities():
     html = b"<html><body><p><span wa-subtypes='' wa-id='227' wa-type='ORG' class='WebAnnotator_org'>Scrapinghub</span> has an <b>office</b> in <span wa-subtypes='' wa-id='228' wa-type='CITY' class='WebAnnotator_org'>Montevideo</span></p></body></html>"
     tree = loader.loadbytes(html)
     res = lxml.html.tostring(tree)
-    assert '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in Montevideo</p></body></html>' in res
+    assert b'<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in Montevideo</p></body></html>' in res
 
 
 def _assert_entities(fragment, known_entities, expected):

@@ -66,7 +66,7 @@ class HtmlTokenizerTest(HtmlTest):
         )
 
         tree = html_tokens[0].root
-        self.assertNotIn('__', tostring(tree))
+        self.assertNotIn(b'__', tostring(tree))
 
     def test_tokenize_single(self):
         self.assertTokenizationWorks(self._load())
@@ -81,8 +81,8 @@ class HtmlTokenizerTest(HtmlTest):
         tokenizer = HtmlTokenizer()
         html_tokens, tags = tokenizer.tokenize_single(src_tree)
         new_tree = html_tokens[0].root
-        self.assertIn('__START_ORG__', tostring(src_tree))
-        self.assertNotIn('__START_ORG__', tostring(new_tree))
+        self.assertIn(b'__START_ORG__', tostring(src_tree))
+        self.assertNotIn(b'__START_ORG__', tostring(new_tree))
 
         self.assertHtmlTreeEqual(
             new_tree,
@@ -90,7 +90,7 @@ class HtmlTokenizerTest(HtmlTest):
         )
 
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
-        self.assertIn('__START_ORG__', tostring(detokenized_tree))
+        self.assertIn(b'__START_ORG__', tostring(detokenized_tree))
 
         self.assertHtmlTreeEqual(
             detokenized_tree,

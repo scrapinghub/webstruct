@@ -10,6 +10,7 @@ of Wapiti_ models, templates and data files.
 from __future__ import absolute_import
 import os
 import re
+import six
 import shlex
 import tempfile
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -413,8 +414,8 @@ def _tostr(val):
     """
     >>> _tostr('foo')
     'foo'
-    >>> _tostr(u'foo')
-    u'foo'
+    >>> isinstance(_tostr(u'foo'), six.text_type)
+    True
     >>> _tostr(10)
     '10'
     >>> _tostr(True)
@@ -422,7 +423,7 @@ def _tostr(val):
     >>> _tostr(False)
     '0'
     """
-    if isinstance(val, basestring):
+    if isinstance(val, six.string_types):
         return val
     if isinstance(val, bool):
         return str(int(val))
