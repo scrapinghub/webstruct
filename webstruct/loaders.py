@@ -28,7 +28,7 @@ import glob
 from itertools import chain
 from collections import defaultdict
 import six
-from .cross import bprint
+from .compat import bprint
 import lxml.html
 import lxml.html.clean
 

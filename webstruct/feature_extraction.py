@@ -45,7 +45,7 @@ from itertools import chain, groupby
 from collections import namedtuple, Counter
 import six
 from six.moves import zip
-from .cross import bformat
+from .compat import bformat
 
 from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin

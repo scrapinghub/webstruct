@@ -5,7 +5,7 @@ import subprocess
 from functools import partial
 from itertools import chain
 from six.moves import range
-from .cross import bprint
+from .compat import bprint
 import lxml.html
 from lxml.etree import iterwalk
 
