@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 import re
-from .compat import bformat
 
 
 class WordTokenizer(object):
@@ -10,32 +9,32 @@ class WordTokenizer(object):
 
     >>> from nltk.tokenize.treebank import TreebankWordTokenizer  # doctest: +SKIP
     >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
-    >>> bformat(TreebankWordTokenizer().tokenize(s)) # doctest: +SKIP
+    >>> TreebankWordTokenizer().tokenize(s) # doctest: +SKIP
     ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
-    >>> bformat(WordTokenizer().tokenize(s))
+    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
     ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
 
     >>> s = '''Shelbourne Road,'''
-    >>> bformat(WordTokenizer().tokenize(s))
+    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
     ['Shelbourne', 'Road', ',']
 
     >>> s = '''population of 100,000'''
-    >>> bformat(WordTokenizer().tokenize(s))
+    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
     ['population', 'of', '100,000']
 
     >>> s = '''Hello|World'''
-    >>> bformat(WordTokenizer().tokenize(s))
+    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
     ['Hello', '|', 'World']
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
-    >>> bformat(WordTokenizer().tokenize(s2))  # doctest: +NORMALIZE_WHITESPACE
+    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE +IGNORE_UNICODE
     ['``', 'We', 'beat', 'some', 'pretty', 'good',
     'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
     >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
-    >>> bformat(WordTokenizer().tokenize(s3))  # doctest: +NORMALIZE_WHITESPACE
+    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE +IGNORE_UNICODE
     ['Well', ',', 'we', "couldn't", 'have', 'this', 'predictable',
      ',', 'cliche-ridden', ',', '``', 'Touched', 'by', 'an',
      'Angel', "''", '(', 'a', 'show', 'creator', 'John', 'Masius',
@@ -43,19 +42,19 @@ class WordTokenizer(object):
 
     Some issues:
 
-    >>> bformat(WordTokenizer().tokenize("Phone:855-349-1914"))  # doctest: +SKIP
+    >>> WordTokenizer().tokenize("Phone:855-349-1914")  # doctest: +SKIP
     ['Phone', ':', '855-349-1914']
 
-    >>> bformat(WordTokenizer().tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved."))  # doctest: +SKIP
+    >>> WordTokenizer().tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")  # doctest: +SKIP
     ['Copyright', '\xc2\xa9', '2014', 'Wall', 'Decor', 'and', 'Home', 'Accents', '.', 'All', 'Rights', 'Reserved', '.']
 
-    >>> bformat(WordTokenizer().tokenize("Powai Campus, Mumbai-400077"))  # doctest: +SKIP
+    >>> WordTokenizer().tokenize("Powai Campus, Mumbai-400077")  # doctest: +SKIP
     ['Powai', 'Campus', ',', 'Mumbai", "-", "400077']
 
-    >>> bformat(WordTokenizer().tokenize("1 5858/ 1800"))  # doctest: +SKIP
+    >>> WordTokenizer().tokenize("1 5858/ 1800")  # doctest: +SKIP
     ['1', '5858', '/', '1800']
 
-    >>> bformat(WordTokenizer().tokenize("Saudi Arabia-"))  # doctest: +SKIP
+    >>> WordTokenizer().tokenize("Saudi Arabia-")  # doctest: +SKIP
     ['Saudi', 'Arabia', '-']
 
     """

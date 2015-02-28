@@ -28,7 +28,6 @@ import glob
 from itertools import chain
 from collections import defaultdict
 import six
-from .compat import bprint
 import lxml.html
 import lxml.html.clean
 
@@ -115,8 +114,8 @@ class GateLoader(HtmlLoader):
     >>> loader = GateLoader(known_entities={'ORG', 'CITY'})
     >>> html = b"<html><body><p><ORG>Scrapinghub</ORG> has an <b>office</b> in <CITY>Montevideo</CITY></p></body></html>"
     >>> tree = loader.loadbytes(html)
-    >>> bprint(lxml.html.tostring(tree))
-    <html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>
+    >>> lxml.html.tostring(tree).decode() # doctest: +IGNORE_UNICODE
+    '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>'
 
     """
 

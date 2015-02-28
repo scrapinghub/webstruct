@@ -1,5 +1,6 @@
 -r requirements.txt
 nose
+doctest-ignore-unicode
 numpydoc
 coverage
 tox

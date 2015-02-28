@@ -45,7 +45,6 @@ from itertools import chain, groupby
 from collections import namedtuple, Counter
 import six
 from six.moves import zip
-from .compat import bformat
 
 from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -171,7 +170,7 @@ class HtmlTokenizer(object):
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
             >>> print(html_tokens[0].token, html_tokens[0].parent.tag)  # doctest: +ELLIPSIS
             hello p
-            >>> bformat(tags)
+            >>> tags # doctest: +IGNORE_UNICODE
             ['O', 'B-PER', 'I-PER', 'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
             ...     print("%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag)

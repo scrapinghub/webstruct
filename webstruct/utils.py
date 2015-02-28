@@ -5,7 +5,6 @@ import subprocess
 from functools import partial
 from itertools import chain
 from six.moves import range
-from .compat import bprint
 import lxml.html
 from lxml.etree import iterwalk
 
@@ -81,13 +80,13 @@ def replace_html_tags(root, tag_replaces):
     >>> from lxml.html import fragment_fromstring, document_fromstring, tostring
     >>> root = fragment_fromstring('<h1>head 1</h1>')
     >>> replace_html_tags(root, {'h1': 'strong'})
-    >>> bprint(tostring(root))
-    <strong>head 1</strong>
+    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    '<strong>head 1</strong>'
 
     >>> root = document_fromstring('<h1>head 1</h1> <H2>head 2</H2>')
     >>> replace_html_tags(root, {'h1': 'strong', 'h2': 'strong', 'h3': 'strong', 'h4': 'strong'})
-    >>> bprint(tostring(root))
-    <html><body><strong>head 1</strong> <strong>head 2</strong></body></html>
+    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    '<html><body><strong>head 1</strong> <strong>head 2</strong></body></html>'
     """
     for _, elem in iterwalk(root):
         if elem.tag in tag_replaces:
@@ -99,13 +98,13 @@ def kill_html_tags(doc, tagnames, keep_child=True):
     >>> from lxml.html import fragment_fromstring, tostring
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'])
-    >>> bprint(tostring(root))
-    <div>head 1</div>
+    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    '<div>head 1</div>'
 
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'], False)
-    >>> bprint(tostring(root))
-    <div></div>
+    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    '<div></div>'
     """
     tagnames = set(tagnames)
     for _, elem in iterwalk(doc):
