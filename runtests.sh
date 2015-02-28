@@ -1,1 +1,1 @@
-nosetests --with-doctest "$@"
+nosetests --with-doctest --with-doctest-ignore-unicode "$@"
