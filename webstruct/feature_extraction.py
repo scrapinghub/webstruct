@@ -38,11 +38,13 @@ Usually, the approach is the following:
 
 
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
 import re
 import copy
 from itertools import chain, groupby
 from collections import namedtuple, Counter
+import six
+from six.moves import zip
 
 from lxml.etree import XPathEvaluator
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -166,12 +168,12 @@ class HtmlTokenizer(object):
             >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
-            >>> html_tokens  # doctest: +ELLIPSIS
-            [HtmlToken(token=u'hello', parent=<Element p at ...>, index=0), HtmlToken...]
+            >>> html_tokens
+            [HtmlToken(token='hello', parent=<Element p at ...>, index=0), HtmlToken...]
             >>> tags
-            ['O', u'B-PER', u'I-PER', u'B-PER', 'O']
+            ['O', 'B-PER', 'I-PER', 'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
-            ...     print "%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag
+            ...     print("%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag)
                 O hello p p
             B-PER John p p
             I-PER Doe strong strong
@@ -187,9 +189,9 @@ class HtmlTokenizer(object):
         tree = copy.deepcopy(tree)
         self.sequence_encoder.reset()
         self._prepare_tree(tree)
-        res = zip(*(self._process_tree(tree)))
+        res = list(zip(*self._process_tree(tree)))
         if not res:
-            return ([], [])
+            return [], []
         return list(res[0]), list(res[1])
 
     def tokenize(self, trees):
@@ -290,7 +292,7 @@ class HtmlTokenizer(object):
 
     def _tokenize_and_split(self, text):
         input_tokens = self._limit_tags(self.text_tokenize_func(text or ''))
-        input_tokens = map(unicode, input_tokens)
+        input_tokens = map(six.text_type, input_tokens)
         return self.sequence_encoder.encode_split(input_tokens)
 
     def _limit_tags(self, input_tokens):
