@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
 import re
 import subprocess
 from functools import partial
 from itertools import chain
+from six.moves import range
 import lxml.html
 from lxml.etree import iterwalk
 
@@ -44,10 +45,9 @@ def flatten(x):
         >>> flatten([[[1,2,3], (42,None)], [4,5], [6], 7, (8,9,10)])
         [1, 2, 3, 42, None, 4, 5, 6, 7, 8, 9, 10]
     """
-
     result = []
     for el in x:
-        if hasattr(el, "__iter__"):
+        if isinstance(el, (list, tuple)):
             result.extend(flatten(el))
         else:
             result.append(el)
@@ -80,12 +80,12 @@ def replace_html_tags(root, tag_replaces):
     >>> from lxml.html import fragment_fromstring, document_fromstring, tostring
     >>> root = fragment_fromstring('<h1>head 1</h1>')
     >>> replace_html_tags(root, {'h1': 'strong'})
-    >>> tostring(root)
+    >>> tostring(root).decode()
     '<strong>head 1</strong>'
 
     >>> root = document_fromstring('<h1>head 1</h1> <H2>head 2</H2>')
     >>> replace_html_tags(root, {'h1': 'strong', 'h2': 'strong', 'h3': 'strong', 'h4': 'strong'})
-    >>> tostring(root)
+    >>> tostring(root).decode()
     '<html><body><strong>head 1</strong> <strong>head 2</strong></body></html>'
     """
     for _, elem in iterwalk(root):
@@ -98,12 +98,12 @@ def kill_html_tags(doc, tagnames, keep_child=True):
     >>> from lxml.html import fragment_fromstring, tostring
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'])
-    >>> tostring(root)
+    >>> tostring(root).decode()
     '<div>head 1</div>'
 
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'], False)
-    >>> tostring(root)
+    >>> tostring(root).decode()
     '<div></div>'
     """
     tagnames = set(tagnames)
@@ -136,24 +136,9 @@ def run_command(args, verbose=True):
     3
     >>> run_command(["python", "-c", "print(1+2)"], verbose=False)
     """
-    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    output = []
-    try:
-        while True:
-            line = p.stdout.readline()
-            if not line:
-                break
-            if verbose:
-                print(line.rstrip("\n\r"))
-            output.append(line)
-        p.wait()
-        if p.returncode != 0:
-            cmd = subprocess.list2cmdline(args)
-            raise subprocess.CalledProcessError(p.returncode, cmd, "\n".join(output))
-    finally:
-        # kill a process if exception occurs
-        if p.returncode is None:
-            p.terminate()
+    out = subprocess.check_output(args, stderr=subprocess.STDOUT)
+    if verbose:
+        print(re.sub(r'[\n\r]+$', '\n', out.decode()).rstrip())
 
 
 def alphanum_key(s):
@@ -193,7 +178,7 @@ class BestMatch(object):
         i = 0
         while i < len(tokens):
             max_length = min(self.max_length, max(len(tokens)-i, 0))
-            for length in xrange(max_length, 0, -1):
+            for length in range(max_length, 0, -1):
                 lookup = " ".join(tokens[i:i+length])
                 if lookup in self.known:
                     res.append((i, length+i, lookup))
@@ -224,9 +209,10 @@ class LongestMatch(BestMatch):
     >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
     >>> for start, end, matched_text in lm.find_ranges(tokens):
     ...     print(start, end, tokens[start:end], matched_text)
-    (0, 1, ['Toronto'], 'Toronto')
-    (2, 5, ['North', 'Las', 'Vegas'], 'North Las Vegas')
-    (5, 6, ['USA'], 'USA')
+    0 1 ['Toronto'] Toronto
+    2 5 ['North', 'Las', 'Vegas'] North Las Vegas
+    5 6 ['USA'] USA
+
 
     :class:`LongestMatch` also accepts a dict instead of a list/set for
     a ``known`` argument. In this case dict keys are used:
@@ -235,7 +221,7 @@ class LongestMatch(BestMatch):
     >>> tokens = ["Toronto", "to", "North", "Las", "Vegas", "USA"]
     >>> for start, end, matched_text in lm.find_ranges(tokens):
     ...     print(start, end, tokens[start:end], matched_text)
-    (2, 5, ['North', 'Las', 'Vegas'], 'North Las Vegas')
+    2 5 ['North', 'Las', 'Vegas'] North Las Vegas
     """
 
     def get_sorted_ranges(self, ranges, tokens):

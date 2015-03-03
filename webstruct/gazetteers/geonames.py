@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 import os
 import csv
+import six
 import zipfile
 import numpy as np
 
@@ -96,7 +97,7 @@ def _joined_names_column(df):
     """
     return df.apply(
         lambda row: ','.join(set([
-            unicode(n)
+            six.text_type(n)
             for n in [row['main_name'], row['asciiname'], row['alternatenames']]
             if n and n is not np.nan
         ])),
