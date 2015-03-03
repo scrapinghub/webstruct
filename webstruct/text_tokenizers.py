@@ -11,30 +11,30 @@ class WordTokenizer(object):
     >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
     >>> TreebankWordTokenizer().tokenize(s) # doctest: +SKIP
     ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
-    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s)
     ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
 
     >>> s = '''Shelbourne Road,'''
-    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s)
     ['Shelbourne', 'Road', ',']
 
     >>> s = '''population of 100,000'''
-    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s)
     ['population', 'of', '100,000']
 
     >>> s = '''Hello|World'''
-    >>> WordTokenizer().tokenize(s) # doctest: +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s)
     ['Hello', '|', 'World']
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
-    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
     ['``', 'We', 'beat', 'some', 'pretty', 'good',
     'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
     >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
-    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE +IGNORE_UNICODE
+    >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
     ['Well', ',', 'we', "couldn't", 'have', 'this', 'predictable',
      ',', 'cliche-ridden', ',', '``', 'Touched', 'by', 'an',
      'Angel', "''", '(', 'a', 'show', 'creator', 'John', 'Masius',

@@ -168,9 +168,9 @@ class HtmlTokenizer(object):
             >>> html_tokenizer = HtmlTokenizer(replace_html_tags={'b': 'strong'})
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
-            >>> html_tokens  # doctest: +ELLIPSIS +IGNORE_UNICODE
+            >>> html_tokens
             [HtmlToken(token='hello', parent=<Element p at ...>, index=0), HtmlToken...]
-            >>> tags # doctest: +ELLIPSIS +IGNORE_UNICODE
+            >>> tags
             ['O', 'B-PER', 'I-PER', 'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
             ...     print("%5s" % iob_tag, tok.token, tok.elem.tag, tok.parent.tag)
