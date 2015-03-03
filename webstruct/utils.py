@@ -80,12 +80,12 @@ def replace_html_tags(root, tag_replaces):
     >>> from lxml.html import fragment_fromstring, document_fromstring, tostring
     >>> root = fragment_fromstring('<h1>head 1</h1>')
     >>> replace_html_tags(root, {'h1': 'strong'})
-    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    >>> tostring(root).decode()
     '<strong>head 1</strong>'
 
     >>> root = document_fromstring('<h1>head 1</h1> <H2>head 2</H2>')
     >>> replace_html_tags(root, {'h1': 'strong', 'h2': 'strong', 'h3': 'strong', 'h4': 'strong'})
-    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    >>> tostring(root).decode()
     '<html><body><strong>head 1</strong> <strong>head 2</strong></body></html>'
     """
     for _, elem in iterwalk(root):
@@ -98,12 +98,12 @@ def kill_html_tags(doc, tagnames, keep_child=True):
     >>> from lxml.html import fragment_fromstring, tostring
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'])
-    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    >>> tostring(root).decode()
     '<div>head 1</div>'
 
     >>> root = fragment_fromstring('<div><h1>head 1</h1></div>')
     >>> kill_html_tags(root, ['h1'], False)
-    >>> tostring(root).decode() # doctest: +IGNORE_UNICODE
+    >>> tostring(root).decode()
     '<div></div>'
     """
     tagnames = set(tagnames)

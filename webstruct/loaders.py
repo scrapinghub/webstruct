@@ -114,7 +114,7 @@ class GateLoader(HtmlLoader):
     >>> loader = GateLoader(known_entities={'ORG', 'CITY'})
     >>> html = b"<html><body><p><ORG>Scrapinghub</ORG> has an <b>office</b> in <CITY>Montevideo</CITY></p></body></html>"
     >>> tree = loader.loadbytes(html)
-    >>> lxml.html.tostring(tree).decode() # doctest: +IGNORE_UNICODE
+    >>> lxml.html.tostring(tree).decode()
     '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>'
 
     """
