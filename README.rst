@@ -1,6 +1,9 @@
 Webstruct
 =========
 
+.. image:: https://travis-ci.org/scrapinghub/webstruct.svg?branch=master
+    :target: https://travis-ci.org/scrapinghub/webstruct
+
 Webstruct is a library for creating statistical NER_ systems that work
 on HTML data, i.e. a library for building tools that extract named
 entities (addresses, organization names, open hours, etc) from webpages.
