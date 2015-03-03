@@ -38,7 +38,7 @@ and also to embed annotation results back into HTML.
 Installation
 ------------
 
-Webstruct requires Python 2.7.
+Webstruct requires Python 2.7 or Python 3.3+.
 
 To install Webstruct, use pip::
 
