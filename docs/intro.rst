@@ -19,7 +19,7 @@ Webstruct can:
 * extract various features from these HTML tokens, including text-based
   features, html-based features and gazetteer-based features
   (GeoNames_ support is built-in);
-* convert these features to the format sequence labelling toolikits accept;
+* convert these features to the format sequence labelling toolkits accept;
 * use Wapiti_ or CRFSuite_ CRF toolkit for entity extraction (helpers for other
   toolkits like seqlearn_ are planned);
 * group extracted entites using an unsupervised algorithm;
