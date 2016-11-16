@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import os
+
 import lxml.html
+
 from webstruct import WebAnnotatorLoader
 from webstruct import HtmlTokenizer
 
@@ -13,6 +15,7 @@ def test_wa_loader():
     assert b"<p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p>" in res, res
     assert b"wa-" not in res, res
     assert b"WA-" not in res, res
+    assert b"base href" in res, res
 
 
 def test_wa_loader_None_bug():

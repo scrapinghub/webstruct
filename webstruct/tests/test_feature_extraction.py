@@ -10,6 +10,7 @@ from .utils import HtmlTest
 
 GATE_HTML = b"""
 <html>
+  <head><!-- base href="http://scrapinghub.com" --></head>
   <body>
     <p>
       <ORG>Scrapinghub
@@ -21,6 +22,7 @@ GATE_HTML = b"""
 
 UNANNOTATED_HTML = b"""
 <html>
+  <head><!-- base href="http://scrapinghub.com" --></head>
   <body>
     <p>Scrapinghub <b>Inc has</b> an <b>office</b> in Montevideo</p>
   </body>
@@ -29,6 +31,7 @@ UNANNOTATED_HTML = b"""
 
 ANNOTATED_HTML = b"""
 <html>
+  <head><!-- base href="http://scrapinghub.com" --></head>
   <body>
     <p>
       __START_ORG__ Scrapinghub

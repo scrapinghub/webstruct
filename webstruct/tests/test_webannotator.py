@@ -158,7 +158,6 @@ class EntityColorsTest(HtmlTest):
         for entity in string.ascii_letters:
             assert color_dict[entity] == color_dict2[entity]
 
-
     def test_html_loading(self):
         color_dict = webannotator.EntityColors.from_htmlfile(
             os.path.join(os.path.dirname(__file__), 'data', 'wa1.html')
