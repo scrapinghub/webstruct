@@ -1,123 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-CRFsuite_ backend for webstruct based on python-crfsuite_
+CRFsuite_ backend for webstruct based on python-crfsuite_ and sklearn-crfsuite_.
 
 .. _CRFsuite: http://www.chokkan.org/software/crfsuite/
 .. _python-crfsuite: https://github.com/tpeng/python-crfsuite
+.. _sklearn-crfsuite: https://github.com/TeamHG-Memex/sklearn-crfsuite
 
 """
 from __future__ import absolute_import
 from sklearn.pipeline import Pipeline
 
 from webstruct import HtmlFeatureExtractor
-from webstruct.base import BaseSequenceClassifier
-from webstruct._fileresource import FileResource
-
-
-class CRFsuiteCRF(BaseSequenceClassifier):
-    def __init__(self, algorithm=None, train_params=None, verbose=False,
-                 model_filename=None, keep_tempfiles=False, trainer_cls=None):
-        self.algorithm = algorithm
-        self.train_params = train_params
-        self.modelfile = FileResource(
-            filename =model_filename,
-            keep_tempfiles=keep_tempfiles,
-            suffix=".crfsuite",
-            prefix="model"
-        )
-        self.verbose = verbose
-        self._tagger = None
-        if trainer_cls is None:
-            import pycrfsuite
-            self.trainer_cls = pycrfsuite.Trainer
-        else:
-            self.trainer_cls = trainer_cls
-        self.training_log_ = None
-        super(CRFsuiteCRF, self).__init__()
-
-    def fit(self, X, y, X_dev=None, y_dev=None):
-        """
-        Train a model.
-
-        Parameters
-        ----------
-        X : list of lists of dicts
-            Feature dicts for several documents (in a python-crfsuite format).
-
-        y : list of lists of strings
-            Labels for several documents.
-
-        X_dev : (optional) list of lists of dicts
-            Feature dicts used for testing.
-
-        y_dev : (optional) list of lists of strings
-            Labels corresponding to X_dev.
-        """
-        if (X_dev is None and y_dev is not None) or (X_dev is not None and y_dev is None):
-            raise ValueError("Pass both X_dev and y_dev to use the holdout data")
-
-        if self._tagger is not None:
-            self._tagger.close()
-            self._tagger = None
-        self.modelfile.refresh()
-
-        trainer = self._get_trainer()
-
-        for xseq, yseq in zip(X, y):
-            trainer.append(xseq, yseq)
-
-        if X_dev is not None:
-            for xseq, yseq in zip(X_dev, y_dev):
-                trainer.append(xseq, yseq, 1)
-
-        trainer.train(self.modelfile.name, holdout=-1 if X_dev is None else 1)
-        self.training_log_ = trainer.logparser
-        return self
-
-    def predict(self, X):
-        """
-        Make a prediction.
-
-        Parameters
-        ----------
-        X : list of lists of dicts
-            feature dicts in python-crfsuite format
-
-        Returns
-        -------
-        y : list of lists
-            predicted labels
-
-        """
-        y = []
-        tagger = self.tagger
-        for xseq in X:
-            y.append(tagger.tag(xseq))
-        return y
-
-    @property
-    def tagger(self):
-        if self._tagger is None:
-            if self.modelfile.name is None:
-                raise Exception("Can't load model. Is the model trained?")
-
-            import pycrfsuite
-            tagger = pycrfsuite.Tagger()
-            tagger.open(self.modelfile.name)
-            self._tagger = tagger
-        return self._tagger
-
-    def _get_trainer(self):
-        return self.trainer_cls(
-            algorithm=self.algorithm,
-            params=self.train_params,
-            verbose=self.verbose,
-        )
-
-    def __getstate__(self):
-        dct = self.__dict__.copy()
-        dct['_tagger'] = None
-        return dct
 
 
 class CRFsuitePipeline(Pipeline):
@@ -193,10 +86,12 @@ def create_crfsuite_pipeline(token_features=None,
         y_pred = model.predict(X_test)
 
     """
+    from sklearn_crfsuite import CRF
+
     if token_features is None:
         token_features = []
 
     fe = HtmlFeatureExtractor(token_features, global_features, min_df=min_df)
-    crf = CRFsuiteCRF(**crf_kwargs)
+    crf = CRF(**crf_kwargs)
 
     return CRFsuitePipeline(fe, crf)
