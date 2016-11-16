@@ -9,4 +9,6 @@ to xml files inside 'annotated' folder. 'Save preserving format'
 command is used for saving: this mean annotations are saved as custom
 HTML tags, like ``<ORG>Microsoft</ORG>``.
 
+This data only has HOURS entity.
+
 .. _GATE: http://gate.ac.uk/

@@ -13,3 +13,19 @@ command is used for saving: this mean annotations are saved as custom
 HTML tags, like ``<ORG>Microsoft</ORG>``.
 
 .. _GATE: http://gate.ac.uk/
+
+Entities are the same as in corpus/business_pages:
+
+* ORG
+* TEL
+* FAX
+* EMAIL
+* HOURS
+* STREET
+* CITY
+* STATE
+* ZIPCODE
+* COUNTRY
+* PER
+* FUNC
+* SUBJ
