@@ -30,11 +30,9 @@ class CRFsuiteTest(unittest.TestCase):
     def get_pipeline(self, **kwargs):
         params = dict(
             token_features=EXAMPLE_TOKEN_FEATURES,
-            train_params={
-                'max_iterations': 30,
-                'c1': 1,
-                'c2': 0.01,
-            }
+            max_iterations=30,
+            c1=1,
+            c2=0.01,
         )
         params.update(kwargs)
         return create_crfsuite_pipeline(**params)
