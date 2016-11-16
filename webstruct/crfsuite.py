@@ -134,22 +134,22 @@ class CRFsuitePipeline(Pipeline):
         self.fe = fe
         self.crf = crf
         super(CRFsuitePipeline, self).__init__([
-            ('fe', self.fe),
-            ('crf', self.crf),
+            ('vec', self.fe),
+            ('clf', self.crf),
         ])
 
     def fit(self, X, y=None, **fit_params):
         X_dev = fit_params.pop('X_dev', None)
         if X_dev is not None:
-            fit_params['crf__X_dev'] = self.fe.transform(X_dev)
-            fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
+            fit_params['clf__X_dev'] = self.fe.transform(X_dev)
+            fit_params['clf__y_dev'] = fit_params.pop('y_dev', None)
         return super(CRFsuitePipeline, self).fit(X, y, **fit_params)
 
     def fit_transform(self, X, y=None, **fit_params):
         X_dev = fit_params.pop('X_dev', None)
         if X_dev is not None:
-            fit_params['crf__X_dev'] = self.fe.transform(X_dev)
-            fit_params['crf__y_dev'] = fit_params.pop('y_dev', None)
+            fit_params['clf__X_dev'] = self.fe.transform(X_dev)
+            fit_params['clf__y_dev'] = fit_params.pop('y_dev', None)
         return super(CRFsuitePipeline, self).fit_transform(X, y, **fit_params)
 
 
