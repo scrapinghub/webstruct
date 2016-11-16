@@ -46,7 +46,7 @@ from collections import namedtuple, Counter
 import six
 from six.moves import zip
 
-from lxml.etree import XPathEvaluator
+from lxml.etree import XPathEvaluator, Comment
 from sklearn.base import BaseEstimator, TransformerMixin
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize
@@ -144,6 +144,7 @@ class HtmlTokenizer(object):
             self.ignore_html_tags = set(ignore_html_tags)
         else:
             self.ignore_html_tags = {'script', 'style'}
+        self.ignore_html_tags.add(Comment)  # always ignore comments
 
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful

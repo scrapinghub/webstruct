@@ -30,6 +30,7 @@ from collections import defaultdict
 import six
 import lxml.html
 import lxml.html.clean
+from lxml.etree import ProcessingInstruction
 
 from webstruct.utils import human_sorted, html_document_fromstring
 from webstruct import webannotator
@@ -100,7 +101,6 @@ class WebAnnotatorLoader(HtmlLoader):
     def _cleanup_tree(self, tree):
         for el in tree.xpath('//wa-color'):
             el.drop_tree()
-
         return self.cleaner.clean_html(tree)
 
 
@@ -166,12 +166,18 @@ def _get_default_cleaner():
         scripts=False,     # non-default: preserve scripts
         javascript=False,  # non-default: keep external stylesheets
                            # (javascript=True removes them)
-        comments=True,
+
+        # Non-default: keep comments because they may contain <base> tag.
+        # Just comments=False doesn't work; we need to disable processing
+        # instructions as well (and enable them again, via kill_tags).
+        comments=False,
+        processing_instructions=False,  # required to keep comments
+        kill_tags=[ProcessingInstruction],
+
         style=False,  # non-default: keep stylesheets
         links=False,  # non-default: keep external stylesheets
         meta=False,   # non-default
         page_structure=False,  # non-default
-        processing_instructions=True,
         embedded=True,
         frames=True,
         forms=False,  # non-default

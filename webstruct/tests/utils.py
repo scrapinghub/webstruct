@@ -44,4 +44,6 @@ class HtmlTest(unittest.TestCase):
             raise AssertionError(message)
 
     def assertHtmlTreeEqual(self, got, want):
-        self.assertHtmlEqual(lxml.html.tostring(got), lxml.html.tostring(want))
+        got = lxml.html.tostring(got, encoding='unicode')
+        want = lxml.html.tostring(want, encoding='unicode')
+        self.assertHtmlEqual(got, want)
