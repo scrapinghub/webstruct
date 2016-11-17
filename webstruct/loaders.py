@@ -25,9 +25,9 @@ Such trees can be processed with utilities from
 from __future__ import absolute_import
 import re
 import glob
-from itertools import chain
 from collections import defaultdict
 import six
+
 import lxml.html
 import lxml.html.clean
 from lxml.etree import ProcessingInstruction
@@ -117,11 +117,16 @@ class GateLoader(HtmlLoader):
     >>> lxml.html.tostring(tree).decode()
     '<html><body><p> __START_ORG__ Scrapinghub __END_ORG__  has an <b>office</b> in  __START_CITY__ Montevideo __END_CITY__ </p></body></html>'
 
+    Note that you must specify known_entities when creating GateLoader.
+    It should contain all entities which are present in data, even if
+    you want to use only a subset of them for training. Use arguments of
+    :class:`~.HtmlLoader` to train a tagger which uses a subset of labels.
     """
 
     def __init__(self, encoding=None, cleaner=None, known_entities=None):
         if known_entities is None:
-            raise ValueError("Please pass `known_entities` argument with a list of all possible entities")
+            raise ValueError("Please pass `known_entities` argument with a "
+                             "list of all possible entities")
         self.known_entities = known_entities
         super(GateLoader, self).__init__(encoding, cleaner)
 
