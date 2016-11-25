@@ -7,7 +7,7 @@ from six.moves.urllib.request import urlopen
 from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
-from webstruct.feature_extraction import HtmlTokenizer
+from webstruct.html_tokenizer import HtmlTokenizer
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.utils import smart_join
 from webstruct.grouping import choose_best_clustering

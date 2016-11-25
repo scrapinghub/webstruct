@@ -2,7 +2,8 @@
 from __future__ import absolute_import
 from copy import deepcopy
 from lxml.html import tostring
-from webstruct.feature_extraction import HtmlTokenizer
+
+from webstruct.html_tokenizer import HtmlTokenizer
 from webstruct.loaders import GateLoader, HtmlLoader
 from webstruct.utils import html_document_fromstring
 from .utils import HtmlTest

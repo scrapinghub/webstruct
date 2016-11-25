@@ -3,10 +3,10 @@
 Feature Extraction
 ==================
 
-Feature Extraction Utilitites
------------------------------
+HTML Tokenization
+-----------------
 
-.. automodule:: webstruct.feature_extraction
+.. automodule:: webstruct.html_tokenizer
 
 .. autoclass:: HtmlToken
     :members:
@@ -14,6 +14,11 @@ Feature Extraction Utilitites
 .. autoclass:: HtmlTokenizer
     :members:
     :undoc-members:
+
+Feature Extraction Utilitites
+-----------------------------
+
+.. automodule:: webstruct.feature_extraction
 
 .. autoclass:: HtmlFeatureExtractor
     :members:
