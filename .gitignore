@@ -26,6 +26,7 @@ pip-log.txt
 .tox
 cover
 nosetests.xml
+.cache
 
 # Translations
 *.mo
@@ -40,3 +41,5 @@ nosetests.xml
 webstruct_data/datastore
 .ipynb_checkpoints
 docs/_build
+webstruct_data/todo
+notebooks/old
