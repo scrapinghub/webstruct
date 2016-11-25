@@ -93,7 +93,7 @@ class NER(object):
         input data from a remote URL.
         """
         data = urlopen(url).read()
-        return self.extract_groups(data)
+        return self.extract_groups(data, dont_penalize=dont_penalize)
 
     def build_entity(self, html_tokens, tag):
         """
