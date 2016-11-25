@@ -25,6 +25,7 @@ Contributing
 * Source code: https://github.com/scrapinghub/webstruct
 * Bug tracker: https://github.com/scrapinghub/webstruct/issues
 
-To run tests, make sure nose_ is installed, then run ``runtests.sh`` script.
+To run tests, make sure tox_ is installed, then run
+``tox`` from the source root.
 
-.. _nose: https://github.com/nose-devs/nose
+.. _tox: https://tox.readthedocs.io/en/latest/

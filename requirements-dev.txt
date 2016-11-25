@@ -1,6 +1,6 @@
 -r requirements.txt
-nose
-doctest-ignore-unicode
+pytest
+pytest-cov
 numpydoc
 coverage
 tox
