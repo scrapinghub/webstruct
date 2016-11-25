@@ -2,7 +2,11 @@ Webstruct
 =========
 
 .. image:: https://travis-ci.org/scrapinghub/webstruct.svg?branch=master
-    :target: https://travis-ci.org/scrapinghub/webstruct
+   :target: https://travis-ci.org/scrapinghub/webstruct
+
+.. image:: https://codecov.io/gh/scrapinghub/webstruct/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/scrapinghub/webstruct
+
 
 Webstruct is a library for creating statistical NER_ systems that work
 on HTML data, i.e. a library for building tools that extract named
