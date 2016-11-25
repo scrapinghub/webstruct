@@ -70,22 +70,9 @@ class NER(object):
         Entites are grouped using algorithm from :mod:`webstruct.grouping`.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
-        _, _, clusters = choose_best_clustering(
-            html_tokens,
-            tags,
-            score_kwargs={'dont_penalize': dont_penalize}
-        )
-
-        entities = []
-        for cluster in clusters:
-            text_entities = _drop_empty(
-                (self.build_entity(tokens, tag), tag)
-                for tokens, tag, dist in cluster
-            )
-            if text_entities:
-                entities.append(text_entities)
-
-        return entities
+        return extract_entitiy_groups(html_tokens, tags,
+                                      dont_penalize=dont_penalize,
+                                      join_tokens=self.build_entity)
 
     def extract_groups_from_url(self, url, dont_penalize=None):
         """
@@ -95,7 +82,7 @@ class NER(object):
         data = urlopen(url).read()
         return self.extract_groups(data, dont_penalize=dont_penalize)
 
-    def build_entity(self, html_tokens, tag):
+    def build_entity(self, html_tokens):
         """
         Join tokens to an entity. Return an entity, as text.
         By default this function uses :func:`webstruct.utils.smart_join`.
@@ -104,7 +91,7 @@ class NER(object):
         and :meth:`extract_groups` results. If this function returns empty
         string or None, entity is dropped.
         """
-        return smart_join(t.token for t in html_tokens)
+        return _join_tokens(html_tokens)
 
     def annotate(self, bytes_data, pretty_print=False):
         """
@@ -135,3 +122,31 @@ class NER(object):
 
 def _drop_empty(entities):
     return [(text, tag) for (text, tag) in entities if text]
+
+
+def _join_tokens(html_tokens):
+    return smart_join(t.token for t in html_tokens)
+
+
+def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
+                           join_tokens=_join_tokens):
+    """
+    Convert html_tokens and tags to a list of entity groups
+    (a list of lists of (text, tag) tuples).
+    """
+    threshold, score, clusters = choose_best_clustering(
+        html_tokens,
+        tags,
+        score_kwargs={'dont_penalize': dont_penalize}
+    )
+
+    groups = []
+    for cluster in clusters:
+        entities = _drop_empty(
+            (join_tokens(tokens), tag)
+            for tokens, tag, distance in cluster
+        )
+        if entities:
+            groups.append(entities)
+
+    return groups
