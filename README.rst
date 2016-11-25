@@ -5,7 +5,7 @@ Webstruct
    :target: https://travis-ci.org/scrapinghub/webstruct
 
 .. image:: https://codecov.io/gh/scrapinghub/webstruct/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/scrapinghub/webstruct
+   :target: https://codecov.io/gh/scrapinghub/webstruct
 
 
 Webstruct is a library for creating statistical NER_ systems that work
