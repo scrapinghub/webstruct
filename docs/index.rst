@@ -15,6 +15,7 @@ Contents:
    intro
    tutorial
    ref/index
+   changes
 
 
 Indices and tables
