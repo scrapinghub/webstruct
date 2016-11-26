@@ -1,3 +1,5 @@
 numpydoc
 sphinx
 scipy
+numpy
+scikit-learn
