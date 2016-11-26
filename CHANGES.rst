@@ -20,5 +20,5 @@ Changes
 0.3 (2016-09-19)
 ----------------
 
-There are many changes from previous version; API is changes,
-Python 3 is supported, better gazetteers upport, CRFsuite support, etc.
+There are many changes from previous version: API is changed,
+Python 3 is supported, better gazetteers support, CRFsuite support, etc.
