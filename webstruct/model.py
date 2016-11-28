@@ -40,7 +40,7 @@ class NER(object):
         html_tokens, tags = self.extract_raw(bytes_data)
         groups = IobEncoder.group(zip(html_tokens, tags))
         return _drop_empty(
-            (self.build_entity(tokens, tag), tag)
+            (self.build_entity(tokens), tag)
             for (tokens, tag) in groups if tag != 'O'
         )
 
