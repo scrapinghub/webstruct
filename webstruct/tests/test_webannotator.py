@@ -135,6 +135,42 @@ class WaConvertTest(HtmlTest):
         wa_tree_str = tostring(wa_tree)
         self.assertHtmlEqual(wa_tree_str, html)
 
+    def test_baseurl_nohead(self):
+        html = b"""<html><body><p>hello</p></body></html>"""
+        tree = html_document_fromstring(html)
+        wa_tree = webannotator.to_webannotator(tree,
+                                               url='http://example.com/foo')
+        self.assertHtmlEqual(tostring(wa_tree), """
+        <html>
+            <head><base href="http://example.com/foo"/></head>
+            <body><p>hello</p></body>
+        </html>
+        """)
+
+    def test_baseurl_head(self):
+        html = b"""<html><head><meta/></head><body><p>hello</p></body></html>"""
+        tree = html_document_fromstring(html)
+        wa_tree = webannotator.to_webannotator(tree,
+                                               url='http://example.com/foo')
+        self.assertHtmlEqual(tostring(wa_tree), """
+        <html>
+            <head><base href="http://example.com/foo"/><meta/></head>
+            <body><p>hello</p></body>
+        </html>
+        """)
+
+    def test_baseurl_exists(self):
+        html = b"""
+        <html>
+            <head><base href="http://example.com/foo"/></head>
+            <body><p>hello</p></body>
+        </html>
+        """
+        tree = html_document_fromstring(html)
+        wa_tree = webannotator.to_webannotator(tree,
+                                               url='http://example.com/bar')
+        self.assertHtmlEqual(tostring(wa_tree), html)
+
 
 class EntityColorsTest(HtmlTest):
     def test_entity_colors(self):
