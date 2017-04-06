@@ -28,5 +28,5 @@ setup(
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
     ],
-    install_requires=['six', 'lxml', 'scikit-learn'],
+    install_requires=['six', 'lxml', 'scikit-learn', 'tldextract'],
 )
