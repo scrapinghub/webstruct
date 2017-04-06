@@ -27,6 +27,7 @@ pip-log.txt
 cover
 nosetests.xml
 .cache
+htmlcov/
 
 # Translations
 *.mo
