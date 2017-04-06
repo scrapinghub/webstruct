@@ -29,3 +29,10 @@ Sequence Encoding
 .. automodule:: webstruct.sequence_encoding
     :members:
     :undoc-members:
+
+
+Webpage domain inferring
+------------------------
+
+.. automodule:: webstruct.infer_domain
+    :members:

@@ -5,6 +5,8 @@ import subprocess
 from functools import partial
 from itertools import chain
 from six.moves import range
+
+import tldextract
 import lxml.html
 from lxml.etree import iterwalk
 
@@ -308,3 +310,15 @@ def train_test_split_noshuffle(*arrays, **options):
     return list(chain.from_iterable(
         (a[:-test_size], a[-test_size:]) for a in arrays
     ))
+
+
+def get_domain(url):
+    """
+    >>> get_domain("http://example.com/path")
+    'example.com'
+    >>> get_domain("https://hello.example.com/foo/bar")
+    'example.com'
+    >>> get_domain("http://hello.example.co.uk/foo?bar=1")
+    'example.co.uk'
+    """
+    return tldextract.extract(url).registered_domain
