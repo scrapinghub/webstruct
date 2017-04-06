@@ -183,7 +183,7 @@ class _WaContentHandler(xml.sax.handler.ContentHandler):
 
 def _fix_sax_attributes(attrs):
     """ Fix sax startElement attributes for lxml < 3.1.2 """
-    if LXML_VERSION >= (3,1,2):
+    if LXML_VERSION >= (3, 1, 2):
         return attrs
     items = [((None, key), value) for key, value in attrs.items()]
     return OrderedDict(items)
@@ -241,7 +241,29 @@ def _copy_title(tree):
     title.text = text
 
 
-def to_webannotator(tree, entity_colors=None):
+def _ensure_head(tree):
+    """ Insert <head> element if it is missing. """
+    heads = tree.xpath('//head')
+    if heads:
+        return heads[0]
+    htmls = tree.xpath('//html')
+    root = htmls[0] if htmls else tree.root
+    head = Element("head")
+    root.insert(0, head)
+    return head
+
+
+def _set_base(tree, baseurl):
+    """ 
+    Add <base> tag to the tree. If <base> tag already exists do nothing.
+    """
+    if tree.xpath('//base'):
+        return
+    head = _ensure_head(tree)
+    head.insert(0, Element("base", href=baseurl))
+
+
+def to_webannotator(tree, entity_colors=None, url=None):
     """
     Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
 
@@ -261,4 +283,6 @@ def to_webannotator(tree, entity_colors=None):
     tree = handler.out.etree
     _copy_title(tree)
     _add_wacolor_elements(tree, handler.entity_colors)
+    if url is not None:
+        _set_base(tree, url)
     return tree

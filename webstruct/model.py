@@ -93,22 +93,22 @@ class NER(object):
         """
         return _join_tokens(html_tokens)
 
-    def annotate(self, bytes_data, pretty_print=False):
+    def annotate(self, bytes_data, url=None, pretty_print=False):
         """
         Return annotated HTML data in WebAnnotator format.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
         tree = self.html_tokenizer.detokenize_single(html_tokens, tags)
-        tree = to_webannotator(tree, self.entity_colors)
+        tree = to_webannotator(tree, entity_colors=self.entity_colors, url=url)
         return tostring(tree, pretty_print=pretty_print)
 
-    def annotate_url(self, url):
+    def annotate_url(self, url, pretty_print=False):
         """
         Return annotated HTML data in WebAnnotator format; input is downloaded
         from ``url``.
         """
         data = urlopen(url).read()
-        return self.annotate(data)
+        return self.annotate(data, pretty_print=pretty_print, url=url)
 
     def __getstate__(self):
         dct = self.__dict__.copy()
