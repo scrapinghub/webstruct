@@ -45,13 +45,15 @@ class Mock(object):
         else:
             return Mock()
 
+
 MOCK_MODULES = [
     'lxml', 'lxml.html', 'lxml.html.clean', 'lxml.etree', 'lxml.sax',
     'sklearn', 'sklearn.base', 'sklearn.metrics', 'sklearn.pipeline',
-    'numpy'
+    'numpy', 'tldextract',
 ]
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = Mock()
+
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
 
 # -- General configuration ------------------------------------------------
 
