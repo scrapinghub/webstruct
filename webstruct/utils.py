@@ -2,11 +2,11 @@
 from __future__ import absolute_import, print_function
 import re
 import subprocess
-
-import tldextract
 from functools import partial
 from itertools import chain
 from six.moves import range
+
+import tldextract
 import lxml.html
 from lxml.etree import iterwalk
 
