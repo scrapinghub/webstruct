@@ -3,7 +3,8 @@
 :mod:`webstruct.model` contains convetional wrappers for creating NER models.
 """
 from __future__ import absolute_import
-from six.moves.urllib.request import urlopen
+
+import requests
 from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
@@ -23,6 +24,10 @@ class NER(object):
     sequences and returns lists of predicted IOB2 tags.
     :func:`~.create_wapiti_pipeline` function returns such model.
     """
+    HEADERS = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
+    }
+
     def __init__(self, model, loader=None, html_tokenizer=None,
                  entity_colors=None):
         self.model = model
@@ -49,7 +54,7 @@ class NER(object):
         A convenience wrapper for :meth:`extract` method that downloads
         input data from a remote URL.
         """
-        data = urlopen(url).read()
+        data = self._download(url)
         return self.extract(data)
 
     def extract_raw(self, bytes_data):
@@ -79,7 +84,7 @@ class NER(object):
         A convenience wrapper for :meth:`extract_groups` method that downloads
         input data from a remote URL.
         """
-        data = urlopen(url).read()
+        data = self._download(url)
         return self.extract_groups(data, dont_penalize=dont_penalize)
 
     def build_entity(self, html_tokens):
@@ -107,8 +112,11 @@ class NER(object):
         Return annotated HTML data in WebAnnotator format; input is downloaded
         from ``url``.
         """
-        data = urlopen(url).read()
+        data = self._download(url)
         return self.annotate(data, pretty_print=pretty_print, url=url)
+
+    def _download(self, url):
+        return requests.get(url, headers=self.HEADERS).content
 
     def __getstate__(self):
         dct = self.__dict__.copy()
