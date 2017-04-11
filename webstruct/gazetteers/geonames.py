@@ -25,6 +25,7 @@ _GEONAMES_DTYPES = {
     'admin2_code': object,
     'admin3_code': object,
     'admin4_code': object,
+    'cc2': object,
 }
 
 _GEONAMES_PANDAS_PARAMS = dict(
