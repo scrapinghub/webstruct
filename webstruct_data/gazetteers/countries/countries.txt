@@ -1217,6 +1217,7 @@ Choson-minjujuui-inmin-konghwaguk
 Repubblica popolare democratica di Corea
 Korea (Demokratische Volksrepublik)
 Korea, Republic of
+Korea Republic
 Republic of Korea
 Corée, République de
 République de Corée
@@ -1642,6 +1643,7 @@ Federal Democratic Republic of Nepal
 Sanghiya Loktantrik Ganatantra Nepal
 Repubblica Democratica Federale di Nepal
 Netherlands
+The Netherlands
 Pays-Bas
 Países Bajos
 the Kingdom of the Netherlands
@@ -2138,6 +2140,8 @@ Jamhuuriyada Demuqraadiga Soomaaliyeed
 Somali Republic
 Repubblica somala
 South Africa
+S. Africa
+S.Africa
 Afrique du Sud
 Sudáfrica
 Republic of South Africa
@@ -2176,6 +2180,7 @@ Reino de Espana
 Regno di Spagna
 Spanien
 Sri Lanka
+Srilanka
 the Democratic Socialist Republic of Sri Lanka
 la République socialiste démocratique de Sri Lanka
 la República Socialista Democrática de Sri Lanka
@@ -2464,6 +2469,10 @@ Emirati arabi uniti
 Vereinigte Arabische Emirate
 United Kingdom
 UK
+U.K.
+U. K.
+England
+GB
 Royaume-Uni
 el Reino Unido de Gran Bretaña e Irlanda del Norte
 the United Kingdom of Great Britain and Northern Ireland
