@@ -44,3 +44,11 @@ webstruct_data/datastore
 docs/_build
 webstruct_data/todo
 notebooks/old
+notebooks/*.zip
+notebooks/*.html
+notebooks/*.ipynb
+notebooks/*.marisa
+notebooks/*.wapiti
+notebooks/*.crfsuite
+webstruct_data/corpus/random_pages/wa/*.html
+webstruct_data/corpus/us_contact_pages/cleaned
