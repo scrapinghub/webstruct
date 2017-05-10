@@ -1,6 +1,17 @@
 Changes
 =======
 
+0.5 (2017-05-10)
+----------------
+
+* webstruct.model.NER now uses ``requests`` library to make HTTP requests;
+* changed default headers used by webstruct.model.NER;
+* new ``webstruct.infer_domain`` module useful for proper cross-validation;
+* webstruct.webannotator.to_webannotator got an option to add ``<base>``
+  tag with the original URL to the page;
+* fixed a warning in webstruct.gazetteers.geonames.read_geonames;
+* add a few more country names to countries.txt list.
+
 0.4.1 (2016-11-28)
 ------------------
 
@@ -16,7 +27,7 @@ Changes
   WebAnnotator;
 * fixed 'dont_penalize' argument of webstruct.NER.extract_groups_from_url;
 * new webstruct.model.extract_entity_groups utility function;
-* HtmlTokenizer and HtmlToken are modev to their own module
+* HtmlTokenizer and HtmlToken are moved to their own module
   (webstruct.html_tokenizer);
 * test improvements;
 
