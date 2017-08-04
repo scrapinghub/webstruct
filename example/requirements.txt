@@ -1,0 +1,7 @@
+requests
+sklearn-crfsuite==0.3.6
+pandas
+dawg==0.7.8
+eli5==0.7
+joblib
+tqdm==4.15.0

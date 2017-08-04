@@ -52,3 +52,6 @@ notebooks/*.wapiti
 notebooks/*.crfsuite
 webstruct_data/corpus/random_pages/wa/*.html
 webstruct_data/corpus/us_contact_pages/cleaned
+example/_data/*
+example/*.joblib
+example/*.html
