@@ -1,7 +1,7 @@
 Contact extraction using Webstruct
 ==================================
 
-This repository contains code to train a model for contact and address
+This folder contains code to train a model for contact and address
 extraction. The result is a .joblib file with pickled webstruct.NER object.
 
 Currently the example requires Python 3.5+
@@ -32,7 +32,7 @@ information about the model.
 Usage
 -----
 
-To use the saved model code in this repository is not needed.
+To use the saved model code in this folder is not needed.
 Make sure joblib, sklearn-crfsuite and webstruct are installed,
 then load the model::
 
