@@ -4,7 +4,13 @@ Contact extraction using Webstruct
 This folder contains code to train a model for contact and address
 extraction. The result is a .joblib file with pickled webstruct.NER object.
 
-Currently the example requires Python 3.5+
+Python packages from requirements.txt file are needed; install them using
+
+::
+
+    pip install -r requirements.txt
+
+Currently the example requires Python 3.5+.
 
 Training
 --------
