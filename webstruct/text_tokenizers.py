@@ -109,15 +109,15 @@ class WordTokenizer(object):
 class DefaultTokenizer(WordTokenizer):
     def tokenize(self, text):
         tokens = super(DefaultTokenizer, self).tokenize(text)
-        #remove standalone commas and semicolons
-        #as they broke tag sets, e.g. PERSON->FUNCTION in case "PERSON, FUNCTION"
+        # remove standalone commas and semicolons
+        # as they broke tag sets, e.g. PERSON->FUNCTION in case "PERSON, FUNCTION"
 
-        #but it has negative consequences, e.g.
-        #etalon:    [PER-B, PER-I, FUNC-B]
-        #predicted: [PER-B, PER-I, PER-I ]
-        #because we removed punctuation
+        # but it has negative consequences, e.g.
+        # etalon:    [PER-B, PER-I, FUNC-B]
+        # predicted: [PER-B, PER-I, PER-I ]
+        # because we removed punctuation
 
-        #FIXME: remove as token, but save as feature left/right_punct:","
+        # FIXME: remove as token, but save as feature left/right_punct:","
         return [t for t in tokens if t not in {',', ';'}]
 
 
