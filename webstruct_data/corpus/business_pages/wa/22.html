@@ -51,7 +51,7 @@ body,td,th {
 * This notice MUST stay intact for legal use
 * Visit http://www.dynamicdrive.com/ for this script and 100s more.
 ***********************************************/
- 
+
 var fadeimages=new Array()
 //SET IMAGE PATHS. Extend or contract array as needed
 fadeimages[0]=["images/slide21.jpg", "", ""] //plain image syntax
@@ -67,13 +67,13 @@ fadeimages[9]=["images/slide22.jpg", "", ""] //plain image syntax
 fadeimages[10]=["images/slide23.jpg", "", ""] //plain image syntax
 var fadebgcolor="#CAEEFF"
 ////NO need to edit beyond here/////////////
- 
+
 var fadearray=new Array() //array to cache fadeshow instances
 var fadeclear=new Array() //array to cache corresponding clearinterval pointers
- 
+
 var dom=(document.getElementById) //modern dom browsers
 var iebrowser=document.all
- 
+
 function fadeshow(theimages, fadewidth, fadeheight, borderwidth, delay, pause, displayorder){
 this.pausecheck=pause
 this.mouseovercheck=0
@@ -94,15 +94,15 @@ for (p=0;p<theimages.length;p++){
 this.postimages[p]=new Image()
 this.postimages[p].src=theimages[p][0]
 }
- 
+
 var fadewidth=fadewidth+this.imageborder*2
 var fadeheight=fadeheight+this.imageborder*2
- 
+
 if (iebrowser&&dom||dom) //if IE5+ or modern browsers (ie: Firefox)
 document.write('<div id="master'+this.slideshowid+'" style="position:relative;width:'+fadewidth+'px;height:'+fadeheight+'px;overflow:hidden;"><div id="'+this.canvasbase+'_0" style="position:absolute;width:'+fadewidth+'px;height:'+fadeheight+'px;top:0;left:0;filter:progid:DXImageTransform.Microsoft.alpha(opacity=10);opacity:0.1;-moz-opacity:0.1;-khtml-opacity:0.1;background-color:'+fadebgcolor+'"></div><div id="'+this.canvasbase+'_1" style="position:absolute;width:'+fadewidth+'px;height:'+fadeheight+'px;top:0;left:0;filter:progid:DXImageTransform.Microsoft.alpha(opacity=10);opacity:0.1;-moz-opacity:0.1;-khtml-opacity:0.1;background-color:'+fadebgcolor+'"></div></div>')
 else
 document.write('<div><img name="defaultslide'+this.slideshowid+'" src="'+this.postimages[0].src+'"></div>')
- 
+
 if (iebrowser&&dom||dom) //if IE5+ or modern browsers such as Firefox
 this.startit()
 else{
@@ -136,7 +136,7 @@ obj.nextimageindex=(obj.nextimageindex<obj.postimages.length-1)? obj.nextimagein
 setTimeout("fadearray["+obj.slideshowid+"].rotateimage()", obj.delay)
 }
 }
- 
+
 fadeshow.prototype.populateslide=function(picobj, picindex){
 var slideHTML=""
 if (this.theimages[picindex][1]!="") //if associated link exists for image
@@ -146,8 +146,8 @@ if (this.theimages[picindex][1]!="") //if associated link exists for image
 slideHTML+='</a>'
 picobj.innerHTML=slideHTML
 }
- 
- 
+
+
 fadeshow.prototype.rotateimage=function(){
 if (this.pausecheck==1) //if pause onMouseover enabled, cache object
 var cacheobj=this
@@ -166,7 +166,7 @@ ns4imgobj.src=this.postimages[this.curimageindex].src
 }
 this.curimageindex=(this.curimageindex<this.postimages.length-1)? this.curimageindex+1 : 0
 }
- 
+
 fadeshow.prototype.resetit=function(){
 this.degree=10
 var crossobj=iebrowser? iebrowser[this.curcanvas] : document.getElementById(this.curcanvas)
@@ -183,8 +183,8 @@ crossobj.style.KhtmlOpacity=this.degree/100
 else if (crossobj.style.opacity&&!crossobj.filters)
 crossobj.style.opacity=this.degree/101
 }
- 
- 
+
+
 fadeshow.prototype.startit=function(){
 var crossobj=iebrowser? iebrowser[this.curcanvas] : document.getElementById(this.curcanvas)
 this.populateslide(crossobj, this.curimageindex)
@@ -405,7 +405,7 @@ return 0
                           <td><script type="text/javascript">
 //new fadeshow(IMAGES_ARRAY_NAME, slideshow_width, slideshow_height, borderwidth, delay, pause (0=no, 1=yes), optionalRandomOrder)
 new fadeshow(fadeimages, 750, 410, 0, 6000, 1, "")
- 
+
           </script><div id="master0" style="position:relative;width:750px;height:410px;overflow:hidden;"><div id="canvas0_0" style="position: absolute; width: 750px; height: 410px; top: 0px; left: 0px; opacity: 0.990099; background-color: rgb(202, 238, 255); z-index: 12;"><img src="http://www.peacearchbusinesscenter.com/images/slide08.jpg" border="0px"></div><div id="canvas0_1" style="position: absolute; width: 750px; height: 410px; top: 0px; left: 0px; opacity: 0.990099; background-color: rgb(202, 238, 255); z-index: 11;"><img src="http://www.peacearchbusinesscenter.com/images/slide13.jpg" border="0px"></div></div><div id="master0" style="position:relative;width:750px;height:410px;overflow:hidden;"><div id="canvas0_0" style="position: absolute; width: 750px; height: 410px; top: 0px; left: 0px; opacity: 0.990099; background-color: rgb(202, 238, 255); z-index: 1;"><img src="http://www.peacearchbusinesscenter.com/images/slide09.jpg" border="0px"></div><div id="canvas0_1" style="position: absolute; width: 750px; height: 410px; top: 0px; left: 0px; opacity: 0.990099; background-color: rgb(202, 238, 255); z-index: 1;"><img src="http://www.peacearchbusinesscenter.com/images/slide15.jpg" border="0px"></div></div></td>
                         </tr>
                       </tbody></table></td>
@@ -446,9 +446,9 @@ new fadeshow(fadeimages, 750, 410, 0, 6000, 1, "")
             <tr>
               <td align="left" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="1000">
                 <tbody><tr>
-                  <td align="left" valign="top" width="250"><div class="someclass" id="pscroller1" style="position: relative; overflow: hidden"><div class="innerDiv" id="pscroller11" style="position: absolute; width: 237px; top: 212px;">"I am happy to have chosen Peace Arch Business Center for all of my business support needs. A great environment to conduct business<br>with an international flavor right here<br>in the north county and next door to lower mainland British Columbia, Canada."<br><br><strong><em>Mike Leigh, Principle,<br>Strategic Management LLC</em></strong></div><div class="innerDiv" id="pscroller12" style="position: absolute; width: 237px; visibility: visible; top: 5px;">"We are delighted Peace Arch Business Center is here. What a great idea!"<br><br><strong><em>Mike Kent, Realtor,<br>Windermere Real Estate<br>Whatcom County, Inc.</em></strong></div></div><br><div id="pscroller1" class="someclass" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="pscroller11">"I am happy to have chosen Peace Arch Business Center for all of my business support needs. A great environment to conduct business<br>with an international flavor right here<br>in the north county and next door to lower mainland British Columbia, Canada."<br><br><strong><em><span style="color:#000000; background-color:#FF0000;" wa-subtypes="" wa-id="484" title="PER" wa-type="PER" class="WebAnnotator_PER">Mike Leigh</span>, <span style="color:#000000; background-color:#33FF33;" wa-subtypes="" wa-id="485" title="FUNC" wa-type="FUNC" class="WebAnnotator_FUNC">Principle</span>,<br><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="486" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">Strategic Management LLC</span></em></strong></div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="pscroller12">"We are delighted Peace Arch Business Center is here. What a great idea!"<br><br><strong><em>Mike Kent, Realtor,<br>Windermere Real Estate<br>Whatcom County, Inc.</em></strong></div></div><br><table border="0" cellpadding="0" cellspacing="0" width="250">
+                    <td align="left" valign="top" width="250"><div class="someclass" id="pscroller1" style="position: relative; overflow: hidden"><div class="innerDiv" id="pscroller11" style="position: absolute; width: 237px; top: 212px;">"I am happy to have chosen Peace Arch Business Center for all of my business support needs. A great environment to conduct business<br>with an international flavor right here<br>in the north county and next door to lower mainland British Columbia, Canada."<br><br><strong><em><span style="color:#000000; background-color:#FF0000;" wa-subtypes="" wa-id="904" title="PER" wa-type="PER" class="WebAnnotator_PER">Mike Leigh</span>, <span style="color:#000000; background-color:#33FF33;" wa-subtypes="" wa-id="905" title="FUNC" wa-type="FUNC" class="WebAnnotator_FUNC">Principle</span>,<br><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="906" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">Strategic Management LLC</span></em></strong></div><div class="innerDiv" id="pscroller12" style="position: absolute; width: 237px; visibility: visible; top: 5px;">"We are delighted Peace Arch Business Center is here. What a great idea!"<br><br><strong><em><span style="color:#000000; background-color:#FF0000;" wa-subtypes="" wa-id="900" title="PER" wa-type="PER" class="WebAnnotator_PER">Mike Kent</span>, <span style="color:#000000; background-color:#33FF33;" wa-subtypes="" wa-id="901" title="FUNC" wa-type="FUNC" class="WebAnnotator_FUNC">Realtor</span>,<br><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="902" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">Windermere Real Estate</span><br><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="903" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">Whatcom County, Inc.</span></em></strong></div></div><br><div id="pscroller1" class="someclass" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="pscroller11">"I am happy to have chosen Peace Arch Business Center for all of my business support needs. A great environment to conduct business<br>with an international flavor right here<br>in the north county and next door to lower mainland British Columbia, Canada."<br><br><strong><em><span style="color:#000000; background-color:#FF0000;" wa-subtypes="" wa-id="484" title="PER" wa-type="PER" class="WebAnnotator_PER">Mike Leigh</span>, <span style="color:#000000; background-color:#33FF33;" wa-subtypes="" wa-id="485" title="FUNC" wa-type="FUNC" class="WebAnnotator_FUNC">Principle</span>,<br><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="486" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">Strategic Management LLC</span></em></strong></div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="pscroller12">"We are delighted Peace Arch Business Center is here. What a great idea!"<br><br><strong><em>Mike Kent, Realtor,<br>Windermere Real Estate<br>Whatcom County, Inc.</em></strong></div></div><br><table border="0" cellpadding="0" cellspacing="0" width="250">
                     <tbody><tr>
-                      
+
 					  <script type="text/javascript">
 
 //new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
@@ -459,7 +459,7 @@ new pausescroller(pausecontent2, "pscroller2", "someclass", 2000)
 
 </script>
 
-					  
+
                     </tr>
                   </tbody></table></td>
                   <td align="left" valign="top" width="10"><img src="images/10x10trans.png" height="10" width="10"></td>
@@ -471,9 +471,9 @@ new pausescroller(pausecontent2, "pscroller2", "someclass", 2000)
                           </tr>
                           <tr>
                             <td align="left" valign="top">
-                                
+
                               <p><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=8105+Birch+Bay+Square+Street,+Blaine+WA+98230&amp;aq=&amp;sll=48.753312,-122.46131&amp;sspn=0.16886,0.308647&amp;ie=UTF8&amp;hq=&amp;hnear=8105+Birch+Bay+Square+St,+Blaine,+Whatcom,+Washington+98230&amp;t=m&amp;ll=48.93592,-122.661753&amp;spn=0.011276,0.020514&amp;z=14" class="style1" style="color:#0000FF;text-align:left" target="_blank">View Larger Map</a></small>
-                                    
+
                               </p></td>
                           </tr>
                           <tr>
