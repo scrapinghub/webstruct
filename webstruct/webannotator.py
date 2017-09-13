@@ -100,6 +100,8 @@ def apply_wa_title(tree):
         head.insert(head.index(title), wa_title)
         title.drop_tree()
         wa_title.tag = 'title'
+        for attr in  wa_title.attrib:
+            wa_title.attrib.pop(attr)
         return
 
 
@@ -254,7 +256,7 @@ def _ensure_head(tree):
 
 
 def _set_base(tree, baseurl):
-    """ 
+    """
     Add <base> tag to the tree. If <base> tag already exists do nothing.
     """
     if tree.xpath('//base'):
