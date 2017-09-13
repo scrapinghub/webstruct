@@ -29,7 +29,7 @@ def main():
         tokens, annotations = tokenizer.tokenize_single(tree)
         tree = webstruct.webannotator.to_webannotator(tree, entity_colors=colors)
         with open(args.output, 'wb') as writer:
-            tree.write(writer, pretty_print = True)
+            tree.write(writer, method = 'html', pretty_print = True)
 
 if __name__ == "__main__":
     main()
