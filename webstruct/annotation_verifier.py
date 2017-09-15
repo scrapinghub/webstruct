@@ -11,14 +11,15 @@ KNOWN_ENTITIES = [
     'EMAIL', 'PER', 'FUNC', 'SUBJ'
 ]
 
+
 def nodes_difference(l, r):
     if l.tag != r.tag:
-        return {'tag': '"{0}" != "{1}"'.format(l.tag, r.tag) }
+        return {'tag': '"{0}" != "{1}"'.format(l.tag, r.tag)}
 
     l_attrib = [(k, l.attrib[k]) for k in l.attrib]
-    l_attrib.sort(key = lambda x:x[0])
+    l_attrib.sort(key=lambda x: x[0])
     r_attrib = [(k, r.attrib[k]) for k in r.attrib]
-    r_attrib.sort(key = lambda x:x[0])
+    r_attrib.sort(key=lambda x: x[0])
 
     idx = 0
     while idx < len(l_attrib) and idx < len(r_attrib):
@@ -27,13 +28,13 @@ def nodes_difference(l, r):
         idx = idx + 1
 
         if l_attr != r_attr:
-            return {'attributes' : '"{0}" != "{1}"'.format(l_attr, r_attr)}
+            return {'attributes': '"{0}" != "{1}"'.format(l_attr, r_attr)}
 
     if idx < len(l_attrib):
-        return {'attributes' : "{0} != None".format(l_attrib[idx])}
+        return {'attributes': "{0} != None".format(l_attrib[idx])}
 
     if idx < len(r_attrib):
-        return {'attributes' : "None != {0}".format(r_attrib[idx])}
+        return {'attributes': "None != {0}".format(r_attrib[idx])}
 
     l_text = ''
     if l.text:
@@ -44,7 +45,7 @@ def nodes_difference(l, r):
         r.text = r.text.strip()
 
     if l_text != r_text:
-        return {'text' : "{0} != {1}".format(l_text, r_text)}
+        return {'text': "{0} != {1}".format(l_text, r_text)}
 
     l_tail = ''
     if l.tail:
@@ -55,17 +56,18 @@ def nodes_difference(l, r):
         r.tail = r.tail.strip()
 
     if l_tail != r_tail:
-        return {'tail' : "{0} != {1}".format(l_tail, r_tail)}
+        return {'tail': "{0} != {1}".format(l_tail, r_tail)}
 
     if len(l) != len(r):
-        return {'children count' : "{0} != {1}".format(len(l), len(r))}
+        return {'children count': "{0} != {1}".format(len(l), len(r))}
 
     return None
+
 
 def node_path(node):
     ret = ''
     current = node
-    while current != None:
+    while current is not None:
         parent = current.getparent()
         idx = 0
         if parent:
@@ -76,6 +78,7 @@ def node_path(node):
 
     return ret
 
+
 def tree_difference(l, r):
     stack = [(l, r)]
     while stack:
@@ -83,31 +86,42 @@ def tree_difference(l, r):
         diff = nodes_difference(l_node, r_node)
 
         if diff:
-            return { "l"    : node_path(l_node)
-                   , "r"    : node_path(r_node)
-                   , "diff" : diff }
+            return {"l":    node_path(l_node),
+                    "r":    node_path(r_node),
+                    "diff": diff}
 
         for idx, l_child in enumerate(l_node):
             stack.append((l_child, r_node[idx]))
 
     return None
 
+
 def main():
     cmdline = argparse.ArgumentParser()
-    cmdline.add_argument('--gate',  help = 'path to gate annotated file', type=str, required=True)
-    cmdline.add_argument('--wa',    help = 'path to wa annotated file',   type=str, required=True)
-    cmdline.add_argument('--loglevel', help = 'logging level', type=str, default='INFO')
+    cmdline.add_argument('--gate',
+                         help='path to gate annotated file',
+                         type=str,
+                         required=True)
+    cmdline.add_argument('--wa',
+                         help='path to wa annotated file',
+                         type=str,
+                         required=True)
+    cmdline.add_argument('--loglevel',
+                         help='logging level',
+                         type=str,
+                         default='INFO')
     args = cmdline.parse_args()
 
-    logging.basicConfig( level  = getattr(logging, args.loglevel.upper())
-                       , format = '%(asctime)s [%(levelname)s] %(pathname)s:%(lineno)d %(message)s' )
+    logging.basicConfig(level=getattr(logging, args.loglevel.upper()),
+                        format=('%(asctime)s [%(levelname)s] '
+                                '%(pathname)s:%(lineno)d %(message)s'))
 
     entities = KNOWN_ENTITIES
 
-    gate = webstruct.loaders.GateLoader(known_entities = entities)
-    wa = webstruct.loaders.WebAnnotatorLoader(known_entities = entities)
+    gate = webstruct.loaders.GateLoader(known_entities=entities)
+    wa = webstruct.loaders.WebAnnotatorLoader(known_entities=entities)
 
-    tokenizer = webstruct.HtmlTokenizer(tagset = entities)
+    tokenizer = webstruct.HtmlTokenizer(tagset=entities)
     with open(args.gate, 'rb') as reader:
         data = reader.read()
         gate_tree = gate.loadbytes(data)
@@ -125,20 +139,20 @@ def main():
         is_diff = True
 
     annot_diff = list()
-    for idx, (gate_a, wa_a) in enumerate(zip(gate_annotations, wa_annotations)):
+    for idx, (gate_a, wa_a) in enumerate(zip(gate_annotations,
+                                             wa_annotations)):
         if gate_a == wa_a:
             continue
 
-        annot_diff.append({ 'idx'    : idx
-                          , 'gate_a' : gate_a
-                          , 'wa_a'   : wa_a })
+        annot_diff.append({'idx':    idx,
+                           'gate_a': gate_a,
+                           'wa_a':   wa_a})
 
     if annot_diff:
         logging.error('annotation differs %s', json.dumps(annot_diff))
         is_diff = True
 
-    return is_diff == False
+    return is_diff is False
 
 if __name__ == "__main__":
     main()
-
