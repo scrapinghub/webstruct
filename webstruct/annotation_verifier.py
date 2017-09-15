@@ -5,7 +5,7 @@ import argparse
 import webstruct.loaders
 import webstruct.webannotator
 
-KNOWN_ENTITIES = [
+DEFAULT_ENTITIES = [
     'ORG', 'TEL', 'FAX', 'HOURS',
     'STREET', 'CITY', 'STATE', 'ZIPCODE', 'COUNTRY',
     'EMAIL', 'PER', 'FUNC', 'SUBJ'
@@ -109,6 +109,11 @@ def main():
                          help='path to file annotated in WebAnnotator format',
                          type=str,
                          required=True)
+    cmdline.add_argument('--entity',
+                         help='enitity type to verify against',
+                         type=str,
+                         action='append',
+                         required=False)
     cmdline.add_argument('--loglevel',
                          help='logging level',
                          type=str,
@@ -119,7 +124,12 @@ def main():
                         format=('%(asctime)s [%(levelname)s] '
                                 '%(pathname)s:%(lineno)d %(message)s'))
 
-    entities = KNOWN_ENTITIES
+    if args.entity:
+        entities = args.entity
+    else:
+        entities = DEFAULT_ENTITIES
+
+    logging.debug('Known entities %s', entities)
 
     gate = webstruct.loaders.GateLoader(known_entities=entities)
     wa = webstruct.loaders.WebAnnotatorLoader(known_entities=entities)
