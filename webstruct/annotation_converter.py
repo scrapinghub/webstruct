@@ -6,7 +6,8 @@ from webstruct.webannotator import EntityColors, to_webannotator
 
 
 def main():
-    cmdline = argparse.ArgumentParser()
+    cmdline = argparse.ArgumentParser(description=('utility to convert annotations'
+                                                   'from GATE format to WebAnnotator format'))
     cmdline.add_argument('--input',
                          help='path to source annotated file',
                          type=str,
