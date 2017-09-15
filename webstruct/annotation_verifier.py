@@ -97,13 +97,16 @@ def tree_difference(l, r):
 
 
 def main():
-    cmdline = argparse.ArgumentParser()
-    cmdline.add_argument('--gate',
-                         help='path to gate annotated file',
+    cmdline = argparse.ArgumentParser(description=('utility to verify '
+                                                   'annotation conversion '
+                                                   'from GATE format '
+                                                   'to WebAnnotator format'))
+    cmdline.add_argument('--GATE',
+                         help='path to file annotated in GATE format',
                          type=str,
                          required=True)
-    cmdline.add_argument('--wa',
-                         help='path to wa annotated file',
+    cmdline.add_argument('--WebAnnotator',
+                         help='path to file annotated in WebAnnotator format',
                          type=str,
                          required=True)
     cmdline.add_argument('--loglevel',
@@ -122,12 +125,12 @@ def main():
     wa = webstruct.loaders.WebAnnotatorLoader(known_entities=entities)
 
     tokenizer = webstruct.HtmlTokenizer(tagset=entities)
-    with open(args.gate, 'rb') as reader:
+    with open(args.GATE, 'rb') as reader:
         data = reader.read()
         gate_tree = gate.loadbytes(data)
         gate_tokens, gate_annotations = tokenizer.tokenize_single(gate_tree)
 
-    with open(args.wa, 'rb') as reader:
+    with open(args.WebAnnotator, 'rb') as reader:
         data = reader.read()
         wa_tree = wa.loadbytes(data)
         wa_tokens, wa_annotations = tokenizer.tokenize_single(wa_tree)
