@@ -9,6 +9,7 @@ html_2 = '<span style="abd" class="span">aa</span>'
 html_3 = '<span style="abd" class="span">aa<p>s</p></span>'
 html_3 = '<span style="abd" class="span">aa<p>s</p><p>ss</p></span>'
 
+
 class SomethingTest(unittest.TestCase):
 
     def test_is_node_equal_to_self(self):
