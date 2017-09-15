@@ -48,7 +48,10 @@ def load_webstruct_data() -> List:
         loader=wa_loader
     )
     trees = chain(trees1, trees2)
-    return list(pages_progress(trees, desc="Loading webstruct default annotated data"))
+    return list(pages_progress(
+        trees,
+        desc="Loading webstruct default annotated data"
+        ))
 
 
 def load_countries() -> Set[str]:
