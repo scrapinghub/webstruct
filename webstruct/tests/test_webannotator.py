@@ -15,6 +15,24 @@ class WaTitleTest(HtmlTest):
         webannotator.apply_wa_title(tree)
         self.assertHtmlTreeEqual(tree, html_document_fromstring(result))
 
+    def test_wa_title_no_attributes(self):
+        self.assertApplyWaTitle(
+            b"""
+            <html>
+                <head><title>Foo</title></head>
+                <body>contents</body>
+                <wa-title class="classy"><b>hello</b>, world</wa-title>
+            </html>
+            """,
+
+            b"""
+            <html>
+                <head><title><b>hello</b>, world</title></head>
+                <body>contents</body>
+            </html>
+            """
+        )
+
     def test_wa_title(self):
         self.assertApplyWaTitle(
             b"""
