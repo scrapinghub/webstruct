@@ -44,8 +44,8 @@ def load_webstruct_data() -> List:
     )
 
     trees2 = webstruct.load_trees(
-        str(WEBSTRUCT_DATA / "corpus/us_contact_pages/annotated/*.xml"),
-        loader=gate_loader
+        str(WEBSTRUCT_DATA / "corpus/us_contact_pages/wa/*.html"),
+        loader=wa_loader
     )
     trees = chain(trees1, trees2)
     return list(pages_progress(trees, desc="Loading webstruct default annotated data"))
