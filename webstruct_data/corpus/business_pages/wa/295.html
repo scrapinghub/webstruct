@@ -26,16 +26,16 @@ function openClosePopUp(id,bShow)
 $(document).ready(function(){
 
 $("#corpnotice").click(function(){
-	
+
 	$("#popupshow").show();
-							
+
         return false;
 			});
-			
+
 ;$("#close").click(function(){
-	
+
 	$("#popupshow").hide();
-							
+
         return false;
 			});
 
@@ -46,13 +46,13 @@ var aSplit = window.location.href.split('?');
         sURL = sURL.replace("#", "");
         // alert(sURL);
 
-        
+
 
         if ((sURL == 'res=P_CORP')||(sURL == 'res=P_corp')) {
             $('#post_ballot').show();
-            
+
         }
-		else 
+		else
 		{
 		$('#post_ballot').hide();
 		}
@@ -73,7 +73,7 @@ var aSplit = window.location.href.split('?');
 
 
 
-<link href="../includes/lnt_style.css" rel="stylesheet" type="text/css">   
+<link href="../includes/lnt_style.css" rel="stylesheet" type="text/css">
 
 
 
@@ -266,7 +266,7 @@ function closepopup()
 	document.getElementById("popup").style.display="none";
 }
 </script>
-	
+
 <style type="text/css">
 .backgroundPopup{
 	display:none;
@@ -285,9 +285,9 @@ function closepopup()
 }
 
 .popup{
-	display:none;  
-	position:fixed;  
-	_position:absolute; /* hack for internet explorer 6*/    
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
 	z-index:101;
 	background:url(../images/bg/content_bg.png) no-repeat;
 	padding:10px;
@@ -305,7 +305,7 @@ function closepopup()
 	top:-12px;
 	right:-12px;
 	}
-</style>    
+</style>
 
 
 
@@ -316,7 +316,7 @@ function closepopup()
 <div class="backgroundPopup" id="backgroundpopup"></div>
 <div class="popup" id="popup">
 	<p class="closebtn"><a href="javascript://" onclick="closepopup()"><img src="../images/fancy_close.png"></a></p>
-    
+
 </div>
 
 <div class="header" align="right">
@@ -333,34 +333,34 @@ function closepopup()
                 <div class="left none" id="ctl00_ctl00_lnt_logo"><img src="/lntcorporate/Common/images/l&amp;-T-logo.jpg" title="HOME" border="0"></div>
             </td>
             <td align="right" valign="top" width="50%">
-                
+
                 <p style="float: right; vertical-align: top;">
                     <select onchange="javascript:setTimeout('__doPostBack(\'ctl00$ctl00$ddlMainLink\',\'\')', 0)" class="select" id="ctl00_ctl00_ddlMainLink" name="ctl00$ctl00$ddlMainLink" style="width: 335px;">
-	<option selected="selected" value="">Other L&amp;T Websites</option>
-	<option value="~/default.aspx?res=P_CORP">Corporate</option>
-	<option value="~/default.aspx?res=P_EBG">Electrical &amp; Automation</option>
-	<option value="~/default.aspx?res=P_WIP">EWAC Alloys</option>
-	<option value="~/default.aspx?res=P_HED">Heavy Engineering</option>
-	<option value="~/default.aspx?res=P_HAS">Home Automation Solutions</option>
-	<option value="~/default.aspx?res=P_ENC">Hydrocarbon</option>
+	<option selected="selected" value="">Other <span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3000" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> Websites</option>
+	<option value="../default.aspx?res=P_CORP">Corporate</option>
+	<option value="../default.aspx?res=P_EBG">Electrical &amp; Automation</option>
+	<option value="../default.aspx?res=P_WIP">EWAC Alloys</option>
+	<option value="../default.aspx?res=P_HED">Heavy Engineering</option>
+	<option value="../default.aspx?res=P_HAS">Home Automation Solutions</option>
+	<option value="../default.aspx?res=P_ENC">Hydrocarbon</option>
 	<option value="http://www.lntinfotech.com/">IT Services</option>
-	<option value="~/default.aspx?res=P_KBL">Kansbahal Works</option>
-	<option value="~/default.aspx?res=P_CASS">L&amp;T Cassidian Limited </option>
-	<option value="~/default.aspx?res=P_ECC">L&amp;T Construction</option>
-	<option value="~/default.aspx?res=P_CMB">L&amp;T Construction &amp; Mining Machinery</option>
-	<option value="ECOhomepage.aspx?res=P_ECO">L&amp;T Energy Management Solutions</option>
-	<option value="http://www.ltfinance.com">L&amp;T Finance Limited</option>
-	<option value="http://www.lntidpl.com/">L&amp;T Infrastructure Development Projects Limited</option>
-	<option value="~/default.aspx?res=P_INF">L&amp;T Infrastructure Finance Company Limited</option>
-	<option value="~/default.aspx?res=P_PMIV">L&amp;T Institute of Project Management</option>
-	<option value="http://www.ltinsurance.com/default.htm">L&amp;T Insurance</option>
-	<option value="~/default.aspx?res=P_IES">L&amp;T - Technology Services</option>
-	<option value="~/default.aspx?res=P_KUW">L&amp;T - Kuwait Construction</option>
-	<option value="http://www.ltmetro.in">L&amp;T Metro Rail (Hyderabad) Limited</option>
-	<option value="~/default.aspx?res=P_MHI">L&amp;T-MHI Boilers Private Limited</option>
-	<option value="http://www.lntmf.com/Main/index.aspx">L&amp;T Mutual Funds</option>
-	<option value="http://www.lntsnl.com/lntsnl/Pages/home.aspx">L&amp;T-Sargent &amp; Lundy Limited</option>
-	<option value="~/default.aspx?res=P_SHF">L&amp;T Special Steels and Heavy Forgings</option>
+	<option value="../default.aspx?res=P_KBL">Kansbahal Works</option>
+	<option value="../default.aspx?res=P_CASS"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3001" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3020" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Cassidian Limited</span> </option>
+	<option value="../default.aspx?res=P_ECC"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3003" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3021" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Construction</span></option>
+	<option value="../default.aspx?res=P_CMB"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3004" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3022" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Construction &amp; Mining Machinery</span></option>
+	<option value="ECOhomepage.aspx?res=P_ECO"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3005" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3023" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Energy Management Solutions</span></option>
+	<option value="http://www.ltfinance.com"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3006" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3024" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Finance Limited</span></option>
+	<option value="http://www.lntidpl.com/"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3007" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="5000" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Infrastructure Development Projects Limited</span></option>
+	<option value="../default.aspx?res=P_INF"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3008" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3025" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Infrastructure Finance Company Limited</span></option>
+	<option value="../default.aspx?res=P_PMIV"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3009" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3026" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Institute of Project Management</span></option>
+	<option value="http://www.ltinsurance.com/default.htm"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3010" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3027" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Insurance</span></option>
+	<option value="../default.aspx?res=P_IES"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3011" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> - <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3028" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Technology Services</span></option>
+	<option value="../default.aspx?res=P_KUW"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3012" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> - <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3029" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Kuwait Construction</span></option>
+	<option value="http://www.ltmetro.in"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3013" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3030" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Metro Rail (Hyderabad) Limited</span></option>
+	<option value="../default.aspx?res=P_MHI"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3014" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span>-<span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3031" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">MHI Boilers Private Limited</span></option>
+	<option value="http://www.lntmf.com/Main/index.aspx"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3015" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3032" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Mutual Funds</span></option>
+	<option value="http://www.lntsnl.com/lntsnl/Pages/home.aspx"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3018" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span>-<span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3033" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Sargent &amp; Lundy Limited</span></option>
+    <option value="../default.aspx?res=P_SHF"><span style="color:#000000; background-color:#33CCFF;" wa-subtypes="" wa-id="3019" title="ORG" wa-type="ORG" class="WebAnnotator_ORG">L&amp;T</span> <span style="color:#000000; background-color:#66FF99;" wa-subtypes="" wa-id="3034" title="SUBJ" wa-type="SUBJ" class="WebAnnotator_SUBJ">Special Steels and Heavy Forgings</span></option>
 	<option value="~/default.aspx?res=P_MIPD">Machinery &amp; Industrial Products</option>
 	<option value="~/default.aspx?res=P_NPL">Nabha Power Limited</option>
 	<option value="~/default.aspx?res=P_PWR">Power</option>
@@ -377,14 +377,14 @@ function closepopup()
         </tr>
         <tr>
             <td>&nbsp;
-                
+
             </td>
             <td valign="top">
                 <div style="float: right;">
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tbody><tr>
                             <td class="padding_left10">
-                                
+
                             </td>
                             <td align="right">
                                 &nbsp;
@@ -393,16 +393,16 @@ function closepopup()
                                 &nbsp;
                             </td>
                             <td class="padding-right10">
-                                
-                                    
+
+
                             </td>
                         </tr>
-                        
-                        
-                        
-                        
-                         
-                        
+
+
+
+
+
+
                     </tbody></table>
                 </div>
             </td>
@@ -413,18 +413,18 @@ function closepopup()
         </tr>
         <tr>
             <td>&nbsp;
-                
+
             </td>
             <td>
                 <a href="search.aspx" class="links_header" style="display: none">
                     <img id="ctl00_ctl00_ImgSerach" src="/lntcorporate/ebg/images/search_icon.gif" title="Search" border="0" height="12" width="11"></a>
-                
+
                 <img id="ctl00_ctl00_ImgSitemap" src="/lntcorporate/ebg/images/sitemap_icon.gif" style="display: none;" title="sitemap" border="0" height="11" width="12">
-                
-                    
+
+
             </td>
         </tr>
-        
+
     </tbody></table>
 </div>
 
@@ -433,20 +433,20 @@ function closepopup()
 <div align="right">
 
 </div>
-               
+
 <link href="../includes/lnt_style.css" rel="stylesheet" type="text/css">
     <script language="JavaScript">
 function controlEnter (obj, event)
-     {      
+     {
          var keyCode = event.keyCode ;
          if (keyCode == 13)
-         {                  
+         {
              __doPostBack(obj, '');
-                        return false;      
-         }      
+                        return false;
+         }
          else  {
-                       return true; 
-         } 
+                       return true;
+         }
      }
 function hideMe(){ //v3.0
 		document.getElementById('fc').style.display = 'none'; {
@@ -454,14 +454,14 @@ function hideMe(){ //v3.0
 		}
 	}0
 	function showMe(){ //v3.0
-		document.getElementById('fc').style.display = 'block'; 
+		document.getElementById('fc').style.display = 'block';
 	}
-		
+
 	function hideMe2(){ //v3.0
-		document.getElementById('f_ct').style.display = 'none'; 
+		document.getElementById('f_ct').style.display = 'none';
 	}
 	function showMe2(){ //v3.0
-		document.getElementById('f_ct').style.display = 'block'; 
+		document.getElementById('f_ct').style.display = 'block';
 	}
 	function MM_swapImgRestore() { //v3.0
   	var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
@@ -487,15 +487,15 @@ function hideMe(){ //v3.0
 
     function chbg(san)
     {
-    var tmp = document.getElementById(san); 
+    var tmp = document.getElementById(san);
     tmp.className='bg_mo'
     }
 
     function chbg1(may)
     {
-    var tmp = document.getElementById(may); 
+    var tmp = document.getElementById(may);
     tmp.className='bg_normal'
-    }	
+    }
 
     <!--
     function MM_swapImgRestore() { //v3.0
@@ -522,12 +522,12 @@ function hideMe(){ //v3.0
     }
     //-->
     </script>
-   
+
 <title>
 
 </title>
 
-    
+
 
 
 <div id="ctl00_ctl02_menu_script"><script language="JavaScript" src="/lntcorporate/Common/Controls/mm_menu.js" type="text/javascript"></script><script language="JavaScript" src="/lntcorporate/Common/Controls/js/mm_menu_P_CORP_version1.js" type="text/javascript"></script></div>
@@ -1142,14 +1142,14 @@ function hideMe(){ //v3.0
 </div>
 </span>
 
-    
+
  <div class="menu"><div class="search"><input onkeypress="return controlEnter('ctl00$ctl02$LinkButton1',event);" class="textbox" id="ctl00_ctl02_txtsearch" name="ctl00$ctl02$txtsearch" style="width:125px;" type="text"> <a href="javascript:__doPostBack('ctl00%24ctl02%24LinkButton1','')" id="ctl00_ctl02_LinkButton1"><img src="../images/search.jpg">
         </a></div>
     <div class="alignleft left" id="ctl00_ctl02_global_navigation" style="width:80%;" valign="top" align="left"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="alignleft" id="td0" style="cursor:pointer;" title="About Us" align="left" valign="top"><a><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_AABT.gif';MM_startTimeout();" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_AABT.gif';MM_showMenu(window.mm_menu_P_CORP_AABT,0,46,null,'img_td0')" id="img_td0" name="img_td0" src="/lntcorporate/Common/Images/menu_P_CORP_AABT.gif" border="0"></a></td><td class="alignleft" id="td1" style="cursor:pointer;" title="Our Offerings" align="left" valign="top"><a><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_BOFF.gif';MM_startTimeout();" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_BOFF.gif';MM_showMenu(window.mm_menu_P_CORP_BOFF,0,46,null,'img_td1')" id="img_td1" name="img_td1" src="/lntcorporate/Common/Images/menu_P_CORP_BOFF.gif" border="0"></a></td><td class="alignleft" id="td2" style="cursor:hand;" title="Investors" align="left" valign="top"><a href="http://investors.larsentoubro.com/index.aspx"><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_CINV.gif';" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_CINV.gif';" id="img_td2" name="img_td2" src="/lntcorporate/Common/Images/menu_P_CORP_CINV.gif" border="0"></a></td><td class="alignleft" id="td3" style="cursor:pointer;" title="Careers" align="left" valign="top"><a><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_DCAR.gif';MM_startTimeout();" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_DCAR.gif';MM_showMenu(window.mm_menu_P_CORP_DCAR,0,46,null,'img_td3')" id="img_td3" name="img_td3" src="/lntcorporate/Common/Images/menu_P_CORP_DCAR.gif" border="0"></a></td><td class="alignleft" id="td4" style="cursor:pointer;" title="Media Room" align="left" valign="top"><a><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_EMID.gif';MM_startTimeout();" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_EMID.gif';MM_showMenu(window.mm_menu_P_CORP_EMID,0,46,null,'img_td4')" id="img_td4" name="img_td4" src="/lntcorporate/Common/Images/menu_P_CORP_EMID.gif" border="0"></a></td><td class="alignleft" id="td5" style="cursor:hand;" title="Alumni" align="left" valign="top"><a href="http://www.lntalumni.com/default.aspx"><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_FALU.gif';" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_FALU.gif';" id="img_td5" name="img_td5" src="/lntcorporate/Common/Images/menu_P_CORP_FALU.gif" border="0"></a></td><td class="alignleft" id="td6" style="cursor:hand;" title="Contact Us" align="left" valign="top"><a href="/lntcorporate/Default.aspx?res=P_CORP_HCNT"><img onmouseout="this.src='/lntcorporate/Common/Images/menu_P_CORP_HCNT.gif';MM_startTimeout();" onmouseover="this.src='/lntcorporate/Common/Images/menu_mo_P_CORP_HCNT.gif';" id="img_td6" name="img_td6" src="/lntcorporate/Common/Images/menu_P_CORP_HCNT.gif" border="0"></a></td><td valign="top" width="100%"></td></tr></tbody></table></div>
-       
+
         </div>
-               
-			   
+
+
 			   <div style="float:right; width:293px;">
 
 
@@ -1186,20 +1186,20 @@ div_element.style.display='block';
 return false;
 }
 function setImage(id)
-{  
-  
+{
+
    if(id== 'rhs_offerings')
-   {  
+   {
       document.getElementById("ctl00_ctl07_Button1").src = '../Controls/Images/tab1_mo.jpg';
       document.getElementById("ctl00_ctl07_Button3").src = '../Controls/Images/tab2.jpg';
 
-     
+
    }
    else
-   { 
+   {
       document.getElementById("ctl00_ctl07_Button3").src = '../Controls/Images/tab2_mo.jpg';
       document.getElementById("ctl00_ctl07_Button1").src = '../Controls/Images/tab1.jpg';
-     
+
    }
 }
 </script>
@@ -1245,7 +1245,7 @@ border-bottom:3px solid #fea82d;
             <div class="flexcroll formfont" id="test5">
                 <div id="ctl00_ctl07_rhs_offerings"><table><tbody><tr><td class="offering" colspan="2"><div id="Outer_items_0" runat="server"><a onmouseover="showhideofferings(0,10)" class="padding_left5 links_blue">Turnkey Projects</a></div><div id="inner_items_0" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_ATP_AHYC" style="padding-left:5px;">Hydrocarbon</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_ATP_BPWR" style="padding-left:5px;">Power</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_1" runat="server"><a href="homepage_news.aspx?res=P_ECC" onmouseover="showhideofferings(1,10)" class="padding_left5 links_blue">Construction</a></div><div id="inner_items_1" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_BCON_ASPS" style="padding-left:5px;">Infrastructure Projects</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_BCON_BISC" style="padding-left:5px;">Buildings &amp; Factories</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_BCON_CBPR" style="padding-left:5px;">Power Trans. &amp; Dist. Projects</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_BCON_DESE" style="padding-left:5px;">Metallurgical &amp; Material Handling Projects</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_BCON_EINP" style="padding-left:5px;">Realty Projects</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_2" runat="server"><a href="homepage_news.aspx?res=P_HED" onmouseover="showhideofferings(2,10)" class="padding_left5 links_blue">Engineered Products &amp; Systems</a></div><div id="inner_items_2" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_AREF" style="padding-left:5px;">Refinery</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_BONG" style="padding-left:5px;">Oil &amp; Gas</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_CPTC" style="padding-left:5px;">Petrochemicals</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_DFER" style="padding-left:5px;">Fertiliser</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_ECGS" style="padding-left:5px;">Coal Gasification</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_FARS" style="padding-left:5px;">Aerospace</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_GTPP" style="padding-left:5px;">Thermal Power Plant</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_HNPP" style="padding-left:5px;">Nuclear Power Plant</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_CEPS_IDEF" style="padding-left:5px;">Defence</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_3" runat="server"><a onmouseover="showhideofferings(3,10)" class="padding_left5 links_blue">Power Projects</a></div><div id="inner_items_3" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_ATHER_1" style="padding-left:5px;">Thermal</a><br><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_HYDRO_2" style="padding-left:5px;">Hydropower</a><br><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_NUCL_3" style="padding-left:5px;">Nuclear</a><br><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_OPLAUTO_5" style="padding-left:5px;">Plant Automation</a><br><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_QPTRANS_6" style="padding-left:5px;">Power Transmission &amp; Distribution</a><br><span></span><a href="../../Default.aspx?res=P_CORP_PROJ_RPDEV_7" style="padding-left:5px;">Power Development</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_4" runat="server"><a href="homepage_news.aspx?res=P_EBG" onmouseover="showhideofferings(4,10)" class="padding_left5 links_blue">Electrical &amp; Electronic Products &amp; Systems</a></div><div id="inner_items_4" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_DEEP_ASWP" style="padding-left:5px;">Switchgear Products</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_DEEP_CMSR" style="padding-left:5px;">Metering Solutions</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_DEEP_BESY" style="padding-left:5px;">Electrical Systems</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_DEEP_ECNA" style="padding-left:5px;">Control &amp; Automation</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_5" runat="server"><a onmouseover="showhideofferings(5,10)" class="padding_left5 links_blue">IT &amp; Engineering Services</a></div><div id="inner_items_5" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_EIES_AITS" style="padding-left:5px;">IT Services</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_EIES_BESE" style="padding-left:5px;">Integrated Engineering Services</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_6" runat="server"><a href="../../Default.aspx?res=P_CORP_BOFF_FMVI" onclick="showhideofferings(6,10)" class="padding_left5 links_blue">Machinery &amp; Industrial Products</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_7" runat="server"><a onmouseover="showhideofferings(7,10)" class="padding_left5 links_blue">Financial Services</a></div><div id="inner_items_7" runat="server" style="display:none; padding-top:10px;  background-color:#ffffff"><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_GFSE_AEQF" style="padding-left:5px;">Equipment Finance</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_GFSE_AINF" style="padding-left:5px;">Infrastructure Finance</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_GFSE_LTIN" style="padding-left:5px;">General Insurance</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_GFSE_LTMF" style="padding-left:5px;">Mutual Fund</a><br><span></span><a href="../../Default.aspx?res=P_CORP_BOFF_GFSE_PFMS" style="padding-left:5px;">Portfolio Management Services</a><br></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_8" runat="server"><a href="../../Default.aspx?res=P_CORP_BOFF_HRAIL" onclick="showhideofferings(8,10)" class="padding_left5 links_blue">Railway Projects</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_9" runat="server"><a href="../../Default.aspx?res=P_CORP_BOFF_ISHIP" onclick="showhideofferings(9,10)" class="padding_left5 links_blue">Shipbuilding</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_10" runat="server"><a href="../../Default.aspx?res=P_CORP_BOFF_JPROJ" onclick="showhideofferings(10,10)" class="padding_left5 links_blue">Infrastructure  Development Projects </a></div></td></tr></tbody></table></div>
                 <div id="ctl00_ctl07_rhs_offerings_new" style="display:none;"><table><tbody><tr><td class="offering" colspan="2"><div id="Outer_items_0" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=5" onclick="showhideofferings(0,10)" class="padding_left5 links_blue"></a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_1" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=2" onclick="showhideofferings(1,10)" class="padding_left5 links_blue">Aerospace</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_2" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=3" onclick="showhideofferings(2,10)" class="padding_left5 links_blue">Airports</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_3" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=4" onclick="showhideofferings(3,10)" class="padding_left5 links_blue">Automobile</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_4" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=23" onclick="showhideofferings(4,10)" class="padding_left5 links_blue">Banking</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_5" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=6" onclick="showhideofferings(5,10)" class="padding_left5 links_blue">Chemical</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_6" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=7" onclick="showhideofferings(6,10)" class="padding_left5 links_blue">Defence</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_7" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=8" onclick="showhideofferings(7,10)" class="padding_left5 links_blue">Electrical</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_8" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=9" onclick="showhideofferings(8,10)" class="padding_left5 links_blue">Electronics</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_9" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=10" onclick="showhideofferings(9,10)" class="padding_left5 links_blue">Fertilisers</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_10" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=25" onclick="showhideofferings(10,10)" class="padding_left5 links_blue">Finance</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_11" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=11" onclick="showhideofferings(11,10)" class="padding_left5 links_blue">Healthcare</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_12" runat="server"><a href="../../LnT_Offerings/Service_Template1.aspx?res=P_ENC_COFF_SBU_SERV&amp;srid=125&amp;sbu=31" onclick="showhideofferings(12,10)" class="padding_left5 links_blue">Hydrocarbon Upstream</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_13" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=12" onclick="showhideofferings(13,10)" class="padding_left5 links_blue">Information Technology</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_14" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=13" onclick="showhideofferings(14,10)" class="padding_left5 links_blue">Infrastructure</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_15" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=24" onclick="showhideofferings(15,10)" class="padding_left5 links_blue">Insurance</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_16" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=14" onclick="showhideofferings(16,10)" class="padding_left5 links_blue">Minerals &amp; Metals</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_17" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=26" onclick="showhideofferings(17,10)" class="padding_left5 links_blue">Mining</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_18" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=16" onclick="showhideofferings(18,10)" class="padding_left5 links_blue">Paper</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_19" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=17" onclick="showhideofferings(19,10)" class="padding_left5 links_blue">Petro-chemical</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_20" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=27" onclick="showhideofferings(20,10)" class="padding_left5 links_blue">Plastics Processing</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_21" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=22" onclick="showhideofferings(21,10)" class="padding_left5 links_blue">Power</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_22" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=28" onclick="showhideofferings(22,10)" class="padding_left5 links_blue">Railways</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_23" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=18" onclick="showhideofferings(23,10)" class="padding_left5 links_blue">Refinery</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_24" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=19" onclick="showhideofferings(24,10)" class="padding_left5 links_blue">Shipping</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_25" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=29" onclick="showhideofferings(25,10)" class="padding_left5 links_blue">Steel</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_26" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=30" onclick="showhideofferings(26,10)" class="padding_left5 links_blue">Sugar</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_27" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=20" onclick="showhideofferings(27,10)" class="padding_left5 links_blue">Telecomm</a></div></td></tr><tr><td class="offering" colspan="2"><div id="Outer_items_28" runat="server"><a href="../../Default.aspx?res=P_CORP_IND&amp;IndID=21" onclick="showhideofferings(28,10)" class="padding_left5 links_blue">Water </a></div></td></tr></tbody></table></div>
-              
+
             </div>
         </td>
 	</tr>
@@ -1256,37 +1256,37 @@ border-bottom:3px solid #fea82d;
 </div>
 <div id="ctl00_ctl07_contenthome" style="display:none;" valign="top">
     <div style="background: url(../Images/press_bg.jpg) repeat-x; width: 292px; height: 30px;">
-        
+
         <a href="javascript:__doPostBack('ctl00%24ctl07%24btn_quicklinks','')" class="press_active" id="ctl00_ctl07_btn_quicklinks">Press Releases</a>
         <a href="javascript:__doPostBack('ctl00%24ctl07%24btn_news','')" class="news" id="ctl00_ctl07_btn_news">News</a>
     </div>
     <div style="background: url('../../common/Images/news_menu_bg.gif') repeat-y; padding: 0px 10px;
         min-height: 130px; float: left; font-weight: 200">
-        
-                
-            
-        
+
+
+
+
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tbody><tr>
-                
-                
+
+
             </tr>
         </tbody></table>
     </div>
     <p>
         <img src="../../common/Images/news_bottom.gif" height="5" width="292"></p>
-    
-    
-    
+
+
+
     <div id="ctl00_ctl07_Pcorpdiv" style="background: url(../Images/stock.gif) no-repeat;
         width: 288px; height: 112px; display: none;">
         <table id="ctl00_ctl07_Pcorptable" style="display: none;" border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tbody><tr>
 		<td height="45">&nbsp;
-                    
+
                 </td>
 		<td height="45">&nbsp;
-                    
+
                 </td>
 	</tr>
 	<tr>
@@ -1299,7 +1299,7 @@ border-bottom:3px solid #fea82d;
 	</tr>
 	<tr>
 		<td class="padding_left5 padding_top10" width="143">
-                    
+
                 </td>
 		<td class="padding_top10" width="128">
                     <a href="javascript:%5C%5C" onclick="window.open('http://www.nseindia.com/companytracker/cmtracker.jsp?symbol=LT', '_blank', 'fullscreen=yes,titlebar=no,scrollbars=no');" id="ctl00_ctl07_hl_Market">
@@ -1309,25 +1309,25 @@ border-bottom:3px solid #fea82d;
 </tbody></table>
 
     </div>
-    
-    
+
+
 </div>
 <div style="padding-left: 2px; padding-top: 10px;">
-    
+
 </div>
 </div>
-          <div style="width:226px; padding-bottom:5px; background:#fff"> 
-		      
+          <div style="width:226px; padding-bottom:5px; background:#fff">
+
 		   <span class="alignleft" id="ctl00_ctl08_td_LeftImg" style="display:none" width="41%"><img alt="" src="/lntcorporate/common/images/P_CORP_topbanner_left.jpg"></span>
     <span class="alignright" id="ctl00_ctl08_td_MidImg" style="display:none" width="8%">&nbsp;</span>
     <div class="alignright" id="ctl00_ctl08_td_RightImg" width="51%"></div>
-    
+
  </div>
-		   
+
                  <div class="contant_bg" style="clear:both;">
 				 <div class="right" style="width:292px; margin-right:5px;">
-				 
-				 
+
+
 
     <script language="javascript" type="text/javascript">
 //<!--
@@ -1337,24 +1337,24 @@ border-bottom:3px solid #fea82d;
 
     <div id="ctl00_ContentArea_divButton" style="background: url(../Images/press_bg.jpg) repeat-x;
         width: 292px; height:30px;">
-        
+
         <a href="javascript:__doPostBack('ctl00%24ContentArea%24btn_quicklinks','')" class="press_active" id="ctl00_ContentArea_btn_quicklinks">Press Releases</a>
-            
-            
+
+
         <a href="javascript:__doPostBack('ctl00%24ContentArea%24btn_news','')" class="news" id="ctl00_ContentArea_btn_news">News</a>
-            
+
   </div>
-    
-    
-    
-    
-    
+
+
+
+
+
     <div id="ctl00_ContentArea_divContent" style="background: url('../../common/Images/news_menu_bg.gif') repeat-y;
         padding: 0px 10px; min-height: 130px; float: left; font-weight: 200;">
-        
-        
-                
-            
+
+
+
+
         <table id="ctl00_ContentArea_DataGrid1" style="border-width:0px;width:100%;border-collapse:collapse;" border="0" cellspacing="0">
 	<tbody><tr>
 		<td>&nbsp;</td>
@@ -1366,7 +1366,7 @@ border-bottom:3px solid #fea82d;
                                     <img src="../Images/arrow.png">
                                 </td>
                                 <td class="alignleft press_text">
-                                    16 May 2014 
+                                    16 May 2014
                                     | <span class="links_blue">
                                         <a href="javascript:__doPostBack('ctl00%24ContentArea%24DataGrid1%24ctl02%24lbl_NewsName','')" class="links_blue" id="ctl00_ContentArea_DataGrid1_ctl02_lbl_NewsName">L&amp;T IDPL and Tata Steel divests their stake in Dhamra Port to Adani Ports</a></span>
                                 </td>
@@ -1385,7 +1385,7 @@ border-bottom:3px solid #fea82d;
                                     <img src="../Images/arrow.png">
                                 </td>
                                 <td class="alignleft press_text">
-                                    13 May 2014 
+                                    13 May 2014
                                     | <span class="links_blue">
                                         <a href="javascript:__doPostBack('ctl00%24ContentArea%24DataGrid1%24ctl03%24lbl_NewsName','')" class="links_blue" id="ctl00_ContentArea_DataGrid1_ctl03_lbl_NewsName">L&amp;T Construction Wins Orders Valued Rs. 1137 Cr</a></span>
                                 </td>
@@ -1404,7 +1404,7 @@ border-bottom:3px solid #fea82d;
                                     <img src="../Images/arrow.png">
                                 </td>
                                 <td class="alignleft press_text">
-                                    25 Apr 2014 
+                                    25 Apr 2014
                                     | <span class="links_blue">
                                         <a href="javascript:__doPostBack('ctl00%24ContentArea%24DataGrid1%24ctl04%24lbl_NewsName','')" class="links_blue" id="ctl00_ContentArea_DataGrid1_ctl04_lbl_NewsName">L&amp;T Construction Wins Rs. 4510 Cr Doha Metro Project</a></span>
                                 </td>
@@ -1423,7 +1423,7 @@ border-bottom:3px solid #fea82d;
                                     <img src="../Images/arrow.png">
                                 </td>
                                 <td class="alignleft press_text">
-                                    22 Apr 2014 
+                                    22 Apr 2014
                                     | <span class="links_blue">
                                         <a href="javascript:__doPostBack('ctl00%24ContentArea%24DataGrid1%24ctl05%24lbl_NewsName','')" class="links_blue" id="ctl00_ContentArea_DataGrid1_ctl05_lbl_NewsName">L&amp;T Insurance Subsidiary Calls Off Proposal For JV</a></span>
                                 </td>
@@ -1445,8 +1445,8 @@ border-bottom:3px solid #fea82d;
 
                 <td class="right" id="ctl00_ContentArea_td_RSS" style="height: 14px" width="100%">
                   <input class="right" id="ctl00_ContentArea_ibtnRSS" name="ctl00$ContentArea$ibtnRSS" src="../../ebg/images/content/common/rss.gif" style="border-width:0px;" type="image">
-                         
-                        
+
+
                 </td>
 
             </tr>
@@ -1454,24 +1454,24 @@ border-bottom:3px solid #fea82d;
     </div>
     <p id="ctl00_ContentArea_Image"><img src="../../common/Images/news_bottom.gif" height="5" width="292"></p>
 
-    
-    
-    
-	
-	
-    
-	
-	
-    
-	
-	
-    
-	
-	
-    
-	
-	
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<table id="ctl00_ctl06_tbl_Industry" border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tbody><tr>
@@ -1528,7 +1528,7 @@ border-bottom:3px solid #fea82d;
               <input onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ctl06$ibtn_GO", "", true, "A", "", false, false))' id="ctl00_ctl06_ibtn_GO" name="ctl00$ctl06$ibtn_GO" src="../../corp/images/go.gif" style="border-width:0px;" align="middle" type="image">
               <span id="ctl00_ctl06_RequiredFieldValidator1" style="color:Red;visibility:hidden;">*</span></td>
         </tr>
-         
+
       </tbody></table></td>
 				<td style="background-image:url(images/ui_elements/slugs/box_right.gif);"></td>
 			</tr>
@@ -1542,22 +1542,22 @@ border-bottom:3px solid #fea82d;
 				<td><img src="images/ui_elements/slugs/box_bottom_right.gif" height="3" width="3"></td>
 			</tr>
 		</tbody></table>
-		
+
 </td>
 	</tr>
 </tbody></table>
 
-                      
-                       
-            
-                        
+
+
+
+
                         <div style="display:none"></div>
 
-                       
-                       
+
+
                                             </div>
-                       
-						  
+
+
 
 
 
@@ -1569,7 +1569,7 @@ border-bottom:3px solid #fea82d;
 
 
 </div><p style="margin-top:-25px; padding-right:35px;" align="right"><a href="/lntcorporate/Default.aspx?res=P_CORP_AABT_ACOM_AOVR" id="ctl00_ctl03_Heading1"><img src="../../common/Images/more.jpg" height="28" width="62"></a></p></div>
-                       
+
 
 
 
@@ -1581,7 +1581,7 @@ border-bottom:3px solid #fea82d;
 
 
 </div><p style="margin-top:-25px; padding-right:35px;" align="right"><a href="/lntcorporate/Default.aspx?res=P_CORP_AABT_CTCN" id="ctl00_ctl04_Heading1"><img src="../../common/Images/more.jpg" height="28" width="62"></a></p></div>
-                      
+
 
 
 
@@ -1593,30 +1593,30 @@ border-bottom:3px solid #fea82d;
 
 
 </div><p style="margin-top:-25px; padding-right:35px;" align="right"><a href="/lntcorporate/Default.aspx?res=P_SIA" id="ctl00_ctl05_Heading1"><img src="../../common/Images/more.jpg" height="28" width="62"></a></p></div>
-                      
-					     
-                     
+
+
+
 					    <div id="ctl00_divQuickLinks" style="display:none;text-align:right;width:300px;" align="right"></div></div>
 					    <table align="right" border="0" cellpadding="0" cellspacing="0" width="300px">
 					    <tbody><tr><td colspan="2" align="right"><div id="ctl00_Enc_logo" style="display:none;margin-top:10px;margin-bottom:10px;">
-					    
+
 					    </div> </td></tr>
-					    
-				    
+
+
 <tr>
 
-</tr>	
+</tr>
 <tr>
 
-</tr>	
-			    
-	
-
-	
+</tr>
 
 
 
-		    
+
+
+
+
+
 <tr>
 <td id="ctl00_lt_notice" style="float:left;" valign="top">
 <div class="corpnotice"><a href="#" onclick="openClosePopUp('#popupshow',true);" id="corpnotice"><img src="images/corphome_notice_.png"></a></div>
@@ -1641,14 +1641,14 @@ border-bottom:3px solid #fea82d;
 </td>
 
   </tr>
- 
+
 </tbody></table>
 
 <div id="pwr" style="float:right;display:none; padding-right:8px;">
     <a href="../../pwr/pdf/Latest_Power_Conference_Programme.pdf" target="_blank"><img alt="" src="../Images/power_home_btn.jpg"></a>
 </div>
-	   
-                      
+
+
 
 <script type="text/javascript">
 function WindowOpen()
@@ -1661,26 +1661,26 @@ function WindowOpen()
   <a href="/lntcorporate/Default.aspx?res=P_CORP_AABT_ACOM_AOVR" class="links_footer" id="0" runat="server">ABOUT US</a><a href="/lntcorporate/Default.aspx?res=P_CORP_BOFF_ATP_AHYC" class="links_footer" id="1" runat="server">OUR OFFERINGS</a><a href="/lntcorporate/Default.aspx?res=P_CORP_CINV" class="links_footer" id="2" runat="server">INVESTORS</a><a href="/lntcorporate/Default.aspx?res=P_CORP_DCAR_AINT" class="links_footer" id="3" runat="server">CAREERS</a><a href="/lntcorporate/Default.aspx?res=P_CORP_EMID_BPRS" class="links_footer" id="4" runat="server">MEDIA ROOM</a><a href="/lntcorporate/Default.aspx?res=P_CORP_FALU" class="links_footer" id="5" runat="server">ALUMNI</a><a href="/lntcorporate/Default.aspx?res=P_CORP_HCNT" class="links_footer" id="6" runat="server">CONTACT US</a></p>
  <p class="left" align="left">© 2014 <span class="WebAnnotator_ORG" style="color:#000000; background-color:#33CCFF;" wa-id="0" wa-subtypes="" wa-type="ORG">LARSEN &amp; TOUBRO LIMITED.</span> All rights reserved.</p>
   <p class="clear right padding_top5" style="width:500px;" align="right">
-         <a href="javascript:__doPostBack('ctl00%24ctl01%24lbt_Feedback','')" class="links_footer" id="ctl00_ctl01_lbt_Feedback">Feedback</a>   |    
-  <a href="javascript:__doPostBack('ctl00%24ctl01%24lbt_tc','')" class="links_footer" id="ctl00_ctl01_lbt_tc">   Disclaimer</a>   |     
+         <a href="javascript:__doPostBack('ctl00%24ctl01%24lbt_Feedback','')" class="links_footer" id="ctl00_ctl01_lbt_Feedback">Feedback</a>   |
+  <a href="javascript:__doPostBack('ctl00%24ctl01%24lbt_tc','')" class="links_footer" id="ctl00_ctl01_lbt_tc">   Disclaimer</a>   |
  <a href="javascript:__doPostBack('ctl00%24ctl01%24lbt_pvc','')" class="links_footer" id="ctl00_ctl01_lbt_pvc">   Privacy Policy</a> &nbsp;|<a href="javascript:__doPostBack('ctl00%24ctl01%24lbl_sitemap','')" class="links_footer" id="ctl00_ctl01_lbl_sitemap">  Sitemap</a> &nbsp;</p>
-  
+
   </div>
 
-       	  
-	   
+
+
 	   </div>
-	   
-	   
-	   
+
+
+
 	   <div id="popupshow" style="display:none; clear:both;">
 	   <p style="position:absolute; top:50px; right:50px;"><a href="#" onclick="openClosePopUp('#popupshow',false);" id="close"><img src="images/close.png"></a></p>
 	   <p><img src="images/corp_notice.jpg"></p>
 	   </div>
-	   
-	   
-	   
-	 
+
+
+
+
 	   </center>
 
 <script type="text/javascript">
