@@ -33,7 +33,6 @@ def load_webstruct_data() -> List:
     Load training data from webstruct repository.
     """
     wa_loader = webstruct.WebAnnotatorLoader(known_entities=KNOWN_ENTITIES)
-    gate_loader = webstruct.GateLoader(known_entities=KNOWN_ENTITIES)
 
     trees1 = webstruct.load_trees(
         str(WEBSTRUCT_DATA / "corpus/business_pages/wa/*.html"),
