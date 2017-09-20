@@ -31,12 +31,8 @@ ADDRESS_ENTITIES = [
 def load_webstruct_data() -> List:
     """
     Load training data from webstruct repository.
-
-    It is a mess: there are two folders which have OK data, one
-    is stored in WebAnnotator format, another is stored in GATE format.
     """
     wa_loader = webstruct.WebAnnotatorLoader(known_entities=KNOWN_ENTITIES)
-    gate_loader = webstruct.GateLoader(known_entities=KNOWN_ENTITIES)
 
     trees1 = webstruct.load_trees(
         str(WEBSTRUCT_DATA / "corpus/business_pages/wa/*.html"),
