@@ -19,7 +19,7 @@ from six.moves import zip
 from lxml.etree import XPathEvaluator, Comment
 
 from webstruct.sequence_encoding import IobEncoder
-from webstruct.text_tokenizers import tokenize
+from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
     kill_html_tags,
@@ -27,7 +27,7 @@ from webstruct.utils import (
 )
 
 
-_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail')
+_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail position length')
 
 
 class HtmlToken(_HtmlToken):
@@ -41,6 +41,8 @@ class HtmlToken(_HtmlToken):
     * :attr:`elem` is the current html block (as lxml's Element) - most
       likely you want :attr:`parent` instead of it
     * :attr:`is_tail` flag indicates that token belongs to element tail
+    * :attr:`position is position of token start in parent text
+    * :attr:`length is length of token in parent text
 
     Computed properties:
 
@@ -64,8 +66,8 @@ class HtmlToken(_HtmlToken):
         return self.elem.getroottree()
 
     def __repr__(self):
-        return "HtmlToken(token=%r, parent=%r, index=%s)" % (
-            self.token, self.parent, self.index
+        return "HtmlToken(token=%r, parent=%r, index=%s, position=%d, length=%d)" % (
+            self.token, self.parent, self.index, self.position, self.length
         )
 
 
@@ -142,7 +144,7 @@ class HtmlTokenizer(object):
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
             >>> html_tokens
-            [HtmlToken(token='hello', parent=<Element p at ...>, index=0), HtmlToken...]
+            [HtmlToken(token='hello', parent=<Element p at ...>, index=0, ...), HtmlToken...]
             >>> tags
             ['O', 'B-PER', 'I-PER', 'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
@@ -245,16 +247,18 @@ class HtmlTokenizer(object):
             return
 
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
+        char_tokens = [t.chars for t in head_tokens]
         for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
-            yield HtmlToken(index, head_tokens, tree, False), tag
+            yield HtmlToken(index, char_tokens, tree, False, token.position, token.length), tag
 
         for child in tree:  # where is my precious "yield from"?
             for html_token, tag in self._process_tree(child):
                 yield html_token, tag
 
         tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
+        char_tokens = [t.chars for t in tail_tokens]
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
-            yield HtmlToken(index, tail_tokens, tree, True), tag
+            yield HtmlToken(index, char_tokens, tree, True, token.position, token.length), tag
 
         self._cleanup_elem(tree)
 
@@ -267,17 +271,21 @@ class HtmlTokenizer(object):
 
     def _tokenize_and_split(self, text):
         text = text or ''
-        input_tokens = [t.chars for t in self.text_tokenize_func(text)]
+        input_tokens = [t for t in self.text_tokenize_func(text)]
         input_tokens = self._limit_tags(input_tokens)
-        input_tokens = map(six.text_type, input_tokens)
-        return self.sequence_encoder.encode_split(input_tokens)
+        input_tokens = [TextToken(chars=six.text_type(t.chars),
+                                  position=t.position,
+                                  length=t.length) for t in input_tokens]
+        chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
+        chains = [l for l in self.sequence_encoder.from_indicies(chains, input_tokens)]
+        return self.sequence_encoder.split(chains)
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:
             return input_tokens
 
         proc = self.sequence_encoder.token_processor
-        token_classes = [proc.classify(tok) for tok in input_tokens]
+        token_classes = [proc.classify(tok.chars) for tok in input_tokens]
         return [
             tok for (tok, (typ, value)) in zip(input_tokens, token_classes)
             if not (typ in {'start', 'end'} and value not in self.tagset)
