@@ -15,33 +15,87 @@ class WordTokenizer(object):
     >>> TreebankWordTokenizer().tokenize(s) # doctest: +SKIP
     ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
     >>> WordTokenizer().tokenize(s)
-    ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email:', 'muffins@gmail.com']
+    [TextToken(token='Good', position=0, length=4),
+     TextToken(token='muffins', position=5, length=7),
+     TextToken(token='cost', position=13, length=4),
+     TextToken(token='$', position=0, length=1),
+     TextToken(token='3.88', position=19, length=4),
+     TextToken(token='in', position=24, length=2),
+     TextToken(token='New', position=27, length=3),
+     TextToken(token='York.', position=31, length=5),
+     TextToken(token='Email:', position=37, length=6),
+     TextToken(token='muffins@gmail.com', position=44, length=17)]
 
     >>> s = '''Shelbourne Road,'''
     >>> WordTokenizer().tokenize(s)
-    ['Shelbourne', 'Road', ',']
+    [TextToken(token='Shelbourne', position=0, length=10),
+     TextToken(token='Road', position=11, length=4),
+     TextToken(token=',', position=0, length=1)]
 
     >>> s = '''population of 100,000'''
     >>> WordTokenizer().tokenize(s)
-    ['population', 'of', '100,000']
+    [TextToken(token='population', position=0, length=10),
+     TextToken(token='of', position=11, length=2),
+     TextToken(token='100,000', position=14, length=7)]
 
     >>> s = '''Hello|World'''
     >>> WordTokenizer().tokenize(s)
-    ['Hello', '|', 'World']
+    [TextToken(token='Hello', position=0, length=5),
+     TextToken(token='|', position=0, length=1),
+     TextToken(token='World', position=6, length=5)]
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
     >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
-    ['``', 'We', 'beat', 'some', 'pretty', 'good',
-    'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
+    [TextToken(token='``', position=0, length=2),
+     TextToken(token='We', position=2, length=2),
+     TextToken(token='beat', position=5, length=4),
+     TextToken(token='some', position=10, length=4),
+     TextToken(token='pretty', position=15, length=6),
+     TextToken(token='good', position=22, length=4),
+     TextToken(token='teams', position=27, length=5),
+     TextToken(token='to', position=33, length=2),
+     TextToken(token='get', position=36, length=3),
+     TextToken(token='here', position=40, length=4),
+     TextToken(token=',', position=0, length=1),
+     TextToken(token="''", position=0, length=1),
+     TextToken(token='Slocum', position=47, length=6),
+     TextToken(token='said', position=54, length=4),
+     TextToken(token='.', position=0, length=1)]
     >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
     >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
-    ['Well', ',', 'we', "couldn't", 'have', 'this', 'predictable',
-     ',', 'cliche-ridden', ',', '``', 'Touched', 'by', 'an',
-     'Angel', "''", '(', 'a', 'show', 'creator', 'John', 'Masius',
-     'worked', 'on', ')', 'wanna-be', 'if', 'she', "didn't", '.']
+    [TextToken(token='Well', position=0, length=4),
+     TextToken(token=',', position=0, length=1),
+     TextToken(token='we', position=6, length=2),
+     TextToken(token="couldn't", position=9, length=8),
+     TextToken(token='have', position=18, length=4),
+     TextToken(token='this', position=23, length=4),
+     TextToken(token='predictable', position=28, length=11),
+     TextToken(token=',', position=0, length=1),
+     TextToken(token='cliche-ridden', position=41, length=13),
+     TextToken(token=',', position=0, length=1),
+     TextToken(token='``', position=0, length=2),
+     TextToken(token='Touched', position=58, length=7),
+     TextToken(token='by', position=66, length=2),
+     TextToken(token='an', position=69, length=2),
+     TextToken(token='Angel', position=72, length=5),
+     TextToken(token="''", position=0, length=1),
+     TextToken(token='(', position=0, length=1),
+     TextToken(token='a', position=80, length=1),
+     TextToken(token='show', position=82, length=4),
+     TextToken(token='creator', position=87, length=7),
+     TextToken(token='John', position=95, length=4),
+     TextToken(token='Masius', position=100, length=6),
+     TextToken(token='worked', position=107, length=6),
+     TextToken(token='on', position=114, length=2),
+     TextToken(token=')', position=0, length=1),
+     TextToken(token='wanna-be', position=118, length=8),
+     TextToken(token='if', position=127, length=2),
+     TextToken(token='she', position=130, length=3),
+     TextToken(token="didn't", position=134, length=6),
+     TextToken(token='.', position=0, length=1)]
 
     Some issues:
 
