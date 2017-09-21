@@ -7,6 +7,7 @@ from webstruct.html_tokenizer import HtmlTokenizer
 from webstruct.loaders import GateLoader, HtmlLoader
 from webstruct.utils import html_document_fromstring
 from .utils import HtmlTest
+import pdb
 
 
 GATE_HTML = b"""
@@ -135,5 +136,18 @@ class HtmlTokenizerTest(HtmlTest):
         self.assertHtmlTreeEqual(tree, tree2)
 
         # and restores the tree if needed
+        detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
+        self.assertHtmlTreeEqual(tree, detokenized_tree)
+
+    def test_detokenize_preserve_commas(self):
+        html = b"""
+        <html>
+          <body>__START_TAG_ORG__ hello __END_TAG_ORG__  a, b <a>world</a></body>
+        </html>
+        """
+
+        tree = HtmlLoader().loadbytes(html)
+        tokenizer = HtmlTokenizer()
+        html_tokens, tags = tokenizer.tokenize_single(tree)
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
         self.assertHtmlTreeEqual(tree, detokenized_tree)
