@@ -11,13 +11,15 @@ class IobEncoder(object):
 
         >>> iob_encoder = IobEncoder()
         >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
-        >>> iob_encoder.encode(input_tokens)
+        >>> [p for p in IobEncoder.from_indicies(iob_encoder.encode(input_tokens), input_tokens)]
         [('John', 'B-PER'), ('said', 'O')]
 
     Get the result in another format using ``encode_split`` method::
 
         >>> input_tokens = ["hello", "__START_PER__", "John", "Doe", "__END_PER__", "__START_PER__", "Mary", "__END_PER__", "said"]
-        >>> tokens, tags = iob_encoder.encode_split(input_tokens)
+        >>> tokens = iob_encoder.encode(input_tokens)
+        >>> tokens = [p for p in IobEncoder.from_indicies(tokens, input_tokens)]
+        >>> tokens, tags = iob_encoder.split(tokens)
         >>> tokens, tags
         (['hello', 'John', 'Doe', 'Mary', 'said'], ['O', 'B-PER', 'I-PER', 'B-PER', 'O'])
 
@@ -25,9 +27,15 @@ class IobEncoder(object):
     stream and continue the encoding later::
 
         >>> iob_encoder = IobEncoder()
-        >>> iob_encoder.encode(["__START_PER__", "John"])
+        >>> input_tokens_partial = ["__START_PER__", "John"]
+        >>> tokens = iob_encoder.encode(input_tokens_partial)
+        >>> tokens = [p for p in IobEncoder.from_indicies(tokens, input_tokens_partial)]
+        >>> tokens
         [('John', 'B-PER')]
-        >>> iob_encoder.encode(["Mayer", "__END_PER__", "said"])
+        >>> input_tokens_partial = ["Mayer", "__END_PER__", "said"]
+        >>> tokens = iob_encoder.encode(input_tokens_partial)
+        >>> tokens = [p for p in IobEncoder.from_indicies(tokens, input_tokens_partial)]
+        >>> tokens
         [('Mayer', 'I-PER'), ('said', 'O')]
 
     To reset internal state, use ``reset method``::
@@ -36,7 +44,7 @@ class IobEncoder(object):
 
     Group results to entities::
 
-        >>> iob_encoder.group(iob_encoder.encode(input_tokens))
+        >>> iob_encoder.group([p for p in IobEncoder.from_indicies(iob_encoder.encode(input_tokens), input_tokens)])
         [(['hello'], 'O'), (['John', 'Doe'], 'PER'), (['Mary'], 'PER'), (['said'], 'O')]
 
     Input token stream is processed by ``InputTokenProcessor()`` by default;
@@ -53,7 +61,7 @@ class IobEncoder(object):
         self.tag = 'O'
 
     def iter_encode(self, input_tokens):
-        for token in input_tokens:
+        for number, token in enumerate(input_tokens):
             token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
@@ -68,7 +76,7 @@ class IobEncoder(object):
                 self.tag = "O"
 
             elif token_type == 'token':
-                yield token, self.tag
+                yield number, self.tag
                 if self.tag[0] == 'B':
                     self.tag = "I" + self.tag[1:]
 
@@ -81,13 +89,16 @@ class IobEncoder(object):
     def encode(self, input_tokens):
         return list(self.iter_encode(input_tokens))
 
-    def encode_split(self, input_tokens):
-        """ The same as ``encode``, but returns ``(tokens, tags)`` tuple """
-        res = self.encode(input_tokens)
-        if not res:
-            return (), ()
-        tokens, tags = zip(*res)
+    def split(self, tokens):
+        """ split ``[(token, tag)]`` to ``([token], [tags])`` tuple """
+        tokens, tags = zip(*tokens)
         return list(tokens), list(tags)
+
+    @classmethod
+    def from_indicies(Cls, indicies, input_tokens):
+        for idx, tag in indicies:
+            yield input_tokens[idx], tag
+
 
     @classmethod
     def group(cls, data, strict=False):
