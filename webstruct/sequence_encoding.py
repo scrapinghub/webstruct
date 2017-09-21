@@ -91,8 +91,7 @@ class IobEncoder(object):
 
     def split(self, tokens):
         """ split ``[(token, tag)]`` to ``([token], [tags])`` tuple """
-        tokens, tags = zip(*tokens)
-        return list(tokens), list(tags)
+        return [t[0] for t in tokens], [t[1] for t in tokens]
 
     @classmethod
     def from_indicies(Cls, indicies, input_tokens):
