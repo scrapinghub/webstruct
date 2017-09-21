@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 import re
+import collections
+
+TextToken = collections.namedtuple('TextToken', 'token, position, length')
 
 
 class WordTokenizer(object):
@@ -85,25 +88,33 @@ class WordTokenizer(object):
         token_start = 0
         while 1:
             if i >= len(text):
-                yield text[token_start:]
+                yield TextToken(token=text[token_start:],
+                                position=token_start,
+                                length=len(text) - token_start)
                 break
             shift = 1
             partial_text = text[i:]
             for regex, token in self.rules:
                 match = regex.match(partial_text)
                 if match:
-                    yield text[token_start:i]
+                    yield TextToken(token=text[token_start:i],
+                                    position=token_start,
+                                    length=i - token_start)
                     shift = match.end() - match.start()
                     token_start = i + shift
                     if token is None:
-                        yield match.group()
+                        yield TextToken(token=match.group(),
+                                        position=match.start(),
+                                        length=shift)
                     else:
-                        yield token
+                        yield TextToken(token=token,
+                                        position=match.start(),
+                                        length=shift)
                     break
             i += shift
 
     def tokenize(self, text):
-        return [t for t in self._tokenize(text) if t]
+        return [t for t in self._tokenize(text) if t.token]
 
 
 class DefaultTokenizer(WordTokenizer):
@@ -118,7 +129,7 @@ class DefaultTokenizer(WordTokenizer):
         # because we removed punctuation
 
         # FIXME: remove as token, but save as feature left/right_punct:","
-        return [t for t in tokens if t not in {',', ';'}]
+        return [t for t in tokens if t.token not in {',', ';'}]
 
 
 tokenize = DefaultTokenizer().tokenize
