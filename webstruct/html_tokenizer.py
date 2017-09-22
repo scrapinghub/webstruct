@@ -16,14 +16,13 @@ from collections import namedtuple
 import six
 from six.moves import zip
 
-from lxml.etree import XPathEvaluator, Comment
+from lxml.etree import  Comment
 
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
     kill_html_tags,
-    smart_join,
 )
 
 
@@ -182,6 +181,7 @@ class HtmlTokenizer(object):
         Build annotated ``lxml.etree.ElementTree`` from
         ``html_tokens`` (a list of :class:`.HtmlToken` instances)
         and ``tags`` (a list of their tags).
+        **ATTENTION**: ``html_tokens`` should be tokenized from tree without tags
 
         Annotations are encoded as ``__START_TAG__`` and ``__END_TAG__``
         text tokens (this is the format :mod:`webstruct.loaders` use).
@@ -192,9 +192,7 @@ class HtmlTokenizer(object):
         if not html_tokens:
             return None
 
-        orig_tree = html_tokens[0].root
-        tree = copy.deepcopy(orig_tree)
-        xpatheval = XPathEvaluator(tree)
+        tree = html_tokens[0].root
 
         # find starts/ends of token groups
         token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
@@ -208,30 +206,47 @@ class HtmlTokenizer(object):
             pos += n_tokens
 
         # mark starts/ends with special tokens
-        data = zip(html_tokens, tags, range(len(html_tokens)))
-        keyfunc = lambda rec: (rec[0].elem, rec[0].is_tail)
+        data = [(s, True) for s in starts]
+        data.extend((s, False) for s in ends)
+        keyfunc = lambda rec: (id(html_tokens[rec[0]].elem), html_tokens[rec[0]].is_tail)
+        data.sort(key = keyfunc)
 
-        for (orig_elem, is_tail), g in groupby(data, keyfunc):
+        for (_, is_tail), g in groupby(data, keyfunc):
             g = list(g)
-            fix = False
-            tokens = g[0][0].tokens[:]
-            for token, tag, token_idx in g:
-                if token_idx in starts:
-                    text = ' __START_%s__ %s' % (tag[2:], tokens[token.index])
-                    tokens[token.index] = text
-                    fix = True
-                if token_idx in ends:
-                    text = '%s __END_%s__ ' % (tokens[token.index], tag[2:])
-                    tokens[token.index] = text
-                    fix = True
+            g.sort(key = lambda t:(html_tokens[t[0]].position, not t[1]))
 
-            if fix:
-                xpath = orig_tree.getpath(orig_elem)
-                elem = xpatheval(xpath)[0]
-                if is_tail:
-                    elem.tail = smart_join(tokens)
+            if not g:
+                continue
+
+            elem = html_tokens[g[0][0]].elem
+
+            pos_in_source = 0
+            source = elem.text
+            if is_tail:
+                source = elem.tail
+
+            modded = ''
+
+            for idx, is_starts in g:
+                token = html_tokens[idx]
+                tag = tags[idx]
+                modded = modded + source[pos_in_source:token.position]
+                pos_in_source = token.position
+                if is_starts:
+                    patch = ' __START_%s__ ' % (tag[2:],)
+                    modded = modded + patch
                 else:
-                    elem.text = smart_join(tokens)
+                    modded = modded + source[pos_in_source:pos_in_source + token.length]
+                    pos_in_source = pos_in_source + token.length
+                    patch = ' __END_%s__ ' % (tag[2:],)
+                    modded = modded + patch
+
+
+            modded = modded + source[pos_in_source:]
+            if is_tail:
+                elem.tail = modded
+            else:
+                elem.text = modded
 
         return tree
 
