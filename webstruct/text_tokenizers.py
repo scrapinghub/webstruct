@@ -18,7 +18,7 @@ class WordTokenizer(object):
     [TextToken(chars='Good', position=0, length=4),
      TextToken(chars='muffins', position=5, length=7),
      TextToken(chars='cost', position=13, length=4),
-     TextToken(chars='$', position=0, length=1),
+     TextToken(chars='$', position=18, length=1),
      TextToken(chars='3.88', position=19, length=4),
      TextToken(chars='in', position=24, length=2),
      TextToken(chars='New', position=27, length=3),
@@ -30,7 +30,7 @@ class WordTokenizer(object):
     >>> WordTokenizer().tokenize(s)
     [TextToken(chars='Shelbourne', position=0, length=10),
      TextToken(chars='Road', position=11, length=4),
-     TextToken(chars=',', position=0, length=1)]
+     TextToken(chars=',', position=15, length=1)]
 
     >>> s = '''population of 100,000'''
     >>> WordTokenizer().tokenize(s)
@@ -41,7 +41,7 @@ class WordTokenizer(object):
     >>> s = '''Hello|World'''
     >>> WordTokenizer().tokenize(s)
     [TextToken(chars='Hello', position=0, length=5),
-     TextToken(chars='|', position=0, length=1),
+     TextToken(chars='|', position=5, length=1),
      TextToken(chars='World', position=6, length=5)]
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
@@ -56,33 +56,33 @@ class WordTokenizer(object):
      TextToken(chars='to', position=33, length=2),
      TextToken(chars='get', position=36, length=3),
      TextToken(chars='here', position=40, length=4),
-     TextToken(chars=',', position=0, length=1),
-     TextToken(chars="''", position=0, length=1),
+     TextToken(chars=',', position=44, length=1),
+     TextToken(chars="''", position=45, length=1),
      TextToken(chars='Slocum', position=47, length=6),
      TextToken(chars='said', position=54, length=4),
-     TextToken(chars='.', position=0, length=1)]
+     TextToken(chars='.', position=58, length=1)]
     >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
     >>> WordTokenizer().tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
     [TextToken(chars='Well', position=0, length=4),
-     TextToken(chars=',', position=0, length=1),
+     TextToken(chars=',', position=4, length=1),
      TextToken(chars='we', position=6, length=2),
      TextToken(chars="couldn't", position=9, length=8),
      TextToken(chars='have', position=18, length=4),
      TextToken(chars='this', position=23, length=4),
      TextToken(chars='predictable', position=28, length=11),
-     TextToken(chars=',', position=0, length=1),
+     TextToken(chars=',', position=39, length=1),
      TextToken(chars='cliche-ridden', position=41, length=13),
-     TextToken(chars=',', position=0, length=1),
-     TextToken(chars='``', position=0, length=2),
+     TextToken(chars=',', position=54, length=1),
+     TextToken(chars='``', position=56, length=2),
      TextToken(chars='Touched', position=58, length=7),
      TextToken(chars='by', position=66, length=2),
      TextToken(chars='an', position=69, length=2),
      TextToken(chars='Angel', position=72, length=5),
-     TextToken(chars="''", position=0, length=1),
-     TextToken(chars='(', position=0, length=1),
+     TextToken(chars="''", position=77, length=1),
+     TextToken(chars='(', position=79, length=1),
      TextToken(chars='a', position=80, length=1),
      TextToken(chars='show', position=82, length=4),
      TextToken(chars='creator', position=87, length=7),
@@ -90,12 +90,12 @@ class WordTokenizer(object):
      TextToken(chars='Masius', position=100, length=6),
      TextToken(chars='worked', position=107, length=6),
      TextToken(chars='on', position=114, length=2),
-     TextToken(chars=')', position=0, length=1),
+     TextToken(chars=')', position=116, length=1),
      TextToken(chars='wanna-be', position=118, length=8),
      TextToken(chars='if', position=127, length=2),
      TextToken(chars='she', position=130, length=3),
      TextToken(chars="didn't", position=134, length=6),
-     TextToken(chars='.', position=0, length=1)]
+     TextToken(chars='.', position=140, length=1)]
 
     Some issues:
 
@@ -158,11 +158,11 @@ class WordTokenizer(object):
                     token_start = i + shift
                     if token is None:
                         yield TextToken(chars=match.group(),
-                                        position=match.start(),
+                                        position=i + match.start(),
                                         length=shift)
                     else:
                         yield TextToken(chars=token,
-                                        position=match.start(),
+                                        position=i + match.start(),
                                         length=shift)
                     break
             i += shift
