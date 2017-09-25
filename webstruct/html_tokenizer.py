@@ -16,7 +16,7 @@ from collections import namedtuple
 import six
 from six.moves import zip
 
-from lxml.etree import  Comment
+from lxml.etree import  Comment, iterwalk
 
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
@@ -275,7 +275,12 @@ class HtmlTokenizer(object):
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
             yield HtmlToken(index, char_tokens, tree, True, token.position, token.length), tag
 
-        self._cleanup_elem(tree)
+    def cleanup_tree(self, tree):
+        cleaned = copy.deepcopy(tree)
+        for _, elem in iterwalk(cleaned):
+            self._cleanup_elem(elem)
+
+        return cleaned
 
     def _cleanup_elem(self, elem):
         """ Remove special tokens from elem """
