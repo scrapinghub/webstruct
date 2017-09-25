@@ -69,8 +69,6 @@ class HtmlTokenizerTest(HtmlTest):
             [u'B-ORG', u'I-ORG', 'O', 'O', 'O', 'O', u'B-CITY']
         )
 
-        tree = html_tokens[0].root
-        self.assertNotIn(b'__', tostring(tree))
 
     def test_tokenize_single(self):
         self.assertTokenizationWorks(self._load())
@@ -84,7 +82,7 @@ class HtmlTokenizerTest(HtmlTest):
 
         tokenizer = HtmlTokenizer()
         html_tokens, tags = tokenizer.tokenize_single(src_tree)
-        new_tree = html_tokens[0].root
+        new_tree = tokenizer.cleanup_tree(src_tree)
         self.assertIn(b'__START_ORG__', tostring(src_tree))
         self.assertNotIn(b'__START_ORG__', tostring(new_tree))
 
@@ -93,7 +91,7 @@ class HtmlTokenizerTest(HtmlTest):
             html_document_fromstring(UNANNOTATED_HTML)
         )
 
-        html_tokens, _ = tokenizer.tokenize_single(new_tree.getroot())
+        html_tokens, _ = tokenizer.tokenize_single(new_tree)
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
         self.assertIn(b'__START_ORG__', tostring(detokenized_tree))
 
@@ -149,7 +147,7 @@ class HtmlTokenizerTest(HtmlTest):
         annotated_tree = HtmlLoader().loadbytes(annotated_html)
         tokenizer = HtmlTokenizer()
         html_tokens, tags = tokenizer.tokenize_single(annotated_tree)
-        clean_tree = html_tokens[0].root.getroot()
+        clean_tree = tokenizer.cleanup_tree(annotated_tree)
         html_tokens, _ = tokenizer.tokenize_single(clean_tree)
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
         self.assertHtmlTreeEqual(annotated_tree, detokenized_tree)
