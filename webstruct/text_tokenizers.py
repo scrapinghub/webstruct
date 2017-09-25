@@ -46,21 +46,21 @@ class WordTokenizer(object):
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
     >>> WordTokenizer().tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
-    [TextToken(chars='``', position=0, length=2),
-     TextToken(chars='We', position=2, length=2),
-     TextToken(chars='beat', position=5, length=4),
-     TextToken(chars='some', position=10, length=4),
-     TextToken(chars='pretty', position=15, length=6),
-     TextToken(chars='good', position=22, length=4),
-     TextToken(chars='teams', position=27, length=5),
-     TextToken(chars='to', position=33, length=2),
-     TextToken(chars='get', position=36, length=3),
-     TextToken(chars='here', position=40, length=4),
-     TextToken(chars=',', position=44, length=1),
-     TextToken(chars="''", position=45, length=1),
-     TextToken(chars='Slocum', position=47, length=6),
-     TextToken(chars='said', position=54, length=4),
-     TextToken(chars='.', position=58, length=1)]
+    [TextToken(chars='``', position=0, length=1),
+     TextToken(chars='We', position=1, length=2),
+     TextToken(chars='beat', position=4, length=4),
+     TextToken(chars='some', position=9, length=4),
+     TextToken(chars='pretty', position=14, length=6),
+     TextToken(chars='good', position=21, length=4),
+     TextToken(chars='teams', position=26, length=5),
+     TextToken(chars='to', position=32, length=2),
+     TextToken(chars='get', position=35, length=3),
+     TextToken(chars='here', position=39, length=4),
+     TextToken(chars=',', position=43, length=1),
+     TextToken(chars="''", position=44, length=1),
+     TextToken(chars='Slocum', position=46, length=6),
+     TextToken(chars='said', position=53, length=4),
+     TextToken(chars='.', position=57, length=1)]
     >>> s3 = '''Well, we couldn't have this predictable,
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
@@ -76,26 +76,33 @@ class WordTokenizer(object):
      TextToken(chars=',', position=39, length=1),
      TextToken(chars='cliche-ridden', position=41, length=13),
      TextToken(chars=',', position=54, length=1),
-     TextToken(chars='``', position=56, length=2),
-     TextToken(chars='Touched', position=58, length=7),
-     TextToken(chars='by', position=66, length=2),
-     TextToken(chars='an', position=69, length=2),
-     TextToken(chars='Angel', position=72, length=5),
-     TextToken(chars="''", position=77, length=1),
-     TextToken(chars='(', position=79, length=1),
-     TextToken(chars='a', position=80, length=1),
-     TextToken(chars='show', position=82, length=4),
-     TextToken(chars='creator', position=87, length=7),
-     TextToken(chars='John', position=95, length=4),
-     TextToken(chars='Masius', position=100, length=6),
-     TextToken(chars='worked', position=107, length=6),
-     TextToken(chars='on', position=114, length=2),
-     TextToken(chars=')', position=116, length=1),
-     TextToken(chars='wanna-be', position=118, length=8),
-     TextToken(chars='if', position=127, length=2),
-     TextToken(chars='she', position=130, length=3),
-     TextToken(chars="didn't", position=134, length=6),
-     TextToken(chars='.', position=140, length=1)]
+     TextToken(chars='``', position=56, length=1),
+     TextToken(chars='Touched', position=57, length=7),
+     TextToken(chars='by', position=65, length=2),
+     TextToken(chars='an', position=68, length=2),
+     TextToken(chars='Angel', position=71, length=5),
+     TextToken(chars="''", position=76, length=1),
+     TextToken(chars='(', position=78, length=1),
+     TextToken(chars='a', position=79, length=1),
+     TextToken(chars='show', position=81, length=4),
+     TextToken(chars='creator', position=86, length=7),
+     TextToken(chars='John', position=94, length=4),
+     TextToken(chars='Masius', position=99, length=6),
+     TextToken(chars='worked', position=106, length=6),
+     TextToken(chars='on', position=113, length=2),
+     TextToken(chars=')', position=115, length=1),
+     TextToken(chars='wanna-be', position=117, length=8),
+     TextToken(chars='if', position=126, length=2),
+     TextToken(chars='she', position=129, length=3),
+     TextToken(chars="didn't", position=133, length=6),
+     TextToken(chars='.', position=139, length=1)]
+
+    >>> WordTokenizer().tokenize('"')
+    [TextToken(chars='``', position=0, length=1)]
+
+    >>> WordTokenizer().tokenize('" a')
+    [TextToken(chars='``', position=0, length=1),
+     TextToken(chars='a', position=2, length=1)]
 
     Some issues:
 
@@ -136,7 +143,19 @@ class WordTokenizer(object):
     def _tokenize(self, text):
         # this one cannot be placed in the loop because it requires
         # position check (beginning of the string) or previous char value
-        text = self.open_quotes.sub(r'\1``', text)
+        quote = self.open_quotes.search(text)
+        if quote is not None:
+            end = quote.end() - 1
+            for t in self._tokenize(text[:end]):
+                yield t
+            yield TextToken(chars='``', position=end, length=1)
+            shift = end + 1
+            for t in self._tokenize(text[shift:]):
+                yield TextToken(chars=t.chars,
+                                position=t.position + shift,
+                                length=t.length)
+            return
+
 
         i = 0
         token_start = 0
