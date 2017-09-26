@@ -8,11 +8,10 @@ from __future__ import absolute_import
 import re
 import warnings
 import random
+import itertools
 from copy import deepcopy
-from collections import defaultdict, OrderedDict
-import xml.sax.handler
-import lxml.sax
-from lxml import html
+from collections import defaultdict, OrderedDict, namedtuple
+from lxml import etree
 from lxml.etree import Element, LXML_VERSION
 
 from webstruct.utils import html_document_fromstring
@@ -105,84 +104,6 @@ def apply_wa_title(tree):
         return
 
 
-class _WaContentHandler(xml.sax.handler.ContentHandler):
-
-    TAG_SPLIT_RE = re.compile(r'\s?(__(?:START|END)_(?:\w+)__)\s?')
-    TAG_PARSE_RE = re.compile(r'__(START|END)_(\w+)__')
-
-    def __init__(self, entity_colors=None):
-        self.idx = 0
-        self.entity = None
-        self.text_buf = []
-        self.out = lxml.sax.ElementTreeContentHandler(makeelement=html.Element)
-        if entity_colors is None:
-            entity_colors = EntityColors()
-        self.entity_colors = entity_colors
-
-    def startElementNS(self, name, qname, attributes):
-        self._flush()
-        self._closeSpan()
-        # print('start %s' % qname)
-        self.out.startElementNS(name, qname, attributes)
-        self._openSpan()
-
-    def endElementNS(self, name, qname):
-        self._flush()
-        self._closeSpan()
-        # print('end %s' % qname)
-        self.out.endElementNS(name, qname)
-        self._openSpan()
-        # print("")
-
-    def characters(self, data):
-        self.text_buf.append(data)
-
-    def startDocument(self):
-        self.out.startDocument()
-
-    def endDocument(self):
-        self.out.endDocument()
-
-    def _flush(self):
-        self.text = ''.join(self.text_buf)
-        self.text_buf = []
-        if self.text:
-            tokens = self.TAG_SPLIT_RE.split(self.text)
-            for token in tokens:
-                m = self.TAG_PARSE_RE.match(token.strip())
-                if m:
-                    event, entity = m.groups()
-                    if event == 'START':
-                        self.entity = entity
-                        self._openSpan()
-                    elif event == 'END':
-                        assert entity == self.entity
-                        self._closeSpan()
-                        self.idx += 1
-                        self.entity = None
-                else:
-                    self.out.characters(token)
-                    # print("write %r" % token)
-
-    def _closeSpan(self):
-        if self.entity:
-            # print('close span %s' % self.entity)
-            self.out.endElement('span')
-
-    def _openSpan(self):
-        if self.entity:
-            # print('open span %s' % self.entity)
-            fg, bg, entity_idx = self.entity_colors[self.entity]
-            attrs = OrderedDict([
-                ('wa-id', str(self.idx)),
-                ('wa-type', str(self.entity)),
-                ('wa-subtypes', ''),
-                ('style', 'color:%s; background-color:%s;' % (fg, bg)),
-                ('class', 'WebAnnotator_%s' % self.entity),
-            ])
-            self.out.startElement('span', _fix_sax_attributes(attrs))
-
-
 def _fix_sax_attributes(attrs):
     """ Fix sax startElement attributes for lxml < 3.1.2 """
     if LXML_VERSION >= (3, 1, 2):
@@ -264,6 +185,103 @@ def _set_base(tree, baseurl):
     head = _ensure_head(tree)
     head.insert(0, Element("base", href=baseurl))
 
+TagPosition = namedtuple('TagPosition', ['element',
+                                         'tag',
+                                         'position',
+                                         'length',
+                                         'is_tail',
+                                         'dfs_number'])
+def translate_to_dfs(positions, ordered):
+    for position in positions:
+        number = ordered[(position.element, position.is_tail)]
+        yield TagPosition(element=position.element,
+                          tag=position.tag,
+                          position=position.position,
+                          length=position.length,
+                          is_tail=position.is_tail,
+                          dfs_number=number)
+
+def enclose(tasks, entity_colors):
+    if not tasks:
+        return
+
+    first = tasks[0][0]
+    element = first.element
+    is_tail = first.is_tail
+    source = element.text
+    if is_tail:
+        source = element.tail
+
+    if not source or not source.strip():
+        return
+
+    remainder = source[:first.position]
+
+    nodes = list()
+    for number, (start, end, _id) in enumerate(tasks):
+
+        limit = len(source)
+        is_last = number == len(tasks) - 1
+        if not is_last:
+            limit = tasks[number + 1][0].position
+
+        tag = start.tag
+        text = source[start.position + start.length:end.position]
+        tail = source[end.position + end.length:limit]
+
+        fg, bg, _ = entity_colors[tag]
+        attrs = OrderedDict([
+            ('wa-id', str(_id)),
+            ('wa-type', str(tag)),
+            ('wa-subtypes', ''),
+            ('style', 'color:%s; background-color:%s;' % (fg, bg)),
+            ('class', 'WebAnnotator_%s' % tag),
+        ])
+
+        node = Element('span', _fix_sax_attributes(attrs))
+        node.text = text
+        node.tail = tail
+        nodes.append(node)
+
+
+    if is_tail:
+        element.tail = remainder
+    else:
+        element.text = remainder
+
+    if is_tail:
+        parent = element.getparent()
+        shift = parent.index(element) + 1
+    else:
+        parent = element
+        shift = 0
+
+    for number, node in enumerate(nodes):
+        parent.insert(number + shift, node)
+
+def fabricate_start(element, is_tail, tag):
+    return TagPosition(element=element,
+                       tag=tag,
+                       position=0,
+                       length=0,
+                       is_tail=is_tail,
+                       dfs_number=0)
+
+def fabricate_end(element, is_tail, tag):
+    target = element.text
+    if is_tail:
+        target = element.tail
+
+    length = 0
+    if target:
+        length = len(target)
+
+    return TagPosition(element=element,
+                       tag=tag,
+                       position=length,
+                       length=0,
+                       is_tail=is_tail,
+                       dfs_number=0)
 
 def to_webannotator(tree, entity_colors=None, url=None):
     """
@@ -280,11 +298,105 @@ def to_webannotator(tree, entity_colors=None, url=None):
     >>> wa_trees = [to_webannotator(tree, entity_colors) for tree in trees]  # doctest: +SKIP
 
     """
-    handler = _WaContentHandler(entity_colors)
-    lxml.sax.saxify(tree, handler)
-    tree = handler.out.etree
-    _copy_title(tree)
-    _add_wacolor_elements(tree, handler.entity_colors)
+    if not entity_colors:
+        entity_colors = EntityColors()
+
+    root = deepcopy(tree)
+
+    START_RE = re.compile(r' __START_(\w+)__ ')
+    END_RE = re.compile(r' __END_(\w+)__ ')
+
+    starts = list()
+    ends = list()
+    for _, element in etree.iterwalk(root, events=('start',)):
+
+        tasks = [(element.text, START_RE, starts, False),
+                 (element.text, END_RE, ends, False),
+                 (element.tail, START_RE, starts, True),
+                 (element.tail, END_RE, ends, True)]
+
+
+        for text, regexp, storage, is_tail in tasks:
+            if not text:
+                continue
+
+            for match in regexp.finditer(text):
+
+                if not match:
+                    continue
+
+                storage.append(TagPosition(element=element,
+                                           tag=match.group(1),
+                                           position=match.start(),
+                                           length=match.end() - match.start(),
+                                           is_tail=is_tail,
+                                           dfs_number=-1))
+
+    if len(ends) != len(starts):
+        raise ValueError('len(ends) != len(starts)')
+
+    # traverse tree in DFS manner
+    # each text is first child
+    # each tail is last
+    ordered = dict()
+    number = 0
+    for action, element in etree.iterwalk(root, events=('start','end')):
+
+        if action == 'end':
+            is_tail = True
+            ordered[(element, is_tail)] = number
+            number = number + 1# for tail
+
+        if action == 'start':
+            is_tail = False
+            ordered[(element, is_tail)] = number
+            number = number + 1# for text
+            number = number + 1# for element
+
+    starts = [s for s in translate_to_dfs(starts, ordered)]
+    ends = [e for e in translate_to_dfs(ends, ordered)]
+
+    dfs_order = (max(n for n in ordered.values()) + 1) * [None]
+    for text_node, dfs_number in ordered.items():
+        dfs_order[dfs_number] = text_node
+
+    tasks = []
+    for _id, (start, end) in enumerate(zip(starts, ends)):
+        start_number = start.dfs_number
+        end_number = end.dfs_number
+
+        if start_number == end_number:
+            tasks.append((start, end, _id))
+            continue
+
+        for text_node in dfs_order[start_number + 1:end_number]:
+            if text_node is None:
+                continue
+
+            element, is_tail = text_node
+
+            if element.tag in ['script', 'style']:
+                continue
+
+            fictive_start = fabricate_start(element, is_tail, start.tag)
+            fictive_end = fabricate_end(element, is_tail, start.tag)
+            tasks.append((fictive_start, fictive_end, _id))
+
+        fictive_end = fabricate_end(start.element, start.is_tail, start.tag)
+        tasks.append((start, fictive_end, _id))
+
+        fictive_start = fabricate_start(end.element, end.is_tail, end.tag)
+        tasks.append((fictive_start, end, _id))
+
+    byelement = lambda rec: (rec[0].element, rec[0].is_tail)
+    tasks.sort(key=lambda rec:(ordered[byelement(rec)],rec[0].position))
+    for _, enclosures in itertools.groupby(tasks, byelement):
+        enclosures = [e for e in enclosures]
+        enclose(enclosures, entity_colors)
+
+    _copy_title(root)
+    _add_wacolor_elements(root, entity_colors)
     if url is not None:
-        _set_base(tree, url)
-    return tree
+        _set_base(root, url)
+
+    return root
