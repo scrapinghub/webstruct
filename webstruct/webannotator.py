@@ -13,6 +13,7 @@ from copy import deepcopy
 from collections import defaultdict, OrderedDict, namedtuple
 from lxml import etree
 from lxml.etree import Element, LXML_VERSION
+import six
 
 from webstruct.utils import html_document_fromstring
 
@@ -374,6 +375,9 @@ def to_webannotator(tree, entity_colors=None, url=None):
                 continue
 
             element, is_tail = text_node
+
+            if not isinstance(element.tag, six.string_types) and not isinstance(element.tag, six.text_type):
+                continue
 
             if element.tag in ['script', 'style']:
                 continue
