@@ -81,6 +81,34 @@ class WaTitleTest(HtmlTest):
 
 
 class WaConvertTest(HtmlTest):
+    def test_wa_convert_ignore_comments(self):
+        tree = html_document_fromstring(b"""
+        <html>
+            <body>
+                __START_ORG__ a
+                <!--comment-->
+                b __END_ORG__ cool
+            </body>
+        </html>
+        """)
+        wa_tree = webannotator.to_webannotator(tree)
+        wa_tree_str = tostring(wa_tree)
+
+        self.assertHtmlEqual(wa_tree_str, r"""
+        <html>
+            <body>
+                <span class="WebAnnotator_ORG" style="color:#000000; background-color:#33CCFF;" wa-id="0" wa-subtypes="" wa-type="ORG">
+                    a
+                </span>
+                <!--comment-->
+                <span class="WebAnnotator_ORG" style="color:#000000; background-color:#33CCFF;" wa-id="0" wa-subtypes="" wa-type="ORG">
+                    b
+                </span>
+                cool
+            </body>
+            <wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color>
+        </html>
+        """)
     def test_wa_convert_ignore_style(self):
         tree = html_document_fromstring(b"""
         <html>
