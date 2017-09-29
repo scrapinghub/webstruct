@@ -45,8 +45,8 @@ class HtmlToken(_HtmlToken):
     * :attr:`elem` is the current html block (as lxml's Element) - most
       likely you want :attr:`parent` instead of it
     * :attr:`is_tail` flag indicates that token belongs to element tail
-    * :attr:`position` is position of token start in parent text
-    * :attr:`length` is length of token in parent text
+    * :attr:`position` is logical position(in letters or codepoints) of token start in parent text
+    * :attr:`length` is logical length(in letters or codepoints) of token in parent text
 
     Computed properties:
 
