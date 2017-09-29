@@ -10,10 +10,7 @@ class WordTokenizer(object):
     r"""This tokenizer is copy-pasted version of TreebankWordTokenizer
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
-    >>> from nltk.tokenize.treebank import TreebankWordTokenizer  # doctest: +SKIP
     >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
-    >>> TreebankWordTokenizer().span_tokenize(s) # doctest: +SKIP
-    ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.', 'Email', ':', 'muffins', '@', 'gmail.com']
     >>> WordTokenizer().span_tokenize(s)
     [TextToken(chars='Good', position=0, length=4),
      TextToken(chars='muffins', position=5, length=7),
