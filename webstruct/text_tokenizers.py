@@ -103,20 +103,37 @@ class WordTokenizer(object):
 
     Some issues:
 
-    >>> WordTokenizer().span_tokenize("Phone:855-349-1914")  # doctest: +SKIP
-    ['Phone', ':', '855-349-1914']
+    >>> WordTokenizer().span_tokenize("Phone:855-349-1914")
+    [TextToken(chars='Phone:855-349-1914', position=0, length=18)]
 
-    >>> WordTokenizer().span_tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")  # doctest: +SKIP
-    ['Copyright', '\xc2\xa9', '2014', 'Wall', 'Decor', 'and', 'Home', 'Accents', '.', 'All', 'Rights', 'Reserved', '.']
+    >>> WordTokenizer().span_tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")
+    [TextToken(chars='Copyright', position=0, length=9),
+     TextToken(chars=u'\xa9', position=10, length=1),
+     TextToken(chars='2014', position=12, length=4),
+     TextToken(chars='Foo', position=17, length=3),
+     TextToken(chars='Bar', position=21, length=3),
+     TextToken(chars='and', position=25, length=3),
+     TextToken(chars='Buzz', position=29, length=4),
+     TextToken(chars='Spam.', position=34, length=5),
+     TextToken(chars='All', position=40, length=3),
+     TextToken(chars='Rights', position=44, length=6),
+     TextToken(chars='Reserved', position=51, length=8),
+     TextToken(chars='.', position=59, length=1)]
 
-    >>> WordTokenizer().span_tokenize("Powai Campus, Mumbai-400077")  # doctest: +SKIP
-    ['Powai', 'Campus', ',', 'Mumbai", "-", "400077']
+    >>> WordTokenizer().span_tokenize("Powai Campus, Mumbai-400077")
+    [TextToken(chars='Powai', position=0, length=5),
+     TextToken(chars='Campus', position=6, length=6),
+     TextToken(chars=',', position=12, length=1),
+     TextToken(chars='Mumbai-400077', position=14, length=13)]
 
-    >>> WordTokenizer().span_tokenize("1 5858/ 1800")  # doctest: +SKIP
-    ['1', '5858', '/', '1800']
+    >>> WordTokenizer().span_tokenize("1 5858/ 1800")
+     [TextToken(chars='1', position=0, length=1),
+      TextToken(chars='5858/', position=2, length=5),
+      TextToken(chars='1800', position=8, length=4)]
 
-    >>> WordTokenizer().span_tokenize("Saudi Arabia-")  # doctest: +SKIP
-    ['Saudi', 'Arabia', '-']
+    >>> WordTokenizer().span_tokenize("Saudi Arabia-")
+    [TextToken(chars='Saudi', position=0, length=5),
+     TextToken(chars='Arabia-', position=6, length=7)]
 
     """
 
