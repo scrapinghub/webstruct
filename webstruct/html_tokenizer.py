@@ -234,24 +234,26 @@ class HtmlTokenizer(object):
             if is_tail:
                 source = elem.tail
 
-            modded = ''
+            mods = list()
 
             for idx, is_starts in g:
                 token = html_tokens[idx]
                 tag = tags[idx]
-                modded = modded + source[pos_in_source:token.position]
+                mods.append(source[pos_in_source:token.position])
                 pos_in_source = token.position
                 if is_starts:
                     patch = ' __START_%s__ ' % (tag[2:],)
-                    modded = modded + patch
+                    mods.append(patch)
                 else:
                     end_in_source = pos_in_source + token.length
-                    modded = modded + source[pos_in_source:end_in_source]
+                    mods.append(source[pos_in_source:end_in_source])
                     pos_in_source = pos_in_source + token.length
                     patch = ' __END_%s__ ' % (tag[2:],)
-                    modded = modded + patch
+                    mods.append(patch)
 
-            modded = modded + source[pos_in_source:]
+            mods.append(source[pos_in_source:])
+            modded = ''.join(mods)
+
             if is_tail:
                 elem.tail = modded
             else:
