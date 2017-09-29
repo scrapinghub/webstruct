@@ -93,7 +93,7 @@ class IobEncoder(object):
         return [t[0] for t in tokens], [t[1] for t in tokens]
 
     @classmethod
-    def from_indices(Cls, indices, input_tokens):
+    def from_indices(cls, indices, input_tokens):
         for idx, tag in indices:
             yield input_tokens[idx], tag
 
