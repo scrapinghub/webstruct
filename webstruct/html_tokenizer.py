@@ -16,7 +16,7 @@ from collections import namedtuple
 import six
 from six.moves import zip
 
-from lxml.etree import  Comment, iterwalk
+from lxml.etree import Comment, iterwalk
 
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
@@ -26,7 +26,12 @@ from webstruct.utils import (
 )
 
 
-_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail position length')
+_HtmlToken = namedtuple('HtmlToken', ['index',
+                                      'tokens',
+                                      'elem',
+                                      'is_tail',
+                                      'position',
+                                      'length'])
 
 
 class HtmlToken(_HtmlToken):
@@ -65,7 +70,9 @@ class HtmlToken(_HtmlToken):
         return self.elem.getroottree()
 
     def __repr__(self):
-        return "HtmlToken(token=%r, parent=%r, index=%s, position=%d, length=%d)" % (
+        return ("HtmlToken("
+                "token=%r, parent=%r, index=%s, position=%d, length=%d"
+                ")") % (
             self.token, self.parent, self.index, self.position, self.length
         )
 
@@ -86,7 +93,8 @@ class HtmlTokenizer(object):
     ----------
 
     tagset : set, optional
-        A set of entity types to keep. If not passed, all entity types are kept.
+        A set of entity types to keep.
+        If not passed, all entity types are kept.
         Use this argument to discard some entity types from training data.
     sequence_encoder : object, optional
         Sequence encoder object. If not passed,
@@ -181,7 +189,8 @@ class HtmlTokenizer(object):
         Build annotated ``lxml.etree.ElementTree`` from
         ``html_tokens`` (a list of :class:`.HtmlToken` instances)
         and ``tags`` (a list of their tags).
-        **ATTENTION**: ``html_tokens`` should be tokenized from tree without tags
+        **ATTENTION**: ``html_tokens`` should be tokenized from tree
+        without tags
 
         Annotations are encoded as ``__START_TAG__`` and ``__END_TAG__``
         text tokens (this is the format :mod:`webstruct.loaders` use).
@@ -209,11 +218,11 @@ class HtmlTokenizer(object):
         data = [(s, True) for s in starts]
         data.extend((s, False) for s in ends)
         keyfunc = lambda rec: (id(html_tokens[rec[0]].elem), html_tokens[rec[0]].is_tail)
-        data.sort(key = keyfunc)
+        data.sort(key=keyfunc)
 
         for (_, is_tail), g in groupby(data, keyfunc):
             g = list(g)
-            g.sort(key = lambda t:(html_tokens[t[0]].position, not t[1]))
+            g.sort(key=lambda t: (html_tokens[t[0]].position, not t[1]))
 
             if not g:
                 continue
@@ -236,11 +245,11 @@ class HtmlTokenizer(object):
                     patch = ' __START_%s__ ' % (tag[2:],)
                     modded = modded + patch
                 else:
-                    modded = modded + source[pos_in_source:pos_in_source + token.length]
+                    end_in_source = pos_in_source + token.length
+                    modded = modded + source[pos_in_source:end_in_source]
                     pos_in_source = pos_in_source + token.length
                     patch = ' __END_%s__ ' % (tag[2:],)
                     modded = modded + patch
-
 
             modded = modded + source[pos_in_source:]
             if is_tail:
@@ -264,7 +273,12 @@ class HtmlTokenizer(object):
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
         char_tokens = [t.chars for t in head_tokens]
         for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
-            yield HtmlToken(index, char_tokens, tree, False, token.position, token.length), tag
+            yield HtmlToken(index,
+                            char_tokens,
+                            tree,
+                            False,
+                            token.position,
+                            token.length), tag
 
         for child in tree:  # where is my precious "yield from"?
             for html_token, tag in self._process_tree(child):
@@ -273,7 +287,12 @@ class HtmlTokenizer(object):
         tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
         char_tokens = [t.chars for t in tail_tokens]
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
-            yield HtmlToken(index, char_tokens, tree, True, token.position, token.length), tag
+            yield HtmlToken(index,
+                            char_tokens,
+                            tree,
+                            True,
+                            token.position,
+                            token.length), tag
 
     def cleanup_tree(self, tree):
         cleaned = copy.deepcopy(tree)
@@ -297,7 +316,8 @@ class HtmlTokenizer(object):
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
         chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        chains = [l for l in self.sequence_encoder.from_indicies(chains, input_tokens)]
+        chains = self.sequence_encoder.from_indicies(chains, input_tokens)
+        chains = [l for l in chains]
         return self.sequence_encoder.split(chains)
 
     def _limit_tags(self, input_tokens):
