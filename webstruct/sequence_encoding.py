@@ -11,13 +11,13 @@ class IobEncoder(object):
 
         >>> iob_encoder = IobEncoder()
         >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
-        >>> [p for p in IobEncoder.from_indices(iob_encoder.encode(input_tokens), input_tokens)]
+        >>> def encode(encoder, tokens): return [p for p in IobEncoder.from_indices(encoder.encode(tokens), tokens)]
+        >>> encode(iob_encoder, input_tokens)
         [('John', 'B-PER'), ('said', 'O')]
 
 
         >>> input_tokens = ["hello", "__START_PER__", "John", "Doe", "__END_PER__", "__START_PER__", "Mary", "__END_PER__", "said"]
-        >>> tokens = iob_encoder.encode(input_tokens)
-        >>> tokens = [p for p in IobEncoder.from_indices(tokens, input_tokens)]
+        >>> tokens = encode(iob_encoder, input_tokens)
         >>> tokens, tags = iob_encoder.split(tokens)
         >>> tokens, tags
         (['hello', 'John', 'Doe', 'Mary', 'said'], ['O', 'B-PER', 'I-PER', 'B-PER', 'O'])
@@ -27,14 +27,10 @@ class IobEncoder(object):
 
         >>> iob_encoder = IobEncoder()
         >>> input_tokens_partial = ["__START_PER__", "John"]
-        >>> tokens = iob_encoder.encode(input_tokens_partial)
-        >>> tokens = [p for p in IobEncoder.from_indices(tokens, input_tokens_partial)]
-        >>> tokens
+        >>> encode(iob_encoder, input_tokens_partial)
         [('John', 'B-PER')]
         >>> input_tokens_partial = ["Mayer", "__END_PER__", "said"]
-        >>> tokens = iob_encoder.encode(input_tokens_partial)
-        >>> tokens = [p for p in IobEncoder.from_indices(tokens, input_tokens_partial)]
-        >>> tokens
+        >>> encode(iob_encoder, input_tokens_partial)
         [('Mayer', 'I-PER'), ('said', 'O')]
 
     To reset internal state, use ``reset method``::
@@ -43,7 +39,7 @@ class IobEncoder(object):
 
     Group results to entities::
 
-        >>> iob_encoder.group([p for p in IobEncoder.from_indices(iob_encoder.encode(input_tokens), input_tokens)])
+        >>> iob_encoder.group(encode(iob_encoder, input_tokens))
         [(['hello'], 'O'), (['John', 'Doe'], 'PER'), (['Mary'], 'PER'), (['said'], 'O')]
 
     Input token stream is processed by ``InputTokenProcessor()`` by default;
