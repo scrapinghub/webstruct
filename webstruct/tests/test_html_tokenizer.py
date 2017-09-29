@@ -151,3 +151,19 @@ class HtmlTokenizerTest(HtmlTest):
         html_tokens, _ = tokenizer.tokenize_single(clean_tree)
         detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
         self.assertHtmlTreeEqual(annotated_tree, detokenized_tree)
+
+    def test_detokenize_handle_unicode(self):
+        annotated_html = bytes(u"""
+        <html>
+          <body>Δ  __START_ORG__ hello __END_ORG__  a, b <a>world</a></body>
+        </html>
+        """.encode('utf-8'))
+
+
+        annotated_tree = HtmlLoader().loadbytes(annotated_html)
+        tokenizer = HtmlTokenizer()
+        html_tokens, tags = tokenizer.tokenize_single(annotated_tree)
+        clean_tree = tokenizer.cleanup_tree(annotated_tree)
+        html_tokens, _ = tokenizer.tokenize_single(clean_tree)
+        detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
+        self.assertHtmlTreeEqual(annotated_tree, detokenized_tree)

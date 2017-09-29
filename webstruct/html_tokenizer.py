@@ -13,7 +13,6 @@ import re
 import copy
 from itertools import groupby
 from collections import namedtuple
-import six
 from six.moves import zip
 
 from lxml.etree import Comment, iterwalk
@@ -314,7 +313,7 @@ class HtmlTokenizer(object):
         text = text or ''
         input_tokens = [t for t in self.text_tokenize_func(text)]
         input_tokens = self._limit_tags(input_tokens)
-        input_tokens = [TextToken(chars=six.text_type(t.chars),
+        input_tokens = [TextToken(chars=t.chars,
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
         chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
