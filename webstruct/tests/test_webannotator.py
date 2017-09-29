@@ -109,6 +109,7 @@ class WaConvertTest(HtmlTest):
             <wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color>
         </html>
         """)
+
     def test_wa_convert_ignore_style(self):
         tree = html_document_fromstring(b"""
         <html>
@@ -147,6 +148,7 @@ class WaConvertTest(HtmlTest):
             <wa-color id="WA-color-0" bg="#33CCFF" fg="#000000" class="WebAnnotator_ORG" type="ORG"></wa-color>
         </html>
         """)
+
     def test_wa_convert_crosstitle(self):
         tree = html_document_fromstring(b"""
         <html>
@@ -188,6 +190,7 @@ class WaConvertTest(HtmlTest):
           </wa-title>
         </html>
         """)
+
     def test_wa_convert_inner(self):
         tree = html_document_fromstring(b"""
         <html>

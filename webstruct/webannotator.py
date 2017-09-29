@@ -100,7 +100,7 @@ def apply_wa_title(tree):
         head.insert(head.index(title), wa_title)
         title.drop_tree()
         wa_title.tag = 'title'
-        for attr in  wa_title.attrib:
+        for attr in wa_title.attrib:
             wa_title.attrib.pop(attr)
         return
 
@@ -192,6 +192,8 @@ TagPosition = namedtuple('TagPosition', ['element',
                                          'length',
                                          'is_tail',
                                          'dfs_number'])
+
+
 def translate_to_dfs(positions, ordered):
     for position in positions:
         number = ordered[(position.element, position.is_tail)]
@@ -201,6 +203,7 @@ def translate_to_dfs(positions, ordered):
                           length=position.length,
                           is_tail=position.is_tail,
                           dfs_number=number)
+
 
 def enclose(tasks, entity_colors):
     if not tasks:
@@ -244,7 +247,6 @@ def enclose(tasks, entity_colors):
         node.tail = tail
         nodes.append(node)
 
-
     if is_tail:
         element.tail = remainder
     else:
@@ -260,6 +262,7 @@ def enclose(tasks, entity_colors):
     for number, node in enumerate(nodes):
         parent.insert(number + shift, node)
 
+
 def fabricate_start(element, is_tail, tag):
     return TagPosition(element=element,
                        tag=tag,
@@ -267,6 +270,7 @@ def fabricate_start(element, is_tail, tag):
                        length=0,
                        is_tail=is_tail,
                        dfs_number=0)
+
 
 def fabricate_end(element, is_tail, tag):
     target = element.text
@@ -316,7 +320,6 @@ def to_webannotator(tree, entity_colors=None, url=None):
                  (element.tail, START_RE, starts, True),
                  (element.tail, END_RE, ends, True)]
 
-
         for text, regexp, storage, is_tail in tasks:
             if not text:
                 continue
@@ -341,24 +344,24 @@ def to_webannotator(tree, entity_colors=None, url=None):
     # each tail is last
     ordered = dict()
     number = 0
-    for action, element in etree.iterwalk(root, events=('start','end')):
+    for action, element in etree.iterwalk(root, events=('start', 'end')):
 
         if action == 'end':
             is_tail = True
             ordered[(element, is_tail)] = number
-            number = number + 1# for tail
+            number = number + 1  # for tail
 
         if action == 'start':
             is_tail = False
             ordered[(element, is_tail)] = number
-            number = number + 1# for text
-            number = number + 1# for element
+            number = number + 1  # for text
+            number = number + 1  # for element
 
     starts = [s for s in translate_to_dfs(starts, ordered)]
     ends = [e for e in translate_to_dfs(ends, ordered)]
 
-    starts.sort(key = lambda t:(t.dfs_number, t.position))
-    ends.sort(key = lambda t:(t.dfs_number, t.position))
+    starts.sort(key=lambda t: (t.dfs_number, t.position))
+    ends.sort(key=lambda t: (t.dfs_number, t.position))
 
     dfs_order = (max(n for n in ordered.values()) + 1) * [None]
     for text_node, dfs_number in ordered.items():
@@ -378,8 +381,10 @@ def to_webannotator(tree, entity_colors=None, url=None):
                 continue
 
             element, is_tail = text_node
+            is_string = isinstance(element.tag, six.string_types)
+            is_text = isinstance(element.tag, six.text_type)
 
-            if not isinstance(element.tag, six.string_types) and not isinstance(element.tag, six.text_type):
+            if not is_string and not is_text:
                 continue
 
             if element.tag in ['script', 'style']:
@@ -395,8 +400,9 @@ def to_webannotator(tree, entity_colors=None, url=None):
         fictive_start = fabricate_start(end.element, end.is_tail, end.tag)
         tasks.append((fictive_start, end, _id))
 
-    byelement = lambda rec: (rec[0].element, rec[0].is_tail)
-    tasks.sort(key=lambda rec:(ordered[byelement(rec)],rec[0].position))
+    def byelement(rec): return (rec[0].element, rec[0].is_tail)
+
+    tasks.sort(key=lambda rec: (ordered[byelement(rec)], rec[0].position))
     for _, enclosures in itertools.groupby(tasks, byelement):
         enclosures = [e for e in enclosures]
         enclose(enclosures, entity_colors)
