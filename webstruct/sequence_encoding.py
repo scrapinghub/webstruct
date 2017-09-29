@@ -98,7 +98,6 @@ class IobEncoder(object):
         for idx, tag in indicies:
             yield input_tokens[idx], tag
 
-
     @classmethod
     def group(cls, data, strict=False):
         """
@@ -196,4 +195,3 @@ class InputTokenProcessor(object):
 
         # regular token
         return 'token', token
-

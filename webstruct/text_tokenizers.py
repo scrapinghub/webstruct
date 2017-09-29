@@ -156,7 +156,6 @@ class WordTokenizer(object):
                                 length=t.length)
             return
 
-
         i = 0
         token_start = 0
         while 1:
@@ -194,7 +193,8 @@ class DefaultTokenizer(WordTokenizer):
     def tokenize(self, text):
         tokens = super(DefaultTokenizer, self).tokenize(text)
         # remove standalone commas and semicolons
-        # as they broke tag sets, e.g. PERSON->FUNCTION in case "PERSON, FUNCTION"
+        # as they broke tag sets
+        # , e.g. PERSON->FUNCTION in case "PERSON, FUNCTION"
 
         # but it has negative consequences, e.g.
         # etalon:    [PER-B, PER-I, FUNC-B]
