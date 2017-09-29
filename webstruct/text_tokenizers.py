@@ -11,7 +11,7 @@ class WordTokenizer(object):
     that doesn't split on @ and ':' symbols and doesn't split contractions::
 
     >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().segment_words(s)
     [TextToken(chars='Good', position=0, length=4),
      TextToken(chars='muffins', position=5, length=7),
      TextToken(chars='cost', position=13, length=4),
@@ -24,25 +24,25 @@ class WordTokenizer(object):
      TextToken(chars='muffins@gmail.com', position=44, length=17)]
 
     >>> s = '''Shelbourne Road,'''
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().segment_words(s)
     [TextToken(chars='Shelbourne', position=0, length=10),
      TextToken(chars='Road', position=11, length=4),
      TextToken(chars=',', position=15, length=1)]
 
     >>> s = '''population of 100,000'''
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().segment_words(s)
     [TextToken(chars='population', position=0, length=10),
      TextToken(chars='of', position=11, length=2),
      TextToken(chars='100,000', position=14, length=7)]
 
     >>> s = '''Hello|World'''
-    >>> WordTokenizer().span_tokenize(s)
+    >>> WordTokenizer().segment_words(s)
     [TextToken(chars='Hello', position=0, length=5),
      TextToken(chars='|', position=5, length=1),
      TextToken(chars='World', position=6, length=5)]
 
     >>> s2 = '"We beat some pretty good teams to get here," Slocum said.'
-    >>> WordTokenizer().span_tokenize(s2)  # doctest: +NORMALIZE_WHITESPACE
+    >>> WordTokenizer().segment_words(s2)  # doctest: +NORMALIZE_WHITESPACE
     [TextToken(chars='``', position=0, length=1),
      TextToken(chars='We', position=1, length=2),
      TextToken(chars='beat', position=4, length=4),
@@ -62,7 +62,7 @@ class WordTokenizer(object):
     ... cliche-ridden, \"Touched by an
     ... Angel\" (a show creator John Masius
     ... worked on) wanna-be if she didn't.'''
-    >>> WordTokenizer().span_tokenize(s3)  # doctest: +NORMALIZE_WHITESPACE
+    >>> WordTokenizer().segment_words(s3)  # doctest: +NORMALIZE_WHITESPACE
     [TextToken(chars='Well', position=0, length=4),
      TextToken(chars=',', position=4, length=1),
      TextToken(chars='we', position=6, length=2),
@@ -94,19 +94,19 @@ class WordTokenizer(object):
      TextToken(chars="didn't", position=133, length=6),
      TextToken(chars='.', position=139, length=1)]
 
-    >>> WordTokenizer().span_tokenize('"')
+    >>> WordTokenizer().segment_words('"')
     [TextToken(chars='``', position=0, length=1)]
 
-    >>> WordTokenizer().span_tokenize('" a')
+    >>> WordTokenizer().segment_words('" a')
     [TextToken(chars='``', position=0, length=1),
      TextToken(chars='a', position=2, length=1)]
 
     Some issues:
 
-    >>> WordTokenizer().span_tokenize("Phone:855-349-1914")
+    >>> WordTokenizer().segment_words("Phone:855-349-1914")
     [TextToken(chars='Phone:855-349-1914', position=0, length=18)]
 
-    >>> WordTokenizer().span_tokenize("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")
+    >>> WordTokenizer().segment_words("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")
     [TextToken(chars='Copyright', position=0, length=9),
      TextToken(chars=u'\xa9', position=10, length=1),
      TextToken(chars='2014', position=12, length=4),
@@ -120,18 +120,18 @@ class WordTokenizer(object):
      TextToken(chars='Reserved', position=51, length=8),
      TextToken(chars='.', position=59, length=1)]
 
-    >>> WordTokenizer().span_tokenize("Powai Campus, Mumbai-400077")
+    >>> WordTokenizer().segment_words("Powai Campus, Mumbai-400077")
     [TextToken(chars='Powai', position=0, length=5),
      TextToken(chars='Campus', position=6, length=6),
      TextToken(chars=',', position=12, length=1),
      TextToken(chars='Mumbai-400077', position=14, length=13)]
 
-    >>> WordTokenizer().span_tokenize("1 5858/ 1800")
+    >>> WordTokenizer().segment_words("1 5858/ 1800")
      [TextToken(chars='1', position=0, length=1),
       TextToken(chars='5858/', position=2, length=5),
       TextToken(chars='1800', position=8, length=4)]
 
-    >>> WordTokenizer().span_tokenize("Saudi Arabia-")
+    >>> WordTokenizer().segment_words("Saudi Arabia-")
     [TextToken(chars='Saudi', position=0, length=5),
      TextToken(chars='Arabia-', position=6, length=7)]
 
@@ -154,17 +154,17 @@ class WordTokenizer(object):
 
     open_quotes = re.compile(r'(^|[\s(\[{<])"')
 
-    def _span_tokenize(self, text):
+    def _segment_words(self, text):
         # this one cannot be placed in the loop because it requires
         # position check (beginning of the string) or previous char value
         quote = self.open_quotes.search(text)
         if quote is not None:
             end = quote.end() - 1
-            for t in self._span_tokenize(text[:end]):
+            for t in self._segment_words(text[:end]):
                 yield t
             yield TextToken(chars='``', position=end, length=1)
             shift = end + 1
-            for t in self._span_tokenize(text[shift:]):
+            for t in self._segment_words(text[shift:]):
                 yield TextToken(chars=t.chars,
                                 position=t.position + shift,
                                 length=t.length)
@@ -199,16 +199,16 @@ class WordTokenizer(object):
                     break
             i += shift
 
-    def span_tokenize(self, text):
-        return [t for t in self._span_tokenize(text) if t.chars]
+    def segment_words(self, text):
+        return [t for t in self._segment_words(text) if t.chars]
 
     def tokenize(self, text):
-        return [t.chars for t in self.span_tokenize(text)]
+        return [t.chars for t in self.segment_words(text)]
 
 
 class DefaultTokenizer(WordTokenizer):
-    def span_tokenize(self, text):
-        tokens = super(DefaultTokenizer, self).span_tokenize(text)
+    def segment_words(self, text):
+        tokens = super(DefaultTokenizer, self).segment_words(text)
         # remove standalone commas and semicolons
         # as they broke tag sets,
         # e.g. PERSON->FUNCTION in case "PERSON, FUNCTION"
@@ -222,4 +222,4 @@ class DefaultTokenizer(WordTokenizer):
         return [t for t in tokens if t.chars not in {',', ';'}]
 
 
-tokenize = DefaultTokenizer().span_tokenize
+tokenize = DefaultTokenizer().segment_words
