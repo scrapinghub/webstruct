@@ -318,7 +318,7 @@ class HtmlTokenizer(object):
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
         chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        chains = self.sequence_encoder.from_indicies(chains, input_tokens)
+        chains = self.sequence_encoder.from_indices(chains, input_tokens)
         chains = [l for l in chains]
         return self.sequence_encoder.split(chains)
 
