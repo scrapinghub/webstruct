@@ -11,7 +11,9 @@ class TestTokenizerTest(unittest.TestCase):
     def test_phone(self):
         return self.do_tokenize(
                 "Phone:855-349-1914",
-                [TextToken(chars='Phone:855-349-1914', position=0, length=18)]
+                [TextToken(chars='Phone', position=0, length=5)]
+                [TextToken(chars=':', position=5, length=1)]
+                [TextToken(chars='855-349-1914', position=6, length=12)]
                 )
 
     @pytest.mark.xfail
@@ -21,7 +23,9 @@ class TestTokenizerTest(unittest.TestCase):
                 [TextToken(chars='Powai', position=0, length=5),
                  TextToken(chars='Campus', position=6, length=6),
                  TextToken(chars=',', position=12, length=1),
-                 TextToken(chars='Mumbai-400077', position=14, length=13)]
+                 TextToken(chars='Mumbai', position=14, length=6),
+                 TextToken(chars='-', position=20, length=1),
+                 TextToken(chars='400077', position=21, length=6)]
                 )
 
     @pytest.mark.xfail
@@ -29,7 +33,8 @@ class TestTokenizerTest(unittest.TestCase):
         return self.do_tokenize(
                 "Saudi Arabia-",
                 [TextToken(chars='Saudi', position=0, length=5),
-                 TextToken(chars='Arabia-', position=6, length=7)]
+                 TextToken(chars='Arabia', position=6, length=6),
+                 TextToken(chars='-', position=12, length=1)]
                 )
 
     @pytest.mark.xfail
@@ -37,6 +42,7 @@ class TestTokenizerTest(unittest.TestCase):
         return self.do_tokenize(
                 "1 5858/ 1800",
                 [TextToken(chars='1', position=0, length=1),
-                 TextToken(chars='5858/', position=2, length=5),
+                 TextToken(chars='5858', position=2, length=4),
+                 TextToken(chars='/', position=6, length=1),
                  TextToken(chars='1800', position=8, length=4)]
                 )
