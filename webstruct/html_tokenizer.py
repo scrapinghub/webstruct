@@ -13,21 +13,24 @@ import re
 import copy
 from itertools import groupby
 from collections import namedtuple
-import six
 from six.moves import zip
 
-from lxml.etree import XPathEvaluator, Comment
+from lxml.etree import Comment, iterwalk
 
 from webstruct.sequence_encoding import IobEncoder
-from webstruct.text_tokenizers import tokenize
+from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
     kill_html_tags,
-    smart_join,
 )
 
 
-_HtmlToken = namedtuple('HtmlToken', 'index tokens elem is_tail')
+_HtmlToken = namedtuple('HtmlToken', ['index',
+                                      'tokens',
+                                      'elem',
+                                      'is_tail',
+                                      'position',
+                                      'length'])
 
 
 class HtmlToken(_HtmlToken):
@@ -41,6 +44,8 @@ class HtmlToken(_HtmlToken):
     * :attr:`elem` is the current html block (as lxml's Element) - most
       likely you want :attr:`parent` instead of it
     * :attr:`is_tail` flag indicates that token belongs to element tail
+    * :attr:`position` is logical position(in letters or codepoints) of token start in parent text
+    * :attr:`length` is logical length(in letters or codepoints) of token in parent text
 
     Computed properties:
 
@@ -64,8 +69,10 @@ class HtmlToken(_HtmlToken):
         return self.elem.getroottree()
 
     def __repr__(self):
-        return "HtmlToken(token=%r, parent=%r, index=%s)" % (
-            self.token, self.parent, self.index
+        return ("HtmlToken("
+                "token=%r, parent=%r, index=%s, position=%d, length=%d"
+                ")") % (
+            self.token, self.parent, self.index, self.position, self.length
         )
 
 
@@ -85,7 +92,8 @@ class HtmlTokenizer(object):
     ----------
 
     tagset : set, optional
-        A set of entity types to keep. If not passed, all entity types are kept.
+        A set of entity types to keep.
+        If not passed, all entity types are kept.
         Use this argument to discard some entity types from training data.
     sequence_encoder : object, optional
         Sequence encoder object. If not passed,
@@ -142,7 +150,7 @@ class HtmlTokenizer(object):
             >>> tree = loader.loadbytes(b"<p>hello, <PER>John <b>Doe</b></PER> <br> <PER>Mary</PER> said</p>")
             >>> html_tokens, tags = html_tokenizer.tokenize_single(tree)
             >>> html_tokens
-            [HtmlToken(token='hello', parent=<Element p at ...>, index=0), HtmlToken...]
+            [HtmlToken(token='hello', parent=<Element p at ...>, index=0, ...), HtmlToken...]
             >>> tags
             ['O', 'B-PER', 'I-PER', 'B-PER', 'O']
             >>> for tok, iob_tag in zip(html_tokens, tags):
@@ -180,6 +188,8 @@ class HtmlTokenizer(object):
         Build annotated ``lxml.etree.ElementTree`` from
         ``html_tokens`` (a list of :class:`.HtmlToken` instances)
         and ``tags`` (a list of their tags).
+        **ATTENTION**: ``html_tokens`` should be tokenized from tree
+        without tags
 
         Annotations are encoded as ``__START_TAG__`` and ``__END_TAG__``
         text tokens (this is the format :mod:`webstruct.loaders` use).
@@ -190,9 +200,7 @@ class HtmlTokenizer(object):
         if not html_tokens:
             return None
 
-        orig_tree = html_tokens[0].root
-        tree = copy.deepcopy(orig_tree)
-        xpatheval = XPathEvaluator(tree)
+        tree = html_tokens[0].root
 
         # find starts/ends of token groups
         token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
@@ -206,30 +214,49 @@ class HtmlTokenizer(object):
             pos += n_tokens
 
         # mark starts/ends with special tokens
-        data = zip(html_tokens, tags, range(len(html_tokens)))
-        keyfunc = lambda rec: (rec[0].elem, rec[0].is_tail)
+        data = [(s, True) for s in starts]
+        data.extend((s, False) for s in ends)
+        keyfunc = lambda rec: (id(html_tokens[rec[0]].elem), html_tokens[rec[0]].is_tail)
+        data.sort(key=keyfunc)
 
-        for (orig_elem, is_tail), g in groupby(data, keyfunc):
+        for (_, is_tail), g in groupby(data, keyfunc):
             g = list(g)
-            fix = False
-            tokens = g[0][0].tokens[:]
-            for token, tag, token_idx in g:
-                if token_idx in starts:
-                    text = ' __START_%s__ %s' % (tag[2:], tokens[token.index])
-                    tokens[token.index] = text
-                    fix = True
-                if token_idx in ends:
-                    text = '%s __END_%s__ ' % (tokens[token.index], tag[2:])
-                    tokens[token.index] = text
-                    fix = True
+            g.sort(key=lambda t: (html_tokens[t[0]].position, not t[1]))
 
-            if fix:
-                xpath = orig_tree.getpath(orig_elem)
-                elem = xpatheval(xpath)[0]
-                if is_tail:
-                    elem.tail = smart_join(tokens)
+            if not g:
+                continue
+
+            elem = html_tokens[g[0][0]].elem
+
+            pos_in_source = 0
+            source = elem.text
+            if is_tail:
+                source = elem.tail
+
+            mods = list()
+
+            for idx, is_starts in g:
+                token = html_tokens[idx]
+                tag = tags[idx]
+                mods.append(source[pos_in_source:token.position])
+                pos_in_source = token.position
+                if is_starts:
+                    patch = ' __START_%s__ ' % (tag[2:],)
+                    mods.append(patch)
                 else:
-                    elem.text = smart_join(tokens)
+                    end_in_source = pos_in_source + token.length
+                    mods.append(source[pos_in_source:end_in_source])
+                    pos_in_source = pos_in_source + token.length
+                    patch = ' __END_%s__ ' % (tag[2:],)
+                    mods.append(patch)
+
+            mods.append(source[pos_in_source:])
+            modded = ''.join(mods)
+
+            if is_tail:
+                elem.tail = modded
+            else:
+                elem.text = modded
 
         return tree
 
@@ -245,18 +272,35 @@ class HtmlTokenizer(object):
             return
 
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
+        char_tokens = [t.chars for t in head_tokens]
         for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
-            yield HtmlToken(index, head_tokens, tree, False), tag
+            yield HtmlToken(index,
+                            char_tokens,
+                            tree,
+                            False,
+                            token.position,
+                            token.length), tag
 
         for child in tree:  # where is my precious "yield from"?
             for html_token, tag in self._process_tree(child):
                 yield html_token, tag
 
         tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
+        char_tokens = [t.chars for t in tail_tokens]
         for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
-            yield HtmlToken(index, tail_tokens, tree, True), tag
+            yield HtmlToken(index,
+                            char_tokens,
+                            tree,
+                            True,
+                            token.position,
+                            token.length), tag
 
-        self._cleanup_elem(tree)
+    def cleanup_tree(self, tree):
+        cleaned = copy.deepcopy(tree)
+        for _, elem in iterwalk(cleaned):
+            self._cleanup_elem(elem)
+
+        return cleaned
 
     def _cleanup_elem(self, elem):
         """ Remove special tokens from elem """
@@ -266,16 +310,23 @@ class HtmlTokenizer(object):
             elem.tail = self._tag_re.sub("", elem.tail)
 
     def _tokenize_and_split(self, text):
-        input_tokens = self._limit_tags(self.text_tokenize_func(text or ''))
-        input_tokens = map(six.text_type, input_tokens)
-        return self.sequence_encoder.encode_split(input_tokens)
+        text = text or ''
+        input_tokens = [t for t in self.text_tokenize_func(text)]
+        input_tokens = self._limit_tags(input_tokens)
+        input_tokens = [TextToken(chars=t.chars,
+                                  position=t.position,
+                                  length=t.length) for t in input_tokens]
+        chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
+        chains = self.sequence_encoder.from_indices(chains, input_tokens)
+        chains = [l for l in chains]
+        return self.sequence_encoder.split(chains)
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:
             return input_tokens
 
         proc = self.sequence_encoder.token_processor
-        token_classes = [proc.classify(tok) for tok in input_tokens]
+        token_classes = [proc.classify(tok.chars) for tok in input_tokens]
         return [
             tok for (tok, (typ, value)) in zip(input_tokens, token_classes)
             if not (typ in {'start', 'end'} and value not in self.tagset)
