@@ -103,9 +103,6 @@ class WordTokenizer(object):
 
     Some issues:
 
-    >>> WordTokenizer().segment_words("Phone:855-349-1914")
-    [TextToken(chars='Phone:855-349-1914', position=0, length=18)]
-
     >>> WordTokenizer().segment_words("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")
     [TextToken(chars='Copyright', position=0, length=9),
      TextToken(chars=u'\xa9', position=10, length=1),
@@ -119,21 +116,6 @@ class WordTokenizer(object):
      TextToken(chars='Rights', position=44, length=6),
      TextToken(chars='Reserved', position=51, length=8),
      TextToken(chars='.', position=59, length=1)]
-
-    >>> WordTokenizer().segment_words("Powai Campus, Mumbai-400077")
-    [TextToken(chars='Powai', position=0, length=5),
-     TextToken(chars='Campus', position=6, length=6),
-     TextToken(chars=',', position=12, length=1),
-     TextToken(chars='Mumbai-400077', position=14, length=13)]
-
-    >>> WordTokenizer().segment_words("1 5858/ 1800")
-     [TextToken(chars='1', position=0, length=1),
-      TextToken(chars='5858/', position=2, length=5),
-      TextToken(chars='1800', position=8, length=4)]
-
-    >>> WordTokenizer().segment_words("Saudi Arabia-")
-    [TextToken(chars='Saudi', position=0, length=5),
-     TextToken(chars='Arabia-', position=6, length=7)]
 
     """
 
