@@ -13,7 +13,6 @@ import re
 import copy
 from itertools import groupby
 from collections import namedtuple
-import six
 from six.moves import zip
 
 from lxml.etree import Comment, iterwalk
@@ -45,8 +44,8 @@ class HtmlToken(_HtmlToken):
     * :attr:`elem` is the current html block (as lxml's Element) - most
       likely you want :attr:`parent` instead of it
     * :attr:`is_tail` flag indicates that token belongs to element tail
-    * :attr:`position is position of token start in parent text
-    * :attr:`length is length of token in parent text
+    * :attr:`position` is logical position(in letters or codepoints) of token start in parent text
+    * :attr:`length` is logical length(in letters or codepoints) of token in parent text
 
     Computed properties:
 
@@ -234,24 +233,26 @@ class HtmlTokenizer(object):
             if is_tail:
                 source = elem.tail
 
-            modded = ''
+            mods = list()
 
             for idx, is_starts in g:
                 token = html_tokens[idx]
                 tag = tags[idx]
-                modded = modded + source[pos_in_source:token.position]
+                mods.append(source[pos_in_source:token.position])
                 pos_in_source = token.position
                 if is_starts:
                     patch = ' __START_%s__ ' % (tag[2:],)
-                    modded = modded + patch
+                    mods.append(patch)
                 else:
                     end_in_source = pos_in_source + token.length
-                    modded = modded + source[pos_in_source:end_in_source]
+                    mods.append(source[pos_in_source:end_in_source])
                     pos_in_source = pos_in_source + token.length
                     patch = ' __END_%s__ ' % (tag[2:],)
-                    modded = modded + patch
+                    mods.append(patch)
 
-            modded = modded + source[pos_in_source:]
+            mods.append(source[pos_in_source:])
+            modded = ''.join(mods)
+
             if is_tail:
                 elem.tail = modded
             else:
@@ -312,11 +313,11 @@ class HtmlTokenizer(object):
         text = text or ''
         input_tokens = [t for t in self.text_tokenize_func(text)]
         input_tokens = self._limit_tags(input_tokens)
-        input_tokens = [TextToken(chars=six.text_type(t.chars),
+        input_tokens = [TextToken(chars=t.chars,
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
         chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        chains = self.sequence_encoder.from_indicies(chains, input_tokens)
+        chains = self.sequence_encoder.from_indices(chains, input_tokens)
         chains = [l for l in chains]
         return self.sequence_encoder.split(chains)
 
