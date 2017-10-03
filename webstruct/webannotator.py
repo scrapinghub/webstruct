@@ -222,12 +222,12 @@ def enclose(tasks, entity_colors):
     remainder = source[:first.position]
 
     nodes = list()
-    for number, (start, end, _id) in enumerate(tasks):
+    for idx, (start, end, _id) in enumerate(tasks):
 
         limit = len(source)
-        is_last = number == len(tasks) - 1
+        is_last = idx == len(tasks) - 1
         if not is_last:
-            limit = tasks[number + 1][0].position
+            limit = tasks[idx + 1][0].position
 
         tag = start.tag
         text = source[start.position + start.length:end.position]
@@ -259,8 +259,8 @@ def enclose(tasks, entity_colors):
         parent = element
         shift = 0
 
-    for number, node in enumerate(nodes):
-        parent.insert(number + shift, node)
+    for idx, node in enumerate(nodes):
+        parent.insert(idx + shift, node)
 
 
 def fabricate_start(element, is_tail, tag):
