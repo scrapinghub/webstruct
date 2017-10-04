@@ -412,7 +412,7 @@ def to_webannotator(tree, entity_colors=None, url=None):
     starts.sort(key=lambda t: (t.dfs_number, t.position))
     ends.sort(key=lambda t: (t.dfs_number, t.position))
 
-    dfs_order = (max(n for n in ordered.values()) + 1) * [None]
+    dfs_order = (max(ordered.values()) + 1) * [None]
     for text_node, dfs_number in ordered.items():
         dfs_order[dfs_number] = text_node
 
