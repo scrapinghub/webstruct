@@ -194,15 +194,15 @@ _TagPosition = namedtuple('_TagPosition', ['element',
                                            'dfs_number'])
 
 
-def translate_to_dfs(positions, ordered):
+def _translate_to_dfs(positions, ordered):
     for position in positions:
         number = ordered[(position.element, position.is_tail)]
         yield _TagPosition(element=position.element,
-                          tag=position.tag,
-                          position=position.position,
-                          length=position.length,
-                          is_tail=position.is_tail,
-                          dfs_number=number)
+                           tag=position.tag,
+                           position=position.position,
+                           length=position.length,
+                           is_tail=position.is_tail,
+                           dfs_number=number)
 
 
 def enclose(tasks, entity_colors):
@@ -265,11 +265,11 @@ def enclose(tasks, entity_colors):
 
 def fabricate_start(element, is_tail, tag):
     return _TagPosition(element=element,
-                       tag=tag,
-                       position=0,
-                       length=0,
-                       is_tail=is_tail,
-                       dfs_number=0)
+                        tag=tag,
+                        position=0,
+                        length=0,
+                        is_tail=is_tail,
+                        dfs_number=0)
 
 
 def fabricate_end(element, is_tail, tag):
@@ -282,11 +282,11 @@ def fabricate_end(element, is_tail, tag):
         length = len(target)
 
     return _TagPosition(element=element,
-                       tag=tag,
-                       position=length,
-                       length=0,
-                       is_tail=is_tail,
-                       dfs_number=0)
+                        tag=tag,
+                        position=length,
+                        length=0,
+                        is_tail=is_tail,
+                        dfs_number=0)
 
 def to_webannotator(tree, entity_colors=None, url=None):
     """
@@ -330,11 +330,11 @@ def to_webannotator(tree, entity_colors=None, url=None):
                     continue
 
                 storage.append(_TagPosition(element=element,
-                                           tag=match.group(1),
-                                           position=match.start(),
-                                           length=match.end() - match.start(),
-                                           is_tail=is_tail,
-                                           dfs_number=-1))
+                                            tag=match.group(1),
+                                            position=match.start(),
+                                            length=match.end() - match.start(),
+                                            is_tail=is_tail,
+                                            dfs_number=-1))
 
     if len(ends) != len(starts):
         raise ValueError('len(ends) != len(starts)')
@@ -357,8 +357,8 @@ def to_webannotator(tree, entity_colors=None, url=None):
             number = number + 1  # for text
             number = number + 1  # for element
 
-    starts = [s for s in translate_to_dfs(starts, ordered)]
-    ends = [e for e in translate_to_dfs(ends, ordered)]
+    starts = [s for s in _translate_to_dfs(starts, ordered)]
+    ends = [e for e in _translate_to_dfs(ends, ordered)]
 
     starts.sort(key=lambda t: (t.dfs_number, t.position))
     ends.sort(key=lambda t: (t.dfs_number, t.position))
