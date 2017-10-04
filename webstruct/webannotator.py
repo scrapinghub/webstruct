@@ -304,10 +304,8 @@ def _find_enclosures(starts, ends, dfs_order):
                 continue
 
             element, is_tail = text_node
-            is_string = isinstance(element.tag, six.string_types)
-            is_text = isinstance(element.tag, six.text_type)
 
-            if not is_string and not is_text:
+            if not isinstance(element.tag, six.string_types):
                 continue
 
             if element.tag in ['script', 'style']:
