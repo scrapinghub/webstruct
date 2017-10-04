@@ -288,6 +288,7 @@ def _fabricate_end(element, is_tail, tag):
                         is_tail=is_tail,
                         dfs_number=0)
 
+
 def _find_enclosures(starts, ends, dfs_order):
 
     for _id, (start, end) in enumerate(zip(starts, ends)):
@@ -322,6 +323,7 @@ def _find_enclosures(starts, ends, dfs_order):
         fictive_start = _fabricate_start(end.element, end.is_tail, end.tag)
         yield fictive_start, end, _id
 
+
 def _enumerate_nodes_in_dfs_order(root):
     # traverse tree in DFS manner
     # each text is first child
@@ -342,6 +344,7 @@ def _enumerate_nodes_in_dfs_order(root):
             number = number + 1  # for element
 
     return ordered
+
 
 def _find_tag_limits(root):
     START_RE = re.compile(r' __START_(\w+)__ ')
@@ -415,7 +418,8 @@ def to_webannotator(tree, entity_colors=None, url=None):
 
     def byelement(rec): return (rec[0].element, rec[0].is_tail)
 
-    to_enclosure.sort(key=lambda rec: (ordered[byelement(rec)], rec[0].position))
+    to_enclosure.sort(key=lambda rec: (ordered[byelement(rec)],
+                                       rec[0].position))
     for _, enclosures in itertools.groupby(to_enclosure, byelement):
         enclosures = [e for e in enclosures]
         _enclose(enclosures, entity_colors)
