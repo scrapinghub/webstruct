@@ -288,6 +288,40 @@ def _fabricate_end(element, is_tail, tag):
                         is_tail=is_tail,
                         dfs_number=0)
 
+def _find_enclosures(starts, ends, dfs_order):
+
+    for _id, (start, end) in enumerate(zip(starts, ends)):
+        start_number = start.dfs_number
+        end_number = end.dfs_number
+
+        if start_number == end_number:
+            yield start, end, _id
+            continue
+
+        for text_node in dfs_order[start_number + 1:end_number]:
+            if text_node is None:
+                continue
+
+            element, is_tail = text_node
+            is_string = isinstance(element.tag, six.string_types)
+            is_text = isinstance(element.tag, six.text_type)
+
+            if not is_string and not is_text:
+                continue
+
+            if element.tag in ['script', 'style']:
+                continue
+
+            fictive_start = _fabricate_start(element, is_tail, start.tag)
+            fictive_end = _fabricate_end(element, is_tail, start.tag)
+            yield fictive_start, fictive_end, _id
+
+        fictive_end = _fabricate_end(start.element, start.is_tail, start.tag)
+        yield start, fictive_end, _id
+
+        fictive_start = _fabricate_start(end.element, end.is_tail, end.tag)
+        yield fictive_start, end, _id
+
 def to_webannotator(tree, entity_colors=None, url=None):
     """
     Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
@@ -367,38 +401,7 @@ def to_webannotator(tree, entity_colors=None, url=None):
     for text_node, dfs_number in ordered.items():
         dfs_order[dfs_number] = text_node
 
-    tasks = []
-    for _id, (start, end) in enumerate(zip(starts, ends)):
-        start_number = start.dfs_number
-        end_number = end.dfs_number
-
-        if start_number == end_number:
-            tasks.append((start, end, _id))
-            continue
-
-        for text_node in dfs_order[start_number + 1:end_number]:
-            if text_node is None:
-                continue
-
-            element, is_tail = text_node
-            is_string = isinstance(element.tag, six.string_types)
-            is_text = isinstance(element.tag, six.text_type)
-
-            if not is_string and not is_text:
-                continue
-
-            if element.tag in ['script', 'style']:
-                continue
-
-            fictive_start = _fabricate_start(element, is_tail, start.tag)
-            fictive_end = _fabricate_end(element, is_tail, start.tag)
-            tasks.append((fictive_start, fictive_end, _id))
-
-        fictive_end = _fabricate_end(start.element, start.is_tail, start.tag)
-        tasks.append((start, fictive_end, _id))
-
-        fictive_start = _fabricate_start(end.element, end.is_tail, end.tag)
-        tasks.append((fictive_start, end, _id))
+    tasks = [e for e in _find_enclosures(starts, ends, dfs_order)]
 
     def byelement(rec): return (rec[0].element, rec[0].is_tail)
 
