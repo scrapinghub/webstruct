@@ -263,7 +263,7 @@ def enclose(tasks, entity_colors):
         parent.insert(idx + shift, node)
 
 
-def fabricate_start(element, is_tail, tag):
+def _fabricate_start(element, is_tail, tag):
     return _TagPosition(element=element,
                         tag=tag,
                         position=0,
@@ -272,7 +272,7 @@ def fabricate_start(element, is_tail, tag):
                         dfs_number=0)
 
 
-def fabricate_end(element, is_tail, tag):
+def _fabricate_end(element, is_tail, tag):
     target = element.text
     if is_tail:
         target = element.tail
@@ -390,14 +390,14 @@ def to_webannotator(tree, entity_colors=None, url=None):
             if element.tag in ['script', 'style']:
                 continue
 
-            fictive_start = fabricate_start(element, is_tail, start.tag)
-            fictive_end = fabricate_end(element, is_tail, start.tag)
+            fictive_start = _fabricate_start(element, is_tail, start.tag)
+            fictive_end = _fabricate_end(element, is_tail, start.tag)
             tasks.append((fictive_start, fictive_end, _id))
 
-        fictive_end = fabricate_end(start.element, start.is_tail, start.tag)
+        fictive_end = _fabricate_end(start.element, start.is_tail, start.tag)
         tasks.append((start, fictive_end, _id))
 
-        fictive_start = fabricate_start(end.element, end.is_tail, end.tag)
+        fictive_start = _fabricate_start(end.element, end.is_tail, end.tag)
         tasks.append((fictive_start, end, _id))
 
     def byelement(rec): return (rec[0].element, rec[0].is_tail)
