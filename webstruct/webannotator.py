@@ -205,11 +205,11 @@ def _translate_to_dfs(positions, ordered):
                            dfs_number=number)
 
 
-def _enclose(tasks, entity_colors):
-    if not tasks:
+def _enclose(to_enclosure, entity_colors):
+    if not to_enclosure:
         return
 
-    first = tasks[0][0]
+    first = to_enclosure[0][0]
     element = first.element
     is_tail = first.is_tail
     source = element.text
@@ -222,12 +222,12 @@ def _enclose(tasks, entity_colors):
     remainder = source[:first.position]
 
     nodes = list()
-    for idx, (start, end, _id) in enumerate(tasks):
+    for idx, (start, end, _id) in enumerate(to_enclosure):
 
         limit = len(source)
-        is_last = idx == len(tasks) - 1
+        is_last = idx == len(to_enclosure) - 1
         if not is_last:
-            limit = tasks[idx + 1][0].position
+            limit = to_enclosure[idx + 1][0].position
 
         tag = start.tag
         text = source[start.position + start.length:end.position]
@@ -401,12 +401,12 @@ def to_webannotator(tree, entity_colors=None, url=None):
     for text_node, dfs_number in ordered.items():
         dfs_order[dfs_number] = text_node
 
-    tasks = [e for e in _find_enclosures(starts, ends, dfs_order)]
+    to_enclosure = [e for e in _find_enclosures(starts, ends, dfs_order)]
 
     def byelement(rec): return (rec[0].element, rec[0].is_tail)
 
-    tasks.sort(key=lambda rec: (ordered[byelement(rec)], rec[0].position))
-    for _, enclosures in itertools.groupby(tasks, byelement):
+    to_enclosure.sort(key=lambda rec: (ordered[byelement(rec)], rec[0].position))
+    for _, enclosures in itertools.groupby(to_enclosure, byelement):
         enclosures = [e for e in enclosures]
         _enclose(enclosures, entity_colors)
 
