@@ -186,18 +186,18 @@ def _set_base(tree, baseurl):
     head = _ensure_head(tree)
     head.insert(0, Element("base", href=baseurl))
 
-TagPosition = namedtuple('TagPosition', ['element',
-                                         'tag',
-                                         'position',
-                                         'length',
-                                         'is_tail',
-                                         'dfs_number'])
+_TagPosition = namedtuple('_TagPosition', ['element',
+                                           'tag',
+                                           'position',
+                                           'length',
+                                           'is_tail',
+                                           'dfs_number'])
 
 
 def translate_to_dfs(positions, ordered):
     for position in positions:
         number = ordered[(position.element, position.is_tail)]
-        yield TagPosition(element=position.element,
+        yield _TagPosition(element=position.element,
                           tag=position.tag,
                           position=position.position,
                           length=position.length,
@@ -264,7 +264,7 @@ def enclose(tasks, entity_colors):
 
 
 def fabricate_start(element, is_tail, tag):
-    return TagPosition(element=element,
+    return _TagPosition(element=element,
                        tag=tag,
                        position=0,
                        length=0,
@@ -281,7 +281,7 @@ def fabricate_end(element, is_tail, tag):
     if target:
         length = len(target)
 
-    return TagPosition(element=element,
+    return _TagPosition(element=element,
                        tag=tag,
                        position=length,
                        length=0,
@@ -329,7 +329,7 @@ def to_webannotator(tree, entity_colors=None, url=None):
                 if not match:
                     continue
 
-                storage.append(TagPosition(element=element,
+                storage.append(_TagPosition(element=element,
                                            tag=match.group(1),
                                            position=match.start(),
                                            length=match.end() - match.start(),
