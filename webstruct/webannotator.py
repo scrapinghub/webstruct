@@ -322,6 +322,28 @@ def _find_enclosures(starts, ends, dfs_order):
         fictive_start = _fabricate_start(end.element, end.is_tail, end.tag)
         yield fictive_start, end, _id
 
+def _enumerate_nodes_in_dfs_order(root):
+    # traverse tree in DFS manner
+    # each text is first child
+    # each tail is last
+    ordered = dict()
+    number = 0
+    for action, element in etree.iterwalk(root, events=('start', 'end')):
+
+        if action == 'end':
+            is_tail = True
+            ordered[(element, is_tail)] = number
+            number = number + 1  # for tail
+
+        if action == 'start':
+            is_tail = False
+            ordered[(element, is_tail)] = number
+            number = number + 1  # for text
+            number = number + 1  # for element
+
+    return ordered
+
+
 def to_webannotator(tree, entity_colors=None, url=None):
     """
     Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
@@ -373,24 +395,7 @@ def to_webannotator(tree, entity_colors=None, url=None):
     if len(ends) != len(starts):
         raise ValueError('len(ends) != len(starts)')
 
-    # traverse tree in DFS manner
-    # each text is first child
-    # each tail is last
-    ordered = dict()
-    number = 0
-    for action, element in etree.iterwalk(root, events=('start', 'end')):
-
-        if action == 'end':
-            is_tail = True
-            ordered[(element, is_tail)] = number
-            number = number + 1  # for tail
-
-        if action == 'start':
-            is_tail = False
-            ordered[(element, is_tail)] = number
-            number = number + 1  # for text
-            number = number + 1  # for element
-
+    ordered = _enumerate_nodes_in_dfs_order(root)
     starts = [s for s in _translate_to_dfs(starts, ordered)]
     ends = [e for e in _translate_to_dfs(ends, ordered)]
 
