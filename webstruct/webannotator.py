@@ -205,7 +205,7 @@ def _translate_to_dfs(positions, ordered):
                            dfs_number=number)
 
 
-def enclose(tasks, entity_colors):
+def _enclose(tasks, entity_colors):
     if not tasks:
         return
 
@@ -405,7 +405,7 @@ def to_webannotator(tree, entity_colors=None, url=None):
     tasks.sort(key=lambda rec: (ordered[byelement(rec)], rec[0].position))
     for _, enclosures in itertools.groupby(tasks, byelement):
         enclosures = [e for e in enclosures]
-        enclose(enclosures, entity_colors)
+        _enclose(enclosures, entity_colors)
 
     _copy_title(root)
     _add_wacolor_elements(root, entity_colors)
