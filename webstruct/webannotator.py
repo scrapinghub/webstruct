@@ -325,9 +325,6 @@ def _find_enclosures(starts, ends, dfs_order):
 
 
 def _enumerate_nodes_in_dfs_order(root):
-    # traverse tree in DFS manner
-    # each text is first child
-    # each tail is last
     ordered = dict()
     number = 0
     for action, element in etree.iterwalk(root, events=('start', 'end')):
@@ -398,6 +395,13 @@ def to_webannotator(tree, entity_colors=None, url=None):
 
     root = deepcopy(tree)
 
+    # We walk the DOM tree in depth first order and number all nodes.
+    # Also we number each text node as first child and tail node as last child.
+    # So when we have start tag in node with number n
+    # and stop tag in node with number n+m,
+    # we should annotate all nodes with numbers n+i, where i in range [1,m).
+    # All these nodes are located on the rigth and below the start
+    # and on the left and below the end.
     starts, ends = _find_tag_limits(root)
 
     if len(ends) != len(starts):
