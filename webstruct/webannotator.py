@@ -343,27 +343,7 @@ def _enumerate_nodes_in_dfs_order(root):
 
     return ordered
 
-
-def to_webannotator(tree, entity_colors=None, url=None):
-    """
-    Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
-
-    If you want a predictable colors assignment use ``entity_colors`` argument;
-    it should be a mapping ``{'entity_name': (fg, bg, entity_idx)}``;
-    entity names should be lowercased. You can use :class:`EntityColors`
-    to generate this mapping automatically:
-
-    >>> from webstruct.webannotator import EntityColors, to_webannotator
-    >>> # trees = ...
-    >>> entity_colors = EntityColors()
-    >>> wa_trees = [to_webannotator(tree, entity_colors) for tree in trees]  # doctest: +SKIP
-
-    """
-    if not entity_colors:
-        entity_colors = EntityColors()
-
-    root = deepcopy(tree)
-
+def _find_tag_limits(root):
     START_RE = re.compile(r' __START_(\w+)__ ')
     END_RE = re.compile(r' __END_(\w+)__ ')
 
@@ -391,6 +371,31 @@ def to_webannotator(tree, entity_colors=None, url=None):
                                             length=match.end() - match.start(),
                                             is_tail=is_tail,
                                             dfs_number=-1))
+
+    return starts, ends
+
+
+def to_webannotator(tree, entity_colors=None, url=None):
+    """
+    Convert a tree loaded by one of WebStruct loaders to WebAnnotator format.
+
+    If you want a predictable colors assignment use ``entity_colors`` argument;
+    it should be a mapping ``{'entity_name': (fg, bg, entity_idx)}``;
+    entity names should be lowercased. You can use :class:`EntityColors`
+    to generate this mapping automatically:
+
+    >>> from webstruct.webannotator import EntityColors, to_webannotator
+    >>> # trees = ...
+    >>> entity_colors = EntityColors()
+    >>> wa_trees = [to_webannotator(tree, entity_colors) for tree in trees]  # doctest: +SKIP
+
+    """
+    if not entity_colors:
+        entity_colors = EntityColors()
+
+    root = deepcopy(tree)
+
+    starts, ends = _find_tag_limits(root)
 
     if len(ends) != len(starts):
         raise ValueError('len(ends) != len(starts)')
