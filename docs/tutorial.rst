@@ -147,6 +147,7 @@ DictVectorizer from scikit-learn to convert feature dicts
 into seqlearn_ input format.
 
 .. _CRFSuite: http://www.chokkan.org/software/crfsuite/
+.. _wapiti: http://wapiti.limsi.fr
 .. _seqlearn: https://github.com/larsmans/seqlearn
 
 We'll use CRFSuite_ in this tutorial.
