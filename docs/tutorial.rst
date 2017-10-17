@@ -93,7 +93,7 @@ its position in HTML.
 
 .. note::
 
-    WebStruct supports another kind of feature functions that work on multiple
+    WebStruct supports other kind of feature functions that work on multiple
     tokens; we don't cover them in this tutorial.
 
 
@@ -138,7 +138,7 @@ Using a Sequence Labelling Toolkit
 
 WebStruct doesn't provide a CRF or Structured Perceptron implementation;
 learning and prediction is supposed to be handled by an external
-sequence labelling toolkit like Wapiti_, CRFSuite_ or seqlearn_.
+sequence labelling toolkit like CRFSuite_, Wapiti_ or seqlearn_.
 
 Once feature dicts are extracted from HTML you should convert them to
 a format required by your sequence labelling tooklit and use this toolkit
@@ -146,39 +146,37 @@ to train a model and do the prediction. For example, you may use
 DictVectorizer from scikit-learn to convert feature dicts
 into seqlearn_ input format.
 
-.. _wapiti: http://wapiti.limsi.fr
 .. _CRFSuite: http://www.chokkan.org/software/crfsuite/
+.. _wapiti: http://wapiti.limsi.fr
 .. _seqlearn: https://github.com/larsmans/seqlearn
 
-WebStruct provides some helpers for Wapiti_ sequence labelling toolkit.
-To use Wapiti with WebStruct, you need
+We'll use CRFSuite_ in this tutorial.
 
-* **for training:** wapiti C++ library itself, including ``wapiti``
-  command-line utility (python-wapiti wrapper is not necessary);
-* **for prediction:** `python-wapiti <https://github.com/adsva/python-wapiti>`_
-  wrapper, github version (C++ library is not necessary).
+WebStruct provides some helpers for CRFSuite sequence labelling toolkit.
+To use CRFSuite with WebStruct, you need
 
-We'll use Wapiti in this tutorial.
+* sklearn-crfsuite package (which depends on python-crfsuite and sklearn)
+
 
 Defining a Model
 ~~~~~~~~~~~~~~~~
 
 Basic way to define CRF model is the following::
 
-    model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
-        token_features = [token_identity, token_isupper, parent_tag, border_at_left],
-        train_args = '--algo l-bfgs --maxiter 50 --compact'
-    )
+    model = webstruct.create_crfsuite_pipeline(
+            token_features=[token_identity, token_isupper, parent_tag, border_at_left],
+            verbose=True
+        )
 
-First :func:`.create_wapiti_pipeline` argument is a file name Wapiti
-model will be save to after training.
-``train_args`` is a string or a list with arguments passed to wapiti;
-check Wapiti `manual <http://wapiti.limsi.fr/manual.html>`__ for available
-options.
+First :func:`.create_crfsuite_pipeline` argument is a list of feature functions which will be used for training.
+``verbose`` is a boolean parameter enabling verbose output of various training information;
+check sklearn-crfsuite `API reference <https://sklearn-crfsuite.readthedocs.io/en/latest/api.html#sklearn_crfsuite.CRF>`__
+for available options.
 
-Under the hood :func:`.create_wapiti_pipeline` creates a
+
+Under the hood :func:`.create_crfsuite_pipeline` creates a
 ``sklearn.pipeline.Pipeline`` with an :class:`~.HtmlFeatureExtractor` instance
-followed by :class:`~.WapitiCRF` instance. The example above is just a shortcut
+followed by :class:`sklearn_crfsuite.CRF` instance. The example above is just a shortcut
 for the following::
 
     model = Pipeline([
@@ -190,63 +188,11 @@ for the following::
                 border_at_left,
             ]
         )),
-        ('crf', WapitiCRF(
-            'mymodel.wapiti',
-            train_args = '--algo l-bfgs --maxiter 50 --compact',
+        ('crf', sklearn_crfsuite.CRF(
+            verbose=True
         )),
     ])
 
-Extracting Features using Wapiti Templates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Wapiti_ has "templates" support which allows to define richer features
-from the basic features, and to specify what to do with labels.
-Template format is described in Wapiti
-`manual <http://wapiti.limsi.fr/manual.html#patterns>`__; you may also
-check `CRF++ docs <http://crfpp.googlecode.com/svn/trunk/doc/index.html#templ>`__
-to get the templates idea - CRF++ and Wapiti template formats are very similar.
-
-WebStruct allows to use feature names instead of numbers in Wapiti templates.
-
-Let's define a template that will make Wapiti use first-order transition
-features, plus ``token`` text values in a +-2 window near the current token.
-
-::
-
-    feature_template = '''
-    # Label unigram & bigram
-    *
-
-    # Nearby token unigrams
-    uLL:%x[-2,token]
-    u-L:%x[-1,token]
-    u-R:%x[ 1,token]
-    uRR:%x[ 2,token]
-    '''
-
-.. note::
-
-    :func:`.create_wapiti_pipeline` (via :class:`~.WapitiCRF`) by default
-    adds all features for the current token to template. That's why we
-    haven't defined them in our template, and that's why we were fine
-    without using template at all. In our example additional
-    auto-generated lines would be
-
-    ::
-
-        ufeat:token=%x[0,token]
-        ufeat:isupper=%x[0,isupper]
-        ufeat:parent_tag=%x[0,parent_tag]
-        ufeat:border_at_left=%x[0,border_at_left]
-
-To make Wapiti use this template, pass it as an argument to
-:func:`.create_wapiti_pipeline` (or :class:`~.WapitiCRF`, whatever you use)::
-
-    model = webstruct.create_wapiti_pipeline('mymodel.wapiti',
-        token_features = [token_identity, token_isupper, parent_tag, border_at_left],
-        feature_template = feature_template,
-        train_args = '--algo l-bfgs --maxiter 50 --compact'
-    )
 
 
 Training
@@ -260,11 +206,11 @@ To train a model use its ``fit`` method::
 (a list of lists of :class:`~.HtmlToken` instances and a list of
 lists of string IOB labels).
 
-If you use :class:`~.WapitiCRF` directly then train it using
-:meth:`.WapitiCRF.fit` method. It accepts 2 lists: a list of lists of
+If you use :class:`sklearn_crfsuite.CRF` directly then train it using
+:meth:`.CRF.fit` method. It accepts 2 lists: a list of lists of
 feature dicts, and a list of lists of tags::
 
-    crf.fit(features, y)
+    model.fit(features, y)
 
 Named Entity Recognition
 ------------------------
@@ -281,7 +227,7 @@ Then create a :class:`~.NER` instance initialized with a trained model:
 
 The ``model`` must provide a ``predict`` method that extracts features
 from HTML tokens and predicts labels for these tokens. A pipeline created with
-:func:`.create_wapiti_pipeline` function fits this definition.
+:func:`.create_crfsuite_pipeline` function fits this definition.
 
 Finally, use :meth:`.NER.extract` method to extract entities:
 
@@ -298,7 +244,7 @@ Generally, the steps are:
    loader - ``y`` can be discarded.
 3. Use the same ``feature_extractor`` as used for training to extract
    features.
-4. Run ``your_crf.predict()`` method (e.g. :meth:`.WapitiCRF.predict`)
+4. Run ``your_crf.predict()`` method (e.g. :meth:`.CRF.predict`)
    on features extracted in (3) to get the prediction - a list of IOB2-encoded
    tags for each input document.
 5. Build entities from input tokens based on predicted tags
@@ -358,11 +304,11 @@ features, hyperparameters, etc. To do that you need scoring metrics,
 cross-validation utilities and tools for debugging what classifier learned.
 WebStruct helps in the following way:
 
-1. Pipeline created by :func:`.create_wapiti_pipeline` is compatible with
+1. Pipeline created by :func:`.create_crfsuite_pipeline` is compatible with
    `cross-validation`_ and `grid search`_ utilities from scikit-learn;
    use them to select model parameters and check the quality.
 
-   One limitation of :func:`.create_wapiti_pipeline` is that ``n_jobs``
+   One limitation of :func:`.create_crfsuite_pipeline` is that ``n_jobs``
    in scikit-learn functions and classes should be 1, but other than that
    WebStruct objects should work fine with scikit-learn. Just keep in mind
    that for WebStruct an "observation" is a document, not an individual token,
@@ -371,31 +317,14 @@ WebStruct helps in the following way:
 
 
 2. There is :mod:`webstruct.metrics` module with a couple of metrics useful
-   for sequence classification. Currently they require seqlearn_
-   to be installed.
+   for sequence classification.
 
 
-To debug what CRF learned you should use methods specific
-to a labelling toolkit. With Wapiti_ it would be ``wapiti dump``
-console command and some UNIX utilities. For example, if we've
-saved our model to ``mymodel.wapiti`` file, and we want to check top positive
-features for ``CITY`` entity, we can execute the following in UNIX shell::
-
-    $ wapiti dump mymodel.wapiti | sort -nr -k4 | grep CITY | head -n 8
-
-and get an output similar to this::
-
-    * Load model
-    * Dump model
-    *	B-CITY	I-CITY	2.74057
-    *	B-CITY	B-STATE	2.33235
-    *	I-STREET	B-CITY	1.98106
-    *	I-CITY	B-STATE	1.71408
-    u--L:street	#	B-CITY	1.34199
-    u--L:west	#	I-CITY	1.32428
-    u--L:in	#	B-CITY	1.24937
-    u--L:-	#	B-CITY	1.11139
+To debug what CRFSuite learned you could use eli5_ library. With eli5 it would be two calls to
+:func:`eli5.explain_weights` and :func:`eli5.format_as_html` with :class:`sklearn_crfsuite.CRF` instance as argument.
+As a result you will get transitions and feature weights.
 
 
 .. _cross-validation: http://scikit-learn.org/stable/modules/cross_validation.html
 .. _grid search: http://scikit-learn.org/stable/modules/grid_search.html
+.. _eli5: https://github.com/TeamHG-Memex/eli5
