@@ -13,12 +13,14 @@ import re
 import six
 import shlex
 import tempfile
+import copy
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
+from webstruct.sequence_encoding import IobEncoder
 
 
 def create_wapiti_pipeline(model_filename=None,
@@ -70,6 +72,37 @@ def create_wapiti_pipeline(model_filename=None,
         ('fe', HtmlFeatureExtractor(token_features, global_features, min_df=min_df)),
         ('crf', WapitiCRF(model_filename, **crf_kwargs)),
     ])
+
+
+def merge_top_n(chains):
+    """
+    >>>
+    >>> chains = [ ['B-PER', 'O'     ],
+    ...            ['O'    , 'B-FUNC'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'B-FUNC']
+
+    """
+    ret = copy.copy(chains[0])
+    for chain in chains[1:]:
+        encoder = IobEncoder()
+
+        for items, tag in encoder.iter_group(enumerate(chain)):
+
+            is_tagged = False
+            idx = 0
+            while not is_tagged and idx < len(items):
+                item = items[idx]
+                idx = idx + 1
+                is_tagged = ret[item] != 'O'
+
+            if is_tagged:
+                continue
+
+            for item in items:
+                ret[item] = chain[item]
+    return ret
 
 
 class WapitiCRF(BaseSequenceClassifier):
@@ -194,6 +227,7 @@ class WapitiCRF(BaseSequenceClassifier):
 
         return self
 
+
     def predict(self, X):
         """
         Make a prediction.
@@ -220,7 +254,7 @@ class WapitiCRF(BaseSequenceClassifier):
             for i in range(self.top_n):
                 start = (words + 1) * i
                 chains[i] = prediction[start:start + words]
-            result.append(chains[0])
+            result.append(merge_top_n(chains))
         return result
 
     def run_wapiti(self, args):
