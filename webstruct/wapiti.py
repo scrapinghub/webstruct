@@ -96,7 +96,8 @@ class WapitiCRF(BaseSequenceClassifier):
     def __init__(self, model_filename=None, train_args=None,
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
-                 verbose=True, feature_encoder=None, dev_size=0):
+                 verbose=True, feature_encoder=None, dev_size=0,
+                 top_n=1):
 
         self.modelfile = FileResource(
             filename=model_filename,
@@ -120,6 +121,7 @@ class WapitiCRF(BaseSequenceClassifier):
         self.dev_size = dev_size
         self._wapiti_model = None
         self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
+        self.top_n = top_n
         super(WapitiCRF, self).__init__()
 
     def fit(self, X, y, X_dev=None, y_dev=None, out_dev=None):
@@ -208,8 +210,18 @@ class WapitiCRF(BaseSequenceClassifier):
 
         """
         model = self._get_python_wapiti_model()
+        model.options.nbest = self.top_n
         sequences = self._to_wapiti_sequences(X)
-        return [model.label_sequence(seq).decode(model.encoding).splitlines() for seq in sequences]
+        result = list()
+        for idx, seq in enumerate(sequences):
+            prediction = model.label_sequence(seq).decode(model.encoding).splitlines()
+            words = len(X[idx])
+            chains = [None] * self.top_n
+            for i in range(self.top_n):
+                start = (words + 1) * i
+                chains[i] = prediction[start:start + words]
+            result.append(chains[0])
+        return result
 
     def run_wapiti(self, args):
         """ Run ``wapiti`` binary in a subprocess """
