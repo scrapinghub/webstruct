@@ -209,7 +209,7 @@ class WapitiCRF(BaseSequenceClassifier):
         """
         model = self._get_python_wapiti_model()
         sequences = self._to_wapiti_sequences(X)
-        return [model.label_sequence(seq).splitlines() for seq in sequences]
+        return [model.label_sequence(seq).decode(model.encoding).splitlines() for seq in sequences]
 
     def run_wapiti(self, args):
         """ Run ``wapiti`` binary in a subprocess """
