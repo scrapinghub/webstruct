@@ -76,6 +76,11 @@ def create_wapiti_pipeline(model_filename=None,
 
 def merge_top_n(chains):
     """
+    Take first (most probable) as base for resulting chain
+    and merge other N-1 chains one by one
+    Entities in next merged chain, which has any overlap
+    with entities in resulting chain, just ignored
+
     non-overlap
     >>> chains = [ ['B-PER', 'O'     ],
     ...            ['O'    , 'B-FUNC'] ]
