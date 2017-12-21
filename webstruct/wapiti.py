@@ -13,12 +13,14 @@ import re
 import six
 import shlex
 import tempfile
+import copy
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
+from webstruct.sequence_encoding import IobEncoder
 
 
 def create_wapiti_pipeline(model_filename=None,
@@ -72,6 +74,55 @@ def create_wapiti_pipeline(model_filename=None,
     ])
 
 
+def merge_top_n(chains):
+    """
+    Take first (most probable) as base for resulting chain
+    and merge other N-1 chains one by one
+    Entities in next merged chain, which has any overlap
+    with entities in resulting chain, just ignored
+
+    non-overlap
+    >>> chains = [ ['B-PER', 'O'     ],
+    ...            ['O'    , 'B-FUNC'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'B-FUNC']
+
+    partially overlap
+    >>> chains = [ ['B-PER', 'I-PER', 'O'    ],
+    ...            ['O'    , 'B-PER', 'I-PER'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'I-PER', 'O']
+
+    fully overlap
+    >>> chains = [ ['B-PER', 'I-PER'],
+    ...            ['B-ORG', 'I-ORG'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'I-PER']
+    """
+    ret = copy.copy(chains[0])
+    for chain in chains[1:]:
+        encoder = IobEncoder()
+
+        for items, tag in encoder.iter_group(enumerate(chain)):
+
+            is_tagged = False
+            idx = 0
+            while not is_tagged and idx < len(items):
+                item = items[idx]
+                idx = idx + 1
+                is_tagged = ret[item] != 'O'
+
+            if is_tagged:
+                continue
+
+            for item in items:
+                ret[item] = chain[item]
+    return ret
+
+
 class WapitiCRF(BaseSequenceClassifier):
     """
     Class for training and applying Wapiti CRF models.
@@ -96,7 +147,8 @@ class WapitiCRF(BaseSequenceClassifier):
     def __init__(self, model_filename=None, train_args=None,
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
-                 verbose=True, feature_encoder=None, dev_size=0):
+                 verbose=True, feature_encoder=None, dev_size=0,
+                 top_n=1):
 
         self.modelfile = FileResource(
             filename=model_filename,
@@ -120,6 +172,7 @@ class WapitiCRF(BaseSequenceClassifier):
         self.dev_size = dev_size
         self._wapiti_model = None
         self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
+        self.top_n = top_n
         super(WapitiCRF, self).__init__()
 
     def fit(self, X, y, X_dev=None, y_dev=None, out_dev=None):
@@ -192,6 +245,7 @@ class WapitiCRF(BaseSequenceClassifier):
 
         return self
 
+
     def predict(self, X):
         """
         Make a prediction.
@@ -208,8 +262,18 @@ class WapitiCRF(BaseSequenceClassifier):
 
         """
         model = self._get_python_wapiti_model()
+        model.options.nbest = self.top_n
         sequences = self._to_wapiti_sequences(X)
-        return [model.label_sequence(seq).splitlines() for seq in sequences]
+        result = list()
+        for idx, seq in enumerate(sequences):
+            prediction = model.label_sequence(seq).decode(model.encoding).splitlines()
+            words = len(X[idx])
+            chains = [None] * self.top_n
+            for i in range(self.top_n):
+                start = (words + 1) * i
+                chains[i] = prediction[start:start + words]
+            result.append(merge_top_n(chains))
+        return result
 
     def run_wapiti(self, args):
         """ Run ``wapiti`` binary in a subprocess """
