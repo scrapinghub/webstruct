@@ -3,7 +3,7 @@ lxml
 numpy
 scipy
 scikit-learn >= 0.14
--e git+https://github.com/adsva/python-wapiti.git@f7eded69a951c50a461cbe62ecc809e28229eb8f#egg=python-wapiti
+-e git+https://github.com/adsva/python-wapiti.git#egg=libwapiti
 python-crfsuite >= 0.8.4
 sklearn-crfsuite >= 0.3.3
 tldextract
