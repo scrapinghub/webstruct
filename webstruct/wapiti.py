@@ -76,13 +76,26 @@ def create_wapiti_pipeline(model_filename=None,
 
 def merge_top_n(chains):
     """
-    >>>
+    non-overlap
     >>> chains = [ ['B-PER', 'O'     ],
     ...            ['O'    , 'B-FUNC'] ]
 
     >>> merge_top_n(chains)
     ['B-PER', 'B-FUNC']
 
+    partially overlap
+    >>> chains = [ ['B-PER', 'I-PER', 'O'    ],
+    ...            ['O'    , 'B-PER', 'I-PER'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'I-PER', 'O']
+
+    fully overlap
+    >>> chains = [ ['B-PER', 'I-PER'],
+    ...            ['B-ORG', 'I-ORG'] ]
+
+    >>> merge_top_n(chains)
+    ['B-PER', 'I-PER']
     """
     ret = copy.copy(chains[0])
     for chain in chains[1:]:
