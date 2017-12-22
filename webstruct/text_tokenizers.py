@@ -8,7 +8,8 @@ TextToken = collections.namedtuple('TextToken', 'chars, position, length')
 
 class WordTokenizer(object):
     r"""This tokenizer is copy-pasted version of TreebankWordTokenizer
-    that doesn't split on @ and ':' symbols and doesn't split contractions::
+    that doesn't split on @ and ':' symbols and doesn't split contractions.
+    It supports span_tokenize(in terms of nltk tokenizers) method - :meth:`segment_words`::
 
     >>> s = '''Good muffins cost $3.88\nin New York. Email: muffins@gmail.com'''
     >>> WordTokenizer().segment_words(s)
