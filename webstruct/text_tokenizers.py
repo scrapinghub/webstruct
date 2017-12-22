@@ -101,6 +101,11 @@ class WordTokenizer(object):
     [TextToken(chars='``', position=0, length=1),
      TextToken(chars='a', position=2, length=1)]
 
+    >>> WordTokenizer().segment_words('["a')
+    [TextToken(chars='[', position=0, length=1),
+     TextToken(chars='``', position=1, length=1),
+     TextToken(chars='a', position=2, length=1)]
+
     Some issues:
 
     >>> WordTokenizer().segment_words("Copyright © 2014 Foo Bar and Buzz Spam. All Rights Reserved.")
@@ -139,19 +144,23 @@ class WordTokenizer(object):
     def _segment_words(self, text):
         # this one cannot be placed in the loop because it requires
         # position check (beginning of the string) or previous char value
-        quote = self.open_quotes.search(text)
-        if quote is not None:
-            end = quote.end() - 1
-            for t in self._segment_words(text[:end]):
-                yield t
-            yield TextToken(chars='``', position=end, length=1)
-            shift = end + 1
-            for t in self._segment_words(text[shift:]):
-                yield TextToken(chars=t.chars,
-                                position=t.position + shift,
-                                length=t.length)
-            return
+        start = 0
+        for quote in self.open_quotes.finditer(text):
+            quote_pos = quote.end() - 1
+            for token in self._segment_words_nonquote(text[start:quote_pos]):
+                yield TextToken(chars=token.chars,
+                                position=token.position + start,
+                                length=token.length)
+            yield TextToken(chars='``', position=quote_pos, length=1)
+            start = quote.end()
 
+        for token in self._segment_words_nonquote(text[start:]):
+            yield TextToken(chars=token.chars,
+                            position=token.position + start,
+                            length=token.length)
+
+
+    def _segment_words_nonquote(self, text):
         i = 0
         token_start = 0
         while 1:
