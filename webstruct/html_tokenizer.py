@@ -15,7 +15,7 @@ from itertools import groupby
 from collections import namedtuple
 from six.moves import zip
 
-from lxml.etree import Comment, iterwalk
+from lxml.etree import iterwalk
 
 from webstruct.sequence_encoding import IobEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
@@ -124,7 +124,6 @@ class HtmlTokenizer(object):
             self.ignore_html_tags = set(ignore_html_tags)
         else:
             self.ignore_html_tags = {'script', 'style'}
-        self.ignore_html_tags.add(Comment)  # always ignore comments
 
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful
@@ -268,7 +267,7 @@ class HtmlTokenizer(object):
             replace_html_tags(tree, self.replace_html_tags)
 
     def _process_tree(self, tree):
-        if tree.tag in self.ignore_html_tags:
+        if not isinstance(tree.tag, str) or tree.tag in self.ignore_html_tags:
             return
 
         head_tokens, head_tags = self._tokenize_and_split(tree.text)
