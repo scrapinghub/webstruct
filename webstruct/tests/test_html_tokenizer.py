@@ -105,6 +105,18 @@ class HtmlTokenizerTest(HtmlTest):
     def test_detokenize_single_empty(self):
         self.assertIs(HtmlTokenizer().detokenize_single([], []), None)
 
+    def test_dont_tokenize_nontext_nodes(self):
+        html = b"""
+          <body>
+              <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+          </body>
+        """
+
+        tree = html_document_fromstring(html)
+        tokenizer = HtmlTokenizer()
+        html_tokens, _ = tokenizer.tokenize_single(tree)
+        self.assertEqual(len(html_tokens), 0)
+
     def test_tokenize_scripts_and_styles(self):
         html = b"""
         <html>
