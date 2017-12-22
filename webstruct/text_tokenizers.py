@@ -143,7 +143,7 @@ class WordTokenizer(object):
     open_quotes = re.compile(r'(^|[\s(\[{<])"')
 
     def _segment_words(self, text):
-        # this one cannot be placed in the loop because it requires
+        # this one cannot be placed in the loop of internal function because it requires
         # position check (beginning of the string) or previous char value
         start = 0
         for quote in self.open_quotes.finditer(text):
