@@ -1,6 +1,25 @@
 Changes
 =======
 
+0.6 (2017-12-29)
+----------------
+
+* A complete example (contact extractor) is added to the repo;
+* fixed a lot of issues in the annotated data;
+* fixed loading of ``<title>`` annotations;
+* all annotated data is converted from GATE to WebAnnotator format;
+* text tokenizers allow to optionally return original token positions;
+* converting text from tokenized to raw is now lossless;
+* ``webstruct.webannotator.to_webannotator`` is rewritten;
+* ``<script>``, ``<style>`` elements, HTML comments and processing
+  instructions are ignored when they are inside entities;
+* tutorial is rewritten for CRFSuite;
+* Wapiti support is fixed in Python 3;
+* top-N parsing support when using Wapiti; an option to merge top N chains,
+  to increase recall;
+* benchmarking script;
+* don't declare Python 3.3 support (it is EOL).
+
 0.5 (2017-05-10)
 ----------------
 
