@@ -4,8 +4,10 @@ import re
 from webstruct.utils import flatten
 from .datetime_format import WEEKDAYS, MONTHS
 
-__all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time', 'looks_like_weekday',
-           'looks_like_email', 'looks_like_street_part', 'looks_like_range']
+__all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time',
+           'looks_like_weekday', 'looks_like_email', 'looks_like_street_part',
+           'looks_like_range', 'looks_like_day_ordinal', 'looks_like_date_pattern',
+           'number_looks_like_day', 'number_looks_like_month']
 
 EMAIL_PARTS = dict(
     username_re=r"(?P<username>[\w][\w_.-]*)",
@@ -99,3 +101,52 @@ def looks_like_range(html_token):
     return {
         'looks_like_range': token in RANGES
     }
+
+
+def looks_like_day_ordinal(html_token):
+    # 1st, 2nd, 3rd, 4th...
+    if len(html_token.token) > 4:
+        return {'looks_like_ordinal_day': False}
+    if re.search('\d*1st', html_token.token):
+        return {'looks_like_ordinal_day': True}
+    if re.search('2nd', html_token.token):
+        return {'looks_like_ordinal_day': True}
+    if re.search('3rd', html_token.token):
+        return {'looks_like_ordinal_day': True}
+    if re.search('\d{1,2}th', html_token.token):
+        return {'looks_like_ordinal_day': True}
+    return {'looks_like_ordinal_day': False}
+
+
+def looks_like_date_pattern(html_token):
+    if len(html_token.token) > 10:
+        return {'looks_like_date_pattern': False}
+    if re.search('\d{1,2}\/\d{1,2}\/\d{2,4}', html_token.token):
+        return {'looks_like_date_pattern': True}  # XX/XX/XXXX
+    if re.search('\d{1,2}\.\d{1,2}\.\d{2,4}', html_token.token):
+        return {'looks_like_date_pattern': True}  # XX.XX.XXXX
+    if re.search('\d{1,2}-\d{1,2}-\d{2,4}', html_token.token):
+        return {'looks_like_date_pattern': True}  # XX-XX-XXXX
+    if re.search('\d{1,2}\\\d{1,2}\\\d{2,4}', html_token.token):
+        return {'looks_like_date_pattern': True}  # XX\XX\XXXX
+    return {'looks_like_date_pattern': False}
+
+
+def number_looks_like_day(html_token):
+    try:
+        number = int(html_token.token)
+        if 0 < number < 32:
+            return {'number_looks_like_day': True}
+        return {'number_looks_like_day': False}
+    except ValueError:
+        return {'number_looks_like_day': False}
+
+
+def number_looks_like_month(html_token):
+    try:
+        number = int(html_token.token)
+        if 0 < number < 13:
+            return {'number_looks_like_month': True}
+        return {'number_looks_like_month': False}
+    except ValueError:
+        return {'number_looks_like_month': False}
