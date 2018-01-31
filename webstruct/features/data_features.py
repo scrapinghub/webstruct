@@ -104,18 +104,18 @@ def looks_like_range(html_token):
 
 
 def looks_like_day_ordinal(html_token):
-    # 1st, 2nd, 3rd, 4th...
+    # return True if token is in the form 1st, 2nd, 3rd, 4th...
     if len(html_token.token) > 4:
-        return {'looks_like_ordinal_day': False}
+        return {'looks_like_day_ordinal': False}
     if re.search('\d*1st', html_token.token):
-        return {'looks_like_ordinal_day': True}
+        return {'looks_like_day_ordinal': True}
     if re.search('2nd', html_token.token):
-        return {'looks_like_ordinal_day': True}
+        return {'looks_like_day_ordinal': True}
     if re.search('3rd', html_token.token):
-        return {'looks_like_ordinal_day': True}
+        return {'looks_like_day_ordinal': True}
     if re.search('\d{1,2}th', html_token.token):
-        return {'looks_like_ordinal_day': True}
-    return {'looks_like_ordinal_day': False}
+        return {'looks_like_day_ordinal': True}
+    return {'looks_like_day_ordinal': False}
 
 
 def looks_like_date_pattern(html_token):
@@ -127,8 +127,8 @@ def looks_like_date_pattern(html_token):
         return {'looks_like_date_pattern': True}  # XX.XX.XXXX
     if re.search('\d{1,2}-\d{1,2}-\d{2,4}', html_token.token):
         return {'looks_like_date_pattern': True}  # XX-XX-XXXX
-    if re.search('\d{1,2}\\\d{1,2}\\\d{2,4}', html_token.token):
-        return {'looks_like_date_pattern': True}  # XX\XX\XXXX
+    # if re.search('\d{1,2}\\\d{1,2}\\\d{2,4}', html_token.token):
+    #     return {'looks_like_date_pattern': True}  # XX\XX\XXXX
     return {'looks_like_date_pattern': False}
 
 
