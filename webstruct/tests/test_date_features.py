@@ -17,7 +17,7 @@ def test_looks_like_day_ordinal():
     assert_looks_like_day_ordinal(HtmlToken('1st'),
                                   {'looks_like_day_ordinal': True})
 
-    assert_looks_like_day_ordinal(HtmlToken('2nd'), 
+    assert_looks_like_day_ordinal(HtmlToken('2nd'),
                                   {'looks_like_day_ordinal': True})
 
     assert_looks_like_day_ordinal(HtmlToken('3rd'),
@@ -32,6 +32,9 @@ def test_looks_like_day_ordinal():
     # grammatically wrong but should not add too much noise
     assert_looks_like_day_ordinal(HtmlToken('2th'),
                                   {'looks_like_day_ordinal': True})
+
+    assert_looks_like_day_ordinal(HtmlToken('42th'),
+                                  {'looks_like_day_ordinal': False})
 
     assert_looks_like_day_ordinal(HtmlToken('123th'),
                                   {'looks_like_day_ordinal': False})

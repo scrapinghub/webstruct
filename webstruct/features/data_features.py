@@ -114,7 +114,9 @@ def looks_like_day_ordinal(html_token):
     if re.search('3rd', html_token.token):
         return {'looks_like_day_ordinal': True}
     if re.search('\d{1,2}th', html_token.token):
-        return {'looks_like_day_ordinal': True}
+        day = 0 < int(re.match('\d{1,2}', html_token.token)[0]) < 32
+        if day:
+            return {'looks_like_day_ordinal': True}
     return {'looks_like_day_ordinal': False}
 
 
