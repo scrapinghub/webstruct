@@ -10,100 +10,75 @@ class HtmlToken():
 
 
 def test_looks_like_day_ordinal():
-    token = HtmlToken('1st')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
 
-    token = HtmlToken('2nd')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    def assert_looks_like_day_ordinal(token, expected):
+        assert looks_like_day_ordinal(token) == expected
 
-    token = HtmlToken('3rd')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    assert_looks_like_day_ordinal(HtmlToken('1st'),
+                                  {'looks_like_day_ordinal': True})
 
-    token = HtmlToken('14th')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    assert_looks_like_day_ordinal(HtmlToken('2nd'), 
+                                  {'looks_like_day_ordinal': True})
 
-    token = HtmlToken('12th')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    assert_looks_like_day_ordinal(HtmlToken('3rd'),
+                                  {'looks_like_day_ordinal': True})
+
+    assert_looks_like_day_ordinal(HtmlToken('14th'),
+                                  {'looks_like_day_ordinal': True})
+
+    assert_looks_like_day_ordinal(HtmlToken('12th'),
+                                  {'looks_like_day_ordinal': True})
 
     # grammatically wrong but should not add too much noise
-    token = HtmlToken('2th')
-    expected = {'looks_like_day_ordinal': True}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    assert_looks_like_day_ordinal(HtmlToken('2th'),
+                                  {'looks_like_day_ordinal': True})
 
-    token = HtmlToken('123th')
-    expected = {'looks_like_day_ordinal': False}
-    result = looks_like_day_ordinal(token)
-    assert result == expected
+    assert_looks_like_day_ordinal(HtmlToken('123th'),
+                                  {'looks_like_day_ordinal': False})
 
 
 def test_looks_like_date_pattern():
-    token = HtmlToken('12/12/1989')
-    expected = {'looks_like_date_pattern': True}
-    result = looks_like_date_pattern(token)
-    assert result == expected
 
-    token = HtmlToken('12.12.1989')
-    expected = {'looks_like_date_pattern': True}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    def assert_looks_like_date_pattern(token, expected):
+        assert looks_like_date_pattern(token) == expected
 
-    token = HtmlToken('12-12-1989')
-    expected = {'looks_like_date_pattern': True}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    assert_looks_like_date_pattern(HtmlToken('12/12/1989'),
+                                   {'looks_like_date_pattern': True})
 
-    token = HtmlToken('12-12-89')
-    expected = {'looks_like_date_pattern': True}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    assert_looks_like_date_pattern(HtmlToken('12.12.1989'),
+                                   {'looks_like_date_pattern': True})
+
+    assert_looks_like_date_pattern(HtmlToken('12-12-1989'),
+                                   {'looks_like_date_pattern': True})
+
+    assert_looks_like_date_pattern(HtmlToken('12-12-89'),
+                                   {'looks_like_date_pattern': True})
 
     # TODO make this false
-    token = HtmlToken('12-12-989')
-    expected = {'looks_like_date_pattern': True}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    assert_looks_like_date_pattern(HtmlToken('12-12-989'),
+                                   {'looks_like_date_pattern': True})
 
-    token = HtmlToken('12/12-1989')
-    expected = {'looks_like_date_pattern': False}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    assert_looks_like_date_pattern(HtmlToken('12/12-1989'),
+                                   {'looks_like_date_pattern': False})
 
-    token = HtmlToken('nottadate')
-    expected = {'looks_like_date_pattern': False}
-    result = looks_like_date_pattern(token)
-    assert result == expected
+    assert_looks_like_date_pattern(HtmlToken('nottadate'),
+                                   {'looks_like_date_pattern': False})
+
+    assert_looks_like_date_pattern(HtmlToken('340-493-0000'),
+                                   {'looks_like_date_pattern': False})
 
 
 def test_number_looks_like_day():
     token = HtmlToken('12')
-    expected = {'number_looks_like_day': True}
-    result = number_looks_like_day(token)
-    assert result == expected
+    assert number_looks_like_day(token) == {'number_looks_like_day': True}
 
     token = HtmlToken('32')
-    expected = {'number_looks_like_day': False}
-    result = number_looks_like_day(token)
-    assert result == expected
+    assert number_looks_like_day(token) == {'number_looks_like_day': False}
 
 
 def test_number_looks_like_month():
     token = HtmlToken('12')
-    expected = {'number_looks_like_month': True}
-    result = number_looks_like_month(token)
-    assert result == expected
+    assert number_looks_like_month(token) == {'number_looks_like_month': True}
 
     token = HtmlToken('32')
-    expected = {'number_looks_like_month': False}
-    result = number_looks_like_month(token)
-    assert result == expected
+    assert number_looks_like_month(token) == {'number_looks_like_month': False}

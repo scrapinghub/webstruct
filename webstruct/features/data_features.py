@@ -127,8 +127,6 @@ def looks_like_date_pattern(html_token):
         return {'looks_like_date_pattern': True}  # XX.XX.XXXX
     if re.search('\d{1,2}-\d{1,2}-\d{2,4}', html_token.token):
         return {'looks_like_date_pattern': True}  # XX-XX-XXXX
-    # if re.search('\d{1,2}\\\d{1,2}\\\d{2,4}', html_token.token):
-    #     return {'looks_like_date_pattern': True}  # XX\XX\XXXX
     return {'looks_like_date_pattern': False}
 
 
