@@ -6,7 +6,7 @@ from .datetime_format import WEEKDAYS, MONTHS
 
 __all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time',
            'looks_like_weekday', 'looks_like_email', 'looks_like_street_part',
-           'looks_like_range', 'looks_like_day_ordinal', 'looks_like_date_pattern',
+           'looks_like_range', 'looks_like_ordinal', 'looks_like_date_pattern',
            'number_looks_like_day', 'number_looks_like_month']
 
 EMAIL_PARTS = dict(
@@ -103,25 +103,25 @@ def looks_like_range(html_token):
     }
 
 
-def looks_like_day_ordinal(html_token):
-    # return True if token is in the form 1st, 2nd, 3rd, 4th...
-    if len(html_token.token) > 4:
-        return {'looks_like_day_ordinal': False}
+def looks_like_ordinal(html_token):
+    if len(html_token.token) < 3:
+        return {'looks_like_ordinal': False}
     if re.search('\d*1st', html_token.token):
-        return {'looks_like_day_ordinal': True}
-    if re.search('2nd', html_token.token):
-        return {'looks_like_day_ordinal': True}
-    if re.search('3rd', html_token.token):
-        return {'looks_like_day_ordinal': True}
-    if re.search('\d{1,2}th', html_token.token):
-        day = 0 < int(re.match('\d{1,2}', html_token.token)[0]) < 32
-        if day:
-            return {'looks_like_day_ordinal': True}
-    return {'looks_like_day_ordinal': False}
+        return {'looks_like_ordinal': True}
+    if re.search('\d*2nd', html_token.token):
+        return {'looks_like_ordinal': True}
+    if re.search('\d*3rd', html_token.token):
+        return {'looks_like_ordinal': True}
+    if re.search('11th|12th|13th', html_token.token):
+        return {'looks_like_ordinal': True}
+    if re.search('\d*[4,5,6,7,8,9,0]th', html_token.token):
+        return {'looks_like_ordinal': True}
+    return {'looks_like_ordinal': False}
 
 
 def looks_like_date_pattern(html_token):
-    if len(html_token.token) > 10:
+    nchars = len(html_token.token)
+    if nchars < 8 or nchars > 10:
         return {'looks_like_date_pattern': False}
     if re.search('\d{1,2}\/\d{1,2}\/\d{2,4}', html_token.token):
         return {'looks_like_date_pattern': True}  # XX/XX/XXXX

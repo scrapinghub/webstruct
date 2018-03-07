@@ -1,4 +1,4 @@
-from webstruct.features import (looks_like_day_ordinal,
+from webstruct.features import (looks_like_ordinal,
                                 looks_like_date_pattern,
                                 number_looks_like_day,
                                 number_looks_like_month)
@@ -9,35 +9,19 @@ class HtmlToken():
         self.token = token
 
 
-def test_looks_like_day_ordinal():
+def test_looks_like_ordinal():
 
-    def assert_looks_like_day_ordinal(token, expected):
-        assert looks_like_day_ordinal(token) == expected
+    def assert_looks_like_ordinal(token, expected):
+        assert looks_like_ordinal(token) == expected
 
-    assert_looks_like_day_ordinal(HtmlToken('1st'),
-                                  {'looks_like_day_ordinal': True})
-
-    assert_looks_like_day_ordinal(HtmlToken('2nd'),
-                                  {'looks_like_day_ordinal': True})
-
-    assert_looks_like_day_ordinal(HtmlToken('3rd'),
-                                  {'looks_like_day_ordinal': True})
-
-    assert_looks_like_day_ordinal(HtmlToken('14th'),
-                                  {'looks_like_day_ordinal': True})
-
-    assert_looks_like_day_ordinal(HtmlToken('12th'),
-                                  {'looks_like_day_ordinal': True})
-
-    # grammatically wrong but should not add too much noise
-    assert_looks_like_day_ordinal(HtmlToken('2th'),
-                                  {'looks_like_day_ordinal': True})
-
-    assert_looks_like_day_ordinal(HtmlToken('42th'),
-                                  {'looks_like_day_ordinal': False})
-
-    assert_looks_like_day_ordinal(HtmlToken('123th'),
-                                  {'looks_like_day_ordinal': False})
+    assert_looks_like_ordinal(HtmlToken('1st'), {'looks_like_ordinal': True})
+    assert_looks_like_ordinal(HtmlToken('2nd'), {'looks_like_ordinal': True})
+    assert_looks_like_ordinal(HtmlToken('33rd'), {'looks_like_ordinal': True})
+    assert_looks_like_ordinal(HtmlToken('14th'), {'looks_like_ordinal': True})
+    assert_looks_like_ordinal(HtmlToken('12th'), {'looks_like_ordinal': True})
+    assert_looks_like_ordinal(HtmlToken('2th'), {'looks_like_ordinal': False})
+    assert_looks_like_ordinal(HtmlToken('42th'), {'looks_like_ordinal': False})
+    assert_looks_like_ordinal(HtmlToken('123th'), {'looks_like_ordinal': False})
 
 
 def test_looks_like_date_pattern():
