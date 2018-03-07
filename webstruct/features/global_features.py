@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-
 from webstruct.utils import LongestMatch
-
 
 class LongestMatchGlobalFeature(object):
     def __init__(self, lookup_data, featname):
@@ -99,4 +97,5 @@ def _add_pattern_features(feature_dicts, pattern, out_value, missing_value, sepa
 
         # FIXME: there should be a cleaner/faster way
         if not all(v == out_value for v in values):
+            values = [str(v) for v in values]
             featdict[separator.join(keys)] = separator.join(values)
