@@ -11,61 +11,32 @@ class HtmlToken():
 
 def test_looks_like_ordinal():
 
-    def assert_looks_like_ordinal(token, expected):
-        assert looks_like_ordinal(token) == expected
-
-    assert_looks_like_ordinal(HtmlToken('1st'), {'looks_like_ordinal': True})
-    assert_looks_like_ordinal(HtmlToken('2nd'), {'looks_like_ordinal': True})
-    assert_looks_like_ordinal(HtmlToken('33rd'), {'looks_like_ordinal': True})
-    assert_looks_like_ordinal(HtmlToken('14th'), {'looks_like_ordinal': True})
-    assert_looks_like_ordinal(HtmlToken('12th'), {'looks_like_ordinal': True})
-    assert_looks_like_ordinal(HtmlToken('2th'), {'looks_like_ordinal': False})
-    assert_looks_like_ordinal(HtmlToken('42th'), {'looks_like_ordinal': False})
-    assert_looks_like_ordinal(HtmlToken('123th'), {'looks_like_ordinal': False})
+    assert looks_like_ordinal(HtmlToken('1st')) == {'looks_like_ordinal': True}
+    assert looks_like_ordinal(HtmlToken('2nd')) == {'looks_like_ordinal': True}
+    assert looks_like_ordinal(HtmlToken('33rd')) == {'looks_like_ordinal': True}
+    assert looks_like_ordinal(HtmlToken('14th')) == {'looks_like_ordinal': True}
+    assert looks_like_ordinal(HtmlToken('12th')) == {'looks_like_ordinal': True}
+    assert looks_like_ordinal(HtmlToken('2th')) == {'looks_like_ordinal': False}
+    assert looks_like_ordinal(HtmlToken('42th')) == {'looks_like_ordinal': False}
+    assert looks_like_ordinal(HtmlToken('123th')) == {'looks_like_ordinal': False}
 
 
 def test_looks_like_date_pattern():
-
-    def assert_looks_like_date_pattern(token, expected):
-        assert looks_like_date_pattern(token) == expected
-
-    assert_looks_like_date_pattern(HtmlToken('12/12/1989'),
-                                   {'looks_like_date_pattern': True})
-
-    assert_looks_like_date_pattern(HtmlToken('12.12.1989'),
-                                   {'looks_like_date_pattern': True})
-
-    assert_looks_like_date_pattern(HtmlToken('12-12-1989'),
-                                   {'looks_like_date_pattern': True})
-
-    assert_looks_like_date_pattern(HtmlToken('12-12-89'),
-                                   {'looks_like_date_pattern': True})
-
-    # TODO make this false
-    assert_looks_like_date_pattern(HtmlToken('12-12-989'),
-                                   {'looks_like_date_pattern': True})
-
-    assert_looks_like_date_pattern(HtmlToken('12/12-1989'),
-                                   {'looks_like_date_pattern': False})
-
-    assert_looks_like_date_pattern(HtmlToken('nottadate'),
-                                   {'looks_like_date_pattern': False})
-
-    assert_looks_like_date_pattern(HtmlToken('340-493-0000'),
-                                   {'looks_like_date_pattern': False})
+    assert looks_like_date_pattern(HtmlToken('12/12/1989')) == {'looks_like_date_pattern': True}
+    assert looks_like_date_pattern(HtmlToken('12.1.1989')) == {'looks_like_date_pattern': True}
+    assert looks_like_date_pattern(HtmlToken('1-12-1989')) == {'looks_like_date_pattern': True}
+    assert looks_like_date_pattern(HtmlToken('1-2-89')) == {'looks_like_date_pattern': True}
+    assert looks_like_date_pattern(HtmlToken('12-12-989')) == {'looks_like_date_pattern': False}
+    assert looks_like_date_pattern(HtmlToken('12/12-1989')) == {'looks_like_date_pattern': False}
+    assert looks_like_date_pattern(HtmlToken('nottadate')) == {'looks_like_date_pattern': False}
+    assert looks_like_date_pattern(HtmlToken('340-493-0000')) == {'looks_like_date_pattern': False}
 
 
 def test_number_looks_like_day():
-    token = HtmlToken('12')
-    assert number_looks_like_day(token) == {'number_looks_like_day': True}
-
-    token = HtmlToken('32')
-    assert number_looks_like_day(token) == {'number_looks_like_day': False}
+    assert number_looks_like_day(HtmlToken('12')) == {'number_looks_like_day': True}
+    assert number_looks_like_day(HtmlToken('32')) == {'number_looks_like_day': False}
 
 
 def test_number_looks_like_month():
-    token = HtmlToken('12')
-    assert number_looks_like_month(token) == {'number_looks_like_month': True}
-
-    token = HtmlToken('32')
-    assert number_looks_like_month(token) == {'number_looks_like_month': False}
+    assert number_looks_like_month(HtmlToken('12')) == {'number_looks_like_month': True}
+    assert number_looks_like_month(HtmlToken('32')) == {'number_looks_like_month': False}
