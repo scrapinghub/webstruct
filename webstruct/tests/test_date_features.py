@@ -1,4 +1,5 @@
-from webstruct.features import (looks_like_ordinal,
+import unittest
+from webstruct.features import (looks_like_ordinal_en,
                                 looks_like_date_pattern,
                                 number_looks_like_day,
                                 number_looks_like_month)
@@ -9,16 +10,16 @@ class HtmlToken():
         self.token = token
 
 
-def test_looks_like_ordinal():
+def test_looks_like_ordinal_en():
 
-    assert looks_like_ordinal(HtmlToken('1st')) == {'looks_like_ordinal': True}
-    assert looks_like_ordinal(HtmlToken('2nd')) == {'looks_like_ordinal': True}
-    assert looks_like_ordinal(HtmlToken('33rd')) == {'looks_like_ordinal': True}
-    assert looks_like_ordinal(HtmlToken('14th')) == {'looks_like_ordinal': True}
-    assert looks_like_ordinal(HtmlToken('12th')) == {'looks_like_ordinal': True}
-    assert looks_like_ordinal(HtmlToken('2th')) == {'looks_like_ordinal': False}
-    assert looks_like_ordinal(HtmlToken('42th')) == {'looks_like_ordinal': False}
-    assert looks_like_ordinal(HtmlToken('123th')) == {'looks_like_ordinal': False}
+    assert looks_like_ordinal_en(HtmlToken('1st')) == {'looks_like_ordinal_en': True}
+    assert looks_like_ordinal_en(HtmlToken('2nd')) == {'looks_like_ordinal_en': True}
+    assert looks_like_ordinal_en(HtmlToken('33rd')) == {'looks_like_ordinal_en': True}
+    assert looks_like_ordinal_en(HtmlToken('14th')) == {'looks_like_ordinal_en': True}
+    assert looks_like_ordinal_en(HtmlToken('12th')) == {'looks_like_ordinal_en': True}
+    assert looks_like_ordinal_en(HtmlToken('2th')) == {'looks_like_ordinal_en': False}
+    assert looks_like_ordinal_en(HtmlToken('42th')) == {'looks_like_ordinal_en': False}
+    assert looks_like_ordinal_en(HtmlToken('123th')) == {'looks_like_ordinal_en': False}
 
 
 def test_looks_like_date_pattern():

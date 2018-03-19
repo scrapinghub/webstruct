@@ -6,7 +6,7 @@ from .datetime_format import WEEKDAYS, MONTHS
 
 __all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time',
            'looks_like_weekday', 'looks_like_email', 'looks_like_street_part',
-           'looks_like_range', 'looks_like_ordinal', 'looks_like_date_pattern',
+           'looks_like_range', 'looks_like_ordinal_en', 'looks_like_date_pattern',
            'number_looks_like_day', 'number_looks_like_month']
 
 EMAIL_PARTS = dict(
@@ -103,49 +103,66 @@ def looks_like_range(html_token):
     }
 
 
-def looks_like_ordinal(html_token):
+def looks_like_ordinal_en(html_token):
     if len(html_token.token) < 3:
-        return {'looks_like_ordinal': False}
+        return {'looks_like_ordinal_en': False}
     if re.search('\d*1st', html_token.token):
-        return {'looks_like_ordinal': True}
+        return {'looks_like_ordinal_en': True}
     if re.search('\d*2nd', html_token.token):
-        return {'looks_like_ordinal': True}
+        return {'looks_like_ordinal_en': True}
     if re.search('\d*3rd', html_token.token):
-        return {'looks_like_ordinal': True}
+        return {'looks_like_ordinal_en': True}
     if re.search('11th|12th|13th', html_token.token):
-        return {'looks_like_ordinal': True}
+        return {'looks_like_ordinal_en': True}
     if re.search('\d*[4,5,6,7,8,9,0]th', html_token.token):
-        return {'looks_like_ordinal': True}
-    return {'looks_like_ordinal': False}
+        return {'looks_like_ordinal_en': True}
+    return {'looks_like_ordinal_en': False}
 
 
 def looks_like_date_pattern(html_token):
     nchars = len(html_token.token)
     if 6 <= nchars <= 8:
-        slash = re.compile('^\d{1,2}\/\d{1,2}\/\d{2}$')  # XX/XX/XX X/XX/XX X/X/XX XX/X/XX
-        rev_slash = re.compile('^\d{2}\/\d{1,2}\/\d{1,2}$')  # XX/XX/XX XX/XX/X XX/X/X XX/X/XX
-        if slash.match(html_token.token) or rev_slash.match(html_token.token):
+        if re.match('\d{1,2}\/\d{1,2}\/\d{2}$', html_token.token):
+            # XX/XX/XX X/XX/XX X/X/XX XX/X/XX
             return {'looks_like_date_pattern': True}
-        dot = re.compile('^\d{1,2}\.\d{1,2}\.\d{2}$')  # XX.XX.XX X.XX.XX X.X.XX XX.X.XX
-        rev_dot = re.compile('^\d{2}\.\d{1,2}\.\d{1, 2}$')  # XX.XX.XX XX.XX.X XX.X.X XX.X.XX
-        if dot.match(html_token.token) or rev_dot.match(html_token.token):
+        if re.match('\d{2}\/\d{1,2}\/\d{1,2}$', html_token.token):
+            # XX/XX/XX XX/XX/X XX/X/X XX/X/XX
             return {'looks_like_date_pattern': True}
-        dash = re.compile('^\d{1,2}-\d{1,2}-\d{2}$')  # XX-XX-XX X-XX-XX X-X-XX XX-X-XX
-        rev_dash = re.compile('^\d{2}-\d{1,2}-\d{1, 2}$')  # XX-XX-XX XX-XX-X XX-X-X XX-X-XX
-        if dash.match(html_token.token) or rev_dash.match(html_token.token):
+
+        if re.match('\d{1,2}\.\d{1,2}\.\d{2}$', html_token.token):
+            # XX.XX.XX X.XX.XX X.X.XX XX.X.XX
             return {'looks_like_date_pattern': True}
+        if re.match('\d{2}\.\d{1,2}\.\d{1, 2}$', html_token.token):
+            # XX.XX.XX XX.XX.X XX.X.X XX.X.XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}-\d{1,2}-\d{2}$', html_token.token):
+            # XX-XX-XX X-XX-XX X-X-XX XX-X-XX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{2}-\d{1,2}-\d{1, 2}$', html_token.token):
+            # XX-XX-XX XX-XX-X XX-X-X XX-X-XX
+            return {'looks_like_date_pattern': True}
+
     elif 8 <= nchars <= 10:
-        slash = re.compile('^\d{1,2}\/\d{1,2}\/\d{4}$')  # XX/XX/XXXX X/XX/XXXX X/X/XXXX XX/X/XXXX
-        rev_slash = re.compile('^\d{4}\/\d{1,2}\/\d{1,2}$')  # XXXX/XX/XX XXXX/XX/X XXXX/X/X XXXX/X/XX
-        if slash.match(html_token.token) or rev_slash.match(html_token.token):
+        if re.match('\d{1,2}\/\d{1,2}\/\d{4}$', html_token.token):
+            # XX/XX/XXXX X/XX/XXXX X/X/XXXX XX/X/XXXX
             return {'looks_like_date_pattern': True}
-        dot = re.compile('^\d{1,2}\.\d{1,2}\.\d{4}$')  # XX.XX.XXXX X.XX.XXXX X.X.XXXX XX.X.XXXX
-        rev_dot = re.compile('^\d{4}\.\d{1,2}\.\d{1, 2}$')  # XXXX.XX.XX XXXX.XX.X XXXX.X.X XXXX.X.XX
-        if dot.match(html_token.token) or rev_dot.match(html_token.token):
+        if re.match('\d{4}\/\d{1,2}\/\d{1,2}$', html_token.token):
+            # XXXX/XX/XX XXXX/XX/X XXXX/X/X XXXX/X/XX
             return {'looks_like_date_pattern': True}
-        dash = re.compile('^\d{1,2}-\d{1,2}-\d{4}$')  # XX-XXXX-XX X-XX-XXXX X-X-XXXX XX-X-XXXX
-        rev_dash = re.compile('^\d{4}-\d{1,2}-\d{1, 2}$')  # XXXX-XX-XX XXXX-XX-X XXXX-X-X XXXX-X-XX
-        if dash.match(html_token.token) or rev_dash.match(html_token.token):
+
+        if re.match('\d{1,2}\.\d{1,2}\.\d{4}$', html_token.token):
+            # XX.XX.XXXX X.XX.XXXX X.X.XXXX XX.X.XXXX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{4}\.\d{1,2}\.\d{1, 2}$', html_token.token):
+            # XXXX.XX.XX XXXX.XX.X XXXX.X.X XXXX.X.XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}-\d{1,2}-\d{4}$', html_token.token):
+            # XX-XXXX-XX X-XX-XXXX X-X-XXXX XX-X-XXXX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{4}-\d{1,2}-\d{1, 2}$', html_token.token):
+            # XXXX-XX-XX XXXX-XX-X XXXX-X-X XXXX-X-XX
             return {'looks_like_date_pattern': True}
     return {'looks_like_date_pattern': False}
 
