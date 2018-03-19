@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from webstruct.utils import LongestMatch
-from w3lib.util import to_native_str
+from webstruct.utils import LongestMatch, to_native_str
+
 
 class LongestMatchGlobalFeature(object):
     def __init__(self, lookup_data, featname):
