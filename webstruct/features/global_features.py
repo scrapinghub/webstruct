@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from webstruct.utils import LongestMatch, to_native_str
+from webstruct.utils import LongestMatch
 
 
 class LongestMatchGlobalFeature(object):
@@ -98,5 +98,5 @@ def _add_pattern_features(feature_dicts, pattern, out_value, missing_value, sepa
 
         # FIXME: there should be a cleaner/faster way
         if not all(v == out_value for v in values):
-            values = [to_native_str(v) for v in values]
+            values = [str(v) for v in values if type(v) == bool]
             featdict[separator.join(keys)] = separator.join(values)
