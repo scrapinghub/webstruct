@@ -98,5 +98,5 @@ def _add_pattern_features(feature_dicts, pattern, out_value, missing_value, sepa
 
         # FIXME: there should be a cleaner/faster way
         if not all(v == out_value for v in values):
-            values = [str(v) for v in values if type(v) == bool]
+            values = [str(v) if type(v) == bool else v for v in values]
             featdict[separator.join(keys)] = separator.join(values)
