@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 import unittest
 from webstruct import GateLoader, HtmlTokenizer, HtmlFeatureExtractor
-from webstruct.features import token_lower, token_identity, Pattern
+from webstruct.features import token_lower, token_identity, looks_like_year, Pattern
 
 
 class PatternTest(unittest.TestCase):
@@ -17,19 +17,20 @@ class PatternTest(unittest.TestCase):
         return html_tokens
 
     def test_pattern(self):
+        #, (0, 'looks_like_year')
         featextractor = HtmlFeatureExtractor(
-            token_features = [token_lower, token_identity],
+            token_features = [token_lower, token_identity, looks_like_year],
             global_features = [
-                Pattern((-2, 'lower'), (-1, 'lower'))
+                Pattern((-2, 'lower'), (-1, 'lower'), (-1, 'looks_like_year'))
             ]
         )
         X = featextractor.transform_single(self.html_tokens)
-
-        key = 'lower[-2]/lower[-1]'
+        key = 'lower[-2]/lower[-1]/looks_like_year[-1]'
         self.assertNotIn(key, X[0])
         self.assertListEqual(
             [feat[key] for feat in X[1:]],
-            ['?/hello', 'hello/john', 'john/doe', 'doe/mary'],
+            ['?/hello/False', 'hello/john/False', 'john/doe/False',
+             'doe/mary/False'],
         )
 
     def test_pattern_lookups(self):
