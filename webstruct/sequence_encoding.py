@@ -163,6 +163,128 @@ class IobEncoder(object):
         if buf:
             yield buf, tag
 
+class BilouEncoder(object):
+
+    def __init__(self, token_processor=None):
+        self.token_processor = token_processor or InputTokenProcessor()
+        self.reset()
+
+    def reset(self):
+        """ Reset the sequence """
+        self.tag = 'O'
+
+    def encode(self, input_tokens):
+        tags = []
+        cur_tag = 'O'
+        token_type, value = '', ''
+        for number, token in enumerate(input_tokens):
+            print(number, token) # 12 __END_TITLE__
+            pdb.set_trace()
+            print(type(token_type), type(value), type(token))
+            token_type, value = self.token_processor.classify(token)
+
+            if token_type == 'start':
+                cur_tag = "B-" + value
+
+            elif token_type == 'end':
+                # TODO add check that closing tag has the same name as last open
+                # if value != self.tag[2:]:
+                #     raise ValueError(
+                #         "Invalid tag sequence: close tag '%s' "
+                #         "doesn't match open tag '%s'." % (value, self.tag)
+                #     )
+                if tags[-1][1][0] == 'B':  # check first letter of previous tag
+                    tags[-1] = (tags[-1][0], 'U' + cur_tag[1:])
+                else:
+                    tags[-1] = (tags[-1][0], 'L' + cur_tag[1:])
+                cur_tag = 'O'
+
+            elif token_type == 'token':
+                tags.append((number, cur_tag))
+                if len(tags) > 0 and tags[-1][1][0] == 'B':
+                    cur_tag = 'I' + cur_tag[1:]
+
+            elif token_type == 'drop':
+                continue
+            else:
+                raise ValueError("Unknown token type '%s' for token '%s'" % (token_type, token))
+            print('tag: ', tags)
+        return tags
+
+    def split(self, tokens):
+        """ split ``[(token, tag)]`` to ``([token], [tags])`` tuple """
+        return [t[0] for t in tokens], [t[1] for t in tokens]
+
+    @classmethod
+    def from_indices(cls, indices, input_tokens):
+        for idx, tag in indices:
+            yield input_tokens[idx], tag
+
+    @classmethod
+    def group(cls, data, strict=False):
+        """
+        Group IOB2-encoded entities. ``data`` should be an iterable
+        of ``(info, iob_tag)`` tuples. ``info`` could be any Python object,
+        ``iob_tag`` should be a string with a tag.
+
+        Example::
+
+            >>>
+            >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
+            ...         ("Doe", "I-PER"), ("Mary", "B-PER"), ("said", "O")]
+            >>> for items, tag in IobEncoder.iter_group(data):
+            ...     print("%s %s" % (items, tag))
+            ['hello', ','] O
+            ['John', 'Doe'] PER
+            ['Mary'] PER
+            ['said'] O
+
+        By default, invalid sequences are fixed::
+
+            >>> data = [("hello", "O"), ("John", "I-PER"), ("Doe", "I-PER")]
+            >>> for items, tag in IobEncoder.iter_group(data):
+            ...     print("%s %s" % (items, tag))
+            ['hello'] O
+            ['John', 'Doe'] PER
+
+        Pass 'strict=True' argument to raise an exception for
+        invalid sequences::
+
+            >>> for items, tag in IobEncoder.iter_group(data, strict=True):
+            ...     print("%s %s" % (items, tag))
+            Traceback (most recent call last):
+            ...
+            ValueError: Invalid sequence: I-PER tag can't start sequence
+        """
+        return list(cls.iter_group(data, strict))
+
+    @classmethod
+    def iter_group(cls, data, strict=False):
+        buf, tag = [], 'O'
+
+        for info, iob_tag in data:
+            if iob_tag.startswith('I-') and tag != iob_tag[2:]:
+                if strict:
+                    raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
+                else:
+                    iob_tag = 'B-' + iob_tag[2:]  # fix bad tag
+
+            if iob_tag.startswith('B-'):
+                if buf:
+                    yield buf, tag
+                buf = []
+
+            elif iob_tag == 'O':
+                if buf and tag != 'O':
+                    yield buf, tag
+                    buf = []
+
+            tag = 'O' if iob_tag == 'O' else iob_tag[2:]
+            buf.append(info)
+
+        if buf:
+            yield buf, tag
+
 
 # FIXME: this hook is incomplete: __START_TAG__ tokens are assumed everywhere.
 class InputTokenProcessor(object):
