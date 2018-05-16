@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import re
-
+import pdb
 
 class IobEncoder(object):
     """
@@ -56,7 +56,11 @@ class IobEncoder(object):
         self.tag = 'O'
 
     def iter_encode(self, input_tokens):
+        # the easiest way would be to check the following token and check if it is a token or end however this is not possible with generators
+        # second option is to keep a prev_tag in memory and modify it depending the current value but I am not suere it's possible to do given that previous tag has been yielded already
         for number, token in enumerate(input_tokens):
+            print(number, token) # 12 __END_TITLE__
+            pdb.set_trace()
             token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
@@ -71,6 +75,7 @@ class IobEncoder(object):
                 self.tag = "O"
 
             elif token_type == 'token':
+                print('tag: ', self.tag)
                 yield number, self.tag
                 if self.tag[0] == 'B':
                     self.tag = "I" + self.tag[1:]
