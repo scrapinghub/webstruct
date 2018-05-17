@@ -164,7 +164,29 @@ class IobEncoder(object):
             yield buf, tag
 
 class BilouEncoder(object):
+    """
+    Utility class for encoding tagged token streams using BILOU encoding.
 
+    Encode input tokens using ``encode`` method::
+
+        >>> bilou_encoder = BilouEncoder()
+        >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
+        >>> def encode(encoder, tokens): return [p for p in BilouEncoder.from_indices(encoder.encode(tokens), tokens)]
+        >>> encode(bilou_encoder, input_tokens)
+        [('John', 'U-PER'), ('said', 'O')]
+
+
+        >>> input_tokens = ["hello", "__START_PER__", "John", "Doe", "__END_PER__", "__START_PER__", "Mary", "__END_PER__", "said"]
+        >>> tokens = encode(bilou_encoder, input_tokens)
+        >>> tokens, tags = bilou_encoder.split(tokens)
+        >>> tokens, tags
+        (['hello', 'John', 'Doe', 'Mary', 'said'], ['O', 'B-PER', 'L-PER', 'U-PER', 'O'])
+
+    To reset internal state, use ``reset method``::
+
+        >>> bilou_encoder.reset()
+
+    """
     def __init__(self, token_processor=None):
         self.token_processor = token_processor or InputTokenProcessor()
         self.reset()
@@ -175,7 +197,6 @@ class BilouEncoder(object):
 
     def encode(self, input_tokens):
         tags = []
-        cur_tag = 'O'
         token_type, value = '', ''
         for number, token in enumerate(input_tokens):
             print(number, token) # 12 __END_TITLE__
@@ -184,25 +205,24 @@ class BilouEncoder(object):
             token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
-                cur_tag = "B-" + value
+                self.tag = "B-" + value
 
             elif token_type == 'end':
-                # TODO add check that closing tag has the same name as last open
-                # if value != self.tag[2:]:
-                #     raise ValueError(
-                #         "Invalid tag sequence: close tag '%s' "
-                #         "doesn't match open tag '%s'." % (value, self.tag)
-                #     )
+                if value != tags[-1][1][2:]:
+                    raise ValueError(
+                        "Invalid tag sequence: close tag '%s' "
+                        "doesn't match open tag '%s'." % (value, tags[-1][1])
+                    )
                 if tags[-1][1][0] == 'B':  # check first letter of previous tag
-                    tags[-1] = (tags[-1][0], 'U' + cur_tag[1:])
+                    tags[-1] = (tags[-1][0], 'U' + self.tag[1:])
                 else:
-                    tags[-1] = (tags[-1][0], 'L' + cur_tag[1:])
-                cur_tag = 'O'
+                    tags[-1] = (tags[-1][0], 'L' + self.tag[1:])
+                self.tag = 'O'
 
             elif token_type == 'token':
-                tags.append((number, cur_tag))
+                tags.append((number, self.tag))
                 if len(tags) > 0 and tags[-1][1][0] == 'B':
-                    cur_tag = 'I' + cur_tag[1:]
+                    self.tag = 'I' + self.tag[1:]
 
             elif token_type == 'drop':
                 continue
@@ -223,16 +243,16 @@ class BilouEncoder(object):
     @classmethod
     def group(cls, data, strict=False):
         """
-        Group IOB2-encoded entities. ``data`` should be an iterable
-        of ``(info, iob_tag)`` tuples. ``info`` could be any Python object,
-        ``iob_tag`` should be a string with a tag.
+        Group BILOU-encoded entities. ``data`` should be an iterable
+        of ``(info, bilou_tag)`` tuples. ``info`` could be any Python object,
+        ``bilou_tag`` should be a string with a tag.
 
         Example::
 
             >>>
             >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
-            ...         ("Doe", "I-PER"), ("Mary", "B-PER"), ("said", "O")]
-            >>> for items, tag in IobEncoder.iter_group(data):
+            ...         ("Doe", "L-PER"), ("Mary", "U-PER"), ("said", "O")]
+            >>> for items, tag in BilouEncoder.iter_group(data):
             ...     print("%s %s" % (items, tag))
             ['hello', ','] O
             ['John', 'Doe'] PER
@@ -250,7 +270,7 @@ class BilouEncoder(object):
         Pass 'strict=True' argument to raise an exception for
         invalid sequences::
 
-            >>> for items, tag in IobEncoder.iter_group(data, strict=True):
+            >>> for items, tag in BilouEncoder.iter_group(data, strict=True):
             ...     print("%s %s" % (items, tag))
             Traceback (most recent call last):
             ...
@@ -261,25 +281,31 @@ class BilouEncoder(object):
     @classmethod
     def iter_group(cls, data, strict=False):
         buf, tag = [], 'O'
-
-        for info, iob_tag in data:
-            if iob_tag.startswith('I-') and tag != iob_tag[2:]:
+        n = len(data)
+        for i, info, bilou_tag in enumerate(data):
+            # Test all wrong combinations II IL LI LL L/IB-something else L/IBsame
+            # maybe should deal with UI by changing U to B, maybe not needed because the algorithm right now behaves just as if it was a B
+            i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
+            if i_or_l and tag != bilou_tag[2:]: 
                 if strict:
                     raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
+                elif i < n and data[i + 1][1][0] != 'B' and data[i + 1][1][2:] == tag[2:]:
+                    bilou_tag = 'B-' + bilou_tag[2:]
                 else:
-                    iob_tag = 'B-' + iob_tag[2:]  # fix bad tag
+                    bilou_tag = 'U-' + bilou_tag[2:]
+               
 
-            if iob_tag.startswith('B-'):
+            if bilou_tag.startswith('B-') or bilou_tag.startswith('U-'):
                 if buf:
-                    yield buf, tag
+                    yield buf, tag 
                 buf = []
 
-            elif iob_tag == 'O':
+            elif bilou_tag == 'O':
                 if buf and tag != 'O':
                     yield buf, tag
                     buf = []
 
-            tag = 'O' if iob_tag == 'O' else iob_tag[2:]
+            tag = 'O' if bilou_tag == 'O' else bilou_tag[2:]
             buf.append(info)
 
         if buf:
