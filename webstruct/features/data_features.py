@@ -4,8 +4,10 @@ import re
 from webstruct.utils import flatten
 from .datetime_format import WEEKDAYS, MONTHS
 
-__all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time', 'looks_like_weekday',
-           'looks_like_email', 'looks_like_street_part', 'looks_like_range']
+__all__ = ['looks_like_year', 'looks_like_month', 'looks_like_time',
+           'looks_like_weekday', 'looks_like_email', 'looks_like_street_part',
+           'looks_like_range', 'looks_like_ordinal_en', 'looks_like_date_pattern',
+           'number_looks_like_day', 'number_looks_like_month']
 
 EMAIL_PARTS = dict(
     username_re=r"(?P<username>[\w][\w_.-]*)",
@@ -99,3 +101,87 @@ def looks_like_range(html_token):
     return {
         'looks_like_range': token in RANGES
     }
+
+
+def looks_like_ordinal_en(html_token):
+    if len(html_token.token) < 3:
+        return {'looks_like_ordinal_en': False}
+    if re.search('\d*1st', html_token.token):
+        return {'looks_like_ordinal_en': True}
+    if re.search('\d*2nd', html_token.token):
+        return {'looks_like_ordinal_en': True}
+    if re.search('\d*3rd', html_token.token):
+        return {'looks_like_ordinal_en': True}
+    if re.search('11th|12th|13th', html_token.token):
+        return {'looks_like_ordinal_en': True}
+    if re.search('\d*[4,5,6,7,8,9,0]th', html_token.token):
+        return {'looks_like_ordinal_en': True}
+    return {'looks_like_ordinal_en': False}
+
+
+def looks_like_date_pattern(html_token):
+    nchars = len(html_token.token)
+    if 6 <= nchars <= 8:
+        if re.match('\d{1,2}\/\d{1,2}\/\d{2}$', html_token.token):
+            # XX/XX/XX X/XX/XX X/X/XX XX/X/XX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{2}\/\d{1,2}\/\d{1,2}$', html_token.token):
+            # XX/XX/XX XX/XX/X XX/X/X XX/X/XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}\.\d{1,2}\.\d{2}$', html_token.token):
+            # XX.XX.XX X.XX.XX X.X.XX XX.X.XX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{2}\.\d{1,2}\.\d{1, 2}$', html_token.token):
+            # XX.XX.XX XX.XX.X XX.X.X XX.X.XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}-\d{1,2}-\d{2}$', html_token.token):
+            # XX-XX-XX X-XX-XX X-X-XX XX-X-XX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{2}-\d{1,2}-\d{1, 2}$', html_token.token):
+            # XX-XX-XX XX-XX-X XX-X-X XX-X-XX
+            return {'looks_like_date_pattern': True}
+
+    elif 8 <= nchars <= 10:
+        if re.match('\d{1,2}\/\d{1,2}\/\d{4}$', html_token.token):
+            # XX/XX/XXXX X/XX/XXXX X/X/XXXX XX/X/XXXX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{4}\/\d{1,2}\/\d{1,2}$', html_token.token):
+            # XXXX/XX/XX XXXX/XX/X XXXX/X/X XXXX/X/XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}\.\d{1,2}\.\d{4}$', html_token.token):
+            # XX.XX.XXXX X.XX.XXXX X.X.XXXX XX.X.XXXX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{4}\.\d{1,2}\.\d{1, 2}$', html_token.token):
+            # XXXX.XX.XX XXXX.XX.X XXXX.X.X XXXX.X.XX
+            return {'looks_like_date_pattern': True}
+
+        if re.match('\d{1,2}-\d{1,2}-\d{4}$', html_token.token):
+            # XX-XXXX-XX X-XX-XXXX X-X-XXXX XX-X-XXXX
+            return {'looks_like_date_pattern': True}
+        if re.match('\d{4}-\d{1,2}-\d{1, 2}$', html_token.token):
+            # XXXX-XX-XX XXXX-XX-X XXXX-X-X XXXX-X-XX
+            return {'looks_like_date_pattern': True}
+    return {'looks_like_date_pattern': False}
+
+
+def number_looks_like_day(html_token):
+    try:
+        number = int(html_token.token)
+        if 0 < number < 32:
+            return {'number_looks_like_day': True}
+        return {'number_looks_like_day': False}
+    except ValueError:
+        return {'number_looks_like_day': False}
+
+
+def number_looks_like_month(html_token):
+    try:
+        number = int(html_token.token)
+        if 0 < number < 13:
+            return {'number_looks_like_month': True}
+        return {'number_looks_like_month': False}
+    except ValueError:
+        return {'number_looks_like_month': False}

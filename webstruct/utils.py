@@ -322,3 +322,4 @@ def get_domain(url):
     'example.co.uk'
     """
     return tldextract.extract(url).registered_domain
+
