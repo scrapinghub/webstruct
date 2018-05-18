@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import re
-import pdb
 
 class IobEncoder(object):
     """
@@ -59,8 +58,6 @@ class IobEncoder(object):
         # the easiest way would be to check the following token and check if it is a token or end however this is not possible with generators
         # second option is to keep a prev_tag in memory and modify it depending the current value but I am not suere it's possible to do given that previous tag has been yielded already
         for number, token in enumerate(input_tokens):
-            print(number, token) # 12 __END_TITLE__
-            pdb.set_trace()
             token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
@@ -75,7 +72,6 @@ class IobEncoder(object):
                 self.tag = "O"
 
             elif token_type == 'token':
-                print('tag: ', self.tag)
                 yield number, self.tag
                 if self.tag[0] == 'B':
                     self.tag = "I" + self.tag[1:]
@@ -199,9 +195,6 @@ class BilouEncoder(object):
         tags = []
         token_type, value = '', ''
         for number, token in enumerate(input_tokens):
-            print(number, token) # 12 __END_TITLE__
-            pdb.set_trace()
-            print(type(token_type), type(value), type(token))
             token_type, value = self.token_processor.classify(token)
 
             if token_type == 'start':
@@ -228,7 +221,6 @@ class BilouEncoder(object):
                 continue
             else:
                 raise ValueError("Unknown token type '%s' for token '%s'" % (token_type, token))
-            print('tag: ', tags)
         return tags
 
     def split(self, tokens):
@@ -283,12 +275,11 @@ class BilouEncoder(object):
         buf, tag = [], 'O'
         n = len(data)
         for i, info, bilou_tag in enumerate(data):
-            # Test all wrong combinations II IL LI LL L/IB-something else L/IBsame
-            # maybe should deal with UI by changing U to B, maybe not needed because the algorithm right now behaves just as if it was a B
+           
             i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
             if i_or_l and tag != bilou_tag[2:]: 
                 if strict:
-                    raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
+                    raise ValueError("Invalid sequence: %s tag can't start sequence" % bilou_tag)
                 elif i < n and data[i + 1][1][0] != 'B' and data[i + 1][1][2:] == tag[2:]:
                     bilou_tag = 'B-' + bilou_tag[2:]
                 else:
