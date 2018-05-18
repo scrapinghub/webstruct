@@ -274,7 +274,7 @@ class BilouEncoder(object):
     def iter_group(cls, data, strict=False):
         buf, tag = [], 'O'
         n = len(data)
-        for i, info, bilou_tag in enumerate(data):
+        for i, (info, bilou_tag) in enumerate(data):
            
             i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
             if i_or_l and tag != bilou_tag[2:]: 
