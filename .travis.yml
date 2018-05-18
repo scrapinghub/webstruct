@@ -1,4 +1,6 @@
 language: python
+python: 3.5
+sudo: false
 
 matrix:
   include:
@@ -10,12 +12,6 @@ matrix:
       env: TOXENV=py35
     - python: 3.6
       env: TOXENV=py36
-
-sudo: false
-branches:
-    only:
-        - master
-        - /^\d\.\d+$/
 
 addons:
     apt:
