@@ -32,7 +32,7 @@ def create_wapiti_pipeline(model_filename=None,
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by :class:`~.HtmlTokenizer`
     as an input. The encoder used when tokenizing can be specified 
-    with :argument:`~.sequence_encoder` or it's IOB2 by default
+    with :argument:`~.sequence_encoder`, it is IOB2 by default
 
 
     Example::

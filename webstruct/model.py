@@ -20,7 +20,8 @@ class NER(object):
 
     Initialize it with a trained ``model``. ``model`` must have
     ``predict`` method that accepts lists of :class:`~.HtmlToken`
-    sequences and returns lists of predicted IOB2 tags.
+    sequences and returns lists of predicted IOB2 or BILOU tags,
+    the appropriate tag will be obtained from html_tokenizer.
     :func:`~.create_wapiti_pipeline` function returns such model.
     """
     HEADERS = {
@@ -59,7 +60,8 @@ class NER(object):
     def extract_raw(self, bytes_data):
         """
         Extract named entities from binary HTML data ``bytes_data``.
-        Return a list of ``(html_token, iob2_tag)`` tuples.
+        Return a list of ``(html_token, iob2_tag)`` or 
+        ``(html_token, bilou_tag)`` tuples.
         """
         tree = self.loader.loadbytes(bytes_data)
         html_tokens, _ = self.html_tokenizer.tokenize_single(tree)
@@ -76,7 +78,8 @@ class NER(object):
         html_tokens, tags = self.extract_raw(bytes_data)
         return extract_entitiy_groups(html_tokens, tags,
                                       dont_penalize=dont_penalize,
-                                      join_tokens=self.build_entity)
+                                      join_tokens=self.build_entity,
+                                      self.html_tokenizer.sequence_encoder)
 
     def extract_groups_from_url(self, url, dont_penalize=None):
         """
@@ -136,7 +139,7 @@ def _join_tokens(html_tokens):
 
 
 def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
-                           join_tokens=_join_tokens):
+                           seq_enc, join_tokens=_join_tokens):
     """
     Convert html_tokens and tags to a list of entity groups
     (a list of lists of (text, tag) tuples).
@@ -144,6 +147,7 @@ def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
     threshold, score, clusters = choose_best_clustering(
         html_tokens,
         tags,
+        seq_enc,
         score_kwargs={'dont_penalize': dont_penalize}
     )
 

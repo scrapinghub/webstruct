@@ -56,7 +56,7 @@ def create_crfsuite_pipeline(token_features=None,
     Create :class:`CRFsuitePipeline` for HTML tagging using CRFsuite.
     This pipeline expects data produced by
     :class:`~.HtmlTokenizer` as an input and produces
-    sequences of IOB2 tags as output.
+    sequences of IOB2 or BILOU tags as output.
 
     Example::
 
