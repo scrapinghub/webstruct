@@ -11,6 +11,7 @@ from __future__ import absolute_import
 from sklearn.pipeline import Pipeline
 
 from webstruct import HtmlFeatureExtractor
+from webstruct.sequence_encoding import IobEncoder
 
 
 class CRFsuitePipeline(Pipeline):
@@ -23,9 +24,10 @@ class CRFsuitePipeline(Pipeline):
     for :meth:`fit` and :meth:`fit_transform` methods - they work as expected,
     being transformed using feature extractor.
     """
-    def __init__(self, fe, crf):
+    def __init__(self, fe, crf, sequence_encoder=None):
         self.fe = fe
         self.crf = crf
+        self.seq_enc = sequence_encoder or IobEncoder()
         super(CRFsuitePipeline, self).__init__([
             ('vec', self.fe),
             ('clf', self.crf),

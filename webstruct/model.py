@@ -9,7 +9,6 @@ from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
 from webstruct.html_tokenizer import HtmlTokenizer
-from webstruct.sequence_encoding import IobEncoder
 from webstruct.utils import smart_join
 from webstruct.grouping import choose_best_clustering
 from webstruct.webannotator import EntityColors, to_webannotator
@@ -43,7 +42,7 @@ class NER(object):
         Return a list of ``(entity_text, entity_type)`` tuples.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
-        groups = IobEncoder.group(zip(html_tokens, tags))
+        groups = self.html_tokenizer.sequence_encoder.group(zip(html_tokens, tags))
         return _drop_empty(
             (self.build_entity(tokens), tag)
             for (tokens, tag) in groups if tag != 'O'
