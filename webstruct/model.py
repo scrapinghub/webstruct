@@ -77,9 +77,9 @@ class NER(object):
         """
         html_tokens, tags = self.extract_raw(bytes_data)
         return extract_entitiy_groups(html_tokens, tags,
+                                      self.html_tokenizer.sequence_encoder, 
                                       dont_penalize=dont_penalize,
-                                      join_tokens=self.build_entity,
-                                      self.html_tokenizer.sequence_encoder)
+                                      join_tokens=self.build_entity)
 
     def extract_groups_from_url(self, url, dont_penalize=None):
         """
@@ -138,8 +138,8 @@ def _join_tokens(html_tokens):
     return smart_join(t.token for t in html_tokens)
 
 
-def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
-                           seq_enc, join_tokens=_join_tokens):
+def extract_entitiy_groups(html_tokens, tags, seq_enc,
+                           dont_penalize=None, join_tokens=_join_tokens):
     """
     Convert html_tokens and tags to a list of entity groups
     (a list of lists of (text, tag) tuples).
@@ -147,7 +147,7 @@ def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
     threshold, score, clusters = choose_best_clustering(
         html_tokens,
         tags,
-        seq_enc,
+        sequence_encoder=seq_enc,
         score_kwargs={'dont_penalize': dont_penalize}
     )
 
