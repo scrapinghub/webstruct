@@ -275,7 +275,6 @@ class BilouEncoder(object):
         buf, tag = [], 'O'
         n = len(data)
         for i, (info, bilou_tag) in enumerate(data):
-           
             i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
             if i_or_l and tag != bilou_tag[2:]: 
                 if strict:

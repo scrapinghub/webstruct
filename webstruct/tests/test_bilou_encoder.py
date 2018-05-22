@@ -16,6 +16,11 @@ def test_encode():
         (14, 'O'), (15, 'O'), (17, 'U-CITY')]
     assert  BilouEncoder().encode(input_tokens) == expected
 
+    input_tokens = ('__START_CITY__', 'Metropolitan', 'City', 
+        'of', 'Genoa', '__END_CITY__')
+    expected = [(1, 'B-CITY'), (2, 'I-CITY'), (3, 'I-CITY'), (4, 'L-CITY')]
+    assert  BilouEncoder().encode(input_tokens) == expected
+
 
 def test_group():
     data = [('Detail', 'O'), ('-', 'O'), ('Rodin', 'B-TITLE'), ('-', 'I-TITLE'), 
