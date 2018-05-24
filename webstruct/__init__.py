@@ -9,4 +9,4 @@ from .wapiti import WapitiCRF, create_wapiti_pipeline
 from .crfsuite import create_crfsuite_pipeline
 from .model import NER
 from .utils import smart_join
-from .evaluation import get_metrics
+from .evaluation import get_metrics, get_metrics_single, get_label_entities

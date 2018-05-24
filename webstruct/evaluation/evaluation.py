@@ -101,7 +101,7 @@ def get_label_entities(X, y):
     return label_entities
 
 
-def get_metrics(X_true, y_true, X_pred, y_pred):
+def get_metrics_single(X_true, y_true, X_pred, y_pred):
     true_entities = get_label_entities(X_true, y_true)
     pred_entities = get_label_entities(X_pred, y_pred)
     acc = _get_accuracy(true_entities, pred_entities)
@@ -109,3 +109,28 @@ def get_metrics(X_true, y_true, X_pred, y_pred):
     rec = _get_recall(true_entities, pred_entities)
     f1 = _get_f1_score(prec, rec)
     return acc, prec, rec, f1
+
+
+def _update_metric(metric, new_values):
+    for k, v in new_values.items():
+        if k not in metric:
+            metric[k] = []
+        metric[k].append(v)
+
+
+def _get_mean(metric):
+    avg = {}
+    for k, v in metric.items():
+        avg[k] = sum(v) / len(v)
+    return avg
+
+
+def get_metrics(X_true, y_true, X_pred, y_pred):
+    acc, prec, rec, f1 = {}, {}, {}, {}
+    for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
+        a, p, r, f = get_metrics_single(Xt, yt, Xp, yp)
+        _update_metric(acc, a)
+        _update_metric(prec, p)
+        _update_metric(rec, r)
+        _update_metric(f1, f)
+    return _get_mean(acc), _get_mean(prec), _get_mean(rec), _get_mean(f1)

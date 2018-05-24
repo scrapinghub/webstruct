@@ -1,1 +1,1 @@
-from .evaluation import get_metrics, get_label_entities
+from .evaluation import get_metrics, get_metrics_single, get_label_entities
