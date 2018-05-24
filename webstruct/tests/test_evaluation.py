@@ -12,11 +12,15 @@ EVAL_PATH = os.path.abspath(os.path.join(
 
 
 def almost_equal(result, expected):
+    all_keys = []
     for k, v in result.items():
         if v == expected[k]:
-            return True
+            all_keys.append(True)
+        elif round(v - expected[k], 2) == 0:
+            all_keys.append(True)
         else:
-            return round(v - expected[k], 2) == 0
+            all_keys.append(False)
+    return all(all_keys)
 
 
 def test_get_label_entities():
@@ -101,7 +105,7 @@ def test_get_metrics():
                               'ORG': 1.0,
                               'STATE': 0,
                               'STREET': 0.5,
-                              'SUBJ': 0.666,
+                              'SUBJ': 0.833,
                               'TEL': 0.833})
 
     assert almost_equal(prec, {'CITY': 1.0,
@@ -109,15 +113,15 @@ def test_get_metrics():
                                'ORG': 0.833,
                                'STATE': 0,
                                'STREET': 0.5,
-                               'SUBJ': 0.666,
-                               'TEL': 0.833})
+                               'SUBJ': 0.833,
+                               'TEL': 1})
 
     assert almost_equal(rec, {'CITY': 1.0,
                               'EMAIL': 0.805,
                               'ORG': 1.0,
                               'STATE': 0,
                               'STREET': 0.5,
-                              'SUBJ': 0.666,
+                              'SUBJ': 0.833,
                               'TEL': 0.833})
 
     assert almost_equal(f1, {'CITY': 1.0,
@@ -125,5 +129,5 @@ def test_get_metrics():
                              'ORG': 0.9,
                              'STATE': 0,
                              'STREET': 0.5,
-                             'SUBJ': 0.666,
-                             'TEL': 0.833})
+                             'SUBJ': 0.833,
+                             'TEL': 0.9})
