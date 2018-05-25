@@ -8,15 +8,8 @@ def _get_accuracy(true_entities, pred_entities):
         if label in pred_entities:
             true_pos = true_entities[label].intersection(pred_entities[label])
             acc[label] = (1.0 * len(true_pos)) / (1.0 * len(true_entities[label]))
-            # if six.PY2 and label == 'SUBJ':
-            #     print "label: ", label
-            #     print "len(true_pos), true_pos: ", len(true_pos), true_pos
-            #     print "len(true_entities[label]), true_entities[label]: ", len(true_entities[label]), true_entities[label]
-            #     print (1.0 * len(true_pos)) / (1.0 * len(true_entities[label]))
         else:
             acc[label] = 0
-    if six.PY2:
-        print "true_pos: ", acc
     entities_in_common = set(true_entities.keys()).intersection(
                                                     set(pred_entities.keys())
                                                                 )
@@ -25,8 +18,6 @@ def _get_accuracy(true_entities, pred_entities):
         # should this raise an exception?
         for label in pred_extra_entities:
             acc[label] = 0
-    if six.PY2:
-        print "true_pos: ", acc
     return acc
 
 
@@ -36,7 +27,7 @@ def _get_precision(true_entities, pred_entities):
         if label in pred_entities:
             true_pos = true_entities[label].intersection(pred_entities[label])
             false_pos = pred_entities[label] - true_pos
-            prec[label] = len(true_pos) / (len(true_pos) + len(false_pos))
+            prec[label] = (1.0 * len(true_pos)) / (len(true_pos) + len(false_pos))
         else:
             prec[label] = 0
     entities_in_common = set(true_entities.keys()).intersection(
@@ -56,7 +47,7 @@ def _get_recall(true_entities, pred_entities):
         if label in pred_entities:
             true_pos = true_entities[label].intersection(pred_entities[label])
             false_neg = true_entities[label] - true_pos
-            rec[label] = len(true_pos) / (len(true_pos) + len(false_neg))
+            rec[label] = (1.0 * len(true_pos)) / (len(true_pos) + len(false_neg))
         else:
             rec[label] = 0
     entities_in_common = set(true_entities.keys()).intersection(
