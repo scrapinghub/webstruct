@@ -54,34 +54,34 @@ def test_get_metrics_single():
     acc, prec, rec, f1 = get_metrics_single(X_true[0], y_true[0],
                                             X_pred[0], y_pred[0])
 
-    assert almost_equal(acc, {'CITY': 0,
+    assert almost_equal(acc, {'CITY': 0.0,
                               'EMAIL': 0.777,
                               'ORG': 1.0,
-                              'STATE': 0,
+                              'STATE': 0.0,
                               'STREET': 1.0,
                               'SUBJ': 0.666,
-                              'TEL': 0})
+                              'TEL': 0.0})
 
-    assert almost_equal(prec, {'CITY': 0,
+    assert almost_equal(prec, {'CITY': 0.0,
                                'EMAIL': 0.875,
                                'ORG': 0.666,
-                               'STATE': 0,
+                               'STATE': 0.0,
                                'STREET': 1.0,
                                'SUBJ': 0.666,
                                'TEL': 0})
 
-    assert almost_equal(rec, {'CITY': 0,
+    assert almost_equal(rec, {'CITY': 0.0,
                               'EMAIL': 0.777,
                               'ORG': 1.0,
-                              'STATE': 0,
+                              'STATE': 0.0,
                               'STREET': 1.0,
                               'SUBJ': 0.666,
-                              'TEL': 0})
+                              'TEL': 0.0})
 
     assert almost_equal(f1, {'CITY': 0,
                              'EMAIL': 0.823,
                              'ORG': 0.8,
-                             'STATE': 0,
+                             'STATE': 0.0,
                              'STREET': 1.0,
                              'SUBJ': 0.666,
                              'TEL': 0})
@@ -103,7 +103,7 @@ def test_get_metrics():
     assert almost_equal(acc, {'CITY': 1.0,
                               'EMAIL': 0.805,
                               'ORG': 1.0,
-                              'STATE': 0,
+                              'STATE': 0.0,
                               'STREET': 0.5,
                               'SUBJ': 0.833,
                               'TEL': 0.833})
@@ -111,7 +111,7 @@ def test_get_metrics():
     assert almost_equal(prec, {'CITY': 1.0,
                                'EMAIL': 0.854,
                                'ORG': 0.833,
-                               'STATE': 0,
+                               'STATE': 0.0,
                                'STREET': 0.5,
                                'SUBJ': 0.833,
                                'TEL': 1})
@@ -119,7 +119,7 @@ def test_get_metrics():
     assert almost_equal(rec, {'CITY': 1.0,
                               'EMAIL': 0.805,
                               'ORG': 1.0,
-                              'STATE': 0,
+                              'STATE': 0.0,
                               'STREET': 0.5,
                               'SUBJ': 0.833,
                               'TEL': 0.833})
@@ -127,7 +127,7 @@ def test_get_metrics():
     assert almost_equal(f1, {'CITY': 1.0,
                              'EMAIL': 0.828,
                              'ORG': 0.9,
-                             'STATE': 0,
+                             'STATE': 0.0,
                              'STREET': 0.5,
                              'SUBJ': 0.833,
                              'TEL': 0.9})
