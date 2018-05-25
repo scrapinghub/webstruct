@@ -1,15 +1,18 @@
 from __future__ import absolute_import
 import six
 
+
 def _get_accuracy(true_entities, pred_entities):
     acc = {}
     for label, entities in true_entities.items():
         if label in pred_entities:
             true_pos = true_entities[label].intersection(pred_entities[label])
             if six.PY2:
-                print "true_pos: ", true_pos
+                print "label, true_pos: ", label, true_pos
             acc[label] = len(true_pos) / len(true_entities[label])
         else:
+            if six.PY2:
+                print "false label: ", label
             acc[label] = 0
     entities_in_common = set(true_entities.keys()).intersection(
                                                     set(pred_entities.keys())
