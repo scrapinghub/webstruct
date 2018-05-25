@@ -19,6 +19,8 @@ def almost_equal(result, expected):
         elif round(v - expected[k], 1) == 0:
             all_keys.append(True)
         else:
+            print(k, v)
+            print(expected[k])
             all_keys.append(False)
     return all(all_keys)
 
