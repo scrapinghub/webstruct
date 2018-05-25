@@ -19,6 +19,8 @@ def _get_accuracy(true_entities, pred_entities):
         # should this raise an exception?
         for label in pred_extra_entities:
             acc[label] = 0
+    if six.PY2:
+        print "true_pos: ", acc
     return acc
 
 
