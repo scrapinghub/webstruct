@@ -10,7 +10,7 @@ def _get_accuracy(true_entities, pred_entities):
             acc[label] = len(true_pos) / len(true_entities[label])
             if six.PY2:
                 print "label, true_pos: ", label, true_pos
-                print "len(true_pos[label]), true_pos[label]: ", len(true_pos[label]), true_pos[label]
+                print "len(true_pos), true_pos: ", len(true_pos), true_pos
                 print "len(true_entities[label]), true_entities[label]: ", len(true_entities[label]), true_entities[label]
         else:
             acc[label] = 0
