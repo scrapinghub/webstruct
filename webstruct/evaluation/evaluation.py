@@ -9,7 +9,9 @@ def _get_accuracy(true_entities, pred_entities):
             true_pos = true_entities[label].intersection(pred_entities[label])
             acc[label] = len(true_pos) / len(true_entities[label])
             if six.PY2:
-                print "label, true_pos, acc[label], true_entities[label]: ", label, true_pos, acc[label],true_entities[label]
+                print "label, true_pos: ", label, true_pos
+                print "len(acc[label]), acc[label]: ", len(acc[label]), acc[label]
+                print "len(true_entities[label]), true_entities[label]: ", len(true_entities[label]), true_entities[label]
         else:
             acc[label] = 0
     entities_in_common = set(true_entities.keys()).intersection(
