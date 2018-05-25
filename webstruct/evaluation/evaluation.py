@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-import six
 
 
 def _get_accuracy(true_entities, pred_entities):
@@ -7,11 +6,7 @@ def _get_accuracy(true_entities, pred_entities):
     for label, entities in true_entities.items():
         if label in pred_entities:
             true_pos = true_entities[label].intersection(pred_entities[label])
-            acc[label] = len(true_pos) / len(true_entities[label])
-            if six.PY2:
-                print "label, true_pos: ", label, true_pos
-                print "len(true_pos), true_pos: ", len(true_pos), true_pos
-                print "len(true_entities[label]), true_entities[label]: ", len(true_entities[label]), true_entities[label]
+            acc[label] = 1.0 * len(true_pos) / len(true_entities[label])
         else:
             acc[label] = 0
     entities_in_common = set(true_entities.keys()).intersection(
@@ -22,8 +17,6 @@ def _get_accuracy(true_entities, pred_entities):
         # should this raise an exception?
         for label in pred_extra_entities:
             acc[label] = 0
-    if six.PY2:
-        print "true_pos: ", acc
     return acc
 
 

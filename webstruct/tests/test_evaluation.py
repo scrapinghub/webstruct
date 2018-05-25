@@ -1,5 +1,4 @@
 import os
-import six
 
 from webstruct import GateLoader, HtmlTokenizer, WebAnnotatorLoader, load_trees
 from webstruct.evaluation import get_metrics, get_label_entities, get_metrics_single
@@ -20,9 +19,6 @@ def almost_equal(result, expected):
         elif round(v - expected[k], 1) == 0:
             all_keys.append(True)
         else:
-            if six.PY2:
-                print "key, value: ", k, v
-                print "expected: ", expected[k]
             all_keys.append(False)
     return all(all_keys)
 
