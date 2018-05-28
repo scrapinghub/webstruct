@@ -29,19 +29,15 @@ def almost_equal(result, expected):
     return all(all_keys)
 
 
-def load_true_pred():
-    known_true_entities = KNOWN_ENTITIES.copy()
-    known_true_entities.remove('TEL')
-    known_pred_entities = KNOWN_ENTITIES.copy()
-    known_pred_entities.remove('CITY')
-
-    true_path = os.path.join(EVAL_PATH, 'annotated_webpage.html')
+def load_true_pred(known_true_entities=KNOWN_ENTITIES,
+                   known_pred_entities=KNOWN_ENTITIES):
+    true_path = os.path.join(EVAL_PATH, 'annotated_webpage*.html')
     html_tokenizer = HtmlTokenizer()
     wa_loader = WebAnnotatorLoader(known_entities=known_true_entities)
     trees = load_trees(true_path, loader=wa_loader)
     X_true, y_true = html_tokenizer.tokenize(trees)
 
-    pred_path = os.path.join(EVAL_PATH, 'predicted.html')
+    pred_path = os.path.join(EVAL_PATH, 'predicted*.html')
     wa_loader = WebAnnotatorLoader(known_entities=known_pred_entities)
     trees = load_trees(pred_path, loader=wa_loader)
     X_pred, y_pred = html_tokenizer.tokenize(trees)
@@ -109,9 +105,15 @@ def test_f1_score():
 
 
 def test_get_metrics_single():
-    X_true, y_true, X_pred, y_pred = load_true_pred()
-    acc, prec, rec, f1 = get_metrics_single(X_true[0], y_true[0],
-                                            X_pred[0], y_pred[0])
+    known_true_entities = KNOWN_ENTITIES.copy()
+    known_true_entities.remove('TEL')
+    known_pred_entities = KNOWN_ENTITIES.copy()
+    known_pred_entities.remove('CITY')
+
+    X_true, y_true, X_pred, y_pred = load_true_pred(known_true_entities,
+                                                    known_pred_entities)
+    acc, prec, rec, f1 = get_metrics_single(X_true[1], y_true[1],
+                                            X_pred[1], y_pred[1])
 
     assert almost_equal(acc, {'CITY': 0.0,
                               'EMAIL': 0.777,
