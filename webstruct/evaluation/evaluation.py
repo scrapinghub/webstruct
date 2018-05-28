@@ -2,6 +2,16 @@ from __future__ import absolute_import
 import six
 
 
+def accuracy(X_true, y_true, X_pred, y_pred):
+    acc = {}
+    for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
+        true_entities = get_label_entities(Xt, yt)
+        pred_entities = get_label_entities(Xp, yp)
+        a = _get_accuracy(true_entities, pred_entities)
+        _update_metric(acc, a)
+    return _get_mean(acc)
+
+
 def _get_accuracy(true_entities, pred_entities):
     acc = {}
     for label, entities in true_entities.items():
@@ -19,6 +29,16 @@ def _get_accuracy(true_entities, pred_entities):
         for label in pred_extra_entities:
             acc[label] = 0
     return acc
+
+
+def precision(X_true, y_true, X_pred, y_pred):
+    prec = {}
+    for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
+        true_entities = get_label_entities(Xt, yt)
+        pred_entities = get_label_entities(Xp, yp)
+        p = _get_precision(true_entities, pred_entities)
+        _update_metric(prec, p)
+    return _get_mean(prec)
 
 
 def _get_precision(true_entities, pred_entities):
@@ -41,6 +61,16 @@ def _get_precision(true_entities, pred_entities):
     return prec
 
 
+def recall(X_true, y_true, X_pred, y_pred):
+    rec = {}
+    for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
+        true_entities = get_label_entities(Xt, yt)
+        pred_entities = get_label_entities(Xp, yp)
+        r = _get_recall(true_entities, pred_entities)
+        _update_metric(rec, r)
+    return _get_mean(rec)
+
+
 def _get_recall(true_entities, pred_entities):
     rec = {}
     for label, entities in true_entities.items():
@@ -59,6 +89,18 @@ def _get_recall(true_entities, pred_entities):
         for label in pred_extra_entities:
             rec[label] = 0
     return rec
+
+
+def f1_score(X_true, y_true, X_pred, y_pred):
+    f1 = {}
+    for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
+        true_entities = get_label_entities(Xt, yt)
+        pred_entities = get_label_entities(Xp, yp)
+        prec = _get_precision(true_entities, pred_entities)
+        rec = _get_recall(true_entities, pred_entities)
+        f = _get_f1_score(prec, rec)
+        _update_metric(f1, f)
+    return _get_mean(f1)
 
 
 def _get_f1_score(prec, rec):
@@ -127,6 +169,7 @@ def _get_mean(metric):
 
 
 def get_metrics(X_true, y_true, X_pred, y_pred):
+    '''returns accuracy, precision and f1 score for each label'''
     acc, prec, rec, f1 = {}, {}, {}, {}
     for Xt, yt, Xp, yp in zip(X_true, y_true, X_pred, y_pred):
         a, p, r, f = get_metrics_single(Xt, yt, Xp, yp)
