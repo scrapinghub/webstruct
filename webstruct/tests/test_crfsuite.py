@@ -11,6 +11,7 @@ from webstruct.crfsuite import create_crfsuite_pipeline
 from webstruct.metrics import bio_classification_report
 from webstruct.model import NER
 from webstruct.utils import train_test_split_noshuffle
+from webstruct.sequence_encoding import IobEncoder, BilouEncoder
 from .utils import get_trees, DATA_PATH
 
 
@@ -18,13 +19,13 @@ class CRFsuiteTest(unittest.TestCase):
 
     TAGSET = ['ORG', 'CITY', 'STREET', 'ZIPCODE', 'STATE', 'TEL', 'FAX']
 
-    def _get_Xy(self, num):
+    def _get_Xy(self, num, enc=IobEncoder()):
         trees = get_trees(num)
-        html_tokenizer = webstruct.HtmlTokenizer(tagset=self.TAGSET)
+        html_tokenizer = webstruct.HtmlTokenizer(tagset=self.TAGSET, sequence_encoder=enc)
         return html_tokenizer.tokenize(trees)
 
-    def _get_train_test(self, train_size, test_size):
-        X, y = self._get_Xy(train_size+test_size)
+    def _get_train_test(self, train_size, test_size, enc=IobEncoder()):
+        X, y = self._get_Xy(train_size+test_size, enc)
         return train_test_split_noshuffle(X, y, test_size=test_size)
 
     def get_pipeline(self, **kwargs):
@@ -58,6 +59,19 @@ class CRFsuiteTest(unittest.TestCase):
         # XXX: does it work in pypy, and should we care?
         del model
         self.assertFalse(os.path.isfile(filename))
+
+    def test_training_tagging_Bilou(self):
+        X_train, X_test, y_train, y_test = self._get_train_test(8, 2, BilouEncoder())
+
+        # Train the model:
+        model = self.get_pipeline()
+        model.fit(X_train, y_train)
+
+        # Model should learn something:
+
+        # y_pred = model.predict(X_test)
+        # print(bio_classification_report(y_test, y_pred))
+        assert model.score(X_test, y_test) > 0.3
 
     def test_devdata(self):
         X_train, X_dev, y_train, y_dev = self._get_train_test(8, 4)

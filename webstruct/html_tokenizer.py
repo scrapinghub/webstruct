@@ -136,7 +136,7 @@ class HtmlTokenizer(object):
         """
         Return two lists:
 
-        * a list a list of HtmlToken tokens;
+        * a list of HtmlToken tokens;
         * a list of associated tags.
 
         For unannotated HTML all tags will be "O" - they may be ignored.

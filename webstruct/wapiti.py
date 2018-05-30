@@ -31,7 +31,9 @@ def create_wapiti_pipeline(model_filename=None,
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by :class:`~.HtmlTokenizer`
-    as an input and produces sequences of IOB2 tags as output.
+    as an input. The encoder used when tokenizing can be specified 
+    with :argument:`~.sequence_encoder`, it is IOB2 by default
+
 
     Example::
 
@@ -74,12 +76,13 @@ def create_wapiti_pipeline(model_filename=None,
     ])
 
 
-def merge_top_n(chains):
+def merge_top_n(chains, encoder=None):
     """
     Take first (most probable) as base for resulting chain
     and merge other N-1 chains one by one
     Entities in next merged chain, which has any overlap
     with entities in resulting chain, just ignored
+    If encoder is not specified it uses IobEncoder
 
     non-overlap
     >>> chains = [ ['B-PER', 'O'     ],
@@ -104,7 +107,8 @@ def merge_top_n(chains):
     """
     ret = copy.copy(chains[0])
     for chain in chains[1:]:
-        encoder = IobEncoder()
+        if not encoder:
+            encoder = IobEncoder()
 
         for items, tag in encoder.iter_group(enumerate(chain)):
 
@@ -148,7 +152,7 @@ class WapitiCRF(BaseSequenceClassifier):
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0,
-                 top_n=1):
+                 top_n=1, sequence_encoder=None):
 
         self.modelfile = FileResource(
             filename=model_filename,
@@ -156,6 +160,8 @@ class WapitiCRF(BaseSequenceClassifier):
             suffix='.wapiti',
             prefix='model',
         )
+
+        self.seq_enc = sequence_encoder or IobEncoder()
 
         if train_args is None:
             train_args = '--algo l-bfgs --maxiter 50 --compact --nthread 8 --jobsize 1 --stopwin 15'
@@ -272,7 +278,7 @@ class WapitiCRF(BaseSequenceClassifier):
             for i in range(self.top_n):
                 start = (words + 1) * i
                 chains[i] = prediction[start:start + words]
-            result.append(merge_top_n(chains))
+            result.append(merge_top_n(chains, encoder=self.seq_enc))
         return result
 
     def run_wapiti(self, args):

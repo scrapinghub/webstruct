@@ -43,7 +43,8 @@ from webstruct.sequence_encoding import IobEncoder
 
 
 _select_score = operator.itemgetter(1)
-def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None):
+def choose_best_clustering(html_tokens, tags, score_func=None, 
+                           sequence_encoder=None, score_kwargs=None):
     """
     Select a best way to split ``html_tokens`` and ``tags`` into clusters
     of named entities. Return ``(threshold, score, clusters)`` tuple.
@@ -73,18 +74,19 @@ def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None
     """
     score_func = score_func or default_clustering_score
     score_kwargs = score_kwargs or {}
+    seq_enc = sequence_encoder or IobEncoder()
 
-    entities, positions = _entities_with_positions(html_tokens, tags)
+    entities, positions = _entities_with_positions(html_tokens, tags, seq_enc)
     distances = _get_distances(positions)
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
 
     if not thresholds:
-        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0))
+        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0, seq_enc))
 
     possible_clusterings = [
-        group_entities_by_threshold(html_tokens, tags, threshold)
+        group_entities_by_threshold(html_tokens, tags, threshold, seq_enc)
         for threshold in thresholds
     ]
     scores = [score_func(cl, threshold, **score_kwargs)
@@ -121,8 +123,8 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     return score
 
 
-def group_entities_by_threshold(html_tokens, tags, threshold, iob_encoder=IobEncoder):
-    entities, positions = _entities_with_positions(html_tokens, tags, iob_encoder)
+def group_entities_by_threshold(html_tokens, tags, threshold, seq_enc):
+    entities, positions = _entities_with_positions(html_tokens, tags, seq_enc)
     distances = _get_distances(positions)
 
     groups, buf = [], []
@@ -167,12 +169,12 @@ def _get_distances(start_end_pairs):
     return distances
 
 
-def _entities_with_positions(html_tokens, tags, iob_encoder=IobEncoder):
+def _entities_with_positions(html_tokens, tags, seq_enc):
     tokens_with_positions = zip(html_tokens, _get_positions(html_tokens))
     data = zip(tokens_with_positions, tags)
 
     entities, positions = [], []
-    for items, tag in iob_encoder.group(data):
+    for items, tag in seq_enc.group(data):
         if tag == 'O':
             continue
         tokens, token_positions = zip(*items)

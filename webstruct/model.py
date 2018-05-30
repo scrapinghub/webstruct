@@ -9,7 +9,6 @@ from lxml.html import tostring
 
 from webstruct.loaders import HtmlLoader
 from webstruct.html_tokenizer import HtmlTokenizer
-from webstruct.sequence_encoding import IobEncoder
 from webstruct.utils import smart_join
 from webstruct.grouping import choose_best_clustering
 from webstruct.webannotator import EntityColors, to_webannotator
@@ -21,7 +20,8 @@ class NER(object):
 
     Initialize it with a trained ``model``. ``model`` must have
     ``predict`` method that accepts lists of :class:`~.HtmlToken`
-    sequences and returns lists of predicted IOB2 tags.
+    sequences and returns lists of predicted IOB2 or BILOU tags,
+    the appropriate tag will be obtained from html_tokenizer.
     :func:`~.create_wapiti_pipeline` function returns such model.
     """
     HEADERS = {
@@ -43,7 +43,7 @@ class NER(object):
         Return a list of ``(entity_text, entity_type)`` tuples.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
-        groups = IobEncoder.group(zip(html_tokens, tags))
+        groups = self.html_tokenizer.sequence_encoder.group(zip(html_tokens, tags))
         return _drop_empty(
             (self.build_entity(tokens), tag)
             for (tokens, tag) in groups if tag != 'O'
@@ -60,7 +60,8 @@ class NER(object):
     def extract_raw(self, bytes_data):
         """
         Extract named entities from binary HTML data ``bytes_data``.
-        Return a list of ``(html_token, iob2_tag)`` tuples.
+        Return a list of ``(html_token, iob2_tag)`` or 
+        ``(html_token, bilou_tag)`` tuples.
         """
         tree = self.loader.loadbytes(bytes_data)
         html_tokens, _ = self.html_tokenizer.tokenize_single(tree)
@@ -76,6 +77,7 @@ class NER(object):
         """
         html_tokens, tags = self.extract_raw(bytes_data)
         return extract_entitiy_groups(html_tokens, tags,
+                                      self.html_tokenizer.sequence_encoder, 
                                       dont_penalize=dont_penalize,
                                       join_tokens=self.build_entity)
 
@@ -136,8 +138,8 @@ def _join_tokens(html_tokens):
     return smart_join(t.token for t in html_tokens)
 
 
-def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
-                           join_tokens=_join_tokens):
+def extract_entitiy_groups(html_tokens, tags, seq_enc,
+                           dont_penalize=None, join_tokens=_join_tokens):
     """
     Convert html_tokens and tags to a list of entity groups
     (a list of lists of (text, tag) tuples).
@@ -145,6 +147,7 @@ def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
     threshold, score, clusters = choose_best_clustering(
         html_tokens,
         tags,
+        sequence_encoder=seq_enc,
         score_kwargs={'dont_penalize': dont_penalize}
     )
 
