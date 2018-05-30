@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 import re
 
+
 class IobEncoder(object):
     """
     Utility class for encoding tagged token streams using IOB2 encoding.
@@ -184,44 +185,40 @@ class BilouEncoder(object):
 
     """
     def __init__(self, token_processor=None):
-        self.token_processor = token_processor or InputTokenProcessor()
-        self.reset()
-
-    def reset(self):
-        """ Reset the sequence """
-        self.tag = 'O'
+        self.iob = IobEncoder(token_processor)
 
     def encode(self, input_tokens):
-        tags = []
-        token_type, value = '', ''
-        for number, token in enumerate(input_tokens):
-            token_type, value = self.token_processor.classify(token)
+        iob_tags = self.iob.encode(input_tokens)
+        bilou_tags = []
+        n_tokens_lists = len(iob_tags)
+        print('iob_tags: ', iob_tags)
+        for i, text_tags in enumerate(iob_tags):
+            tags = []
+            n_tokens = len(text_tags)
+            print(text_tags)
+            for n, (number, token) in enumerate(text_tags):
+                tags.append((number, token))
+                if (token[0] != 'O' and n + 1 < n_tokens
+                    and number + 1 != text_tags[n + 1][0]):
+                    # if this is the last token of the entity update to U or L
+                    self.update_if_end_of_entity(tags)
 
-            if token_type == 'start':
-                self.tag = "B-" + value
-
-            elif token_type == 'end':
-                if value != tags[-1][1][2:]:
-                    raise ValueError(
-                        "Invalid tag sequence: close tag '%s' "
-                        "doesn't match open tag '%s'." % (value, tags[-1][1])
-                    )
-                if tags[-1][1][0] == 'B':  # check first letter of previous tag
-                    tags[-1] = (tags[-1][0], 'U' + self.tag[1:])
-                else:
-                    tags[-1] = (tags[-1][0], 'L' + self.tag[1:])
-                self.tag = 'O'
-
-            elif token_type == 'token':
-                tags.append((number, self.tag))
-                if len(tags) > 0 and tags[-1][1][0] == 'B':
-                    self.tag = 'I' + self.tag[1:]
-
-            elif token_type == 'drop':
-                continue
+            if i + 1 < n_tokens_lists:
+                if iob_tags[i + 1][0][0] > 0:  # peek ahead
+                    # if token 0 of the next list is missing then it was
+                    # the end of this entity
+                    self.update_if_end_of_entity(tags)
             else:
-                raise ValueError("Unknown token type '%s' for token '%s'" % (token_type, token))
-        return tags
+                self.update_if_end_of_entity(tags)
+            bilou_tags.append(tags)
+        return bilou_tags
+
+    def update_if_end_of_entity(tags):
+        number, last_tag = tags[-1]
+        if last_tag[0] == 'B':
+            tags[-1] = (number, 'U' + last_tag[1:])
+        elif last_tag[0] == 'I':
+            tags[-1] = (number, 'L' + last_tag[1:])
 
     def split(self, tokens):
         """ split ``[(token, tag)]`` to ``([token], [tags])`` tuple """
@@ -276,18 +273,19 @@ class BilouEncoder(object):
         n = len(data)
         for i, (info, bilou_tag) in enumerate(data):
             i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
-            if i_or_l and tag != bilou_tag[2:]: 
+            if i_or_l and tag != bilou_tag[2:]:
                 if strict:
-                    raise ValueError("Invalid sequence: %s tag can't start sequence" % bilou_tag)
-                elif i < n and data[i + 1][1][0] != 'B' and data[i + 1][1][2:] == tag[2:]:
+                    raise ValueError("Invalid sequence: %s tag can't start"
+                                     "sequence" % bilou_tag)
+                elif (i < n and data[i + 1][1][0] != 'B'
+                      and data[i + 1][1][2:] == tag[2:]):
                     bilou_tag = 'B-' + bilou_tag[2:]
                 else:
                     bilou_tag = 'U-' + bilou_tag[2:]
-               
 
             if bilou_tag.startswith('B-') or bilou_tag.startswith('U-'):
                 if buf:
-                    yield buf, tag 
+                    yield buf, tag
                 buf = []
 
             elif bilou_tag == 'O':
