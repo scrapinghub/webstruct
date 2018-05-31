@@ -167,12 +167,19 @@ class HtmlTokenizer(object):
 
         """
         tree = copy.deepcopy(tree)
-        self.sequence_encoder.reset()
         self._prepare_tree(tree)
-        res = list(zip(*self._process_tree(tree)))
-        if not res:
+        tree_tokens = list(self._process_tree(tree))
+        if not tree_tokens:
             return [], []
+        res = self._encode(tree_tokens)
         return list(res[0]), list(res[1])
+
+    def _encode(self, tree_tokens):
+        self.sequence_encoder.reset()
+        enc = self.sequence_encoder.encode(tree_tokens)
+        enc = self.sequence_encoder.from_indices(enc, tree_tokens)
+        enc = [l for l in enc]
+        return list(zip(*enc))
 
     def tokenize(self, trees):
         X, y = [], []
@@ -270,29 +277,29 @@ class HtmlTokenizer(object):
         if not isinstance(tree.tag, str) or tree.tag in self.ignore_html_tags:
             return
 
-        head_tokens, head_tags = self._tokenize_and_split(tree.text)
+        head_tokens = self._tokenize_text(tree.text)
         char_tokens = [t.chars for t in head_tokens]
-        for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
+        for index, token in enumerate(head_tokens):
             yield HtmlToken(index,
                             char_tokens,
                             tree,
                             False,
                             token.position,
-                            token.length), tag
+                            token.length)
 
         for child in tree:  # where is my precious "yield from"?
-            for html_token, tag in self._process_tree(child):
-                yield html_token, tag
+            for html_token in self._process_tree(child):
+                yield html_token
 
-        tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
+        tail_tokens = self._tokenize_text(tree.tail)
         char_tokens = [t.chars for t in tail_tokens]
-        for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
+        for index, token in enumerate(tail_tokens):
             yield HtmlToken(index,
                             char_tokens,
                             tree,
                             True,
                             token.position,
-                            token.length), tag
+                            token.length)
 
     def cleanup_tree(self, tree):
         cleaned = copy.deepcopy(tree)
@@ -308,17 +315,26 @@ class HtmlTokenizer(object):
         if elem.tail:
             elem.tail = self._tag_re.sub("", elem.tail)
 
-    def _tokenize_and_split(self, text):
+    def _tokenize_text(self, text):
         text = text or ''
         input_tokens = [t for t in self.text_tokenize_func(text)]
         input_tokens = self._limit_tags(input_tokens)
         input_tokens = [TextToken(chars=t.chars,
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
-        chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        chains = self.sequence_encoder.from_indices(chains, input_tokens)
-        chains = [l for l in chains]
-        return self.sequence_encoder.split(chains)
+        return input_tokens
+        # remove encode
+        # print('')
+        # print('input tokens: ', input_tokens)
+        # chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
+        # print('first chains: ', chains)
+        # chains = self.sequence_encoder.from_indices(chains, input_tokens)
+        # print('second chains: ', chains)
+        # chains = [l for l in chains]
+        # print('third chains: ', chains)
+        # print('returned chains: ', self.sequence_encoder.split(chains))
+        # print('type returned chains: ', type(self.sequence_encoder.split(chains)))
+        # return self.sequence_encoder.split(chains)
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:
