@@ -25,8 +25,7 @@ from webstruct.utils import (
 )
 
 
-_HtmlToken = namedtuple('HtmlToken', ['i',
-                                      'index',
+_HtmlToken = namedtuple('HtmlToken', ['index',
                                       'tokens',
                                       'elem',
                                       'is_tail',
@@ -169,22 +168,40 @@ class HtmlTokenizer(object):
         """
         tree = copy.deepcopy(tree)
         self._prepare_tree(tree)
-        tree_tokens = list(self._process_tree(tree))
-        # tree tokens should be list of Texttoken list of each html text or tail
-        print(tree_tokens)
-        if not tree_tokens:
+        tokens_tree = list(self._process_tree(tree))
+        if not tokens_tree:
             return [], []
-        # pass one list at a time and afterwards merge all results in a single list
-        res = self._encode(tree_tokens)
+        res = self._encode(tokens_tree)
         return list(res[0]), list(res[1])
 
-    def _encode(self, tree_tokens):
+    def _encode(self, tokens_tree):
+        chains, tags = [], []
         self.sequence_encoder.reset()
-        enc = self.sequence_encoder.encode(tree_tokens)
-        enc = self.sequence_encoder.from_indices(enc, tree_tokens)
-        enc = [l for l in enc]
-        # build HtmlToken elements
-        return list(zip(*enc))
+        for node_tokens, tree, is_tail in tokens_tree:
+            c = self.sequence_encoder.encode([t.chars for t in node_tokens])
+            c = self.sequence_encoder.from_indices(c, node_tokens)
+            c = [l for l in c]
+            if not c:
+                continue
+            c, tg = self.sequence_encoder.split(c)
+            chains.append((c, tree, is_tail))
+            tags.append(tg)
+
+        html_tokens_chains = []
+        for tokens_list, tree, is_tail in chains:
+            char_tokens = [t.chars for t in tokens_list]
+            for index, token in enumerate(tokens_list):
+                html_tokens_chains.append(HtmlToken(index,
+                                                    char_tokens,
+                                                    tree,
+                                                    is_tail,
+                                                    token.position,
+                                                    token.length)
+                                         )
+        tags = [tag for tokens_list in tags for tag in tokens_list]
+
+        # build HtmlToken elements\
+        return [html_tokens_chains, tags]
 
     def tokenize(self, trees):
         X, y = [], []
@@ -283,48 +300,14 @@ class HtmlTokenizer(object):
             return
 
         head_tokens = self._tokenize_text(tree.text)
-        char_tokens = [t.chars for t in head_tokens if 'START_' not in t.chars and 'END_' not in t.chars]
-        print('HEAD_TOKENS: ', head_tokens)
-        # print('CHAR_TOKENS: ',char_tokens)
-        # print(' ')
-        index = -1
-        # buffer
-        for i, token in enumerate(head_tokens):
-            # buffer.append(token)
-            # if 'START_' not in token.chars and 'END_' not in token.chars:
-            index += 1
-            print('index ', index)
-            yield HtmlToken(i,
-                            index,
-                            char_tokens,
-                            tree,
-                            False,
-                            token.position,
-                            token.length)
-        #yield buffer
+        yield (head_tokens, tree, False)
 
         for child in tree:  # where is my precious "yield from"?
-            for html_token in self._process_tree(child):
-                yield html_token
+            for text_token_list in self._process_tree(child):
+                yield text_token_list
 
         tail_tokens = self._tokenize_text(tree.tail)
-        char_tokens = [t.chars for t in head_tokens if 'START_' not in t.chars and 'END_' not in t.chars]
-        tail_index = -1
-        print('TAIL TOKENS ', tail_tokens)
-        # buffer = []
-        for i, token in enumerate(tail_tokens):
-            # buffer.append(token)
-            # if 'START_' not in token.chars and 'END_' not in token.chars:
-            tail_index += 1
-            print('tail index ', tail_index)
-            yield HtmlToken(i,
-                            tail_index,
-                            char_tokens,
-                            tree,
-                            True,
-                            token.position,
-                            token.length)
-        # yield buffer
+        yield (tail_tokens, tree, True)
 
     def cleanup_tree(self, tree):
         cleaned = copy.deepcopy(tree)
@@ -348,18 +331,6 @@ class HtmlTokenizer(object):
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
         return input_tokens
-        # remove encode
-        # print('')
-        # print('input tokens: ', input_tokens)
-        # chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        # print('first chains: ', chains)
-        # chains = self.sequence_encoder.from_indices(chains, input_tokens)
-        # print('second chains: ', chains)
-        # chains = [l for l in chains]
-        # print('third chains: ', chains)
-        # print('returned chains: ', self.sequence_encoder.split(chains))
-        # print('type returned chains: ', type(self.sequence_encoder.split(chains)))
-        # return self.sequence_encoder.split(chains)
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:
