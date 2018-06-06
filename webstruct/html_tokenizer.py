@@ -17,7 +17,7 @@ from six.moves import zip
 
 from lxml.etree import iterwalk
 
-from webstruct.sequence_encoding import IobEncoder
+from webstruct.sequence_encoding import IobEncoder#, bilou_encoder
 from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
@@ -114,7 +114,7 @@ class HtmlTokenizer(object):
     """
     def __init__(self, tagset=None, sequence_encoder=None,
                  text_tokenize_func=None, kill_html_tags=None,
-                 replace_html_tags=None, ignore_html_tags=None):
+                 replace_html_tags=None, ignore_html_tags=None, bilou=False):
         self.tagset = set(tagset) if tagset is not None else None
         self.text_tokenize_func = text_tokenize_func or tokenize
         self.kill_html_tags = kill_html_tags
@@ -128,6 +128,7 @@ class HtmlTokenizer(object):
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful
         self.sequence_encoder = sequence_encoder or IobEncoder()
+        self.bilou = bilou
 
         tag_pattern = self.sequence_encoder.token_processor.tag_re.pattern
         self._tag_re = re.compile(r"(^|\s)%s(\s|$)" % tag_pattern.strip())
@@ -186,6 +187,11 @@ class HtmlTokenizer(object):
             c, tg = self.sequence_encoder.split(c)
             chains.append((c, tree, is_tail))
             tags.append(tg)
+        print(chains)
+        print(tags)
+        print(len(chains) == len(tags))
+        # if self.bilou:
+        #     tags = bilou_encoder(tags)
 
         html_tokens_chains = []
         for tokens_list, tree, is_tail in chains:
