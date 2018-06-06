@@ -17,7 +17,7 @@ from six.moves import zip
 
 from lxml.etree import iterwalk
 
-from webstruct.sequence_encoding import IobEncoder#, bilou_encoder
+from webstruct.sequence_encoding import IobEncoder, bilou_encoder, bilou_group
 from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
@@ -173,6 +173,7 @@ class HtmlTokenizer(object):
         if not tokens_tree:
             return [], []
         res = self._encode(tokens_tree)
+
         return list(res[0]), list(res[1])
 
     def _encode(self, tokens_tree):
@@ -187,11 +188,9 @@ class HtmlTokenizer(object):
             c, tg = self.sequence_encoder.split(c)
             chains.append((c, tree, is_tail))
             tags.append(tg)
-        print(chains)
-        print(tags)
-        print(len(chains) == len(tags))
-        # if self.bilou:
-        #     tags = bilou_encoder(tags)
+
+        if self.bilou:
+            tags = bilou_encoder(tags)
 
         html_tokens_chains = []
         for tokens_list, tree, is_tail in chains:
@@ -237,7 +236,10 @@ class HtmlTokenizer(object):
         tree = html_tokens[0].root
 
         # find starts/ends of token groups
-        token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
+        if self.bilou:
+            token_groups = bilou_group(zip(html_tokens, tags))
+        else:
+            token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
         starts, ends = set(), set()
         pos = 0
         for gr_tokens, gr_tag in token_groups:
