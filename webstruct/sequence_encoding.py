@@ -191,3 +191,69 @@ class InputTokenProcessor(object):
 
         # regular token
         return 'token', token
+
+
+def bilou_encoder(iob_tags):
+    bilou_tags = []
+    n_tags_lists = len(iob_tags)
+    for i, text_tags in enumerate(iob_tags):
+        tags = []
+        n_tags = len(text_tags)
+        for n, tag in enumerate(text_tags):
+            tags.append(tag)
+            if tag[0] != 'O':
+                if n + 1 < n_tags and not text_tags[n + 1][0].startswith('I'):
+                    # if the next tag is not I this entity ends here
+                    update_end_of_entity(tags)
+        if i + 1 < n_tags_lists:
+            if not iob_tags[i + 1][0].startswith('I'):  # peek next tag list
+                # if the first tag of the next list is not I entity ends here
+                update_end_of_entity(tags)
+        else:
+            update_end_of_entity(tags)
+        bilou_tags.append(tags)
+    return bilou_tags
+
+
+def update_end_of_entity(tags):
+    last_tag = tags[-1]
+    if last_tag.startswith('B'):
+        tags[-1] = 'U' + last_tag[1:]
+    elif last_tag.startswith('I'):
+        tags[-1] = 'L' + last_tag[1:]
+
+
+def bilou_group(data, strict=False):
+    grouped = []
+    for sequence in data:
+        buf, tag = [], 'O'
+        n = len(sequence)
+        for i, (info, bilou_tag) in enumerate(sequence):
+            # i = 2
+            # info, bilou_tag = sequence[i]
+            i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
+            if i_or_l and tag != bilou_tag[2:]:
+                if strict:
+                    raise ValueError("Invalid sequence: %s tag can't start"
+                                     "sequence" % bilou_tag)
+                elif (i < n and data[i + 1][1][0] != 'B'
+                      and data[i + 1][1][2:] == tag[2:]):
+                    bilou_tag = 'B-' + bilou_tag[2:]
+                else:
+                    bilou_tag = 'U-' + bilou_tag[2:]
+
+            if bilou_tag.startswith('B-') or bilou_tag.startswith('U-'):
+                if buf:
+                    grouped.append((buf, tag))
+                buf = []
+
+            elif bilou_tag == 'O':
+                if buf and tag != 'O':
+                    grouped.append((buf, tag))
+                    buf = []
+
+            tag = 'O' if bilou_tag == 'O' else bilou_tag[2:]
+            buf.append(info)
+            if i == n - 1 and buf:
+                grouped.append((buf, tag))
+    return grouped
