@@ -103,6 +103,8 @@ def merge_top_n(chains, bilou=False):
     >>> merge_top_n(chains)
     ['B-PER', 'I-PER']
     """
+    chains = [ ['B-PER', 'O'     ],
+                ['O'    , 'B-FUNC'] ]
     ret = copy.copy(chains[0])
     for chain in chains[1:]:
         if bilou:
@@ -249,7 +251,6 @@ class WapitiCRF(BaseSequenceClassifier):
                     os.unlink(filename)
 
         return self
-
 
     def predict(self, X):
         """
