@@ -22,12 +22,12 @@ def test_encode():
 
 
 def test_group():
-    data = [('Detail', 'O'), ('-', 'O'), ('Rodin', 'B-TITLE'),
-            ('-', 'I-TITLE'), ('Rilke', 'I-TITLE'), ('-', 'I-TITLE'),
-            ('Hofmannsthal.', 'L-TITLE'), ('Staatliche', 'O'),
-            ('Museen', 'O'), ('zu', 'O'), ('Berlin', 'U-CITY'),
-            ('Technik', 'B-ORG'), ('Museum', 'I-ORG'), ('Speyer', 'L-ORG'),
-            ('Tel', 'O'), ('123454321', 'U-TEL')]
+    html_tokens = ['Detail', '-', 'Rodin', '-', 'Rilke', '-', 'Hofmannsthal.',
+                   'Staatliche', 'Museen', 'zu', 'Berlin', 'Technik', 'Museum',
+                   'Speyer', 'Tel', '123454321']
+    tags = ['O', 'O', 'B-TITLE', 'I-TITLE', 'I-TITLE', 'I-TITLE', 'L-TITLE',
+            'O', 'O', 'O', 'U-CITY', 'B-ORG', 'I-ORG', 'L-ORG', 'O', 'U-TEL']
+
     expected = [(['Detail', '-'], 'O'),
                 (['Rodin','-', 'Rilke', '-', 'Hofmannsthal.'], 'TITLE'),
                 (['Staatliche', 'Museen', 'zu'], 'O'),
@@ -35,31 +35,33 @@ def test_group():
                 (['Technik', 'Museum', 'Speyer'], 'ORG'),
                 (['Tel'], 'O'),
                 (['123454321'], 'TEL')]
-    assert bilou_group(data) == expected
+
+    assert bilou_group(html_tokens, tags) == expected
 
 
 def test_group_bad_labels():
-    correct_data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
-                    ("Doe", "L-PER"), ("Mary", "U-PER"), ("said", "O")]
+    html_tokens = ['hello', ',', 'John', 'Doe', 'Mary', 'said']
+    tags = ['O', 'O', 'B-PER', 'L-PER', 'U-PER', 'O']
+
     expected = [(['hello', ',' ], 'O'), (['John', 'Doe'], 'PER'),
                 (['Mary'], 'PER'), (['said'], 'O')]
-    ilu_data = deepcopy(correct_data)
-    ilu_data[2] = ("John", "I-PER")
-    llu_data = deepcopy(correct_data)
-    llu_data[2] = ("John", "L-PER")
-    iiu_data = deepcopy(correct_data)
-    iiu_data[2] = ("John", "I-PER")
-    iiu_data[3] = ("Doe", "I-PER")
-    bbu_data = deepcopy(correct_data)
-    bbu_data[3] = ("Doe", "B-PER")
-    biu_data = deepcopy(correct_data)
-    biu_data[3] = ("Doe", "I-PER")
-    blb_data = deepcopy(correct_data)
-    blb_data[4] = ("Mary", "B-PER")
-    bli_data = deepcopy(correct_data)
-    bli_data[4] = ("Mary", "I-PER")
-    bll_data = deepcopy(correct_data)
-    bll_data[4] = ("Mary", "L-PER")
+    ilu_tags = deepcopy(tags)
+    ilu_tags[2] = "I-PER"
+    llu_tags = deepcopy(tags)
+    llu_tags[2] = "L-PER"
+    iiu_tags = deepcopy(tags)
+    iiu_tags[2] = "I-PER"
+    iiu_tags[3] = "I-PER"
+    bbu_tags = deepcopy(tags)
+    bbu_tags[3] = "B-PER"
+    biu_tags = deepcopy(tags)
+    biu_tags[3] = "I-PER"
+    blb_tags = deepcopy(tags)
+    blb_tags[4] = "B-PER"
+    bli_tags = deepcopy(tags)
+    bli_tags[4] = "I-PER"
+    bll_tags = deepcopy(tags)
+    bll_tags[4] = "L-PER"
 
     bbu_expected = deepcopy(expected)
     bbu_expected[1:2] = ((['John'], 'PER'), (['Doe'], 'PER'))
@@ -68,11 +70,11 @@ def test_group_bad_labels():
     del bli_expected[-2]
     bll_expected = bli_expected
 
-    assert bilou_group(ilu_data) == expected
-    assert bilou_group(llu_data) == expected
-    assert bilou_group(iiu_data) == expected
-    assert bilou_group(bbu_data) == bbu_expected
-    assert bilou_group(biu_data) == expected
-    assert bilou_group(blb_data) == expected
-    assert bilou_group(bli_data) == bli_expected
-    assert bilou_group(bll_data) == bll_expected
+    assert bilou_group(html_tokens, ilu_tags) == expected
+    assert bilou_group(html_tokens, llu_tags) == expected
+    assert bilou_group(html_tokens, iiu_tags) == expected
+    assert bilou_group(html_tokens, bbu_tags) == bbu_expected
+    assert bilou_group(html_tokens, biu_tags) == expected
+    assert bilou_group(html_tokens, blb_tags) == expected
+    assert bilou_group(html_tokens, bli_tags) == bli_expected
+    assert bilou_group(html_tokens, bll_tags) == bll_expected
