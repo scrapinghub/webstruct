@@ -223,10 +223,11 @@ def update_end_of_entity(tags):
         tags[-1] = 'L' + last_tag[1:]
 
 
-def bilou_group(data, strict=False):
+def bilou_group(html_tokens, tags, strict=False):
     grouped = []
     buf, tag = [], 'O'
-    n = len(data)
+    n = len(html_tokens)
+    data = zip(html_tokens, tags)
     for i, (info, bilou_tag) in enumerate(data):
         i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
         if i_or_l and tag != bilou_tag[2:]:

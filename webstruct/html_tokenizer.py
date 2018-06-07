@@ -241,7 +241,7 @@ class HtmlTokenizer(object):
 
         # find starts/ends of token groups
         if self.bilou:
-            token_groups = bilou_group(zip(html_tokens, tags))
+            token_groups = bilou_group(html_tokens, tags)
         else:
             token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
         starts, ends = set(), set()
