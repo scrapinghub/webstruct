@@ -227,15 +227,14 @@ def bilou_group(html_tokens, tags, strict=False):
     grouped = []
     buf, tag = [], 'O'
     n = len(html_tokens)
-    data = zip(html_tokens, tags)
-    for i, (info, bilou_tag) in enumerate(data):
+    for i, (info, bilou_tag) in enumerate(zip(html_tokens, tags)):
         i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
         if i_or_l and tag != bilou_tag[2:]:
             if strict:
                 raise ValueError("Invalid sequence: %s tag can't start"
                                  "sequence" % bilou_tag)
-            elif (i < n and not data[i + 1][1].startswith('B')
-                  and data[i + 1][1][2:] == tag[2:]):
+            elif (i < n and not tags[i + 1].startswith('B')
+                  and tags[i + 1][2:] == tag[2:]):
                 bilou_tag = 'B-' + bilou_tag[2:]
             else:
                 bilou_tag = 'U-' + bilou_tag[2:]
