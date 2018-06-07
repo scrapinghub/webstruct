@@ -102,7 +102,6 @@ class HtmlTokenizerTest(HtmlTest):
         self.assertHtmlTreeEqual(detokenized_tree, orig_src_tree)
         self.assertHtmlTreeEqual(detokenized_tree, src_tree)
 
-
     def test_detokenize_single_bilou(self):
         src_tree = self._load()
         orig_src_tree = deepcopy(src_tree)
