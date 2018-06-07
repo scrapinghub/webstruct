@@ -102,6 +102,32 @@ class HtmlTokenizerTest(HtmlTest):
         self.assertHtmlTreeEqual(detokenized_tree, orig_src_tree)
         self.assertHtmlTreeEqual(detokenized_tree, src_tree)
 
+
+    def test_detokenize_single_bilou(self):
+        src_tree = self._load()
+        orig_src_tree = deepcopy(src_tree)
+
+        tokenizer = HtmlTokenizer(bilou=True)
+        html_tokens, tags = tokenizer.tokenize_single(src_tree)
+        new_tree = tokenizer.cleanup_tree(src_tree)
+        self.assertIn(b'__START_ORG__', tostring(src_tree))
+        self.assertNotIn(b'__START_ORG__', tostring(new_tree))
+
+        self.assertHtmlTreeEqual(
+            new_tree,
+            html_document_fromstring(UNANNOTATED_HTML)
+        )
+        html_tokens, _ = tokenizer.tokenize_single(new_tree)
+        detokenized_tree = tokenizer.detokenize_single(html_tokens, tags)
+        self.assertIn(b'__START_ORG__', tostring(detokenized_tree))
+
+        self.assertHtmlTreeEqual(
+            detokenized_tree,
+            html_document_fromstring(ANNOTATED_HTML)
+        )
+        self.assertHtmlTreeEqual(detokenized_tree, orig_src_tree)
+        self.assertHtmlTreeEqual(detokenized_tree, src_tree)
+
     def test_detokenize_single_empty(self):
         self.assertIs(HtmlTokenizer().detokenize_single([], []), None)
 
