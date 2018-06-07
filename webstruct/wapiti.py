@@ -20,7 +20,7 @@ from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
-from webstruct.sequence_encoding import IobEncoder
+from webstruct.sequence_encoding import IobEncoder, bilou_encoder
 
 
 def create_wapiti_pipeline(model_filename=None,
@@ -31,7 +31,8 @@ def create_wapiti_pipeline(model_filename=None,
     """
     Create a scikit-learn Pipeline for HTML tagging using Wapiti.
     This pipeline expects data produced by :class:`~.HtmlTokenizer`
-    as an input and produces sequences of IOB2 tags as output.
+    as an input. The encoder used when tokenizing can be specified
+    with :argument:`~.sequence_encoder`, it is IOB2 by default.
 
     Example::
 
@@ -74,7 +75,7 @@ def create_wapiti_pipeline(model_filename=None,
     ])
 
 
-def merge_top_n(chains):
+def merge_top_n(chains, bilou=False):
     """
     Take first (most probable) as base for resulting chain
     and merge other N-1 chains one by one
