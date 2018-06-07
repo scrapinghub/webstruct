@@ -35,7 +35,7 @@ algorithm to group extracted entities into clusters. It works this way:
 from __future__ import absolute_import
 import collections
 import operator
-from webstruct.sequence_encoding import IobEncoder
+from webstruct.sequence_encoding import IobEncoder, bilou_group
 
 
 # XXX: If functions in this module are not flexible enough,
@@ -43,7 +43,8 @@ from webstruct.sequence_encoding import IobEncoder
 
 
 _select_score = operator.itemgetter(1)
-def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None):
+def choose_best_clustering(html_tokens, tags, score_func=None, bilou=False,
+                           seq_enc=IobEncoder(), score_kwargs=None):
     """
     Select a best way to split ``html_tokens`` and ``tags`` into clusters
     of named entities. Return ``(threshold, score, clusters)`` tuple.
@@ -74,17 +75,28 @@ def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None
     score_func = score_func or default_clustering_score
     score_kwargs = score_kwargs or {}
 
-    entities, positions = _entities_with_positions(html_tokens, tags)
+    entities, positions = _entities_with_positions(html_tokens,
+                                                   tags,
+                                                   seq_enc=seq_enc,
+                                                   bilou=bilou)
     distances = _get_distances(positions)
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
 
     if not thresholds:
-        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0))
+        return (0, 0, group_entities_by_threshold(html_tokens,
+                                                  tags,
+                                                  0,
+                                                  seq_enc,
+                                                  bilou))
 
     possible_clusterings = [
-        group_entities_by_threshold(html_tokens, tags, threshold)
+        group_entities_by_threshold(html_tokens,
+                                    tags,
+                                    threshold,
+                                    seq_enc,
+                                    bilou)
         for threshold in thresholds
     ]
     scores = [score_func(cl, threshold, **score_kwargs)
@@ -121,8 +133,12 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     return score
 
 
-def group_entities_by_threshold(html_tokens, tags, threshold, iob_encoder=IobEncoder):
-    entities, positions = _entities_with_positions(html_tokens, tags, iob_encoder)
+def group_entities_by_threshold(html_tokens, tags, threshold,
+                                seq_enc=IobEncoder, bilou=False):
+    entities, positions = _entities_with_positions(html_tokens,
+                                                   tags,
+                                                   seq_enc,
+                                                   bilou)
     distances = _get_distances(positions)
 
     groups, buf = [], []
@@ -162,17 +178,21 @@ def _get_distances(start_end_pairs):
     distances = []
     prev_pos = 0
     for start, end in start_end_pairs:
-        distances.append(start-prev_pos)
-        prev_pos=end
+        distances.append(start - prev_pos)
+        prev_pos = end
     return distances
 
 
-def _entities_with_positions(html_tokens, tags, iob_encoder=IobEncoder):
+def _entities_with_positions(html_tokens, tags, seq_enc=IobEncoder(), bilou=False):
     tokens_with_positions = zip(html_tokens, _get_positions(html_tokens))
     data = zip(tokens_with_positions, tags)
 
     entities, positions = [], []
-    for items, tag in iob_encoder.group(data):
+    if bilou:
+        grouped = bilou_group(data)
+    else:
+        grouped = seq_enc.group(data)
+    for items, tag in grouped:
         if tag == 'O':
             continue
         tokens, token_positions = zip(*items)
