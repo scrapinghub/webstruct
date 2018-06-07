@@ -107,7 +107,9 @@ def merge_top_n(chains, bilou=False):
     encoded_chains = []
     for chain in chains[1:]:
         encoder = IobEncoder()
-        encoded_chains.append(encoder.iter_group(enumerate(chain)))
+        enc = encoder.iter_group(enumerate(chain))
+        enc = [c for c in enc]
+        encoded_chains.append(enc)
 
     if bilou:
         encoded_chains = bilou_encoder(encoded_chains)
