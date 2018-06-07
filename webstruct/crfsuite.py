@@ -54,7 +54,7 @@ def create_crfsuite_pipeline(token_features=None,
     Create :class:`CRFsuitePipeline` for HTML tagging using CRFsuite.
     This pipeline expects data produced by
     :class:`~.HtmlTokenizer` as an input and produces
-    sequences of IOB2 tags as output.
+    sequences of IOB2 or BILOU tags as output. To get BILOU tags pass bilou=True
 
     Example::
 
@@ -91,7 +91,9 @@ def create_crfsuite_pipeline(token_features=None,
     if token_features is None:
         token_features = []
 
-    fe = HtmlFeatureExtractor(token_features, global_features, min_df=min_df)
+    fe = HtmlFeatureExtractor(token_features,
+                              global_features,
+                              min_df=min_df)
     crf = CRF(**crf_kwargs)
 
     return CRFsuitePipeline(fe, crf)

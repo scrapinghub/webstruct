@@ -44,8 +44,10 @@ class HtmlToken(_HtmlToken):
     * :attr:`elem` is the current html block (as lxml's Element) - most
       likely you want :attr:`parent` instead of it
     * :attr:`is_tail` flag indicates that token belongs to element tail
-    * :attr:`position` is logical position(in letters or codepoints) of token start in parent text
-    * :attr:`length` is logical length(in letters or codepoints) of token in parent text
+    * :attr:`position` is logical position(in letters or codepoints) of token
+            start in parent text
+    * :attr:`length` is logical length(in letters or codepoints) of token in
+            parent text
 
     Computed properties:
 
@@ -98,6 +100,8 @@ class HtmlTokenizer(object):
     sequence_encoder : object, optional
         Sequence encoder object. If not passed,
         :class:`~webstruct.sequence_encoding.IobEncoder` instance is created.
+    bilou : if True it will generate IOB2 tags using `IobEncoder` and translate
+        them to BILOU tags, False by default.
     text_toknize_func : callable, optional
         Function used for tokenizing text inside HTML elements.
         By default, :class:`HtmlTokenizer` uses
@@ -137,7 +141,7 @@ class HtmlTokenizer(object):
         """
         Return two lists:
 
-        * a list a list of HtmlToken tokens;
+        * a list of HtmlToken tokens;
         * a list of associated tags.
 
         For unannotated HTML all tags will be "O" - they may be ignored.
@@ -252,7 +256,8 @@ class HtmlTokenizer(object):
         # mark starts/ends with special tokens
         data = [(s, True) for s in starts]
         data.extend((s, False) for s in ends)
-        keyfunc = lambda rec: (id(html_tokens[rec[0]].elem), html_tokens[rec[0]].is_tail)
+        keyfunc = lambda rec: (id(html_tokens[rec[0]].elem),
+                               html_tokens[rec[0]].is_tail)
         data.sort(key=keyfunc)
 
         for (_, is_tail), g in groupby(data, keyfunc):
