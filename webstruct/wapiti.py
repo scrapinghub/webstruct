@@ -104,10 +104,16 @@ def merge_top_n(chains, bilou=False):
     ['B-PER', 'I-PER']
     """
     ret = copy.copy(chains[0])
+    encoded_chains = []
     for chain in chains[1:]:
         encoder = IobEncoder()
+        encoded_chains.append(encoder.iter_group(enumerate(chain)))
 
-        for items, tag in encoder.iter_group(enumerate(chain)):
+    if bilou:
+        encoded_chains = bilou_encoder(encoded_chains)
+
+    for chain in encoded_chains:
+        for items, tag in chain:
 
             is_tagged = False
             idx = 0
@@ -149,7 +155,7 @@ class WapitiCRF(BaseSequenceClassifier):
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0,
-                 top_n=1):
+                 top_n=1, bilou=False):
 
         self.modelfile = FileResource(
             filename=model_filename,
@@ -174,6 +180,7 @@ class WapitiCRF(BaseSequenceClassifier):
         self._wapiti_model = None
         self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
         self.top_n = top_n
+        self.bilou = bilou
         super(WapitiCRF, self).__init__()
 
     def fit(self, X, y, X_dev=None, y_dev=None, out_dev=None):
@@ -273,7 +280,7 @@ class WapitiCRF(BaseSequenceClassifier):
             for i in range(self.top_n):
                 start = (words + 1) * i
                 chains[i] = prediction[start:start + words]
-            result.append(merge_top_n(chains))
+            result.append(merge_top_n(chains, self.bilou))
         return result
 
     def run_wapiti(self, args):
