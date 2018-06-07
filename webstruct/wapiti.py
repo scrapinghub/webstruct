@@ -20,7 +20,7 @@ from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
-from webstruct.sequence_encoding import IobEncoder, bilou_encoder
+from webstruct.sequence_encoding import IobEncoder, bilou_group
 
 
 def create_wapiti_pipeline(model_filename=None,
@@ -106,17 +106,13 @@ def merge_top_n(chains, bilou=False):
     ret = copy.copy(chains[0])
     encoded_chains = []
     for chain in chains[1:]:
-        encoder = IobEncoder()
-        enc = encoder.iter_group(enumerate(chain))
-        enc = [c for c in enc]
-        encoded_chains.append(enc)
+        if bilou:
+            encoded_chain = bilou_group(chain)
+        else:
+            encoder = IobEncoder()
+            encoded_chain = encoder.iter_group(enumerate(chain))
 
-    if bilou:
-        encoded_chains = bilou_encoder(encoded_chains)
-
-    for chain in encoded_chains:
         for items, tag in chain:
-
             is_tagged = False
             idx = 0
             while not is_tagged and idx < len(items):
