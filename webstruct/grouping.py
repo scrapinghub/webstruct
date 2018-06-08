@@ -83,7 +83,7 @@ def choose_best_clustering(html_tokens, tags, score_func=None, bilou=False,
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
-
+    
     if not thresholds:
         return (0, 0, group_entities_by_threshold(html_tokens,
                                                   tags,
@@ -185,13 +185,12 @@ def _get_distances(start_end_pairs):
 
 def _entities_with_positions(html_tokens, tags, seq_enc=IobEncoder(), bilou=False):
     tokens_with_positions = zip(html_tokens, _get_positions(html_tokens))
-    data = zip(tokens_with_positions, tags)
 
     entities, positions = [], []
     if bilou:
-        grouped = bilou_group(data)
+        grouped = bilou_group(tokens_with_positions, tags)
     else:
-        grouped = seq_enc.group(data)
+        grouped = seq_enc.group(zip(tokens_with_positions, tags))
     for items, tag in grouped:
         if tag == 'O':
             continue

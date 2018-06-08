@@ -184,3 +184,47 @@ class CRFsuiteTest(unittest.TestCase):
         groups = ner2.extract_groups(html, dont_penalize={'TEL', 'FAX'})
         self.assertIn(group1, groups)
         self.assertIn(group2, groups)
+
+    def test_ner_bilou(self):
+        X, y = self._get_Xy(10, bilou=True)
+        model = self.get_pipeline()
+        model.fit(X, y)
+
+        ner = NER(model, bilou=True)
+
+        # Load 7.html file - model is trained on it, so
+        # the prediction should work well.
+        with open(os.path.join(DATA_PATH, '7.html'), 'rb') as f:
+            html = f.read()
+
+        groups = ner.extract_groups(html, dont_penalize={'TEL', 'FAX'})
+        group1 = [
+            (u'4503 W. Lovers Lane', 'STREET'),
+            (u'Dallas', 'CITY'),
+            (u'TX', 'STATE'),
+            (u'75206', 'ZIPCODE'),
+            (u'214-351-2456', 'TEL'),
+            (u'214-904-1716', 'FAX'),
+        ]
+        group2 = [
+            (u'4503 W. Lovers Lane', 'STREET'),
+            (u'Dallas', 'CITY'),
+            (u'TX', 'STATE'),
+            (u'75206', 'ZIPCODE'),
+            (u'214-351-2456', 'TEL'),
+            (u'214-904-1716', 'FAX')
+        ]
+        self.assertIn(group1, groups)
+        self.assertIn(group2, groups)
+        # pickle/unpickle NER instance
+        dump = pickle.dumps(ner, pickle.HIGHEST_PROTOCOL)
+        ner2 = pickle.loads(dump)
+
+        self.assertNotEqual(
+            ner.model.steps[-1][1].modelfile.name,
+            ner2.model.steps[-1][1].modelfile.name,
+        )
+
+        groups = ner2.extract_groups(html, dont_penalize={'TEL', 'FAX'})
+        self.assertIn(group1, groups)
+        self.assertIn(group2, groups)
