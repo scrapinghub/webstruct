@@ -83,7 +83,7 @@ def choose_best_clustering(html_tokens, tags, score_func=None, bilou=False,
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
-    
+
     if not thresholds:
         return (0, 0, group_entities_by_threshold(html_tokens,
                                                   tags,
