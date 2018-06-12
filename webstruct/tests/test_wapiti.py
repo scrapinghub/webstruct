@@ -8,10 +8,28 @@ import tempfile
 import webstruct
 from webstruct.features import EXAMPLE_TOKEN_FEATURES
 from webstruct.metrics import bio_classification_report
-from webstruct.wapiti import WapitiCRF, create_wapiti_pipeline
+from webstruct.wapiti import create_wapiti_pipeline, merge_top_n
 from webstruct.utils import train_test_split_noshuffle
 from webstruct.model import NER
 from .utils import get_trees, DATA_PATH
+
+
+def test_merge_top_n_bilou():
+    # non-overlap
+    chains = [['U-PER', 'O'], ['O', 'U-FUNC']]
+    assert merge_top_n(chains, bilou=True) == ['U-PER', 'U-FUNC']
+
+    # partially overlap
+    chains = [['B-PER', 'L-PER', 'O'], ['O', 'B-PER', 'L-PER']]
+    assert merge_top_n(chains, bilou=True) == ['B-PER', 'L-PER', 'O']
+
+    chains = [['O', 'U-ORG', 'O'], ['B-PER', 'L-PER', 'O']]
+    assert merge_top_n(chains, bilou=True) == ['O', 'U-ORG', 'O']
+
+    # fully overlap
+    chains = [['B-PER', 'L-PER'], ['B-ORG', 'L-ORG']]
+    assert merge_top_n(chains, bilou=True) == ['B-PER', 'L-PER']
+
 
 class WapitiTest(unittest.TestCase):
 
@@ -48,36 +66,7 @@ class WapitiTest(unittest.TestCase):
         # print(bio_classification_report(y_test, y_pred))
         assert model.score(X_test, y_test) > 0.3
 
-    # def test_training_tagging_bilou(self):
-    ## fails because the model does not learn
-    #     X_train, X_test, y_train, y_test = self._get_train_test(8, 2,
-    #                                                             bilou=True)
-    #
-    #     # Train the model:
-    #     model = self.get_pipeline()
-    #     model.fit(X_train, y_train)
-    #     # print('\nX_train: {}\n\ny_train: {}'.format(X_train, y_train))
-    #     # Model should learn something:
-    #
-    #     y_pred = model.predict(X_test)
-    #     print(bio_classification_report(y_test, y_pred))
-    #     assert model.score(X_test, y_test) > 0.3
-
-    # def test_devdata(self):
-    ## Error with X_dev format passed to  sklearn
-    #     X_train, X_dev, y_train, y_dev = self._get_train_test(8, 4)
-    #     model = self.get_pipeline()
-    #     # print('X_dev: ', X_dev)
-    #     # print('y_dev: ', y_dev)
-    #     model.fit(X_train, y_train, X_dev=X_dev, y_dev=y_dev)
-    #     # assert model.crf.training_log_.featgen_num_features > 100
-    #     # assert model.crf.training_log_.last_iteration['avg_f1'] > 0.3
-    #
-    #     self.assertRaises(ValueError, model.fit, X_train, y_train, X_dev=X_dev)
-    #     self.assertRaises(ValueError, model.fit, X_train, y_train, y_dev=y_dev)
-
     def test_pickle(self):
-        ## fails because pipeline in wapiti is built different from crfsuite
         X_train, X_test, y_train, y_test = self._get_train_test(8, 2)
 
         model = self.get_pipeline()
@@ -100,39 +89,6 @@ class WapitiTest(unittest.TestCase):
         score2 = model2.score(X_test, y_test)
         assert score2 > 0.3
         assert abs(score2-score) < 1e-6
-
-    def test_explicit_modelname(self):
-        X_train, X_test, y_train, y_test = self._get_train_test(8, 2)
-
-        # pass a custom model_filename to the constructor
-        _, fname = tempfile.mkstemp('.crfsuite', 'tst-model-')
-        model = self.get_pipeline(model_filename=fname)
-        model.fit(X_train, y_train)
-
-        self.assertFalse(model.crf.modelfile.auto)
-        self.assertEqual(model.crf.modelfile.name, fname)
-
-        # the file should be preserved when the model is closed
-        del model
-        self.assertTrue(os.path.isfile(fname))
-
-        # we shouldn't need to train the model again
-        model2 = self.get_pipeline(model_filename=fname)
-        assert model2.score(X_test, y_test) > 0.3
-
-        # and it should work after pickling/unpickling
-        dump = pickle.dumps(model2, pickle.HIGHEST_PROTOCOL)
-
-        assert model2.score(X_test, y_test) > 0.3
-        self.assertTrue(os.path.isfile(fname))
-
-        model3 = pickle.loads(dump)
-        assert model3.score(X_test, y_test) > 0.3
-        self.assertTrue(os.path.isfile(fname))
-        self.assertEqual(model3.steps[-1][1].modelfile.name, fname)
-
-        # cleanup
-        os.unlink(fname)
 
     def test_wapiti(self):
         X, y = self._get_Xy(10)

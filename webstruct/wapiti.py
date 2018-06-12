@@ -106,11 +106,10 @@ def merge_top_n(chains, bilou=False):
     ret = copy.copy(chains[0])
     for chain in chains[1:]:
         if bilou:
-            encoded_chain = bilou_group(chain)
+            encoded_chain = bilou_group(list(range(len(chain))), chain)
         else:
             encoder = IobEncoder()
             encoded_chain = encoder.iter_group(enumerate(chain))
-
         for items, tag in encoded_chain:
             is_tagged = False
             idx = 0

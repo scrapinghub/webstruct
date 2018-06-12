@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 import argparse
 from pathlib import Path
+import pprint
 
 import joblib
 from sklearn.model_selection import GroupKFold
@@ -13,7 +14,8 @@ from sklearn_crfsuite import metrics
 import webstruct
 from webstruct import features
 from webstruct.infer_domain import get_tree_domain
-
+# from evaluation import get_metrics
+from webstruct.model import NER
 
 from .data import (
     CONTACT_ENTITIES,
@@ -90,13 +92,14 @@ def _gazetteer_feature(filename: str, name: str) -> features.DAWGGlobalFeature:
 
 
 class ContactsModel:
-    def get_html_tokenizer(self):
+    def get_html_tokenizer(self, bilou=False):
         return webstruct.HtmlTokenizer(
             tagset=CONTACT_ENTITIES,
             replace_html_tags=H_TAG_REPLACES,
+            bilou=bilou,
         )
 
-    def get_crf_pipeline(self):
+    def get_crf_pipeline(self, bilou=False):
         GAZETTEER_FEATURES = [
             features.LongestMatchGlobalFeature(load_countries(), 'COUNTRY'),
             _gazetteer_feature('cities1000.dafsa', 'CITY-1000'),
@@ -169,17 +172,33 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('--cv', type=int)
     p.add_argument('--test-folds', type=int)
+    p.add_argument('--bilou', type=bool, default=False)
     args = p.parse_args()
 
     model = ContactsModel()
-    html_tokenizer = model.get_html_tokenizer()
+    html_tokenizer = model.get_html_tokenizer(bilou=args.bilou)
 
     trees = model.load_training_data()
-    X, y = html_tokenizer.tokenize(pages_progress(trees, desc='Tokenizing'))
+    train_trees = trees[:400]
+    test_trees = trees[400:]
+
+    X, y = html_tokenizer.tokenize(pages_progress(train_trees, desc='Tokenizing'))
     pipe = model.get_crf_pipeline()
 
     if not args.cv:
         pipe.fit(pages_progress(X, desc='Extracting features'), y)
+        print('tokenizing true')
+        X_true, y_true = html_tokenizer.tokenize(pages_progress(test_trees, desc='Tokenizing test'))
+        y_pred = pipe.predict(X_true)
+        print('measuring metric')
+        pp = pprint.PrettyPrinter(2)
+        print('\ntrain')
+        y_pred_train = pipe.predict(X)
+        pp.pprint(webstruct.get_metrics(X, y, X, y_pred_train))
+        _print_metrics(y_pred_train, y)
+        print('\ntest')
+        pp.pprint(webstruct.get_metrics(X_true, y_true, X_true, y_pred))
+        _print_metrics(y_pred, y_true)
         save_model(pipe, html_tokenizer)
     else:
         groups = get_groups(trees)
