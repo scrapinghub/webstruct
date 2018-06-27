@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 from webstruct import GateLoader, HtmlTokenizer, WebAnnotatorLoader, load_trees
 from webstruct.tests.utils import DATA_PATH
@@ -15,18 +16,17 @@ EVAL_PATH = os.path.abspath(os.path.join(
                                 DATA_PATH, '..', '..', '..', 'evaluation',
                                          )
                             )
-
+                                                  
 
 def almost_equal(result, expected):
-    all_keys = []
-    for k, v in result.items():
-        if v == expected[k]:
-            all_keys.append(True)
-        elif round(v - expected[k], 1) == 0:
-            all_keys.append(True)
-        else:
-            all_keys.append(False)
-    return all(all_keys)
+    keys = sorted(result.keys()) == sorted(expected.keys())
+    if not keys:
+        return False
+    res_array = np.array([result[k] for k in result.keys()])
+    exp_array = np.array([expected[k] for k in result.keys()])
+    if np.allclose(res_array, exp_array, rtol=1e-02):
+        return True
+    return False
 
 
 def load_true_pred(known_true_entities=KNOWN_ENTITIES,
