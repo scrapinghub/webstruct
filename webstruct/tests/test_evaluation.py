@@ -16,7 +16,7 @@ EVAL_PATH = os.path.abspath(os.path.join(
                                 DATA_PATH, '..', '..', '..', 'evaluation',
                                          )
                             )
-                                                  
+
 
 def almost_equal(result, expected):
     keys = sorted(result.keys()) == sorted(expected.keys())
