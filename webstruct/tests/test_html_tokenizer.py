@@ -3,7 +3,8 @@ from __future__ import absolute_import
 from copy import deepcopy
 from lxml.html import tostring
 
-from webstruct.html_tokenizer import HtmlTokenizer
+from webstruct.new_html_tokenizer import HtmlTokenizer
+from webstruct.new_sequence_encoding import BilouEncoder, IobEncoder
 from webstruct.loaders import GateLoader, HtmlLoader
 from webstruct.utils import html_document_fromstring
 from .utils import HtmlTest
@@ -69,12 +70,24 @@ class HtmlTokenizerTest(HtmlTest):
             [u'B-ORG', u'I-ORG', 'O', 'O', 'O', 'O', u'B-CITY']
         )
 
-
     def test_tokenize_single(self):
         self.assertTokenizationWorks(self._load())
 
     def test_tokenize_single_lineends(self):
         self.assertTokenizationWorks(HtmlLoader().loadbytes(ANNOTATED_HTML))
+
+    def test_tokenize_single_bilou(self):
+        tree = self._load()
+        html_tokens, tags = HtmlTokenizer(sequence_encoder=BilouEncoder()).tokenize_single(tree)
+        # data is correct
+        self.assertListEqual(
+            [t.token for t in html_tokens],
+            [u'Scrapinghub', u'Inc', u'has', u'an', u'office', u'in', u'Montevideo'],
+        )
+        self.assertListEqual(
+            tags,
+            [u'B-ORG', u'L-ORG', 'O', 'O', 'O', 'O', u'U-CITY']
+        )
 
     def test_detokenize_single(self):
         src_tree = self._load()
@@ -106,7 +119,7 @@ class HtmlTokenizerTest(HtmlTest):
         src_tree = self._load()
         orig_src_tree = deepcopy(src_tree)
 
-        tokenizer = HtmlTokenizer(bilou=True)
+        tokenizer = HtmlTokenizer(sequence_encoder=BilouEncoder())
         html_tokens, tags = tokenizer.tokenize_single(src_tree)
         new_tree = tokenizer.cleanup_tree(src_tree)
         self.assertIn(b'__START_ORG__', tostring(src_tree))
