@@ -1,6 +1,8 @@
 from copy import deepcopy
 
-from webstruct.sequence_encoding import bilou_encoder, bilou_group
+from webstruct.new_sequence_encoding import BilouEncoder
+
+bilou = BilouEncoder()
 
 
 def test_encode():
@@ -10,15 +12,15 @@ def test_encode():
     expected = [['O', 'O', 'B-TITLE', 'I-TITLE', 'I-TITLE', 'I-TITLE',
                  'I-TITLE', 'L-TITLE', 'O', 'O', 'O', 'U-CITY'],
                 ['B-ORG', 'I-ORG'], ['L-ORG'], ['O'], ['U-TEL']]
-    assert bilou_encoder(input_tokens) == expected
+    assert bilou.iob_to_bilou(input_tokens) == expected
 
     input_tokens = [['O']]
     expected = [['O']]
-    assert bilou_encoder(input_tokens) == expected
+    assert bilou.iob_to_bilou(input_tokens) == expected
 
     input_tokens = []
     expected = []
-    assert bilou_encoder(input_tokens) == expected
+    assert bilou.iob_to_bilou(input_tokens) == expected
 
 
 def test_group():
@@ -36,7 +38,7 @@ def test_group():
                 (['Tel'], 'O'),
                 (['123454321'], 'TEL')]
 
-    assert bilou_group(html_tokens, tags) == expected
+    assert bilou.group(html_tokens, tags) == expected
 
 
 def test_group_bad_labels():
@@ -70,11 +72,11 @@ def test_group_bad_labels():
     del bli_expected[-2]
     bll_expected = bli_expected
 
-    assert bilou_group(html_tokens, ilu_tags) == expected
-    assert bilou_group(html_tokens, llu_tags) == expected
-    assert bilou_group(html_tokens, iiu_tags) == expected
-    assert bilou_group(html_tokens, bbu_tags) == bbu_expected
-    assert bilou_group(html_tokens, biu_tags) == expected
-    assert bilou_group(html_tokens, blb_tags) == expected
-    assert bilou_group(html_tokens, bli_tags) == bli_expected
-    assert bilou_group(html_tokens, bll_tags) == bll_expected
+    assert bilou.group(html_tokens, ilu_tags) == expected
+    assert bilou.group(html_tokens, llu_tags) == expected
+    assert bilou.group(html_tokens, iiu_tags) == expected
+    assert bilou.group(html_tokens, bbu_tags) == bbu_expected
+    assert bilou.group(html_tokens, biu_tags) == expected
+    assert bilou.group(html_tokens, blb_tags) == expected
+    assert bilou.group(html_tokens, bli_tags) == bli_expected
+    assert bilou.group(html_tokens, bll_tags) == bll_expected

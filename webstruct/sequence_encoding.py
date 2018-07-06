@@ -83,7 +83,17 @@ class IobEncoder(object):
                                                       token_type, token.chars))
 
     def encode(self, input_tokens):
-        return list(self.iter_encode(input_tokens))
+        chains, tags = [], []
+        for node_tokens, tree, is_tail in input_tokens:
+            c = list(self.iter_encode([t.chars for t in node_tokens]))
+            c = [l for l in self.from_indices(c, node_tokens)]
+            if not c:
+                continue
+            c, tg = self.split(c)
+            chains.append((c, tree, is_tail))
+            tags.append(tg)
+
+        return chains, tags
 
     def split(self, tokens):
         """ split ``[(token, tag)]`` to ``([token], [tags])`` tuple """
@@ -95,7 +105,7 @@ class IobEncoder(object):
             yield input_tokens[idx], tag
 
     @classmethod
-    def group(cls, data, strict=False):
+    def group(cls, html_tokens, tags, strict=False):
         """
         Group IOB2-encoded entities. ``data`` should be an iterable
         of ``(info, iob_tag)`` tuples. ``info`` could be any Python object,
@@ -130,13 +140,12 @@ class IobEncoder(object):
             ...
             ValueError: Invalid sequence: I-PER tag can't start sequence
         """
-        return list(cls.iter_group(data, strict))
+        return list(cls.iter_group(html_tokens, tags, strict))
 
     @classmethod
-    def iter_group(cls, data, strict=False):
+    def iter_group(cls, html_tokens, tags, strict=False):
         buf, tag = [], 'O'
-
-        for info, iob_tag in data:
+        for info, iob_tag in zip(html_tokens, tags):
             if iob_tag.startswith('I-') and tag != iob_tag[2:]:
                 if strict:
                     raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
@@ -193,64 +202,132 @@ class InputTokenProcessor(object):
         return 'token', token
 
 
-def bilou_encoder(iob_tags):
-    bilou_tags = []
-    n_tags_lists = len(iob_tags)
-    for i, text_tags in enumerate(iob_tags):
-        tags = []
-        n_tags = len(text_tags)
-        for n, tag in enumerate(text_tags):
-            tags.append(tag)
-            if tag[0] != 'O':
-                if n + 1 < n_tags and not text_tags[n + 1][0].startswith('I'):
-                    # if the next tag is not I this entity ends here
-                    update_end_of_entity(tags)
-        if i + 1 < n_tags_lists:
-            if not iob_tags[i + 1][0].startswith('I'):  # peek next tag list
-                # if the first tag of the next list is not I entity ends here
-                update_end_of_entity(tags)
-        else:
-            update_end_of_entity(tags)
-        bilou_tags.append(tags)
-    return bilou_tags
+class BilouEncoder(object):
+    """
+   Utility class for encoding tagged token streams using BILOU encoding.
+
+   Encode input tokens using ``encode`` method::
+
+       >>> bilou_encoder = BilouEncoder()
+       >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
+       >>> def encode(encoder, tokens): return [p for p in BilouEncoder.from_indices(encoder.encode(tokens), tokens)]
+       >>> encode(bilou_encoder, input_tokens)
+       [('John', 'U-PER'), ('said', 'O')]
 
 
-def update_end_of_entity(tags):
-    last_tag = tags[-1]
-    if last_tag.startswith('B'):
-        tags[-1] = 'U' + last_tag[1:]
-    elif last_tag.startswith('I'):
-        tags[-1] = 'L' + last_tag[1:]
+       >>> input_tokens = ["hello", "__START_PER__", "John", "Doe", "__END_PER__", "__START_PER__", "Mary", "__END_PER__", "said"]
+       >>> tokens = encode(bilou_encoder, input_tokens)
+       >>> tokens, tags = bilou_encoder.split(tokens)
+       >>> tokens, tags
+       (['hello', 'John', 'Doe', 'Mary', 'said'], ['O', 'B-PER', 'L-PER', 'U-PER', 'O'])
 
+   To reset internal state, use ``reset method``::
 
-def bilou_group(html_tokens, tags, strict=False):
-    grouped = []
-    buf, tag = [], 'O'
-    n = len(tags)
-    for i, (info, bilou_tag) in enumerate(zip(html_tokens, tags)):
-        i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
-        if i_or_l and tag != bilou_tag[2:]:
-            if strict:
-                raise ValueError("Invalid sequence: %s tag can't start"
-                                 "sequence" % bilou_tag)
-            elif (i < n and not tags[i + 1].startswith('B')
-                  and tags[i + 1][2:] == tag[2:]):
-                bilou_tag = 'B-' + bilou_tag[2:]
+       >>> bilou_encoder.reset()
+
+   """
+
+    def __init__(self, token_processor=None):
+        self.token_processor = token_processor or InputTokenProcessor()
+        self.iob_encoder = IobEncoder()
+        self.reset()
+
+    def reset(self):
+        """ Reset the sequence """
+        self.iob_encoder.reset()
+
+    def encode(self, input_tokens):
+        chains, tags = self.iob_encoder.encode(input_tokens)
+        tags = self.iob_to_bilou(tags)
+        return chains, tags
+
+    def iob_to_bilou(self, iob_tags):
+        bilou_tags = []
+        n_tags_lists = len(iob_tags)
+        for i, text_tags in enumerate(iob_tags):
+            tags = []
+            n_tags = len(text_tags)
+            for n, tag in enumerate(text_tags):
+                tags.append(tag)
+                if tag[0] != 'O':
+                    if n + 1 < n_tags and not text_tags[n + 1][0].startswith('I'):
+                        # if the next tag is not I this entity ends here
+                        self.update_end_of_entity(tags)
+            if i + 1 < n_tags_lists:
+                if not iob_tags[i + 1][0].startswith('I'):  # peek next tag list
+                    # if the first tag of the next list is not I entity ends here
+                    self.update_end_of_entity(tags)
             else:
-                bilou_tag = 'U-' + bilou_tag[2:]
+                self.update_end_of_entity(tags)
+            bilou_tags.append(tags)
+        return bilou_tags
 
-        if bilou_tag.startswith('B-') or bilou_tag.startswith('U-'):
-            if buf:
-                grouped.append((buf, tag))
-            buf = []
+    def update_end_of_entity(self, tags):
+        last_tag = tags[-1]
+        if last_tag.startswith('B'):
+            tags[-1] = 'U' + last_tag[1:]
+        elif last_tag.startswith('I'):
+            tags[-1] = 'L' + last_tag[1:]
 
-        elif bilou_tag == 'O':
-            if buf and tag != 'O':
-                grouped.append((buf, tag))
+    @classmethod
+    def group(cls, html_tokens, tags, strict=False):
+        """
+        Group BILOU-encoded entities. ``data`` should be an iterable
+        of ``(info, bilou_tag)`` tuples. ``info`` could be any Python object,
+        ``bilou_tag`` should be a string with a tag.
+        Example::
+           >>>
+           >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
+           ...         ("Doe", "L-PER"), ("Mary", "U-PER"), ("said", "O")]
+           >>> for items, tag in BilouEncoder.iter_group(data):
+           ...     print("%s %s" % (items, tag))
+           ['hello', ','] O
+           ['John', 'Doe'] PER
+           ['Mary'] PER
+           ['said'] O
+        By default, invalid sequences are fixed::
+           >>> data = [("hello", "O"), ("John", "I-PER"), ("Doe", "I-PER")]
+           >>> for items, tag in IobEncoder.iter_group(data):
+           ...     print("%s %s" % (items, tag))
+           ['hello'] O
+           ['John', 'Doe'] PER
+        Pass 'strict=True' argument to raise an exception for
+        invalid sequences::
+           >>> for items, tag in BilouEncoder.iter_group(data, strict=True):
+           ...     print("%s %s" % (items, tag))
+           Traceback (most recent call last):
+           ...
+           ValueError: Invalid sequence: I-PER tag can't start sequence
+        """
+        return list(cls.iter_group(html_tokens, tags, strict))
+
+    @classmethod
+    def iter_group(cls, html_tokens, tags, strict=False):
+        buf, tag = [], 'O'
+        n = len(tags)
+        for i, (info, bilou_tag) in enumerate(zip(html_tokens, tags)):
+            i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
+            if i_or_l and tag != bilou_tag[2:]:
+                if strict:
+                    raise ValueError("Invalid sequence: %s tag can't start"
+                                     "sequence" % bilou_tag)
+                elif (i < n and not tags[i + 1].startswith('B')
+                      and tags[i + 1][2:] == tag[2:]):
+                    bilou_tag = 'B-' + bilou_tag[2:]
+                else:
+                    bilou_tag = 'U-' + bilou_tag[2:]
+
+            if bilou_tag.startswith('B-') or bilou_tag.startswith('U-'):
+                if buf:
+                    yield (buf, tag)
                 buf = []
 
-        tag = 'O' if bilou_tag == 'O' else bilou_tag[2:]
-        buf.append(info)
-        if i == n - 1 and buf:
-            grouped.append((buf, tag))
-    return grouped
+            elif bilou_tag == 'O':
+                if buf and tag != 'O':
+                    yield (buf, tag)
+                    buf = []
+
+            tag = 'O' if bilou_tag == 'O' else bilou_tag[2:]
+            buf.append(info)
+            if i == n - 1 and buf:
+                yield (buf, tag)

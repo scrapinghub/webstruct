@@ -17,7 +17,7 @@ from six.moves import zip
 
 from lxml.etree import iterwalk
 
-from webstruct.sequence_encoding import IobEncoder, bilou_encoder, bilou_group
+from .new_sequence_encoding import IobEncoder, BilouEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
@@ -100,8 +100,6 @@ class HtmlTokenizer(object):
     sequence_encoder : object, optional
         Sequence encoder object. If not passed,
         :class:`~webstruct.sequence_encoding.IobEncoder` instance is created.
-    bilou : if True it will generate IOB2 tags using `IobEncoder` and translate
-        them to BILOU tags, False by default.
     text_toknize_func : callable, optional
         Function used for tokenizing text inside HTML elements.
         By default, :class:`HtmlTokenizer` uses
@@ -118,7 +116,7 @@ class HtmlTokenizer(object):
     """
     def __init__(self, tagset=None, sequence_encoder=None,
                  text_tokenize_func=None, kill_html_tags=None,
-                 replace_html_tags=None, ignore_html_tags=None, bilou=False):
+                 replace_html_tags=None, ignore_html_tags=None):
         self.tagset = set(tagset) if tagset is not None else None
         self.text_tokenize_func = text_tokenize_func or tokenize
         self.kill_html_tags = kill_html_tags
@@ -132,7 +130,6 @@ class HtmlTokenizer(object):
         # FIXME: don't use shared instance of sequence encoder
         # because sequence encoder is stateful
         self.sequence_encoder = sequence_encoder or IobEncoder()
-        self.bilou = bilou
 
         tag_pattern = self.sequence_encoder.token_processor.tag_re.pattern
         self._tag_re = re.compile(r"(^|\s)%s(\s|$)" % tag_pattern.strip())
@@ -176,26 +173,10 @@ class HtmlTokenizer(object):
         tokens_tree = list(self._process_tree(tree))
         if not tokens_tree:
             return [], []
-        res = self._encode(tokens_tree)
 
-        return list(res[0]), list(res[1])
+        chains, tags = self.sequence_encoder.encode(tokens_tree)
 
-    def _encode(self, tokens_tree):
-        chains, tags = [], []
-        self.sequence_encoder.reset()
-        for node_tokens, tree, is_tail in tokens_tree:
-            c = self.sequence_encoder.encode([t.chars for t in node_tokens])
-            c = self.sequence_encoder.from_indices(c, node_tokens)
-            c = [l for l in c]
-            if not c:
-                continue
-            c, tg = self.sequence_encoder.split(c)
-            chains.append((c, tree, is_tail))
-            tags.append(tg)
-
-        if self.bilou:
-            tags = bilou_encoder(tags)
-
+        tags = [tag for tags_list in tags for tag in tags_list]
         html_tokens_chains = []
         for tokens_list, tree, is_tail in chains:
             char_tokens = [t.chars for t in tokens_list]
@@ -206,11 +187,8 @@ class HtmlTokenizer(object):
                                                     is_tail,
                                                     token.position,
                                                     token.length)
-                                         )
-        tags = [tag for tokens_list in tags for tag in tokens_list]
-
-        # build HtmlToken elements\
-        return [html_tokens_chains, tags]
+                                          )
+        return html_tokens_chains, tags
 
     def tokenize(self, trees):
         X, y = [], []
@@ -239,11 +217,7 @@ class HtmlTokenizer(object):
 
         tree = html_tokens[0].root
 
-        # find starts/ends of token groups
-        if self.bilou:
-            token_groups = bilou_group(html_tokens, tags)
-        else:
-            token_groups = self.sequence_encoder.group(zip(html_tokens, tags))
+        token_groups = self.sequence_encoder.group(html_tokens, tags)
         starts, ends = set(), set()
         pos = 0
         for gr_tokens, gr_tag in token_groups:
