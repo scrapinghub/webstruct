@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from webstruct.new_sequence_encoding import BilouEncoder
+from webstruct.sequence_encoding import BilouEncoder
 
 bilou = BilouEncoder()
 

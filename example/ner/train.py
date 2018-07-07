@@ -14,8 +14,8 @@ from sklearn_crfsuite import metrics
 import webstruct
 from webstruct import features
 from webstruct.infer_domain import get_tree_domain
-# from evaluation import get_metrics
 from webstruct.model import NER
+from webstruct.sequence_encoding import BilouEncoder
 
 from .data import (
     CONTACT_ENTITIES,
@@ -92,14 +92,14 @@ def _gazetteer_feature(filename: str, name: str) -> features.DAWGGlobalFeature:
 
 
 class ContactsModel:
-    def get_html_tokenizer(self, bilou=False):
+    def get_html_tokenizer(self, sequence_encoder):
         return webstruct.HtmlTokenizer(
             tagset=CONTACT_ENTITIES,
             replace_html_tags=H_TAG_REPLACES,
-            bilou=bilou,
+            sequence_encoder=sequence_encoder,
         )
 
-    def get_crf_pipeline(self, bilou=False):
+    def get_crf_pipeline(self):
         GAZETTEER_FEATURES = [
             features.LongestMatchGlobalFeature(load_countries(), 'COUNTRY'),
             _gazetteer_feature('cities1000.dafsa', 'CITY-1000'),
@@ -176,13 +176,16 @@ if __name__ == '__main__':
     args = p.parse_args()
 
     model = ContactsModel()
-    html_tokenizer = model.get_html_tokenizer(bilou=args.bilou)
+    sequence_encoder = None
+    if args.bilou:
+        sequence_encoder = BilouEncoder()
+    html_tokenizer = model.get_html_tokenizer(sequence_encoder)
 
     trees = model.load_training_data()
     train_trees = trees[:400]
     test_trees = trees[400:]
 
-    X, y = html_tokenizer.tokenize(pages_progress(train_trees, desc='Tokenizing'))
+    X, y = html_tokenizer.tokenize(pages_progress(trees, desc='Tokenizing'))
     pipe = model.get_crf_pipeline()
 
     if not args.cv:
@@ -202,10 +205,17 @@ if __name__ == '__main__':
         save_model(pipe, html_tokenizer)
     else:
         groups = get_groups(trees)
-        y_pred, y_true = crf_cross_val_predict(pipe, X, y,
+        y_pred, y_true, X_dev = crf_cross_val_predict(pipe, X, y,
             cv=GroupKFold(n_splits=args.cv),
             groups=groups,
             n_folds=args.test_folds,
         )
+        # print(X_dev)
+        print('measuring metric')
+        pp = pprint.PrettyPrinter(2)
+        pp.pprint(webstruct.get_metrics(X_dev, y_true, X_dev, y_pred))
         _print_metrics(y_pred, y_true)
+        print(len(y_pred))
+        # print(y_pred)
+
     save_explanation(pipe.crf)
