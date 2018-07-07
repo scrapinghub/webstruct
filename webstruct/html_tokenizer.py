@@ -17,7 +17,7 @@ from six.moves import zip
 
 from lxml.etree import iterwalk
 
-from .new_sequence_encoding import IobEncoder, BilouEncoder
+from .sequence_encoding import IobEncoder, BilouEncoder
 from webstruct.text_tokenizers import tokenize, TextToken
 from webstruct.utils import (
     replace_html_tags,
