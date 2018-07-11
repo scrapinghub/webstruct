@@ -20,7 +20,7 @@ from webstruct import HtmlFeatureExtractor
 from webstruct.base import BaseSequenceClassifier
 from webstruct.utils import get_combined_keys, run_command
 from webstruct._fileresource import FileResource
-from webstruct.sequence_encoding import IobEncoder, bilou_group
+from webstruct.sequence_encoding import IobEncoder, BilouEncoder
 
 
 def create_wapiti_pipeline(model_filename=None,
@@ -75,7 +75,7 @@ def create_wapiti_pipeline(model_filename=None,
     ])
 
 
-def merge_top_n(chains, bilou=False):
+def merge_top_n(chains, sequence_encoder=IobEncoder()):
     """
     Take first (most probable) as base for resulting chain
     and merge other N-1 chains one by one
@@ -105,11 +105,7 @@ def merge_top_n(chains, bilou=False):
     """
     ret = copy.copy(chains[0])
     for chain in chains[1:]:
-        if bilou:
-            encoded_chain = bilou_group(list(range(len(chain))), chain)
-        else:
-            encoder = IobEncoder()
-            encoded_chain = encoder.iter_group(enumerate(chain))
+        encoded_chain = sequence_encoder.group(list(range(len(chain))), chain)
         for items, tag in encoded_chain:
             is_tagged = False
             idx = 0
@@ -151,7 +147,7 @@ class WapitiCRF(BaseSequenceClassifier):
                  feature_template="# Label unigrams and bigrams:\n*\n",
                  unigrams_scope="u", tempdir=None, unlink_temp=True,
                  verbose=True, feature_encoder=None, dev_size=0,
-                 top_n=1, bilou=False):
+                 top_n=1, sequence_encoder=IobEncoder()):
 
         self.modelfile = FileResource(
             filename=model_filename,
@@ -176,7 +172,7 @@ class WapitiCRF(BaseSequenceClassifier):
         self._wapiti_model = None
         self.feature_encoder = feature_encoder or WapitiFeatureEncoder()
         self.top_n = top_n
-        self.bilou = bilou
+        self.sequence_encoder = sequence_encoder
         super(WapitiCRF, self).__init__()
 
     def fit(self, X, y, X_dev=None, y_dev=None, out_dev=None):
@@ -275,7 +271,7 @@ class WapitiCRF(BaseSequenceClassifier):
             for i in range(self.top_n):
                 start = (words + 1) * i
                 chains[i] = prediction[start:start + words]
-            result.append(merge_top_n(chains, self.bilou))
+            result.append(merge_top_n(chains, self.sequence_encoder))
         return result
 
     def run_wapiti(self, args):
