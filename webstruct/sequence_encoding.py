@@ -275,7 +275,9 @@ class BilouEncoder(object):
         Group BILOU-encoded entities. ``data`` should be an iterable
         of ``(info, bilou_tag)`` tuples. ``info`` could be any Python object,
         ``bilou_tag`` should be a string with a tag.
+
         Example::
+
            >>>
            >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
            ...         ("Doe", "L-PER"), ("Mary", "U-PER"), ("said", "O")]
@@ -285,14 +287,18 @@ class BilouEncoder(object):
            ['John', 'Doe'] PER
            ['Mary'] PER
            ['said'] O
+
         By default, invalid sequences are fixed::
+
            >>> data = [("hello", "O"), ("John", "I-PER"), ("Doe", "I-PER")]
            >>> for items, tag in IobEncoder.iter_group(data):
            ...     print("%s %s" % (items, tag))
            ['hello'] O
            ['John', 'Doe'] PER
+
         Pass 'strict=True' argument to raise an exception for
         invalid sequences::
+
            >>> for items, tag in BilouEncoder.iter_group(data, strict=True):
            ...     print("%s %s" % (items, tag))
            Traceback (most recent call last):
