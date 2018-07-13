@@ -29,7 +29,7 @@ addons:
 
 install:
     - pip install -U pip tox codecov
-    - pip install git+git://github.com/Jekub/Wapiti
+    - pip install git+git://github.com/adsva/python-wapiti.git
 
 script: tox
 
