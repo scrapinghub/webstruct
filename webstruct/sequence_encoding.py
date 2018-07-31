@@ -10,7 +10,7 @@ class IobEncoder(object):
     Encode input tokens using ``encode`` method::
         >>> input_tokens = ['__START_PER__', 'John', '__END_PER__', 'said']
         >>> iob_encoder = IobEncoder()
-        >>> def encode(encoder, tokens): return [p for p in IobEncoder.from_indices(encoder.encode(tokens), tokens)]
+        >>> def encode(encoder, tokens): return [p for p in IobEncoder.from_indices(encoder.iter_encode(tokens), tokens)]
         >>> encode(iob_encoder, input_tokens)
         [('John', 'B-PER'), ('said', 'O')]
 
@@ -114,9 +114,9 @@ class IobEncoder(object):
         Example::
 
             >>>
-            >>> data = [("hello", "O"), (",", "O"), ("John", "B-PER"),
-            ...         ("Doe", "I-PER"), ("Mary", "B-PER"), ("said", "O")]
-            >>> for items, tag in IobEncoder.iter_group(data):
+            >>> html_tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
+            >>> tags = ["O", "O", "B-PER", "I-PER", "B-PER", "O"]
+            >>> for items, tag in IobEncoder.iter_group(html_tokens, tags):
             ...     print("%s %s" % (items, tag))
             ['hello', ','] O
             ['John', 'Doe'] PER
@@ -124,9 +124,9 @@ class IobEncoder(object):
             ['said'] O
 
         By default, invalid sequences are fixed::
-
-            >>> data = [("hello", "O"), ("John", "I-PER"), ("Doe", "I-PER")]
-            >>> for items, tag in IobEncoder.iter_group(data):
+            >>> html_tokens = ["hello", ",", "John", "Doe"]
+            >>> tags = ["O", "O", "I-PER", "I-PER"]
+            >>> for items, tag in IobEncoder.iter_group(html_tokens, tags):
             ...     print("%s %s" % (items, tag))
             ['hello'] O
             ['John', 'Doe'] PER
@@ -209,9 +209,8 @@ class BilouEncoder(object):
    Encode input tokens using ``encode`` method::
 
        >>> bilou_encoder = BilouEncoder()
-       >>> input_tokens = [(["__START_PER__", "John", "__END_PER__", "said"],
-       ...                   'tree', False)]
-       >>> def encode(encoder, tokens): return [p for p in BilouEncoder.from_indices(encoder.encode(tokens), tokens)]
+       >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
+       >>> def encode(encoder, tokens): return [p for p in BilouEncoder.from_indices(encoder.iter_encode(tokens), tokens)]
        >>> encode(bilou_encoder, input_tokens)
        [('John', 'U-PER'), ('said', 'O')]
 
@@ -287,7 +286,7 @@ class BilouEncoder(object):
         Example::
 
            >>> html_tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
-           >>> tags = ["O", "O", "B-PER", "L-PER", "U-PER", "O"
+           >>> tags = ["O", "O", "B-PER", "L-PER", "U-PER", "O"]
            >>> for items, tag in BilouEncoder.iter_group(html_tokens, tags):
            ...     print("%s %s" % (items, tag))
            ['hello', ','] O
