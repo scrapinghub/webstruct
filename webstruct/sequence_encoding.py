@@ -284,11 +284,11 @@ class BilouEncoder(object):
         Pass 'strict=True' argument to raise an exception for
         invalid sequences::
 
-           >>> for items, tag in BilouEncoder.iter_group(tokens, tags, strict=True):
-           ...     print("%s %s" % (items, tag))
-           Traceback (most recent call last):
-           ...
-           ValueError: Invalid sequence: I-PER tag can't start sequence
+            >>> for items, tag in BilouEncoder.iter_group(tokens, tags, strict=True):
+            ...     print("%s %s" % (items, tag))
+            Traceback (most recent call last):
+            ...
+            ValueError: Invalid sequence: I-PER tag can't start sequence
         """
         return list(cls.iter_group(tokens, tags, strict))
 
