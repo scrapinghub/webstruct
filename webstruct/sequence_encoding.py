@@ -39,7 +39,8 @@ class IobEncoder(object):
 
     Group results to entities::
 
-        >>> iob_encoder.group(encode(iob_encoder, input_tokens))
+        >>> tokens, tags = encode(iob_encoder, input_tokens)
+        >>> iob_encoder.group(tokens, tags)
         [(['hello'], 'O'), (['John', 'Doe'], 'PER'), (['Mary'], 'PER'), (['said'], 'O')]
 
     Input token stream is processed by ``InputTokenProcessor()`` by default;
@@ -105,18 +106,17 @@ class IobEncoder(object):
             yield input_tokens[idx], tag
 
     @classmethod
-    def group(cls, html_tokens, tags, strict=False):
+    def group(cls, tokens, tags, strict=False):
         """
-        Group IOB2-encoded entities. ``data`` should be an iterable
-        of ``(info, iob_tag)`` tuples. ``info`` could be any Python object,
-        ``iob_tag`` should be a string with a tag.
+        Group IOB2-encoded entities. ``tokens`` could be any Python object,
+        ``tags`` should be a list of iob tags.
 
         Example::
 
             >>>
-            >>> html_tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
+            >>> tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
             >>> tags = ["O", "O", "B-PER", "I-PER", "B-PER", "O"]
-            >>> for items, tag in IobEncoder.iter_group(html_tokens, tags):
+            >>> for items, tag in IobEncoder.iter_group(tokens, tags):
             ...     print("%s %s" % (items, tag))
             ['hello', ','] O
             ['John', 'Doe'] PER
@@ -124,11 +124,11 @@ class IobEncoder(object):
             ['said'] O
 
         By default, invalid sequences are fixed::
-            >>> html_tokens = ["hello", ",", "John", "Doe"]
+            >>> tokens = ["hello", ",", "John", "Doe"]
             >>> tags = ["O", "O", "I-PER", "I-PER"]
-            >>> for items, tag in IobEncoder.iter_group(html_tokens, tags):
+            >>> for items, tag in IobEncoder.iter_group(tokens, tags):
             ...     print("%s %s" % (items, tag))
-            ['hello'] O
+            ['hello', ','] O
             ['John', 'Doe'] PER
 
         Pass 'strict=True' argument to raise an exception for
@@ -140,12 +140,12 @@ class IobEncoder(object):
             ...
             ValueError: Invalid sequence: I-PER tag can't start sequence
         """
-        return list(cls.iter_group(html_tokens, tags, strict))
+        return list(cls.iter_group(tokens, tags, strict))
 
     @classmethod
-    def iter_group(cls, html_tokens, tags, strict=False):
+    def iter_group(cls, tokens, tags, strict=False):
         buf, tag = [], 'O'
-        for info, iob_tag in zip(html_tokens, tags):
+        for info, iob_tag in zip(tokens, tags):
             if iob_tag.startswith('I-') and tag != iob_tag[2:]:
                 if strict:
                     raise ValueError("Invalid sequence: %s tag can't start sequence" % iob_tag)
@@ -204,29 +204,8 @@ class InputTokenProcessor(object):
 
 class BilouEncoder(object):
     """
-   Utility class for encoding tagged token streams using BILOU encoding.
-
-   Encode input tokens using ``encode`` method::
-
-       >>> bilou_encoder = BilouEncoder()
-       >>> input_tokens = ["__START_PER__", "John", "__END_PER__", "said"]
-       >>> def encode(encoder, tokens): return [p for p in BilouEncoder.from_indices(encoder.iter_encode(tokens), tokens)]
-       >>> encode(bilou_encoder, input_tokens)
-       [('John', 'U-PER'), ('said', 'O')]
-
-
-       >>> input_tokens = ["hello", "__START_PER__", "John", "Doe",
-       ...                 "__END_PER__", "__START_PER__", "Mary",
-       ...                 "__END_PER__", "said"]
-       >>> tokens = encode(bilou_encoder, input_tokens)
-       >>> tokens, tags = bilou_encoder.split(tokens)
-       >>> tokens, tags
-       (['hello', 'John', 'Doe', 'Mary', 'said'], ['O', 'B-PER', 'L-PER', 'U-PER', 'O'])
-
-   To reset internal state, use ``reset method``::
-
-       >>> bilou_encoder.reset()
-
+    Utility class for encoding tagged token streams using BILOU encoding.
+    Same behavior as IobEncoder.
    """
 
     def __init__(self, token_processor=None):
@@ -277,17 +256,16 @@ class BilouEncoder(object):
             yield input_tokens[idx], tag
 
     @classmethod
-    def group(cls, html_tokens, tags, strict=False):
+    def group(cls, tokens, tags, strict=False):
         """
-        Group BILOU-encoded entities. ``data`` should be an iterable
-        of ``(info, bilou_tag)`` tuples. ``info`` could be any Python object,
-        ``bilou_tag`` should be a string with a tag.
+        Group BILOU-encoded entities. ``tokens`` could be any Python object,
+        ``tags`` should be a list of bilou tags.
 
         Example::
 
-           >>> html_tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
+           >>> tokens = ["hello", ",", "John", "Doe", "Mary", "said"]
            >>> tags = ["O", "O", "B-PER", "L-PER", "U-PER", "O"]
-           >>> for items, tag in BilouEncoder.iter_group(html_tokens, tags):
+           >>> for items, tag in BilouEncoder.iter_group(tokens, tags):
            ...     print("%s %s" % (items, tag))
            ['hello', ','] O
            ['John', 'Doe'] PER
@@ -296,9 +274,9 @@ class BilouEncoder(object):
 
         By default, invalid sequences are fixed::
 
-           >>> html_tokens = ["hello", "John", "Doe"]
-           >>> tags = [O", I-PER", "I-PER"]
-           >>> for items, tag in IobEncoder.iter_group(html_tokens, tags):
+           >>> tokens = ["hello", "John", "Doe"]
+           >>> tags = [O", "I-PER", "I-PER"]
+           >>> for items, tag in IobEncoder.iter_group(tokens, tags):
            ...     print("%s %s" % (items, tag))
            ['hello'] O
            ['John', 'Doe'] PER
@@ -312,13 +290,13 @@ class BilouEncoder(object):
            ...
            ValueError: Invalid sequence: I-PER tag can't start sequence
         """
-        return list(cls.iter_group(html_tokens, tags, strict))
+        return list(cls.iter_group(tokens, tags, strict))
 
     @classmethod
-    def iter_group(cls, html_tokens, tags, strict=False):
+    def iter_group(cls, tokens, tags, strict=False):
         buf, tag = [], 'O'
         n = len(tags)
-        for i, (info, bilou_tag) in enumerate(zip(html_tokens, tags)):
+        for i, (info, bilou_tag) in enumerate(zip(tokens, tags)):
             i_or_l = bilou_tag.startswith('I-') or bilou_tag.startswith('L-')
             if i_or_l and tag != bilou_tag[2:]:
                 if strict:
