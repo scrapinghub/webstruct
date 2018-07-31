@@ -26,10 +26,10 @@ addons:
             - libatlas-base-dev
             - liblapack-dev
             - gfortran
+            - git+git://github.com/adsva/python-wapiti.git#egg=libwapiti
 
 install:
     - pip install -U pip tox codecov
-    - pip install git+git://github.com/adsva/python-wapiti.git
 
 script: tox
 
