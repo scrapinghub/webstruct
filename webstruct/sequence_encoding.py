@@ -284,7 +284,7 @@ class BilouEncoder(object):
         Pass 'strict=True' argument to raise an exception for
         invalid sequences::
 
-           >>> for items, tag in BilouEncoder.iter_group(data, strict=True):
+           >>> for items, tag in BilouEncoder.iter_group(tokens, tags, strict=True):
            ...     print("%s %s" % (items, tag))
            Traceback (most recent call last):
            ...
