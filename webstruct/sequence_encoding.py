@@ -39,7 +39,7 @@ class IobEncoder(object):
 
     Group results to entities::
 
-        >>> tokens, tags = encode(iob_encoder, input_tokens)
+        >>> tokens, tags = iob_encoder.split(encode(iob_encoder, input_tokens))
         >>> iob_encoder.group(tokens, tags)
         [(['hello'], 'O'), (['John', 'Doe'], 'PER'), (['Mary'], 'PER'), (['said'], 'O')]
 
@@ -134,7 +134,7 @@ class IobEncoder(object):
         Pass 'strict=True' argument to raise an exception for
         invalid sequences::
 
-            >>> for items, tag in IobEncoder.iter_group(data, strict=True):
+            >>> for items, tag in IobEncoder.iter_group(tokens, tags, strict=True):
             ...     print("%s %s" % (items, tag))
             Traceback (most recent call last):
             ...
@@ -275,7 +275,7 @@ class BilouEncoder(object):
         By default, invalid sequences are fixed::
 
            >>> tokens = ["hello", "John", "Doe"]
-           >>> tags = [O", "I-PER", "I-PER"]
+           >>> tags = ["O", "I-PER", "I-PER"]
            >>> for items, tag in IobEncoder.iter_group(tokens, tags):
            ...     print("%s %s" % (items, tag))
            ['hello'] O
