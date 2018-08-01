@@ -26,6 +26,7 @@ addons:
             - libatlas-base-dev
             - liblapack-dev
             - gfortran
+            - GitPython
 
 install:
     - pip install -U pip tox codecov
@@ -35,6 +36,8 @@ install:
 script: tox
 
 after_success:
+    - python install_wapiti.py
+    - cd Wapiti; make; make install; cd ..
     - codecov
 
 cache:
