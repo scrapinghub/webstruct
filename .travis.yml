@@ -1,6 +1,6 @@
 language: python
 python: 3.5
-sudo: false
+sudo: true
 
 branches:
     only:
@@ -27,8 +27,6 @@ addons:
             - liblapack-dev
             - gfortran
             - cmake
-
-sudo: true
 
 install:
     - pip install -U pip tox codecov
