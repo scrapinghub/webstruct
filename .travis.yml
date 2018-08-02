@@ -29,6 +29,7 @@ addons:
             - cmake
 
 install:
+    - make get-deps
     - pip install -U pip tox codecov
 
 script: tox
