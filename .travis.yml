@@ -28,6 +28,8 @@ addons:
             - gfortran
             - cmake
 
+sudo: true
+
 install:
     - pip install -U pip tox codecov
 
