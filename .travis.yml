@@ -26,6 +26,7 @@ addons:
             - libatlas-base-dev
             - liblapack-dev
             - gfortran
+            - cmake
 
 install:
     - pip install -U pip tox codecov
