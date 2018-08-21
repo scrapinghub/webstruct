@@ -154,16 +154,28 @@ def _get_positions(html_tokens):
     return positions
 
 
+def _get_distance(p, p_1):
+    prev = 0
+    if p is not None:
+        prev = p[1]
+
+    return p_1[0] - prev
+
+
 def _get_distances(start_end_pairs):
     """
     >>> _get_distances([(0,1), (5,10), (11,12)])
     [0, 4, 1]
     """
     distances = []
-    prev_pos = 0
-    for start, end in start_end_pairs:
-        distances.append(start-prev_pos)
-        prev_pos=end
+    for idx, pos_1 in enumerate(start_end_pairs):
+
+        pos = None
+        if idx > 0:
+            pos = start_end_pairs[idx - 1]
+
+        distances.append(_get_distance(pos, pos_1))
+
     return distances
 
 
