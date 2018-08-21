@@ -137,20 +137,35 @@ def group_entities_by_threshold(html_tokens, tags, threshold, iob_encoder=IobEnc
     return groups
 
 
+def _get_position(pos, t, t_1):
+
+    if t is None:
+        return 0
+
+    prev_parent, prev_elem = t.parent, t.elem
+
+    if t_1.parent is not prev_parent:
+        pos += 2
+
+    if t_1.elem is not prev_elem:
+        pos += 1
+
+    pos += 2
+
+    return pos
+
+
 def _get_positions(html_tokens):
     # XXX: IMHO it penalizes text between entities too much
-    pos = -(2+1+2)
-    prev_parent, prev_elem = None, None
     positions = []
-    for tok in html_tokens:
-        if tok.parent is not prev_parent:
-            pos += 2
-            prev_parent = tok.parent
-        if tok.elem is not prev_elem:
-            pos += 1
-            prev_elem = tok.elem
-        pos += 2
-        positions.append(pos)
+    for idx, tok_1 in enumerate(html_tokens):
+        tok = None
+        pos = 0
+        if idx > 0:
+            tok = html_tokens[idx - 1]
+            pos = positions[idx - 1]
+        pos_1 = _get_position(pos, tok, tok_1)
+        positions.append(pos_1)
     return positions
 
 
