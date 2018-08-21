@@ -82,16 +82,24 @@ def choose_best_clustering(html_tokens,
     score_kwargs = score_kwargs or {}
 
     entities, positions = _entities_with_positions(html_tokens, tags, get_position_func)
-    distances = _get_distances(positions)
+    distances = _get_distances(positions, get_distance_func)
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
 
     if not thresholds:
-        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0, get_position_func))
+        return (0, 0, group_entities_by_threshold(html_tokens,
+                                                  tags,
+                                                  0,
+                                                  get_position_func,
+                                                  get_distance_func))
 
     possible_clusterings = [
-        group_entities_by_threshold(html_tokens, tags, threshold, get_position_func)
+        group_entities_by_threshold(html_tokens,
+                                    tags,
+                                    threshold,
+                                    get_position_func,
+                                    get_distance_func)
         for threshold in thresholds
     ]
     scores = [score_func(cl, threshold, **score_kwargs)
@@ -132,12 +140,13 @@ def group_entities_by_threshold(html_tokens,
                                 tags,
                                 threshold,
                                 get_position_func,
+                                get_distance_func,
                                 iob_encoder=IobEncoder):
     entities, positions = _entities_with_positions(html_tokens,
                                                    tags,
                                                    get_position_func,
                                                    iob_encoder)
-    distances = _get_distances(positions)
+    distances = _get_distances(positions, get_distance_func)
 
     groups, buf = [], []
     for ent, dist in zip(entities, distances):
@@ -191,9 +200,9 @@ def _get_distance(p, p_1):
     return p_1[0] - prev
 
 
-def _get_distances(start_end_pairs):
+def _get_distances(start_end_pairs, get_distance_func):
     """
-    >>> _get_distances([(0,1), (5,10), (11,12)])
+    >>> _get_distances([(0,1), (5,10), (11,12)], _get_distance)
     [0, 4, 1]
     """
     distances = []
@@ -203,7 +212,7 @@ def _get_distances(start_end_pairs):
         if idx > 0:
             pos = start_end_pairs[idx - 1]
 
-        distances.append(_get_distance(pos, pos_1))
+        distances.append(get_distance_func(pos, pos_1))
 
     return distances
 
