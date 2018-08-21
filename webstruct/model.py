@@ -136,8 +136,12 @@ def _join_tokens(html_tokens):
     return smart_join(t.token for t in html_tokens)
 
 
-def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
-                           join_tokens=_join_tokens):
+def extract_entitiy_groups(html_tokens,
+                           tags,
+                           dont_penalize=None,
+                           join_tokens=_join_tokens,
+                           get_position_func=None,
+                           get_distance_func=None):
     """
     Convert html_tokens and tags to a list of entity groups
     (a list of lists of (text, tag) tuples).
@@ -145,7 +149,9 @@ def extract_entitiy_groups(html_tokens, tags, dont_penalize=None,
     threshold, score, clusters = choose_best_clustering(
         html_tokens,
         tags,
-        score_kwargs={'dont_penalize': dont_penalize}
+        score_kwargs={'dont_penalize': dont_penalize},
+        get_position_func=get_position_func,
+        get_distance_func=get_distance_func
     )
 
     groups = []

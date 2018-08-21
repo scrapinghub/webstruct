@@ -43,7 +43,12 @@ from webstruct.sequence_encoding import IobEncoder
 
 
 _select_score = operator.itemgetter(1)
-def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None):
+def choose_best_clustering(html_tokens,
+                           tags,
+                           score_func=None,
+                           score_kwargs=None,
+                           get_position_func=None,
+                           get_distance_func=None):
     """
     Select a best way to split ``html_tokens`` and ``tags`` into clusters
     of named entities. Return ``(threshold, score, clusters)`` tuple.
@@ -71,20 +76,22 @@ def choose_best_clustering(html_tokens, tags, score_func=None, score_kwargs=None
     ``score_kwargs={'dont_penalize': {'TEL', 'FAX'}}``.
 
     """
+    get_position_func = get_position_func or _get_position
+    get_distance_func = get_distance_func or _get_distance
     score_func = score_func or default_clustering_score
     score_kwargs = score_kwargs or {}
 
-    entities, positions = _entities_with_positions(html_tokens, tags)
+    entities, positions = _entities_with_positions(html_tokens, tags, get_position_func)
     distances = _get_distances(positions)
 
     # first distance is irrelevant; prefer longer clusters
     thresholds = sorted(set(distances[1:]), reverse=True)
 
     if not thresholds:
-        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0))
+        return (0, 0, group_entities_by_threshold(html_tokens, tags, 0, get_position_func))
 
     possible_clusterings = [
-        group_entities_by_threshold(html_tokens, tags, threshold)
+        group_entities_by_threshold(html_tokens, tags, threshold, get_position_func)
         for threshold in thresholds
     ]
     scores = [score_func(cl, threshold, **score_kwargs)
@@ -121,8 +128,15 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     return score
 
 
-def group_entities_by_threshold(html_tokens, tags, threshold, iob_encoder=IobEncoder):
-    entities, positions = _entities_with_positions(html_tokens, tags, iob_encoder)
+def group_entities_by_threshold(html_tokens,
+                                tags,
+                                threshold,
+                                get_position_func,
+                                iob_encoder=IobEncoder):
+    entities, positions = _entities_with_positions(html_tokens,
+                                                   tags,
+                                                   get_position_func,
+                                                   iob_encoder)
     distances = _get_distances(positions)
 
     groups, buf = [], []
@@ -155,7 +169,7 @@ def _get_position(pos, t, t_1):
     return pos
 
 
-def _get_positions(html_tokens):
+def _get_positions(html_tokens, get_position_func):
     # XXX: IMHO it penalizes text between entities too much
     positions = []
     for idx, tok_1 in enumerate(html_tokens):
@@ -164,7 +178,7 @@ def _get_positions(html_tokens):
         if idx > 0:
             tok = html_tokens[idx - 1]
             pos = positions[idx - 1]
-        pos_1 = _get_position(pos, tok, tok_1)
+        pos_1 = get_position_func(pos, tok, tok_1)
         positions.append(pos_1)
     return positions
 
@@ -194,8 +208,13 @@ def _get_distances(start_end_pairs):
     return distances
 
 
-def _entities_with_positions(html_tokens, tags, iob_encoder=IobEncoder):
-    tokens_with_positions = zip(html_tokens, _get_positions(html_tokens))
+def _entities_with_positions(html_tokens,
+                             tags,
+                             get_position_func,
+                             iob_encoder=IobEncoder):
+
+    tokens_with_positions = zip(html_tokens, _get_positions(html_tokens,
+                                                            get_position_func))
     data = zip(tokens_with_positions, tags)
 
     entities, positions = [], []
