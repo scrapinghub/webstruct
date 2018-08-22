@@ -121,6 +121,8 @@ def default_clustering_score(clusters, threshold, dont_penalize=None):
     """
 
     # XXX: Maybe penalize large thresholds?
+    if threshold == 0:
+        return -10000
 
     dont_penalize = set(dont_penalize or set())
     score = 0
