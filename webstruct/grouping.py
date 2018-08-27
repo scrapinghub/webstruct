@@ -180,6 +180,10 @@ def _get_position(pos, t, t_1):
     return pos
 
 
+def _get_tree_position(pos, t, t_1):
+    return t_1.elem
+
+
 def _get_positions(html_tokens, get_position_func):
     # XXX: IMHO it penalizes text between entities too much
     positions = []
@@ -200,6 +204,37 @@ def _get_distance(p, p_1):
         prev = p[1]
 
     return p_1[0] - prev
+
+
+def _lowest_common_ancestor(t, t_1):
+    ancestors = dict()
+
+    current = t
+    dist_t = 0
+    while current is not None:
+        ancestors[current] = dist_t
+        current = current.getparent()
+        dist_t = dist_t + 1
+
+    dist_t_1 = 0
+    current = t_1
+
+    while current is not None:
+
+        if current in ancestors:
+            return ancestors[current] + dist_t_1
+
+        current = current.getparent()
+        dist_t_1 = dist_t_1 + 1
+
+    return 10000
+
+
+def _get_tree_distance(p, p_1):
+    if p is None:
+        return 0
+
+    return _lowest_common_ancestor(p[1], p_1[0])
 
 
 def _get_distances(start_end_pairs, get_distance_func):
