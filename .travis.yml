@@ -30,7 +30,7 @@ addons:
 install:
     - pip install -U pip tox codecov
     - git clone https://github.com/Jekub/Wapiti /tmp/wapiti
-    - cd /tmp/wapiti && make && make install
+    - cd /tmp/wapiti && make && sudo make install
 
 script: tox
 
