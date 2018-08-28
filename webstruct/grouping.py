@@ -176,6 +176,19 @@ def group_entities_by_threshold(html_tokens,
 
 
 def default_position(pos, t, t_1):
+    """
+    Calculate postion for token based on postion of previous token
+
+    Parameters
+    ----------
+
+    pos : any, optional
+        position of previous token
+    t : :class:`~webstruct.html_tokenizer.HtmlToken`, optional
+        previous token
+    t_1 : :class:`~webstruct.html_tokenizer.HtmlToken`, optional
+        token for wich position is calculated
+    """
 
     if t is None:
         return 0
@@ -212,6 +225,17 @@ def _get_positions(html_tokens, get_position_func):
 
 
 def default_distance(p, p_1):
+    """
+    Calculate distance between two enitities
+
+    Parameters
+    ----------
+
+    p : pair
+        postions of first and last token in first entity
+    p_1 : pair
+        postions of first and last token in second entity
+    """
     prev = 0
     if p is not None:
         prev = p[1]
