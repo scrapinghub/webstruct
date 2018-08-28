@@ -70,14 +70,14 @@ def choose_best_clustering(html_tokens,
     is good and small or negative if it is bad.
 
     If ``get_position_func`` is None, :func:`choose_best_clustering` uses
-    :func:`_get_position` to obtain positions of HTML tokens.
+    :func:`default_position` to obtain positions of HTML tokens.
     You can pass your own position function to change logic used.
     Your function must have 3 positional parameters:
     ``pos``, ``t`` and ``t_1``  and return a postion(any type) which will be used in
     distance calculation.
 
     If ``get_distance_func`` is None, :func:`choose_best_clustering` uses
-    :func:`_get_distance` to calculate distance between extracted entities.
+    :func:`default_distance` to calculate distance between extracted entities.
     You can pass your own position function to change logic used.
     Your function must have 2 positional parameters:
     ``p`` and ``p_1``  and return a distance between them.
@@ -89,8 +89,8 @@ def choose_best_clustering(html_tokens,
     ``score_kwargs={'dont_penalize': {'TEL', 'FAX'}}``.
 
     """
-    get_position_func = get_position_func or _get_position
-    get_distance_func = get_distance_func or _get_distance
+    get_position_func = get_position_func or default_position
+    get_distance_func = get_distance_func or default_distance
     score_func = score_func or default_clustering_score
     score_kwargs = score_kwargs or {}
 
@@ -175,7 +175,7 @@ def group_entities_by_threshold(html_tokens,
     return groups
 
 
-def _get_position(pos, t, t_1):
+def default_position(pos, t, t_1):
 
     if t is None:
         return 0
@@ -211,7 +211,7 @@ def _get_positions(html_tokens, get_position_func):
     return positions
 
 
-def _get_distance(p, p_1):
+def default_distance(p, p_1):
     prev = 0
     if p is not None:
         prev = p[1]
@@ -252,7 +252,7 @@ def _get_tree_distance(p, p_1):
 
 def _get_distances(start_end_pairs, get_distance_func):
     """
-    >>> _get_distances([(0,1), (5,10), (11,12)], _get_distance)
+    >>> _get_distances([(0,1), (5,10), (11,12)], default_distance)
     [0, 4, 1]
     """
     distances = []
