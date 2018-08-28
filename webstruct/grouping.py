@@ -69,6 +69,19 @@ def choose_best_clustering(html_tokens,
     and return a score (number) which should be large if the clustering
     is good and small or negative if it is bad.
 
+    If ``get_position_func`` is None, :func:`choose_best_clustering` uses
+    :func:`_get_position` to obtain positions of HTML tokens.
+    You can pass your own position function to change logic used.
+    Your function must have 3 positional parameters:
+    ``pos``, ``t`` and ``t_1``  and return a postion(any type) which will be used in
+    distance calculation.
+
+    If ``get_distance_func`` is None, :func:`choose_best_clustering` uses
+    :func:`_get_distance` to calculate distance between extracted entities.
+    You can pass your own position function to change logic used.
+    Your function must have 2 positional parameters:
+    ``p`` and ``p_1``  and return a distance between them.
+
     ``score_kwargs`` is a dict of keyword arguments passed to
     scoring function. For example, if you use default ``score_func``,
     the goal is to group contact information, and you want to allow
