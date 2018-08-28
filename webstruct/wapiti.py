@@ -125,10 +125,6 @@ def merge_top_n(chains):
 
 class WapitiCRF(BaseSequenceClassifier):
     """
-    >>> run_command(['which', WapitiCRF.WAPITI_CMD], verbose=False)
-    """
-
-    """
     Class for training and applying Wapiti CRF models.
 
     For training it relies on calling original Wapiti binary (via
