@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 import argparse
 from pathlib import Path
+import pprint
 
 import joblib
 from sklearn.model_selection import GroupKFold
@@ -13,7 +14,8 @@ from sklearn_crfsuite import metrics
 import webstruct
 from webstruct import features
 from webstruct.infer_domain import get_tree_domain
-
+from webstruct.model import NER
+from webstruct.sequence_encoding import BilouEncoder
 
 from .data import (
     CONTACT_ENTITIES,
@@ -90,10 +92,11 @@ def _gazetteer_feature(filename: str, name: str) -> features.DAWGGlobalFeature:
 
 
 class ContactsModel:
-    def get_html_tokenizer(self):
+    def get_html_tokenizer(self, sequence_encoder):
         return webstruct.HtmlTokenizer(
             tagset=CONTACT_ENTITIES,
             replace_html_tags=H_TAG_REPLACES,
+            sequence_encoder=sequence_encoder,
         )
 
     def get_crf_pipeline(self):
@@ -169,24 +172,50 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('--cv', type=int)
     p.add_argument('--test-folds', type=int)
+    p.add_argument('--bilou', type=bool, default=False)
     args = p.parse_args()
 
     model = ContactsModel()
-    html_tokenizer = model.get_html_tokenizer()
+    sequence_encoder = None
+    if args.bilou:
+        sequence_encoder = BilouEncoder()
+    html_tokenizer = model.get_html_tokenizer(sequence_encoder)
 
     trees = model.load_training_data()
+    train_trees = trees[:400]
+    test_trees = trees[400:]
+
     X, y = html_tokenizer.tokenize(pages_progress(trees, desc='Tokenizing'))
     pipe = model.get_crf_pipeline()
 
     if not args.cv:
         pipe.fit(pages_progress(X, desc='Extracting features'), y)
+        print('tokenizing true')
+        X_true, y_true = html_tokenizer.tokenize(pages_progress(test_trees, desc='Tokenizing test'))
+        y_pred = pipe.predict(X_true)
+        print('measuring metric')
+        pp = pprint.PrettyPrinter(2)
+        print('\ntrain')
+        y_pred_train = pipe.predict(X)
+        pp.pprint(webstruct.get_metrics(X, y, X, y_pred_train))
+        _print_metrics(y_pred_train, y)
+        print('\ntest')
+        pp.pprint(webstruct.get_metrics(X_true, y_true, X_true, y_pred))
+        _print_metrics(y_pred, y_true)
         save_model(pipe, html_tokenizer)
     else:
         groups = get_groups(trees)
-        y_pred, y_true = crf_cross_val_predict(pipe, X, y,
+        y_pred, y_true, X_dev = crf_cross_val_predict(pipe, X, y,
             cv=GroupKFold(n_splits=args.cv),
             groups=groups,
             n_folds=args.test_folds,
         )
+        # print(X_dev)
+        print('measuring metric')
+        pp = pprint.PrettyPrinter(2)
+        pp.pprint(webstruct.get_metrics(X_dev, y_true, X_dev, y_pred))
         _print_metrics(y_pred, y_true)
+        print(len(y_pred))
+        # print(y_pred)
+
     save_explanation(pipe.crf)
