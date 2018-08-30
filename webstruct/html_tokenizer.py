@@ -167,12 +167,41 @@ class HtmlTokenizer(object):
 
         """
         tree = copy.deepcopy(tree)
-        self.sequence_encoder.reset()
         self._prepare_tree(tree)
-        res = list(zip(*self._process_tree(tree)))
-        if not res:
+        tokens_tree = list(self._process_tree(tree))
+        if not tokens_tree:
             return [], []
+        res = self._encode(tokens_tree)
         return list(res[0]), list(res[1])
+
+    def _encode(self, tokens_tree):
+        chains, tags = [], []
+        self.sequence_encoder.reset()
+        for node_tokens, tree, is_tail in tokens_tree:
+            c = self.sequence_encoder.encode([t.chars for t in node_tokens])
+            c = self.sequence_encoder.from_indices(c, node_tokens)
+            c = [l for l in c]
+            if not c:
+                continue
+            c, tg = self.sequence_encoder.split(c)
+            chains.append((c, tree, is_tail))
+            tags.append(tg)
+
+        html_tokens_chains = []
+        for tokens_list, tree, is_tail in chains:
+            char_tokens = [t.chars for t in tokens_list]
+            for index, token in enumerate(tokens_list):
+                html_tokens_chains.append(HtmlToken(index,
+                                                    char_tokens,
+                                                    tree,
+                                                    is_tail,
+                                                    token.position,
+                                                    token.length)
+                                         )
+        tags = [tag for tokens_list in tags for tag in tokens_list]
+
+        # build HtmlToken elements\
+        return [html_tokens_chains, tags]
 
     def tokenize(self, trees):
         X, y = [], []
@@ -270,29 +299,15 @@ class HtmlTokenizer(object):
         if not isinstance(tree.tag, str) or tree.tag in self.ignore_html_tags:
             return
 
-        head_tokens, head_tags = self._tokenize_and_split(tree.text)
-        char_tokens = [t.chars for t in head_tokens]
-        for index, (token, tag) in enumerate(zip(head_tokens, head_tags)):
-            yield HtmlToken(index,
-                            char_tokens,
-                            tree,
-                            False,
-                            token.position,
-                            token.length), tag
+        head_tokens = self._tokenize_text(tree.text)
+        yield (head_tokens, tree, False)
 
         for child in tree:  # where is my precious "yield from"?
-            for html_token, tag in self._process_tree(child):
-                yield html_token, tag
+            for text_token_list in self._process_tree(child):
+                yield text_token_list
 
-        tail_tokens, tail_tags = self._tokenize_and_split(tree.tail)
-        char_tokens = [t.chars for t in tail_tokens]
-        for index, (token, tag) in enumerate(zip(tail_tokens, tail_tags)):
-            yield HtmlToken(index,
-                            char_tokens,
-                            tree,
-                            True,
-                            token.position,
-                            token.length), tag
+        tail_tokens = self._tokenize_text(tree.tail)
+        yield (tail_tokens, tree, True)
 
     def cleanup_tree(self, tree):
         cleaned = copy.deepcopy(tree)
@@ -308,17 +323,14 @@ class HtmlTokenizer(object):
         if elem.tail:
             elem.tail = self._tag_re.sub("", elem.tail)
 
-    def _tokenize_and_split(self, text):
+    def _tokenize_text(self, text):
         text = text or ''
         input_tokens = [t for t in self.text_tokenize_func(text)]
         input_tokens = self._limit_tags(input_tokens)
         input_tokens = [TextToken(chars=t.chars,
                                   position=t.position,
                                   length=t.length) for t in input_tokens]
-        chains = self.sequence_encoder.encode(t.chars for t in input_tokens)
-        chains = self.sequence_encoder.from_indices(chains, input_tokens)
-        chains = [l for l in chains]
-        return self.sequence_encoder.split(chains)
+        return input_tokens
 
     def _limit_tags(self, input_tokens):
         if self.tagset is None:

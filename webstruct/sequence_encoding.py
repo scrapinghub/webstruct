@@ -79,7 +79,8 @@ class IobEncoder(object):
                 continue
 
             else:
-                raise ValueError("Unknown token type '%s' for token '%s'" % (token_type, token))
+                raise ValueError("Unknown token type '%s' for token '%s'" % (
+                                                      token_type, token.chars))
 
     def encode(self, input_tokens):
         return list(self.iter_encode(input_tokens))
