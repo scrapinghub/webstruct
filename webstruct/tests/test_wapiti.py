@@ -15,6 +15,7 @@ from webstruct.model import NER
 from .utils import get_trees, DATA_PATH
 
 
+
 def test_is_wapiti_binary_present():
     run_command(['which', WapitiCRF.WAPITI_CMD])
 
