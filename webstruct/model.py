@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-:mod:`webstruct.model` contains convetional wrappers for creating NER models.
+:mod:`webstruct.model` contains conventional wrappers for creating NER models.
 """
 from __future__ import absolute_import
 
@@ -103,6 +103,13 @@ class NER(object):
         Return annotated HTML data in WebAnnotator format.
         """
         html_tokens, tags = self.extract_raw(bytes_data)
+        return self.annotate_tokens(html_tokens, tags)
+
+    def annotate_tokens(self, html_tokens, tags, pretty_print=False):
+        """
+        Return annotated HTML data in WebAnnotator format.; input is tokens and tags.
+        """
+        assert len(html_tokens) == len(tags)
         tree = self.html_tokenizer.detokenize_single(html_tokens, tags)
         tree = to_webannotator(tree, entity_colors=self.entity_colors, url=url)
         return tostring(tree, pretty_print=pretty_print)
