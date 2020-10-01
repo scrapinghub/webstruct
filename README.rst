@@ -1,4 +1,4 @@
-Webstruct
+Webstruct Library
 =========
 
 .. image:: https://img.shields.io/pypi/v/webstruct.svg
